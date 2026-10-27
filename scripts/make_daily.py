@@ -217,17 +217,39 @@ def ask_claude(cands, model, prompt=None):
         if c.get("text"):
             p["text"] = c["text"]
         payload.append(p)
-    return call_claude((prompt or PROMPT) + json.dumps(payload, ensure_ascii=False), model)
+    return call_claude((prompt or PROMPT) + json.dumps(payload, ensure_ascii=False), model, max_tokens=16000, keys=["real", "fake"])
 
 
-def call_claude(content, model, max_tokens=12000, fatal=True):
+PRICES = {"haiku": (0.10, 0.50), "sonnet": (2.0, 10.0), "opus": (5.0, 25.0)}   # USD per million tokens (in, out)
+SPENT = [0.0]
+
+
+def note_cost(model, usage):
+    tier = next((k for k in PRICES if k in model), "sonnet")
+    pin, pout = PRICES[tier]
+    if tier == "haiku" and usage.get("input_tokens", 0) > 100_000:
+        pin, pout = 0.50, 2.50
+    c = usage.get("input_tokens", 0) / 1e6 * pin + usage.get("output_tokens", 0) / 1e6 * pout
+    SPENT[0] += c
+    return c
+
+
+def call_claude(content, model, max_tokens=12000, fatal=True, keys=None):
+    """One Claude call. The answer comes back through a forced tool call, so the API hands us
+    already-parsed JSON (no broken quotes or stray prose). `keys` are the top-level arrays expected;
+    by default they are read from the {"key": ...} names in the prompt's output example."""
     key = os.environ.get("ANTHROPIC_API_KEY")
     if not key:
         sys.exit("ANTHROPIC_API_KEY is not set (or pass --picks).")
+    if keys is None:
+        keys = [k for k in ("real", "fake", "s", "checks") if f'{{"{k}":' in content or f'"{k}":[' in content] or ["real", "fake"]
+    schema = {"type": "object", "properties": {k: {"type": "array", "items": {}} for k in keys}, "required": keys}
     body = {
         "model": model,
         "max_tokens": max_tokens,
-        "messages": [{"role": "user", "content": content}],
+        "tools": [{"name": "submit", "description": "Submit your answer as structured data.", "input_schema": schema}],
+        "tool_choice": {"type": "tool", "name": "submit"},
+        "messages": [{"role": "user", "content": content + "\n\n(Submit your answer with the submit tool, using exactly the JSON structure described above.)"}],
     }
     last = None
     for attempt in range(3):
@@ -239,6 +261,16 @@ def call_claude(content, model, max_tokens=12000, fatal=True):
         try:
             with urllib.request.urlopen(req, timeout=180) as r:
                 res = json.loads(r.read())
+            note_cost(model, res.get("usage") or {})
+            if res.get("stop_reason") == "max_tokens":
+                print("  Claude hit the output limit; the answer may be cut short", file=sys.stderr)
+            for b in res.get("content", []):
+                if b.get("type") == "tool_use" and isinstance(b.get("input"), dict):
+                    out = b["input"]
+                    for k in keys:                      # some models send a nested array as a JSON string
+                        if isinstance(out.get(k), str):
+                            out[k] = json.loads(out[k])
+                    return out
             text = "".join(b.get("text", "") for b in res.get("content", []) if b.get("type") == "text")
             m = re.search(r"\{.*\}", text, re.S)
             return json.loads(m.group(0))
@@ -272,7 +304,7 @@ def screen(cands, model, top=SCREEN_TOP):
     for start in range(0, len(cands), 120):
         chunk = [{"id": i, "title": c["title"], "summary": c["summary"][:220], "source": c["source"]}
                  for i, c in enumerate(cands) if start <= i < start + 120]
-        res = call_claude(SCREEN_PROMPT + json.dumps(chunk, ensure_ascii=False), model, max_tokens=4000, fatal=False)
+        res = call_claude(SCREEN_PROMPT + json.dumps(chunk, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["s"])
         for pair in (res or {}).get("s", []):
             try:
                 i, sc = int(pair[0]), float(pair[1])
@@ -374,7 +406,7 @@ def fact_check(reals, model):
     items = [{"id": i, "h": r.get("h", ""), "h2": r.get("h2", ""), "place": r.get("place", ""),
               "source": {"title": r.get("_title", ""), "summary": r.get("_summary", ""), "text": r.get("_text", "")}}
              for i, r in enumerate(reals)]
-    res = call_claude(CHECK_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=4000, fatal=False)
+    res = call_claude(CHECK_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["checks"])
     if not res or "checks" not in res:
         print("  fact-check unavailable; keeping all picks", file=sys.stderr)
         return reals
@@ -686,6 +718,7 @@ def main():
     history = {k: v for k, v in history.items() if k >= cutoff}
     with open(hist_path, "w") as f:
         json.dump(history, f, indent=1)
+    print(f"  estimated Claude cost this run: ${SPENT[0]:.2f}", file=sys.stderr)
     print(f"Wrote data/{day}.json: {len(call)} Real-or-Fake, {len(result['blank'])} Fill-the-Blank", file=sys.stderr)
 
 
