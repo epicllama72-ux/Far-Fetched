@@ -62,6 +62,17 @@ FEEDS += [
     ("Google News it", _gn("curioso OR surreale OR incredibile OR bizzarro", "it", "IT", "IT:it")),
     ("Google News ja", _gn("珍事 OR 珍騒動 OR まさか", "ja", "JP", "JP:ja")),
     ("Google News nl", _gn("opmerkelijk OR bizar OR curieus", "nl", "NL", "NL:nl")),
+    ("Google News es-AR", _gn("insólito OR increíble OR curioso", "es-419", "AR", "AR:es-419")),
+    ("Google News es-CO", _gn("insólito OR curioso OR increíble", "es-419", "CO", "CO:es-419")),
+    ("Google News pt-PT", _gn("insólito OR caricato OR curioso", "pt-PT", "PT", "PT:pt-150")),
+    ("Google News ko", _gn("황당 OR 기막힌 OR 진기한", "ko", "KR", "KR:ko")),
+    ("Google News zh-TW", _gn("離奇 OR 荒謬 OR 奇聞", "zh-TW", "TW", "TW:zh-Hant")),
+    ("Google News id", _gn("unik OR aneh OR nyeleneh OR \"tak biasa\"", "id", "ID", "ID:id")),
+    ("Google News tr", _gn("ilginç OR tuhaf OR \"görenler şaşkına döndü\"", "tr", "TR", "TR:tr")),
+    ("Google News pl", _gn("kuriozalny OR absurdalny OR nietypowy", "pl", "PL", "PL:pl")),
+    ("Google News sv", _gn("bisarr OR märklig OR kuriös", "sv", "SE", "SE:sv")),
+    ("Google News ar", _gn("غريب OR طريف OR \"واقعة غريبة\"", "ar", "EG", "EG:ar")),
+    ("Google News he", _gn("מוזר OR הזוי OR משעשע", "he", "IL", "IL:he")),
 ]
 # Worldwide net: Google News searches for odd-but-true stories from the past 30 days, one per regional edition.
 _ODD_Q = urllib.parse.quote('(bizarre OR quirky OR "strange but true" OR unusual OR unlikely OR "world record") (rescued OR escaped OR found OR wins OR discovered OR stuck OR unveiled OR spotted) when:30d')
@@ -69,7 +80,9 @@ _ODD_Q3 = urllib.parse.quote('(arrested OR stole OR stolen OR burglar OR thief O
 _ODD_Q2 = urllib.parse.quote('(ridiculous OR hilarious OR absurd OR baffling OR "only in") (council OR police OR residents OR town OR village OR farmer OR zoo) when:30d')
 for _name, _gl, _ceid in [("US", "US", "US:en"), ("UK", "GB", "GB:en"), ("Australia", "AU", "AU:en"), ("Canada", "CA", "CA:en"),
                           ("India", "IN", "IN:en"), ("Ireland", "IE", "IE:en"), ("New Zealand", "NZ", "NZ:en"),
-                          ("South Africa", "ZA", "ZA:en"), ("Singapore", "SG", "SG:en"), ("Philippines", "PH", "PH:en")]:
+                          ("South Africa", "ZA", "ZA:en"), ("Singapore", "SG", "SG:en"), ("Philippines", "PH", "PH:en"),
+                          ("Nigeria", "NG", "NG:en"), ("Kenya", "KE", "KE:en"), ("Ghana", "GH", "GH:en"),
+                          ("Pakistan", "PK", "PK:en"), ("Malaysia", "MY", "MY:en")]:
     FEEDS.append((f"Google News odd ({_name})", f"https://news.google.com/rss/search?q={_ODD_Q}&hl=en-{_gl}&gl={_gl}&ceid={_ceid}"))
     FEEDS.append((f"Google News crime ({_name})", f"https://news.google.com/rss/search?q={_ODD_Q3}&hl=en-{_gl}&gl={_gl}&ceid={_ceid}"))
     FEEDS.append((f"Google News absurd ({_name})", f"https://news.google.com/rss/search?q={_ODD_Q2}&hl=en-{_gl}&gl={_gl}&ceid={_ceid}"))
@@ -82,7 +95,9 @@ MAX_AGE_DAYS = 30
 POL_MAX_AGE_DAYS = 45
 N_POL_REAL, N_POL_FAKE = 8, 2   # Politics: also exactly 2 fakes
 N_CALL_REAL, N_CALL_FAKE, N_BLANK = 8, 2, 10   # Real or Fake always has exactly 2 fakes
-SCREEN_TOP = 50        # how many screened candidates get their article fetched and go to the editor
+SCREEN_TOP = 50
+SCREEN_PER_COUNTRY = 7  # at most this many shortlisted stories from one country
+# how many screened candidates get their article fetched and go to the editor
 BANK_DAYS, BANK_MAX = 45, 80   # banked stories expire after this many days; keep at most this many
 
 
@@ -172,7 +187,7 @@ PROMPT = """You are the editor of "Far-Fetched", a daily guessing game built on 
 
 Below are candidate news stories from the past month (JSON). Some include "text", the opening of the article: use it for the facts and the punchline. Some are not in English: write everything you output in English. Do two jobs and reply with ONE JSON object only, no prose.
 
-1) "real": pick 20 of the best stories for the game, best first. You MUST return at least 14; if clue-rich stories run short, fill the rest with the most surprising remaining ones (low clue_strength is fine), never return fewer than 14 (rank by clue_strength plus unbelievable). Rank by how HARD TO BELIEVE the story is: favour the ones a reader would assume are made up (absurd specifics, improbable coincidences, odd rules, unlikely animals or objects) but that really happened. Strongly prefer stories where the event is linked to the place it happened, so a player can DEDUCE the location from the headline instead of guessing: local wildlife or climate (a kangaroo, a moose, monsoon flooding, snow in summer), regional industry, food, sport or customs, a local law or institution type, driving side, currency, units or typical local jobs. Stories that could have happened anywhere rank lower but are still acceptable fillers. The game should be FUNNY, EDUCATIONAL and reward broad general knowledge: favour stories that make a reader laugh out loud or are so ridiculous they feel like something out of the movie Idiocracy (absurd decisions, baffling rules, dumbfounding mix-ups, spectacularly dumb but harmless events), and whose clues connect to things a well-read person could know about the place (geography, climate, wildlife, languages, currencies, laws, food, history, sport, industries), so that general knowledge lets them reason to the right region, not luck. Good picks are surprising, funny or delightful, happened in ONE specific identifiable town/city/county, and are light-hearted. Skip BORING stories: a rare animal spotted, a nice rescue, a big vegetable, a quiet record, a mild oddity with no real twist. Every pick needs a real punchline, an absurd mistake or a jaw-dropping detail. STRANGE, FUNNY CRIME stories are welcome and wanted (dumb criminals, bizarre thefts, absurd arrests, getaway fails, odd things stolen or smuggled, ridiculous excuses) as long as they are non-violent and nobody is seriously hurt. Never pick stories about death, serious injury, violent crimes against people, abuse, sexual content, children in danger, war, politics, disasters or tragedy. Avoid near-duplicates (e.g. several lottery wins) - at most one lottery story. For each pick give:
+1) "real": pick 20 of the best stories for the game, best first. You MUST return at least 14; if clue-rich stories run short, fill the rest with the most surprising remaining ones (low clue_strength is fine), never return fewer than 14 (rank by clue_strength plus unbelievable). Rank by how HARD TO BELIEVE the story is: favour the ones a reader would assume are made up (absurd specifics, improbable coincidences, odd rules, unlikely animals or objects) but that really happened. Strongly prefer stories where the event is linked to the place it happened, so a player can DEDUCE the location from the headline instead of guessing: local wildlife or climate (a kangaroo, a moose, monsoon flooding, snow in summer), regional industry, food, sport or customs, a local law or institution type, driving side, currency, units or typical local jobs. Stories that could have happened anywhere rank lower but are still acceptable fillers. The game should be FUNNY, EDUCATIONAL and reward broad general knowledge: favour stories that make a reader laugh out loud or are so ridiculous they feel like something out of the movie Idiocracy (absurd decisions, baffling rules, dumbfounding mix-ups, spectacularly dumb but harmless events), and whose clues connect to things a well-read person could know about the place (geography, climate, wildlife, languages, currencies, laws, food, history, sport, industries), so that general knowledge lets them reason to the right region, not luck. Good picks are surprising, funny or delightful, happened in ONE specific identifiable town/city/county, and are light-hearted. Skip BORING stories: a rare animal spotted, a nice rescue, a big vegetable, a quiet record, a mild oddity with no real twist. Every pick needs a real punchline, an absurd mistake or a jaw-dropping detail. STRANGE, FUNNY CRIME stories are welcome and wanted (dumb criminals, bizarre thefts, absurd arrests, getaway fails, odd things stolen or smuggled, ridiculous excuses) as long as they are non-violent and nobody is seriously hurt. Never pick stories about death, serious injury, violent crimes against people, abuse, sexual content, children in danger, war, politics, disasters or tragedy. Avoid near-duplicates (e.g. several lottery wins) - at most one lottery story. Spread your picks around the WORLD: at most 3 from any one country, and at least half from outside the US, UK, Canada, Australia, New Zealand and Ireland whenever the candidates allow it (Latin America, Europe, Asia, Africa and the Middle East are all welcome). For each pick give:
    - "id": the candidate id.
    - "h": a punchy wire-style headline, max 100 characters, keeping every fact of the story exactly as reported (never change what happened, who or what was involved, numbers or outcome). You MAY reword and add short descriptive wording that makes the region easier to deduce, as long as it is generically true of that place and does not alter or add to the story: e.g. local terms and institutions ("the county sheriff", "council", "constabulary", "a roo", "monsoon rains", "rupees", "kilometres", "on the ski slopes"), local climate, wildlife or customs, or spelling and units typical of the country. Replace the place with the literal token {} exactly once (e.g. "... in {}"). Remove every EXPLICIT location clue: no state/country/city names, demonyms, local team, landmark, university or company names that reveal the place, no "Florida man". But KEEP the implicit, deducible clues that are part of the story (the animal, the weather, the local custom, currency or units, the type of institution), so a sharp player can reason their way to the right region. Keep the oddity intact.
    - "h2": the same story as a headline that DOES name the place (city + state/country), with the main subject noun of the story (the animal, object or kind of person it is about, e.g. "kangaroo", "pelicans", "kitten") replaced by the literal token [] exactly once. Not a name, not a place.
@@ -249,8 +264,9 @@ def call_claude(content, model, max_tokens=12000, fatal=True, keys=None):
         "model": model,
         "max_tokens": max_tokens,
         "tools": [{"name": "submit", "description": "Submit your answer as structured data.", "input_schema": schema}],
-        "tool_choice": {"type": "tool", "name": "submit"},
-        "messages": [{"role": "user", "content": content + "\n\n(Submit your answer with the submit tool, using exactly the JSON structure described above.)"}],
+        # Haiku accepts a forced tool call; Sonnet 5.5 refuses forcing, so it gets "auto" plus an instruction
+        "tool_choice": {"type": "tool", "name": "submit"} if "haiku" in model else {"type": "auto"},
+        "messages": [{"role": "user", "content": content + "\n\n(You MUST submit your answer by calling the submit tool once, using exactly the JSON structure described above. Do not write the answer as text.)"}],
     }
     body["messages"][0]["content"] = re.sub(r"[\ud800-\udfff]", "", body["messages"][0]["content"])
     last = None
@@ -281,7 +297,9 @@ def call_claude(content, model, max_tokens=12000, fatal=True, keys=None):
             last = f"HTTP {e.code}: {detail}"
             print(f"  Claude attempt {attempt+1} failed: {last}", file=sys.stderr)
             if e.code == 400:                     # the request itself was refused (free): adjust it, don't just repeat it
-                if body["max_tokens"] > 12000:
+                if "tool_choice" in detail and body.get("tool_choice", {}).get("type") != "auto":
+                    body["tool_choice"] = {"type": "auto"}
+                elif body["max_tokens"] > 12000:
                     body["max_tokens"] = 12000
                 elif "tools" in body:
                     body.pop("tools"); body.pop("tool_choice")
@@ -305,8 +323,10 @@ Score EVERY candidate 0-10 for how good it would be in the game:
 - 4-7: genuinely odd with a twist, but less funny or the place is harder to deduce.
 - 0-3: boring or mild (a rare animal spotted, a nice rescue, a big vegetable, a quiet record), vague, could be anywhere with no twist, not a single news event (listicle, roundup, opinion, advert, quiz, horoscope), or an unsafe topic: death, serious injury, violent crime, abuse, sexual content, children in danger, war, partisan politics, disaster or tragedy.
 Strange NON-violent crime is welcome. Candidates in any language are fine: judge the story itself.
+The game wants stories from ALL over the world, so do not favour the US, UK or other English-speaking countries: a story from Brazil, Japan, Kenya or Poland is worth exactly as much as one from Ohio.
 
-Reply with ONE JSON object only: {"s":[[id,score],[id,score],...]} covering every id.
+For each candidate also give the ISO two-letter code of the country where the story happened ("?" if unclear).
+Reply with ONE JSON object only: {"s":[[id,score,"CC"],[id,score,"CC"],...]} covering every id.
 
 Candidates:
 """
@@ -324,16 +344,33 @@ def screen(cands, model, top=SCREEN_TOP):
                 i, sc = int(pair[0]), float(pair[1])
                 if 0 <= i < len(cands):
                     scores[i] = sc
+                    cands[i]["cc"] = (str(pair[2]).upper()[:2] if len(pair) > 2 else "?") or "?"
             except Exception:
                 pass
     if len(scores) < min(len(cands), top) // 2:
         print(f"  screening returned {len(scores)} scores; using a random slice instead", file=sys.stderr)
         return cands[:top]
     order = sorted(range(len(cands)), key=lambda i: scores.get(i, -1), reverse=True)
-    best = [cands[i] for i in order[:top]]
-    for c, i in zip(best, order):
-        c["screen"] = scores.get(i, -1)
-    print(f"  screened {len(scores)} candidates; kept top {len(best)} (scores {best[0]['screen']:.0f} to {best[-1]['screen']:.0f})", file=sys.stderr)
+    # Spread the shortlist over the world: at most SCREEN_PER_COUNTRY stories from any one country.
+    best, per = [], {}
+    for i in order:
+        cc = cands[i].get("cc", "?")
+        if cc != "?" and per.get(cc, 0) >= SCREEN_PER_COUNTRY:
+            continue
+        per[cc] = per.get(cc, 0) + 1
+        cands[i]["screen"] = scores.get(i, -1)
+        best.append(cands[i])
+        if len(best) == top:
+            break
+    if len(best) < top:                                   # not enough variety: top up with the best of the rest
+        for i in order:
+            if cands[i] not in best:
+                cands[i]["screen"] = scores.get(i, -1)
+                best.append(cands[i])
+                if len(best) == top:
+                    break
+    spread = ", ".join(f"{k} {v}" for k, v in sorted(per.items(), key=lambda kv: -kv[1]))
+    print(f"  screened {len(scores)} candidates; kept top {len(best)} (scores {best[0]['screen']:.0f} to {best[-1]['screen']:.0f}); countries: {spread}", file=sys.stderr)
     return best
 
 
@@ -616,7 +653,7 @@ def main():
     call_pick, per_country = [], {}
     for r in reals:
         c = (r.get("country") or "?").lower()
-        if c != "?" and per_country.get(c, 0) >= 4:
+        if c != "?" and per_country.get(c, 0) >= 2:
             continue
         per_country[c] = per_country.get(c, 0) + 1
         call_pick.append(r)
