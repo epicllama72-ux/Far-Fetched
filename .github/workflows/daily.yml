@@ -1,0 +1,68 @@
+name: Daily headlines + deploy
+
+on:
+  schedule:
+    - cron: "7 4 * * *"      # 04:07 UTC daily (just after midnight US Eastern)
+  workflow_dispatch:          # "Run workflow" button for a manual refresh
+  push:
+    branches: [main]          # redeploy when you change the game
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        if: github.event_name != 'push'
+        with:
+          python-version: "3.12"
+
+      - name: Cache word vectors
+        if: github.event_name != 'push'
+        uses: actions/cache@v4
+        with:
+          path: ~/glove
+          key: glove-wiki-gigaword-50
+
+      - name: Download word vectors
+        if: github.event_name != 'push'
+        run: |
+          mkdir -p ~/glove
+          [ -f ~/glove/g50.gz ] || curl -sSL -o ~/glove/g50.gz \
+            https://github.com/RaRe-Technologies/gensim-data/releases/download/glove-wiki-gigaword-50/glove-wiki-gigaword-50.gz
+
+      - name: Build today's headlines
+        if: github.event_name != 'push'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: GLOVE=~/glove/g50.gz python scripts/make_daily.py
+
+      - name: Commit new data
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "far-fetched-bot"
+          git config user.email "far-fetched-bot@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet || git commit -m "Daily headlines $(date -u +%F)"
+          git push
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
