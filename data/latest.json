@@ -1,51 +1,51 @@
 {
  "date": "2026-10-27",
- "generated": "2026-10-27T19:25:37+00:00",
+ "generated": "2026-10-27T19:36:15+00:00",
  "call": [
   {
    "real": true,
-   "h": "Woman gets wedding ring lost at college football game back thanks to friend and news article in {}",
+   "h": "Rare pink dolphins spotted off coast near a city beach in {}, viral video shows",
+   "lat": 23.6124,
+   "lng": 58.5938,
+   "place": "Muscat, Oman",
+   "src": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxOSUdtQ3pwRkdFbFFRM0xNOEpUYUV6ZElQYU1acGt0SzBDdkpRMEUtZ0hZbEVEbEdFOW01Tk01WDhNTGxERi10OHdrdGx5a29ncVE0UnZYVThid0Q0SmVzaXhKVUtSa2Vnakx1QnhsdzNzdDh3c3B2MFRGak8tUHljVkxPX2M0eDhWR2h3a2ttMUFwekZzbGdyMGJZRzF2Y00tamtIZHhtX0llSXROMW9xSmc4c2xTNFFwa1pUVU1KdzBUTThqanU3UXY1SjJWS2pCbDhHb2VYcXZ6VTdlQ25ITVNsY0hDUXg5VlBuNUs3OUVSUGpzRkHSAfsBQVVfeXFMTTR3ZV9MR2tjWjBzYlRZelNvVUkwLXRNSk9ya2FGTjhPOWtZZmVNSlN0LTNTT1NVVk9ZN041aTVrX19IcEQ2UElqU1JteHlxTVVpREVNLTMxQkNwWmI5eWZ3SlJKX0FzUkNNdWxfQjcxT2lsVG5yeE0xY3o5Y1dNMThjMFZUSlN3ZnU3S2lVbmFnZTcwYXhObmhjSnJWWGR1b25mcmdWWUNNcDlLUzUxenVlNEZWeDJqeU1EWXZoMjk0bDc5b21jVTVoYWN6OUxybXhCVHNNZWFvcVdYd0VGbUJPaElhX2VmVlRiczZMaWtkQk5lcEkyQU1zcGc?oc=5",
+   "published": "2026-10-21",
+   "clue": "warm-water coast, Arabian Sea"
+  },
+  {
+   "real": true,
+   "h": "Zoo marks International Sloth Day with birth of baby Linnaeus's two-toed sloth in {}",
+   "lat": 32.7157,
+   "lng": -117.1638,
+   "place": "San Diego, California",
+   "src": "https://www.upi.com/Odd_News/2026/10/20/san-diego-zoo-sloth-baby/5201792527524/",
+   "published": "2026-10-20",
+   "clue": "famous zoo, warm climate"
+  },
+  {
+   "real": false,
+   "h": "Moose strolls onto ice at curling rink in {}, stays until the final end of the bonspiel",
+   "tell": "Timing too neat, like a punchline"
+  },
+  {
+   "real": true,
+   "h": "Woman reunited with wedding ring lost at university football game thanks to friend and news article in {}",
    "lat": 40.8089,
    "lng": -96.7078,
    "place": "Lincoln, Nebraska",
    "src": "https://www.upi.com/Odd_News/2026/10/27/university-of-nebraska-lincoln-lost-wedding-ring/5691793115616/",
    "published": "2026-10-27",
-   "clue": "college football game = American university town"
+   "clue": "college football game = US"
   },
   {
    "real": true,
-   "h": "World's largest pop-up book goes on display as public library marks its centennial in {}",
-   "lat": 34.0537,
-   "lng": -118.2428,
-   "place": "Los Angeles, California",
-   "src": "https://www.upi.com/Odd_News/2026/10/26/guinness-world-records-largest-pop-up-book/9571793036865/",
-   "published": "2026-10-26",
-   "clue": "library centennial"
-  },
-  {
-   "real": false,
-   "h": "Council in {} bans sheep from bus lanes after flock of 200 blocks morning commute",
-   "tell": "Perfectly round flock number"
-  },
-  {
-   "real": true,
-   "h": "7-week-old kitten named 'Freeway' after rescue from busy interstate in {}",
-   "lat": 42.3789,
-   "lng": -72.0324,
-   "place": "Massachusetts, USA",
-   "src": "https://www.upi.com/Odd_News/2026/10/21/kitten-freeway-Woburn-massachusetts/2061792597052/",
-   "published": "2026-10-21",
-   "clue": "interstate highway = United States"
-  },
-  {
-   "real": true,
-   "h": "Unusual bird spotted on island ahead of typhoon in {}",
-   "lat": 13.45,
-   "lng": 144.7652,
-   "place": "Guam",
-   "src": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQVFF0Y0NtOXA0b1hUSURWVk9USDFZOXI2SzJxOHk3aEY0azlpX2tDdTZCLWxaZHVURGtTSGxHTEhzZ3o2dnZUOHhTRlp6RTJSRzdnU3pmZUdhbFVPYXIybXNXSkpEWmJFOFllRl82cUtTY2lmSjJYY2FXT1V0bmxnUnhiY3A4WTZJNURpTl9vbWFxM3BjZ3hRbklibw?oc=5",
+   "h": "Black bear gets trapped inside family's unlocked car, destroys interior before police free it in {}",
+   "lat": 61.2163,
+   "lng": -149.8949,
+   "place": "Alaska, USA",
+   "src": "https://www.upi.com/Odd_News/2026/10/27/bear-subaru-juneau-alaska/2201793113056/",
    "published": "2026-10-27",
-   "clue": "typhoon + island = western Pacific"
+   "clue": "black bear in a car = northern US/Alaska"
   },
   {
    "real": true,
@@ -55,42 +55,42 @@
    "place": "Bosnia and Herzegovina",
    "src": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQbzNLY3hvazhMdGl4UmFfLTNNZ0pud2NjeTh6MXlpajEzM185RVdiWF82TmlvX0ZKaWdGSm5FS2NPZWhFY3VnLV91YnhxRkxpYkFaZGVQcE9nUEtsalMtQ2VQTTFRdzRhX292aGM0d1pObzBJUm1Kc2tIeFhZenotbXZkRHFEMXpEQ29VUHkxOEZ4ekV5M3hienhweHkyZFpzUDNSRWc0bU5hLURYQ0NpM0pKdS1XLUlXcXhJUnJaQ3l4cHhHR3JvOUVnQVN0aHIxYXlHRmJPaEdqb2Z2akt4eHFvempPX3BCOEJncXFR?oc=5",
    "published": "2026-10-23",
-   "clue": "wild bear cubs in forest = Balkans or similar"
+   "clue": "wild brown bears in forest = Balkans"
   },
   {
    "real": true,
-   "h": "Black bear gets trapped inside family's unlocked car, destroys interior before police free it in {}",
-   "lat": 64.446,
-   "lng": -149.6809,
-   "place": "Alaska, USA",
-   "src": "https://www.upi.com/Odd_News/2026/10/27/bear-subaru-juneau-alaska/2201793113056/",
-   "published": "2026-10-27",
-   "clue": "black bear + family car = northern North America"
-  },
-  {
-   "real": false,
-   "h": "Moose wanders into curling rink during bonspiel in {}, play resumes after exactly 40 minutes",
-   "tell": "Too tidy a resumption time"
-  },
-  {
-   "real": true,
-   "h": "Rare pink dolphins spotted off the coast near a beach in {}, viral video shows",
-   "lat": 23.6124,
-   "lng": 58.5938,
-   "place": "Muscat, Oman",
-   "src": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxOSUdtQ3pwRkdFbFFRM0xNOEpUYUV6ZElQYU1acGt0SzBDdkpRMEUtZ0hZbEVEbEdFOW01Tk01WDhNTGxERi10OHdrdGx5a29ncVE0UnZYVThid0Q0SmVzaXhKVUtSa2Vnakx1QnhsdzNzdDh3c3B2MFRGak8tUHljVkxPX2M0eDhWR2h3a2ttMUFwekZzbGdyMGJZRzF2Y00tamtIZHhtX0llSXROMW9xSmc4c2xTNFFwa1pUVU1KdzBUTThqanU3UXY1SjJWS2pCbDhHb2VYcXZ6VTdlQ25ITVNsY0hDUXg5VlBuNUs3OUVSUGpzRkHSAfsBQVVfeXFMTTR3ZV9MR2tjWjBzYlRZelNvVUkwLXRNSk9ya2FGTjhPOWtZZmVNSlN0LTNTT1NVVk9ZN041aTVrX19IcEQ2UElqU1JteHlxTVVpREVNLTMxQkNwWmI5eWZ3SlJKX0FzUkNNdWxfQjcxT2lsVG5yeE0xY3o5Y1dNMThjMFZUSlN3ZnU3S2lVbmFnZTcwYXhObmhjSnJWWGR1b25mcmdWWUNNcDlLUzUxenVlNEZWeDJqeU1EWXZoMjk0bDc5b21jVTVoYWN6OUxybXhCVHNNZWFvcVdYd0VGbUJPaElhX2VmVlRiczZMaWtkQk5lcEkyQU1zcGc?oc=5",
-   "published": "2026-10-21",
-   "clue": "pink dolphins in warm Arabian Sea waters"
-  },
-  {
-   "real": true,
-   "h": "Rental firm says its e-bikes are 'not for jousting' after viral video filmed in park in {}",
+   "h": "E-bike rental company says its bikes are 'not for jousting' after viral video in a park in {}",
    "lat": 51.5074,
    "lng": -0.1278,
    "place": "London, England",
    "src": "https://www.upi.com/Odd_News/2026/10/21/lime-rental-ebikes-jousting/1741792603106/",
    "published": "2026-10-21",
-   "clue": "jousting joke + city park e-bike rental = old-world capital"
+   "clue": "rental bikes in a city park"
+  },
+  {
+   "real": false,
+   "h": "Wombat holds up traffic for 20 minutes on bypass in {} as drivers wait in an orderly queue",
+   "tell": "Orderly queue is a cute flourish"
+  },
+  {
+   "real": true,
+   "h": "Unusual bird spotted on {} ahead of approaching typhoon",
+   "lat": 13.45,
+   "lng": 144.7652,
+   "place": "Guam",
+   "src": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQVFF0Y0NtOXA0b1hUSURWVk9USDFZOXI2SzJxOHk3aEY0azlpX2tDdTZCLWxaZHVURGtTSGxHTEhzZ3o2dnZUOHhTRlp6RTJSRzdnU3pmZUdhbFVPYXIybXNXSkpEWmJFOFllRl82cUtTY2lmSjJYY2FXT1V0bmxnUnhiY3A4WTZJNURpTl9vbWFxM3BjZ3hRbklibw?oc=5",
+   "published": "2026-10-27",
+   "clue": "typhoon = western Pacific island"
+  },
+  {
+   "real": true,
+   "h": "Freight train hauls 696 cars, making it 4.7 miles long, in possible world record in {}",
+   "lat": -28.8166,
+   "lng": 24.9916,
+   "place": "South Africa",
+   "src": "https://www.upi.com/Odd_News/2026/10/21/safrica-Guinjness-World-Records-longest-freight-train/7221792598259/",
+   "published": "2026-10-21",
+   "clue": "very long freight trains, mining-country rail"
   }
  ],
  "blank": [
@@ -108,27 +108,28 @@
   },
   {
    "real": true,
-   "h2": "Unusual white [] spotted in Gildredge Park, Eastbourne",
+   "h2": "Black [] gets trapped inside Alaska family's unlocked car, destroys interior before police free it",
    "ans": [
-    "squirrel",
-    "squirrels"
+    "bear",
+    "bears"
    ],
-   "place": "Eastbourne, England",
-   "src": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQSVI5V0g1eU5TcnZ5MkRlSjZjeU83WFlrNGZlTlhNTGR4bVpzWDVQX3N3elNZTmlXR09MOW9RZl9WUzlJUDIzb3NUdmVXZWFxNHZpZC1SRXFncENpdi1YU1A2b21SZmN3cElyZFRHWXVGMG5QX1pkSzRyd1lwWkFGNE1wS2RRZjJ0MUIweFhERi1OZ1FTVVJ2YW5vWUVITnFjTmJua0N0QjBDdTdPN0wwVzc2NHE3aTNBM2RmVUstOTR3U0U?oc=5",
-   "published": "2026-10-26",
-   "vec": "HbbY9VpTkYxAiAk6bkDQSTV1gQ6p7UY/J73Saj6dBePPKRool4TnvLj30QJ69GjVD+Y="
+   "place": "Alaska, USA",
+   "src": "https://www.upi.com/Odd_News/2026/10/27/bear-subaru-juneau-alaska/2201793113056/",
+   "published": "2026-10-27",
+   "vec": "KjT45kouz+oL0eo5GfEQLiwFyf321Q/h85mcJRm8fyIaBAMF37UU0cXrBP4uy/sBCvw="
   },
   {
    "real": true,
-   "h2": "Two [] escape Pittsburgh zoo and spend a day on the loose before recapture",
+   "h2": "Quirky [] in Toronto find success selling just one thing, from human skulls to custom hats",
    "ans": [
-    "pelicans",
-    "pelican"
+    "stores",
+    "store",
+    "shops"
    ],
-   "place": "Pittsburgh, Pennsylvania",
-   "src": "https://www.upi.com/Odd_News/2026/10/22/pittsburgh-zoo-aquarium-escaped-pelicans/1351792683529/",
-   "published": "2026-10-22",
-   "vec": "DAK10cYGpgv9zxYLf0X88gv9oNiuCh322igHUhHb2jYq2+4mAe8SyesCWQ0bR9j9zQQ="
+   "place": "Toronto, Ontario",
+   "src": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQcmxnUHlEQl9pQXlQb1lVb1MyX3RCOVJxd0M0YjdudWNVenBLLVVoZGdnajl6RlJrR1h1U2RJUG1vcWkxVEZnTkd6TWV1OTY4V18yc0tTQV9IZnhIcl9aY1NadFowVFVNMmFEaHBtVHJzUFBuOVFFUDRaNnBLYkdtN21DNjFrOG9UMTdCY3lOaDBPbjVkZFhCcFZLRHZJOHpkcFNCRkZNWjhWa1J5dGE2T0ZKSXRnRXZLSHFoZE1zNGN6SHU1alQtYVptM0VVNmFaZi1KeXp1bFU3dTVVM3hwNk5LSzRacWJEVDZJXzhyTkFTV2c0ZGVj?oc=5",
+   "published": "2026-10-24",
+   "vec": "GNccBCLiptE0/fzV8d8fJdn4DMxU6eM4pfrIATrKfx9CER0DAxEEEA4AGAEUNtPV4SA="
   },
   {
    "real": true,
@@ -144,31 +145,31 @@
   },
   {
    "real": true,
-   "h2": "San Diego Zoo announces birth of baby two-toed [] timed for its international awareness day",
+   "h2": "World's largest pop-up [] goes on display at Los Angeles library celebrating its centennial",
    "ans": [
-    "sloth",
-    "sloths"
+    "book",
+    "books"
    ],
-   "place": "San Diego, California",
-   "src": "https://www.upi.com/Odd_News/2026/10/20/san-diego-zoo-sloth-baby/5201792527524/",
-   "published": "2026-10-20",
-   "vec": "LAi5Fk5IKZjX3BBu9tEWIVZUrh+BsfzQ2hLWVCLhpjZCMrxDo4cy7Pfs11xgBgI5EZk="
+   "place": "Los Angeles, California",
+   "src": "https://www.upi.com/Odd_News/2026/10/26/guinness-world-records-largest-pop-up-book/9571793036865/",
+   "published": "2026-10-26",
+   "vec": "AC/c5SYSx8YRD9Uu6fVK1/fn8gwkDBkSJrip8vvuf8v+8+AB9wrz6yr58gX3GhD88gA="
   },
   {
    "real": true,
-   "h2": "Authorities in Santa Cruz, California capture a second loose [] days after another",
+   "h2": "Two escaped [] spend a day on the loose before recapture at Pittsburgh Zoo & Aquarium",
    "ans": [
-    "emu",
-    "emus"
+    "pelicans",
+    "pelican"
    ],
-   "place": "Santa Cruz, California",
-   "src": "https://www.upi.com/Odd_News/2026/10/22/santa-cruz-california-second-emu/2071792685813/",
+   "place": "Pittsburgh, Pennsylvania",
+   "src": "https://www.upi.com/Odd_News/2026/10/22/pittsburgh-zoo-aquarium-escaped-pelicans/1351792683529/",
    "published": "2026-10-22",
-   "vec": "EgnfybI19eT1wUQRDz/3WFAn1ewDgdJZ7+8qGe0RNj/dOP6rHMb769WlKgYPGDtMAhI="
+   "vec": "DAK10cYGpgv9zxYLf0X88gv9oNiuCh322igHUhHb2jYq2+4mAe8SyesCWQ0bR9j9zQQ="
   },
   {
    "real": true,
-   "h2": "Lincoln, Nebraska woman reunited with wedding [] lost at university football game",
+   "h2": "Nebraska woman reunited with wedding [] lost at football game thanks to friend and news article",
    "ans": [
     "ring",
     "rings"
@@ -180,68 +181,52 @@
   },
   {
    "real": true,
-   "h2": "[] that consumed drugs rescued from mountain in Scotland",
+   "h2": "Authorities capture a second loose [] in Santa Cruz, California, days after another incident",
    "ans": [
-    "dog",
-    "dogs"
+    "emu",
+    "emus"
    ],
-   "place": "Scotland, United Kingdom",
-   "src": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOVVg0TEhNZmUzbTZpN3JWeTYzVWd0c2VfYmp0STVmLTVETmduTTFUQTcwZ083WUs1YXhPVWFBbUt0ZTY3akRwOUJtRnBZcXdWNDkyOEpESWpVRVVQUFJuM2lINkVFbTVOSzBMaFUwalgxQzVBZklONEJDZ2VJRnVKdktPQkpib3ZiMmxXSnRKd1BBQkhQcEVDbFJaNDlxTmg2di0yNjVXbEx5cW96eEdlc0l3N1pGQVFsVVdjZGZ4dw?oc=5",
-   "published": "2026-10-25",
-   "vec": "COTX7DMnsuNT1wAmLiIj8w1CqtblGDc2IYG1Hx7PcRTULvobCeASy/oR0Txa2wPBMxw="
-  },
-  {
-   "real": true,
-   "h2": "Freight [] hauls 696 cars in South Africa, possibly 4.7 miles long",
-   "ans": [
-    "train",
-    "trains"
-   ],
-   "place": "South Africa",
-   "src": "https://www.upi.com/Odd_News/2026/10/21/safrica-Guinjness-World-Records-longest-freight-train/7221792598259/",
-   "published": "2026-10-21",
-   "vec": "MBEq1Nzx2yEY2wnt5Bby6/BD2eAuC+NJJq8AABrofyvxAyEKIOb9Ofn3F+b//wnqFO4="
-  },
-  {
-   "real": true,
-   "h2": "$30,000 winning lottery [] spent weeks tucked in sun visor of Maryland man's car",
-   "ans": [
-    "ticket",
-    "tickets"
-   ],
-   "place": "Maryland, USA",
-   "src": "https://www.upi.com/Odd_News/2026/10/22/lotto-Maryland-Lottery-sun-visor/6491792687678/",
+   "place": "Santa Cruz, California",
+   "src": "https://www.upi.com/Odd_News/2026/10/22/santa-cruz-california-second-emu/2071792685813/",
    "published": "2026-10-22",
-   "vec": "5CZaEQHms/cSBtTiHBEz++AL77BMrdge658EDSMJf17mFvbkKifQ4hMbyjWy2rMISR0="
+   "vec": "EgnfybI19eT1wUQRDz/3WFAn1ewDgdJZ7+8qGe0RNj/dOP6rHMb769WlKgYPGDtMAhI="
+  },
+  {
+   "real": true,
+   "h2": "Desirae Krawczyk wins Ningbo Open doubles, receives unusual-looking []",
+   "ans": [
+    "trophy",
+    "trophies"
+   ],
+   "place": "Ningbo, China",
+   "src": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOd2R1b3pWRU56U2FESFk1eVUtSHc0RlBnV08tRjZ6QkdsWlNsVm5vaDVBMEdCT0VYdG9EYTNFZmk0bk5JTl9XOUNLeVJtdWlLWVFnbWhiRW5aMGhQX2tUR2RQMjdXZ0F1Z0dROU5fTVhCNVMzS0VNRHk0bUdMdjVLTFlvVUstdjdtWXc?oc=5",
+   "published": "2026-10-25",
+   "vec": "wVPiUQ8I2CBCyfUoq9toDlsegdMB2wXY37LBBsLcLmAACClINljIjgcR1vGgL8Pm/Ls="
+  },
+  {
+   "real": true,
+   "h2": "Unusual white [] spotted in Gildredge Park, Eastbourne, reader picture shows",
+   "ans": [
+    "squirrel",
+    "squirrels"
+   ],
+   "place": "Eastbourne, England",
+   "src": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQSVI5V0g1eU5TcnZ5MkRlSjZjeU83WFlrNGZlTlhNTGR4bVpzWDVQX3N3elNZTmlXR09MOW9RZl9WUzlJUDIzb3NUdmVXZWFxNHZpZC1SRXFncENpdi1YU1A2b21SZmN3cElyZFRHWXVGMG5QX1pkSzRyd1lwWkFGNE1wS2RRZjJ0MUIweFhERi1OZ1FTVVJ2YW5vWUVITnFjTmJua0N0QjBDdTdPN0wwVzc2NHE3aTNBM2RmVUstOTR3U0U?oc=5",
+   "published": "2026-10-26",
+   "vec": "HbbY9VpTkYxAiAk6bkDQSTV1gQ6p7UY/J73Saj6dBePPKRool4TnvLj30QJ69GjVD+Y="
   }
  ],
  "politics": [
   {
    "real": false,
-   "h": "{} town council approves full-year budget in under four minutes, praising its 'perfectly balanced' agenda",
-   "cat": "pol"
-  },
-  {
-   "real": false,
-   "h": "Mayor of {} wins re-election by exactly one vote, cast by the last voter to arrive before polls closed",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "{} applies for judicial recount after election-night tie for mayor's chair",
-   "lat": 50.2311,
-   "lng": -121.5816,
-   "place": "Lytton, British Columbia, Canada",
-   "src": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNbXFNMGRmZmxjREFPYTRxUEFTb1VfSkkzWks5a2tvRzA1Mlp4eWd1cVJ3cXB4d213NWdqYTN5WFA0bFVnRW15MGVNNWEzNUVDVGFtRnFsQ1N1X3RJY1FlZXVwZmJiQktFbkVteXI0ZVJZNm81SThaekJWRnFQMWt3dXhaTWZOR1B6Nkk4MS1tZU9sN0xXZ1gySFc1RTN5WlB2VHBPZmVOQXJvQUFtOHhFSw?oc=5",
-   "published": "2026-10-19",
-   "clue": "",
+   "h": "Mayor of {} wins re-election by exactly one vote after ballot count lands on a perfect 1,000 to 999",
    "cat": "pol"
   },
   {
    "real": true,
    "h": "{} adds two dogs to the mayoral ballot to boost voter turnout",
-   "lat": 54.0536,
-   "lng": -128.6541,
+   "lat": 54.05,
+   "lng": -128.65,
    "place": "Kitimat, British Columbia, Canada",
    "src": "https://news.google.com/rss/articles/CBMihwFBVV95cUxONjBfZlBLcXY3b3l1dDFlaUJ1YWhMa3Rla2hxOU1YRjkzSWFqRExRd083eU52RWdmRE5sVWpwdEp3OXRYaGJZRVBpTTNlLUlHRUY2Uks5MnNpdDVheENHR3lLWUJKOF90dnZ2SjRMSjZ1dXJXTVlMSTB4bTBrZmdGS1hJZ0Y3ZG8?oc=5",
    "published": "2026-10-17",
@@ -251,9 +236,9 @@
   {
    "real": true,
    "h": "{} still has no clear tie-breaking rule with election day a week away",
-   "lat": 21.3045,
-   "lng": -157.8557,
-   "place": "Hawaii, USA",
+   "lat": 21.31,
+   "lng": -157.86,
+   "place": "Hawaii, United States",
    "src": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOWm5zZU13dkFLM2t4WlpTRnVfeEs1SXVtS2dkTDByTm9Idmd5clhJazQ2WlVhOVVmRHhWX0xBb1Z1bS1yYkpHbDlWTE13ek5YY3BCRGZONTVzMkoxanhKZnpwc0tzTmJfdEhPV08wUHlWMkJJUFVBTjMteGtQNlJrUmlnUXlTVHhJcnBmcmxQRHdGVFhUOVgtekltUVhyZFJlTklIbUd6SnM5WU5fOUFIcUtPcjdlai1FMXdUVVdTVi1wbW96Tm9XZ3N0amd4VmxwcWRGQXhzT0NJVllleHNld2l3SEhxNjRT?oc=5",
    "published": "2026-10-27",
    "clue": "",
@@ -261,35 +246,40 @@
   },
   {
    "real": true,
-   "h": "Two favorites in {} council vacancy race face challenge of keeping voters from mixing them up",
-   "lat": 39.7392,
-   "lng": -104.9849,
-   "place": "Denver, Colorado, USA",
-   "src": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQamlMVjV4ak1TR09ja0ZmMmVyQ1pNZTkzcHJXd3JBNV9ZQ0FPY2kyT3FISWFRT3p4cTB6QVpTT2VVd3VtVDlOTlJ3dDNmV2JzSW1ncUotQjZzRnpMejNxenZ1T1RqS1Q0OHZaX3pseHdFVENkMnkxbl9VZm12UUVEXzhIX01odmxRMjRWdkt3?oc=5",
-   "published": "2026-10-15",
+   "h": "Council in {} advances charter updates on mayor's tie-breaking vote",
+   "lat": 31.32,
+   "lng": -95.46,
+   "place": "Crockett, Texas, United States",
+   "src": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPcjN3N1c4UHAxV3A0R0ZoYmUzcXhxZ1NaaXQ4VkxsNEhBREtPMWVtWDRDQjhMaG9KaDFoajJnZDAxODhvdEpSbHJLTVJsWE1XX0xzX2NKTTdHV05QMldRQWFnMHdnb2FUUjFBcl9tc056b2VpTktWMGRPVVg2U1hXM1FUMzVOQ1pHMk91ekV0YWYxZFViYkROMlNKWmN4ODUwT2d2TVdUOG0zS3FF?oc=5",
+   "published": "2026-10-11",
    "clue": "",
    "cat": "pol"
   },
   {
    "real": true,
-   "h": "{} City Council to act as a court in unusual apartments appeal",
-   "lat": 35.9604,
-   "lng": -83.921,
-   "place": "Knoxville, Tennessee, USA",
-   "src": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPMFhBSjF3cjVqQW5jS0c0NGM2a3lqWmtHSmtpS2dpY3dmRUE3eFZINDJoY2lDdDFEeUZTUkJfTmhpVl9COG10N3U2VXNzVl9kSi04MG0tb3A1dzZibVVfN0Ezc0ZvTXpOcDZpWVF2YjVXNlF5N1FuMGZOR1YzYzBFZGlZNUtzMXBUXzhwMUtRYw?oc=5",
-   "published": "2026-10-13",
+   "h": "Unusual names surface in {} voter rolls across 11 constituencies, authorities blame translation",
+   "lat": 26.85,
+   "lng": 80.91,
+   "place": "Uttar Pradesh, India",
+   "src": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNMHMtNWVqNkh2emxoOFdOMmFrdEYxb1p5QzhOaDl1LTQzUjVpb0t4cTd3Y1JEekQzNUVaYlpySUI1X0hHanpGTk4zZnF6OGhSZEZ2NDhxSDFHY0pjanNfVmF3M055V2VWOVNNek1uMEpReDlSNTlYVV8yQktpZG5kalFkWjJ3WnpHOXZ2eEpyWE9HeDhqV0pDQ3Z6WlBlWlpkZUVQWVF6ZV9hNTd6TncxclpGTWhHVlVpYW50UTZaT0lJRDZRYVo3RE84d3gyblFrRlQtalVLM0pyUFduSjAzSU05a1dfVzVwUXBBNTNn0gHzAUFVX3lxTFBtb3pmVmlhbm9fd1lPZEJmeVRFVjlzb1VRN0NzNGZEMDRWV3NLMExYamtSTjlLMDgxTlpibTlEcUJLekt3WHA5VTRFQXliNEg5QWVfYnh3Tm5FckhUcWs0TjUzS2VXMF9ZMVFiS2hTTGNURHdwM08xZ2pEc21obG43MVpySXJfY281V05WZlp4b2g2dGZXUmpYcVlWSjJqRmhpWFQ0cklzQ19YalhMbGV3LTMxN1JUSzJoc2hiR19CTWVqWkVzaEtOMmFLUDNDSzdkcHRSLUFMOUNmUDY0VWNmTFBaT3ZxUGE2aUF0UWtPREdDUQ?oc=5",
+   "published": "2026-10-23",
    "clue": "",
    "cat": "pol"
   },
   {
    "real": true,
-   "h": "Ward 4 council race in {} ends in a tie, with each candidate receiving 858 votes",
-   "lat": 42.7972,
-   "lng": -80.4538,
-   "place": "Norfolk County, Ontario, Canada",
-   "src": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQaUlaZWJlWW9ia05FQms0VUZGQm1IRVEzcHBqWTU5MXZXYl80RWxXckl6RFVGN1R4cnBqT3hISnVZZDZ3UXoyaC1QV2RLa2ZKbm5KS2VubGxtVWNxQUxXMFY4QTJ3THd2Vlp2dUdzUzBDWVRkZDRSMVBwV2xJaVVIQjBUM3VkZHlkRUZyV0FaNHZxMGlwalMxUmhJZ1ZMV3EzNmJVcDR6eE5pUlpSTDhlRFlWNFNkdw?oc=5",
-   "published": "2026-10-27",
+   "h": "Mayoral candidates in {} deadlocked in tie after initial election results",
+   "lat": 50.23,
+   "lng": -121.58,
+   "place": "Lytton, British Columbia, Canada",
+   "src": "https://news.google.com/rss/articles/CBMingFBVV95cUxNa0dhSVVFZFpRbWRBTnlqUTFsYzduMVR6amFFRzY2OFJmbTdmZk8zcUVPWjhjOVJkWGJ3dEZ2Sjh3dncwS04yR253LU00enpkalFWWTJjTTdBbVU0YjhQSGNjS2ZQTGlacGV6b2pnZ09XeDJOdDNHaWRtMXpmRGdpYUVCdVZ1TjFXb3RPWHZnYldFeG0tb1Z2bnpLVnRZUQ?oc=5",
+   "published": "2026-10-18",
    "clue": "",
+   "cat": "pol"
+  },
+  {
+   "real": false,
+   "h": "{} council votes 7-0 to rename every street after the exact alphabetical order of its founding families",
    "cat": "pol"
   }
  ]
