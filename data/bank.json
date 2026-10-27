@@ -1,0 +1,51 @@
+{
+ "real": [
+  {
+   "id": 2,
+   "h": "Beavers gnaw down sign warning of beaver damage, say foresters in {}",
+   "h2": "[] destroy sign warning about beaver damage, say foresters in Lubliniec, Poland",
+   "ans": [
+    "beavers",
+    "beaver"
+   ],
+   "place": "Lubliniec, Poland",
+   "geocode": "Lubliniec, Poland",
+   "lat": 50.669016,
+   "lng": 18.6825574,
+   "country": "Poland",
+   "clue": "forestry district + beaver comeback = Central Europe",
+   "clue_strength": 1,
+   "unbelievable": 4,
+   "theme": "beaver",
+   "src": "https://notesfrompoland.com/2026/10/08/beavers-destroy-sign-warning-about-beavers/",
+   "published": "2026-10-08",
+   "banked": "2026-10-27"
+  }
+ ],
+ "fake": [
+  {
+   "h": "Monsoon rains float cricket pitch away in {}; groundsmen find it 3 km downstream, still level",
+   "tell": "Convenient 'still level' flourish",
+   "obvious": 3,
+   "banked": "2026-10-27"
+  },
+  {
+   "h": "Burglar in {} caught after leaving trail of maple syrup and his snow boots at scene",
+   "tell": "Evidence trail is a little too neat",
+   "obvious": 2,
+   "banked": "2026-10-27"
+  },
+  {
+   "h": "Deputies in {} chase escaped alpaca for three hours until it surrenders at a drive-through",
+   "tell": "Animal 'surrendering' at a drive-through is too cute",
+   "obvious": 3,
+   "banked": "2026-10-27"
+  },
+  {
+   "h": "Village council in {} bans church bells after 9pm, then rings them at 9.01pm to announce the ban",
+   "tell": "Ironic coincidence is too tidy",
+   "obvious": 2,
+   "banked": "2026-10-27"
+  }
+ ]
+}
