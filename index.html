@@ -682,6 +682,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:22px/1.15 var(--vt);overflow-x:hidden;-webkit-font-smoothing:none}
+.ptpop{position:fixed;z-index:-1;pointer-events:none;font:30px/1 var(--vt);color:var(--accent);text-shadow:2px 0 #05070a,-2px 0 #05070a,0 2px #05070a,0 -2px #05070a,2px 2px #05070a,-2px -2px #05070a}
+.ptpop.neg{color:#ff5d73}
+@media (min-width:1100px) and (min-height:600px){ .ptpop{font-size:40px} }
 #bg{position:fixed;left:0;top:0;z-index:-2;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;image-rendering:pixelated}
 #ruler{position:fixed;left:0;top:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:hidden}
 .tick{position:absolute;transform:translateY(-50%);font:16px/1 var(--vt);color:#c9cfdb;background:rgba(13,15,20,.8);padding:1px 4px;white-space:nowrap}
@@ -716,7 +719,7 @@ body.pinning .app{padding-bottom:calc(min(30vh,260px) + 96px)}
 #score{color:var(--pink);transition:transform .4s steps(4),color .4s steps(4)}
 #score.pop{transform:scale(1.25);color:#ff5d73}
 #score.up{transform:scale(1.15);color:var(--accent)}
-#delta{position:absolute;right:8px;top:-4px;font:24px/1 var(--vt);color:#ff5d73;opacity:0;pointer-events:none;text-shadow:0 2px 0 #000}
+#delta{position:absolute;right:8px;top:calc(100% + 4px);font:24px/1 var(--vt);color:#ff5d73;opacity:0;pointer-events:none;text-shadow:0 2px 0 #000}
 #delta.go{animation:rise .9s steps(6) forwards}
 #delta.plus{color:var(--accent)}
 @keyframes rise{0%{opacity:1;transform:translateY(8px)}70%{opacity:1}100%{opacity:0;transform:translateY(-16px)}}
@@ -745,6 +748,10 @@ body.pinning #card{padding:8px 12px}
 #speed .trk{flex:1;height:6px;background:var(--ink);box-shadow:0 0 0 1px #3a4050}
 #speed i{display:block;height:100%;width:100%;background:repeating-linear-gradient(90deg,var(--cyan) 0 6px,transparent 6px 8px)}
 #speed span{font:18px/1 var(--vt);color:var(--cyan);min-width:42px;text-align:right}
+#speed.pin span{min-width:78px}
+#speed.pin i{background:repeating-linear-gradient(90deg,var(--accent) 0 6px,transparent 6px 8px)}
+#speed.low i{background:repeating-linear-gradient(90deg,#ff5d73 0 6px,transparent 6px 8px)}
+#speed.low span{color:#ff5d73}
 
 /* Buttons */
 button{font:24px/1 var(--vt);cursor:pointer;border:0;border-radius:0;padding:12px 16px;color:var(--text)}
@@ -769,6 +776,11 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #feedback{background:var(--card);background-image:var(--scan);border:2px solid var(--line);padding:10px 14px;margin-bottom:12px;font:22px/1.1 var(--vt)}
 #feedback b{font-weight:400;color:var(--accent)}
 #feedback small{display:block;color:var(--dim);margin-top:6px;font-size:18px}
+#feedback .sum{display:inline}
+#feedback .why{display:inline-block;width:auto;margin:0 0 0 10px;padding:1px 8px 2px;font:17px/1.1 var(--vt);color:var(--cyan);background:none;border:1px solid #3d4558;box-shadow:none;vertical-align:2px;cursor:pointer}
+#feedback .more{display:none}
+#feedback.open .more{display:block}
+.kicker.bad{color:#ff5d73}
 #feedback a{color:var(--accent)}
 
 /* Map panel */
@@ -813,22 +825,31 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 .sq.ok{background:var(--good)}.sq.no{background:var(--bad)}.sq.meh{background:#d9a441}.sq.fake{background:#5a6070;color:#eef0f4}
 .legend{font:17px/1.15 var(--vt);color:var(--dim)}
 #marks{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:3;overflow:hidden}
-.mk{position:fixed;display:none;transform:translateY(-50%);background:none;border:0;padding:2px 4px;box-shadow:none;opacity:0;text-shadow:2px 0 #0a0c10,-2px 0 #0a0c10,0 2px #0a0c10,0 -2px #0a0c10,2px 2px #0a0c10,-2px -2px #0a0c10,2px -2px #0a0c10,-2px 2px #0a0c10}
-.mk.on{opacity:1;animation:mkin .45s steps(5)}
-@keyframes mkin{0%{transform:translateY(-50%) scale(.85);opacity:0}100%{transform:translateY(-50%) scale(1);opacity:1}}
-.mk .mp{display:block;font:24px/1 var(--vt);color:var(--accent);font-weight:400}
-.mk .ml{display:block;font:17px/1.05 var(--vt);color:var(--cyan);margin-top:1px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.mk .mh{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font:15px/1.05 var(--vt);color:#aeb6c8;margin-top:2px}
-.mk.R{text-align:left}.mk.L{text-align:right}
-.mk.ok{border-color:var(--good)}.mk.meh{border-color:#d9a441}.mk.warm{border-color:#e07a3a}.mk.no{border-color:var(--bad)}.mk.fake{border-color:#4a8fe0}.mk.fooled{border-color:#ff5d73}
+.mk{position:fixed;display:none;transform:translateY(-50%);border:0;padding:6px 4px;opacity:0;
+  background:radial-gradient(ellipse closest-side,rgba(6,8,12,.86) 0%,rgba(6,8,12,.72) 55%,rgba(6,8,12,0) 100%);
+  text-shadow:0 0 3px #05070a,1px 1px 0 #05070a,-1px -1px 0 #05070a,1px -1px 0 #05070a,-1px 1px 0 #05070a,0 2px 0 #05070a}
+.mk.on{opacity:1;animation:mkin .7s cubic-bezier(.2,.8,.3,1) both,mkbob 3.4s ease-in-out .7s infinite;animation-delay:0s,var(--bd,0s)}
+@keyframes mkin{0%{opacity:0;translate:var(--ix,0) 0;filter:blur(2px)}100%{opacity:1;translate:0 0;filter:blur(0)}}
+@keyframes mkbob{0%,100%{translate:0 0}50%{translate:0 -3px}}
+.mk .mp{display:block;font:26px/1 var(--vt);color:var(--accent);font-weight:400}
+.mk .mi{font-style:normal;display:inline-block;margin-right:6px;color:#eef0f4;animation:mkspin 2.6s ease-in-out infinite}
+@keyframes mkspin{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2px) scale(1.15)}}
+.mk.fooled .mp,.mk.no .mp{color:#ff7a8a}.mk.fake .mi,.mk.ok .mi{color:var(--good)}.mk.fooled .mi{color:#ff5d73}
+.mk .ml{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font:19px/1.02 var(--vt);color:#7fe3ff;margin-top:2px}
+.mk .mh{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font:16px/1.08 var(--vt);color:#d6dbe6;margin-top:3px}
+.mk.R{text-align:left;--ix:-10px}.mk.L{text-align:right;--ix:10px}
 .mkd{position:fixed;display:none;width:10px;height:10px;transform:translateY(-50%);background:#8a91a3;border:2px solid #0a0c10;box-shadow:0 0 0 1px #fff}
+.mkd.on{animation:mkpulse 1.8s ease-in-out infinite}
+@keyframes mkpulse{0%,100%{box-shadow:0 0 0 1px #fff,0 0 0 0 rgba(255,255,255,.0)}50%{box-shadow:0 0 0 1px #fff,0 0 0 4px rgba(255,255,255,.18)}}
 .mkd.ok{background:var(--good)}.mkd.meh{background:#d9a441}.mkd.warm{background:#e07a3a}.mkd.no{background:var(--bad)}.mkd.fake{background:#4a8fe0}.mkd.fooled{background:#14161c;box-shadow:0 0 0 1px #ff5d73}
 #skipRecap{display:none;position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:5;width:auto;margin:0;padding:10px 22px;font-size:22px}
 body.recap #skipRecap{display:block}
 body.recap .rcol,body.recap #mapWrap,body.recap #toast,body.recap #log{visibility:hidden}
 body.recap #bar{display:none}
 #recap{margin:4px 0 8px}
-#recap summary{cursor:pointer;font:9px/1.4 var(--px);letter-spacing:.14em;color:var(--cyan);padding:8px 0}
+#recap summary{cursor:pointer;list-style:none;font:22px/1.1 var(--vt);color:var(--cyan);padding:10px 12px;border:2px solid #3d4558;background:#0d0f14}
+#recap summary::-webkit-details-marker{display:none}
+#recap[open] summary{border-color:var(--cyan)}
 #recapList{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
 #recapList li{display:grid;grid-template-columns:14px 1fr;gap:10px;align-items:start}
 #recapList li i{width:14px;height:14px;margin-top:4px;border:2px solid var(--ink);box-shadow:0 0 0 1px #4a5266;background:#2c3242}
@@ -921,6 +942,9 @@ body.recap #bar{display:none}
   .rcol{display:flex;flex-direction:column;grid-column:3;grid-row:2;align-self:start;min-width:0}
   .rcol #card{order:0;padding:14px 18px 14px}
   .rcol #feedback{order:1}
+  .mk .mp{font-size:38px}.mk .ml{font-size:28px}.mk .mh{font-size:23px}.mk{padding:12px 18px}
+  #feedback .more{display:block}
+  #feedback .why{display:none}
   .rcol #final{order:2}
   .rcol #bar{order:3}
   .rcol #blankUI{order:4}
@@ -945,7 +969,10 @@ body.recap #bar{display:none}
   #headline{font-size:28px}
   body.pinning #headline{font-size:26px}
   #map{height:clamp(150px,calc(100vh - 440px),520px)}
-  #feedback small{display:none}
+  #feedback small:not(.more){display:none}
+  #feedback .more{display:none}
+  #feedback.open .more{display:block}
+  #feedback .why{display:inline-block}
   #card{padding:10px 16px}
   .lcol .val{font-size:38px}
   #guessList{max-height:42vh;overflow:auto}
@@ -1006,7 +1033,7 @@ body.recap #bar{display:none}
     <form id="guessForm" autocomplete="off">
       <span id="timerNum">20</span>
       <div class="inwrap">
-        <input id="guessIn" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="type your guess…" aria-label="Guess the hidden word">
+        <input id="guessIn" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="guess…" aria-label="Guess the hidden word">
         <div id="timerTrack"><div id="timerBar"></div></div>
       </div>
       <button class="primary" type="submit">GUESS</button>
@@ -1035,7 +1062,7 @@ body.recap #bar{display:none}
     <p id="finalLine"></p>
     <p id="finalScoreLine"></p>
     <div id="grid"></div>
-    <details id="recap"><summary>Today's headlines</summary><ol id="recapList"></ol></details>
+    <details id="recap"><summary id="recapSum">▸ All stories + sources</summary><ol id="recapList"></ol></details>
     <p id="nextEd" hidden></p>
     <p id="comeBack"></p>
     <p id="replayWrap"><button class="linkish" id="replayDig">▶ Replay the dig</button></p>
@@ -1153,6 +1180,29 @@ function km(a,b,c,d){
   return 2*R*Math.asin(Math.sqrt(h));
 }
 function pinPoints(d){return Math.round(PIN_PTS*Math.exp(-Math.max(0,d-50)/1400));}  // 100 km 386 · 300 km 335 · 500 km 290 · 1000 km 204 · 2500 km 70
+/* The pin has 20 seconds. Full points for 8, then it decays like the call does (10% of the max per second, floor 40%). */
+const PIN_SECS=20, PIN_GRACE=8;
+function pinMult(sec){ return Math.max(0.4,Math.min(1,1-(sec-PIN_GRACE)/10)); }
+let PIN_RAF=0;
+function runPinTimer(){
+  cancelAnimationFrame(PIN_RAF);
+  const el=$('speed'), bar=el.querySelector('i'), lab=el.querySelector('span');
+  el.hidden=false; el.classList.add('pin');
+  let lastT=performance.now();
+  const tick=()=>{
+    if(!S || S.phase!=='pin') return;
+    const now=performance.now();
+    if(!$('menu').hidden) S.pinT0+=now-lastT;          // the clock stops while the menu is open
+    lastT=now;
+    const sec=(now-S.pinT0)/1000, left=Math.max(0,PIN_SECS-sec), m=pinMult(sec);
+    bar.style.width=(left/PIN_SECS*100)+'%';
+    lab.textContent='×'+m.toFixed(1).replace(/\.0$/,'')+' · '+Math.ceil(left)+'s';
+    el.classList.toggle('low',left<=5);
+    if(sec>=PIN_SECS){ submitGuess(true); return; }
+    PIN_RAF=requestAnimationFrame(tick);
+  };
+  PIN_RAF=requestAnimationFrame(tick);
+}
 function store(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
 function load(k){try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;}}
 function sumPts(rs){return rs.reduce((a,x)=>a+x.callPts+x.pinPts,0);}
@@ -1166,9 +1216,9 @@ function headlineHTML(story, reveal){
 }
 
 /* ---------- Background: the newspaper reader ----------
-   A scrolling pixel world. A man reads the DAILY ODD at his desk. His jaw drops a
-   fixed distance for every point earned on a TRUE story (fakes never move it), so
-   one story keeps it behind the paper and a second breaks it out. The camera follows
+   A scrolling pixel world. A man reads the DAILY ODD at his table. His jaw drops the
+   same fixed distance for every point, whatever earned it, and lost points pull it
+   back up. The camera follows
    it down through the desk, the floor, the basement, dirt, bedrock, magma and core,
    cracking the ground as it goes. */
 const Scene = (function(){
@@ -1207,7 +1257,7 @@ const Scene = (function(){
   const FONT={D:["110","101","101","101","110"],A:["010","101","111","101","101"],I:["111","010","010","010","111"],L:["100","100","100","100","111"],Y:["101","101","010","010","010"],O:["111","101","101","101","111"]};
 
   let W=0,H=0,PX=6,cx=0,U=200,worldEnd=0,dropMax=0,B=[0,0,0,0,0,0],camMin=0,camMax=0,axisX=0,maxPts=3000;
-  let marksEl=null,mks=[],recap=null,markCb=null,paperT=1,paperGoal=1,tp=0,jd=0,camY=0,focusT=0.85,focus=0.85,t=0,last=0,gaspT=-99,foolT=-99,safeTop=120;
+  let pops=[],marksEl=null,mks=[],recap=null,markCb=null,paperT=1,paperGoal=1,tp=0,jd=0,camY=0,focusT=0.85,focus=0.85,t=0,last=0,gaspT=-99,foolT=-99,safeTop=120;
   let shake=0,lastZone=-1,emitAcc=0,bestJd=0,panT=-99,zoneCb=null,breakCb=null,rumbleCb=null,sparks=[];
   let peb=[],gems=[],bubbles=[],worms=[],beetles=[],tunnels=[],cracks=[],parts=[],drips=[],embers=[];
   let labels=[],zoneLabels=[],zones=[],depthCb=null,lastM='',running=false,resizeTimer=0;
@@ -1324,7 +1374,7 @@ const Scene = (function(){
     return layerCol(wy-L0);
   }
   function chunkCol(wy){
-    if(wy<FLOOR) return wy<80?C.deskHi:C.deskFront;
+    if(wy<FLOOR) return wy<80?C.deskHi:wy<86?C.deskFront:C.wain;
     if(wy<L0) return C.floorHi;
     const d=wy-L0;
     if(d<B[1]) return Math.random()<0.5?C.mortar:'#4a4858';
@@ -1359,7 +1409,7 @@ const Scene = (function(){
       const to=clamp(Math.max(13+target()+9,recap.maxLy+Math.ceil(70/PX))-focus*H,camMin,camMax);
       camY=camMin+(to-camMin)*e;
       if(p>=1 && !recap.finished){ recap.finished=true; const d=recap.done; if(d) setTimeout(d,700); }
-    } else camY+=(camFor()-camY)*(1-Math.exp(-dt*(panning?1.1:3)));
+    } else camY+=(camFor()-camY)*(1-Math.exp(-dt*(panning?1.1:6)));
     const cy=chinY();
     // breaking through: debris, dust, rumble
     if(rumbleCb) rumbleCb(cy>70 && Math.abs(speed)>0.8 ? clamp(Math.abs(speed)/35,0.15,1) : 0);
@@ -1403,7 +1453,7 @@ const Scene = (function(){
     const age=t-gaspT, fa=t-foolT, fooled=fa>=0&&fa<1.2;
     const gx=age<2?4*Math.exp(-4*age)*Math.sin(age*16):0;
     const ebx=age<0.6?Math.round(3*(1-age/0.6)):0;
-    const jdE=Math.max(0, tp*JAW_K<=PB0-22 ? Math.min(jd+gx,PB0-22) : jd+gx);
+    const jdE=Math.max(0, jd+gx);
     const sh=shake>0.05?Math.round((Math.random()*2-1)*shake):0;
     const camI=Math.round(camY)+sh, sxI=shake>0.6?Math.round((Math.random()*2-1)*shake*0.6):0;
     g.globalAlpha=1;
@@ -1467,6 +1517,17 @@ const Scene = (function(){
       RO(-50,-20,14,11,C.frame); R(-49,-19,12,9,C.sky); R(-49,-14,12,4,C.hill); R(-42,-18,2,2,'#ffe27a');
     }
 
+    // 2b. his chair: back posts beside the torso, seat and legs under the table
+    { const CW='#4a2f20', CH='#6d4630';
+      RO(-22,36,4,56,CW); RO(18,36,4,56,CW); R(-21,37,1,54,CH); R(19,37,1,54,CH);
+      RO(-22,34,44,4,CW); R(-21,35,42,1,CH);
+      RO(-22,90,44,4,CW); R(-21,91,42,1,CH);
+      RO(-21,94,3,FLOOR-94,CW); RO(18,94,3,FLOOR-94,CW); }
+    // 2c. his legs: lap on the seat, shins down to the floor (the jaw falls between his knees)
+    { const P='#34436a', PS='#273252', SH='#17131c';
+      RO(-17,84,33,8,P); R(-17,90,33,2,PS);
+      RO(-16,92,7,FLOOR-96,P); RO(9,92,7,FLOOR-96,P); R(-16,92,2,FLOOR-96,PS); R(14,92,2,FLOOR-96,PS);
+      RO(-18,FLOOR-4,10,4,SH); RO(8,FLOOR-4,10,4,SH); R(-17,FLOOR-4,4,1,'#3a3040'); R(9,FLOOR-4,4,1,'#3a3040'); }
     // 3. torso and neck
     RO(-17,28,33,48,C.shirt); R(-17,28,3,48,C.shirtSh); R(14,28,3,48,C.shirtSh);
     R(-5,19,10,10,C.skinSh);
@@ -1496,11 +1557,15 @@ const Scene = (function(){
       R(-6,12,12,1,C.tongueDk);
     }
 
-    // 5. desk, cup
-    R(-cx-6,74,W+12,1,C.ol);
-    R(-cx-6,75,W+12,5,C.deskTop); R(-cx-6,75,W+12,1,C.deskHi);
-    R(-cx-6,80,W+12,FLOOR-2-80,C.deskFront);
-    [[-30,-4],[5,31]].forEach(([a,b])=>{ R(a,85,b-a,16,C.drawerDk); R(a+1,86,b-a-2,14,C.drawer); R(Math.round((a+b)/2)-1,92,3,2,C.knob); });
+    // 5. his table: a top, a shallow apron with a drawer, four legs to the floor; cup
+    { const TL=-60, TR=58;
+      R(TL,74,TR-TL,1,C.ol);
+      R(TL,75,TR-TL,5,C.deskTop); R(TL,75,TR-TL,1,C.deskHi); R(TL,79,TR-TL,1,C.drawerDk);
+      R(TL+3,80,TR-TL-6,5,C.deskFront); R(TL+3,85,TR-TL-6,1,C.ol);
+      R(-9,81,18,3,C.drawerDk); R(-8,81,16,2,C.drawer); R(-1,82,3,1,C.knob);
+      [[TL+3,TL+8],[TR-8,TR-3]].forEach(([a,b])=>{ R(a-1,80,b-a+2,FLOOR-80,C.ol); R(a,80,b-a,FLOOR-80,C.deskFront); R(a,80,1,FLOOR-80,C.drawer); });
+      [[TL+12,TL+15],[TR-15,TR-12]].forEach(([a,b])=>{ R(a,86,b-a,FLOOR-88,C.drawerDk); });   // back legs, in shadow
+      g.globalAlpha=0.25; R(TL+2,FLOOR-2,TR-TL-4,2,'#000'); g.globalAlpha=1; }
     // sleeping cat
     { const br=Math.round(Math.sin(t*1.6)); spr(CAT,CAT_P,-48,70-br);
       const tw=Math.round(Math.sin(t*2.2)*1.5); R(-37,73,2,1,CAT_P.K); R(-35,72+tw,1,2,CAT_P.K);
@@ -1752,6 +1817,18 @@ const Scene = (function(){
       if(recap||sy<0||sy>=H||py<safeTop){ sp.style.display='none'; }
       else { sp.style.display='block'; sp.style.top=py+'px'; }
     });
+    // points rising from the chin
+    if(pops.length){
+      const chinS=(13+jdE+9-camI)*PX, xs=(cx+14)*PX;
+      pops=pops.filter(p=>{
+        const a=t-p.t0;
+        if(a>1.8){ p.el.remove(); return false; }
+        p.el.style.left=xs+'px';
+        p.el.style.top=(chinS-PX*4-a*34)+'px';
+        p.el.style.opacity=a<0.12?a/0.12:a>1.1?Math.max(0,1-(a-1.1)/0.7):1;
+        return true;
+      });
+    }
     if(mks.length){
       const half=11*PX, cxp=cx*PX, vw=window.innerWidth;
       mks.forEach(m=>{
@@ -1823,11 +1900,14 @@ const Scene = (function(){
     if(reduce||!W||!list.length){ if(done) done(); return; }
     if(!marksEl){ marksEl=document.createElement('div'); marksEl.id='marks'; document.body.appendChild(marksEl); }
     const half=11*PX, cxp=cx*PX;
-    const maxW=Math.max(110,Math.min(210,Math.floor(Math.min(cxp-half-16, axisX*PX-cxp-half-14))));
+    const deskW=window.innerWidth>=1100 && window.innerHeight>=600;
+    const hudR=deskW ? (document.querySelector('.hud')?.getBoundingClientRect().right||0) : 0;
+    const maxW=deskW ? Math.max(160,Math.min(320,Math.floor(cxp-half-28-hudR)))       // desktop: the side columns step aside during the recap
+                     : Math.max(110,Math.min(210,Math.floor(Math.min(cxp-half-16, axisX*PX-cxp-half-14))));
     const lastB={L:-1e9,R:-1e9}, lastH={L:0,R:0};
     list.forEach((m,i)=>{
       const side=i%2===0?'R':'L';
-      const lab=document.createElement('div'); lab.className='mk '+side+' '+(m.cls||''); lab.innerHTML=m.html;
+      const lab=document.createElement('div'); lab.className='mk '+side+' '+(m.cls||''); lab.innerHTML=m.html; lab.style.setProperty('--bd',(0.7+(i%4)*0.45)+'s');
       const dot=document.createElement('i'); dot.className='mkd '+(m.cls||'');
       marksEl.append(dot,lab);
       lab.style.maxWidth=maxW+'px'; lab.style.display='block'; lab.style.visibility='hidden'; lab.style.top='0px'; lab.style.left='0px';
@@ -1838,7 +1918,13 @@ const Scene = (function(){
     camY=camMin; recap={t0:t,dur,done,finished:false,maxLy:Math.max.apply(null,mks.map(m=>m.ly))};
   }
   function onMark(cb){ markCb=cb; }
-  return {chinAt,playRecap,endRecap,onMark,setPaper,start,setJaw,configure,restore,gasp,fooled:fooledReact,setFocus,setSafeTop,info,reset,setBest,panDown,layout,camDepth,
+  function popPts(n){
+    if(!n || !W) return;
+    const el=document.createElement('div'); el.className='ptpop'+(n<0?' neg':''); el.textContent=(n>0?'+':'−')+Math.abs(n);
+    document.body.appendChild(el); pops.push({el,t0:t+pops.length*0.25});     // a second pop right after the first waits its turn
+    el.style.opacity=0;
+  }
+  return {chinAt,playRecap,endRecap,onMark,popPts,setPaper,start,setJaw,configure,restore,gasp,fooled:fooledReact,setFocus,setSafeTop,info,reset,setBest,panDown,layout,camDepth,
           onDepth:cb=>{depthCb=cb;}, onZone:cb=>{zoneCb=cb;}, onBreak:cb=>{breakCb=cb;}, onRumble:cb=>{rumbleCb=cb;}};
 })();
 
@@ -1961,7 +2047,7 @@ let KIND = (function(){ try{ const k=localStorage.getItem('ff_kind'); return (k=
 function saveKey(kind){ return kind==='blank'?'ff_blank':kind==='pol'?'ff_pol':'ff_daily'; }
 function modeName(kind){ return kind==='blank'?'Fill the Blank':kind==='pol'?'Politics':'Real or Fake'; }
 const BLANK_MAX = 500, BLANK_SECS = 20;
-const FAKE_PTS = 150, JAW_SCALE = 4000;   // caught fake; every mode's jaw is scaled to the same 3000-point world
+const FAKE_PTS = 150, JAW_SCALE = 4500;   // caught fake; every mode's jaw is scaled to the same 3000-point world
 
 function startGame(mode, kind){
   if(kind) KIND = kind;
@@ -1973,20 +2059,25 @@ function startGame(mode, kind){
   const r = daily ? rng(hash(todayKey()+KIND)) : Math.random;
   let rounds;
   if(daily && DAILY && (!pol || (DAILY.politics && DAILY.politics.length))) rounds = DAILY[blank?'blank':pol?'politics':'call'].slice();
+  if(daily && DAILY && blank && rounds){                 // never show a Real or Fake story again in Fill the Blank
+    const seen=new Set((DAILY.call||[]).concat(DAILY.politics||[]).map(x=>x.src).filter(Boolean));
+    const fresh=rounds.filter(x=>!x.src||!seen.has(x.src));
+    if(fresh.length>=5) rounds=fresh;
+  }
   else if(daily && pol) rounds = pickRounds(rng(hash(todayKey()+'pol')),true,true);
   else if(daily){
     // built-in fallback: one shared shuffle so the two modes never show the same story
     const reals=shuffle(STORIES.filter(s=>s.real&&s.h&&s.cat!=='pol'&&!s._daily),rng(hash(todayKey())));
     const fakes=shuffle(STORIES.filter(s=>!s.real&&s.cat!=='pol'&&!s._daily),rng(hash(todayKey()+'f')));
     const spare=reals.slice(ROUNDS_REAL).filter(s=>s.h2);
-    rounds = blank ? spare.concat(reals.slice(0,ROUNDS_REAL).filter(s=>s.h2)).slice(0,ROUND_LEN)
+    rounds = blank ? spare.slice(0,ROUND_LEN)
                    : shuffle(reals.slice(0,ROUNDS_REAL).concat(fakes.slice(0,ROUNDS_FAKE)),rng(hash(todayKey()+'o')));
   } else rounds = blank ? pickBlankRounds(r) : pickRounds(r,false);   // practice never uses today's stories
   const reals=rounds.filter(x=>x.real).length;
   S = {mode, kind:KIND, rounds, i:0, results:[], phase:'call', score:0,
        maxScore: blank ? rounds.length*BLANK_MAX : reals*(CALL_PTS+PIN_PTS)+(rounds.length-reals)*FAKE_PTS,
        maxJaw: blank ? rounds.length*BLANK_MAX : reals*(CALL_PTS+PIN_PTS)};
-  S.jawK = Math.min(1, JAW_SCALE/Math.max(1,S.maxJaw));
+  S.jawK = 1;                                        // one point = the same jaw drop in every mode
   S.sig = hash(rounds.map(x=>x.h||x.h2||'').join('|'));
   let pending=null;
   if(daily){
@@ -2004,10 +2095,10 @@ function startGame(mode, kind){
   $('mPractice').classList.toggle('on',!daily);
   $('howText').innerHTML = blank
     ? 'Guess the hidden word in each true headline. The exact word scores up to <b>500</b>, more the faster you get it. Near misses pay a little, and every guess after your third costs 5%.'
-    : 'Right call on a true story: up to <b>+100</b>, more for answering quickly. Catching a fake: <b>+150</b>. Fooled by a fake: <b>−150</b>. Then pin where the true story happened for up to <b>+400</b>. Points from true stories drop the jaw, and getting fooled pulls it back up.';
+    : 'Right call on a true story: up to <b>+100</b>, more for answering quickly. Catching a fake: <b>+150</b>. Fooled by a fake: <b>−150</b>. Then pin where the true story happened for up to <b>+400</b>: you have 20 seconds, with full points for the first 8. Every point drops his jaw the same distance, and losing points pulls it back up.';
   renderStats();
   closeMenu();
-  Scene.configure(Math.min(S.maxJaw,JAW_SCALE));
+  Scene.configure(JAW_SCALE);
   Scene.setBest(bestM());
   Scene.reset();
   if(S.results.length) Scene.restore(jawPoints()*S.jawK);
@@ -2074,6 +2165,7 @@ function renderDots(){
     sc.classList.remove('pop','up'); void sc.offsetWidth; sc.classList.add(d<0?'pop':'up');
     clearTimeout(S._popT); S._popT=setTimeout(()=>sc.classList.remove('pop','up'),450);
     const de=$('delta'); de.textContent=(d>0?'+':'−')+Math.abs(d); de.className=''; void de.offsetWidth; de.className='go'+(d>0?' plus':'');
+    if(!RECAP_ON) Scene.popPts(d);
   }
   S._shown=S.score;
   sc.textContent=fmtPts(S.score);
@@ -2112,16 +2204,13 @@ function aim(f){
   });
 }
 
-/* Points earned on TRUE stories drop the jaw a fixed distance per point; being fooled pulls it back up. */
+/* Every point drops the jaw the same distance, whatever earned it; lost points pull it back up. */
 const FOOL_JAW = 150;
 function jawPoints(){
   const list=S.results.slice();
   if(S.cur && S.phase==='pin') list.push(S.cur);
   let p=0;
-  list.forEach(x=>{
-    if(x.real) p+=Math.max(0,x.callPts)+Math.max(0,x.pinPts||0);
-    else if(!x.callOk) p-=FOOL_JAW;          // being fooled pulls the jaw back up
-  });
+  list.forEach(x=>{ p+=(x.callPts||0)+(x.pinPts||0); });   // every point moves the jaw the same amount; lost points pull it up
   return Math.max(0,p);
 }
 /* Time to read first (1 s + 0.25 s per word), then −10 points a second, floor 40. */
@@ -2150,6 +2239,7 @@ function showRound(shown,quiet,gate){
   $('blankUI').hidden=true; $('card').hidden=false;
   const st = S.rounds[S.i];
   $('kicker').textContent = 'Real or fake?'+(S.kind==='pol'?' · Politics':'')+(S.mode==='practice'?' · practice':'');
+  $('kicker').classList.remove('bad');
   if(gate){
     // nothing is shown, and no clock runs, until the player says they are ready
     $('headline').innerHTML='<span class="fakeplace" style="font-size:.78em;line-height:1.05;display:block">Guess what\'s real, then deduce where it happened. The clock starts when the headline appears.</span>';
@@ -2161,7 +2251,7 @@ function showRound(shown,quiet,gate){
     return;
   }
   $('headline').innerHTML = headlineHTML(st,false);
-  $('speed').hidden=false;
+  $('speed').hidden=false; $('speed').classList.remove('pin','low');
   setBar('call');
   $('feedback').hidden=true;
   $('mapWrap').hidden=true;
@@ -2199,8 +2289,10 @@ function revealCall(st){
     if(!c.callOk) $('btnGuess').textContent='HALF CREDIT · TAP A REGION';
   } else {
     fb.hidden=false;
-    if(c.callOk) Sound.play('catchFake'); else { Sound.play('fooled'); if(jawPoints()>0||S.results.some(x=>x.real)) Sound.play('jawUp'); }
-    const tell = st.tell ? '<small>The tell: '+st.tell+'</small>' : '';
+    if(c.callOk){ Sound.play('catchFake'); Sound.play('jawDown'); Scene.gasp(); } else { Sound.play('fooled'); if(jawPoints()>0||S.results.some(x=>x.real)) Sound.play('jawUp'); }
+    const tell = st.tell ? '<small>Why it smelled fake: '+st.tell+'</small>' : '';
+    $('kicker').textContent = (c.callOk ? 'Fake ✓ caught +'+FAKE_PTS : 'Fooled ✗ −'+Math.abs(FOOLED_PTS))+(S.kind==='pol'?' · Politics':'');
+    $('kicker').classList.toggle('bad',!c.callOk);
     if(c.callOk) fb.innerHTML='<b>Nice catch.</b> That one was invented for this game. +'+FAKE_PTS+'.'+tell;
     else {
       fb.innerHTML='<b>Fooled!</b> That one was invented for this game. −'+Math.abs(FOOLED_PTS)+'.'+tell;
@@ -2249,6 +2341,10 @@ function openMap(){
     });
   }
   layer.clearLayers();
+  // the pin clock starts now; time already spent before a reload still counts
+  if(!S.cur.pinWall){ S.cur.pinWall=Date.now(); saveProgress({cur:S.cur}); }
+  S.pinT0=performance.now()-Math.max(0,Date.now()-S.cur.pinWall);
+  runPinTimer();
   const homeView=()=>{
     map.invalidateSize();
     const w=map.getSize().x;
@@ -2265,39 +2361,40 @@ function openMap(){
   $('btnGuess').textContent='TAP A REGION TO ZOOM IN';
 }
 
-function submitGuess(){
-  if(S.phase!=='pin' || !guessLL) return;
+function submitGuess(timedOut){
+  if(S.phase!=='pin' || (!guessLL && timedOut!==true)) return;
+  cancelAnimationFrame(PIN_RAF); $('speed').hidden=true; $('speed').classList.remove('pin','low');
   const st = S.rounds[S.i];
-  const d = km(guessLL.lat,guessLL.lng,st.lat,st.lng);
-  let pts = pinPoints(d);
+  const sec = Math.min(PIN_SECS,(performance.now()-S.pinT0)/1000), mult = pinMult(sec);
+  const d = guessLL ? km(guessLL.lat,guessLL.lng,st.lat,st.lng) : null;
+  let pts = guessLL ? Math.round(pinPoints(d)*mult) : 0;
   if(!S.cur.callOk) pts = Math.round(pts*0.5);
-  S.cur.pinPts = pts; S.cur.dist = d; S.score += pts;
+  S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
   Sound.play('lock',pts/PIN_PTS); if(pts>0) Sound.play('jawDown');
   const actual = L.latLng(st.lat,st.lng);
-  L.polyline([guessLL,actual],{color:'#ffcc4d',weight:2,dashArray:'4 4'}).addTo(layer);
+  if(guessLL){
+    L.polyline([guessLL,actual],{color:'#ffcc4d',weight:2,dashArray:'4 4'}).addTo(layer);
+    map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.4),{maxZoom:6});
+  } else map.setView(actual,5,{animate:true});
   L.marker(actual,{icon:squareIcon('#4fbf6a'),interactive:false}).addTo(layer);
-  map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.4),{maxZoom:6});
   $('btnGuess').hidden=true;
   $('headline').innerHTML = headlineHTML(st,true);
   $('kicker').textContent = (S.cur.callOk?'Real ✓':'Plot twist: it was real')+(S.kind==='pol'?' · Politics':'');
   const fb=$('feedback'); fb.hidden=false;
-  fb.innerHTML = (S.cur.callOk?'<b>+'+S.cur.callPts+'</b> for the call. ':'')
-    + 'Your pin was '+Math.round(d).toLocaleString()+' km off: <b>+'+pts+'</b>'+(S.cur.callOk?'':' (half credit)')+'.'
-    + '<small>'+(st.clue?'The tell: '+st.clue+'. ':'')+st.place+(st.published?' · '+fmtDate(st.published):'')
+  fb.classList.remove('open');
+  fb.innerHTML = '<span class="sum">'+(S.cur.callOk?'<b>+'+S.cur.callPts+'</b> call · ':'')
+    + (guessLL ? Math.round(d).toLocaleString()+' km · <b>+'+pts+'</b>'+(S.cur.callOk?' pin':' half credit')+(mult<1?' (slow −'+Math.round((1-mult)*100)+'%)':'') : 'Time! No pin · <b>+0</b>')+'</span>'
+    + '<button class="why" type="button" aria-expanded="false">why?</button>'
+    + '<small class="more">'+(st.clue?'Clues: '+st.clue+'. ':'')+st.place+(st.published?' · '+fmtDate(st.published):'')
     + (st.src?' · <a href="'+st.src+'" target="_blank" rel="noopener">read the story</a>':'')+'</small>';
+  fb.querySelector('.why').onclick=e=>{ const o=fb.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded',o); e.currentTarget.textContent=o?'less':'why?'; aim(); };
   finishRound();
   if(!isDesk()) setTimeout(()=>{      // after a moment the map shrinks to a strip so the jaw is not hidden behind it
     if(S && S.phase==='done' && document.body.classList.contains('pinning')){
       document.body.classList.add('pinned');
-      setTimeout(()=>{ map.invalidateSize(); map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.5),{maxZoom:6,animate:false}); aim(); },420);
+      setTimeout(()=>{ map.invalidateSize(); if(guessLL) map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.5),{maxZoom:6,animate:false}); else map.setView(actual,5,{animate:false}); aim(); },420);
     }
-  },1700);
-  setTimeout(()=>{
-    if(isDesk()) return;
-    const r=fb.getBoundingClientRect(), limit=innerHeight-$('mapWrap').offsetHeight-8;
-    if(r.bottom>limit) window.scrollBy({top:r.bottom-limit,behavior:'smooth'});
-    else if(r.top<0) window.scrollBy({top:r.top-8,behavior:'smooth'});
-  },60);
+  },650);
 }
 
 function finishRound(){
@@ -2349,7 +2446,7 @@ function finish(restored){
   $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned');
   ['card','speed','feedback','mapWrap','blankUI'].forEach(id=>$(id).hidden=true);
   setBar('end');
-  getDb().then(d=>{ $('btnBoard').textContent = d ? 'Board' : 'My dig'; });
+  getDb().then(d=>{ $('btnBoard').textContent = d ? 'Board' : 'My digs'; });
   const total = sumPts(S.results), max = S.maxScore;
   S.score = total; renderDots();
   const inf = Scene.info();
@@ -2360,6 +2457,7 @@ function finish(restored){
   const cls=S.results.map(resultClass);
   S.shareLines=[cls.map(c=>CLASS_EMOJI[c]).join('')].concat(digEmoji());
   $('grid').innerHTML = cls.map(c=>'<span class="sq '+c+'" title="'+CLASS_TITLE[c]+'"></span>').join('');
+  $('recapSum').textContent='▸ All '+S.results.length+' stories + sources';
   $('recapList').innerHTML = S.results.map((x,i)=>{
     const st=S.rounds[i]; if(!st) return '';
     const cls=resultClass(x), pts=x.callPts+(x.pinPts||0);
@@ -2406,12 +2504,16 @@ function recapList(){
   let sum=0;
   return S.results.map((x,i)=>{
     const st=S.rounds[i]; if(!st) return null;
-    sum += x.real ? Math.max(0,x.callPts)+Math.max(0,x.pinPts||0) : (!x.callOk ? -FOOL_JAW : 0);   // same sum the jaw used
+    sum += (x.callPts||0)+(x.pinPts||0);   // same sum the jaw used
     const pts=x.callPts+(x.pinPts||0);
-    const place = x.blank ? ('“'+(x.callWord||'no guess')+'”') : (st.real===false ? 'Invented for this game' : (st.place||''));
+    const city = (st.place||'').split(',')[0].trim();
+    const fake = !x.blank && st.real===false;
+    const tag = x.blank ? '“'+(x.callWord||'no guess')+'”' : fake ? 'Made up' : city;
+    const icon = fake ? (x.callOk ? '✓' : '✗') : x.blank ? (x.c>=0.999 ? '✓' : '·') : (x.callOk ? '◆' : '◇');
+    const head = x.blank ? plainHeadline(st,x) : (st.h||'').replace('{}', fake ? '???' : city);
     const esc=t=>String(t).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
     return {wy:Scene.chinAt(Math.max(0,sum)*S.jawK), cls:resultClass(x),
-            html:'<b class="mp">'+(pts<0?'−'+Math.abs(pts):'+'+pts)+'</b><span class="ml">'+esc(place)+'</span><span class="mh">'+esc(plainHeadline(st,x))+'</span>'};
+            html:'<b class="mp"><i class="mi">'+icon+'</i>'+(pts<0?'−'+Math.abs(pts):'+'+pts)+'</b><span class="ml">'+esc(tag)+'</span><span class="mh">'+esc(head)+'</span>'};
   }).filter(Boolean);
 }
 function endRecapUI(skipped){
@@ -2544,13 +2646,16 @@ async function openBoard(){
   if(!b){
     const h=load('ff_hist')||{};
     const mine=Object.keys(h).filter(k=>k.endsWith(':'+S.kind)).sort().reverse().slice(0,7);
-    $('rankLine').innerHTML = mine.length ? 'Your recent digs. The shared leaderboard is on the claude.ai game page.' : 'The shared leaderboard is on the claude.ai game page.';
+    $('boardKicker').textContent='My digs · '+modeName(S.kind);
+    $('curve').hidden=true;
+    $('rankLine').innerHTML = mine.length ? 'Your recent digs on this device.' : 'Finish a daily round to start your dig history.';
     const ol=$('topList'); ol.innerHTML='';
     mine.forEach(k=>{ const li=document.createElement('li'); const nm=document.createElement('span'); nm.className='nm'; nm.textContent=k.split(':')[0]; const v=document.createElement('span'); v.textContent=h[k].m.toFixed(1)+' m · '+fmtPts(h[k].score); li.append(nm,v); ol.append(li); });
     return;
   }
   const rows=b.rows;
   if(S.mode==='daily' && b.me && !rows.some(r=>r.id===b.me)) rows.push({id:b.me,m:mine,score:S.total,zone:inf.zone});
+  $('curve').hidden=rows.length<3;
   drawCurve(rows, mine);
   const others=rows.filter(r=>r.id!==b.me);
   if(S.mode!=='daily') $('rankLine').innerHTML=rows.length+' digger'+(rows.length===1?'':'s')+' so far today. Practice runs don\'t count.';
@@ -2582,9 +2687,7 @@ function digZones(){
 function digEmoji(){
   const inf=Scene.info(), d=digZones();
   if(!d.passed.length) return ['📰😮 🦷 '+inf.m+' m'+(inf.zone==='BEHIND THE PAPER'?' (behind the paper)':'')];
-  const lines=['📰😮'];
-  d.passed.forEach((r,i)=>lines.push(r[0]+(i===d.passed.length-1?' 🦷 '+inf.m+' m':'')));
-  return lines;
+  return ['📰'+d.passed.map(r=>r[0]).join('')+'🦷 '+inf.m+' m · '+inf.zone];
 }
 function renderDigCard(){
   const d=digZones(), L=d.L, inf=Scene.info();
@@ -2635,11 +2738,45 @@ async function saveDigImage(){
 
 /* ---------- Zone toast (replaces the edge labels) ---------- */
 let TOAST_T=0;
-function showToast(txt){
-  const el=$('toast'); el.textContent=txt; el.hidden=false; el.classList.remove('go'); void el.offsetWidth; el.classList.add('go');
-  clearTimeout(TOAST_T); TOAST_T=setTimeout(hideToast,3600);
+function toastSpot(el){
+  if(isDesk()){ el.style.top=''; return true; }
+  let top=document.querySelector('.hud').getBoundingClientRect().bottom;
+  ['card','feedback','blankUI','final'].forEach(id=>{
+    const e=$(id); if(e && !e.hidden && e.offsetParent!==null) top=Math.max(top,e.getBoundingClientRect().bottom);
+  });
+  const mw=$('mapWrap'), bar=$('bar');
+  let bot=innerHeight;
+  const mr=mw.getBoundingClientRect(), mapOpen=!mw.hidden && mr.height>0 && mr.top<innerHeight;   // (the map panel is position:fixed, so no offsetParent)
+  if(mapOpen) bot=Math.min(bot,mr.top);
+  if([...bar.children].some(c=>!c.hidden)) bot=Math.min(bot,bar.getBoundingClientRect().top);
+  const h=el.offsetHeight||32;
+  if(bot-top<h+12) return false;                  // no free space right now
+  // with the map open the name sits just above it; otherwise in the middle of the free band
+  el.style.top=Math.round(mapOpen ? bot-h-8 : top+(bot-top-h)/2)+'px';
+  return true;
 }
-function hideToast(){ $('toast').hidden=true; }
+let TOAST_FOLLOW=0;
+function followToast(){                             // the map grows and shrinks while the name is up: keep it clear
+  clearInterval(TOAST_FOLLOW);
+  TOAST_FOLLOW=setInterval(()=>{
+    const el=$('toast');
+    if(el.hidden){ clearInterval(TOAST_FOLLOW); return; }
+    el.style.visibility = toastSpot(el) ? '' : 'hidden';
+  },80);
+}
+function showToast(txt,tries){
+  const el=$('toast'); el.textContent=txt;
+  el.style.visibility='hidden'; el.hidden=false;
+  if(!toastSpot(el)){                               // wait for a gap (the map shrinks, a card closes) rather than cover text
+    el.hidden=true; el.style.visibility='';
+    if((tries||0)<12){ clearTimeout(TOAST_T); TOAST_T=setTimeout(()=>showToast(txt,(tries||0)+1),300); }
+    return;
+  }
+  el.style.visibility=''; el.classList.remove('go'); void el.offsetWidth; el.classList.add('go');
+  clearTimeout(TOAST_T); TOAST_T=setTimeout(hideToast,3600);
+  if(!isDesk()) followToast();
+}
+function hideToast(){ clearTimeout(TOAST_T); clearInterval(TOAST_FOLLOW); $('toast').hidden=true; $('toast').style.visibility=''; }
 
 /* ---------- Fill the Blank mode ----------
    Word closeness comes from GloVe word vectors (words.json, 45k words, loaded on first use). */
@@ -2713,7 +2850,7 @@ function showBlankRound(live){
   $('card').hidden=false; $('speed').hidden=true;
   $('feedback').hidden=true; $('mapWrap').hidden=true;
   $('blankUI').hidden=false; $('blankLive').hidden=true;
-  $('kicker').textContent='Fill the blank'+(S.mode==='practice'?' · practice':'');
+  $('kicker').textContent='Fill the blank'+(S.mode==='practice'?' · practice':''); $('kicker').classList.remove('bad');
   $('headline').innerHTML='<span class="fakeplace">'+(S.results.length ? 'Ready for the next one? One word is hidden. 20 seconds.' : 'One word is hidden. You get 20 seconds and as many guesses as you like. The exact word scores most, and faster is better.')+'</span>';
   setBar('start');
   if(!S.results.length && !live) Scene.setPaper(false,true);
@@ -2776,7 +2913,7 @@ function submitWord(raw){
   const pts=blankPts(c,tl,bl.guesses.length);
   if(pts>bl.bestPts || !bl.bestWord){ bl.bestPts=pts; bl.bestC=c; bl.bestWord=word; }
   renderGuesses();
-  if(c>=1){ bl.exact=true; Sound.play('exact'); endBlank(); } else Sound.play('guess',c);
+  if(c>=1){ bl.exact=true; bl.exactWord=word; Sound.play('exact'); endBlank(); } else Sound.play('guess',c);
 }
 
 function renderGuesses(){
@@ -2802,7 +2939,9 @@ function endBlank(){
   $('headline').innerHTML=blankHTML(st,true);
   const fb=$('feedback'); fb.hidden=false;
   let line;
-  if(bl.exact) line='<b>Exact!</b> +'+res.callPts+'.';
+  if(bl.exact) line = (bl.exactWord && st.ans && bl.exactWord!==st.ans[0])
+      ? '<b>Exact!</b> “'+bl.exactWord+'” ✓ (headline: '+st.ans[0]+') +'+res.callPts+'.'
+      : '<b>Exact!</b> +'+res.callPts+'.';
   else if(bl.bestWord) line='Time. Closest: <b>'+bl.bestWord+'</b> ('+heat(bl.bestC).toLowerCase()+') for +'+res.callPts+'.';
   else line='Time. No guesses landed.';
   fb.innerHTML=line+'<small>'+st.place+(st.published?' · '+fmtDate(st.published):'')+(st.src?' · <a href="'+st.src+'" target="_blank" rel="noopener">read the story</a>':'')+'</small>';
@@ -2826,7 +2965,7 @@ $('guessForm').addEventListener('submit',e=>{ e.preventDefault(); const inp=$('g
 
 $('btnReal').onclick=()=>onCall(true);
 $('btnFake').onclick=()=>onCall(false);
-$('btnGuess').onclick=submitGuess;
+$('btnGuess').onclick=()=>submitGuess();
 $('btnNext').onclick=next;
 $('btnNext2').onclick=next;
 $('btnShare').onclick=share;
