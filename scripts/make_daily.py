@@ -98,7 +98,8 @@ N_CALL_REAL, N_CALL_FAKE, N_BLANK = 8, 2, 10   # Real or Fake always has exactly
 SCREEN_TOP = 50
 SCREEN_PER_COUNTRY = 7  # at most this many shortlisted stories from one country
 # how many screened candidates get their article fetched and go to the editor
-BANK_DAYS, BANK_MAX = 45, 80   # banked stories expire after this many days; keep at most this many
+BANK_DAYS, BANK_MAX = 45, 80
+RULES = 2              # bump when the picking rules change: banked stories chosen under older rules are dropped   # banked stories expire after this many days; keep at most this many
 
 
 # ---------------------------------------------------------------- feeds
@@ -694,7 +695,7 @@ def main():
                 r["lat"], r["lng"] = g
             elif g:
                 print(f"  geocoder disagrees for {r['place']} (likely a same-name town elsewhere); keeping the editor's coordinates", file=sys.stderr)
-        r["banked"] = day
+        r["banked"], r["rules"] = day, RULES
         for k in ("_title", "_summary", "_text"):
             r.pop(k, None)
     fresh_fakes = []
@@ -704,16 +705,16 @@ def main():
         else:
             print(f"  drop fake (tell too obvious): {f.get('h')}", file=sys.stderr)
     for f in fresh_fakes:
-        f["banked"] = day
+        f["banked"], f["rules"] = day, RULES
 
     # The bank: good stories (and fakes) from earlier runs that were never used.
     bank_path = os.path.join(DATA, "bank.json")
     bank = json.load(open(bank_path)) if os.path.exists(bank_path) else {}
     oldest = (dt.date.fromisoformat(day) - dt.timedelta(days=BANK_DAYS)).isoformat()
     fresh_src = {r["src"] for r in fresh}
-    bank_real = [r for r in bank.get("real", []) if r.get("banked", "") >= oldest and r.get("banked") != day
+    bank_real = [r for r in bank.get("real", []) if r.get("rules", 1) >= RULES and r.get("banked", "") >= oldest and r.get("banked") != day
                  and r.get("src") not in used and r.get("src") not in fresh_src and not valid_real(r)]
-    bank_fake = [f for f in bank.get("fake", []) if f.get("banked", "") >= oldest and f.get("banked") != day and valid_fake(f)]
+    bank_fake = [f for f in bank.get("fake", []) if f.get("rules", 1) >= RULES and f.get("banked", "") >= oldest and f.get("banked") != day and valid_fake(f)]
     prior = prior_stories(day)
     for lst, name in ((fresh, "fresh"), (bank_real, "banked")):
         dup = [r for r in lst if seen_before(r, prior)]
