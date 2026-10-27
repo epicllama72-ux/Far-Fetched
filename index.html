@@ -905,7 +905,12 @@ body.recap #bar{display:none}
 #topList{margin:0 0 12px;padding:0;list-style:none;font:20px/1.25 var(--vt)}
 #topList li{display:flex;justify-content:space-between;gap:10px;padding:2px 8px;border-bottom:1px dashed #2a2f3b}
 #topList li.me{background:#1e2433;color:var(--accent)}
+#nameRow{margin:-4px 0 12px;font:19px/1.2 var(--vt);color:var(--dim)}
+#nameRow b{font-weight:400;color:var(--cyan)}
+#nameRow small{font-size:16px}
+#nameIn{width:12em;font:19px/1.2 var(--vt);background:var(--ink);color:var(--fg,#eef0f4);border:1px solid #3d4558;padding:2px 6px}
 #topList .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+#topList li>span:last-child{white-space:nowrap;flex-shrink:0}
 .digRow{display:flex;gap:12px;align-items:flex-start}
 #digImg{width:120px;image-rendering:pixelated;box-shadow:0 0 0 2px var(--line);flex:0 0 auto}
 #digCap{margin:0 0 8px;font:20px/1.15 var(--vt);color:var(--dim)}
@@ -998,6 +1003,7 @@ body.recap #bar{display:none}
       <button id="mBlank">Fill the Blank <small>20 s each</small></button>
       <button id="mPol">Politics <small>hard-to-believe governing</small></button>
       <button id="mPractice">Practice set <small>doesn't count</small></button>
+      <button id="mBoard">Leaderboard <small>today's deepest digs</small></button>
       <p class="mlbl">SOUND</p>
       <button id="mAmb">Background newsroom <small id="mAmbState">On</small></button>
       <p class="mlbl">YOUR RECORD</p>
@@ -1077,6 +1083,7 @@ body.recap #bar{display:none}
       <canvas id="curve" width="320" height="130" aria-label="Distribution of today's jaw depths"></canvas>
       <p id="rankLine"></p>
       <ol id="topList"></ol>
+      <p id="nameRow" hidden>Playing as <b id="nameShow"></b> · <button class="linkish" id="nameEdit" type="button">change</button><small id="nameHint"> (a new name shows from your next round)</small></p>
       <div class="digRow">
         <img id="digImg" alt="Your jaw dig">
         <div><p id="digCap"></p><button class="ghost" id="btnSaveImg">Save image</button><p id="saveMsg"></p></div>
@@ -2557,6 +2564,46 @@ async function share(){
 /* ---------- Shared leaderboard (artifact db) ----------
    scores/<viewer id> holds that viewer's runs keyed "<day>_<mode>" → {m, score, zone}.
    Everyone reads every doc; each viewer writes only their own. */
+/* ---------- Shared leaderboard for the public site (Supabase) ----------
+   Paste your Supabase project's URL and its anon (public) key here. Both are meant to be public.
+   Leave them empty and the public site shows each player's own digs instead. */
+const SUPABASE_URL = 'https://vztrvqjondvwvwommeur.supabase.co';   // e.g. 'https://abcdefgh.supabase.co'
+const SUPABASE_KEY = 'sb_publishable_JeMK09EA2GVvjowwCwlF9g_vrS4kiZo';   // the long "anon" / "publishable" key
+const sbOn=()=>!!(SUPABASE_URL && SUPABASE_KEY);
+function sbHeaders(extra){   // new-style publishable keys go only in the apikey header (they are not JWTs)
+  const h={apikey:SUPABASE_KEY, 'Content-Type':'application/json'};
+  if(!/^sb_/.test(SUPABASE_KEY)) h.Authorization='Bearer '+SUPABASE_KEY;
+  return Object.assign(h, extra||{});
+}
+function playerId(){
+  let id=load('ff_pid');
+  if(!id){ id=(window.crypto&&crypto.randomUUID) ? crypto.randomUUID() : (Date.now().toString(36)+Math.random().toString(36).slice(2,14)); store('ff_pid',id); }
+  return id;
+}
+function autoName(id){
+  const A=['Gasping','Slack-Jawed','Stunned','Agog','Gobsmacked','Startled','Dumbstruck','Wide-Eyed','Flabbergasted','Bug-Eyed','Jaw-Dropped','Astonished'];
+  const N=['Otter','Walrus','Moose','Pelican','Badger','Wombat','Heron','Goose','Lemur','Puffin','Llama','Ferret','Gecko','Bison'];
+  const h=hash(id); return A[h%A.length]+' '+N[(h>>>8)%N.length];
+}
+function playerName(){ return (load('ff_name')||'').trim() || autoName(playerId()); }
+async function sbPost(entry){
+  try{
+    const r=await fetch(SUPABASE_URL+'/rest/v1/scores?on_conflict=player,day,kind',{method:'POST',
+      headers:sbHeaders({Prefer:'resolution=ignore-duplicates,return=minimal'}),
+      body:JSON.stringify({player:playerId(), name:playerName().slice(0,24), day:dayKey(), kind:entry.kind,
+                           m:Math.round(entry.m*10)/10, score:Math.round(entry.score), zone:String(entry.zone||'').slice(0,24)})});
+    return r.ok;
+  }catch(e){ return false; }
+}
+async function sbBoard(kind){
+  const q='select=player,name,m,score,zone&day=eq.'+encodeURIComponent(dayKey())+'&kind=eq.'+encodeURIComponent(kind)+'&order=m.desc,score.desc&limit=2000';
+  const r=await fetch(SUPABASE_URL+'/rest/v1/scores?'+q,{headers:sbHeaders()});
+  if(!r.ok) throw new Error('HTTP '+r.status);
+  const data=await r.json(), names={}, me=playerId();
+  const rows=data.map(x=>{ names[x.player]=x.player===me?'You':x.name; return {id:x.player, m:+x.m, score:+x.score, zone:x.zone||''}; });
+  return {rows, me, names, sb:true};
+}
+
 let DBP=null, USERP=null, DLP=null;
 function cap(name){
   if(!window.claude || typeof window.claude.use!=='function') return Promise.resolve(null);
@@ -2568,7 +2615,7 @@ function runKey(kind){ return dayKey()+'_'+kind; }
 
 async function postScore(entry){
   const db=await getDb(), user=await getUser();
-  if(!db||!user) return false;
+  if(!db||!user) return sbOn() ? sbPost(entry) : false;
   const id=await user.id(); if(!id) return false;
   const ref=db.doc('scores/'+id);
   try{
@@ -2585,7 +2632,7 @@ async function postScore(entry){
 
 async function loadBoard(kind){
   const db=await getDb(), user=await getUser();
-  if(!db) return null;
+  if(!db) return sbOn() ? sbBoard(kind) : null;
   const me=user ? await user.id() : null;
   const snap=await db.collection('scores').limit(1000).get();
   const k=runKey(kind), rows=[];
@@ -2638,10 +2685,13 @@ async function openBoard(){
   Sound.play('menu');
   $('sheet').hidden=false;
   $('boardKicker').textContent="Today's diggers · "+modeName(S.kind);
-  const inf=Scene.info(), mine=S.mode==='daily' ? +inf.m : null;
+  $('nameRow').hidden=true;
+  const done = S.mode==='daily' && S.results.length>=S.rounds.length;    // only a finished daily round goes on the board
+  const inf=Scene.info(), mine=done ? +inf.m : null;
   drawCurve([], mine);
   $('rankLine').textContent='Loading the leaderboard…'; $('topList').innerHTML='';
-  renderDigCard();
+  $('digImg').parentElement.hidden=!done;
+  if(done) renderDigCard();
   let b=null; try{ b=await loadBoard(S.kind); }catch(e){}
   if(!b){
     const h=load('ff_hist')||{};
@@ -2653,12 +2703,15 @@ async function openBoard(){
     mine.forEach(k=>{ const li=document.createElement('li'); const nm=document.createElement('span'); nm.className='nm'; nm.textContent=k.split(':')[0]; const v=document.createElement('span'); v.textContent=h[k].m.toFixed(1)+' m · '+fmtPts(h[k].score); li.append(nm,v); ol.append(li); });
     return;
   }
+  $('nameRow').hidden=!b.sb;
+  if(b.sb) $('nameShow').textContent=playerName();
   const rows=b.rows;
-  if(S.mode==='daily' && b.me && !rows.some(r=>r.id===b.me)) rows.push({id:b.me,m:mine,score:S.total,zone:inf.zone});
+  if(done && b.me && !rows.some(r=>r.id===b.me)) rows.push({id:b.me,m:mine,score:S.total,zone:inf.zone});
   $('curve').hidden=rows.length<3;
   drawCurve(rows, mine);
   const others=rows.filter(r=>r.id!==b.me);
   if(S.mode!=='daily') $('rankLine').innerHTML=rows.length+' digger'+(rows.length===1?'':'s')+' so far today. Practice runs don\'t count.';
+  else if(!done) $('rankLine').innerHTML=(rows.length ? rows.length+' digger'+(rows.length===1?'':'s')+' so far today.' : 'Nobody has finished today\'s round yet.')+' Finish yours to see where you land.';
   else if(!others.length) $('rankLine').innerHTML='You\'re the <b>first digger</b> today. Check back as others play.';
   else {
     const below=others.filter(r=>r.m<mine).length, ties=others.filter(r=>r.m===mine).length;
@@ -2973,6 +3026,17 @@ $('skipRecap').onclick=()=>endRecapUI(true);
 $('replayDig').onclick=()=>startRecap(false);
 Scene.onMark(()=>Sound.play('pin'));
 $('btnBoard').onclick=openBoard;
+$('mBoard').onclick=()=>{ closeMenu(); openBoard(); };
+$('nameEdit').onclick=()=>{
+  const row=$('nameRow');
+  if(row.querySelector('input')) return;
+  const inp=document.createElement('input'); inp.type='text'; inp.maxLength=24; inp.value=playerName(); inp.id='nameIn'; inp.setAttribute('aria-label','Leaderboard name');
+  const ok=document.createElement('button'); ok.type='button'; ok.className='linkish'; ok.textContent='save';
+  const save=()=>{ store('ff_name', inp.value.replace(/[<>]/g,'').trim().slice(0,24)); $('nameShow').textContent=playerName(); inp.remove(); ok.remove(); $('nameShow').hidden=false; $('nameEdit').hidden=false; $('nameHint').hidden=false; };
+  ok.onclick=save; inp.onkeydown=e=>{ if(e.key==='Enter') save(); };
+  $('nameShow').hidden=true; $('nameEdit').hidden=true; $('nameHint').hidden=true;
+  row.append(inp,' ',ok); inp.focus(); inp.select();
+};
 $('sheetClose').onclick=()=>{ $('sheet').hidden=true; };
 $('sheet').addEventListener('click',e=>{ if(e.target===$('sheet')) $('sheet').hidden=true; });
 $('btnSaveImg').onclick=saveDigImage;
