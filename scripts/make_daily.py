@@ -2,9 +2,12 @@
 """
 Far-Fetched daily headline builder.
 
-Pulls weird-news stories from the past week, asks Claude to pick the best ones,
-rewrite them as redacted headlines and invent a couple of believable fakes, then
-geocodes them and writes data/<YYYY-MM-DD>.json and data/latest.json for the game.
+Pulls weird-news stories from the past month (English outlets, Reddit, Google News in
+several languages), has a cheap model screen them all, fetches the article text for the
+best ~50, asks Claude to pick and rewrite the best as redacted headlines plus a couple of
+believable fakes, fact-checks the rewrites against the articles, then geocodes them and
+writes data/<YYYY-MM-DD>.json and data/latest.json for the game. Good stories that are not
+used today go into data/bank.json and fill in on thin days.
 
 Usage:
   python scripts/make_daily.py                 # normal run (needs ANTHROPIC_API_KEY)
@@ -14,9 +17,10 @@ Usage:
 Env:
   ANTHROPIC_API_KEY   required unless --picks is given
   GLOVE               path to glove-wiki-gigaword-50.gz (word vectors for Fill the Blank)
-  FF_MODEL            Claude model (default claude-sonnet-5-5)
+  FF_MODEL            Claude model for picking/writing/fact-checking (default claude-sonnet-5-5)
+  FF_SCREEN_MODEL     cheap model that scores every candidate (default claude-haiku-5-5)
 """
-import argparse, base64, datetime as dt, email.utils, gzip, html, json, math, os, random, re, sys, time
+import argparse, base64, concurrent.futures, datetime as dt, email.utils, gzip, html, json, math, os, random, re, sys, time
 import urllib.request, urllib.parse
 import xml.etree.ElementTree as ET
 
@@ -29,22 +33,57 @@ FEEDS = [
     ("Sky News Strange", "https://feeds.skynews.com/feeds/rss/strange.xml"),
     ("NY Post Weird But True", "https://nypost.com/weird-but-true/feed/"),
     ("Oddity Central", "https://www.odditycentral.com/feed"),
+    ("HuffPost Weird News", "https://www.huffpost.com/section/weird-news/feed"),
+    ("Metro Weird", "https://metro.co.uk/news/weird/feed/"),
+    ("Mirror Weird News", "https://www.mirror.co.uk/news/weird-news/?service=rss"),
+    # Reddit: the community upvotes the funniest real stories; the entry links to the article.
+    ("Reddit nottheonion", "https://www.reddit.com/r/nottheonion/top/.rss?t=month&limit=100"),
+    ("Reddit NewsOfTheWeird", "https://www.reddit.com/r/NewsOfTheWeird/top/.rss?t=month&limit=100"),
 ]
-# Worldwide net: Google News searches for odd-but-true stories from the past 7 days, one per regional edition.
-_ODD_Q = urllib.parse.quote('(bizarre OR quirky OR "strange but true" OR unusual OR unlikely OR "world record") (rescued OR escaped OR found OR wins OR discovered OR stuck OR unveiled OR spotted) when:7d')
+def _gn(q, hl="en-US", gl="US", ceid="US:en"):
+    return f"https://news.google.com/rss/search?q={urllib.parse.quote(q + ' when:30d')}&hl={hl}&gl={gl}&ceid={ceid}"
+# Weird-news sections reached through Google News (works even when an outlet blocks direct feed requests)
+FEEDS += [
+    ("Google News site: HuffPost weird", _gn("site:huffpost.com weird")),
+    ("Google News site: Metro weird", _gn("site:metro.co.uk weird OR bizarre", "en-GB", "GB", "GB:en")),
+    ("Google News site: Mirror weird", _gn("site:mirror.co.uk weird OR bizarre", "en-GB", "GB", "GB:en")),
+    ("Google News site: Times of India offbeat", _gn("site:timesofindia.indiatimes.com offbeat OR bizarre OR viral", "en-IN", "IN", "IN:en")),
+    ("Google News site: ABC Australia", _gn("site:abc.net.au bizarre OR quirky OR unusual", "en-AU", "AU", "AU:en")),
+    ("Google News site: Stuff NZ", _gn("site:stuff.co.nz quirky OR bizarre OR odd", "en-NZ", "NZ", "NZ:en")),
+    ("Google News site: AP oddities", _gn("site:apnews.com oddities OR bizarre OR unusual")),
+]
+# Non-English editions: stories English outlets miss (Claude translates them).
+FEEDS += [
+    ("Google News es-MX", _gn("insólito OR curioso OR surrealista OR increíble", "es-419", "MX", "MX:es-419")),
+    ("Google News es-ES", _gn("insólito OR surrealista OR curioso", "es", "ES", "ES:es")),
+    ("Google News fr", _gn("insolite OR improbable OR cocasse", "fr", "FR", "FR:fr")),
+    ("Google News de", _gn("kurios OR skurril OR verrückt OR \"kaum zu glauben\"", "de", "DE", "DE:de")),
+    ("Google News pt-BR", _gn("inusitado OR curioso OR bizarro", "pt-BR", "BR", "BR:pt-419")),
+    ("Google News it", _gn("curioso OR surreale OR incredibile OR bizzarro", "it", "IT", "IT:it")),
+    ("Google News ja", _gn("珍事 OR 珍騒動 OR まさか", "ja", "JP", "JP:ja")),
+    ("Google News nl", _gn("opmerkelijk OR bizar OR curieus", "nl", "NL", "NL:nl")),
+]
+# Worldwide net: Google News searches for odd-but-true stories from the past 30 days, one per regional edition.
+_ODD_Q = urllib.parse.quote('(bizarre OR quirky OR "strange but true" OR unusual OR unlikely OR "world record") (rescued OR escaped OR found OR wins OR discovered OR stuck OR unveiled OR spotted) when:30d')
+_ODD_Q3 = urllib.parse.quote('(arrested OR stole OR stolen OR burglar OR thief OR "pulled over" OR caught) (bizarre OR ridiculous OR hilarious OR strange OR "of all things" OR absurd) when:30d')
+_ODD_Q2 = urllib.parse.quote('(ridiculous OR hilarious OR absurd OR baffling OR "only in") (council OR police OR residents OR town OR village OR farmer OR zoo) when:30d')
 for _name, _gl, _ceid in [("US", "US", "US:en"), ("UK", "GB", "GB:en"), ("Australia", "AU", "AU:en"), ("Canada", "CA", "CA:en"),
                           ("India", "IN", "IN:en"), ("Ireland", "IE", "IE:en"), ("New Zealand", "NZ", "NZ:en"),
                           ("South Africa", "ZA", "ZA:en"), ("Singapore", "SG", "SG:en"), ("Philippines", "PH", "PH:en")]:
     FEEDS.append((f"Google News odd ({_name})", f"https://news.google.com/rss/search?q={_ODD_Q}&hl=en-{_gl}&gl={_gl}&ceid={_ceid}"))
+    FEEDS.append((f"Google News crime ({_name})", f"https://news.google.com/rss/search?q={_ODD_Q3}&hl=en-{_gl}&gl={_gl}&ceid={_ceid}"))
+    FEEDS.append((f"Google News absurd ({_name})", f"https://news.google.com/rss/search?q={_ODD_Q2}&hl=en-{_gl}&gl={_gl}&ceid={_ceid}"))
 POL_FEEDS = [  # Google News searches for odd local-government and election stories worldwide
     ("Google News: odd elections", "https://news.google.com/rss/search?q=" + urllib.parse.quote('(election OR candidate OR ballot) (tie OR "coin toss" OR "dog mayor" OR bizarre OR unusual) when:21d') + "&hl=en-US&gl=US&ceid=US:en"),
     ("Google News: odd councils", "https://news.google.com/rss/search?q=" + urllib.parse.quote('(council OR parliament OR lawmakers OR mayor) (bizarre OR quirky OR unusual OR "honorary mayor") when:21d') + "&hl=en-US&gl=US&ceid=US:en"),
     ("UPI Odd News", "https://rss.upi.com/news/odd_news.rss"),
 ]
-MAX_AGE_DAYS = 7
+MAX_AGE_DAYS = 30
 POL_MAX_AGE_DAYS = 45
 N_POL_REAL, N_POL_FAKE = 8, 2   # Politics: also exactly 2 fakes
 N_CALL_REAL, N_CALL_FAKE, N_BLANK = 8, 2, 10   # Real or Fake always has exactly 2 fakes
+SCREEN_TOP = 50        # how many screened candidates get their article fetched and go to the editor
+BANK_DAYS, BANK_MAX = 45, 80   # banked stories expire after this many days; keep at most this many
 
 
 # ---------------------------------------------------------------- feeds
@@ -74,10 +113,18 @@ def parse_feed(xml_bytes, source):
         })
     for it in root.findall(".//atom:entry", ns):
         link = it.find("atom:link", ns)
+        href = link.get("href") if link is not None else ""
+        content = it.findtext("atom:content", default="", namespaces=ns) or ""
+        summary = clean(it.findtext("atom:summary", default="", namespaces=ns))
+        if source.startswith("Reddit"):
+            m = re.search(r'<a href="(https?://[^"]+)">\[link\]', content)
+            if not m or "reddit.com" in m.group(1) or "redd.it" in m.group(1):
+                continue                         # self posts and image posts are not news stories
+            href, summary = html.unescape(m.group(1)), ""
         items.append({
             "title": clean(it.findtext("atom:title", default="", namespaces=ns), 200),
-            "link": link.get("href") if link is not None else "",
-            "summary": clean(it.findtext("atom:summary", default="", namespaces=ns)),
+            "link": href,
+            "summary": summary,
             "date": it.findtext("atom:updated", default="", namespaces=ns),
             "source": source,
         })
@@ -122,9 +169,9 @@ def gather(now, used_links, feeds=FEEDS, max_age=MAX_AGE_DAYS):
 # ---------------------------------------------------------------- Claude
 PROMPT = """You are the editor of "Far-Fetched", a daily guessing game built on weird-but-true news.
 
-Below are candidate news stories from the past week (JSON). Do two jobs and reply with ONE JSON object only, no prose.
+Below are candidate news stories from the past month (JSON). Some include "text", the opening of the article: use it for the facts and the punchline. Some are not in English: write everything you output in English. Do two jobs and reply with ONE JSON object only, no prose.
 
-1) "real": pick 20 of the best stories for the game, best first. You MUST return at least 14; if clue-rich stories run short, fill the rest with the most surprising remaining ones (low clue_strength is fine), never return fewer than 14 (rank by clue_strength plus unbelievable). Rank by how HARD TO BELIEVE the story is: favour the ones a reader would assume are made up (absurd specifics, improbable coincidences, odd rules, unlikely animals or objects) but that really happened. Strongly prefer stories where the event is linked to the place it happened, so a player can DEDUCE the location from the headline instead of guessing: local wildlife or climate (a kangaroo, a moose, monsoon flooding, snow in summer), regional industry, food, sport or customs, a local law or institution type, driving side, currency, units or typical local jobs. Stories that could have happened anywhere rank lower but are still acceptable fillers. The game should be FUNNY, EDUCATIONAL and reward broad general knowledge: favour stories that make a reader laugh out loud or are so ridiculous they feel like something out of the movie Idiocracy (absurd decisions, baffling rules, dumbfounding mix-ups, spectacularly dumb but harmless events), and whose clues connect to things a well-read person could know about the place (geography, climate, wildlife, languages, currencies, laws, food, history, sport, industries), so that general knowledge lets them reason to the right region, not luck. Good picks are surprising, funny or delightful, happened in ONE specific identifiable town/city/county, and are light-hearted. Never pick stories about death, serious injury, crimes against people, abuse, sexual content, children in danger, war, politics, disasters or tragedy. Avoid near-duplicates (e.g. several lottery wins) - at most one lottery story. For each pick give:
+1) "real": pick 20 of the best stories for the game, best first. You MUST return at least 14; if clue-rich stories run short, fill the rest with the most surprising remaining ones (low clue_strength is fine), never return fewer than 14 (rank by clue_strength plus unbelievable). Rank by how HARD TO BELIEVE the story is: favour the ones a reader would assume are made up (absurd specifics, improbable coincidences, odd rules, unlikely animals or objects) but that really happened. Strongly prefer stories where the event is linked to the place it happened, so a player can DEDUCE the location from the headline instead of guessing: local wildlife or climate (a kangaroo, a moose, monsoon flooding, snow in summer), regional industry, food, sport or customs, a local law or institution type, driving side, currency, units or typical local jobs. Stories that could have happened anywhere rank lower but are still acceptable fillers. The game should be FUNNY, EDUCATIONAL and reward broad general knowledge: favour stories that make a reader laugh out loud or are so ridiculous they feel like something out of the movie Idiocracy (absurd decisions, baffling rules, dumbfounding mix-ups, spectacularly dumb but harmless events), and whose clues connect to things a well-read person could know about the place (geography, climate, wildlife, languages, currencies, laws, food, history, sport, industries), so that general knowledge lets them reason to the right region, not luck. Good picks are surprising, funny or delightful, happened in ONE specific identifiable town/city/county, and are light-hearted. Skip BORING stories: a rare animal spotted, a nice rescue, a big vegetable, a quiet record, a mild oddity with no real twist. Every pick needs a real punchline, an absurd mistake or a jaw-dropping detail. STRANGE, FUNNY CRIME stories are welcome and wanted (dumb criminals, bizarre thefts, absurd arrests, getaway fails, odd things stolen or smuggled, ridiculous excuses) as long as they are non-violent and nobody is seriously hurt. Never pick stories about death, serious injury, violent crimes against people, abuse, sexual content, children in danger, war, politics, disasters or tragedy. Avoid near-duplicates (e.g. several lottery wins) - at most one lottery story. For each pick give:
    - "id": the candidate id.
    - "h": a punchy wire-style headline, max 100 characters, keeping every fact of the story exactly as reported (never change what happened, who or what was involved, numbers or outcome). You MAY reword and add short descriptive wording that makes the region easier to deduce, as long as it is generically true of that place and does not alter or add to the story: e.g. local terms and institutions ("the county sheriff", "council", "constabulary", "a roo", "monsoon rains", "rupees", "kilometres", "on the ski slopes"), local climate, wildlife or customs, or spelling and units typical of the country. Replace the place with the literal token {} exactly once (e.g. "... in {}"). Remove every EXPLICIT location clue: no state/country/city names, demonyms, local team, landmark, university or company names that reveal the place, no "Florida man". But KEEP the implicit, deducible clues that are part of the story (the animal, the weather, the local custom, currency or units, the type of institution), so a sharp player can reason their way to the right region. Keep the oddity intact.
    - "h2": the same story as a headline that DOES name the place (city + state/country), with the main subject noun of the story (the animal, object or kind of person it is about, e.g. "kangaroo", "pelicans", "kitten") replaced by the literal token [] exactly once. Not a name, not a place.
@@ -139,7 +186,7 @@ Below are candidate news stories from the past week (JSON). Do two jobs and repl
    - "theme": one lowercase word for the topic (e.g. "lottery", "escaped-animal", "record"). Never pick two stories with the same theme.
    Keep the source's own units and currency; NEVER convert them (a "4.7 miles" story from South Africa must read in kilometres if the source said kilometres), because units are clues.
 
-2) "fake": write 6 invented headlines in exactly the same style, each with {} for the redacted place. Like the real ones, give each fake implicit regional clues a player could use (a local animal, climate, custom or unit) without naming the place. They should pass at first glance (specific numbers, ordinary local institutions, plausible animals and objects) but be SLIGHTLY easier to spot than the real ones: give each one small tell, a detail that is a little too neat, too cute or too convenient (a perfectly round number, an unlikely coincidence, a punchline-like flourish). Make the fakes as odd as the real stories, not odder: the real stories are routine local news with one strange twist, so the fakes must not be the only headlines that sound like jokes. Never cartoonish. Not about real people, and not resembling any candidate story. Do not write about death, injury, crime against people or tragedy. Give each as {"h": "...", "tell": "the tell in at most 8 words", "obvious": 1-5} where obvious rates how easy it is to spot as invented (aim for 2 or 3: slightly easier to spot than a real story, never a giveaway).
+2) "fake": write 6 invented headlines in exactly the same style, each with {} for the redacted place. Like the real ones, give each fake implicit regional clues a player could use (a local animal, climate, custom or unit) without naming the place. They should pass at first glance (specific numbers, ordinary local institutions, plausible animals and objects) but be SLIGHTLY easier to spot than the real ones: give each one small tell, a detail that is a little too neat, too cute or too convenient (a perfectly round number, an unlikely coincidence, a punchline-like flourish). Make the fakes as odd as the real stories, not odder: the real stories are routine local news with one strange twist, so the fakes must not be the only headlines that sound like jokes. Never cartoonish. Not about real people, and not resembling any candidate story. Strange non-violent crime (dumb criminals, bizarre thefts) is fine for fakes too. Do not write about death, injury, violence or tragedy. Give each as {"h": "...", "tell": "the tell in at most 8 words", "obvious": 1-5} where obvious rates how easy it is to spot as invented (aim for 2 or 3: slightly easier to spot than a real story, never a giveaway).
 
 Output format:
 {"real":[{"id":0,"h":"...","h2":"...","ans":["..."],"place":"...","geocode":"...","lat":0,"lng":0,"country":"...","clue":"...","clue_strength":0,"unbelievable":1,"theme":"..."}], "fake":[{"h":"...","tell":"...","obvious":3}]}
@@ -164,15 +211,23 @@ Candidates:
 
 
 def ask_claude(cands, model, prompt=None):
+    payload = []
+    for i, c in enumerate(cands):
+        p = {"id": i, "title": c["title"], "summary": c["summary"], "source": c["source"], "published": c["published"]}
+        if c.get("text"):
+            p["text"] = c["text"]
+        payload.append(p)
+    return call_claude((prompt or PROMPT) + json.dumps(payload, ensure_ascii=False), model)
+
+
+def call_claude(content, model, max_tokens=12000, fatal=True):
     key = os.environ.get("ANTHROPIC_API_KEY")
     if not key:
         sys.exit("ANTHROPIC_API_KEY is not set (or pass --picks).")
-    payload = [{"id": i, "title": c["title"], "summary": c["summary"], "source": c["source"],
-                "published": c["published"]} for i, c in enumerate(cands)]
     body = {
         "model": model,
-        "max_tokens": 12000,
-        "messages": [{"role": "user", "content": (prompt or PROMPT) + json.dumps(payload, ensure_ascii=False)}],
+        "max_tokens": max_tokens,
+        "messages": [{"role": "user", "content": content}],
     }
     last = None
     for attempt in range(3):
@@ -191,7 +246,149 @@ def ask_claude(cands, model, prompt=None):
             last = e
             print(f"  Claude attempt {attempt+1} failed: {e}", file=sys.stderr)
             time.sleep(5 * (attempt + 1))
-    sys.exit(f"Claude call failed: {last}")
+    if fatal:
+        sys.exit(f"Claude call failed: {last}")
+    return None
+
+
+# ---------------------------------------------------------------- pass 1: screen everything cheaply
+SCREEN_PROMPT = """You screen candidate stories for "Far-Fetched", a daily game where players guess whether a weird news headline is real and then deduce where in the world it happened.
+
+Score EVERY candidate 0-10 for how good it would be in the game:
+- 8-10: laugh-out-loud funny or so ridiculous it feels like the movie Idiocracy (absurd decisions, baffling rules, dumbfounding mix-ups, dumb criminals, bizarre thefts, getaway fails), with a real punchline, happening in one specific place, ideally with details a well-read person could use to deduce the region (wildlife, climate, customs, institutions, currency, units, local industry).
+- 4-7: genuinely odd with a twist, but less funny or the place is harder to deduce.
+- 0-3: boring or mild (a rare animal spotted, a nice rescue, a big vegetable, a quiet record), vague, could be anywhere with no twist, not a single news event (listicle, roundup, opinion, advert, quiz, horoscope), or an unsafe topic: death, serious injury, violent crime, abuse, sexual content, children in danger, war, partisan politics, disaster or tragedy.
+Strange NON-violent crime is welcome. Candidates in any language are fine: judge the story itself.
+
+Reply with ONE JSON object only: {"s":[[id,score],[id,score],...]} covering every id.
+
+Candidates:
+"""
+
+
+def screen(cands, model, top=SCREEN_TOP):
+    """Score every candidate with a cheap model; return the best `top` (falls back to a random slice)."""
+    scores = {}
+    for start in range(0, len(cands), 120):
+        chunk = [{"id": i, "title": c["title"], "summary": c["summary"][:220], "source": c["source"]}
+                 for i, c in enumerate(cands) if start <= i < start + 120]
+        res = call_claude(SCREEN_PROMPT + json.dumps(chunk, ensure_ascii=False), model, max_tokens=4000, fatal=False)
+        for pair in (res or {}).get("s", []):
+            try:
+                i, sc = int(pair[0]), float(pair[1])
+                if 0 <= i < len(cands):
+                    scores[i] = sc
+            except Exception:
+                pass
+    if len(scores) < min(len(cands), top) // 2:
+        print(f"  screening returned {len(scores)} scores; using a random slice instead", file=sys.stderr)
+        return cands[:top]
+    order = sorted(range(len(cands)), key=lambda i: scores.get(i, -1), reverse=True)
+    best = [cands[i] for i in order[:top]]
+    for c, i in zip(best, order):
+        c["screen"] = scores.get(i, -1)
+    print(f"  screened {len(scores)} candidates; kept top {len(best)} (scores {best[0]['screen']:.0f} to {best[-1]['screen']:.0f})", file=sys.stderr)
+    return best
+
+
+# ---------------------------------------------------------------- article text
+def gnews_decode(url):
+    """Google News RSS links are redirects that need JavaScript; resolve them to the publisher's URL."""
+    m = re.search(r"news\.google\.com/(?:rss/)?articles/([^?/]+)", url)
+    if not m:
+        return url
+    art = m.group(1)
+    page = http_get(f"https://news.google.com/rss/articles/{art}", timeout=12).decode("utf8", "replace")
+    sg = re.search(r'data-n-a-sg="([^"]+)"', page)
+    ts = re.search(r'data-n-a-ts="([^"]+)"', page)
+    if not (sg and ts):
+        return url
+    inner = json.dumps(["garturlreq", [["X", "X", ["X", "X"], None, None, 1, 1, "US:en", None, 1, None, None, None, None, None, 0, 1],
+                                       "X", "X", 1, [1, 1, 1], 1, 1, None, 0, 0, None, 0], art, int(ts.group(1)), sg.group(1)])
+    form = urllib.parse.urlencode({"f.req": json.dumps([[["Fbv4je", inner, None, "generic"]]])}).encode()
+    req = urllib.request.Request("https://news.google.com/_/DotsSplashUi/data/batchexecute", data=form,
+                                 headers={"User-Agent": UA, "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"})
+    with urllib.request.urlopen(req, timeout=12) as r:
+        body = r.read().decode("utf8", "replace")
+    for line in body.splitlines():
+        if line.startswith('[["wrb.fr"'):
+            try:
+                inner_res = json.loads(json.loads(line)[0][2])
+                if inner_res[0] == "garturlres" and str(inner_res[1]).startswith("http"):
+                    return inner_res[1]
+            except Exception:
+                pass
+    return url
+
+
+def article_text(url, limit=1500):
+    """Opening paragraphs of an article (JSON-LD articleBody, else <p> text). Empty string on failure."""
+    try:
+        if "news.google.com" in url:
+            url = gnews_decode(url)
+            if "news.google.com" in url:
+                return ""
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; far-fetched-game/1.0)"})
+        with urllib.request.urlopen(req, timeout=12) as r:
+            page = r.read(800_000).decode("utf8", "replace")
+    except Exception:
+        return ""
+    for blob in re.findall(r'<script[^>]+application/ld\+json[^>]*>(.*?)</script>', page, re.S):
+        m = re.search(r'"articleBody"\s*:\s*"((?:[^"\\]|\\.)*)"', blob)
+        if m:
+            try:
+                return clean(json.loads('"' + m.group(1) + '"'), limit)
+            except Exception:
+                pass
+    paras = [clean(p, 800) for p in re.findall(r"<p[^>]*>(.*?)</p>", page, re.S)]
+    paras = [p for p in paras if len(p) > 60 and not re.search(r"cookie|subscribe|newsletter|sign up|all rights reserved|javascript", p, re.I)]
+    return clean(" ".join(paras), limit)
+
+
+def add_text(cands):
+    with concurrent.futures.ThreadPoolExecutor(8) as ex:
+        texts = list(ex.map(lambda c: article_text(c["link"]), cands))
+    for c, t in zip(cands, texts):
+        if t:
+            c["text"] = t
+    print(f"  fetched article text for {sum(1 for t in texts if t)}/{len(cands)}", file=sys.stderr)
+
+
+# ---------------------------------------------------------------- pass 3: fact-check the rewrites
+CHECK_PROMPT = """You fact-check headlines for "Far-Fetched", a game built on TRUE weird news. For each item compare the game's headlines with the source material (title, summary and article text; the source may be in another language).
+
+ok=false if:
+- "h" or "h2" states something the source does not support: a changed event, outcome, number, animal/object or who did what, or an invented detail;
+- the place is wrong, or the source does not support it;
+- "h" names or explicitly reveals the place ("{}" stands for the hidden place).
+ALLOWED, not a reason to fail: rewording, and short added wording that is generically true of that place (local terms like "county sheriff" or "constabulary", local units or currency, climate, wildlife, customs).
+If the source material is too thin to judge but nothing contradicts the headline, ok=true.
+
+Reply with ONE JSON object only: {"checks":[{"id":0,"ok":true,"why":"at most 10 words"}]}
+
+Items:
+"""
+
+
+def fact_check(reals, model):
+    items = [{"id": i, "h": r.get("h", ""), "h2": r.get("h2", ""), "place": r.get("place", ""),
+              "source": {"title": r.get("_title", ""), "summary": r.get("_summary", ""), "text": r.get("_text", "")}}
+             for i, r in enumerate(reals)]
+    res = call_claude(CHECK_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=4000, fatal=False)
+    if not res or "checks" not in res:
+        print("  fact-check unavailable; keeping all picks", file=sys.stderr)
+        return reals
+    bad = {}
+    for ch in res["checks"]:
+        try:
+            if ch.get("ok") is False:
+                bad[int(ch["id"])] = ch.get("why", "")
+        except Exception:
+            pass
+    for i, why in bad.items():
+        if 0 <= i < len(reals):
+            print(f"  drop real (fact-check: {why}): {reals[i].get('h')}", file=sys.stderr)
+    return [r for i, r in enumerate(reals) if i not in bad]
 
 
 # ---------------------------------------------------------------- geocoding
@@ -285,49 +482,78 @@ def main():
     # links from earlier days are "used"; today's own entry doesn't count, so a re-run rebuilds today's set
     used = {link for d, links in history.items() if d != day for link in links}
 
+    model = os.environ.get("FF_MODEL", "claude-sonnet-5-5")
+    picks, cands = {}, []
     if args.picks:
         picks = json.load(open(args.picks))
         cands = picks.get("candidates", [])
     else:
         print("Fetching feeds…", file=sys.stderr)
         cands = gather(now, used)
-        if len(cands) < 25:                      # thin news week: widen the window before giving up
-            print(f"  only {len(cands)} candidates; widening to 10 days", file=sys.stderr)
-            cands = gather(now, used, max_age=10)
+        if len(cands) < 40:                      # thin stretch: widen the window before giving up
+            print(f"  only {len(cands)} candidates; widening to 60 days", file=sys.stderr)
+            cands = gather(now, used, max_age=60)
         print(f"{len(cands)} fresh candidates", file=sys.stderr)
-        if len(cands) < 8:
-            print("Not enough fresh stories today; keeping yesterday's set.", file=sys.stderr)
-            sys.exit(0)
-        random.Random(day).shuffle(cands)
-        cands = cands[:130]
-        picks = ask_claude(cands, os.environ.get("FF_MODEL", "claude-sonnet-5-5"))
+        if len(cands) >= 8:
+            random.Random(day).shuffle(cands)    # tie-break order only; screening decides what goes on
+            cands = screen(cands, os.environ.get("FF_SCREEN_MODEL", "claude-haiku-5-5"))
+            add_text(cands)
+            try:
+                picks = ask_claude(cands, model) or {}
+            except SystemExit as e:
+                print(f"  editor call failed ({e}); relying on the bank", file=sys.stderr)
+                picks = {}
+        else:
+            print("  too few fresh stories to ask the editor; relying on the bank", file=sys.stderr)
 
-    reals = []
+    fresh = []
     for r in picks.get("real", []):
         c = cands[r["id"]] if isinstance(r.get("id"), int) and r["id"] < len(cands) else r
         r["src"] = r.get("src") or c.get("link", "")
         r["published"] = r.get("published") or c.get("published", "")
+        r["_title"], r["_summary"], r["_text"] = c.get("title", ""), c.get("summary", ""), c.get("text", "")
         why = valid_real(r)
         if why:
             print(f"  drop real ({why}): {r.get('h')}", file=sys.stderr)
             continue
+        fresh.append(r)
+    if fresh and not args.picks:
+        fresh = fact_check(fresh, model)
+    for r in fresh:
         if not args.no_geocode and r.get("geocode"):
             g = geocode(r["geocode"])
             if g and km(g[0], g[1], float(r["lat"]), float(r["lng"])) < 400:
                 r["lat"], r["lng"] = g
             elif g:
                 print(f"  geocoder disagrees for {r['place']} (likely a same-name town elsewhere); keeping the editor's coordinates", file=sys.stderr)
-        reals.append(r)
+        r["banked"] = day
+        for k in ("_title", "_summary", "_text"):
+            r.pop(k, None)
+    fresh_fakes = [f for f in picks.get("fake", []) if f.get("h", "").count("{}") == 1]
+    for f in fresh_fakes:
+        f["banked"] = day
 
-    fakes = [f for f in picks.get("fake", []) if f.get("h", "").count("{}") == 1]
+    # The bank: good stories (and fakes) from earlier runs that were never used.
+    bank_path = os.path.join(DATA, "bank.json")
+    bank = json.load(open(bank_path)) if os.path.exists(bank_path) else {}
+    oldest = (dt.date.fromisoformat(day) - dt.timedelta(days=BANK_DAYS)).isoformat()
+    fresh_src = {r["src"] for r in fresh}
+    bank_real = [r for r in bank.get("real", []) if r.get("banked", "") >= oldest and r.get("banked") != day
+                 and r.get("src") not in used and r.get("src") not in fresh_src and not valid_real(r)]
+    bank_fake = [f for f in bank.get("fake", []) if f.get("banked", "") >= oldest and f.get("banked") != day]
+    for r in fresh:
+        r["_fresh"] = 1
+    reals = fresh + bank_real
+    fakes = fresh_fakes + bank_fake
+    print(f"  {len(fresh)} fresh real stories + {len(bank_real)} from the bank; {len(fresh_fakes)} fresh fakes + {len(bank_fake)} banked", file=sys.stderr)
     if len(reals) < N_CALL_REAL or len(fakes) < N_CALL_FAKE:
-        print(f"Only {len(reals)} usable real / {len(fakes)} fake headlines; keeping yesterday's set.", file=sys.stderr)
+        print(f"Only {len(reals)} usable real / {len(fakes)} fake headlines even with the bank; keeping yesterday's set.", file=sys.stderr)
         sys.exit(0)
 
     # Real or Fake wants stories whose place can be DEDUCED, and a spread of countries and themes.
     def merit(r):
         try:
-            return 2 * int(r.get("clue_strength", 0)) + int(r.get("unbelievable", 1))
+            return 2 * int(r.get("clue_strength", 0)) + int(r.get("unbelievable", 1)) + r.get("_fresh", 0)
         except Exception:
             return 1
     seen_theme, uniq = set(), []
@@ -392,7 +618,7 @@ def main():
             return abs(float(f.get("obvious", 2.5)) - 2.5)      # aim for "slightly easier than the real ones"
         except Exception:
             return 1.0
-    fakes = sorted(fakes, key=fake_rank)
+    fakes = sorted(fakes, key=lambda f: fake_rank(f) + (0 if f.get("banked") == day else 0.3))   # fresh first, all else equal
     call = [real_call(r) for r in call_real] + [{"real": False, "h": f["h"], "tell": (f.get("tell") or "")[:80]} for f in fakes[:N_CALL_FAKE]]
     rng.shuffle(call)
     rng.shuffle(blank)
@@ -443,7 +669,19 @@ def main():
         with open(os.path.join(DATA, name), "w") as f:
             json.dump(result, f, ensure_ascii=False, indent=1)
 
-    history[day] = sorted({r["src"] for r in call_real + blank})
+    used_today = {r["src"] for r in call_real + blank}
+    history[day] = sorted(used_today)
+    keep_real, seen_src = [], set()
+    for r in sorted(reals, key=lambda r: r.get("banked", ""), reverse=True):
+        if r["src"] in used_today or r["src"] in seen_src:
+            continue
+        seen_src.add(r["src"])
+        keep_real.append({k: v for k, v in r.items() if k not in ("_fresh", "vec")})
+    used_fake = {f["h"] for f in fakes[:N_CALL_FAKE]}
+    keep_fake = [f for f in fakes if f["h"] not in used_fake]
+    with open(bank_path, "w") as f:
+        json.dump({"real": keep_real[:BANK_MAX], "fake": keep_fake[:30]}, f, ensure_ascii=False, indent=1)
+    print(f"  bank now holds {min(len(keep_real), BANK_MAX)} stories and {min(len(keep_fake), 30)} fakes", file=sys.stderr)
     cutoff = (dt.date.fromisoformat(day) - dt.timedelta(days=60)).isoformat()
     history = {k: v for k, v in history.items() if k >= cutoff}
     with open(hist_path, "w") as f:
