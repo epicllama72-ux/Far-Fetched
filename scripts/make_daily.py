@@ -21,7 +21,7 @@ Env:
   FF_SCREEN_MODEL     cheap model that scores every candidate (default claude-haiku-5-5)
 """
 import argparse, base64, concurrent.futures, datetime as dt, email.utils, gzip, html, json, math, os, random, re, sys, time
-import urllib.request, urllib.parse
+import urllib.request, urllib.parse, urllib.error
 import xml.etree.ElementTree as ET
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -96,6 +96,7 @@ def http_get(url, timeout=25):
 def clean(text, limit=500):
     text = re.sub(r"<[^>]+>", " ", text or "")
     text = html.unescape(re.sub(r"\s+", " ", text)).strip()
+    text = re.sub(r"[\ud800-\udfff\x00-\x08\x0b\x0c\x0e-\x1f]", "", text)   # lone surrogates / control chars make the API reject the request
     return text[:limit]
 
 
@@ -251,8 +252,9 @@ def call_claude(content, model, max_tokens=12000, fatal=True, keys=None):
         "tool_choice": {"type": "tool", "name": "submit"},
         "messages": [{"role": "user", "content": content + "\n\n(Submit your answer with the submit tool, using exactly the JSON structure described above.)"}],
     }
+    body["messages"][0]["content"] = re.sub(r"[\ud800-\udfff]", "", body["messages"][0]["content"])
     last = None
-    for attempt in range(3):
+    for attempt in range(4):
         req = urllib.request.Request(
             "https://api.anthropic.com/v1/messages",
             data=json.dumps(body).encode(),
@@ -274,6 +276,18 @@ def call_claude(content, model, max_tokens=12000, fatal=True, keys=None):
             text = "".join(b.get("text", "") for b in res.get("content", []) if b.get("type") == "text")
             m = re.search(r"\{.*\}", text, re.S)
             return json.loads(m.group(0))
+        except urllib.error.HTTPError as e:
+            detail = e.read().decode("utf8", "replace")[:500]
+            last = f"HTTP {e.code}: {detail}"
+            print(f"  Claude attempt {attempt+1} failed: {last}", file=sys.stderr)
+            if e.code == 400:                     # the request itself was refused (free): adjust it, don't just repeat it
+                if body["max_tokens"] > 12000:
+                    body["max_tokens"] = 12000
+                elif "tools" in body:
+                    body.pop("tools"); body.pop("tool_choice")
+                    print("  retrying without structured output", file=sys.stderr)
+                continue
+            time.sleep(5 * (attempt + 1))
         except Exception as e:
             last = e
             print(f"  Claude attempt {attempt+1} failed: {e}", file=sys.stderr)
