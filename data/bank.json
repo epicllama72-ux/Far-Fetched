@@ -1,51 +1,100 @@
 {
  "real": [
   {
-   "id": 2,
-   "h": "Beavers gnaw down sign warning of beaver damage, say foresters in {}",
-   "h2": "[] destroy sign warning about beaver damage, say foresters in Lubliniec, Poland",
+   "id": 41,
+   "h": "Striker who scored equaliser slips taking 93rd-minute penalty and misses in second-tier match in {}",
+   "h2": "Vigo: striker who scored equaliser slips taking 93rd-minute [] for Tenerife at Celta Fortuna",
    "ans": [
-    "beavers",
-    "beaver"
+    "penalty"
    ],
-   "place": "Lubliniec, Poland",
-   "geocode": "Lubliniec, Poland",
-   "lat": 50.669016,
-   "lng": 18.6825574,
-   "country": "Poland",
-   "clue": "forestry district + beaver comeback = Central Europe",
+   "place": "Vigo, Spain",
+   "geocode": "Balaídos, Vigo, Spain",
+   "lat": 42.2114076,
+   "lng": -8.7440784,
+   "country": "Spain",
+   "cc": "ES",
+   "clue": "Segunda División with a Celta reserve side and Tenerife = Spain",
+   "clue_strength": 2,
+   "unbelievable": 3,
+   "theme": "penalty",
+   "src": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1xbjR2YlhMMk16Wmd0MHFGWG9DX0RXTTJtRWphX1pvdXpLME9SSXV4MXk1blFPS3BWSkJYUTlaMWU5anBCSU1PanBralFLYW9qYTNwaTJuZUF5Y19ab0JnT0lWNUVScV9nbC10Y3F1a2poSHRYbnZDa9IBjAFBVV95cUxNQnlHS2FDLTBXZy1qVjBReEpsTXdmZFJBNnNuNmg0Y1Z1QTNPM3ItNGUtQ0UtUWlTclhjY3dsNnVFQ21EUWdhaW1RUzNzMlkzM3VTajgyWFFwaU9SQlRsc0swNDR3b0R1LXptVkVBWXc4TVFWM0lFNFdkWmM4dlh3ZVVFXzJmZzlWVWtPag?oc=5",
+   "published": "2026-10-19",
+   "banked": "2026-10-27",
+   "rules": 2
+  },
+  {
+   "id": 47,
+   "h": "Three officers at roadside check video-call a colleague to find a pickup's engine number; driver offers 'I can ask ChatGPT' in {}",
+   "h2": "Yerba Buena, Tucumán: driver offers to ask [] as officers struggle to find his Hilux's engine number",
+   "ans": [
+    "chatgpt"
+   ],
+   "place": "Yerba Buena, Argentina",
+   "geocode": "Yerba Buena, Tucumán, Argentina",
+   "lat": -26.8121581,
+   "lng": -65.2981714,
+   "country": "Argentina",
+   "cc": "AR",
+   "clue": "Spanish-language police and a Hilux on a provincial route",
    "clue_strength": 1,
    "unbelievable": 4,
-   "theme": "beaver",
-   "src": "https://notesfrompoland.com/2026/10/08/beavers-destroy-sign-warning-about-beavers/",
-   "published": "2026-10-08",
-   "banked": "2026-10-27"
+   "theme": "police-check",
+   "src": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQclYweFFRQmlHblVTd0ZLTmphQzNTMzQ4WjhWOGEyZ0RsaU9OMUlla3lldzNudENEUlE4VExBdWtFcVZZc2kyZEltUExxV014RFZvLUZQcDNHeHRaNlVyU090Z0JoQzE0N1RwVzh6Vm14cU5mSlc4ZjJRNUZWMFpMWlhBN3pWNHBNZEZEVkhMYTNyalNRZ0JvT3dEN1d0OENvNWR3bmY3aXo1RDAwanFCSmRpc3FmUXlXeXIxUlY1NGVsVzFK0gHKAUFVX3lxTE9jVDVTUUl3a1FRQlYzUHY4ME1McEFqQURPQmlNcXgyY3BYRUR0Sld5OElKeTBlR0pWTS1mdkUwUko2NmRkcXk4TFNXN1NFcTh4dHJRR3VXQVYycGZ4LVhKMTA2TmFfdkUzNDhVbW5tWUpmWVlLSlZyRkNmZmF4VDBiTjQ0VEZYc2lDZVE4UnhQYmV4ZHBoMUZTYlZjakQzakNZNUpaRDdQeDRyMGhvWkxrVDNxeFFSQk84cml5Qk5iX2NwdGM5VmhGTmc?oc=5",
+   "published": "2026-10-26",
+   "banked": "2026-10-27",
+   "rules": 2
+  },
+  {
+   "id": 16,
+   "h": "Man lies down in road, driver steps out, he jumps into light commercial vehicle and flees; crashes in {}",
+   "h2": "Adana man lies in road, then steals light commercial [] when driver gets out; crashes in police chase",
+   "ans": [
+    "vehicle"
+   ],
+   "place": "Adana, Turkey",
+   "geocode": "Adana, Turkey",
+   "lat": 36.9863599,
+   "lng": 35.3252861,
+   "country": "Turkey",
+   "cc": "TR",
+   "clue": "Seyhan district and Turkish plate format = Adana, Turkey",
+   "clue_strength": 1,
+   "unbelievable": 3,
+   "theme": "carjacking",
+   "src": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPT0thQlJ6VElDYXdyTGhZZkc5ZzFoakZBaHp0eVBXcVg5Mnl6Z0pSanVoejRRSGdnZmk1b0d4dXcyeTRZVm5iU2NYQjNBOEs3OW94TzRKWDE2dGtRRjdYSTdoZG04c08yOVppWDlKLUVaYTNOdF9fcnYzMnNZMnBlLTk3ckVGelYybUhpSDdqVHQyQ2NockhOSjR6SDc2WFg5QjZQS1hlbkRRenRSd2tuZHd2S1l0RWowLW9KS1U5aGdPREVidWlDSA?oc=5",
+   "published": "2026-10-26",
+   "banked": "2026-10-27",
+   "rules": 2
   }
  ],
  "fake": [
   {
-   "h": "Monsoon rains float cricket pitch away in {}; groundsmen find it 3 km downstream, still level",
-   "tell": "Convenient 'still level' flourish",
+   "h": "Reindeer herd strolls through beach resort in {} as temperatures hit 38C; lifeguards hand out carrots",
+   "tell": "Reindeer are Arctic animals and wouldn't be wandering a hot beach resort.",
    "obvious": 3,
-   "banked": "2026-10-27"
+   "banked": "2026-10-27",
+   "rules": 2
   },
   {
-   "h": "Burglar in {} caught after leaving trail of maple syrup and his snow boots at scene",
-   "tell": "Evidence trail is a little too neat",
-   "obvious": 2,
-   "banked": "2026-10-27"
-  },
-  {
-   "h": "Deputies in {} chase escaped alpaca for three hours until it surrenders at a drive-through",
-   "tell": "Animal 'surrendering' at a drive-through is too cute",
+   "h": "Burglar arrested by same constable who caught his father 22 years ago, on same street with same stolen bicycle in {}",
+   "tell": "The coincidence stacks too many matching details to be believable.",
    "obvious": 3,
-   "banked": "2026-10-27"
+   "banked": "2026-10-27",
+   "rules": 2
   },
   {
-   "h": "Village council in {} bans church bells after 9pm, then rings them at 9.01pm to announce the ban",
-   "tell": "Ironic coincidence is too tidy",
+   "h": "Thief steals 63 garden gnomes from allotments in {}, leaves note saying 'they looked lonely' and €20",
+   "tell": "A thief leaving a sentimental note and paying money is a movie-style flourish.",
    "obvious": 2,
-   "banked": "2026-10-27"
+   "banked": "2026-10-27",
+   "rules": 2
+  },
+  {
+   "h": "Monsoon floods in {} carry 41 plastic chairs from a wedding hall to a temple; priest accepts them as a donation",
+   "tell": "Floodwater delivering exactly the thing a priest can gracefully accept is too tidy.",
+   "obvious": 3,
+   "banked": "2026-10-27",
+   "rules": 2
   }
  ]
 }
