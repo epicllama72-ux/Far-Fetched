@@ -1,0 +1,269 @@
+{
+ "date": "2026-10-27",
+ "generated": "2026-10-27T08:28:24+00:00",
+ "call": [
+  {
+   "real": true,
+   "h": "Deer crashes into apartment through one window, leaves through another in {}",
+   "lat": 44.2619,
+   "lng": -88.4154,
+   "place": "Appleton, Wisconsin",
+   "src": "https://www.upi.com/Odd_News/2026/10/26/deer-apartment-windows-appleton-wisconsin/4781793034712/",
+   "published": "2026-10-26"
+  },
+  {
+   "real": true,
+   "h": "Freight train hauling 696 cars, about 4.7 miles long, may have set a world record in {}",
+   "lat": -28.48,
+   "lng": 24.67,
+   "place": "South Africa",
+   "src": "https://www.upi.com/Odd_News/2026/10/21/safrica-Guinjness-World-Records-longest-freight-train/7221792598259/",
+   "published": "2026-10-21"
+  },
+  {
+   "real": false,
+   "h": "Raccoon found asleep inside a bus-station vending machine in {} after eating exactly 100 bags of chips"
+  },
+  {
+   "real": true,
+   "h": "Neighbors on the lookout for escaped pet kangaroo in {}",
+   "lat": 35.534,
+   "lng": -87.207,
+   "place": "Mount Pleasant, Tennessee",
+   "src": "https://www.upi.com/Odd_News/2026/10/22/kangaroo-mount-pleasant-tennessee/3561792682507/",
+   "published": "2026-10-22"
+  },
+  {
+   "real": true,
+   "h": "Young tiger recaptured after weekend escape from zoo in {}",
+   "lat": 46.975,
+   "lng": 31.9946,
+   "place": "Mykolaiv, Ukraine",
+   "src": "https://www.upi.com/Odd_News/2026/10/26/ukraine-mykolaiv-zoo-tiger-escape-captured/2711793028161/",
+   "published": "2026-10-26"
+  },
+  {
+   "real": true,
+   "h": "Deputy frees moose tangled in a roll of wire fencing in {}",
+   "lat": 46.8167,
+   "lng": -116.8,
+   "place": "Latah County, Idaho",
+   "src": "https://www.upi.com/Odd_News/2026/10/20/moose-wire-Latah-County-Idaho/1991792517733/",
+   "published": "2026-10-20"
+  },
+  {
+   "real": true,
+   "h": "Escaped cow leads police on chase, then blocks traffic on busy highway in {}",
+   "lat": 39.4015,
+   "lng": -76.6019,
+   "place": "Baltimore County, Maryland",
+   "src": "https://www.upi.com/Odd_News/2026/10/23/highway-cow-baltimore-county/2371792777080/",
+   "published": "2026-10-23"
+  },
+  {
+   "real": false,
+   "h": "Library in {} waives 52 years of late fees after man returns cookbook with every recipe marked 'tried it'"
+  },
+  {
+   "real": true,
+   "h": "Rental company says its e-bikes are 'not for jousting' after viral video from a park in {}",
+   "lat": 51.5072,
+   "lng": -0.1276,
+   "place": "London, England",
+   "src": "https://www.upi.com/Odd_News/2026/10/21/lime-rental-ebikes-jousting/1741792603106/",
+   "published": "2026-10-21"
+  },
+  {
+   "real": true,
+   "h": "Woman in {} turns her birthday money into a $150,000 lottery prize",
+   "lat": 44.3148,
+   "lng": -85.6024,
+   "place": "Michigan",
+   "src": "https://www.upi.com/Odd_News/2026/10/23/lotto-Michigan-Lottery-birthday-money/2381792776549/",
+   "published": "2026-10-23"
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Texas racetrack unveils world's largest cowboy [] sculpture",
+   "ans": [
+    "hat",
+    "hats"
+   ],
+   "place": "Austin, Texas",
+   "src": "https://www.upi.com/Odd_News/2026/10/20/guinness-world-records-cowboy-hat-sculpture/5261792514008/",
+   "published": "2026-10-20",
+   "vec": "uPq89j33tbIEABsW5xf04/zttuim6ebozJLTWA2BfzXXbvBLFD36wDUpvQwe3BTBQ84="
+  },
+  {
+   "real": true,
+   "h2": "Public works employee rescues stuffed [] from storm drain in Riverside, Ohio",
+   "ans": [
+    "animal",
+    "animals",
+    "toy"
+   ],
+   "place": "Riverside, Ohio",
+   "src": "https://www.upi.com/Odd_News/2026/10/23/stuffed-animal-rescue-riverside-ohio/2741792775881/",
+   "published": "2026-10-23",
+   "vec": "Gt7G+ysx4rdgBCINNwUa/CET2O35Ahb1D8Xk/gPpf/D20d8iCAAVA+74DCxV/+3vGfo="
+  },
+  {
+   "real": true,
+   "h2": "Metal [] found in Minnesota cornfield may be piece of a Chinese rocket",
+   "ans": [
+    "debris"
+   ],
+   "place": "Stevens County, Minnesota",
+   "src": "https://www.upi.com/Odd_News/2026/10/26/minnesota-space-object-chinese-landspace-rocket/6381793035327/",
+   "published": "2026-10-26",
+   "vec": "Wfpj+/gHxRo+yPTa/0ILBxX6xpoBDxyoMvfsb1TxddAJv+RWAPJlM9L2L/wa9QvvFYE="
+  },
+  {
+   "real": true,
+   "h2": "San Diego Zoo announces birth of a baby [] on the animal's own international day",
+   "ans": [
+    "sloth",
+    "sloths"
+   ],
+   "place": "San Diego, California",
+   "src": "https://www.upi.com/Odd_News/2026/10/20/san-diego-zoo-sloth-baby/5201792527524/",
+   "published": "2026-10-20",
+   "vec": "LAi5Fk5IKZjX3BBu9tEWIVZUrh+BsfzQ2hLWVCLhpjZCMrxDo4cy7Pfs11xgBgI5EZk="
+  },
+  {
+   "real": true,
+   "h2": "World's largest pop-up [] goes on display at Los Angeles library",
+   "ans": [
+    "book",
+    "books"
+   ],
+   "place": "Los Angeles, California",
+   "src": "https://www.upi.com/Odd_News/2026/10/26/guinness-world-records-largest-pop-up-book/9571793036865/",
+   "published": "2026-10-26",
+   "vec": "AC/c5SYSx8YRD9Uu6fVK1/fn8gwkDBkSJrip8vvuf8v+8+AB9wrz6yr58gX3GhD88gA="
+  },
+  {
+   "real": true,
+   "h2": "Second loose [] in days captured roaming the streets of Santa Cruz, California",
+   "ans": [
+    "emu",
+    "emus"
+   ],
+   "place": "Santa Cruz, California",
+   "src": "https://www.upi.com/Odd_News/2026/10/22/santa-cruz-california-second-emu/2071792685813/",
+   "published": "2026-10-22",
+   "vec": "EgnfybI19eT1wUQRDz/3WFAn1ewDgdJZ7+8qGe0RNj/dOP6rHMb769WlKgYPGDtMAhI="
+  },
+  {
+   "real": true,
+   "h2": "Texas visitor wins $37,951 on first try at Maryland [] game after a stranger's tip",
+   "ans": [
+    "lottery"
+   ],
+   "place": "Maryland",
+   "src": "https://www.upi.com/Odd_News/2026/10/20/lotto-Maryland-Lottery-Racetrax-first-time-Texas-visitor/6481792516994/",
+   "published": "2026-10-20",
+   "vec": "2dEqT/bvieZiINLmRu1b3B4sxvNPkdot1YHK19+UYU3d+Nv3CCYSvAQHzHiH9MpJQBc="
+  },
+  {
+   "real": true,
+   "h2": "[] rescued from busy interstate in Woburn, Massachusetts, gets named 'Freeway'",
+   "ans": [
+    "kitten",
+    "kittens"
+   ],
+   "place": "Woburn, Massachusetts",
+   "src": "https://www.upi.com/Odd_News/2026/10/21/kitten-freeway-Woburn-massachusetts/2061792597052/",
+   "published": "2026-10-21",
+   "vec": "9d/iywxu6LsmODQPM3MpHtZt6gTLXBIiIcXRSwzH1w+7OO8VBcAXgQjt7ARZBEDG+PM="
+  },
+  {
+   "real": true,
+   "h2": "Two [] escape Pittsburgh zoo, recaptured after about a day on the loose",
+   "ans": [
+    "pelicans",
+    "pelican"
+   ],
+   "place": "Pittsburgh, Pennsylvania",
+   "src": "https://www.upi.com/Odd_News/2026/10/22/pittsburgh-zoo-aquarium-escaped-pelicans/1351792683529/",
+   "published": "2026-10-22",
+   "vec": "DAK10cYGpgv9zxYLf0X88gv9oNiuCh322igHUhHb2jYq2+4mAe8SyesCWQ0bR9j9zQQ="
+  },
+  {
+   "real": true,
+   "h2": "Firefighters called to rescue [] stuck on high tree branch in Forsyth County, Georgia",
+   "ans": [
+    "chameleon",
+    "chameleons"
+   ],
+   "place": "Forsyth County, Georgia",
+   "src": "https://www.upi.com/Odd_News/2026/10/22/chameleon-tree-forsyth-county-georgia/2111792688158/",
+   "published": "2026-10-22",
+   "vec": "+Me/KwkvK94oQTQyHRLz/v0+E9aB6yo5GAa3HfIAD9bS9Qklr9gHquYXmxAD6l6+K9k="
+  }
+ ],
+ "politics": [
+  {
+   "real": false,
+   "h": "Parliament in {} pauses budget debate for 40 minutes after a pigeon refuses to leave the speaker's chair",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "Candidate whose campaign signs said 'Fine. I'll do it.' wins a city council seat in {}",
+   "lat": 49.888,
+   "lng": -119.496,
+   "place": "Kelowna, British Columbia",
+   "src": "https://dailyhive.com/vancouver/kelowna-council-man-brady-rogers",
+   "published": "2026-10-22",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "Mini schnauzer 'Dog-tor Conrad Sparkles' elected dog mayor of an entertainment district in {}",
+   "lat": 51.0447,
+   "lng": -114.0719,
+   "place": "Calgary, Alberta",
+   "src": "https://ca.news.yahoo.com/dog-tor-conrad-sparkles-elected-234655792.html",
+   "published": "2026-10-25",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "After an 842–842 primary tie in {}, the state's top court orders a do-over on the November ballot",
+   "lat": 21.3356,
+   "lng": -158.0583,
+   "place": "Kapolei, Hawaii",
+   "src": "https://projects.statenavigate.com/features/2026-strangest-races/",
+   "published": "2026-10-11",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "City council votes 40–7 to ban horse-drawn carriages from its streets and famous park by 2028 in {}",
+   "lat": 40.7681,
+   "lng": -73.9819,
+   "place": "New York City, New York",
+   "src": "https://usnews.com/news/top-news/articles/2026-10-22/new-york-city-bans-horse-drawn-carriages-from-june-2028",
+   "published": "2026-10-22",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "Dog named Gus wins town's first 'dog mayor' election, 569 votes to 435, in {}",
+   "lat": 54.0523,
+   "lng": -128.6537,
+   "place": "Kitimat, British Columbia",
+   "src": "https://houston-today.com/2026/10/20/gus-wins-kitimats-first-dog-mayor-election",
+   "published": "2026-10-20",
+   "cat": "pol"
+  },
+  {
+   "real": false,
+   "h": "Town council in {} makes a 300-year-old oak tree an honorary member with full voting rights",
+   "cat": "pol"
+  }
+ ]
+}
