@@ -582,6 +582,48 @@ def valid_fake(f):
     return True
 
 
+_STOP = {"with", "from", "after", "into", "their", "that", "this", "have", "were", "been", "over", "when", "about",
+         "than", "they", "them", "what", "while", "says", "said", "just", "only", "more", "most", "some"}
+
+
+def words(text):
+    return {w for w in re.findall(r"[a-z]{4,}", (text or "").lower()) if w not in _STOP}
+
+
+def prior_stories(day, days=120):
+    """(city, words) for every real story shown on earlier days, read from the saved day files,
+    so the same story can't come back through a different outlet's link."""
+    out = []
+    lo = (dt.date.fromisoformat(day) - dt.timedelta(days=days)).isoformat()
+    for fn in os.listdir(DATA):
+        m = re.fullmatch(r"(\d{4}-\d{2}-\d{2})\.json", fn)
+        if not m or m.group(1) == day or m.group(1) < lo:
+            continue
+        try:
+            d = json.load(open(os.path.join(DATA, fn)))
+        except Exception:
+            continue
+        for x in (d.get("call") or []) + (d.get("blank") or []) + (d.get("politics") or []):
+            if x.get("real"):
+                out.append(((x.get("place") or "").split(",")[0].strip().lower(),
+                            words((x.get("h") or "") + " " + (x.get("h2") or "").replace("[]", " ".join(x.get("ans") or [])))))
+    return out
+
+
+def seen_before(r, prior):
+    city = (r.get("place") or "").split(",")[0].strip().lower()
+    w = words((r.get("h") or "") + " " + (r.get("h2") or "").replace("[]", " ".join(r.get("ans") or [])))
+    if not w:
+        return False
+    for pc, pw in prior:
+        if not pw:
+            continue
+        j = len(w & pw) / len(w | pw)
+        if j >= 0.5 or (city and city == pc and j >= 0.25):
+            return True
+    return False
+
+
 def valid_blank(r):
     h2, ans = r.get("h2", ""), r.get("ans") or []
     if h2.count("[]") != 1 or not ans or not all(re.fullmatch(r"[a-z]+", a) for a in ans):
@@ -672,6 +714,12 @@ def main():
     bank_real = [r for r in bank.get("real", []) if r.get("banked", "") >= oldest and r.get("banked") != day
                  and r.get("src") not in used and r.get("src") not in fresh_src and not valid_real(r)]
     bank_fake = [f for f in bank.get("fake", []) if f.get("banked", "") >= oldest and f.get("banked") != day and valid_fake(f)]
+    prior = prior_stories(day)
+    for lst, name in ((fresh, "fresh"), (bank_real, "banked")):
+        dup = [r for r in lst if seen_before(r, prior)]
+        for r in dup:
+            print(f"  drop real (already shown on an earlier day): {r.get('h')}", file=sys.stderr)
+            lst.remove(r)
     for r in fresh:
         r["_fresh"] = 1
     reals = fresh + bank_real
@@ -816,7 +864,7 @@ def main():
                 continue
             seen_place.add(key)
             uniq_pol.append(r)
-        preal = uniq_pol[:N_POL_REAL]
+        preal = [r for r in uniq_pol if not seen_before(r, prior)][:N_POL_REAL]
         if len(preal) >= 4 and len(pfake) >= N_POL_FAKE:
             items = [dict(real_call(r), cat="pol") for r in preal] + \
                     [{"real": False, "h": f["h"], "cat": "pol"} for f in pfake[:N_POL_FAKE]]
@@ -841,7 +889,7 @@ def main():
     with open(bank_path, "w") as f:
         json.dump({"real": keep_real[:BANK_MAX], "fake": keep_fake[:30]}, f, ensure_ascii=False, indent=1)
     print(f"  bank now holds {min(len(keep_real), BANK_MAX)} stories and {min(len(keep_fake), 30)} fakes", file=sys.stderr)
-    cutoff = (dt.date.fromisoformat(day) - dt.timedelta(days=60)).isoformat()
+    cutoff = (dt.date.fromisoformat(day) - dt.timedelta(days=120)).isoformat()
     history = {k: v for k, v in history.items() if k >= cutoff}
     with open(hist_path, "w") as f:
         json.dump(history, f, indent=1)
