@@ -1236,7 +1236,7 @@ const STORIES = [
 const $ = id => document.getElementById(id);
 const START = Date.UTC(2026, 9, 27);
 const ROUNDS_REAL = 8, ROUNDS_FAKE = 2, ROUND_LEN = 10;   // always exactly 2 fakes
-const CALL_PTS = 100, FOOLED_PTS = -150, PIN_PTS = 400;
+const CALL_PTS = 100, FOOLED_PTS = -75, PIN_PTS = 400;
 
 function pad(n){return String(n).padStart(2,'0');}
 function keyOf(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
@@ -1324,9 +1324,9 @@ function km(a,b,c,d){
   return 2*R*Math.asin(Math.sqrt(h));
 }
 function pinPoints(d){return Math.round(PIN_PTS*Math.exp(-Math.max(0,d-75)/2100));}  // ≤75 km 400 · 300 km 359 · 500 km 327 · 1000 km 257 · 2000 km 160 · 5000 km 38
-/* The pin has 20 seconds. Full points for 8, then it decays like the call does (10% of the max per second, floor 40%). */
-const PIN_SECS=20, PIN_GRACE=8;
-function pinMult(sec){ return Math.max(0.4,Math.min(1,1-(sec-PIN_GRACE)/10)); }
+/* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
+const PIN_SECS=20, PIN_GRACE=12;
+function pinMult(sec){ return Math.max(0.6,Math.min(1,1-(sec-PIN_GRACE)*0.05)); }
 let PIN_RAF=0;
 function runPinTimer(){
   cancelAnimationFrame(PIN_RAF);
@@ -1336,7 +1336,7 @@ function runPinTimer(){
   const tick=()=>{
     if(!S || S.phase!=='pin') return;
     const now=performance.now();
-    if(!$('menu').hidden || !$('sheet').hidden || !$('wardrobe').hidden) S.pinT0+=now-lastT;          // the clock stops while the menu is open
+    if(!S.pinGo || !$('menu').hidden || !$('sheet').hidden || !$('wardrobe').hidden) S.pinT0+=now-lastT;          // the clock waits for the map, and stops while the menu is open
     lastT=now;
     const sec=(now-S.pinT0)/1000, left=Math.max(0,PIN_SECS-sec), m=pinMult(sec);
     bar.style.width=(left/PIN_SECS*100)+'%';
@@ -2255,6 +2255,7 @@ function startGame(mode, kind){
     const fresh=rounds.filter(x=>!x.src||!seen.has(x.src));
     if(fresh.length>=5) rounds=fresh;
   }
+  if(!blank) rounds=easyFirst(rounds);
   const reals=rounds.filter(x=>x.real).length;
   S = {mode, kind:KIND, rounds, i:0, results:[], phase:'call', score:0,
        maxScore: blank ? rounds.length*BLANK_MAX : reals*(CALL_PTS+PIN_PTS)+(rounds.length-reals)*FAKE_PTS,
@@ -2278,7 +2279,7 @@ function startGame(mode, kind){
   $('mPractice').classList.toggle('on',!daily);
   $('howText').innerHTML = blank
     ? 'Guess the hidden word in each true headline. The exact word scores up to <b>500</b>, more the faster you get it. Near misses pay a little, and every guess after your third costs 5%.'
-    : 'Right call on a true story: up to <b>+100</b>, more for answering quickly. Catching a fake: <b>+150</b>. Fooled by a fake: <b>−150</b>. Then pin where the true story happened for up to <b>+400</b>: you have 20 seconds, with full points for the first 8. Every point drops his jaw the same distance, and losing points pulls it back up.';
+    : 'Right call on a true story: up to <b>+100</b>, more for answering quickly. Catching a fake: <b>+150</b>. Fooled by a fake: <b>−75</b>. Then pin where the true story happened for up to <b>+400</b>: you have 20 seconds, with full points for the first 12. Every point drops his jaw the same distance, and losing points pulls it back up.';
   renderStats();
   closeMenu();
   Scene.configure(JAW_SCALE);
@@ -2403,9 +2404,9 @@ function jawPoints(){
   list.forEach(x=>{ p+=(x.callPts||0)+(x.pinPts||0); });   // every point moves the jaw the same amount; lost points pull it up
   return Math.max(0,p);
 }
-/* Time to read first (1 s + 0.25 s per word), then −10 points a second, floor 40. */
-function readGrace(st){ return 1+0.25*(st.h||'').split(/\s+/).length; }
-function speedPts(sec,st){ return Math.round(CALL_PTS*Math.max(0.4,Math.min(1,1-(sec-readGrace(st))/10))); }
+/* Time to read first (2 s + 0.35 s per word), then −10 points a second, floor 60. */
+function readGrace(st){ return 2+0.35*(st.h||'').split(/\s+/).length; }
+function speedPts(sec,st){ return Math.round(CALL_PTS*Math.max(0.6,Math.min(1,1-(sec-readGrace(st))/10))); }
 let SPEED_RAF=0;
 function runSpeed(){
   cancelAnimationFrame(SPEED_RAF);
@@ -2423,6 +2424,15 @@ function runSpeed(){
   tick();
 }
 
+/* headline 1 is always an easy true story: a real one with a clue and the fewest words, so every player opens the same way */
+function firstGame(){ return !load('ff_coached') && !Object.keys(load('ff_hist')||{}).length; }
+function easyFirst(rounds){
+  if(!rounds || rounds.length<2) return rounds;
+  let best=-1, bs=1e9;
+  rounds.forEach((x,i)=>{ if(!x.real || x.lat==null) return; const sc=(x.h||'').split(/\s+/).length+(x.clue?0:12); if(sc<bs){ bs=sc; best=i; } });
+  if(best<=0) return rounds;
+  const r=rounds.slice(); const [e]=r.splice(best,1); r.unshift(e); return r;
+}
 function showRound(shown,quiet,gate){
   document.body.classList.remove('answered');
   S.phase = gate ? 'ready' : 'call'; guessLL=null;
@@ -2436,7 +2446,9 @@ function showRound(shown,quiet,gate){
     $('headline').innerHTML='<span class="fakeplace" style="font-size:.78em;line-height:1.05;display:block">'
       + (vsLive() && !S.results.length ? '<b class="challenge">'+VS.name+' dropped his jaw '+VS.m.toFixed(1)+' m today. Beat it.</b>' : '')
       + (S.mode==='back' && !S.results.length ? '<b class="challenge">Back issue #'+dayNumber()+' · '+fmtDate(S.backDate)+'</b>' : '')
-      + 'Guess what\'s real, then deduce where it happened. The clock starts when the headline appears.</span>';
+      + 'Guess what\'s real, then deduce where it happened. The clock starts when the headline appears.'
+      + (firstGame() ? '<b class="challenge" style="margin-top:8px">First time? 8 are true, 2 are made up. Tap the map once to zoom, tap again to pin, then LOCK IN.</b>' : '')
+      + '</span>';
     $('speed').hidden=true; $('feedback').hidden=true; $('mapWrap').hidden=true;
     setBar('start');
     const b=$('btnStart'); b.disabled=false; b.textContent="I'm ready";
@@ -2464,6 +2476,7 @@ function onCall(saysReal){
   const callOk = saysReal === st.real;
   const sec=(performance.now()-S.t0)/1000;
   const pts = st.real ? (callOk?speedPts(sec,st):0) : (callOk?FAKE_PTS:FOOLED_PTS);
+  store('ff_coached',1);
   S.cur = {i:S.i, real:st.real, callOk, callPts:pts, pinPts:0, dist:null, sec};
   S.score += pts;
   saveProgress({cur:S.cur});                        // the call sticks even if the page reloads
@@ -2525,9 +2538,12 @@ function openMap(){
       L.geoJSON(w.states,{style:{color:'#5a6a8c',weight:0.7,fill:false,dashArray:'2 2'},interactive:false}).addTo(map);
     }).catch(()=>{});
     layer = L.layerGroup().addTo(map);
+    let flyUntil=0;
     map.on('click',e=>{
       if(S.phase!=='pin') return;
-      if(map.getZoom()<4){                       // first tap zooms into that region
+      if(performance.now()<flyUntil) return;     // a tap while the zoom is still flying must not restart it or drop a pin at a half-zoomed spot
+      if(map.getZoom()<3.5){                     // first tap zooms into that region
+        flyUntil=performance.now()+500;
         map.flyTo(e.latlng,4.5,{duration:0.45});
         Sound.play('menu');
         $('btnGuess').textContent='NOW DROP YOUR PIN';
@@ -2543,8 +2559,15 @@ function openMap(){
   }
   layer.clearLayers();
   // the pin clock starts now; time already spent before a reload still counts
-  if(!S.cur.pinWall){ S.cur.pinWall=Date.now(); saveProgress({cur:S.cur}); }
-  S.pinT0=performance.now()-Math.max(0,Date.now()-S.cur.pinWall);
+  // the pin clock starts once the map has finished sliding open; time already spent before a reload still counts
+  S.pinGo=false; S.pinT0=performance.now();
+  const round=S.i, go=()=>{
+    if(!S || S.i!==round || S.phase!=='pin' || S.pinGo) return;
+    if(!S.cur.pinWall){ S.cur.pinWall=Date.now(); saveProgress({cur:S.cur}); }
+    S.pinT0=performance.now()-Math.max(0,Date.now()-S.cur.pinWall); S.pinGo=true;
+  };
+  if(S.cur.pinWall) go();
+  else { const cs=getComputedStyle($('mapWrap')); setTimeout(go, Math.max(0,(parseFloat(cs.transitionDuration)||0)+(parseFloat(cs.transitionDelay)||0))*1000+80); }
   runPinTimer();
   const homeView=()=>{
     map.invalidateSize();
