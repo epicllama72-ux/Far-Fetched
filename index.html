@@ -1791,14 +1791,18 @@ const Scene = (function(){
         gx=Math.floor(h1*(5-ps)); gy=Math.floor(h2*(eh-ps+1));
       }
       [-8,3].forEach((x0,i)=>{
-        R(x0,2,5,eh,C.white);
-        R(x0+gx,2+gy,ps,ps,C.pupil);
-        R(x0-1,1,7,1,C.glasses); R(x0-1,2+eh,7,1,C.glasses); R(x0-1,2,1,eh,C.glasses); R(x0+5,2,1,eh,C.glasses);
+        if(kit.shades){ R(x0-1,1,7,eh+2,'#15151d'); R(x0,2,2,1,'#7a8aaa'); R(x0+3,3,1,1,'#3a4358'); }   // Aussie sunglasses replace his glasses
+        else {
+          R(x0,2,5,eh,C.white);
+          R(x0+gx,2+gy,ps,ps,C.pupil);
+          R(x0-1,1,7,1,C.glasses); R(x0-1,2+eh,7,1,C.glasses); R(x0-1,2,1,eh,C.glasses); R(x0+5,2,1,eh,C.glasses);
+        }
         if(fooled){
           if(i===0){ R(x0-1,-2,3,1,C.brow); R(x0+2,-1,3,1,C.brow); } else { R(x0,-1,3,1,C.brow); R(x0+3,-2,3,1,C.brow); }
         } else R(x0-1,-1-eb,7,eb>2?2:1,C.brow);
       });
-      R(-2,3,4,1,C.glasses);
+      R(-2,3,4,1,kit.shades?'#15151d':C.glasses);
+      if(kit.shades){ R(-13,2,3,1,'#15151d'); R(10,2,3,1,'#15151d'); }
       R(-2,6,3,3,C.skinSh);
       if(jdE>12){ R(-10,7,3,2,C.blush); R(7,7,3,2,C.blush); }
       if(fooled){ R(14,-1,1,1,C.sweat); R(13,0,3,3,C.sweat); R(14,3,1,1,C.sweat); }
@@ -2982,7 +2986,8 @@ const KIT=[
   {id:'goldjaw', slot:'teeth',  name:'Golden jaw',         icon:'👑', need:'100-day streak', ok:L=>L.best>=100},
   {id:'mug',     slot:'mug',    name:'Gold mug',           icon:'☕', need:'10 papers finished', ok:L=>L.papers>=10},
   {id:'trophy',  slot:'trophy', name:'Core trophy',        icon:'🏆', need:'reach THE CORE', ok:L=>L.zmax>=5},
-  {id:'globe',   slot:'globe',  name:'Desk globe',         icon:'🌍', need:'pin 50 stories', ok:L=>L.pins>=50}];
+  {id:'globe',   slot:'globe',  name:'Desk globe',         icon:'🌍', need:'pin 50 stories', ok:L=>L.pins>=50},
+  {id:'shades',  slot:'glasses',name:'Aussie sunglasses',  icon:'🕶️', need:'dig through to Australia', ok:L=>L.zmax>=6}];
 function lifeNow(){
   const l=load('ff_life')||{}, h=load('ff_hist')||{};
   return {best:l.best||0, pins:l.pins||0, zmax:l.zmax||0, papers:new Set(Object.keys(h).filter(k=>k.endsWith(':call')).map(k=>k.split(':')[0])).size};
@@ -2993,6 +2998,7 @@ function currentKit(){
   const have=new Set(unlockedIds()), eq=kitState().eq, o={};
   const get=slot=>{ const id=eq[slot]; return id && have.has(id) ? KIT.find(i=>i.id===id) : null; };
   const hd=get('head'); if(hd) o.head=hd.id;
+  if(get('glasses')) o.shades=true;
   if(get('pocket')) o.badge=true;
   const te=get('teeth'); if(te) o.teeth=te.id;
   if(get('mug')) o.mug=true; if(get('trophy')) o.trophy=true; if(get('globe')) o.globe=true;
@@ -3043,7 +3049,7 @@ function closeWardrobe(){ $('wardrobe').hidden=true; if($('menu').hidden && $('s
 function renderWardrobe(){
   const k=kitState(), have=new Set(unlockedIds()), st=load('ff_streak')||{}, fz=st.freezes||0;
   $('wardNote').innerHTML='Streak freezes: <b>'+fz+'</b> of 2. You earn one every 7 days of streak, and it covers one missed day.';
-  const secs=[['HEAD',['head']],['POCKET',['pocket']],['TEETH',['teeth']],['DESK AND SHELF',['mug','trophy','globe']]];
+  const secs=[['HEAD',['head']],['EYES',['glasses']],['POCKET',['pocket']],['TEETH',['teeth']],['DESK AND SHELF',['mug','trophy','globe']]];
   $('wardBody').innerHTML=secs.map(([name,slots])=>'<p class="wsec">'+name+'</p><div class="wgrid">'
     + KIT.filter(it=>slots.includes(it.slot)).map(it=>{
         const own=have.has(it.id), on=own && k.eq[it.slot]===it.id;
