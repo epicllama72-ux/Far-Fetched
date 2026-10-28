@@ -862,6 +862,7 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #recapList .crowd{display:block;font-size:16px;color:#7fe3ff;margin-top:2px}
 #backList,#practiceList{display:flex;flex-direction:column;gap:6px;max-height:40vh;overflow:auto;padding-left:10px}
 #backList button,#practiceList button{font-size:19px!important;padding:6px 10px!important}
+.cname{color:rgba(205,218,240,.34);font:15px/1 var(--vt);white-space:nowrap;pointer-events:none;text-shadow:0 1px 0 rgba(0,0,0,.6);transform:translate(-50%,-50%);letter-spacing:.04em}
 .challenge{display:block;margin-top:6px;color:var(--accent)}
 @media not all and (min-width:1100px) and (min-height:600px){ body.returned #final{margin-top:max(0px,calc(100vh - 330px))} }
 #summary canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rendering:crisp-edges;background:#0b0e14;border:1px solid #232a38}
@@ -1323,7 +1324,13 @@ function km(a,b,c,d){
   const h=Math.sin(dLat/2)**2+Math.cos(t(a))*Math.cos(t(c))*Math.sin(dLng/2)**2;
   return 2*R*Math.asin(Math.sqrt(h));
 }
-function pinPoints(d){return Math.round(PIN_PTS*Math.exp(-Math.max(0,d-75)/2100));}  // ≤75 km 400 · 300 km 359 · 500 km 327 · 1000 km 257 · 2000 km 160 · 5000 km 38
+const COUNTRY_LABELS=[
+['Canada',58,-100],['United States',39,-98],['Mexico',23.5,-102],['Guatemala',15.5,-90.3],['Cuba',21.7,-79],['Honduras',14.8,-86.6],['Nicaragua',12.9,-85],['Costa Rica',9.9,-84.2],['Panama',8.6,-80],['Colombia',4.1,-73],['Venezuela',7,-66],['Ecuador',-1.4,-78.4],['Peru',-9.5,-75],['Bolivia',-16.7,-64.7],['Brazil',-10,-52],['Paraguay',-23.3,-58.4],['Chile',-31,-71.2],['Argentina',-35,-65],['Uruguay',-32.8,-56],['Guyana',4.8,-58.9],
+['Iceland',64.9,-18.5],['Ireland',53.2,-8.1],['United Kingdom',54,-2.5],['Portugal',39.6,-8],['Spain',40.2,-3.7],['France',46.6,2.4],['Belgium',50.6,4.6],['Netherlands',52.2,5.5],['Germany',51.1,10.4],['Switzerland',46.8,8.2],['Italy',42.8,12.5],['Austria',47.6,14.1],['Czechia',49.8,15.5],['Poland',52,19.4],['Denmark',56,9.5],['Norway',61.5,9],['Sweden',62.5,15.5],['Finland',64.5,26.5],['Estonia',58.7,25.5],['Latvia',56.9,24.9],['Lithuania',55.3,23.9],['Belarus',53.7,27.9],['Ukraine',49,31.5],['Moldova',47.2,28.5],['Romania',45.9,24.9],['Hungary',47.1,19.5],['Slovakia',48.7,19.5],['Slovenia',46.1,14.8],['Croatia',45.2,15.5],['Serbia',44,20.8],['Bosnia',44.2,17.8],['Bulgaria',42.8,25.2],['North Macedonia',41.6,21.7],['Albania',41.1,20.1],['Greece',39.1,22.9],['Turkey',39,35],
+['Russia',61,95],['Georgia',42.2,43.5],['Armenia',40.2,44.9],['Azerbaijan',40.3,47.7],['Kazakhstan',48.2,67],['Uzbekistan',41.4,64.6],['Turkmenistan',39.1,59.4],['Kyrgyzstan',41.5,74.6],['Tajikistan',38.8,71],['Afghanistan',33.9,66],['Iran',32.4,53.7],['Iraq',33.2,43.7],['Syria',35,38.5],['Lebanon',33.9,35.9],['Israel',31.4,35],['Jordan',31.2,36.8],['Saudi Arabia',24.2,44.5],['Yemen',15.6,47.5],['Oman',21.2,56.1],['UAE',24.3,54.3],['Pakistan',29.9,69.3],['India',22.9,79.6],['Nepal',28.3,84],['Bangladesh',23.8,90.3],['Sri Lanka',7.8,80.7],['Myanmar',21.5,96],['Thailand',15.5,101],['Laos',18.5,103.8],['Cambodia',12.7,104.9],['Vietnam',16.2,106.3],['Malaysia',3.8,102.3],['Singapore',1.35,103.82],['Indonesia',-2.3,115],['Philippines',12.5,122.5],['China',35.5,103.5],['Mongolia',46.8,103.8],['North Korea',40.1,127.2],['South Korea',36.4,127.9],['Japan',36.5,138.5],['Taiwan',23.7,121],
+['Morocco',31.8,-6.9],['Algeria',28.2,2.6],['Tunisia',34,9.5],['Libya',27,17.2],['Egypt',26.5,29.8],['Mauritania',20.3,-10.5],['Mali',17.4,-3.5],['Niger',17.4,9.4],['Chad',15.4,18.7],['Sudan',15.8,29.9],['Senegal',14.5,-14.5],['Guinea',10.9,-10.9],['Ivory Coast',7.6,-5.5],['Ghana',7.9,-1.2],['Nigeria',9.6,8.1],['Cameroon',5.7,12.7],['Ethiopia',8.6,39.6],['Somalia',5.7,46.2],['Kenya',0.5,37.9],['Uganda',1.4,32.4],['Tanzania',-6.3,34.9],['DR Congo',-2.9,23.6],['Angola',-12.3,17.5],['Zambia',-13.4,27.8],['Zimbabwe',-19,29.9],['Mozambique',-17.3,35.5],['Namibia',-22.1,17.2],['Botswana',-22.3,24.4],['South Africa',-29,24.7],['Madagascar',-19.4,46.7],
+['Australia',-25.7,134],['New Zealand',-41.5,172.5],['Papua New Guinea',-6.5,145]];
+function pinPoints(d){return Math.round(PIN_PTS*Math.exp(-Math.max(0,d-75)/2600));}  // ≤75 km 400 · 300 km 367 · 500 km 340 · 1000 km 280 · 2000 km 191 · 5000 km 60
 /* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
 const PIN_SECS=20, PIN_GRACE=12;
 function pinMult(sec){ return Math.max(0.6,Math.min(1,1-(sec-PIN_GRACE)*0.05)); }
@@ -2538,6 +2545,11 @@ function openMap(){
       L.geoJSON(w.states,{style:{color:'#5a6a8c',weight:0.7,fill:false,dashArray:'2 2'},interactive:false}).addTo(map);
     }).catch(()=>{});
     layer = L.layerGroup().addTo(map);
+    // faint country names, shown only once you have zoomed in
+    const names=L.layerGroup();
+    COUNTRY_LABELS.forEach(([n,la,ln])=>L.marker([la,ln],{icon:L.divIcon({className:'',html:'<span class="cname">'+n+'</span>',iconSize:[0,0]}),interactive:false,keyboard:false}).addTo(names));
+    const syncNames=()=>{ const on=map.getZoom()>=3.5; if(on&&!map.hasLayer(names)) names.addTo(map); else if(!on&&map.hasLayer(names)) map.removeLayer(names); };
+    map.on('zoomend',syncNames); syncNames();
     let flyUntil=0;
     map.on('click',e=>{
       if(S.phase!=='pin') return;

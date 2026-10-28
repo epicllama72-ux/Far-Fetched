@@ -199,7 +199,7 @@ Below are candidate news stories from the past month (JSON). Some include "text"
    - "country": the country name.
    - "cc": the ISO 3166-1 alpha-2 country code ("US", "GB" for anywhere in the UK, "JP", ...).
    - "clue": at most 80 characters, written for the PLAYER after the reveal: the regional hints that point to the place, e.g. "moose + wire fencing = northern US/Canada", "monsoon flooding = South Asia", "metres and rupees". It may draw on details from the story itself, not only words in the headline. Use "" if there is none.
-   - "clue_strength": 0-3. 3 = the headline strongly points to a region; 2 = a fair hint; 1 = a weak hint; 0 = could be anywhere, OR the hint is misleading (an animal or object that is out of place, such as a kangaroo in Tennessee, is a surprise, not a clue: give it 0).
+   - "clue_strength": 0-3. 3 = the headline strongly points to a region; 2 = a fair hint that a well-read general player could use; 1 = a weak hint; 0 = could be anywhere, OR the hint is misleading (an animal or object that is out of place, such as a kangaroo in Tennessee, is a surprise, not a clue: give it 0). JARGON-ONLY CLUES DO NOT COUNT: if the only regional hint is a local term, acronym or specialist word that a general player would not know (e.g. "cold-drop DANA", a regional dish or agency name nobody outside the country has heard of), set "jargon_only" to true and give clue_strength 0 or 1. A clue must work by general knowledge: currency, units, driving side, climate, wildlife, institution types, sport, language of well-known words.
    - "unbelievable": 1-5, how likely a reader is to assume the story is made up (5 = sounds like a joke but is true).
    - "theme": one lowercase word for the topic (e.g. "lottery", "escaped-animal", "record"). Never pick two stories with the same theme.
    Keep the source's own units and currency; NEVER convert them (a "4.7 miles" story from South Africa must read in kilometres if the source said kilometres), because units are clues.
@@ -207,7 +207,7 @@ Below are candidate news stories from the past month (JSON). Some include "text"
 2) "fake": write 8 invented headlines in exactly the same style, each with {} for the redacted place. Like the real ones, give each fake implicit regional clues a player could use (a local animal, climate, custom or unit) without naming the place. They should pass at first glance (specific numbers, ordinary local institutions, plausible animals and objects) but be SLIGHTLY easier to spot than the real ones: give each one small tell, and VARY the kind of tell: an over-tidy cause and effect, a detail slightly wrong for the region, an unlikely coincidence, a plausible-sounding but slightly off local rule. NO quotes from officials or spokespeople, no puns, no punchlines - those are tells players learn fast. Keep each fake at most 95 characters (no longer than a typical real headline), start each one differently (never two starting with the same two words, never "Council in"), and give each a different topic from each other and from the real picks (if a real story is about a kangaroo, no fake about kangaroos, wallabies or koalas). NEVER use the word "exactly", round numbers (100, 500, 1,000...) or "to the second" - players learn those tells within a week; use ordinary specific numbers like 37 or 1,260. Make the fakes as odd as the real stories, not odder: the real stories are routine local news with one strange twist, so the fakes must not be the only headlines that sound like jokes. Never cartoonish. Not about real people, and not resembling any candidate story. Strange non-violent crime (dumb criminals, bizarre thefts) is fine for fakes too. Do not write about death, injury, violence or tragedy. Give each as {"h": "...", "tell": "one sentence of at most 18 words for the PLAYER explaining why it should have smelled fake, e.g. 'councils fine overgrown hedges, not ones that look too lifelike'", "obvious": 1-5, "theme": "one lowercase word for the topic, same vocabulary as the real picks' theme"} where obvious rates how easy it is to spot as invented (aim for 2 or 3: slightly easier to spot than a real story, never a giveaway).
 
 Output format:
-{"real":[{"id":0,"h":"...","h2":"...","ans":["..."],"place":"...","geocode":"...","lat":0,"lng":0,"country":"...","cc":"..","clue":"...","clue_strength":0,"unbelievable":1,"theme":"..."}], "fake":[{"h":"...","tell":"...","obvious":3,"theme":"..."}]}
+{"real":[{"id":0,"h":"...","h2":"...","ans":["..."],"place":"...","geocode":"...","lat":0,"lng":0,"country":"...","cc":"..","clue":"...","clue_strength":0,"jargon_only":false,"unbelievable":1,"theme":"..."}], "fake":[{"h":"...","tell":"...","obvious":3,"theme":"..."}]}
 
 Candidates:
 """
@@ -827,9 +827,19 @@ def main():
         sys.exit(0)
 
     # Real or Fake wants stories whose place can be DEDUCED, and a spread of countries and themes.
+    # A clue only counts when general knowledge can use it: jargon-only hints (like "cold-drop DANA") are downgraded.
+    JARGON = re.compile(r"\b(dana|gota fr[ií]a)\b", re.I)
+    def eff_strength(r):
+        try:
+            cs = int(r.get("clue_strength", 0) or 0)
+        except Exception:
+            cs = 0
+        if r.get("jargon_only") or JARGON.search(r.get("h") or "") or JARGON.search(r.get("clue") or ""):
+            cs = min(cs, 1)
+        return cs
     def merit(r):
         try:
-            return 2 * int(r.get("clue_strength", 0)) + int(r.get("unbelievable", 1)) + r.get("_fresh", 0)
+            return 2 * eff_strength(r) + int(r.get("unbelievable", 1)) + r.get("_fresh", 0)
         except Exception:
             return 1
     seen_theme, uniq = set(), []
@@ -864,7 +874,24 @@ def main():
         if len(call_pick) == N_CALL_REAL:
             break
         print(f"  only {len(call_pick)} stories fit the country spread (max {cap}/country, {anglo_cap} English-speaking); loosening", file=sys.stderr)
-    strong = sum(1 for r in call_pick if int(r.get("clue_strength", 0) or 0) >= 2)
+    # at least 6 of the 8 true stories need a fair regional clue: swap weak picks for stronger ones from the pool
+    MIN_STRONG = 6
+    strong_n = lambda lst: sum(1 for r in lst if eff_strength(r) >= 2)
+    if len(call_pick) == N_CALL_REAL and strong_n(call_pick) < MIN_STRONG:
+        weak = sorted([r for r in call_pick if eff_strength(r) < 2], key=merit)
+        for cand in [r for r in reals if r not in call_pick and eff_strength(r) >= 2]:
+            if strong_n(call_pick) >= MIN_STRONG or not weak:
+                break
+            cc = ccode(cand)
+            if cc != "?" and sum(1 for r in call_pick if ccode(r) == cc) >= 3:
+                continue
+            call_pick[call_pick.index(weak.pop(0))] = cand
+        per_country = {}
+        for r in call_pick:
+            per_country[ccode(r)] = per_country.get(ccode(r), 0) + 1
+        if strong_n(call_pick) < MIN_STRONG:
+            print(f"  WARNING: only {strong_n(call_pick)} of {len(call_pick)} true stories have a fair regional clue (wanted {MIN_STRONG})", file=sys.stderr)
+    strong = strong_n(call_pick)
     print(f"  Real or Fake: {strong}/{len(call_pick)} stories with a usable regional clue; countries {per_country}", file=sys.stderr)
 
     # Fill the Blank: real stories whose answer has a word vector
