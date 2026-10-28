@@ -1058,7 +1058,6 @@ body.recap #bar{display:none}
 #wardrobe .wgrid button.lock{opacity:.6;cursor:default}
 #wardrobe .wgrid button.lock .wi{filter:brightness(0) contrast(.4)}
 #wardrobe .wi{font-size:26px;line-height:1.1}
-#wardrobe .sw{display:inline-block;width:26px;height:20px;border:2px solid var(--ink);box-sizing:border-box}
 #wardrobe small{font-size:15px;opacity:.8}
 #wardNote{font:19px/1.2 var(--vt);color:var(--dim);margin:6px 0 0}
 [hidden]{display:none!important}
@@ -1528,13 +1527,6 @@ const Scene = (function(){
     return Math.random()<0.5?C.magmaBright:C.magmaHi;
   }
 
-  /* the Dig Kit's tunnel trails */
-  function trailBit(y){
-    const k=kit.trail, s=Math.random()<0.5?-1:1, r=Math.random;
-    if(k==='sparks') parts.push({x:s*(2+r()*7), y:y-2, vx:s*(6+r()*30), vy:-(10+r()*30), life:0.5+r()*0.5, age:0, c:r()<0.5?'#ffd23f':'#ff8a1f', sz:1, dust:false});
-    else if(k==='bubbles') parts.push({x:(r()*2-1)*8, y:y, vx:(r()-0.5)*6, vy:-(8+r()*10), life:1+r(), age:0, c:'#cdefff', sz:2, dust:true});
-    else if(k==='golddust') parts.push({x:s*(2+r()*8), y:y-1, vx:s*(3+r()*14), vy:-(2+r()*10), life:0.9+r()*0.8, age:0, c:r()<0.5?'#ffd23f':'#fff3a0', sz:1, dust:false});
-  }
   function setKit(k){ kit=k||{}; if(reduce&&W) draw(); }
   function burst(n,y,force){
     for(let i=0;i<n && parts.length<420;i++){
@@ -1571,7 +1563,7 @@ const Scene = (function(){
     if(rumbleCb) rumbleCb(cy>70 && Math.abs(speed)>0.8 ? clamp(Math.abs(speed)/35,0.15,1) : 0);
     if(speed>0.8 && cy>74){
       emitAcc+=speed*dt*1.4;
-      while(emitAcc>1){ emitAcc-=1; burst(1,cy,clamp(speed/30,0.4,1.4)); if(kit.trail) trailBit(cy); }
+      while(emitAcc>1){ emitAcc-=1; burst(1,cy,clamp(speed/30,0.4,1.4)); }
       shake=Math.max(shake,clamp(speed/40,0,1.2));
     }
     const z=zoneIndex(cy);
@@ -1691,7 +1683,7 @@ const Scene = (function(){
     // 3. torso and neck
     RO(-17,28,33,48,C.shirt); R(-17,28,3,48,C.shirtSh); R(14,28,3,48,C.shirtSh);
     R(-5,19,10,10,C.skinSh);
-    R(-6,28,12,3,C.collar); R(-1,31,3,42,kit.tie||C.tie); R(-2,31,5,3,kit.tie||C.tie);
+    R(-6,28,12,3,C.collar); R(-1,31,3,42,C.tie); R(-2,31,5,3,C.tie);
     if(kit.badge){ R(4,36,9,1,C.shirtSh); R(4,36,1,8,C.shirtSh); R(12,36,1,8,C.shirtSh); R(4,43,9,1,C.shirtSh);
       R(6,34,5,7,'#ffffff'); R(6,34,5,2,'#c0392b'); R(7,37,3,1,'#55596a'); R(7,39,3,1,'#9aa0b0'); }
 
@@ -2829,15 +2821,7 @@ const KIT=[
   {id:'goldjaw', slot:'teeth',  name:'Golden jaw',         icon:'👑', need:'100-day streak', ok:L=>L.best>=100},
   {id:'mug',     slot:'mug',    name:'Gold mug',           icon:'☕', need:'10 papers finished', ok:L=>L.papers>=10},
   {id:'trophy',  slot:'trophy', name:'Core trophy',        icon:'🏆', need:'reach THE CORE', ok:L=>L.zmax>=5},
-  {id:'globe',   slot:'globe',  name:'Desk globe',         icon:'🌍', need:'pin 50 stories', ok:L=>L.pins>=50},
-  {id:'tie1',    slot:'tie',    name:'Basement tie', color:'#8a8fb0', need:'reach THE BASEMENT', ok:L=>L.zmax>=1},
-  {id:'tie2',    slot:'tie',    name:'Dirt tie',     color:'#9a6a35', need:'reach THE DIRT',     ok:L=>L.zmax>=2},
-  {id:'tie3',    slot:'tie',    name:'Bedrock tie',  color:'#b4b2c2', need:'reach BEDROCK',      ok:L=>L.zmax>=3},
-  {id:'tie4',    slot:'tie',    name:'Magma tie',    color:'#ff6a1f', need:'reach MAGMA',        ok:L=>L.zmax>=4},
-  {id:'tie5',    slot:'tie',    name:'Core tie',     color:'#ffd23f', need:'reach THE CORE',     ok:L=>L.zmax>=5},
-  {id:'sparks',  slot:'trail',  name:'Sparks',             icon:'✨', need:'5 papers finished',  ok:L=>L.papers>=5},
-  {id:'bubbles', slot:'trail',  name:'Bubbles',            icon:'🫧', need:'25 papers finished', ok:L=>L.papers>=25},
-  {id:'golddust',slot:'trail',  name:'Gold dust',          icon:'🌟', need:'reach MAGMA',        ok:L=>L.zmax>=4}];
+  {id:'globe',   slot:'globe',  name:'Desk globe',         icon:'🌍', need:'pin 50 stories', ok:L=>L.pins>=50}];
 function lifeNow(){
   const l=load('ff_life')||{}, st=load('ff_streak')||{}, h=load('ff_hist')||{};
   return {best:Math.max(l.best||0,st.count||0), pins:l.pins||0, zmax:l.zmax||0, papers:new Set(Object.keys(h).map(k=>k.split(':')[0])).size};
@@ -2850,9 +2834,7 @@ function currentKit(){
   const hd=get('head'); if(hd) o.head=hd.id;
   if(get('pocket')) o.badge=true;
   const te=get('teeth'); if(te) o.teeth=te.id;
-  const ti=get('tie'); if(ti) o.tie=ti.color;
   if(get('mug')) o.mug=true; if(get('trophy')) o.trophy=true; if(get('globe')) o.globe=true;
-  const tr=get('trail'); if(tr) o.trail=tr.id;
   return o;
 }
 function applyKit(){ Scene.setKit(currentKit()); }
@@ -2896,11 +2878,11 @@ function closeWardrobe(){ $('wardrobe').hidden=true; if($('menu').hidden && $('s
 function renderWardrobe(){
   const k=kitState(), have=new Set(unlockedIds()), st=load('ff_streak')||{}, fz=st.freezes||0;
   $('wardNote').innerHTML='Streak freezes: <b>'+fz+'</b> of 2. You earn one every 7 days of streak, and it covers one missed day.';
-  const secs=[['HEAD',['head']],['POCKET',['pocket']],['TEETH',['teeth']],['TIE',['tie']],['DESK AND SHELF',['mug','trophy','globe']],['TUNNEL TRAIL',['trail']]];
+  const secs=[['HEAD',['head']],['POCKET',['pocket']],['TEETH',['teeth']],['DESK AND SHELF',['mug','trophy','globe']]];
   $('wardBody').innerHTML=secs.map(([name,slots])=>'<p class="wsec">'+name+'</p><div class="wgrid">'
     + KIT.filter(it=>slots.includes(it.slot)).map(it=>{
         const own=have.has(it.id), on=own && k.eq[it.slot]===it.id;
-        const ic=it.color?'<i class="sw" style="background:'+it.color+'"></i>':'<span class="wi">'+it.icon+'</span>';
+        const ic='<span class="wi">'+it.icon+'</span>';
         return '<button data-id="'+it.id+'" class="'+(on?'on':'')+(own?'':' lock')+'">'+ic+'<span>'+it.name+'</span><small>'+(own?(on?'wearing':'tap to wear'):'🔒 '+it.need)+'</small></button>';
       }).join('')+'</div>').join('');
   $('wardBody').querySelectorAll('button').forEach(b=>b.onclick=()=>{
