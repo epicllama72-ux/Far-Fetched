@@ -1660,9 +1660,15 @@ const Scene = (function(){
       R(-13,3,2,5,C.skinSh); R(11,3,2,5,C.skinSh);
       const eb=Math.min(4,Math.round(jdE/8))+ebx;
       const wide=jdE>20||age<0.8, eh=wide?4:3, ps=wide?1:2;
+      // paper down and nothing happening: his eyes wander about, holding each glance for a moment
+      let gx=wide?2:1, gy=wide?1:eh-ps;
+      if(paperT<0.5 && !fooled && !reduce){
+        const slot=Math.floor(t/1.15), h1=Math.abs(Math.sin(slot*12.9898)*43758.5453)%1, h2=Math.abs(Math.sin(slot*78.233+1.7)*12543.327)%1;
+        gx=Math.floor(h1*(5-ps)); gy=Math.floor(h2*(eh-ps+1));
+      }
       [-8,3].forEach((x0,i)=>{
         R(x0,2,5,eh,C.white);
-        R(x0+(wide?2:1),2+(wide?1:eh-ps),ps,ps,C.pupil);
+        R(x0+gx,2+gy,ps,ps,C.pupil);
         R(x0-1,1,7,1,C.glasses); R(x0-1,2+eh,7,1,C.glasses); R(x0-1,2,1,eh,C.glasses); R(x0+5,2,1,eh,C.glasses);
         if(fooled){
           if(i===0){ R(x0-1,-2,3,1,C.brow); R(x0+2,-1,3,1,C.brow); } else { R(x0,-1,3,1,C.brow); R(x0+3,-2,3,1,C.brow); }
@@ -2802,6 +2808,7 @@ function crowdFor(rows,i,st){
   return Math.round(100*right/a.length)+'% called it real'+(med!=null?' · median pin '+med.toLocaleString()+' km':'');
 }
 function renderCrowd(rows){
+  $('crowdTop').hidden=true;
   if(S.kind==='blank') return;
   const have=rows.filter(r=>Array.isArray(r.ans)).length;
   if(have<3) return;
@@ -2817,7 +2824,9 @@ function renderCrowd(rows){
     const miss=a.filter(x=>!x[0]).length/a.length; if(!worst||miss>worst.miss) worst={i,miss,st}; });
   if(worst && worst.miss>0){
     $('crowdTop').hidden=false;
-    $('crowdTop').innerHTML='Today\'s trickiest: <b>#'+(worst.i+1)+'</b> '+(worst.st.real===false?'fooled':'stumped')+' <b>'+Math.round(worst.miss*100)+'%</b> of players.';
+    const hl=(worst.st.h||'').replace('{}',worst.st.real===false?'…':(worst.st.place||'…').replace(/\s*\(\d{4}\)$/,'')), short=hl.length>80?hl.slice(0,77)+'…':hl;
+    $('crowdTop').innerHTML='Today\'s trickiest: <b>#'+(worst.i+1)+'</b> '+(worst.st.real===false?'fooled':'stumped')+' <b>'+Math.round(worst.miss*100)+'%</b> of players. ';
+    const q=document.createElement('i'); q.textContent='“'+short+'”'; $('crowdTop').append(q);
   }
 }
 function answersOf(results){ return results.map(x=>[x.callOk?1:0, x.dist==null?null:Math.round(x.dist)]); }
@@ -3022,17 +3031,18 @@ async function openBoard(){
 
 /* ---------- The dig, as a picture and as emoji ---------- */
 function digZones(){
-  const L=Scene.layout(), chin=13+L.jd+9;
+  const L=Scene.layout(), chin=13+(S.finalM!=null ? S.finalM/L.M : L.jd)+9;   // the saved result, so a reload (which resets the man) still draws the real dig
   const z=[['🪑','desk',76],['🧱','basement',L.L0],['🟫','dirt',L.L0+L.B[1]],['🪨','bedrock',L.L0+L.B[2]],['🌋','magma',L.L0+L.B[3]],['💎','core',L.L0+L.B[4]]];
   return {L, chin, passed:z.filter(r=>chin>r[2])};
 }
+function digInfo(){ const i=Scene.info(); return S.finalM!=null ? {m:S.finalM.toFixed(1), zone:S.finalZone||i.zone} : i; }
 function digEmoji(){
-  const inf=Scene.info(), d=digZones();
+  const inf=digInfo(), d=digZones();
   if(!d.passed.length) return ['📰😮 🦷 '+inf.m+' m'+(inf.zone==='BEHIND THE PAPER'?' (behind the paper)':'')];
   return ['📰'+d.passed.map(r=>r[0]).join('')+'🦷 '+inf.m+' m · '+inf.zone];
 }
 function renderDigCard(){
-  const d=digZones(), L=d.L, inf=Scene.info();
+  const d=digZones(), L=d.L, inf=digInfo();
   const w=60, h=100, c=document.createElement('canvas'); c.width=w; c.height=h;
   const g=c.getContext('2d');
   const top=-14, bottom=Math.max(L.L0+L.B[4]+20, d.chin+20), Y=y=>Math.round(2+ (y-top)/(bottom-top)*(h-14));
