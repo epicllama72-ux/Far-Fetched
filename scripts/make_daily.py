@@ -191,7 +191,7 @@ Below are candidate news stories from the past month (JSON). Some include "text"
 1) "real": pick 20 of the best stories for the game, best first. You MUST return at least 14; if clue-rich stories run short, fill the rest with the most surprising remaining ones (low clue_strength is fine), never return fewer than 14 (rank by clue_strength plus unbelievable). Rank by how HARD TO BELIEVE the story is: favour the ones a reader would assume are made up (absurd specifics, improbable coincidences, odd rules, unlikely animals or objects) but that really happened. Strongly prefer stories where the event is linked to the place it happened, so a player can DEDUCE the location from the headline instead of guessing: local wildlife or climate (a kangaroo, a moose, monsoon flooding, snow in summer), regional industry, food, sport or customs, a local law or institution type, driving side, currency, units or typical local jobs. Stories that could have happened anywhere rank lower but are still acceptable fillers. The game should be FUNNY, EDUCATIONAL and reward broad general knowledge: favour stories that make a reader laugh out loud or are so ridiculous they feel like something out of the movie Idiocracy (absurd decisions, baffling rules, dumbfounding mix-ups, spectacularly dumb but harmless events), and whose clues connect to things a well-read person could know about the place (geography, climate, wildlife, languages, currencies, laws, food, history, sport, industries), so that general knowledge lets them reason to the right region, not luck. Good picks are surprising, funny or delightful, happened in ONE specific identifiable town/city/county, and are light-hearted. Skip BORING stories: a rare animal spotted, a nice rescue, a big vegetable, a quiet record, a mild oddity with no real twist. Every pick needs a real punchline, an absurd mistake or a jaw-dropping detail. STRANGE, FUNNY CRIME stories are welcome and wanted (dumb criminals, bizarre thefts, absurd arrests, getaway fails, odd things stolen or smuggled, ridiculous excuses) as long as they are non-violent and nobody is seriously hurt. Never pick stories about death, serious injury, violent crimes against people, abuse, sexual content, children in danger, war, politics, disasters or tragedy. Avoid near-duplicates (e.g. several lottery wins) - at most one lottery story. Spread your picks around the WORLD: at most 3 from any one country, and at least half from outside the US, UK, Canada, Australia, New Zealand and Ireland whenever the candidates allow it (Latin America, Europe, Asia, Africa and the Middle East are all welcome). For each pick give:
    - "id": the candidate id.
    - "h": a punchy wire-style headline, max 100 characters, keeping every fact of the story exactly as reported (never change what happened, who or what was involved, numbers or outcome). You MAY reword and add short descriptive wording that makes the region easier to deduce, as long as it is generically true of that place and does not alter or add to the story: e.g. local terms and institutions ("the county sheriff", "council", "constabulary", "a roo", "monsoon rains", "rupees", "kilometres", "on the ski slopes"), local climate, wildlife or customs, or spelling and units typical of the country. Replace the place with the literal token {} exactly once (e.g. "... in {}"). Remove every EXPLICIT location clue: no state/country/city names, demonyms, local team, landmark, university or company names that reveal the place, no "Florida man". But KEEP the implicit, deducible clues that are part of the story (the animal, the weather, the local custom, currency or units, the type of institution), so a sharp player can reason their way to the right region. Keep the oddity intact.
-   - "h2": the same story as a headline that DOES name the place (city + state/country), with the main subject noun of the story (the animal, object or kind of person it is about, e.g. "kangaroo", "pelicans", "kitten") replaced by the literal token [] exactly once. Not a name, not a place. The rest of h2 must NOT contain the hidden word, a synonym or a close variant of it (if the hidden word is "toilets", h2 must not say "potties" or "loo"), and give each pick a different hidden word than the other picks (not both "burglar" and "thief").
+   - "h2": the same story as a headline that DOES name the place (city + state/country), with the main subject noun of the story (the animal, object or kind of person it is about, e.g. "kangaroo", "pelicans", "kitten") replaced by the literal token [] exactly once. The hidden word must be an ordinary common noun that is written in lowercase in normal text: never a name, brand, product, model, company, team, place or nationality (not "Maserati" or "Vegemite" - use "car" or "spread" instead, or pick another noun). The rest of h2 must NOT contain the hidden word, a synonym or a close variant of it (if the hidden word is "toilets", h2 must not say "potties" or "loo"), and give each pick a different hidden word than the other picks (not both "burglar" and "thief").
    - "ans": 1-3 lowercase single-word answers for [] - the exact hidden word first, then singular/plural variants. Letters only.
    - "place": display name like "Appleton, Wisconsin" or "Mykolaiv, Ukraine".
    - "geocode": a precise query for a geocoder, like "Appleton, Wisconsin, USA".
@@ -228,14 +228,18 @@ Candidates:
 """
 
 
-def ask_claude(cands, model, prompt=None):
+def ask_claude(cands, model, prompt=None, avoid=None):
     payload = []
     for i, c in enumerate(cands):
         p = {"id": i, "title": c["title"], "summary": c["summary"], "source": c["source"], "published": c["published"]}
         if c.get("text"):
             p["text"] = c["text"]
         payload.append(p)
-    return call_claude((prompt or PROMPT) + json.dumps(payload, ensure_ascii=False), model, max_tokens=16000, keys=["real", "fake"])
+    extra = ""
+    if avoid:
+        extra = ("\n\nALREADY USED in earlier games. Never pick any of these stories again, even if a candidate tells it "
+                 "with different words or comes from a different outlet:\n" + "\n".join("- " + a for a in avoid) + "\n")
+    return call_claude((prompt or PROMPT) + json.dumps(payload, ensure_ascii=False) + extra, model, max_tokens=16000, keys=["real", "fake"])
 
 
 PRICES = {"haiku": (0.10, 0.50), "sonnet": (2.0, 10.0), "opus": (5.0, 25.0)}   # USD per million tokens (in, out)
@@ -591,6 +595,24 @@ def words(text):
     return {w for w in re.findall(r"[a-z]{4,}", (text or "").lower()) if w not in _STOP}
 
 
+def recent_headlines(day, days=45, limit=600):
+    """Plain list of the headlines shown recently (newest first), so the editor can avoid retelling them."""
+    out, lo = [], (dt.date.fromisoformat(day) - dt.timedelta(days=days)).isoformat()
+    for fn in sorted(os.listdir(DATA), reverse=True):
+        m = re.fullmatch(r"(\d{4}-\d{2}-\d{2})\.json", fn)
+        if not m or m.group(1) < lo:
+            continue
+        try:
+            d = json.load(open(os.path.join(DATA, fn)))
+        except Exception:
+            continue
+        for x in (d.get("call") or []) + (d.get("blank") or []) + (d.get("politics") or []):
+            if x.get("real"):
+                t = (x.get("h") or (x.get("h2") or "").replace("[]", (x.get("ans") or ["…"])[0])).replace("{}", x.get("place") or "?")
+                out.append(t[:140] + (" (" + x["place"] + ")" if x.get("place") and x.get("h2") and not x.get("h") else ""))
+    return out[:limit]
+
+
 def prior_stories(day, days=120):
     """(city, words) for every real story shown on earlier days, read from the saved day files,
     so the same story can't come back through a different outlet's link."""
@@ -598,7 +620,7 @@ def prior_stories(day, days=120):
     lo = (dt.date.fromisoformat(day) - dt.timedelta(days=days)).isoformat()
     for fn in os.listdir(DATA):
         m = re.fullmatch(r"(\d{4}-\d{2}-\d{2})\.json", fn)
-        if not m or m.group(1) == day or m.group(1) < lo:
+        if not m or m.group(1) < lo:          # today's own earlier set counts too: players may have played it
             continue
         try:
             d = json.load(open(os.path.join(DATA, fn)))
@@ -620,14 +642,26 @@ def seen_before(r, prior):
         if not pw:
             continue
         j = len(w & pw) / len(w | pw)
-        if j >= 0.5 or (city and city == pc and j >= 0.25):
+        if j >= 0.45 or (city and city == pc and j >= 0.15):
             return True
     return False
+
+
+def proper_noun(word, text):
+    """True if `word` only ever appears capitalised mid-sentence in `text` (a name or brand, e.g. Maserati)."""
+    hits = [m for m in re.finditer(r"\b" + re.escape(word) + r"\b", text or "", re.I)]
+    if not hits:
+        return False
+    mid = [m for m in hits if m.start() > 0 and not re.search(r"[.!?:]\s*$", text[:m.start()])]
+    return bool(mid) and all(m.group(0)[0].isupper() for m in mid)
 
 
 def valid_blank(r):
     h2, ans = r.get("h2", ""), r.get("ans") or []
     if h2.count("[]") != 1 or not ans or not all(re.fullmatch(r"[a-z]+", a) for a in ans):
+        return False
+    if proper_noun(ans[0], r.get("h", "")) or proper_noun(ans[0], r.get("_title", "")):
+        print(f"  drop blank (answer '{ans[0]}' is a name or brand): {h2}", file=sys.stderr)
         return False
     low = h2.lower()
     return not any(re.search(r"\b" + a + r"\b", low) for a in ans)
@@ -666,7 +700,7 @@ def main():
             cands = screen(cands, os.environ.get("FF_SCREEN_MODEL", "claude-haiku-5-5"))
             add_text(cands)
             try:
-                picks = ask_claude(cands, model) or {}
+                picks = ask_claude(cands, model, avoid=recent_headlines(day)) or {}
             except SystemExit as e:
                 print(f"  editor call failed ({e}); relying on the bank", file=sys.stderr)
                 picks = {}
@@ -837,20 +871,29 @@ def main():
         try:
             pc = gather(now, used, POL_FEEDS, POL_MAX_AGE_DAYS)
             print(f"{len(pc)} politics candidates", file=sys.stderr)
-            if len(pc) >= 6:
+            if len(pc) < 6:
+                print("  politics: too few candidates; using the politics bank", file=sys.stderr)
+            else:
                 pc = pc[:60]
-                pol = ask_claude(pc, os.environ.get("FF_MODEL", "claude-sonnet-5-5"), POL_PROMPT)
+                pol = ask_claude(pc, os.environ.get("FF_MODEL", "claude-sonnet-5-5"), POL_PROMPT, avoid=recent_headlines(day))
                 pol["candidates"] = pc
         except SystemExit as e:
             print(f"  politics skipped: {e}", file=sys.stderr)
-    if pol:
+    pol = pol or {}
+    bank_pol = [r for r in bank.get("pol", []) if r.get("banked", "") >= oldest and r.get("banked") != day
+                and r.get("src") not in used and not valid_real(r) and not seen_before(r, prior)]
+    bank_polfake = [f for f in bank.get("polfake", []) if f.get("banked", "") >= oldest and f.get("banked") != day and valid_fake(f)]
+    keep_pol, keep_polfake = bank_pol, bank_polfake
+    if True:
         pcands = pol.get("candidates", [])
         preal = []
         for r in pol.get("real", []):
             c = pcands[r["id"]] if isinstance(r.get("id"), int) and r["id"] < len(pcands) else r
             r["src"] = r.get("src") or c.get("link", "")
             r["published"] = r.get("published") or c.get("published", "")
-            if valid_real(r):
+            why = valid_real(r)
+            if why:
+                print(f"  drop politics ({why}): {r.get('h')}", file=sys.stderr)
                 continue
             if not args.no_geocode and r.get("geocode"):
                 gg = geocode(r["geocode"])
@@ -862,21 +905,30 @@ def main():
                     if near:
                         r["lat"], r["lng"] = gg
             preal.append(r)
-        pfake = [f for f in pol.get("fake", []) if valid_fake(f)]
+        pfake = [dict(f, banked=day) for f in pol.get("fake", []) if valid_fake(f)] + bank_polfake
+        for r in preal:
+            r["banked"] = day
         seen_place, uniq_pol = set(), []
-        for r in preal:                                # one story per place: no two takes on the same dog-mayor race
+        for r in preal + bank_pol:                     # fresh first, then banked politics stories                                # one story per place: no two takes on the same dog-mayor race
             key = (r.get("place") or "").split(",")[0].strip().lower()
             if key and key in seen_place:
                 continue
             seen_place.add(key)
             uniq_pol.append(r)
-        preal = [r for r in uniq_pol if not seen_before(r, prior)][:N_POL_REAL]
-        if len(preal) >= 4 and len(pfake) >= N_POL_FAKE:
+        pool_pol = [r for r in uniq_pol if not seen_before(r, prior)]
+        preal = pool_pol[:N_POL_REAL]
+        keep_pol, keep_polfake = pool_pol[N_POL_REAL:], pfake[N_POL_FAKE:]
+        print(f"  politics: {len(preal)} real (from {len(pol.get('real', []))} picked + {len(bank_pol)} banked), {len(pfake)} fakes", file=sys.stderr)
+        if len(preal) < 4 or len(pfake) < N_POL_FAKE:
+            print("  politics: not enough for a round today; Politics mode falls back", file=sys.stderr)
+            keep_pol, keep_polfake = pool_pol, pfake
+        else:
             items = [dict(real_call(r), cat="pol") for r in preal] + \
                     [{"real": False, "h": f["h"], "cat": "pol"} for f in pfake[:N_POL_FAKE]]
             rng.shuffle(items)
             result["politics"] = items
             call_real = call_real + preal
+    pol_src = {r["src"] for r in preal} if result.get("politics") else set()
 
     for name in (f"{day}.json", "latest.json"):
         with open(os.path.join(DATA, name), "w") as f:
@@ -893,7 +945,9 @@ def main():
     used_fake = {f["h"] for f in fakes[:N_CALL_FAKE]}
     keep_fake = [f for f in fakes if f["h"] not in used_fake]
     with open(bank_path, "w") as f:
-        json.dump({"real": keep_real[:BANK_MAX], "fake": keep_fake[:30]}, f, ensure_ascii=False, indent=1)
+        json.dump({"real": keep_real[:BANK_MAX], "fake": keep_fake[:30],
+                   "pol": [r for r in keep_pol if r.get("src") not in pol_src][:60], "polfake": keep_polfake[:20]},
+                  f, ensure_ascii=False, indent=1)
     print(f"  bank now holds {min(len(keep_real), BANK_MAX)} stories and {min(len(keep_fake), 30)} fakes", file=sys.stderr)
 
     # Practice archive: every story the daily modes have shown, from any day, so Practice has a deep pool.
