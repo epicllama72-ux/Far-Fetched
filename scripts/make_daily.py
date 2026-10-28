@@ -93,8 +93,8 @@ POL_FEEDS = [  # Google News searches for odd local-government and election stor
 ]
 MAX_AGE_DAYS = 30
 POL_MAX_AGE_DAYS = 45
-N_POL_REAL, N_POL_FAKE = 8, 2   # Politics: also exactly 2 fakes
-N_CALL_REAL, N_CALL_FAKE, N_BLANK = 8, 2, 10   # Real or Fake always has exactly 2 fakes
+N_POL_REAL, N_POL_FAKE = 5, 2   # Politics: 5 true + exactly 2 fakes
+N_CALL_REAL, N_CALL_FAKE, N_BLANK = 5, 2, 7   # Daily Dig: 5 true + exactly 2 fakes
 SCREEN_TOP = 50
 SCREEN_PER_COUNTRY = 7  # at most this many shortlisted stories from one country
 # how many screened candidates get their article fetched and go to the editor
@@ -932,8 +932,8 @@ def main():
         if len(call_pick) == N_CALL_REAL:
             break
         print(f"  only {len(call_pick)} stories fit the country spread (max {cap}/country, {anglo_cap} English-speaking); loosening", file=sys.stderr)
-    # at least 7 of the 8 true stories need a fair regional clue and a sensible pin: swap weak picks for stronger ones from the pool
-    MIN_STRONG = 7
+    # at least 4 of the 5 true stories need a fair regional clue and a sensible pin: swap weak picks for stronger ones from the pool
+    MIN_STRONG = N_CALL_REAL - 1
     strong_n = lambda lst: sum(1 for r in lst if eff_strength(r) >= 2 and map_score(r) >= 2)
     if len(call_pick) == N_CALL_REAL and strong_n(call_pick) < MIN_STRONG:
         weak = sorted([r for r in call_pick if eff_strength(r) < 2 or map_score(r) < 2], key=merit)
