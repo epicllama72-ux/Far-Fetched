@@ -1723,12 +1723,14 @@ const Scene = (function(){
     }
     if(vis(-70,30)){
       // night window with a city skyline: big, and set low in the wall
-      { const GX=Math.max(-56,Math.min(-48,4-cx)), GY=-46, GW=30, GH=38, GB=GY+GH;
+      { const sc=deskView?1.45:1, Z=v=>Math.round(v*sc);        // big screens get a bigger window, same bottom edge
+        const GW=Z(30), GH=Z(38), GB=-8, GY=GB-GH, GX=deskView?-26-GW:Math.max(-56,Math.min(-48,4-cx));
         RO(GX-2,GY-2,GW+4,GH+4,'#6b4430');
         for(let r=0;r<GH;r++) R(GX,GY+r,GW,1,mix('#14203f','#3c4f86',r/GH));
-        [[3,3],[11,9],[19,2],[24,12],[8,18],[27,5]].forEach(([dx,dy],i)=>{ if((Math.floor(t*1.3+i*1.7))%5) R(GX+dx,GY+dy,1,1,'#e8eefc'); });
+        [[3,3],[11,9],[19,2],[24,12],[8,18],[27,5]].forEach(([dx,dy],i)=>{ if((Math.floor(t*1.3+i*1.7))%5) R(GX+Z(dx),GY+Z(dy),1,1,'#e8eefc'); });
         { const mx=GX+GW-9, my=GY+3; R(mx,my,4,4,'#f4efd0'); R(mx-1,my+1,1,2,'#f4efd0'); R(mx+1,my-1,2,1,'#f4efd0'); R(mx+2,my+1,1,1,'#14203f'); }
         [[0,-17,6,17],[5,-23,5,23],[10,-14,7,14],[16,-20,6,20],[22,-12,5,12],[26,-16,4,16]].forEach(([dx,dy,w,h],k)=>{
+          dx=Z(dx); dy=Z(dy); w=Z(w); h=Z(h);
           const x=GX+dx, y=GB+dy;
           R(x,y,w,h,'#0d1426');
           for(let yy=y+2;yy<y+h-1;yy+=3) for(let xx=x+1;xx<x+w-1;xx+=2) if(((xx*7+yy*13+k+Math.floor(t*0.4))%9)<3) R(xx,yy,1,1,'#ffd77a');
