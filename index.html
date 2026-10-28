@@ -1331,10 +1331,13 @@ const COUNTRY_LABELS=[
 ['Morocco',31.8,-6.9],['Algeria',28.2,2.6],['Tunisia',34,9.5],['Libya',27,17.2],['Egypt',26.5,29.8],['Mauritania',20.3,-10.5],['Mali',17.4,-3.5],['Niger',17.4,9.4],['Chad',15.4,18.7],['Sudan',15.8,29.9],['Senegal',14.5,-14.5],['Guinea',10.9,-10.9],['Ivory Coast',7.6,-5.5],['Ghana',7.9,-1.2],['Nigeria',9.6,8.1],['Cameroon',5.7,12.7],['Ethiopia',8.6,39.6],['Somalia',5.7,46.2],['Kenya',0.5,37.9],['Uganda',1.4,32.4],['Tanzania',-6.3,34.9],['DR Congo',-2.9,23.6],['Angola',-12.3,17.5],['Zambia',-13.4,27.8],['Zimbabwe',-19,29.9],['Mozambique',-17.3,35.5],['Namibia',-22.1,17.2],['Botswana',-22.3,24.4],['South Africa',-29,24.7],['Madagascar',-19.4,46.7],
 ['Australia',-25.7,134],['New Zealand',-41.5,172.5],['Papua New Guinea',-6.5,145]];
 const WORLDS=[-360,0,360];
-function shiftFC(fc,dx){
-  if(!dx) return fc;
+function shiftFC(g,dx){   // shift any GeoJSON (collection, feature or bare geometry) sideways by dx degrees
+  if(!dx || !g) return g;
   const sh=c=>typeof c[0]==='number' ? [c[0]+dx,c[1]] : c.map(sh);
-  return {type:'FeatureCollection', features:fc.features.map(f=>({type:'Feature',properties:f.properties,geometry:{type:f.geometry.type,coordinates:sh(f.geometry.coordinates)}}))};
+  const geom=x=>!x ? x : x.type==='GeometryCollection' ? {type:x.type,geometries:x.geometries.map(geom)} : {type:x.type,coordinates:sh(x.coordinates)};
+  if(g.type==='FeatureCollection') return {type:g.type,features:g.features.map(f=>shiftFC(f,dx))};
+  if(g.type==='Feature') return {type:'Feature',properties:g.properties,geometry:geom(g.geometry)};
+  return geom(g);
 }
 function pinPoints(d){return Math.round(PIN_PTS*Math.exp(-Math.max(0,d-75)/2600));}  // ≤75 km 400 · 300 km 367 · 500 km 340 · 1000 km 280 · 2000 km 191 · 5000 km 60
 /* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
@@ -2543,7 +2546,7 @@ function openMap(){
         L.geoJSON(shiftFC(w.countries,dx),{style:{color:'#7f90b4',weight:1,fillColor:'#2c3850',fillOpacity:1},interactive:false}).addTo(map).bringToBack();
         L.geoJSON(shiftFC(w.states,dx),{style:{color:'#5a6a8c',weight:0.7,fill:false,dashArray:'2 2'},interactive:false}).addTo(map);
       });
-    }).catch(()=>{});
+    }).catch(e=>{ try{ console.warn('map outlines failed to load',e); }catch(_){} });
     layer = L.layerGroup().addTo(map);
     // faint country names, shown only once you have zoomed in
     const names=L.layerGroup();
