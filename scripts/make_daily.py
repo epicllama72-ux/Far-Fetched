@@ -204,10 +204,10 @@ Below are candidate news stories from the past month (JSON). Some include "text"
    - "theme": one lowercase word for the topic (e.g. "lottery", "escaped-animal", "record"). Never pick two stories with the same theme.
    Keep the source's own units and currency; NEVER convert them (a "4.7 miles" story from South Africa must read in kilometres if the source said kilometres), because units are clues.
 
-2) "fake": write 6 invented headlines in exactly the same style, each with {} for the redacted place. Like the real ones, give each fake implicit regional clues a player could use (a local animal, climate, custom or unit) without naming the place. They should pass at first glance (specific numbers, ordinary local institutions, plausible animals and objects) but be SLIGHTLY easier to spot than the real ones: give each one small tell, and VARY the kind of tell across the six: an over-tidy cause and effect, an official reaction that is a bit too witty, a detail slightly wrong for the region, an unlikely coincidence, a punchline-like flourish. NEVER use the word "exactly", round numbers (100, 500, 1,000...) or "to the second" - players learn those tells within a week; use ordinary specific numbers like 37 or 1,260. Make the fakes as odd as the real stories, not odder: the real stories are routine local news with one strange twist, so the fakes must not be the only headlines that sound like jokes. Never cartoonish. Not about real people, and not resembling any candidate story. Strange non-violent crime (dumb criminals, bizarre thefts) is fine for fakes too. Do not write about death, injury, violence or tragedy. Give each as {"h": "...", "tell": "one sentence of at most 18 words for the PLAYER explaining why it should have smelled fake, e.g. 'councils fine overgrown hedges, not ones that look too lifelike'", "obvious": 1-5} where obvious rates how easy it is to spot as invented (aim for 2 or 3: slightly easier to spot than a real story, never a giveaway).
+2) "fake": write 8 invented headlines in exactly the same style, each with {} for the redacted place. Like the real ones, give each fake implicit regional clues a player could use (a local animal, climate, custom or unit) without naming the place. They should pass at first glance (specific numbers, ordinary local institutions, plausible animals and objects) but be SLIGHTLY easier to spot than the real ones: give each one small tell, and VARY the kind of tell: an over-tidy cause and effect, a detail slightly wrong for the region, an unlikely coincidence, a plausible-sounding but slightly off local rule. NO quotes from officials or spokespeople, no puns, no punchlines - those are tells players learn fast. Keep each fake at most 95 characters (no longer than a typical real headline), start each one differently (never two starting with the same two words, never "Council in"), and give each a different topic from each other and from the real picks (if a real story is about a kangaroo, no fake about kangaroos, wallabies or koalas). NEVER use the word "exactly", round numbers (100, 500, 1,000...) or "to the second" - players learn those tells within a week; use ordinary specific numbers like 37 or 1,260. Make the fakes as odd as the real stories, not odder: the real stories are routine local news with one strange twist, so the fakes must not be the only headlines that sound like jokes. Never cartoonish. Not about real people, and not resembling any candidate story. Strange non-violent crime (dumb criminals, bizarre thefts) is fine for fakes too. Do not write about death, injury, violence or tragedy. Give each as {"h": "...", "tell": "one sentence of at most 18 words for the PLAYER explaining why it should have smelled fake, e.g. 'councils fine overgrown hedges, not ones that look too lifelike'", "obvious": 1-5, "theme": "one lowercase word for the topic, same vocabulary as the real picks' theme"} where obvious rates how easy it is to spot as invented (aim for 2 or 3: slightly easier to spot than a real story, never a giveaway).
 
 Output format:
-{"real":[{"id":0,"h":"...","h2":"...","ans":["..."],"place":"...","geocode":"...","lat":0,"lng":0,"country":"...","cc":"..","clue":"...","clue_strength":0,"unbelievable":1,"theme":"..."}], "fake":[{"h":"...","tell":"...","obvious":3}]}
+{"real":[{"id":0,"h":"...","h2":"...","ans":["..."],"place":"...","geocode":"...","lat":0,"lng":0,"country":"...","cc":"..","clue":"...","clue_strength":0,"unbelievable":1,"theme":"..."}], "fake":[{"h":"...","tell":"...","obvious":3,"theme":"..."}]}
 
 Candidates:
 """
@@ -219,7 +219,7 @@ Below are candidate stories (JSON). Reply with ONE JSON object only.
 
 1) "real": pick up to 8 stories about hard-to-believe POLITICAL or GOVERNMENT happenings anywhere in the world: odd election results and tiebreaks, animal or joke candidates, strange council votes, unusual laws, quirky parliamentary moments. Keep it light and strictly non-partisan. Never pick stories about violence, death, scandals, allegations, crimes, wars, protests, or anything that mocks or praises a party, ideology or named politician. Skip BORING ones: every pick needs a real punchline or a ridiculous, Idiocracy-style detail (a plain tied vote or a routine procedural story is not enough), and pick at most ONE tie or tiebreak story. Never pick two stories about the same event or the same place. Spread picks around the world, at most 3 from one country. Prefer the hardest-to-believe ones whose details hint at the region (local customs, institutions, offices, voting rules) so a player can deduce where it happened. Each must be tied to one specific place. For each give "id", "h" (wire-style headline, max 100 chars, only facts from the candidate, the place replaced by the literal token {} exactly once, no other location clues, and no names of real politicians or parties), "place", "geocode", "lat", "lng".
 
-2) "fake": write 6 invented headlines in the same style, each with {} for the place, about councils, parliaments, mayors, elections or laws. Each must pass at first glance but carry one small tell, varied across the six (over-tidy cause and effect, a too-witty official reaction, a detail slightly wrong for the region). Never use the word "exactly" or round numbers. NEVER name or hint at a real person, party, politician or real event, and never take a side. Give each as {"h": "..."}.
+2) "fake": write 6 invented headlines in the same style, each with {} for the place, about councils, parliaments, mayors, elections or laws. Each must pass at first glance but carry one small tell, varied across the six (over-tidy cause and effect, a detail slightly wrong for the region, an unlikely coincidence). No quotes from officials, no puns or punchlines, at most 95 characters, each starting differently (never "Council in"). Never use the word "exactly" or round numbers. NEVER name or hint at a real person, party, politician or real event, and never take a side. Give each as {"h": "..."}.
 
 Output format:
 {"real":[{"id":0,"h":"...","place":"...","geocode":"...","lat":0,"lng":0}], "fake":[{"h":"..."}]}
@@ -656,6 +656,54 @@ def proper_noun(word, text):
     return bool(mid) and all(m.group(0)[0].isupper() for m in mid)
 
 
+def opener(h):
+    w = [x for x in re.findall(r"[a-z']+", (h or "").lower())][:2]
+    return " ".join(w)
+
+
+QUOTE_TELL = re.compile(r"(spokes|official|mayor|council|police|sheriff|says|said|told)[^.]{0,40}[:,;]\s*['\"‘“]", re.I)
+
+
+def recent_fake_openers(day, days=14):
+    out, lo = set(), (dt.date.fromisoformat(day) - dt.timedelta(days=days)).isoformat()
+    for fn in os.listdir(DATA):
+        m = re.fullmatch(r"(\d{4}-\d{2}-\d{2})\.json", fn)
+        if not m or m.group(1) < lo or m.group(1) == day:
+            continue
+        try:
+            d = json.load(open(os.path.join(DATA, fn)))
+        except Exception:
+            continue
+        for x in (d.get("call") or []) + (d.get("politics") or []):
+            if not x.get("real"):
+                out.add(opener(x.get("h")))
+    return out
+
+
+def pick_fakes(fakes, reals, day, n, rank):
+    """Choose n fakes without the tells regulars learn: longer than the real headlines, a quoted official,
+    an opening players have seen recently, or a topic that clashes with another story today."""
+    max_len = max([len(r.get("h", "")) for r in reals] + [60])
+    real_open = {opener(r.get("h")) for r in reals}
+    real_theme = {(r.get("theme") or "").lower() for r in reals} - {""}
+    recent = recent_fake_openers(day)
+    ordered = sorted(fakes, key=rank)
+    for strict in (3, 2, 1, 0):          # loosen the softer rules only if there aren't enough fakes
+        chosen, opens, themes = [], set(), set()
+        for f in ordered:
+            h, op, th = f.get("h", ""), opener(f.get("h")), (f.get("theme") or "").lower()
+            if len(h) > max(max_len, 70) or QUOTE_TELL.search(h) or op == "council in":
+                continue
+            if op in opens or (strict >= 1 and op in real_open) or (strict >= 3 and op in recent):
+                continue
+            if th and (th in themes or (strict >= 2 and th in real_theme)):
+                continue
+            chosen.append(f); opens.add(op); themes.add(th)
+            if len(chosen) == n:
+                return chosen
+    return chosen
+
+
 def valid_blank(r):
     h2, ans = r.get("h2", ""), r.get("ans") or []
     if h2.count("[]") != 1 or not ans or not all(re.fullmatch(r"[a-z]+", a) for a in ans):
@@ -858,8 +906,12 @@ def main():
             return abs(float(f.get("obvious", 2.5)) - 2.5)      # aim for "slightly easier than the real ones"
         except Exception:
             return 1.0
-    fakes = sorted(fakes, key=lambda f: fake_rank(f) + (0 if f.get("banked") == day else 0.3))   # fresh first, all else equal
-    call = [real_call(r) for r in call_real] + [{"real": False, "h": f["h"], "tell": (f.get("tell") or "")[:80]} for f in fakes[:N_CALL_FAKE]]
+    chosen_fakes = pick_fakes(fakes, call_real, day, N_CALL_FAKE, lambda f: fake_rank(f) + (0 if f.get("banked") == day else 0.3))
+    if len(chosen_fakes) < N_CALL_FAKE:
+        print(f"  only {len(chosen_fakes)} fakes pass the tell checks; keeping yesterday's set.", file=sys.stderr)
+        sys.exit(0)
+    fakes = chosen_fakes + [f for f in fakes if f not in chosen_fakes]       # the rest go back to the bank
+    call = [real_call(r) for r in call_real] + [{"real": False, "h": f["h"], "tell": (f.get("tell") or "")[:160]} for f in fakes[:N_CALL_FAKE]]
     rng.shuffle(call)
     rng.shuffle(blank)
     result = {"date": day, "generated": now.isoformat(timespec="seconds"),
@@ -906,6 +958,8 @@ def main():
                         r["lat"], r["lng"] = gg
             preal.append(r)
         pfake = [dict(f, banked=day) for f in pol.get("fake", []) if valid_fake(f)] + bank_polfake
+        pchosen = pick_fakes(pfake, [r for r in pol.get("real", []) if r.get("h")], day, N_POL_FAKE, lambda f: 0 if f.get("banked") == day else 1)
+        pfake = pchosen + [f for f in pfake if f not in pchosen]
         for r in preal:
             r["banked"] = day
         seen_place, uniq_pol = set(), []
@@ -980,6 +1034,21 @@ def main():
     with open(arch_path, "w") as f:
         json.dump(arch, f, ensure_ascii=False, separators=(",", ":"))
     print(f"  practice archive: {len(arch['real'])} real, {len(arch['fake'])} fake", file=sys.stderr)
+
+    # Back issues: an index of every edition on file, newest first
+    issues = []
+    for fn in sorted(os.listdir(DATA), reverse=True):
+        m = re.fullmatch(r"(\d{4}-\d{2}-\d{2})\.json", fn)
+        if not m:
+            continue
+        try:
+            d = json.load(open(os.path.join(DATA, fn)))
+        except Exception:
+            continue
+        issues.append({"date": m.group(1), "call": len(d.get("call") or []), "blank": len(d.get("blank") or []),
+                       "politics": len(d.get("politics") or [])})
+    with open(os.path.join(DATA, "issues.json"), "w") as f:
+        json.dump(issues, f, separators=(",", ":"))
     cutoff = (dt.date.fromisoformat(day) - dt.timedelta(days=120)).isoformat()
     history = {k: v for k, v in history.items() if k >= cutoff}
     with open(hist_path, "w") as f:
