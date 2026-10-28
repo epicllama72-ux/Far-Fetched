@@ -1568,11 +1568,18 @@ const Scene = (function(){
     focus+=(focusT-focus)*(1-Math.exp(-dt*3));
     const panning=t-panT<2.5;
     if(recap){
-      // the recap: a slow scroll from the top of the room down to where the jaw ended up
-      const p=clamp((t-recap.t0)/recap.dur,0,1), e=0.5*p+0.5*p*p*(3-2*p);
-      const to=clamp(Math.max(13+target()+9,recap.maxLy+Math.ceil(70/PX))-focus*H,camMin,camMax);
-      camY=camMin+(to-camMin)*e;
-      if(p>=1 && !recap.finished){ recap.finished=true; const d=recap.done; if(d) setTimeout(d,700); }
+      // the recap: first a quick accelerating scroll back up to the top of the room, then a slow scroll
+      // down to where the jaw ended up that picks up a little speed as it goes
+      const sstep=x=>x*x*(3-2*x);
+      if(t<recap.t0){
+        const r=clamp((t-recap.tR)/Math.max(0.01,recap.t0-recap.tR),0,1);
+        camY=recap.from+(camMin-recap.from)*sstep(Math.pow(r,1.5));
+      } else {
+        const p=clamp((t-recap.t0)/recap.dur,0,1), e=sstep(Math.pow(p,1.35));
+        const to=clamp(Math.max(13+target()+9,recap.maxLy+Math.ceil(70/PX))-focus*H,camMin,camMax);
+        camY=camMin+(to-camMin)*e;
+      }
+      if(t>=recap.t0+recap.dur && !recap.finished){ recap.finished=true; const d=recap.done; if(d) setTimeout(d,700); }
     } else camY+=(camFor()-camY)*(1-Math.exp(-dt*(panning?1.1:6)));
     const cy=chinY();
     // breaking through: debris, dust, rumble
@@ -2020,7 +2027,7 @@ const Scene = (function(){
       const half=11*PX, cxp=cx*PX, vw=window.innerWidth;
       mks.forEach(m=>{
         const sy=m.wy-camI, ly=m.ly-camI, py=(ly+0.5)*PX, dy=(sy+0.5)*PX;
-        if(!m.on && sy<H*0.86){ m.on=true; m.lab.classList.add('on'); m.dot.classList.add('on'); if(markCb) markCb(m); }
+        if(!m.on && sy<H*0.86 && (!recap || t>=recap.t0)){ m.on=true; m.lab.classList.add('on'); m.dot.classList.add('on'); if(markCb) markCb(m); }
         const vis=m.on && py>safeTop+8 && py<H*PX-30;
         m.lab.style.display=vis?'block':'none';
         m.dot.style.display=(m.on && dy>safeTop && dy<H*PX)?'block':'none';
@@ -2111,7 +2118,9 @@ const Scene = (function(){
       const ly=Math.max(m.wy,lastB[side]+lastH[side]/2+hw/2+Math.ceil(30/PX)); lastB[side]=ly; lastH[side]=hw;
       mks.push({wy:m.wy,ly,side,lab,dot,on:false,maxW});
     });
-    camY=camMin; recap={t0:t,dur,done,finished:false,maxLy:Math.max.apply(null,mks.map(m=>m.ly))};
+    const from=camY, rise=Math.abs(from-camMin)<4 ? 0 : clamp(0.6+Math.abs(from-camMin)/H*0.35,0.7,1.4);
+    if(!rise) camY=camMin;
+    recap={tR:t,t0:t+rise,from,dur,done,finished:false,maxLy:Math.max.apply(null,mks.map(m=>m.ly))};
   }
   function onMark(cb){ markCb=cb; }
   function popPts(n){
@@ -3421,7 +3430,7 @@ function startBlankRound(wall){
   $('headline').innerHTML=blankHTML(st,false);
   $('blankLive').hidden=false; setBar('guess');
   $('guessList').innerHTML=''; $('guessMsg').textContent='';
-  const inp=$('guessIn'); inp.value=''; inp.focus();
+  const inp=$('guessIn'); inp.value='';
   updateTimer();
   TIMER=setInterval(updateTimer,50);
   aim();
