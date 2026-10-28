@@ -114,7 +114,7 @@ def clean_real(r, keep):
 # ---------------------------------------------------------------- historical stories for Practice
 PROPOSE_PROMPT = """You are helping the editor of "Far-Fetched", a guessing game built on weird-but-true stories: players guess whether a headline is real, then deduce where in the world it happened.
 
-List {n} REAL events from {y0} to {y1} that would make great stories for the game. Each must have its own English Wikipedia article (give the exact article title). Choose events that are absurd, funny, baffling or delightful but TRUE and well documented; light-hearted and non-violent. Never pick wars, massacres, disasters with deaths, crimes against people, abuse, or anything tragic. Each must be tied to ONE specific town, city or county (not a country), and its details should let a well-read player deduce the region (local wildlife, climate, currency, customs, institutions, industries). Spread them across the world and across the decades (at most 3 from any one country, at least half from outside the US, UK, Canada, Australia, New Zealand and Ireland, no more than 8 from any one decade) and across topics (animals, food, sport, science mishaps, odd laws, mix-ups, inventions, feuds, records). Include about {npol} that are odd POLITICAL or government happenings (strange elections, tiebreaks, joke or animal candidates, unusual laws or votes), strictly non-partisan, and mark those with "pol": true.
+List {n} REAL events from {y0} to {y1} that would make great stories for the game. Each must have its own English Wikipedia article (give the exact article title). Choose events that are absurd, funny, baffling or delightful but TRUE and well documented; light-hearted and non-violent. Never pick wars, massacres, disasters with deaths, crimes against people, abuse, or anything tragic. Each must be tied to ONE specific town, city or county (not a country), and its details should let a well-read player deduce the region (local wildlife, climate, currency, customs, institutions, industries). Spread them across the world and across the decades (at most 3 from any one country and at least half from outside the US, UK, Canada, Australia, New Zealand and Ireland) and across topics (animals, food, sport, science mishaps, odd laws, mix-ups, inventions, feuds, records). Include about {npol} that are odd POLITICAL or government happenings (strange elections, tiebreaks, joke or animal candidates, unusual laws or votes), strictly non-partisan, and mark those with "pol": true.
 
 Do NOT include any of these (already used):
 {avoid}
@@ -192,17 +192,28 @@ def source_practice(n, now, day, geocode):
     used_titles = sorted({urllib.parse.unquote(x["src"].rsplit("/", 1)[-1]).replace("_", " ") for x in arch["real"] if "wikipedia.org" in (x.get("src") or "")})
     model = os.environ.get("FF_MODEL", "claude-sonnet-5-5")
     ask = min(300, int(n * 3))      # the editor keeps only a fraction, so propose plenty
-    log(f"Practice: asking for {ask} historical events…")
-    res = md.call_claude(PROPOSE_PROMPT.format(n=ask, y0=HIST_FROM, y1=dt.date.today().year, npol=max(4, ask // 6),
-                                                avoid="\n".join("- " + t for t in used_titles[:400]) or "(none yet)"),
-                         model, max_tokens=12000, keys=["s"])
-    props = [p for p in (res or {}).get("s", []) if isinstance(p, dict) and p.get("title")]
+    # One call can only list so many titles before it hits the output limit, so go era by era, a few dozen at a time.
+    this_year = dt.date.today().year
+    eras = [(1826, 1860), (1861, 1890), (1891, 1915), (1916, 1940), (1941, 1960), (1961, 1980), (1981, 2000), (2001, this_year)]
+    per_era = -(-ask // len(eras))
+    log(f"Practice: asking for about {ask} historical events across {len(eras)} eras…")
     seen, titles, meta = set(), [], {}
-    for p in props:
-        t = str(p["title"]).strip()
-        if t.lower() in seen or t in used_titles:
-            continue
-        seen.add(t.lower()); titles.append(t); meta[t] = p
+    for y0, y1 in eras:
+        avoid = used_titles[:300] + titles[-200:]
+        try:
+            res = md.call_claude(PROPOSE_PROMPT.format(n=per_era, y0=y0, y1=y1, npol=max(2, per_era // 6),
+                                                       avoid="\n".join("- " + t for t in avoid) or "(none yet)"),
+                                 model, max_tokens=6000, keys=["s"], fatal=False)
+        except SystemExit:
+            res = None
+        for p in (res or {}).get("s", []):
+            if not isinstance(p, dict) or not p.get("title"):
+                continue
+            t = str(p["title"]).strip()
+            if t.lower() in seen or t in used_titles:
+                continue
+            seen.add(t.lower()); titles.append(t); meta[t] = p
+        log(f"  {y0}-{y1}: {len(titles)} titles so far")
     log(f"  {len(titles)} proposed titles; checking Wikipedia…")
     wiki = wiki_lookup(titles)
     log(f"  {len(wiki)} resolve to real articles")
