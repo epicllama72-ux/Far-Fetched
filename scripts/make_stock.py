@@ -100,6 +100,13 @@ def ask_in_chunks(cands, model, make_prompt, per_chunk, size, avoid=None):
     return pairs, fakes
 
 
+def quality_gate(r):
+    """Reason to leave a story out of Practice or the stock, or None. Stricter than the old quota-driven picking."""
+    if not md.fit_to_map(r) or md.eff_strength(r) < 2:
+        return f"hard to map or no fair clue (mappable {md.map_score(r)}, clue {md.eff_strength(r)})"
+    return None
+
+
 def clean_real(r, keep):
     return {k: r[k] for k in keep if r.get(k) not in (None, "", [])}
 
@@ -149,6 +156,19 @@ def wiki_lookup(titles):
     return out
 
 
+LOOSE_QUOTA = ("You MUST return at least 14; if clue-rich stories run short, fill the rest with the most surprising remaining ones "
+               "(low clue_strength is fine), never return fewer than 14 (rank by clue_strength plus unbelievable).")
+STRICT = ("Be SELECTIVE: return only stories that are genuinely funny or astonishing, make complete sense from the headline alone, can be pinned to one "
+          "specific place and carry a fair regional clue. Returning only a few stories, or none, is better than padding with weak ones (rank by mappable, clue_strength and unbelievable).")
+
+
+def strict_prompt(p, n):
+    """The daily editor prompt, set to pick up to n and to prefer fewer, better stories over a quota."""
+    a = "pick 20 of the best stories for the game, best first. " + LOOSE_QUOTA
+    assert a in p, "daily prompt changed; update make_stock.py"
+    return p.replace(a, f"pick up to {n} of the best stories for the game, best first. " + STRICT, 1)
+
+
 def hist_prompt(n, nfake):
     """The daily editor prompt, adapted for historical Wikipedia summaries."""
     p = md.PROMPT
@@ -158,8 +178,7 @@ def hist_prompt(n, nfake):
         p = p.replace(a, b, 1)
     sub("Below are candidate news stories from the past month (JSON).",
         "Below are Wikipedia summaries of true historical events from the last 200 years (JSON); \"published\" holds the year. Write every field as for a news story, in English.")
-    sub("pick 20 of the best stories for the game, best first. You MUST return at least 14;",
-        f"pick up to {n} of the best stories for the game, best first. You MUST return at least {max(1, n * 2 // 3)};")
+    p = strict_prompt(p, n)
     sub("write 8 invented headlines", f"write {nfake} invented headlines")
     sub('"place": display name like "Appleton, Wisconsin" or "Mykolaiv, Ukraine".',
         '"place": display name like "Campion, Western Australia (1932)": the specific place, then the YEAR in parentheses. Never just a country.')
@@ -172,7 +191,7 @@ def source_practice(n, now, day, geocode):
     have = {x.get("src") or x.get("h") or x.get("h2") for x in arch["real"]} | {x.get("h") for x in arch["fake"]}
     used_titles = sorted({urllib.parse.unquote(x["src"].rsplit("/", 1)[-1]).replace("_", " ") for x in arch["real"] if "wikipedia.org" in (x.get("src") or "")})
     model = os.environ.get("FF_MODEL", "claude-sonnet-5-5")
-    ask = int(n * 1.8)
+    ask = min(300, int(n * 3))      # the editor keeps only a fraction, so propose plenty
     log(f"Practice: asking for {ask} historical events…")
     res = md.call_claude(PROPOSE_PROMPT.format(n=ask, y0=HIST_FROM, y1=dt.date.today().year, npol=max(4, ask // 6),
                                                 avoid="\n".join("- " + t for t in used_titles[:400]) or "(none yet)"),
@@ -205,8 +224,7 @@ def source_practice(n, now, day, geocode):
         log("  too few grounded stories; nothing added to Practice")
         return 0
     cands = cands[:ask]
-    per = 14
-    pairs, fakes = ask_in_chunks(cands, model, lambda k: hist_prompt(k, 6), per, 24)
+    pairs, fakes = ask_in_chunks(cands, model, lambda k: hist_prompt(k, 4), 9, 24)
     prior = md.prior_stories(day, days=3650)
     good = []
     for r, c in pairs:
@@ -215,6 +233,7 @@ def source_practice(n, now, day, geocode):
         why = check_real(r, historical=True)
         if not why and not re.search(r"\(\s*\d{3,4}\s*\)\s*$", r.get("place", "")):
             r["place"] = f"{r.get('place', '').strip()} ({c['published']})"
+        why = why or quality_gate(r)
         if why or r["src"] in have:
             log(f"  drop ({why or 'already in Practice'}): {r.get('h')}")
             continue
@@ -223,10 +242,9 @@ def source_practice(n, now, day, geocode):
             continue
         good.append((r, c))
         prior.append(((r.get("place") or "").split(",")[0].strip().lower(), md.words((r.get("h") or "") + " " + " ".join(r.get("ans") or []))))
-    good = good[:n]
     reals = md.fact_check([r for r, _ in good], model)
     keep_ids = {id(r) for r in reals}
-    good = [(r, c) for r, c in good if id(r) in keep_ids]
+    good = sorted([(r, c) for r, c in good if id(r) in keep_ids], key=lambda rc: md.merit(rc[0]), reverse=True)[:n]    # the best n, not the first n
     vecs = {}
     if os.environ.get("GLOVE"):
         wanted = [a for r, _ in good for a in (r.get("ans") or [])]
@@ -339,14 +357,9 @@ def source_blank(n, now, day, geocode):
     random.Random(day + "blank").shuffle(cands)
     cands = md.screen(cands, os.environ.get("FF_SCREEN_MODEL", "claude-haiku-5-5"), top=min(90, max(40, n * 2)))
     md.add_text(cands)
-    prompt = md.PROMPT
-    for a, b in (("pick 20 of the best stories for the game, best first. You MUST return at least 14;",
-                  f"pick up to {n} of the best stories for the game, best first. You MUST return at least {max(1, n * 2 // 3)};"),
-                 ("write 8 invented headlines", "write 2 invented headlines")):
-        assert a in prompt, "daily prompt changed; update make_stock.py"
-        prompt = prompt.replace(a, b, 1)
+    prompt = md.PROMPT.replace("write 8 invented headlines", "write 2 invented headlines", 1)
     avoid = md.recent_headlines(day) + stock_headlines(stock)
-    pairs, _ = ask_in_chunks(cands, model, lambda k: prompt.replace(f"pick up to {n}", f"pick up to {k}").replace(f"at least {max(1, n * 2 // 3)};", f"at least {max(1, k * 2 // 3)};"), 14, 30, avoid)
+    pairs, _ = ask_in_chunks(cands, model, lambda k: strict_prompt(prompt, k), 8, 30, avoid)
     prior = md.prior_stories(day)
     seen_place = {(r.get("place") or "").split(",")[0].strip().lower() for r in stock.get("blank", [])}
     good = []
@@ -355,6 +368,7 @@ def source_blank(n, now, day, geocode):
         r["_title"], r["_summary"], r["_text"] = c["title"], c["summary"], c.get("text", "")
         why = check_real(r)
         key = (r.get("place") or "").split(",")[0].strip().lower()
+        why = why or quality_gate(r)
         if not why and not md.valid_blank(r):
             why = "bad hidden word"
         if not why and key in seen_place:
@@ -366,7 +380,7 @@ def source_blank(n, now, day, geocode):
             continue
         seen_place.add(key)
         good.append(r)
-    good = md.fact_check(good, model)[:n]
+    good = sorted(md.fact_check(good, model), key=md.merit, reverse=True)[:n]
     added = []
     for r in good:
         refine_coords(r, None, geocode)
