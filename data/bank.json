@@ -1,47 +1,68 @@
 {
  "real": [
   {
-   "id": 45,
-   "h": "40cm non-venomous snake under cabin carpet cancels regional flight, sparks 24-hour hunt in {}",
-   "h2": "40cm non-venomous [] under cabin carpet cancels regional flight, sparks 24-hour hunt in Fukuoka, Japan",
+   "id": 10,
+   "h": "Travel-centre giant settles suit over rival's cartoon moose facing right like its beaver, with chain in {}",
+   "h2": "Buc-ee's settles lawsuit with Ohio chain over cartoon [] mascot 'facing right' like its beaver",
    "ans": [
-    "snake",
-    "snakes"
+    "moose"
    ],
-   "place": "Fukuoka, Japan",
-   "geocode": "Fukuoka Airport, Fukuoka, Japan",
-   "lat": 33.586802,
-   "lng": 130.4473939,
-   "country": "Japan",
-   "cc": "JP",
-   "clue": "Prefectures and apologetic airline = Japan",
-   "clue_strength": 2,
-   "unbelievable": 3,
-   "theme": "flight",
-   "src": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQRkw4QnB4TXFsRHhGeW9TOE9EVjV3b0RqWmNyTWJuS2tLbTJPcElyd0Q5OGxhYlU2VjNKckRUSEdnV1RFV1RTY0hHdHA0QXhHcENyVnluMFNveWtPZ1RMek0yb1ZuRGtYRVgtaklhelBMa1ExbGh0SGZkbDZZZlYzQWVUUDJtTWZZOFJmMnZ0M28wWXBMQzlmeTd4QUjSAaIBQVVfeXFMTkl4ME9nRzZrY1ZJcTV3VjJsMGJWbjNjTDlpV1gtb1RVNGFOSXZLNjBKaUtJRjhCcUcxU1hOZ2VGdTBzZlZVZXd6aV9XVFR5WFhfR1M1UVhBSDZmOWw3b3pGb0dkV0ZfZ29tb3ZVcDlXUEdYaWhzYW1nRXNfb29BZFBoWmxCMEZHaEg5U2FST3NvUV9JcDhMa3hXeG1KbWh0dllB?oc=5",
-   "published": "2026-10-21",
+   "place": "Ohio, USA",
+   "geocode": "Ohio, USA",
+   "lat": 40.2253569,
+   "lng": -82.6881395,
+   "country": "United States",
+   "cc": "US",
+   "clue": "gas-station mascot trademark fight = USA",
+   "clue_strength": 1,
+   "unbelievable": 4,
+   "theme": "lawsuit",
+   "src": "https://www.the-independent.com/news/world/americas/bucees-lawsuit-ohio-gas-chain-cartoon-mascots-b3060008.html",
+   "published": "2026-10-02",
    "banked": "2026-10-28",
    "rules": 2
   },
   {
-   "id": 22,
-   "h": "Man lies down in front of car, hijacks it when driver steps out, crashes in police chase in {}",
-   "h2": "Man lies down in front of a [], steals it when driver steps out, crashes in police chase in Adana, Turkey",
+   "id": 27,
+   "h": "Crisis response team's vehicle stolen by the very person they were sent to help in {}",
+   "h2": "Crisis response team's [] stolen by the very person they were sent to help in Seattle, Washington",
    "ans": [
-    "car",
-    "cars"
+    "vehicle",
+    "vehicles"
+   ],
+   "place": "Seattle, Washington",
+   "geocode": "Greenwood, Seattle, Washington, USA",
+   "lat": 47.6909806,
+   "lng": -122.3548773,
+   "country": "United States",
+   "cc": "US",
+   "clue": "unarmed 911 responders = a progressive US city",
+   "clue_strength": 1,
+   "unbelievable": 3,
+   "theme": "theft",
+   "src": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE1xeEhiT1d3QWVrZXhBajd0MDZYdlZJcXotclRvbks3Tl9aenBid0stak5XdkZoaUxxYmlfbWN5bDVRdkI4aGhBRlJB?oc=5",
+   "published": "2026-10-23",
+   "banked": "2026-10-28",
+   "rules": 2
+  },
+  {
+   "id": 37,
+   "h": "Man lies down in front of car, then drives off in the vehicle when driver steps out; crashes fleeing police in {}",
+   "h2": "Man lies down in front of car, then steals the vehicle when the [] steps out; crashes fleeing police in Adana, Turkey",
+   "ans": [
+    "driver"
    ],
    "place": "Adana, Turkey",
-   "geocode": "Adana, Turkey",
-   "lat": 36.9863599,
-   "lng": 35.3252861,
+   "geocode": "Seyhan, Adana, Turkey",
+   "lat": 37.1024202,
+   "lng": 35.3061086,
    "country": "Turkey",
    "cc": "TR",
-   "clue": "Provincial plate 01 and Seyhan district = Adana, Turkey",
+   "clue": "a city district street with a Turkish-style plate = Turkey",
    "clue_strength": 1,
-   "unbelievable": 4,
+   "unbelievable": 3,
    "theme": "carjacking",
-   "src": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNd0EyTWV2WTZGYTZIV2hoSjZaOFlNVTdDaU1vWFFVa1pkN1h0VURpS3YyMFFBY3lMMjFRUU94cWRGYnItQ21xbldrMTNlbWRRQ0h6aE9iOUphZHgyUE9MVVB3VGpVMEpuQmItUjBDUG9ZVkZObnRrRU5tbjlaWFNxUXp5MlhobnpTYXdkYndXSXd4UmFaS0ROVDlUWnVYMGhSaEdSSVNZdXNMb0E?oc=5",
+   "src": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPT0thQlJ6VElDYXdyTGhZZkc5ZzFoakZBaHp0eVBXcVg5Mnl6Z0pSanVoejRRSGdnZmk1b0d4dXcyeTRZVm5iU2NYQjNBOEs3OW94TzRKWDE2dGtRRjdYSTdoZG04c08yOVppWDlKLUVaYTNOdF9fcnYzMnNZMnBlLTk3ckVGelYybUhpSDdqVHQyQ2NockhOSjR6SDc2WFg5QjZQS1hlbkRRenRSd2tuZHd2S1l0RWowLW9KS1U5aGdPREVidWlDSA?oc=5",
    "published": "2026-10-26",
    "banked": "2026-10-28",
    "rules": 2
@@ -93,29 +114,22 @@
  ],
  "fake": [
   {
-   "h": "Driver in {} fined 2,350 rupees for failing to stop for a passing herd of llamas",
-   "tell": "Llamas are Andean animals, not found roaming Indian roads, so the detail is wrong for the region.",
-   "obvious": 3,
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
-   "h": "Three brothers each win the village skittles cup in {} on their own birthdays, taking home a 37-litre barrel of beer",
-   "tell": "Three separate wins landing on three birthdays is too neat a coincidence.",
+   "h": "Heatwave of 43C melts chocolate lorry in {}; town dentists report 37% fewer cavities that week",
+   "tell": "Neat cause and effect with an invented-sounding statistic; real news rarely ties things so tidily.",
    "obvious": 2,
    "banked": "2026-10-28",
    "rules": 2
   },
   {
-   "h": "Burglar in {} who stole 18 tins of olive oil caught after slipping on the oil outside the shop, say carabinieri",
-   "tell": "Poetic justice this perfect reads like a punchline, not a police report.",
+   "h": "Twin brothers in {} each find a lost wedding ring in separate rivers the same afternoon, both belonging to the same couple",
+   "tell": "The coincidence is too perfect, with two finds linked to one couple.",
    "obvious": 3,
    "banked": "2026-10-28",
    "rules": 2
   },
   {
-   "h": "Seaside council in {} hires falcon to guard chip shops after gulls swipe 1,260 portions in one summer",
-   "tell": "Nobody can count stolen chips so precisely; the tally sounds invented.",
+   "h": "Pensioner in {} digs up 63 kg of truffles after dog scratches for a week; tax office sends bill within 48 hours",
+   "tell": "Tax offices are never that fast, and the neat twist feels scripted.",
    "obvious": 3,
    "banked": "2026-10-28",
    "rules": 2
@@ -147,6 +161,59 @@
    "obvious": 3,
    "banked": "2026-10-27",
    "rules": 2
+  }
+ ],
+ "pol": [
+  {
+   "id": 24,
+   "h": "Town adds two dogs to mayoral ballot in bid to boost voter turnout in {}",
+   "place": "Kitimat, British Columbia, Canada",
+   "geocode": "CA",
+   "lat": 54.0524,
+   "lng": -128.6534,
+   "src": "https://news.google.com/rss/articles/CBMihwFBVV95cUxONjBfZlBLcXY3b3l1dDFlaUJ1YWhMa3Rla2hxOU1YRjkzSWFqRExRd083eU52RWdmRE5sVWpwdEp3OXRYaGJZRVBpTTNlLUlHRUY2Uks5MnNpdDVheENHR3lLWUJKOF90dnZ2SjRMSjZ1dXJXTVlMSTB4bTBrZmdGS1hJZ0Y3ZG8?oc=5",
+   "published": "2026-10-17",
+   "banked": "2026-10-28"
+  },
+  {
+   "id": 45,
+   "h": "Tied mayoral race in {} settled by random draw after initial results deadlock",
+   "place": "Lytton, British Columbia, Canada",
+   "geocode": "CA",
+   "lat": 50.2317,
+   "lng": -121.5811,
+   "src": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOZFdGYTE5YjRnQmp6ZG1DM2FueFZMRXlyTmdaeXlNZ0hFbHAzcXQ5X3l0YWVvZzA1UUdjYWtsQkliT0ZsMTYxR29aUkRYZVo1V3pLMU5SM0dJOEllMWtRSEdoenQyZHJ4NW5JN3F0X0VUQUVGUkhEQjcxR2tFR3FaOQ?oc=5",
+   "published": "2026-10-27",
+   "banked": "2026-10-28"
+  },
+  {
+   "id": 53,
+   "h": "Man named after two infamous wartime dictators wins a mayoral race in {}",
+   "place": "Peru",
+   "geocode": "PE",
+   "lat": -6.8699697,
+   "lng": -75.0458515,
+   "src": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1SSkRhNXBFQ19mVHNFMlBQRTRFYWpxazhfNXlaZFIyVFlPMVdQZW1jNEV0M01rYUZOaUpYX25aQUlsZ2tLQmNrZWI3alBYeXlEQl9ZS29Odw?oc=5",
+   "published": "2026-10-10",
+   "banked": "2026-10-28"
+  }
+ ],
+ "polfake": [
+  {
+   "h": "Mayor of {} thanks residents for record turnout, jokes that even the ballot box was surprised to be used",
+   "banked": "2026-10-28"
+  },
+  {
+   "h": "Town in {} elects candidate who campaigned from a rowing boat, citing rise in voter interest in boats",
+   "banked": "2026-10-28"
+  },
+  {
+   "h": "{} city hall switches to voting by raised umbrella in rainy season, clerk says the policy was 'dry and uncontroversial'",
+   "banked": "2026-10-28"
+  },
+  {
+   "h": "{} district council approves 43-page rulebook on lawn height, then adopts a motion to ignore pages 12 through 40",
+   "banked": "2026-10-28"
   }
  ]
 }
