@@ -1448,7 +1448,7 @@ const Scene = (function(){
   let W=0,H=0,PX=6,cx=0,U=200,worldEnd=0,dropMax=0,B=[0,0,0,0,0,0],camMin=0,camMax=0,axisX=0,maxPts=3000;
   let dipUntil=0,dipping=false,pops=[],marksEl=null,mks=[],recap=null,markCb=null,paperT=1,paperGoal=1,tp=0,jd=0,camY=0,focusT=0.85,focus=0.85,t=0,last=0,gaspT=-99,foolT=-99,safeTop=120;
   let shake=0,lastZone=-1,emitAcc=0,bestJd=0,panT=-99,zoneCb=null,breakCb=null,rumbleCb=null,sparks=[],kit={},drillV=0;
-  let props=[],lmCb=null;
+  let props=[],lmCb=null,deskView=false;
   let peb=[],gems=[],bubbles=[],worms=[],beetles=[],tunnels=[],cracks=[],parts=[],drips=[],embers=[];
   let labels=[],zoneLabels=[],zones=[],depthCb=null,lastM='',running=false,resizeTimer=0;
 
@@ -1471,6 +1471,7 @@ const Scene = (function(){
     cv.width=W; cv.height=H;
     cv.style.width=(W*PX)+'px'; cv.style.height=(H*PX)+'px';
     cx=Math.floor(W/2);
+    deskView = window.innerWidth>=1100 && window.innerHeight>=600;     // big screens have a lot of empty room to furnish
     // the underground is sized so a perfect day just reaches the core
     const maxChin=13+maxPts*JAW_K+9;
     U=Math.max(170, Math.round(maxChin+26-L0));
@@ -1749,6 +1750,38 @@ const Scene = (function(){
       RO(-5,-34,10,10,C.frame); R(-4,-33,8,8,C.clockFace);
       { const a=t*0.5; for(let i=1;i<=3;i++) R(Math.round(0+Math.sin(a)*i),Math.round(-29-Math.cos(a)*i),1,1,'#222'); R(0,-29,1,1,'#222'); R(0,-30,1,1,'#222'); }
       RO(30,8,14,11,C.frame); R(31,9,12,9,C.sky); R(31,14,12,4,C.hill); R(38,10,2,2,'#ffe27a');
+    }
+
+    // 2a. big screens only: furniture and decoration for the empty parts of the room
+    if(deskView && vis(-20,FLOOR+8)){
+      const WD='#5a3a26', WDH='#7a5238';
+      // rug under the desk
+      R(-54,FLOOR+1,108,6,'#7a2e2e'); R(-52,FLOOR+2,104,4,'#a8403c'); for(let x=-50;x<50;x+=8){ R(x,FLOOR+3,4,2,'#e8c27a'); }
+      // left of the room: framed pictures, a shelf, an armchair, a floor lamp, a grandfather clock and a plant
+      RO(-126,8,14,10,C.frame); R(-125,9,12,8,C.sky); R(-125,14,12,3,C.hill); R(-118,10,2,2,'#ffe27a');
+      RO(-106,22,9,12,C.frame); R(-105,23,7,10,'#d8c3a0'); R(-103,25,3,3,'#f2c9a0'); R(-104,29,5,4,'#3d4f6e');
+      R(-134,-8,26,2,WDH); R(-134,-6,26,1,C.ol);
+      R(-132,-14,3,6,'#b0413e'); R(-128,-13,2,5,'#3e7cb0'); R(-125,-14,3,6,'#d9a441'); R(-120,-12,4,4,'#c9a050'); R(-119,-15,2,3,'#4f8a5a'); R(-113,-16,6,8,'#e8dcc0'); R(-112,-14,4,1,'#8d8776'); R(-112,-12,4,1,'#8d8776');
+      RO(-132,76,22,22,'#a8403c'); R(-131,77,20,5,'#c0504a'); RO(-135,86,6,18,'#8f322f'); RO(-113,86,6,18,'#8f322f'); RO(-130,92,18,8,'#c0504a'); R(-130,100,3,10,WD); R(-114,100,3,10,WD);
+      R(-72,52,1,56,'#2a2a30'); R(-77,108,11,2,'#2a2a30');
+      for(let r=0;r<9;r++){ const hw=Math.round(3+r*0.8); R(-72-hw,40+r,hw*2+1,1,r<2?'#fff0c0':'#f4d99a'); }
+      g.globalAlpha=0.07+0.02*Math.sin(t*3); for(let r=0;r<34;r++){ const hw=Math.round(5+r*0.9); R(-72-hw,49+r,hw*2+1,1,'#ffe9a0'); } g.globalAlpha=1;
+      RO(-102,48,14,62,WD); R(-101,49,12,60,WDH); R(-103,46,18,3,'#4a2f20'); R(-103,106,18,4,'#4a2f20');
+      R(-99,52,8,8,'#f4f0e4'); R(-96,53,1,3,'#222'); R(-96,56,3,1,'#222');
+      R(-99,64,8,32,'#2c1c14'); R(-95,64,1,24,'#e0b050'); { const bx=-96+Math.round(Math.sin(t*2.5)*1.5); R(bx-1,86,3,3,'#e0b050'); }
+      R(-144,98,10,12,'#b0683a'); R(-145,98,12,2,'#d58a52'); R(-143,80,2,18,'#3f8a3f'); R(-139,76,2,22,'#4fa84f'); R(-147,84,6,2,'#4fa84f'); R(-137,82,6,2,'#3f8a3f'); R(-142,72,6,3,'#4fa84f');
+      // right of the room: a cork board, a map, a filing cabinet, a water cooler, a coat rack, a bin and a potted tree
+      RO(76,-14,32,22,WDH); R(77,-13,30,20,'#c9a064');
+      R(79,-11,8,6,'#fff6c8'); R(90,-9,7,7,'#f7c6d0'); R(99,-12,6,5,'#cfe8ff'); R(82,-3,7,5,'#ffffff'); R(95,-1,9,4,'#fff6c8');
+      R(82,-11,1,1,'#c0392b'); R(93,-9,1,1,'#c0392b'); R(101,-12,1,1,'#c0392b'); R(85,-3,1,1,'#c0392b');
+      RO(116,-14,22,16,'#e8dcc0'); R(117,-13,20,14,'#3d6fa8'); R(120,-10,5,4,'#4f9d57'); R(127,-9,6,3,'#4f9d57'); R(123,-4,4,4,'#4f9d57'); R(131,-4,3,2,'#4f9d57');
+      RO(70,74,18,36,'#7d8796'); R(71,86,16,1,'#5a6374'); R(71,98,16,1,'#5a6374'); R(77,80,4,2,'#cfd6de'); R(77,92,4,2,'#cfd6de'); R(77,104,4,2,'#cfd6de'); R(72,75,14,1,'#a7b0be');
+      RO(96,52,10,16,'#8fd0ff'); R(97,53,8,3,'#cfeeff'); RO(94,68,14,42,'#e8ecf2'); R(100,78,4,2,'#3a6bd0'); R(100,81,4,2,'#d0453a'); R(97,92,8,12,'#cdd5e0');
+      RO(112,98,12,12,'#5a6374'); R(113,100,10,1,'#3a4252'); R(113,104,10,1,'#3a4252');
+      R(158,44,2,66,'#4a2f20'); R(152,48,14,2,'#4a2f20'); R(151,106,16,4,'#4a2f20');
+      R(150,42,10,3,'#6b4a30'); R(147,45,16,2,'#6b4a30'); R(150,52,12,22,'#3d4f6e'); R(151,54,3,18,'#4a5f82');
+      R(128,92,16,18,'#8a4a2a'); R(127,92,18,3,'#a8603a'); R(135,66,2,26,'#5a3a26');
+      R(127,56,20,7,'#3f8a3f'); R(123,62,28,9,'#4fa84f'); R(127,70,20,7,'#3f8a3f'); R(132,52,10,5,'#4fa84f');
     }
 
     // 2b. his chair: back posts beside the torso, seat and legs under the table
@@ -2064,7 +2097,11 @@ const Scene = (function(){
       sparks.forEach(p=>{ g.globalAlpha=clamp(1-p.age/p.life,0,1); R(Math.round(p.x),Math.round(p.y),2,2,C.gold); }); g.globalAlpha=1;
       if(bestJd>4){
         const by=Math.round(13+bestJd+9);
-        if(vis(by-9,by+2)){ R(-17,by-8,1,9,C.ol); R(-16,by-8,4,3,'#ff6b8b'); R(-16,by-6,4,1,'#c94d6a'); }
+        if(vis(by-9,by+2)){
+          R(-17,by-8,1,9,C.ol); R(-16,by-8,4,3,'#ff6b8b'); R(-16,by-6,4,1,'#c94d6a');
+          const GL={B:['110','101','110','101','110'],E:['111','100','110','100','111'],S:['011','100','010','001','110'],T:['111','010','010','010','010']};
+          [[1,'#1a1220'],[0,'#ff6b8b']].forEach(([sh,col])=>{ 'BEST'.split('').forEach((ch,k)=>GL[ch].forEach((row,ry)=>{ for(let rx=0;rx<3;rx++) if(row[rx]==='1') R(-34+k*4+rx+sh,by-8+ry+sh,1,1,col); })); });   // a tiny "BEST" beside the flag
+        }
       }
     }
 
