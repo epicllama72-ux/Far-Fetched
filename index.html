@@ -3330,17 +3330,19 @@ function drawCurve(rows, mine, cvEl){
   g.imageSmoothingEnabled=false;
   g.fillStyle='#0b0e14'; g.fillRect(0,0,W,H);
   const xs=rows.map(r=>r.m); if(typeof mine==='number') xs.push(mine);
-  const maxM=Math.max(2,Math.ceil(Math.max(...xs,1)+1));
+  // a tidy axis: whole-number marks every 1, 2, 5 or 10 m, with at most 6 intervals, and the right edge on a mark
+  const reach=Math.max(...xs,1)+0.5, step=[1,2,5,10,20,50].find(s=>Math.ceil(reach/s)<=6)||100;
+  const maxM=Math.max(2,Math.ceil(reach/step)*step);
   const X=m=>Math.round(14+(W-28)*m/maxM), base=H-22;
   // grid and axis
-  g.fillStyle='#1c2230'; for(let m=0;m<=maxM;m++){ g.fillRect(X(m),12,1,base-12); }
+  g.fillStyle='#1c2230'; for(let m=0;m<=maxM;m+=step){ g.fillRect(X(m),12,1,base-12); }
   g.fillStyle='#8a91a3'; g.font='10px monospace'; g.textAlign='center';
-  for(let m=0;m<=maxM;m+=Math.max(1,Math.round(maxM/6))) g.fillText(m+'m',X(m),H-8);
+  for(let m=0;m<=maxM;m+=step) g.fillText(m+'m',Math.min(W-12,Math.max(12,X(m))),H-8);
   g.fillStyle='#3a4050'; g.fillRect(14,base,W-28,2);
-  // histogram of players (0.5 m bins)
-  const bins={}; rows.forEach(r=>{ const b=Math.floor(r.m*2)/2; bins[b]=(bins[b]||0)+1; });
+  // histogram of players (0.5 m bins, 1 m bins on a wide axis)
+  const bw=step>=5?1:0.5, bins={}; rows.forEach(r=>{ const b=Math.floor(r.m/bw)*bw; bins[b]=(bins[b]||0)+1; });
   const top=Math.max(1,...Object.values(bins));
-  Object.keys(bins).forEach(b=>{ const h=Math.round((base-24)*bins[b]/top*0.7); const x0=X(+b), x1=X(+b+0.5);
+  Object.keys(bins).forEach(b=>{ const h=Math.round((base-24)*bins[b]/top*0.7); const x0=X(+b), x1=X(+b+bw);
     g.fillStyle='#2f3a55'; g.fillRect(x0+1,base-h,Math.max(2,x1-x0-2),h); });
   // fitted normal curve
   if(rows.length>=2){
