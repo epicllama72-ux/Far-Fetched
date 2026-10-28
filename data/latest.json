@@ -1,206 +1,220 @@
 {
  "date": "2026-10-28",
- "generated": "2026-10-28T01:19:23+00:00",
+ "generated": "2026-10-28T02:32:41+00:00",
  "call": [
   {
    "real": false,
-   "h": "Council in {} fines farmer NZ$480 after pet koala strips ornamental gum trees on the verge",
-   "tell": "Koalas don't live in New Zealand, so the regional detail is off."
+   "h": "Raffle at a village cricket club in {} won by three siblings holding tickets 3071, 3072 and 3073",
+   "tell": "Three consecutive winning tickets for siblings is an unlikely coincidence."
   },
   {
    "real": true,
-   "h": "Thief scales 2-metre wall to steal family's lamb and rib asado meant for Mother's Day in {}",
-   "lat": -27.3665,
-   "lng": -55.8943,
-   "place": "Posadas, Misiones",
-   "src": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNdmdGMno3dmh1UE0xV0tWUklZR2dic3NLM1pkbkdsX0t4SG9FZ0M5S1JMa0tMS1JRRTZmT0sxanBtSUdqZHdocWVHd0dHZDRYR1JKUmJhbXFOR0ZlM3IwOGl3eWJoSF9QWVBhSTJ4T3kxMWs5T1VYLU8tWVpraTI2YUgzT1ZFU0MyWUE?oc=5",
+   "h": "Wrong form makes house buyer owner of 324-pupil school too; council misses it for 11 years in {}",
+   "lat": 52.4949,
+   "lng": -1.8518,
+   "place": "Birmingham, England",
+   "src": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9RRDEzQ0pHT0hTQU9KN2lZaUJpSDNFWUotR1lUUXBjakRyRWM5Y0RVR000LWtFSXVuVUV1QlJxMmRkZDNKdUlTNVhEUEkyWVFLLUlWZ0hoRnFuVHFwb3RYdA?oc=5",
+   "published": "2026-10-16",
+   "clue": "council, solicitor and land registry forms = England"
+  },
+  {
+   "real": true,
+   "h": "Man swaps his car for 100 kilos of sucuk in {}",
+   "lat": 39.7744,
+   "lng": 30.5191,
+   "place": "Eskişehir, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPajNKdzRMV2RZMGRxemxxMUdLUjU0Wkd4S0hUR2xLdWJWcU1uYVJITE83ZjVVUURQWjBaLTJuZW9panIwVmE2UVU0Ymo5b2JaZHdQNktNME1aN2ZmOVhPZjF3XzlMYVk2SHFKejljX1kzOWk3RC16S1FMMkxIbHhvekFXS0VFRkFneU1PVmxkNHFaYU8wcXlCUnZ1dTNieEpiOVZsUkFKQWF4eHB1ZGhv?oc=5",
+   "published": "2026-10-27",
+   "clue": "sucuk is spiced Turkish sausage"
+  },
+  {
+   "real": true,
+   "h": "Mall shop stays open on Sundays under shopping ban by adding a reading room: 'come read and shop' in {}",
+   "lat": 52.2334,
+   "lng": 21.0711,
+   "place": "Warsaw, Poland",
+   "src": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNa2JmV20zNHViVFhmTnNmWExoWWhFMXpMakZUNHY5LVljRWZrYUpZMDk4Y3FiODJudnItNjZqdHRqWTdFMFBhbFNjUk04SmptbE5Kd1djMVJIYWo2TEY1YXlobTY4N29xQkxkTUxJZEplUnNCY3gxYlpZQm5MVFVxdWxyTjFkTnA4U3NZV28yMk5VenA0R0VSUHhSQUZpWm9aeDBIZXBweFM5MG5seGhJdklia1gzenUtTDk2MnlPSmFsTi1YQzZKblBB?oc=5",
+   "published": "2026-10-25",
+   "clue": "Sunday trading ban = Poland"
+  },
+  {
+   "real": true,
+   "h": "Woman who registered dog to vote pays $1,500 for freeway billboards starring the animal in {}",
+   "lat": 33.6633,
+   "lng": -117.9033,
+   "place": "Costa Mesa, California",
+   "src": "https://www.nbclosangeles.com/news/local/costa-mesa-womans-voter-fraud-case-dismissed-after-she-admits-registering-dog-to-vote/3956777/",
    "published": "2026-10-19",
-   "clue": "asado + Mother's Day in October = Argentina"
+   "clue": "freeways, gubernatorial recall, dollars = California"
   },
   {
    "real": true,
-   "h": "Cafe serving chai among 26 graves in {}'s old walled city, where diners barely notice them",
-   "lat": 23.0215,
-   "lng": 72.5801,
-   "place": "Ahmedabad, Gujarat",
-   "src": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5ud1M4aWhQREROSXNlUlpVaEx5a09CZV9zanpSNV85S3p4TEMtV3ZPVjU5SmExdmw2ckgyM0NuTWk3SHpvREptSzVWaXFhRnRLNENwS2tMRFNVUQ?oc=5",
-   "published": "2026-09-28",
-   "clue": "chai, rickshaws and a walled old city = India"
+   "h": "Man, 74, fined over hoard of 78 emus, 26 echidnas and 42 brushtail possums in 14 freezers in {}",
+   "lat": -37.2475,
+   "lng": 144.4552,
+   "place": "Kyneton, Victoria, Australia",
+   "src": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1mVHdLUjBtY2JORF9DZkt5ZE9kTTJsbkJQTFJISEtlQ1hxV0VmUUNWZ2dJUHlNRmh5QTI4djhGODJKTkhuNzhvbEdxQlQ3ekRxVWVoZk13MUNrR0Vkal9SQjExWnk0Um5wQXFRaEVNZHlaU08wZ0NlRC1JRQ?oc=5",
+   "published": "2026-10-23",
+   "clue": "emus, echidnas and brushtail possums = Australia"
   },
   {
    "real": true,
-   "h": "Sheep fitted with masks to graze among peach trees without eating leaves and fruit in {}",
-   "lat": -29.1685,
-   "lng": -51.1796,
-   "place": "Caxias do Sul, Rio Grande do Sul",
-   "src": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxONTJjMzc1NmFHdFQwSGFXcmg2YXNKSU9ISktQanktblV0b0w5dy11S2ItLTlrbmlQNy1aWjR6dE9VU3Y2Yk1lQ1N3R2l3WUJORFZiYzdhbm1iZDhVY1V2dVRpVTRGb3VVMXdaWFNUM2ZiRFhTNHdYY3pVT0R5QUswcGo2VVlkNjlBTXp6bmxRbjlaYTFzeE5rRVRGQTA0SG9ab3dqeHVKLWdHZ1NuR2gtR2hGZ3pRSWxRWEtLLURSbElDN3JvX0dtZERJWHhYQ0d2eV9DcnF3?oc=5",
-   "published": "2026-10-19",
-   "clue": "university farm in a southern fruit-growing highland = Brazil"
-  },
-  {
-   "real": true,
-   "h": "Fishers rescue kangaroo found 3km out to sea in the bay at {}",
-   "lat": -34.7212,
-   "lng": 135.8592,
-   "place": "Port Lincoln, South Australia",
-   "src": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNdDZtem5zem5VNFBvWGVXR2QyY1J2bGlkalktWFlQaGVTX3NOQ3prQ3FqOTJPYW94bXdNRk1fRGZxM01wMnVEVWlJcUtnTC11V3J4anpOamNYZk91ZnhsQU1qUVZIS3FHa1ZzY2daWXI1alFsWWNocVUtaVRvU1Q4RktLbVpzelp1U25LOHdIQThydWE3Vk1SdEtiTzk3YkE?oc=5",
-   "published": "2026-10-21",
-   "clue": "kangaroo and a tuna-fishing port = Australia"
-  },
-  {
-   "real": true,
-   "h": "Voter roll lists man whose father is 'B Com' and another with father 'Ram beat Sharma' in {}",
-   "lat": 25.5299,
-   "lng": 78.6528,
-   "place": "Jhansi, Uttar Pradesh",
-   "src": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNX2k3Y1BKcnJDWktfdzFhNExEODQxMFMwa2VGMm9pRHBDS0VRTldwbHg2ajB1TmxUcktxakhCRGIxNGhuc3F3YVNScV96S3Atd0NzbThGbjBLZk5lQ3BVX2dPRzI1cTVWbTlMZ0FJTHR4TEpIUEE5N3M5a2w5djJ0MHdwUWRhRmhqQXBZT1RsVXo0TWwtZUs2VUNWRDJ3MlF1dmNCV1lBUWpaV05HcVJRQ29sZGdrRjV4QU9mYllwRDAwU1JlVmNnRFQ0LW1SVWlL0gHWAUFVX3lxTE1TYlVGYmgydjRidWNvQ3dLYzhBVm5OOTNWX0c1U1pTZV9SU2NXU1lIeXlWdGh6ekxFb0hRTE1xU0VxWTBabTFUbmZ0Q0F3Ump6aGJwZVc2VmQyZUNZR3ZZcUMyTTJuRTV1Z1lTcmJuQUNuUl9xcFowNlpiMDZrN3Frb0RfZHUyWUtXbmhfLXdCcF9QT3VPM3RQSmRrdV9xaTF4WURMbVBKb3hUd0phM0h4aHRQTWJhWThYZnB2Nk5BYVpHWTBVZTNkN2lONVhSUGswZW5naXc?oc=5",
-   "published": "2026-10-21",
-   "clue": "Hindi names and a graduates' MLC constituency = India"
-  },
-  {
-   "real": true,
-   "h": "Blind drink-driver covers 150 miles by tailing a lorry's two red lights, setting off from {}",
-   "lat": 53.6467,
-   "lng": -1.7822,
-   "place": "Huddersfield, West Yorkshire",
-   "src": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1aaEpnR1I1V3JnRzNfYzZLc0xHYTdLYllMdUt2SkVwTmhjUDlVLWsybzJfUkpjOTM4ajBlazJzYTJtYTVVNjZKVUNodENLZEZNMHZ1NFdGdjQ3QWt1MzR5ck930gFnQVVfeXFMTllrQmhTdmhTYnZpb3lzRk53OUYzM3FIWW9rY2c3TTJGVE16bW96bG1SVkM0UmRUVWtPU1JXTzhZcmRkTnJCYlM4VHkwY1ZuV3k0YTI1clkwazR1OHpocTRIbWxSUjdVbw?oc=5",
-   "published": "2026-10-22",
-   "clue": "miles, lorry, motorway and a ride towards Scotland = Britain"
+   "h": "Man chasing fake 90m-yuan prize in capital found herding sheep three months later in {}",
+   "lat": 43.2565,
+   "lng": 118.9759,
+   "place": "Chifeng, Inner Mongolia, China",
+   "src": "https://news.google.com/rss/articles/CBMikwNBVV95cUxQbnk1c0V2X0VjQ3U5RTJTNHBXNkV5N0EySzAySk5pX08xVW5EVmJiUkl0d1hTT2o3blBITmJFaEpULUV1WkFEdF9zSFRfZTRtY1BtT21CS09VN21Ya3cyMEhlV0VvNzU3elMwWjQ0blhwelBtSVV0Y1lXam9kQThRNGlOZVEwdW43aEJGMkZKdVNBTTFJNlpxNWpFcHlaSHRHWm03cUlxY0laWFJCVHlnSmJEOE8xa3ltQXZsU1o1R3Z1Nld2UnJXTVN2V3lDUU9ldkpldVJCZHIwWnlSaW1FVDZrSTl1aU5BMHlNa0lqc01lQXFsem1Ha3RIOVNfTTUtVVQ3bnRCSzBVa0lpQXhkOU9VR2pDQXRrakFMaDA4OTNrZU4xbHdSNUtVQ210cVFlRU1mU1hoeXNLN0Q3ZkZvN05rdEZsZ3BYRDh5WUxVajNteHRpZ0lMU1AwOHBTX0tGMnBtcHJRUzVJbUNuN0xkVmZ2ajBMMENjcUlON3ZUUmM4WGFPQzVPVzFIUkRDQThqQjE0?oc=5",
+   "published": "2026-10-06",
+   "clue": "yuan and grassland herding = Inner Mongolia"
   },
   {
    "real": false,
-   "h": "Wallaby hops into suburban bank branch in {} and trips the alarm; manager says staff 'saw no reason to hop to conclusions'",
-   "tell": "The manager's quip is far too polished for a real official statement."
+   "h": "Herder in {} fined 1,260 kroner for letting 41 reindeer use a cycle path without a permit",
+   "tell": "No permit system exists for reindeer on cycle paths; the fine and animal count feel too tidy."
   },
   {
    "real": true,
-   "h": "40cm snake found under cabin carpet cancels turboprop flight at {} airport, a first for the airline",
-   "lat": 33.5868,
-   "lng": 130.4474,
-   "place": "Fukuoka, Japan",
-   "src": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQRkw4QnB4TXFsRHhGeW9TOE9EVjV3b0RqWmNyTWJuS2tLbTJPcElyd0Q5OGxhYlU2VjNKckRUSEdnV1RFV1RTY0hHdHA0QXhHcENyVnluMFNveWtPZ1RMek0yb1ZuRGtYRVgtaklhelBMa1ExbGh0SGZkbDZZZlYzQWVUUDJtTWZZOFJmMnZ0M28wWXBMQzlmeTd4QUjSAaIBQVVfeXFMTkl4ME9nRzZrY1ZJcTV3VjJsMGJWbjNjTDlpV1gtb1RVNGFOSXZLNjBKaUtJRjhCcUcxU1hOZ2VGdTBzZlZVZXd6aV9XVFR5WFhfR1M1UVhBSDZmOWw3b3pGb0dkV0ZfZ29tb3ZVcDlXUEdYaWhzYW1nRXNfb29BZFBoWmxCMEZHaEg5U2FST3NvUV9JcDhMa3hXeG1KbWh0dllB?oc=5",
-   "published": "2026-10-21",
-   "clue": "commuter turboprop and a prefecture-hopping route = Japan"
+   "h": "Architect struck off after claiming neighbour's car on her driveway was a 'phallic symbol' in {}",
+   "lat": 52.6286,
+   "lng": 1.2924,
+   "place": "Norwich, England",
+   "src": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQOV9ZNFU5RWJVLXFWQ2VUQko0UnJhVTdFNnZoU0tKS1pUSk1QckREeGRBbDBvT0FSQ0g1VlYwc29ZWFRFd0hWMUo5SVZWSE9VZjhIbWFyUmxyZHhyeTJlMjJVYlIzbEtITF8tWWwycW9UcF9CRzgwdU5maTBvQzNTWXRfTUtoQUtpZk9DOGw2NDNiaUNMTy1PUtIBngFBVV95cUxOMmQwLUhsUmRqclBFanJWb0UwWHFXXzhyUkxnUXpKbmtPcmxONENndlNkVE1qLW9LS09aYlNXRjBNQVIxZFpkRjkyaVQ3Q1c5dnJBQVRlcVdrUWVNQ0VXTWpUOGtYTHN4cVlKaEZnZGllZTBnZmRtemd3MFVaZ2Vkd0RJYnNNZlBIM3lDTHdGNmQwd1k5bmk0aG1rb0NYZw?oc=5",
+   "published": "2026-10-25",
+   "clue": "Architects Registration Board, Union Jack = UK"
   },
   {
    "real": true,
-   "h": "Two friends present winning receipts worth NT$10 million each; banks refuse, prosecutors probe {}",
-   "lat": 23.5664,
-   "lng": 119.5785,
-   "place": "Penghu, Taiwan",
-   "src": "https://news.google.com/rss/articles/CBMif0FVX3lxTE52d3NscWxTa2tULUNrcllBdjI5cUkwSUlKVjVwMEFMZWV2cWYyUld5N00zUnlfVHZmVW5SRVRBTFk1a3g2LXd4V2NDSGhLMWtickdqaVRYV2ZiTE91aWg3ajVrbC0xVGFiTGhRbm1heS1wd3JwNklVZmZpRFdQcFk?oc=5",
-   "published": "2026-10-20",
-   "clue": "NT dollars and a receipt lottery = Taiwan"
+   "h": "Court rejects claim that 660kg of sweet pumpkins grew wild or were abandoned; pair get suspended terms in {}",
+   "lat": 37.6967,
+   "lng": 127.8888,
+   "place": "Hongcheon, Gangwon, South Korea",
+   "src": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE5xUzdwVUo3ajVVdXgxT3hyMjBKVlFXSGUtQVl5UU52QThyX1dJcDVYZmdFUmZVcEh4SVpkVXFQMFFmaW5sV0dxNExoMFNIemtmeXF3QXIxLURlU2NsZ3JtQmRB?oc=5",
+   "published": "2026-10-26",
+   "clue": "kabocha squash, wildlife netting, won deposit = Korea"
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "Pot plant thief caught on doorbell camera letting rip with a [] while pinching greenery in Mandurah, Australia",
+   "h2": "São Paulo, Brazil: two [] of graphics cards worth US$470,000 vanish at Guarulhos airport",
    "ans": [
-    "fart",
-    "farts"
+    "pallets",
+    "pallet"
    ],
-   "place": "Mandurah, Western Australia",
-   "src": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQSVFwRlpZbjlUUmw0enlqV3hGb0lBQjVQZnQ3ZTFkbTd6dFB3c0FleXpiY3JPU0l2SUpmeGhwck5XRkJVMXBwb0RmX0RJaGZNQ2JNUWVEM0dkaVlYNXhERGR0Wkc2bDU0Z2tnRXJMcXRybGxTdFFmQzJGSnkzQVhLMVFuTUVMdVpzVW9RZXcyTzN4UWY2RFNGQ19XbkRnMDM1RjRvcFo5Y3NNUUEzZl9vMGQ2SGJwVXNmMFZBSW1HU1JQUDVHdFNpWXVQN0V3S29u?oc=5",
-   "published": "2026-10-18",
-   "vec": "gQX+zrJiOuixScr8TgtIIhFvMSAY7v05ftfsRF3T4f8WWOlmMv4KMg4ytV4R2jkeIfQ="
+   "place": "São Paulo, Brazil",
+   "src": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQY0pibExxaDNvZkZpT1QwY285WjJGWkFtanI0X2pxTEF2aVZwRWUzS21JaC1LcUppbkZRbzRib2NzQWdfbUduRGN6RmpCU3pydFpQRFRPMHNFUkdTRnBGNWhIRkNQSEFxd3hteXFOQl95Y3BsdG9aNVQtSHcxUFluM0pR?oc=5",
+   "published": "2026-10-19",
+   "vec": "GsMatz3+Bc9dxw01ITXw7tr1DIE1xQPT1ytOS1Po7AkSSSxQNxcEVkDiSCcLJ/IA9JU="
   },
   {
    "real": true,
-   "h2": "[] shuts every carrier store on iPhone Duo launch day across Taiwan, bar Kinmen",
+   "h2": "Bogotá, Colombia: [] kneels to pray in neighbourhood chapel, then pockets a gold item and flees on camera",
    "ans": [
-    "typhoon",
-    "typhoons"
-   ],
-   "place": "Taipei, Taiwan",
-   "src": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1mVXlVTFp3RHQ2bGRndm9keEh5WWtrTWpjc2Y3aTRRS3drM3pHeHlQWTFuVWloemJJREgxcnVjOEZKRTNKY1RaWXRUUmQwZWp6ZFVoREdrVkN2WDdMNThfbDMzTC1TdkRUMmx2alFQdGdNT03SAVZBVV95cUxOaUVWSzFSRUZpbGZrb254a3JwdlJCWU50QnNlT095MUoxLTNYcVJoMEZ2YnhGaG15U25zQVVBdlFScVQzYzRpZGE3SmgwblhMRHVjTWRpQQ?oc=5",
-   "published": "2026-10-23",
-   "vec": "TPA9HdHXISRQ8fTyORDs7rHlzzuq2RujM/sUGwwKSRtEC+0VHcvx8po6BoEQH++lDBs="
-  },
-  {
-   "real": true,
-   "h2": "Driverless [] circles at high speed after its only crewman falls overboard on the Sado river, Setúbal, Portugal",
-   "ans": [
-    "boat",
-    "boats"
-   ],
-   "place": "Setúbal, Portugal",
-   "src": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNc2UxU0JvYXJ6YVFwcFpjcXRxWm9Nd0VFckw3NUhjVXlremJuYnFNM3NGNHVRWm9oREhJaHpMellBQ2xNNF9FUkNSUnBnYlFHZXI1OFVxS0hSbjBsRHFjc2xTS2dqWkExNGdRZEdZejQyZjZFZ1d6S2otQUMta2t6am1iaTA1clltSC1QN1JRWmEtRWRZNUtZM2hVbGZQQTRGYzVCNnhHQU42Y29Va291ZVRYNW9LX2NMMXZKcGxma3JyOVNfZlNPa3FlbkRneDV2R3BNVWpVNHN6LUhR?oc=5",
-   "published": "2026-10-18",
-   "vec": "OQQJ+twFsyUywgEoHTT52P00osoUIeMESqUcFSLxfwLlQxcPE+PsBvrsTAED2PLLK8g="
-  },
-  {
-   "real": true,
-   "h2": "[] lets Jaguares play with 12 men for a few minutes after substitution against Millonarios in Bogotá, Colombia",
-   "ans": [
-    "referee",
-    "ref"
+    "thief",
+    "thieves"
    ],
    "place": "Bogotá, Colombia",
-   "src": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNQ2xyNlJjcEV6TWo1MTFkY0pEOVBWbUNrZlZtRFZWa0NrOGE5eVJtMTVmRUJabzRFb0wxWkxmRXhrMHdpV2JQQmxyb2JrVFNLbXB4RDBadThINnpEN3phVk9zYjZaUEI3bVd0aWt5SmpRSVNHR2hWV1h4U1hDbmdoMkxRc1JyY3hjMWtTOFJOUGhHVDBYWm8xY3dYTDNWMllrNmZrQnd6UWExM0nSAbABQVVfeXFMUEo3MFlDcFVIcjhzclhKNDZ2UGlPTElXcUF6SHM3Q3JRN0ZId2FJRzhkT2lUQ2x3emVnNVdGVUh6dXhKV0RWT3lUQmphdEVycGIwcGZKRko1YTFMSHZNWURtTi01VXFyOWtBREdyYWxwLXE2eWQzNEwzMmNDMkpydEZGQmZKNzZwdEV0YmVTT1R6M3JXVTd4a1VJNVR3VDZmNGs5TFQtekpTUllfUXBmS1U?oc=5",
-   "published": "2026-10-19",
-   "vec": "hJzAOfTlAkTuyxc/pflrwzi6qKrZ/iodK6BRAcLmSPr7+cglNwjwDkB/zRz41wAfLfI="
-  },
-  {
-   "real": true,
-   "h2": "Man stuck atop palm tree while picking [] is rescued by fire crew's ladder in Huelva, Spain",
-   "ans": [
-    "dates",
-    "date"
-   ],
-   "place": "Huelva, Spain",
-   "src": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPWlVKb0dJMkJVZHFjM0EyU0x6RHBSV0FObG00SU53Ty1XR1R6a2lqcXJheXZVbzljRllJdlNZOEJCVDF2d0plUnBWanJOUGV6WUU2dGZjSmZFWWNWODVySkNXa2UyNjU2NHdDQWR3QXRXQmpOSWZ2SnFLMzV5cFNDVEhaWHN0WXlKNWRNRTc5N1pPR2NnT0FMSG9hcjdQcVVoUEtiS3JwSXhmTjY5c3JKWXZTbmY4dEZpTmNSeDV6cy1hS0xUakdyTUFpTFrSAdIBQVVfeXFMTkszaHZGMHAwM0FoVThxVEEwVW9DX3hOQW5iRlFIU2xFTnpyTENMQ0FmajJJcUp0cXRLdi1iMXNEMFFKWTZJR3hIVk5pR0tIOGZXTDFLLXdsUDBIOEdqdG1VVVduTWd4eDU0VElISzZYU3ZXY2J2R2lkZmMzVFBtN3VuMHJsSFFxcWFBaFJDNUdfeWVpR3MxSmp3TmhrUFNSR012VXN2S01ndWVMVkszOHIxaXBLdENqMEd5bS1INmlSWEYzakxqUTVzOFl6Y0JMUlRR?oc=5",
-   "published": "2026-10-21",
-   "vec": "GzHK8AT+0QLo6/D/EedLGt3Y+/wpygwbCPTU8hISf8vm+C/9KRrMBvXV7w/qHRn96OI="
-  },
-  {
-   "real": true,
-   "h2": "Six-legged [] wins 'unique class' at President's Cup livestock contest, raised in Boyolali, Indonesia",
-   "ans": [
-    "cow",
-    "cows",
-    "cattle"
-   ],
-   "place": "Boyolali, Central Java",
-   "src": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOZDJSeTRqU0IwVGdpMDFVYlBoUHhsRExnN2tjNTdWZG1kbHVoUnVpaUc5NXdkUEZNZE5JeDc0WVhLUnhldVlUZ1Y0Qy1uUzhvMGR2Nk1meURYeXJ5Tzd2TnkteWxNdEc1YXFWak9UMG90dVh0MDlDS2hvUTdJTmpKaU9hQW5YZ1pHeE9Na1h0MUdwLVBxX1I2OERWaGJOaUhqYXhwM3lpQ3E2MGNNV2tlWTRrNVNOTElsc3pLVk1ueHZHeE0?oc=5",
-   "published": "2026-10-04",
-   "vec": "KeDP2/9rxcpk8SX0L+hHSQ0Q0yT9zCgVIZPkRRPoV/QGM9z2IgMc9OPv6hR/Fu7/K8c="
-  },
-  {
-   "real": true,
-   "h2": "Thieves open lorry trailer and make off with 30 sacks of [] weighing 1.5 tonnes in Aksaray, Turkey",
-   "ans": [
-    "sugar"
-   ],
-   "place": "Aksaray, Turkey",
-   "src": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNX1BpNXlELVQtMXhNdnc1Q0FQU1U2SUN1YlpvXzNFUWRSZnlxbDNZZmU3N0tDSWhEdU81WXBwbEtnMXllZktyV3Bwc3FadnZDZ3JjUUJvRFlqTHBUQk1tS0lMVHhIZHpvR2VVRE9pa3Z6WWNhcXRSSHZuUmRhZ3IzVDZZQjFMTWZhcWdjWWpOb3JwanVhM3JoRGx3ZjZxSk45TnFrTjd6NEdvc0U?oc=5",
-   "published": "2026-10-21",
-   "vec": "wvTkFgsi8/ofIBsVNd0OHhIXCMIZ1FT50OwPEkkaf/DYNRv80hxT8P79+e4dT+PV9PM="
-  },
-  {
-   "real": true,
-   "h2": "Dozens of runners finish 21.1km half marathon from San Ysidro, San Diego, to Tijuana to find [] towed",
-   "ans": [
-    "cars",
-    "car"
-   ],
-   "place": "San Ysidro, San Diego, California",
-   "src": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE0zSEEwRVVNWVk5cDMweThmNVd1d0hCb3F5Y0NQNnp4WldCSy1rbmhqN3pWR2JBRkNoMnVXelpUM2s4MWtGLWlaUkxYWjFEendU?oc=5",
-   "published": "2026-10-28",
-   "vec": "GPRQ6uUIvdjz9g7j0/MrAe1L8IEj8dgfAODoHjz9dyIBBzUUGgHaIPbuJ+cN++PkFtg="
-  },
-  {
-   "real": true,
-   "h2": "Ujjain, India officer's viral video eating [] on Thailand holiday exposes missing travel permission",
-   "ans": [
-    "crocodile",
-    "crocodiles"
-   ],
-   "place": "Ujjain, Madhya Pradesh",
-   "src": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOVDc0SFB3M0lhcjFKOXZOT2YxRDBOckQwNEYzaXhFWGtVZzh4NTUtZVRBdDhCWWxkYlh3TUNUN2tPSWs0eFA5MFZweEt6T1U2bEMzbTd0NlBJQkRVNERRWE5STmRBWXZiRXhpTTZpYndkdEVycWxsUEFZcUJ2MDNRclZGaGpqVjNQN2RDQ1hmZDluWHZ1ZlRJT2ZGMFJWYi14WW5sNG44RGNJTEMtVEVEY0ExNEg1dlY0MXhHSkE1cWc4Sk1IdElDeUU0T1ZzNmgtb2M3bHJ3M01FdloxZl9wcDRxenlyaG4xRHfSAe8BQVVfeXFMUGN6TlpwbzBNdWdFQnN6MGsxQU5yZjBYMU5mRnpfZVlpODByanFkU3BaU1NBYkpVU2V3dk9xNUtNNHpGVk1WQzYwVi1GSHJzbXREdnE0YTVJc18yWEhuSkJ1Mno5U1VGQlA4ZVItRzZkaUlfVlNrTWU4WE1QWWM4Zkc4TUl5LXBiTUVaaDZ1dXl2akFmY3NqWEdlS3lvZkNJZ0tOcF9PRjNuWEdKU19jRkZ3YWZkaFJMRThMb01kZnhQZDVIRHZuZHJ5b1BmRWg1a0VUTXh2SHZfRThKOTN6RHM1czVNQ1NOV2JVbXJfcEU?oc=5",
+   "src": "https://news.google.com/rss/articles/CBMikAJBVV95cUxNYklwRU43ZndXV0VKYTlZTU95NEhPSnFyaTZVWVJncDMxYVNoYUJOMzBQS2tpQlpjY1l4VjRmTWw1amVCRVRPaU5Fa092SUZ4T3IyalE0SENoWWpsYzFRclpPM1g5TUdOVkFDRjZWT2lsT3hBcU1rU2FheGhYZVhfUld0dGZFck1nQ21mV1JnQnI5Rk5aeHJLVHRQUFl1T3Etbzl5SGFqemJGd08xYjJYS25CR0FYOGxKblYtNUZibVlBQ2ZBOFRrMUFWQzhuWXZTaUoxUUVWN1FSX1AxQ3hPWWdxeXQ2MnVSMTdpYzViZTZxSFNUYTdSUzZOUXFHbXN1ZGU5clRwOFZabzhNYi15TNIBlgJBVV95cUxNWjdDQlRkODlsZG5Ndmw0bXpMTXVEWGY5bmNYMzJydnp1ZnhzVjVBMnBJeXhISnVIQWthakpUdlBLelM2SzdZSEFvRFhDS3BuRTgyd01Lb0tUMkdSSE1wZEFNRmRTQkIzcjZDSlRqaEF5MXo0eE5Oei1KbTlXb2NtQk9waUsweUNXREhFT0U0VGxDYXZPWURkTm9YeXBpZ010b2UtREQyUzdyMTB1ODRVS2hDTnpTNkhwdWJYRjRMemFPaUI0NnFKeGpubWR0TlBSRFkwMzkybGpLcjdHanRlU0NFZFNlaGVwNDZJcVJfSmFRamhfcEIzSE1Xckk2czJxQktiRXdYMzZUZ0Y1cnVmV1VIUHNCQQ?oc=5",
    "published": "2026-10-25",
-   "vec": "GtmuF/chzMlo5w8uRfIZNVc1gUTKMxntD8rGRfrOMtM3f85OA7MXoyMMDkB8y+uzLMU="
+   "vec": "+fH+4UMO+xwZOQFP8Q9AtiNBv/cK8OdJBYHD8krSEcvfHiE09s4d0x8u/xIouBKzYNw="
+  },
+  {
+   "real": true,
+   "h2": "El Banco, Colombia: [] wedged between window bars and wall at second-floor home calls for help; police free him",
+   "ans": [
+    "burglar",
+    "burglars"
+   ],
+   "place": "El Banco, Magdalena, Colombia",
+   "src": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPTVdta2lRQk40T1lpelYzQmwtNUpfWHpxUEducUpnSko2XzJIOGNhbms5aU52aEM3MjlqZ2psYzEzV09WcTlSV3JCTkdxVnhBVzlDRERSZjU1NEdPNW1PZ1laSUhyaDFUYTc3d2tUZlMzanU4ZElnY0pHU1Y1UGtoOA?oc=5",
+   "published": "2026-10-14",
+   "vec": "34VB5RYTKRPkHtAcB3cn+tY10udIH60oDocC7D7hza8L4QlVMKJP4O1E939Q+R+0RtU="
+  },
+  {
+   "real": true,
+   "h2": "Asunción, Paraguay: [] sets 'sport elegante' press dress code after photographer's outfit; president apologises",
+   "ans": [
+    "club",
+    "clubs"
+   ],
+   "place": "Asunción, Paraguay",
+   "src": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPc0pEX19Qalc1TGVMNGM1dVVvcmFRSWlZVFhNLWVZb0ExRk5iSGY1d2NLYTlxYzVGajJyOGF2aUVIb3NneUE5X2NKUTlQQWdsdXpfMGZGZ3ROVmFfSHNMYU50RDYxZV9JZ1BFZ21mZm0wTnJ0by1SbXhSQ29BN3cyc3lTTVZjTjN0MzN2MUZIVFJMbVJBTGNfOFFHVDJ3VHV2bGhwNk1EZ1hXYkFIYlNzZzk0SU9uTVJPQk1Qb292UzRyLVQ5SmhkTE9ueVNHdVVKcUVSWWE2Tl9TMUxZMU1JdWZvNA?oc=5",
+   "published": "2026-10-22",
+   "vec": "5CzDC+rjvRzWARoJ2OkV8x0yxAf+CPY9yskIDd/tfyj6BxASCRISwhbV6wv0CegBG+g="
+  },
+  {
+   "real": true,
+   "h2": "Miami: customs officers find 10 live [] sewn into man's underwear after unexplained bulge at airport",
+   "ans": [
+    "birds",
+    "bird",
+    "songbirds"
+   ],
+   "place": "Miami, Florida",
+   "src": "https://www.cbsnews.com/miami/news/miami-international-airport-bird-smuggling-underwear-arrest-customs-havana-flight/",
+   "published": "2026-10-11",
+   "vec": "UPjT0h4SvcY82hISfx8YECPvnO2+3zz/J/MOHBDYeREx7uUEEurMBdrzOTpgFubf2vs="
+  },
+  {
+   "real": true,
+   "h2": "Mumbai, India: railway mulls opening staff-only local to commuters after employees lock [] doors during disruption",
+   "ans": [
+    "coach",
+    "coaches"
+   ],
+   "place": "Mumbai, India",
+   "src": "https://news.google.com/rss/articles/CBMixwJBVV95cUxOTVdKRUZGd2xJUUNibC11eUE5QlktdTlmbXBZaFBCcTBxem9hQ1JNenpHQ3kxQVVybXNRTUdCQnhsLXJmcWkyR2VqbDRFb1g1eWR1MXFjQVZLU1phQkNGN0c4bjRmLWxtZDR5V2hiei03emMyYk1xc0RUVExFNVZZSzBkLUduUkN3dW5TWW5LNExPa2c3ZS0wUEZsWXIwQU9FT3ZzMlVzclZyT1d5Zk02d0dNMWkwNmFYTzJkbWhDUnQwWkUxdkVsUEw3TXFjT21YNjQ0RmZqai1WVFA4N2xkY3MycmdxWlhYY3N4Q1Rac0xUU0NLb0dqSld0VldLNHdiTEM2clphdmxnMVkwTlFiZFBzbV80ak83R1hzNzVGY2tOVGJhWHpGWXh2OUNscTBkcWpfdDctdHRvdkRrV2hMUzRXUUxUa0nSAcwCQVVfeXFMUFhfRU8tUEZ3VTNYOUZidWV1X3VmdUctY0wwR01vai1XSWpyUjl4cnkwampJdkFDYWZhaVpHbllKeG01NDFjZEprUHBuajlyVXNramhMMDBYQjdkTkw5TnZiRGl2MF9hWnlkSnc0bjB6dk93aG9mbmczdFFWLVdqSHRqTkltaE96YU15N0Rmd0Q2cFpmSG1EX2NUY3RLdF9WZ3p4eW9KTGNtNS1wM19kVmQyR3NSYjNFS0xsdVM2OE1Gc01KQXhuMkxEQU1fRzhxaFl3blFZNUFsRllCcGpWZlJsbU5jMzFpclRacnRlNTdGZXlLUkt4dGYxbjNWdDkzWl94WEsySFdsRVl4U3BYLWEySXVGSFprV2g0N1NhcTNWbDdQOWEzeDhMVnJKNHBRWExETUcwY1BSOU56MUo2QXdKSFFycW1ScjlSWE4?oc=5",
+   "published": "2026-10-27",
+   "vec": "uhvpD/HXnSOizj49pdZCCxMxyeiBDvH3EJ4VFebyZTj76hkmFjcm7fEg0PEhH/Y79Sw="
+  },
+  {
+   "real": true,
+   "h2": "Texas: man pulls up to Burger King drive-thru in what looks like a []; garage holds Batmobile replica and KITT copy",
+   "ans": [
+    "tank",
+    "tanks"
+   ],
+   "place": "Texas, United States",
+   "src": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOcmN4OFUxVHFtQlpucmNnSjM0TkVqR25PYmg5MEkwVFZXak9BbjRTSTlYRS00RkNkUXJEMXYwNlpqLXZVRXZDY1c2S2hWalRBM2gwY2dhbGVXVzZRTDBPRlBrSjBRN0taeG9LamljLWJWaXpXc1huY0dXWmpHTEw2aHlxcC1iUVJMYzZpTktwbVJDdzB3Nm9uckxDMnczUmhLeVRCTTNOTlFyZ2VUaGc?oc=5",
+   "published": "2026-10-25",
+   "vec": "CfNKv/kD9ugSsArV6UCl/yZOq9se/QTP7qzXNx8qf9XqDPc3HAkmFy/eDNxDBf8TBQM="
+  },
+  {
+   "real": true,
+   "h2": "Buenos Aires, Argentina: man grabs cash from cafe's [] jar, worker confronts him with a cleaver, then gives him a pastry",
+   "ans": [
+    "tip",
+    "tips"
+   ],
+   "place": "Saavedra, Buenos Aires, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNTDdfSmZpcWFRTWF1Zkg2Rmozc3V1SlZDcHo1dlBuYy04emtNaXlGZUttMjI2YWViVmFCRVdJMjlCTzR3b3JiY3RlQVZkTmhnM2Y3RklOZjhWazFkNVpfUGdEa1RrSkV1eWpBOUt6Z3Z6ZFFZc2oyaW5ZM1VZTThiaHA4eW9oTHBma2xfelY0VC13Zml4dTZ3NVdicnZrMVlZUkNEd1RTbFppMEM0cy1oV2tuZ1ViUUZIaWMtdUpFcXVfMmZkTURRVnNpRG7SAdIBQVVfeXFMT1c5UVk1ZFc0RnVqaGQ2ZzlYVDE4MlVwaWZWeVNyZ0VmWTFoLUNmQk5iZ0k1Q1hJSVhIa3JBMHkzTzBOMGtXRnEwdUdtVnBQeXhidEpWX2dPZXh2YnUtTWpVMFFHY28zREhPVGowX1JCMGtIR3hObUszaDNWM2c5WVczOWw3YzJaQ3RkZGxEMnJ2REJCSDM0RXFDWnNNWDBhazJBMWFxN1BpeUZCOE02QmhhUUhkOVEwX0ltUGNiMl9mbk5zOXNvc25Ma2x3UVlyR1VB?oc=5",
+   "published": "2026-10-21",
+   "vec": "JO4DCxwF/g4j2OvoMCPiCQLu0fbr5xsWBpMDTw25f+4KIwf94fYZ+QZKFQTu6DYDIOc="
+  },
+  {
+   "real": true,
+   "h2": "Badajoz, Spain: WhatsApp group where members only send voice notes imitating [] hits 930 members",
+   "ans": [
+    "motorbikes",
+    "motorbike",
+    "motorcycles"
+   ],
+   "place": "Badajoz, Spain",
+   "src": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNYlVUaGNvQ1JqQ2d5SFRQWGo5ZXRIc1lhVHhKZEVTQ2E2Wk9XWVBta0dyUF85WG9hNDVQdTBzZ2Q4eXNqaUx6cDVWdklHMk5sSUNKUGpOSjhmN2hVMlJzZVdFZ1hvV0diQkdrMTZUcm5MQ0pvZHFYcTVDZHhaMTc4Qy13QmRnRDRMSkZLV3hWRjlDT3gtVGlpTFFlU1JXakNHWVlBQ2V3SEs0NUozQUJTeTh5eUwzbmZmS2hZSVBLM19lZEJ4?oc=5",
+   "published": "2026-10-10",
+   "vec": "DIt459Lk4a79AQWc5dMJ2stt8oEhEfMdJwMA+CXZHFvzMEY1/w6oZOQTHepOsuKpQJU="
+  },
+  {
+   "real": true,
+   "h2": "Jakarta, Indonesia: runner finishes 21km half marathon in inflatable costume that looks like an [] carrying him",
+   "ans": [
+    "alien",
+    "aliens"
+   ],
+   "place": "Jakarta, Indonesia",
+   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPUGpoNDNpaEVvb2Uycm1UcUYxVkhXRmhOWXU1NVRNZ1YtN2JNYWhOVmNiZjRidHpJWUtwX3hTZHVkYU5UcUJSalBaWlFkYXZXWjl4c0xTNzVMWjZuRXBkaU52dmFZd1g3YUFFZmNCb0ZpS2ZRTHlkS084QjlMbTI4d2FyWVdYdWExeFE4S01hU3VuSlh1VVBjLXhxdXpnOG84b1Rja3pUd0hYZ0czYWVQTUhCWTY2UDd1MkhaQnBmM2Q?oc=5",
+   "published": "2026-10-24",
+   "vec": "VdzoPVtIBcwQBCtQV20/6hwXoSq8AOsYQJjcvX/uYKKwos1D05yjtureY1EY4ymkEug="
   }
  ]
 }
