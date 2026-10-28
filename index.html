@@ -730,7 +730,9 @@ body.pinning .app{padding-bottom:calc(min(30vh,260px) + 96px)}
 #menu .how{font:17px/1.15 var(--vt);color:var(--dim);margin:2px 2px 0;letter-spacing:0}
 #menu .how b{font-weight:400;color:var(--text)}
 .topline b{color:var(--accent);font-weight:400}
-#streak{color:var(--accent)}
+#streak{color:var(--accent);white-space:nowrap}
+#streak .ss{display:none}
+@media (max-width:400px){#streak .sl{display:none} #streak .ss{display:inline}}
 .hud{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;margin-bottom:10px}
 .panel{position:relative;background:var(--panel);background-image:var(--scan);border:2px solid var(--line);padding:7px 10px 5px;min-width:96px;clip-path:var(--notch)}
 .panel.r{text-align:right}
@@ -1014,14 +1016,15 @@ body.recap #bar{display:none}
   #feedback .more{display:block}
   #feedback .why{display:none}
   .rcol #final{order:2}
-  .rcol #bar{order:3}
+  .rcol #bar{order:3;position:sticky;left:auto;bottom:0;z-index:6;background:var(--bg,#0b0e14);padding-top:6px}   /* the end buttons stay in view even when the summary is taller than the window */
+  #tiers li:not(.me) .tl{display:none}   /* desktop: only your own tier gets its description, so the summary fits */
   .rcol #blankUI{order:4}
   #guessIn{font-size:23px}
   #headline{font-size:34px}
   body.pinning #headline{font-size:30px}
   body.pinning #card{padding:14px 18px}
   .kicker{font-size:9px}
-  #bar{position:static;transform:none;width:100%;padding:0 3px 14px;background:none;z-index:auto}
+  #bar{transform:none;width:100%;padding:0 3px 14px;z-index:auto}
   #bar .btns{gap:14px}
   .btns button{font-size:32px;padding:16px 12px}
   .primary{font-size:28px;padding:15px 16px}
@@ -1203,7 +1206,6 @@ body.recap #bar{display:none}
 const STORIES = [
   // REAL. h = redacted-place headline (Real or Fake mode); h2/ans = redacted-subject headline (Fill the Blank mode)
   {real:true, h:"Army sends machine guns to fight emus ravaging farmland near {}", h2:"Army sends machine guns to fight [] ravaging farmland in Western Australia", ans:["emus","emu"], lat:-31.0, lng:118.0, place:"Campion, Western Australia (1932)", src:"https://en.wikipedia.org/wiki/Emu_War"},
-  {real:true, h:"Brewery vat bursts, flooding streets with beer and killing eight in {}", h2:"Brewery vat bursts in London, flooding streets with [] and killing eight", ans:["beer"], lat:51.5163, lng:-0.1280, place:"St Giles, London (1814)", src:"https://en.wikipedia.org/wiki/London_Beer_Flood"},
   {real:true, h:"Hundreds dance for days without rest in {} in baffling 'plague'", lat:48.5839, lng:7.7455, place:"Strasbourg, France (1518)", src:"https://en.wikipedia.org/wiki/Dancing_plague_of_1518"},
   {real:true, h:"Cats parachuted into villages to fight rats after pest-control backfires in {}", h2:"[] parachuted into Borneo villages to fight rats after pest-control backfires", ans:["cats","cat"], lat:2.0, lng:113.5, place:"Borneo (1960)", src:"https://en.wikipedia.org/wiki/Operation_Cat_Drop"},
   {real:true, h:"Cat serves as honorary mayor of {} for about two decades", h2:"[] serves as honorary mayor of Talkeetna, Alaska, for about two decades", ans:["cat"], lat:62.3238, lng:-150.1068, place:"Talkeetna, Alaska", src:"https://en.wikipedia.org/wiki/Stubbs_(cat)"},
@@ -1295,11 +1297,21 @@ function freshFirst(list,r){                      // unseen stories first (shuff
   const seen=practiceSeen();
   return shuffle(list.filter(s=>!seen.has(storyKey(s))),r).concat(shuffle(list.filter(s=>seen.has(storyKey(s))),r));
 }
+const _stop=new Set('the and for with that this from have into over after their been were was are his her its who but not you all can had has out one two new off say says said about than them then when what which while will would'.split(' '));
+function evWords(s){ const t=(s.h||'')+' '+(s.h2||'').replace('[]',(s.ans||[''])[0]||''); return new Set((t.toLowerCase().match(/[a-z0-9]{4,}/g)||[]).filter(w=>!_stop.has(w))); }
+function evCity(s){ return (s.place||'').split(',')[0].trim().toLowerCase(); }
 function practicePool(filter,min){
-  // never practise today's daily stories (that would spoil the real round)
-  const today=new Set(DAILY ? (DAILY.call||[]).concat(DAILY.blank||[],DAILY.politics||[]).map(storyKey) : []);
+  // never practise today's daily stories (that would spoil the real round), including the same event worded differently
+  const td=DAILY ? (DAILY.call||[]).concat(DAILY.blank||[],DAILY.politics||[]).filter(x=>x.real) : [];
+  const today=new Set(td.map(storyKey)), srcs=new Set(td.map(x=>x.src).filter(Boolean));
+  const tdInfo=td.map(x=>({c:evCity(x),w:evWords(x)}));
+  const sameEvent=s=>{
+    if(s.src && srcs.has(s.src)) return true;
+    const c=evCity(s), w=evWords(s); if(!w.size) return false;
+    return tdInfo.some(t=>{ if(!t.w.size) return false; let n=0; w.forEach(x=>{ if(t.w.has(x)) n++; }); const j=n/(w.size+t.w.size-n); return j>=0.45 || (c && c===t.c && j>=0.12); });
+  };
   const cutoff=dayKey()<todayKey()?dayKey():todayKey();   // anything dated today or later may still be someone's daily
-  const ok=s=>!s._daily && !today.has(storyKey(s)) && !(s.day && s.day>=cutoff) && filter(s);
+  const ok=s=>!s._daily && !today.has(storyKey(s)) && !(s.day && s.day>=cutoff) && !sameEvent(s) && filter(s);
   const arch=STORIES.filter(s=>s._arch && ok(s));
   return arch.length>=min ? arch : STORIES.filter(ok);
 }
@@ -1345,6 +1357,9 @@ function pinPoints(d){return Math.round(PIN_PTS*Math.exp(-Math.max(0,d-75)/2600)
 /* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
 const PIN_SECS=20, PIN_GRACE=12;
 function pinMult(sec){ return Math.max(0.6,Math.min(1,1-(sec-PIN_GRACE)*0.05)); }
+/* Bonus for a fast, fairly accurate pin (true call only): up to +60. Full if within 150 km in 6 s or less; fades to nothing at 800 km or 11 s. */
+const PIN_BONUS=60;
+function pinBonus(d,sec){ return Math.round(PIN_BONUS*Math.max(0,Math.min(1,(11-sec)/5))*Math.max(0,Math.min(1,(800-d)/650))); }
 let PIN_RAF=0;
 function runPinTimer(){
   cancelAnimationFrame(PIN_RAF);
@@ -2484,8 +2499,8 @@ function startGame(mode, kind){
   }
   const reals=rounds.filter(x=>x.real).length;
   S = {mode, kind:KIND, rounds, i:0, results:[], phase:'call', score:0,
-       maxScore: blank ? rounds.length*BLANK_MAX : reals*(CALL_PTS+PIN_PTS)+(rounds.length-reals)*FAKE_PTS,
-       maxJaw: blank ? rounds.length*BLANK_MAX : reals*(CALL_PTS+PIN_PTS)};
+       maxScore: blank ? rounds.length*BLANK_MAX : reals*(CALL_PTS+PIN_PTS+PIN_BONUS)+(rounds.length-reals)*FAKE_PTS,
+       maxJaw: blank ? rounds.length*BLANK_MAX : reals*(CALL_PTS+PIN_PTS+PIN_BONUS)};
   S.jawK = 1;                                        // one point = the same jaw drop in every mode
   if(mode==='back' && BACK) S.backDate=BACK.date;
   S.sig = hash(rounds.map(x=>x.h||x.h2||'').join('|'));
@@ -2505,12 +2520,12 @@ function startGame(mode, kind){
   $('mPractice').classList.toggle('on',!daily);
   $('howText').innerHTML = blank
     ? 'Guess the hidden word in each true headline. The exact word scores up to <b>500</b>, more the faster you get it. Near misses pay a little, and every guess after your third costs 5%.'
-    : 'Right call on a true story: up to <b>+100</b>, more for answering quickly. Catching a fake: <b>+150</b>. Fooled by a fake: <b>−75</b>. Then pin where the true story happened for up to <b>+400</b>: you have 20 seconds, with full points for the first 12. Every point drops his jaw the same distance, and losing points pulls it back up.';
+    : 'Right call on a true story: up to <b>+100</b>, more for answering quickly. Catching a fake: <b>+150</b>. Fooled by a fake: <b>−75</b>. Then pin where the true story happened for up to <b>+400</b>: you have 20 seconds, with full points for the first 12. A fast, fairly close pin earns up to <b>+60</b> more. Every point drops his jaw the same distance, and losing points pulls it back up.';
   renderStats();
   closeMenu();
   Scene.configure(JAW_SCALE);
   Scene.setBest(bestM());
-  Scene.reset();
+  Scene.reset(); $('depth').textContent='0.0';
   if(S.results.length) Scene.restore(jawPoints()*S.jawK);
   $('final').hidden = true; setBar('none');
   if(S.i >= S.rounds.length){ finish(true); return; }
@@ -2750,7 +2765,8 @@ function openMap(){
   document.body.classList.add('pinning'); document.body.classList.remove('pinned');
   requestAnimationFrame(()=>requestAnimationFrame(()=>$('mapWrap').classList.add('open')));
   if(!map){
-    map = L.map('map',{worldCopyJump:true,minZoom:1.5,maxZoom:8,zoomSnap:0.5,renderer:L.canvas({padding:1}),   // draw a full screen of land beyond each edge so panning while zoomed in never shows blank margins
+    map = L.map('map',{zoomControl:window.innerWidth>=700,   // on phones the +/- buttons sat on top of Alaska and BC (taps there did nothing); tap-to-zoom and pinch cover it
+                       worldCopyJump:true,minZoom:1.5,maxZoom:8,zoomSnap:0.5,renderer:L.canvas({padding:1}),   // draw a full screen of land beyond each edge so panning while zoomed in never shows blank margins
                        inertia:true,inertiaDeceleration:2200,attributionControl:false,
                        maxBounds:[[-60,-540],[78,540]],maxBoundsViscosity:1});   // the world repeats sideways: scroll past Alaska and Asia appears
     fetch('world.json').then(r=>r.json()).then(w=>{
@@ -2820,13 +2836,15 @@ function submitGuess(timedOut){
   const d = guessLL ? km(guessLL.lat,guessLL.lng,st.lat,st.lng) : null;
   let pts = guessLL ? Math.round(pinPoints(d)*mult) : 0;
   if(!S.cur.callOk) pts = Math.round(pts*0.5);
+  const bonus = guessLL && S.cur.callOk ? pinBonus(d,sec) : 0;
+  pts += bonus; S.cur.pinBonus = bonus;
   S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
   Sound.play('lock',pts/PIN_PTS); if(pts>0) Sound.play('jawDown');
   let actual = L.latLng(st.lat,st.lng);
   if(guessLL) actual = L.latLng(st.lat, st.lng + 360*Math.round((guessLL.lng-st.lng)/360));   // the copy of the world nearest the pin, so the line never wraps the long way round
   if(guessLL){
     L.polyline([guessLL,actual],{color:'#ffcc4d',weight:2,dashArray:'4 4'}).addTo(layer);
-    map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.4),{maxZoom:6});
+    map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.4),{maxZoom:4.5});
   } else map.setView(actual,5,{animate:true});
   WORLDS.forEach(dx=>L.marker([st.lat,st.lng+dx],{icon:squareIcon('#4fbf6a'),interactive:false}).addTo(layer));
   $('btnGuess').hidden=true;
@@ -2836,7 +2854,7 @@ function submitGuess(timedOut){
   const fb=$('feedback'); fb.hidden=false;
   fb.classList.remove('open');
   fb.innerHTML = '<span class="sum">'+(S.cur.callOk?'<b>+'+S.cur.callPts+'</b> call · ':'')
-    + (guessLL ? Math.round(d).toLocaleString()+' km · <b>+'+pts+'</b>'+(S.cur.callOk?' pin':' half credit')+(mult<1?' (slow −'+Math.round((1-mult)*100)+'%)':'') : 'Time! No pin · <b>+0</b>')+'</span>'
+    + (guessLL ? Math.round(d).toLocaleString()+' km · <b>+'+pts+'</b>'+(S.cur.callOk?' pin':' half credit')+(mult<1?' (slow −'+Math.round((1-mult)*100)+'%)':'')+(bonus?' · <b>+'+bonus+'</b> quick and close':'') : 'Time! No pin · <b>+0</b>')+'</span>'
     + '<button class="why" type="button" aria-expanded="false">why?</button>'
     + '<small class="more">'+(st.clue?'Clues: '+st.clue+'. ':'')+st.place+(st.published?' · '+fmtDate(st.published):'')
     + (st.src?' · <a href="'+st.src+'" target="_blank" rel="noopener">read the story</a>':'')+'</small>';
@@ -2845,7 +2863,7 @@ function submitGuess(timedOut){
   if(!isDesk()) setTimeout(()=>{      // after a moment the map shrinks to a strip so the jaw is not hidden behind it
     if(S && S.phase==='done' && document.body.classList.contains('pinning')){
       document.body.classList.add('pinned');
-      setTimeout(()=>{ map.invalidateSize(); if(guessLL) map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.5),{maxZoom:6,animate:false}); else map.setView(actual,5,{animate:false}); aim(); },420);
+      setTimeout(()=>{ map.invalidateSize(); if(guessLL) map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.5),{maxZoom:4.5,animate:false}); else map.setView(actual,5,{animate:false}); aim(); },420);
     }
   },650);
 }
@@ -2896,11 +2914,11 @@ function runCountdown(){
 
 /* ---------- Run summary: tiers, dig log, today's curve ---------- */
 const TIERS=[
-  {f:0,    icon:'🥱', name:'Unfazed',          line:'Old news. The jaw barely twitched.'},
+  {f:0,    icon:'🥱', name:'Unfazed',          line:'Tough edition. The jaw is still warming up.'},
   {f:0.35, icon:'🤨', name:'Eyebrow Raised',   line:'A few of those got you.'},
   {f:0.55, icon:'☕', name:'Spat Out My Coffee', line:'That one\'s going in the group chat.'},
   {f:0.70, icon:'😱', name:'Gobsmacked',       line:'Through the floorboards and still going.'},
-  {f:0.85, icon:'🌋', name:'Earth-Shattering', line:'Jaw meets magma. Legendary reading.'}];
+  {f:0.85, icon:'🌋', name:'Earth-Shattering', line:'Legendary reading. Geologists are on the phone.'}];
 function tierOf(total,max){ let k=0; TIERS.forEach((t,i)=>{ if(total>=Math.round(t.f*max/50)*50) k=i; }); return k; }
 function renderSummary(total,max,mineM){
   const k=tierOf(total,max), cut=TIERS.map(t=>Math.round(t.f*max/50)*50);
@@ -3058,7 +3076,7 @@ function streakCount(){
 }
 function updateStreak(){
   const n=streakCount(), st=load('ff_streak')||{}, fz=st.freezes||0;
-  $('streak').textContent = n ? n+'-DAY STREAK'+(fz?' ❄'+(fz>1?fz:''):'') : '';
+  $('streak').innerHTML = n ? n+'<span class="sl">-DAY STREAK</span><span class="ss">🔥</span>'+(fz?' ❄'+(fz>1?fz:''):'') : '';
 }
 
 /* ---------- The Dig Kit: cosmetic unlocks for coming back, with a wardrobe to wear them ---------- */
@@ -3163,7 +3181,7 @@ const VS=(()=>{ try{
   const v=new URLSearchParams(location.search).get('vs'); if(!v) return null;
   const [name,m,score,day,kind]=v.split('~');
   if(!name || isNaN(+m)) return null;
-  return {name:name.replace(/[<>&]/g,'').slice(0,24), m:+m, score:+score||0, day:day||'', kind:kind||'call'};
+  return {name:name.replace(/[<>&]/g,'').slice(0,24), m:Math.min(40,Math.max(0,+m)), score:Math.min(9999,Math.max(0,+score||0)), day:day||'', kind:kind||'call'};
 }catch(e){ return null; } })();
 function vsLive(){ return VS && S && S.mode==='daily' && S.kind===VS.kind && VS.day===dayKey() && VS.name!==playerName(); }
 function renderVs(){
@@ -3701,10 +3719,16 @@ function fixGuess(word,st){
 
 function submitWord(raw){
   if(S.phase!=='live') return;
-  let word=(raw||'').toLowerCase().replace(/[^a-z]/g,'');
-  if(!word) return;
+  const toks=(raw||'').toLowerCase().split(/[^a-z]+/).filter(Boolean);
+  if(!toks.length) return;
   const bl=S.blank, st=S.rounds[S.i];
   const msg=$('guessMsg');
+  let word=toks[0];
+  if(toks.length>1){                       // "graphics cards", "the woods": drop filler, then use whichever word is closest to the answer
+    const keep=toks.filter(t=>!['the','a','an','of','to','in','on','for','and','some','his','her','their'].includes(t));
+    let bestC=-1; (keep.length?keep:toks).forEach(t=>{ const w=fixGuess(t,st).word, c=closeness(w,st); if(c!==null && c>bestC){ bestC=c; word=t; } });
+    if(bestC<0) word=(keep.length?keep:toks).join('');
+  }
   const fx=fixGuess(word,st), typed=word; word=fx.word;
   if(bl.seen.has(word)){ msg.textContent='Already guessed "'+word+'".'; return; }
   const c=closeness(word,st);
