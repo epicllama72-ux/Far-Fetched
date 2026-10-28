@@ -956,10 +956,10 @@ body.recap #bar{display:none}
 #endBtns .ghost{margin-top:0;flex:0 0 38%}
 #endBtns button{flex:1}
 #endBtns .ghost{flex:1}
-#sheet{position:fixed;inset:0;z-index:30;background:rgba(5,6,10,.72);display:flex;align-items:flex-end;justify-content:center;padding:0 0 env(safe-area-inset-bottom,0px)}
-#sheet .sheetIn{width:min(560px,100%);max-height:88vh;overflow:auto;background:var(--card);background-image:var(--scan);border-top:3px solid var(--accent);padding:12px max(16px,env(safe-area-inset-left,0px)) 18px;box-shadow:0 -6px 0 var(--ink)}
+#sheet,#wardrobe{position:fixed;inset:0;z-index:30;background:rgba(5,6,10,.72);display:flex;align-items:flex-end;justify-content:center;padding:0 0 env(safe-area-inset-bottom,0px)}
+#sheet .sheetIn,#wardrobe .sheetIn{width:min(560px,100%);max-height:88vh;overflow:auto;background:var(--card);background-image:var(--scan);border-top:3px solid var(--accent);padding:12px max(16px,env(safe-area-inset-left,0px)) 18px;box-shadow:0 -6px 0 var(--ink)}
 .sheetTop{display:flex;justify-content:space-between;align-items:center}
-#sheetClose{width:34px;height:34px;padding:0;font:28px/1 var(--vt);background:var(--panel);box-shadow:0 0 0 2px var(--line)}
+#sheetClose,#wardClose{width:34px;height:34px;padding:0;font:28px/1 var(--vt);background:var(--panel);box-shadow:0 0 0 2px var(--line)}
 #curve{width:100%;height:auto;image-rendering:pixelated;background:#0b0e14;box-shadow:0 0 0 2px var(--line);margin:6px 0 8px}
 #rankLine{margin:0 0 8px;font:22px/1.1 var(--vt)}
 #rankLine b{font-weight:400;color:var(--accent)}
@@ -1047,6 +1047,20 @@ body.recap #bar{display:none}
   .app{grid-template-columns:340px 1fr 480px}
   #headline{font-size:38px}
 }
+#unlockBox{margin:8px 0;padding:10px 12px;background:#2b2410;border:2px solid var(--accent);box-shadow:0 0 0 2px var(--ink);font:20px/1.2 var(--vt);color:var(--text)}
+#unlockBox .ut{font:9px/1 var(--px);letter-spacing:.16em;color:var(--accent);margin-bottom:6px}
+#unlockBox b{font-weight:400;color:var(--accent)}
+#unlockBox .un{font-size:16px;color:var(--dim)}
+#wardrobe .wsec{font:8px/1 var(--px);letter-spacing:.18em;color:#7d8494;margin:12px 2px 6px}
+#wardrobe .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+#wardrobe .wgrid button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 4px;background:var(--panel);box-shadow:0 0 0 2px var(--line);font:18px/1.05 var(--vt);text-align:center;min-height:84px}
+#wardrobe .wgrid button.on{background:var(--accent);color:#2b2000}
+#wardrobe .wgrid button.lock{opacity:.6;cursor:default}
+#wardrobe .wgrid button.lock .wi{filter:brightness(0) contrast(.4)}
+#wardrobe .wi{font-size:26px;line-height:1.1}
+#wardrobe .sw{display:inline-block;width:26px;height:20px;border:2px solid var(--ink);box-sizing:border-box}
+#wardrobe small{font-size:15px;opacity:.8}
+#wardNote{font:19px/1.2 var(--vt);color:var(--dim);margin:6px 0 0}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -1070,6 +1084,7 @@ body.recap #bar{display:none}
         <button data-k="pol">Politics</button>
       </div>
       <button id="mBoard">Leaderboard <small>today's deepest digs</small></button>
+      <button id="mWardrobe">Wardrobe <small id="wardSub">dress the digger</small></button>
       <button id="mBack" hidden>Back issues <small>earlier papers · no streak</small></button>
       <div id="backList" hidden></div>
       <p class="mlbl">SOUND</p>
@@ -1135,6 +1150,7 @@ body.recap #bar{display:none}
     <p class="kicker" id="finalKicker"></p>
     <p id="finalLine"></p>
     <p id="finalScoreLine"></p>
+    <div id="unlockBox" hidden></div>
     <div id="grid"></div>
     <div id="summary">
       <p id="vsLine" hidden></p>
@@ -1154,6 +1170,13 @@ body.recap #bar{display:none}
 
   <div id="toast" hidden></div>
   <button class="ghost" id="skipRecap">Skip ▸</button>
+  <section id="wardrobe" hidden aria-label="Wardrobe">
+    <div class="sheetIn">
+      <div class="sheetTop"><p class="kicker">Wardrobe</p><button id="wardClose" aria-label="Close">×</button></div>
+      <p id="wardNote"></p>
+      <div id="wardBody"></div>
+    </div>
+  </section>
   <section id="sheet" hidden aria-label="Today's leaderboard">
     <div class="sheetIn">
       <div class="sheetTop"><p class="kicker" id="boardKicker">Today's diggers</p><button id="sheetClose" aria-label="Close">×</button></div>
@@ -1314,7 +1337,7 @@ function runPinTimer(){
   const tick=()=>{
     if(!S || S.phase!=='pin') return;
     const now=performance.now();
-    if(!$('menu').hidden || !$('sheet').hidden) S.pinT0+=now-lastT;          // the clock stops while the menu is open
+    if(!$('menu').hidden || !$('sheet').hidden || !$('wardrobe').hidden) S.pinT0+=now-lastT;          // the clock stops while the menu is open
     lastT=now;
     const sec=(now-S.pinT0)/1000, left=Math.max(0,PIN_SECS-sec), m=pinMult(sec);
     bar.style.width=(left/PIN_SECS*100)+'%';
@@ -1380,7 +1403,7 @@ const Scene = (function(){
 
   let W=0,H=0,PX=6,cx=0,U=200,worldEnd=0,dropMax=0,B=[0,0,0,0,0,0],camMin=0,camMax=0,axisX=0,maxPts=3000;
   let dipUntil=0,dipping=false,pops=[],marksEl=null,mks=[],recap=null,markCb=null,paperT=1,paperGoal=1,tp=0,jd=0,camY=0,focusT=0.85,focus=0.85,t=0,last=0,gaspT=-99,foolT=-99,safeTop=120;
-  let shake=0,lastZone=-1,emitAcc=0,bestJd=0,panT=-99,zoneCb=null,breakCb=null,rumbleCb=null,sparks=[];
+  let shake=0,lastZone=-1,emitAcc=0,bestJd=0,panT=-99,zoneCb=null,breakCb=null,rumbleCb=null,sparks=[],kit={},drillV=0;
   let peb=[],gems=[],bubbles=[],worms=[],beetles=[],tunnels=[],cracks=[],parts=[],drips=[],embers=[];
   let labels=[],zoneLabels=[],zones=[],depthCb=null,lastM='',running=false,resizeTimer=0;
 
@@ -1505,11 +1528,19 @@ const Scene = (function(){
     return Math.random()<0.5?C.magmaBright:C.magmaHi;
   }
 
+  /* the Dig Kit's tunnel trails */
+  function trailBit(y){
+    const k=kit.trail, s=Math.random()<0.5?-1:1, r=Math.random;
+    if(k==='sparks') parts.push({x:s*(2+r()*7), y:y-2, vx:s*(6+r()*30), vy:-(10+r()*30), life:0.5+r()*0.5, age:0, c:r()<0.5?'#ffd23f':'#ff8a1f', sz:1, dust:false});
+    else if(k==='bubbles') parts.push({x:(r()*2-1)*8, y:y, vx:(r()-0.5)*6, vy:-(8+r()*10), life:1+r(), age:0, c:'#cdefff', sz:2, dust:true});
+    else if(k==='golddust') parts.push({x:s*(2+r()*8), y:y-1, vx:s*(3+r()*14), vy:-(2+r()*10), life:0.9+r()*0.8, age:0, c:r()<0.5?'#ffd23f':'#fff3a0', sz:1, dust:false});
+  }
+  function setKit(k){ kit=k||{}; if(reduce&&W) draw(); }
   function burst(n,y,force){
     for(let i=0;i<n && parts.length<420;i++){
       const s=Math.random()<0.5?-1:1;
       parts.push({x:s*(8+Math.random()*3), y:y-Math.random()*3, vx:s*(8+Math.random()*34*force), vy:-(6+Math.random()*28*force),
-                  life:0.8+Math.random()*0.9, age:0, c:chunkCol(y), sz:Math.random()<0.3?2:1, dust:false});
+                  life:0.8+Math.random()*0.9, age:0, c:(kit.teeth==='goldjaw'&&Math.random()<0.45)?(Math.random()<0.5?'#ffd23f':'#fff3a0'):chunkCol(y), sz:Math.random()<0.3?2:1, dust:false});
     }
     for(let i=0;i<Math.ceil(n/3) && parts.length<420;i++){
       const s=Math.random()<0.5?-1:1;
@@ -1525,6 +1556,7 @@ const Scene = (function(){
     const prev=jd;
     jd+=(target()-jd)*(1-Math.exp(-dt*1.6));
     const speed=(jd-prev)/Math.max(dt,1e-3);       // world px per second
+    drillV=speed;
     focus+=(focusT-focus)*(1-Math.exp(-dt*3));
     const panning=t-panT<2.5;
     if(recap){
@@ -1539,7 +1571,7 @@ const Scene = (function(){
     if(rumbleCb) rumbleCb(cy>70 && Math.abs(speed)>0.8 ? clamp(Math.abs(speed)/35,0.15,1) : 0);
     if(speed>0.8 && cy>74){
       emitAcc+=speed*dt*1.4;
-      while(emitAcc>1){ emitAcc-=1; burst(1,cy,clamp(speed/30,0.4,1.4)); }
+      while(emitAcc>1){ emitAcc-=1; burst(1,cy,clamp(speed/30,0.4,1.4)); if(kit.trail) trailBit(cy); }
       shake=Math.max(shake,clamp(speed/40,0,1.2));
     }
     const z=zoneIndex(cy);
@@ -1636,6 +1668,8 @@ const Scene = (function(){
         let x=26, k=sh*3;
         while(x<49){ const w=1+((k*5)%3), h=7+((k*7)%5); R(x,h0-h,w,h,BK[k%BK.length]); if(w>1) R(x,h0-h+2,w,1,'#00000033'); x+=w+((k%4)===0?1:0); k++; }
       }
+      if(kit.globe){ R(39,-60,10,9,C.ol); R(40,-59,8,7,'#3f7fb8'); R(41,-58,3,2,'#4f9d57'); R(44,-56,3,3,'#4f9d57'); R(41,-55,2,1,'#4f9d57'); R(42,-59,2,1,'#8fc4ee'); R(43,-52,2,2,'#c9a050'); R(41,-50,6,1,'#c9a050'); }
+      if(kit.trophy){ const G='#ffd23f', GS='#c99a1c'; R(28,-72,8,5,C.ol); R(29,-71,6,3,G); R(30,-68,4,1,GS); R(27,-71,1,2,G); R(36,-71,1,2,G); R(31,-67,2,3,GS); R(29,-64,6,2,C.ol); R(30,-64,4,1,G); R(30,-70,1,2,'#fff6c8'); }
       R(41,-71,8,9,'#b0683a'); R(40,-71,10,2,'#d58a52'); R(43,-78,1,7,'#4f8a5a'); R(45,-80,1,9,'#4f8a5a'); R(41,-76,2,1,'#6fae5f'); R(46,-77,3,1,'#6fae5f'); R(44,-82,2,2,'#6fae5f');
       // clock above his head, picture on the wall under the bookshelf
       RO(-5,-34,10,10,C.frame); R(-4,-33,8,8,C.clockFace);
@@ -1657,7 +1691,9 @@ const Scene = (function(){
     // 3. torso and neck
     RO(-17,28,33,48,C.shirt); R(-17,28,3,48,C.shirtSh); R(14,28,3,48,C.shirtSh);
     R(-5,19,10,10,C.skinSh);
-    R(-6,28,12,3,C.collar); R(-1,31,3,42,C.tie); R(-2,31,5,3,C.tie);
+    R(-6,28,12,3,C.collar); R(-1,31,3,42,kit.tie||C.tie); R(-2,31,5,3,kit.tie||C.tie);
+    if(kit.badge){ R(4,36,9,1,C.shirtSh); R(4,36,1,8,C.shirtSh); R(12,36,1,8,C.shirtSh); R(4,43,9,1,C.shirtSh);
+      R(6,34,5,7,'#ffffff'); R(6,34,5,2,'#c0392b'); R(7,37,3,1,'#55596a'); R(7,39,3,1,'#9aa0b0'); }
 
     // 4. head
     if(vis(-12,24)){
@@ -1687,6 +1723,17 @@ const Scene = (function(){
       if(fooled){ R(14,-1,1,1,C.sweat); R(13,0,3,3,C.sweat); R(14,3,1,1,C.sweat); }
       R(-6,9,12,3,C.hair); R(-1,9,1,1,C.skin);
       R(-6,12,12,1,C.tongueDk);
+      if(kit.head==='fedora'){
+        const F='#a68a64', FS='#7d6644', BD='#3b2a1c';
+        R(-10,-21,20,10,C.ol); R(-9,-20,18,9,F); R(-8,-21,16,1,F); R(-1,-20,2,3,FS);
+        R(-9,-14,18,3,BD); R(3,-16,6,6,'#ffffff'); R(3,-16,6,1,'#c0392b'); R(4,-13,4,1,'#55596a');
+        R(-18,-12,36,4,C.ol); R(-17,-11,34,2,F); R(-17,-9,34,1,FS);
+      } else if(kit.head==='hardhat'){
+        const Y='#f4c20d', YS='#c99a00';
+        R(-12,-22,24,12,C.ol); R(-11,-21,22,10,Y); R(-9,-22,18,1,Y); R(-1,-21,2,10,YS);
+        R(-15,-12,30,4,C.ol); R(-14,-11,28,2,Y); R(-14,-9,28,1,YS);
+        R(-4,-19,8,5,C.ol); R(-3,-18,6,3,'#cfd6de'); R(-2,-17,4,1,Math.floor(t*3)%2?'#fff6c8':C.bulb);
+      }
     }
 
     // 5. his table: a top, a shallow apron with a drawer, four legs to the floor; cup
@@ -1706,7 +1753,7 @@ const Scene = (function(){
     // desk lamp and its pool of light
     g.globalAlpha=0.12; for(let r=0;r<14;r++){ const hw=2+r*0.9; R(Math.round(37-hw),61+r,Math.round(hw*2),1,C.bulb); } g.globalAlpha=1;
     RO(33,72,9,2,'#2f6b5a'); R(37,62,1,10,'#2f6b5a'); R(37,61,6,1,'#2f6b5a'); RO(39,58,7,4,'#2f6b5a'); R(40,62,5,1,C.bulb);
-    RO(44,68,5,6,C.cup); R(45,68,3,1,C.coffee);
+    RO(44,68,5,6,kit.mug?'#e8b53a':C.cup); R(45,68,3,1,C.coffee); if(kit.mug){ R(45,70,1,3,'#fff6c8'); R(49,70,2,3,'#e8b53a'); R(50,71,1,1,C.ol); }
     { const s=Math.round(Math.sin(t*3)); R(45+s,65,1,2,'#cfd6de'); R(47-s,63,1,2,'#cfd6de'); }
 
     // 6. underground life and decor
@@ -1818,7 +1865,7 @@ const Scene = (function(){
     }
 
     // 7. holes and spreading cracks behind the jaw
-    const jawTop=13+Math.round(jdE), cyNow=jawTop+9;
+    const jawTop=13+Math.round(jdE), cyNow=jawTop+9, JS=kit.teeth==='goldjaw'?'#ffd23f':C.skin, JSH=kit.teeth==='goldjaw'?'#c99a1c':C.skinSh;
     if(cyNow>76){
       R(-12,75,24,5,C.hole); R(-12,80,24,2,C.drawerDk);
       R(-15,73,2,2,C.deskHi); R(13,73,2,2,C.deskHi); R(-17,74,1,1,C.deskTop); R(16,74,1,1,C.deskTop); R(-11,72,1,1,C.deskHi); R(10,71,1,1,C.deskHi);
@@ -1844,32 +1891,35 @@ const Scene = (function(){
       R(-10,top,20,h,C.ol);
       R(-7,top,14,h,C.mouthIn);
       if(h>14) R(-2,top+6,4,h-10,C.throat);
-      R(-9,top,2,h,C.skin); R(7,top,2,h,C.skin);
-      R(-7,top,1,h,C.skinSh); R(6,top,1,h,C.skinSh);
+      R(-9,top,2,h,JS); R(7,top,2,h,JS);
+      R(-7,top,1,h,JSH); R(6,top,1,h,JSH);
       const k0=Math.max(0,Math.floor((camI-top-11)/13)), k1=Math.ceil((camI+H-top)/13);
       for(let k=k0;k<=k1;k++){
         const y=top+11+k*13+((k*5)%4);
         if(y>=bottom-2) break;
-        if(k%2) R(-9,y,1,1,C.skinSh); else R(8,y,1,1,C.skinSh);
+        if(k%2) R(-9,y,1,1,JSH); else R(8,y,1,1,JSH);
         R(-8,y+6,1,2,'#fbe0c4');
       }
-      R(-6,13,12,2,C.teeth); for(let x=-4;x<5;x+=4) R(x,13,1,2,C.mouthIn);
+      R(-6,13,12,2,kit.teeth==='diamond'?'#d9f6ff':C.teeth); for(let x=-4;x<5;x+=4) R(x,13,1,2,C.mouthIn); if(kit.teeth==='goldtooth') R(-3,13,2,2,'#ffd23f');
       if(jdE>=6){ R(-1,15,2,3,C.tongue); R(-1,18,2,1,C.tongueDk); }
       if(jdE>=4){ R(-6,bottom-3,12,3,C.tongue); R(-1,bottom-3,1,2,C.tongueDk); R(3,bottom-3,1,1,C.drool); }
     }
     R(-10,jawTop,20,2,C.ol);
-    R(-8,jawTop,16,1,jdE>=2?C.teeth:C.skin);
+    R(-8,jawTop,16,1,jdE>=2?C.teeth:JS);
+    if(jdE>=2 && kit.teeth==='goldtooth'){ R(-3,jawTop,3,1,'#ffd23f'); if(Math.floor(t*1.4)%3===0){ R(-4,jawTop-1,1,1,'#ffffff'); R(-3,jawTop-1,1,1,'#fff6c8'); R(-2,jawTop-2,1,1,'#fff6c8'); } }
+    if(jdE>=2 && kit.teeth==='diamond'){ for(let x=-7;x<8;x+=2){ const q=(Math.floor(t*(drillV>0.8?10:5))+x)&3; R(x,jawTop,1,1,q===0?'#ffffff':q===1?'#9fe8ff':'#c9f4ff'); if(q===0) R(x,jawTop-1,1,1,'#ffffff'); } }
+    if(kit.head==='hardhat' && cyNow>76){ g.globalAlpha=0.09; for(let r=0;r<22;r++){ const hw=Math.round(5+r*0.9); R(-hw,jawTop+9+r,hw*2,1,'#fff2a8'); } g.globalAlpha=1; }
     if(jdE>8 && !reduce){                                  // the odd drop of drool falling from his chin
       const cyc=t/3.5, n=Math.floor(cyc), ph=cyc-n;          // one drop every 3.5 s, falling for about a second
       if(ph<0.28){ const f=ph/0.28, dx=(n%3)-1, y=jawTop+10+Math.round(f*f*40);
         g.globalAlpha=Math.max(0,1-f*0.9); R(dx,y,1,2,C.drool); g.globalAlpha=1; }
     }
     if(jdE>=2){ for(let x=-4;x<5;x+=4) R(x,jawTop,1,1,C.mouthIn); }
-    R(-8,jawTop+1,16,1,jdE>=2?C.tongueDk:C.skin);
-    [9,9,9,8,7,5,3].forEach((hw,r)=>{ R(-hw,jawTop+2+r,hw*2,1,r>=5?C.skinSh:C.skin); });
+    R(-8,jawTop+1,16,1,jdE>=2?C.tongueDk:JS);
+    [9,9,9,8,7,5,3].forEach((hw,r)=>{ R(-hw,jawTop+2+r,hw*2,1,r>=5?JSH:JS); });
     [9,9,9,8,7,5,3].forEach((hw,r)=>{ R(-hw-1,jawTop+2+r,1,1,C.ol); R(hw,jawTop+2+r,1,1,C.ol); });
     R(-3,jawTop+9,6,1,C.ol);
-    R(-4,jawTop+5,1,1,C.skinSh); R(2,jawTop+4,1,1,C.skinSh); R(-1,jawTop+6,1,1,C.skinSh);
+    R(-4,jawTop+5,1,1,JSH); R(2,jawTop+4,1,1,JSH); R(-1,jawTop+6,1,1,JSH);
 
     // 9. debris and dust
     parts.forEach(p=>{
@@ -2062,7 +2112,7 @@ const Scene = (function(){
     document.body.appendChild(el); pops.push({el,t0:t+pops.length*0.25});     // a second pop right after the first waits its turn
     el.style.opacity=0;
   }
-  return {chinAt,playRecap,endRecap,onMark,popPts,setPaper,start,setJaw,configure,restore,gasp,fooled:fooledReact,setFocus,setSafeTop,info,reset,setBest,panDown,layout,camDepth,
+  return {setKit,chinAt,playRecap,endRecap,onMark,popPts,setPaper,start,setJaw,configure,restore,gasp,fooled:fooledReact,setFocus,setSafeTop,info,reset,setBest,panDown,layout,camDepth,
           onDepth:cb=>{depthCb=cb;}, onZone:cb=>{zoneCb=cb;}, onBreak:cb=>{breakCb=cb;}, onRumble:cb=>{rumbleCb=cb;}};
 })();
 
@@ -2100,6 +2150,7 @@ const Sound=(function(){
   }
   const SFX={
     menu:()=>tone(520,0.04,{vol:0.1,type:'triangle'}),
+    unlock:()=>{ [523,659,784,1047,1319].forEach((f,i)=>tone(f,0.16,{vol:0.16,at:i*0.08})); tone(2093,0.4,{vol:0.1,at:0.45}); },
     real:()=>{ tone(523,0.09,{vol:0.18}); tone(784,0.15,{vol:0.18,at:0.08}); },
     twist:()=>{ tone(392,0.12,{vol:0.16,type:'triangle'}); tone(294,0.22,{vol:0.16,type:'triangle',at:0.1}); },
     catchFake:()=>{ tone(880,0.07,{vol:0.16}); tone(1319,0.22,{vol:0.16,at:0.06}); },
@@ -2371,7 +2422,7 @@ function runSpeed(){
   const tick=()=>{
     if(!S || S.phase!=='call' || S.kind==='blank'){ return; }
     const now=performance.now();
-    if(!$('menu').hidden || !$('sheet').hidden) S.t0+=now-lastT;          // the clock stops while the menu is open
+    if(!$('menu').hidden || !$('sheet').hidden || !$('wardrobe').hidden) S.t0+=now-lastT;          // the clock stops while the menu is open
     lastT=now;
     const st=S.rounds[S.i], sec=(now-S.t0)/1000, pts=speedPts(sec,st);
     bar.style.width=(pts/CALL_PTS*100)+'%'; lab.textContent='+'+pts;
@@ -2578,12 +2629,11 @@ function next(){
 function bestM(){ const b=load('ff_best'); return b&&b.m?b.m:0; }
 function renderStats(){
   const h=load('ff_hist')||{}, vals=Object.values(h);
-  const st=load('ff_streak'); let n=0;
-  if(st && (st.last===todayKey()||st.last===yesterdayKey())) n=st.count;
-  const el=$('menuStats');
+  const n=streakCount(), fz=(load('ff_streak')||{}).freezes||0;
+  const el=$('menuStats'); renderWardSub();
   if(!vals.length){ el.textContent='Finish a daily to start your record.'; return; }
   const avg=vals.reduce((a,x)=>a+x.m,0)/vals.length, best=Math.max(...vals.map(x=>x.m));
-  el.innerHTML='Best <b>'+best.toFixed(1)+' m</b> · avg <b>'+avg.toFixed(1)+' m</b> · <b>'+vals.length+'</b> played'+(n?' · <b>'+n+'</b>-day streak':'');
+  el.innerHTML='Best <b>'+best.toFixed(1)+' m</b> · avg <b>'+avg.toFixed(1)+' m</b> · <b>'+vals.length+'</b> played'+(n?' · <b>'+n+'</b>-day streak':'')+(fz?' · ❄ '+fz+' freeze'+(fz>1?'s':''):'');
 }
 let CD_T=0;
 function runCountdown(){
@@ -2653,6 +2703,7 @@ function drawDigLog(){
 
 function finish(restored){
   stopTimer(); cancelAnimationFrame(SPEED_RAF);
+  $('unlockBox').hidden=true; S.newUnlocks=[]; S.froze=S.earnedFreeze=false;
   $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','answered');
   ['card','speed','feedback','mapWrap','blankUI'].forEach(id=>$(id).hidden=true);
   setBar('end');
@@ -2694,14 +2745,19 @@ function finish(restored){
     {   // streaks count editions, so a late-built paper never breaks them
       const st = load('ff_streak') || {last:null,count:0}, ed = dayKey();
       if(st.last !== ed){
-        st.count = (st.last===prevDay(ed)) ? st.count+1 : 1;
+        if(st.last===prevDay(ed)) st.count++;
+        else if((st.freezes||0)>0 && st.last===prevDay(prevDay(ed))){ st.freezes--; st.count++; S.froze=true; }   // a freeze covers one missed day
+        else st.count=1;
         st.last = ed;
+        if(st.count%7===0){ st.freezes=Math.min(2,(st.freezes||0)+1); S.earnedFreeze=true; }   // a free freeze every 7 days of streak
         store('ff_streak',st);
       }
     }
     const h=load('ff_hist')||{}; h[dayKey()+':'+S.kind]={m:+inf.m,score:total}; store('ff_hist',h);
     if(+inf.m>bestM()){ store('ff_best',{m:+inf.m,zone:inf.zone}); }
     Scene.setBest(bestM());
+    updateLife(inf);
+    claimUnlocks();
   }
   if(daily) postScore({kind:S.kind, m:+inf.m, score:total, zone:inf.zone, ans:answersOf(S.results)});
   if(restored){
@@ -2741,21 +2797,121 @@ function endRecapUI(skipped){
   if(!RECAP_ON) return;
   RECAP_ON=false; document.body.classList.remove('recap');
   Scene.endRecap(); Sound.play('fanfare'); aim(0.74);
+  if(S && S.newUnlocks && S.newUnlocks.length && !S.unlockPlayed){ S.unlockPlayed=true; setTimeout(()=>Sound.play('unlock'),500); }
 }
 function startRecap(auto){
   if(!S || !S.results.length) return;
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches){ if(auto) Sound.play('fanfare'); return; }
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){ if(auto) Sound.play('fanfare'); if(S && S.newUnlocks && S.newUnlocks.length) Sound.play('unlock'); return; }
   if(S.returned){ Scene.restore(jawPoints()*S.jawK); Scene.setPaper(true,true); S.returned=false; document.body.classList.remove('returned'); }   // replaying from the returning view
   const list=recapList();
   RECAP_ON=true; document.body.classList.add('recap'); closeMenu(); $('sheet').hidden=true;
   Scene.playRecap(list, 5+1.9*list.length, ()=>endRecapUI());
 }
-function updateStreak(){
-  const st = load('ff_streak');
-  let n = 0;
-  if(st && (st.last===dayKey() || st.last===prevDay(dayKey()))) n = st.count;
-  $('streak').textContent = n ? n+'-DAY STREAK' : '';
+/* a streak lives while its last edition is today's or yesterday's, or the day before when a freeze can cover the gap */
+function streakCount(){
+  const st=load('ff_streak'); if(!st) return 0;
+  const e=dayKey();
+  return (st.last===e || st.last===prevDay(e) || ((st.freezes||0)>0 && st.last===prevDay(prevDay(e)))) ? st.count : 0;
 }
+function updateStreak(){
+  const n=streakCount(), st=load('ff_streak')||{}, fz=st.freezes||0;
+  $('streak').textContent = n ? n+'-DAY STREAK'+(fz?' ❄'+(fz>1?fz:''):'') : '';
+}
+
+/* ---------- The Dig Kit: cosmetic unlocks for coming back, with a wardrobe to wear them ---------- */
+const ZONE_ORDER=['THE BASEMENT','THE DIRT','BEDROCK','MAGMA','THE CORE'];
+const KIT=[
+  {id:'badge',   slot:'pocket', name:'Press badge',        icon:'🪪', need:'3-day streak',   ok:L=>L.best>=3},
+  {id:'goldtooth',slot:'teeth', name:'Gold tooth',         icon:'🪙', need:'7-day streak',   ok:L=>L.best>=7},
+  {id:'fedora',  slot:'head',   name:"Reporter's fedora",  icon:'🎩', need:'14-day streak',  ok:L=>L.best>=14},
+  {id:'diamond', slot:'teeth',  name:'Diamond teeth',      icon:'💎', need:'30-day streak',  ok:L=>L.best>=30},
+  {id:'hardhat', slot:'head',   name:'Hard hat + headlamp',icon:'⛑️', need:'60-day streak',  ok:L=>L.best>=60},
+  {id:'goldjaw', slot:'teeth',  name:'Golden jaw',         icon:'👑', need:'100-day streak', ok:L=>L.best>=100},
+  {id:'mug',     slot:'mug',    name:'Gold mug',           icon:'☕', need:'10 papers finished', ok:L=>L.papers>=10},
+  {id:'trophy',  slot:'trophy', name:'Core trophy',        icon:'🏆', need:'reach THE CORE', ok:L=>L.zmax>=5},
+  {id:'globe',   slot:'globe',  name:'Desk globe',         icon:'🌍', need:'pin 50 stories', ok:L=>L.pins>=50},
+  {id:'tie1',    slot:'tie',    name:'Basement tie', color:'#8a8fb0', need:'reach THE BASEMENT', ok:L=>L.zmax>=1},
+  {id:'tie2',    slot:'tie',    name:'Dirt tie',     color:'#9a6a35', need:'reach THE DIRT',     ok:L=>L.zmax>=2},
+  {id:'tie3',    slot:'tie',    name:'Bedrock tie',  color:'#b4b2c2', need:'reach BEDROCK',      ok:L=>L.zmax>=3},
+  {id:'tie4',    slot:'tie',    name:'Magma tie',    color:'#ff6a1f', need:'reach MAGMA',        ok:L=>L.zmax>=4},
+  {id:'tie5',    slot:'tie',    name:'Core tie',     color:'#ffd23f', need:'reach THE CORE',     ok:L=>L.zmax>=5},
+  {id:'sparks',  slot:'trail',  name:'Sparks',             icon:'✨', need:'5 papers finished',  ok:L=>L.papers>=5},
+  {id:'bubbles', slot:'trail',  name:'Bubbles',            icon:'🫧', need:'25 papers finished', ok:L=>L.papers>=25},
+  {id:'golddust',slot:'trail',  name:'Gold dust',          icon:'🌟', need:'reach MAGMA',        ok:L=>L.zmax>=4}];
+function lifeNow(){
+  const l=load('ff_life')||{}, st=load('ff_streak')||{}, h=load('ff_hist')||{};
+  return {best:Math.max(l.best||0,st.count||0), pins:l.pins||0, zmax:l.zmax||0, papers:new Set(Object.keys(h).map(k=>k.split(':')[0])).size};
+}
+function kitState(){ const k=load('ff_kit'); return {eq:(k&&k.eq)||{}, seen:(k&&k.seen)||[]}; }
+function unlockedIds(){ const L=lifeNow(); return KIT.filter(it=>it.ok(L)).map(it=>it.id); }
+function currentKit(){
+  const have=new Set(unlockedIds()), eq=kitState().eq, o={};
+  const get=slot=>{ const id=eq[slot]; return id && have.has(id) ? KIT.find(i=>i.id===id) : null; };
+  const hd=get('head'); if(hd) o.head=hd.id;
+  if(get('pocket')) o.badge=true;
+  const te=get('teeth'); if(te) o.teeth=te.id;
+  const ti=get('tie'); if(ti) o.tie=ti.color;
+  if(get('mug')) o.mug=true; if(get('trophy')) o.trophy=true; if(get('globe')) o.globe=true;
+  const tr=get('trail'); if(tr) o.trail=tr.id;
+  return o;
+}
+function applyKit(){ Scene.setKit(currentKit()); }
+/* after a finished daily: fold this run into the lifetime totals */
+function updateLife(inf){
+  const l=load('ff_life')||{}, st=load('ff_streak')||{};
+  l.best=Math.max(l.best||0,st.count||0);
+  l.pins=(l.pins||0)+S.results.filter(x=>x.pinPts>0).length;
+  l.zmax=Math.max(l.zmax||0, ZONE_ORDER.indexOf(inf.zone)+1);
+  store('ff_life',l);
+}
+/* anything newly earned goes on straight away */
+function claimUnlocks(){
+  const k=kitState(), have=unlockedIds(), fresh=have.filter(id=>!k.seen.includes(id));
+  KIT.forEach(it=>{ if(fresh.includes(it.id)) k.eq[it.slot]=it.id; });
+  store('ff_kit',{eq:k.eq, seen:have});
+  S.newUnlocks=fresh.map(id=>KIT.find(i=>i.id===id));
+  applyKit(); renderUnlockBox(); renderWardSub();
+}
+function renderUnlockBox(){
+  const b=$('unlockBox'), n=S.newUnlocks||[], notes=[];
+  if(S.froze) notes.push('❄ A streak freeze covered your missed day, so the streak lives.');
+  if(S.earnedFreeze) notes.push('❄ You earned a streak freeze. It covers one missed day.');
+  if(!n.length && !notes.length){ b.hidden=true; return; }
+  const top=n[n.length-1];
+  b.innerHTML=(n.length?'<p class="ut">NEW UNLOCK</p><div>'+(top.icon||'🎀')+' <b>'+top.name+'</b>'+(n.length>1?' <span class="un">+'+(n.length-1)+' more</span>':'')+'<br><span class="un">He\'s wearing it now. Change it in the Wardrobe.</span></div>':'')
+    + notes.map(t=>'<div class="un" style="margin-top:6px">'+t+'</div>').join('');
+  b.hidden=false;
+}
+function kitBrag(){
+  const b=lifeNow().best, m=[[100,'👑'],[60,'⛑️'],[30,'💎'],[14,'🎩'],[7,'🦷'],[3,'🏅']].find(x=>b>=x[0]);
+  return m ? m[1]+' '+m[0]+'-day digger' : '';
+}
+function renderWardSub(){ const n=unlockedIds().length; $('wardSub').textContent=n+' of '+KIT.length+' unlocked'; }
+function openWardrobe(){
+  Sound.play('menu'); closeMenu();
+  if(S && S.phase==='call') document.body.classList.add('hideq');
+  renderWardrobe(); $('wardrobe').hidden=false;
+}
+function closeWardrobe(){ $('wardrobe').hidden=true; if($('menu').hidden && $('sheet').hidden) document.body.classList.remove('hideq'); }
+function renderWardrobe(){
+  const k=kitState(), have=new Set(unlockedIds()), st=load('ff_streak')||{}, fz=st.freezes||0;
+  $('wardNote').innerHTML='Streak freezes: <b>'+fz+'</b> of 2. You earn one every 7 days of streak, and it covers one missed day.';
+  const secs=[['HEAD',['head']],['POCKET',['pocket']],['TEETH',['teeth']],['TIE',['tie']],['DESK AND SHELF',['mug','trophy','globe']],['TUNNEL TRAIL',['trail']]];
+  $('wardBody').innerHTML=secs.map(([name,slots])=>'<p class="wsec">'+name+'</p><div class="wgrid">'
+    + KIT.filter(it=>slots.includes(it.slot)).map(it=>{
+        const own=have.has(it.id), on=own && k.eq[it.slot]===it.id;
+        const ic=it.color?'<i class="sw" style="background:'+it.color+'"></i>':'<span class="wi">'+it.icon+'</span>';
+        return '<button data-id="'+it.id+'" class="'+(on?'on':'')+(own?'':' lock')+'">'+ic+'<span>'+it.name+'</span><small>'+(own?(on?'wearing':'tap to wear'):'🔒 '+it.need)+'</small></button>';
+      }).join('')+'</div>').join('');
+  $('wardBody').querySelectorAll('button').forEach(b=>b.onclick=()=>{
+    const it=KIT.find(i=>i.id===b.dataset.id); if(!have.has(it.id)) return;
+    const k2=kitState(); k2.eq[it.slot]=k2.eq[it.slot]===it.id?null:it.id;
+    store('ff_kit',k2); applyKit(); Sound.play('menu'); renderWardrobe();
+  });
+}
+$('mWardrobe').onclick=openWardrobe;
+$('wardClose').onclick=closeWardrobe;
+$('wardrobe').addEventListener('click',e=>{ if(e.target===$('wardrobe')) closeWardrobe(); });
 
 /* ---------- Friend challenge: the share link carries your dig; a friend who opens it is told to beat it ---------- */
 function siteUrl(){ return window.claude ? location.href.split('#')[0] : location.origin+location.pathname; }
@@ -2845,6 +3001,7 @@ async function share(){
   const text = label+' · 🦷 '+(S.finalM!=null?S.finalM.toFixed(1):'0.0')+' m'+zone+'\n'
     + S.shareLines.join('\n')+'\n'
     + t.icon+' '+t.name+' · '+fmtPts(S.total)+'/'+S.max+'\n'
+    + (kitBrag() ? kitBrag()+'\n' : '')
     + shareUrl();
   const btn=$('btnShare');
   try{
@@ -3408,7 +3565,7 @@ $('menuBtn').onclick=e=>{ e.stopPropagation(); Sound.play('menu'); const open=$(
 $('menu').addEventListener('click',e=>e.stopPropagation());
 document.addEventListener('click',closeMenu);
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){ if(RECAP_ON) endRecapUI(true); closeMenu(); $('sheet').hidden=true; return; }
+  if(e.key==='Escape'){ if(RECAP_ON) endRecapUI(true); closeMenu(); $('sheet').hidden=true; closeWardrobe(); return; }
   if(e.metaKey||e.ctrlKey||e.altKey) return;
   const t=e.target; if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA')) return;
   if(!$('sheet').hidden || !$('menu').hidden || !S) return;
@@ -3432,7 +3589,7 @@ Scene.onRumble(l=>Sound.rumble(l));
 function renderMute(){ const m=Sound.isMuted(); $('muteBtn').classList.toggle('off',m); $('muteBtn').setAttribute('aria-pressed',String(m)); $('muteBtn').setAttribute('aria-label',m?'Sound off':'Sound on'); }
 $('muteBtn').onclick=e=>{ e.stopPropagation(); Sound.setMuted(!Sound.isMuted()); renderMute(); if(!Sound.isMuted()) Sound.play('menu'); };
 renderMute();
-Scene.start();
+Scene.start(); applyKit(); renderWardSub();
 updateStreak();
 Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS?VS.kind:KIND); loadIssues(); });
 window.addEventListener('resize',()=>{ clearTimeout(window._aimT); window._aimT=setTimeout(()=>aim(),200); });
