@@ -192,7 +192,7 @@ Below are candidate news stories from the past month (JSON). Some include "text"
    - "id": the candidate id.
    - "h": a punchy wire-style headline, max 100 characters, keeping every fact of the story exactly as reported (never change what happened, who or what was involved, numbers or outcome). You MAY reword and add short descriptive wording that makes the region easier to deduce, as long as it is generically true of that place and does not alter or add to the story: e.g. local terms and institutions ("the county sheriff", "council", "constabulary", "a roo", "monsoon rains", "rupees", "kilometres", "on the ski slopes"), local climate, wildlife or customs, or spelling and units typical of the country. Replace the place with the literal token {} exactly once (e.g. "... in {}"). Remove every EXPLICIT location clue: no state/country/city names, demonyms, local team, landmark, university or company names that reveal the place, no "Florida man". But KEEP the implicit, deducible clues that are part of the story (the animal, the weather, the local custom, currency or units, the type of institution), so a sharp player can reason their way to the right region. Keep the oddity intact.
    - "h2": the same story as a headline that DOES name the place (city + state/country), with the main subject noun of the story (the animal, object or kind of person it is about, e.g. "kangaroo", "pelicans", "kitten") replaced by the literal token [] exactly once. The hidden word must be an ordinary common noun that is written in lowercase in normal text: never a name, brand, product, model, company, team, place or nationality (not "Maserati" or "Vegemite" - use "car" or "spread" instead, or pick another noun). The rest of h2 must NOT contain the hidden word, a synonym or a close variant of it (if the hidden word is "toilets", h2 must not say "potties" or "loo"), and give each pick a different hidden word than the other picks (not both "burglar" and "thief").
-   - "ans": 1-3 lowercase single-word answers for [] - the exact hidden word first, then singular/plural variants. Letters only.
+   - "ans": 4-14 lowercase single-word answers that should all COUNT as correct for [] - the exact hidden word first, then its singular/plural, then every reasonable synonym, informal word, regional variant or obvious broader word a player might type for it (e.g. "boa" -> ["boa","boas","snake","snakes","serpent","constrictor"]; "police" -> ["police","officers","officer","cops","cop","policemen","policeman","constables"]; "sofa" -> ["sofa","sofas","couch","couches","settee"]). Be generous, but never include a word that means something clearly different (not "lizard" for snake). Letters only.
    - "place": display name like "Appleton, Wisconsin" or "Mykolaiv, Ukraine".
    - "geocode": a precise query for a geocoder, like "Appleton, Wisconsin, USA".
    - "lat", "lng": your best coordinates for the place (decimal degrees).
@@ -712,7 +712,11 @@ def valid_blank(r):
         print(f"  drop blank (answer '{ans[0]}' is a name or brand): {h2}", file=sys.stderr)
         return False
     low = h2.lower()
-    return not any(re.search(r"\b" + a + r"\b", low) for a in ans)
+    if re.search(r"\b" + ans[0] + r"s?\b", low):        # the hidden word itself can't appear elsewhere in the headline
+        return False
+    # synonyms that happen to appear elsewhere in the headline are simply dropped from the accepted list
+    r["ans"] = [ans[0]] + [a for a in dict.fromkeys(ans[1:]) if a != ans[0] and not re.search(r"\b" + a + r"\b", low)][:15]
+    return True
 
 
 # ---------------------------------------------------------------- main
@@ -884,7 +888,7 @@ def main():
             if any(a == u or (u in vecs and cos(vecs[a], vecs[u]) > 0.7) for u in used_ans):
                 continue                               # one burglar per day, not burglar, burglar and thief
             used_ans.append(a)
-        r["ans"] = [a] + [x for x in r["ans"] if x != a] if a else r["ans"]
+        # keep the hidden word first (it's what the reveal shows); the vector just needs some accepted word
         if a:
             r["vec"] = pack_vec(vecs[a])
         blank_pool.append(r)
