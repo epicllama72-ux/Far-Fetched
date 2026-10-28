@@ -1516,8 +1516,10 @@ const Scene = (function(){
     for(let i=0;i<3;i++) beetles.push({x0:(r()*2-1)*half, y:Math.round(L0+B[1]+4+r()*(B[2]-B[1]-8)), dir:r()<0.5?-1:1, sp:6+r()*5});
     // a crack seed every few pixels along the jaw's path, on both sides
     for(let y=74; y<L0+U; y+=5+Math.floor(r()*5)){
+      const inMagma = y>=L0+B[3] && y<L0+B[4];      // magma is liquid: it ripples and splashes instead of cracking
       [-1,1].forEach(s=>{
         if(r()<0.25) return;
+        if(inMagma){ cracks.push({y, pts:[], lava:true, side:s, rt:-1}); return; }
         const pts=[]; let x=s<0?-10:9, yy=y, ang=(r()*0.9-0.45);
         const len=4+Math.floor(r()*(y>L0?14:8));
         for(let k=0;k<len;k++){
@@ -1980,7 +1982,7 @@ const Scene = (function(){
       }
     }
 
-    // 7. holes and spreading cracks behind the jaw
+    // 7. holes and spreading cracks behind the jaw (molten ripples in the magma)
     const jawTop=13+Math.round(jdE), cyNow=jawTop+9, JS=kit.teeth==='goldjaw'?'#ffd23f':C.skin, JSH=kit.teeth==='goldjaw'?'#c99a1c':C.skinSh;
     if(cyNow>76){
       R(-12,75,24,5,C.hole); R(-12,80,24,2,C.drawerDk);
@@ -1992,6 +1994,15 @@ const Scene = (function(){
     }
     cracks.forEach(c=>{
       if(c.rt<0 || !vis(c.y-14,c.y+14)) return;
+      if(c.lava){        // a molten ripple spreading out from the jaw, with a few flung droplets
+        const a=t-c.rt; if(a>1.5) return;
+        const f=1-a/1.5, x=c.side*Math.round(10+a*15+Math.sin(c.y)*2);
+        g.globalAlpha=clamp(f*1.3,0,1);
+        R(x,c.y-3,2,7,'#ffb02e'); R(x-c.side,c.y-2,1,5,'#ff6a1f'); R(x+c.side,c.y,1,1,'#ffe27a');
+        const dxp=c.side*Math.round(10+a*9), dyp=Math.round(c.y-a*16+a*a*20);
+        R(dxp,dyp,1,1,'#ffd23f'); if(a>0.15) R(dxp-c.side*2,dyp+1,1,1,'#ff8a1f');
+        g.globalAlpha=1; return;
+      }
       const n=Math.ceil(c.pts.length*clamp((t-c.rt)/0.45,0,1));
       for(let i=0;i<n;i++){
         const [x,y]=c.pts[i];
