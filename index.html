@@ -2538,7 +2538,8 @@ function openMap(){
   document.body.classList.add('pinning'); document.body.classList.remove('pinned');
   requestAnimationFrame(()=>requestAnimationFrame(()=>$('mapWrap').classList.add('open')));
   if(!map){
-    map = L.map('map',{worldCopyJump:false,minZoom:1.5,maxZoom:8,zoomSnap:0.5,preferCanvas:true,attributionControl:false,
+    map = L.map('map',{worldCopyJump:false,minZoom:1.5,maxZoom:8,zoomSnap:0.5,renderer:L.canvas({padding:1}),   // draw a full screen of land beyond each edge so panning while zoomed in never shows blank margins
+                       inertia:true,inertiaDeceleration:2200,attributionControl:false,
                        maxBounds:[[-60,-180],[78,180]],maxBoundsViscosity:1});
     fetch('world.json').then(r=>r.json()).then(w=>{
       L.geoJSON(w.countries,{style:{color:'#7f90b4',weight:1,fillColor:'#2c3850',fillOpacity:1},interactive:false}).addTo(map).bringToBack();
