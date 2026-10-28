@@ -1130,7 +1130,7 @@ body.recap #bar{display:none}
   </div>
   <div class="btns" id="endBtns" hidden>
     <button class="primary" id="btnShare">Share</button>
-    <button class="primary" id="btnBoard">Board</button>
+    <button class="primary" id="btnBoard">Leaderboard</button>
     <button class="ghost" id="btnPractice">Practice</button>
   </div>
   </div>
@@ -2738,7 +2738,7 @@ function finish(restored){
   $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','answered');
   ['card','speed','feedback','mapWrap','blankUI'].forEach(id=>$(id).hidden=true);
   setBar('end');
-  getDb().then(d=>{ $('btnBoard').textContent = d ? 'Board' : 'My digs'; });
+  getDb().then(d=>{ $('btnBoard').textContent = (d || sbOn()) ? 'Leaderboard' : 'My digs'; });
   const total = sumPts(S.results), max = S.maxScore;
   S.score = total; renderDots();
   const inf = Scene.info();
