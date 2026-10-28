@@ -197,15 +197,22 @@ def source_practice(n, now, day, geocode):
     eras = [(1826, 1860), (1861, 1890), (1891, 1915), (1916, 1940), (1941, 1960), (1961, 1980), (1981, 2000), (2001, this_year)]
     per_era = -(-ask // len(eras))
     log(f"Practice: asking for about {ask} historical events across {len(eras)} eras…")
-    seen, titles, meta = set(), [], {}
+    seen, titles, meta, empty = set(), [], {}, 0
+    # Titles are only a shortlist (Wikipedia and the editor check them later), so the cheap model with a forced structured
+    # answer does it: the big model wrote long deliberations here and ran out of output room.
+    propose_model = os.environ.get("FF_SCREEN_MODEL", "claude-haiku-5-5")
     for y0, y1 in eras:
+        if empty >= 2 and not titles:
+            log("  proposals keep failing; giving up before spending more")
+            break
         avoid = used_titles[:300] + titles[-200:]
         try:
             res = md.call_claude(PROPOSE_PROMPT.format(n=per_era, y0=y0, y1=y1, npol=max(2, per_era // 6),
                                                        avoid="\n".join("- " + t for t in avoid) or "(none yet)"),
-                                 model, max_tokens=6000, keys=["s"], fatal=False)
+                                 propose_model, max_tokens=4000, keys=["s"], fatal=False)
         except SystemExit:
             res = None
+        empty += 0 if (res or {}).get("s") else 1
         for p in (res or {}).get("s", []):
             if not isinstance(p, dict) or not p.get("title"):
                 continue
