@@ -862,6 +862,7 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #recapList .crowd{display:block;font-size:16px;color:#7fe3ff;margin-top:2px}
 #backList,#practiceList{display:flex;flex-direction:column;gap:6px;max-height:40vh;overflow:auto;padding-left:10px}
 #backList button,#practiceList button{font-size:19px!important;padding:6px 10px!important}
+.cname{color:rgba(205,218,240,.34);font:15px/1 var(--vt);white-space:nowrap;pointer-events:none;text-shadow:0 1px 0 rgba(0,0,0,.6);transform:translate(-50%,-50%);letter-spacing:.04em}
 .challenge{display:block;margin-top:6px;color:var(--accent)}
 @media not all and (min-width:1100px) and (min-height:600px){ body.returned #final{margin-top:max(0px,calc(100vh - 330px))} }
 #summary canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rendering:crisp-edges;background:#0b0e14;border:1px solid #232a38}
@@ -1236,7 +1237,7 @@ const STORIES = [
 const $ = id => document.getElementById(id);
 const START = Date.UTC(2026, 9, 27);
 const ROUNDS_REAL = 8, ROUNDS_FAKE = 2, ROUND_LEN = 10;   // always exactly 2 fakes
-const CALL_PTS = 100, FOOLED_PTS = -150, PIN_PTS = 400;
+const CALL_PTS = 100, FOOLED_PTS = -75, PIN_PTS = 400;
 
 function pad(n){return String(n).padStart(2,'0');}
 function keyOf(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
@@ -1323,10 +1324,22 @@ function km(a,b,c,d){
   const h=Math.sin(dLat/2)**2+Math.cos(t(a))*Math.cos(t(c))*Math.sin(dLng/2)**2;
   return 2*R*Math.asin(Math.sqrt(h));
 }
-function pinPoints(d){return Math.round(PIN_PTS*Math.exp(-Math.max(0,d-75)/2100));}  // ≤75 km 400 · 300 km 359 · 500 km 327 · 1000 km 257 · 2000 km 160 · 5000 km 38
-/* The pin has 20 seconds. Full points for 8, then it decays like the call does (10% of the max per second, floor 40%). */
-const PIN_SECS=20, PIN_GRACE=8;
-function pinMult(sec){ return Math.max(0.4,Math.min(1,1-(sec-PIN_GRACE)/10)); }
+const COUNTRY_LABELS=[
+['Canada',58,-100],['United States',39,-98],['Mexico',23.5,-102],['Guatemala',15.5,-90.3],['Cuba',21.7,-79],['Honduras',14.8,-86.6],['Nicaragua',12.9,-85],['Costa Rica',9.9,-84.2],['Panama',8.6,-80],['Colombia',4.1,-73],['Venezuela',7,-66],['Ecuador',-1.4,-78.4],['Peru',-9.5,-75],['Bolivia',-16.7,-64.7],['Brazil',-10,-52],['Paraguay',-23.3,-58.4],['Chile',-31,-71.2],['Argentina',-35,-65],['Uruguay',-32.8,-56],['Guyana',4.8,-58.9],
+['Iceland',64.9,-18.5],['Ireland',53.2,-8.1],['United Kingdom',54,-2.5],['Portugal',39.6,-8],['Spain',40.2,-3.7],['France',46.6,2.4],['Belgium',50.6,4.6],['Netherlands',52.2,5.5],['Germany',51.1,10.4],['Switzerland',46.8,8.2],['Italy',42.8,12.5],['Austria',47.6,14.1],['Czechia',49.8,15.5],['Poland',52,19.4],['Denmark',56,9.5],['Norway',61.5,9],['Sweden',62.5,15.5],['Finland',64.5,26.5],['Estonia',58.7,25.5],['Latvia',56.9,24.9],['Lithuania',55.3,23.9],['Belarus',53.7,27.9],['Ukraine',49,31.5],['Moldova',47.2,28.5],['Romania',45.9,24.9],['Hungary',47.1,19.5],['Slovakia',48.7,19.5],['Slovenia',46.1,14.8],['Croatia',45.2,15.5],['Serbia',44,20.8],['Bosnia',44.2,17.8],['Bulgaria',42.8,25.2],['North Macedonia',41.6,21.7],['Albania',41.1,20.1],['Greece',39.1,22.9],['Turkey',39,35],
+['Russia',61,95],['Georgia',42.2,43.5],['Armenia',40.2,44.9],['Azerbaijan',40.3,47.7],['Kazakhstan',48.2,67],['Uzbekistan',41.4,64.6],['Turkmenistan',39.1,59.4],['Kyrgyzstan',41.5,74.6],['Tajikistan',38.8,71],['Afghanistan',33.9,66],['Iran',32.4,53.7],['Iraq',33.2,43.7],['Syria',35,38.5],['Lebanon',33.9,35.9],['Israel',31.4,35],['Jordan',31.2,36.8],['Saudi Arabia',24.2,44.5],['Yemen',15.6,47.5],['Oman',21.2,56.1],['UAE',24.3,54.3],['Pakistan',29.9,69.3],['India',22.9,79.6],['Nepal',28.3,84],['Bangladesh',23.8,90.3],['Sri Lanka',7.8,80.7],['Myanmar',21.5,96],['Thailand',15.5,101],['Laos',18.5,103.8],['Cambodia',12.7,104.9],['Vietnam',16.2,106.3],['Malaysia',3.8,102.3],['Singapore',1.35,103.82],['Indonesia',-2.3,115],['Philippines',12.5,122.5],['China',35.5,103.5],['Mongolia',46.8,103.8],['North Korea',40.1,127.2],['South Korea',36.4,127.9],['Japan',36.5,138.5],['Taiwan',23.7,121],
+['Morocco',31.8,-6.9],['Algeria',28.2,2.6],['Tunisia',34,9.5],['Libya',27,17.2],['Egypt',26.5,29.8],['Mauritania',20.3,-10.5],['Mali',17.4,-3.5],['Niger',17.4,9.4],['Chad',15.4,18.7],['Sudan',15.8,29.9],['Senegal',14.5,-14.5],['Guinea',10.9,-10.9],['Ivory Coast',7.6,-5.5],['Ghana',7.9,-1.2],['Nigeria',9.6,8.1],['Cameroon',5.7,12.7],['Ethiopia',8.6,39.6],['Somalia',5.7,46.2],['Kenya',0.5,37.9],['Uganda',1.4,32.4],['Tanzania',-6.3,34.9],['DR Congo',-2.9,23.6],['Angola',-12.3,17.5],['Zambia',-13.4,27.8],['Zimbabwe',-19,29.9],['Mozambique',-17.3,35.5],['Namibia',-22.1,17.2],['Botswana',-22.3,24.4],['South Africa',-29,24.7],['Madagascar',-19.4,46.7],
+['Australia',-25.7,134],['New Zealand',-41.5,172.5],['Papua New Guinea',-6.5,145]];
+const WORLDS=[-360,0,360];
+function shiftFC(fc,dx){
+  if(!dx) return fc;
+  const sh=c=>typeof c[0]==='number' ? [c[0]+dx,c[1]] : c.map(sh);
+  return {type:'FeatureCollection', features:fc.features.map(f=>({type:'Feature',properties:f.properties,geometry:{type:f.geometry.type,coordinates:sh(f.geometry.coordinates)}}))};
+}
+function pinPoints(d){return Math.round(PIN_PTS*Math.exp(-Math.max(0,d-75)/2600));}  // ≤75 km 400 · 300 km 367 · 500 km 340 · 1000 km 280 · 2000 km 191 · 5000 km 60
+/* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
+const PIN_SECS=20, PIN_GRACE=12;
+function pinMult(sec){ return Math.max(0.6,Math.min(1,1-(sec-PIN_GRACE)*0.05)); }
 let PIN_RAF=0;
 function runPinTimer(){
   cancelAnimationFrame(PIN_RAF);
@@ -1336,7 +1349,7 @@ function runPinTimer(){
   const tick=()=>{
     if(!S || S.phase!=='pin') return;
     const now=performance.now();
-    if(!$('menu').hidden || !$('sheet').hidden || !$('wardrobe').hidden) S.pinT0+=now-lastT;          // the clock stops while the menu is open
+    if(!S.pinGo || !$('menu').hidden || !$('sheet').hidden || !$('wardrobe').hidden) S.pinT0+=now-lastT;          // the clock waits for the map, and stops while the menu is open
     lastT=now;
     const sec=(now-S.pinT0)/1000, left=Math.max(0,PIN_SECS-sec), m=pinMult(sec);
     bar.style.width=(left/PIN_SECS*100)+'%';
@@ -2255,6 +2268,7 @@ function startGame(mode, kind){
     const fresh=rounds.filter(x=>!x.src||!seen.has(x.src));
     if(fresh.length>=5) rounds=fresh;
   }
+  if(!blank) rounds=easyFirst(rounds);
   const reals=rounds.filter(x=>x.real).length;
   S = {mode, kind:KIND, rounds, i:0, results:[], phase:'call', score:0,
        maxScore: blank ? rounds.length*BLANK_MAX : reals*(CALL_PTS+PIN_PTS)+(rounds.length-reals)*FAKE_PTS,
@@ -2278,7 +2292,7 @@ function startGame(mode, kind){
   $('mPractice').classList.toggle('on',!daily);
   $('howText').innerHTML = blank
     ? 'Guess the hidden word in each true headline. The exact word scores up to <b>500</b>, more the faster you get it. Near misses pay a little, and every guess after your third costs 5%.'
-    : 'Right call on a true story: up to <b>+100</b>, more for answering quickly. Catching a fake: <b>+150</b>. Fooled by a fake: <b>−150</b>. Then pin where the true story happened for up to <b>+400</b>: you have 20 seconds, with full points for the first 8. Every point drops his jaw the same distance, and losing points pulls it back up.';
+    : 'Right call on a true story: up to <b>+100</b>, more for answering quickly. Catching a fake: <b>+150</b>. Fooled by a fake: <b>−75</b>. Then pin where the true story happened for up to <b>+400</b>: you have 20 seconds, with full points for the first 12. Every point drops his jaw the same distance, and losing points pulls it back up.';
   renderStats();
   closeMenu();
   Scene.configure(JAW_SCALE);
@@ -2403,9 +2417,9 @@ function jawPoints(){
   list.forEach(x=>{ p+=(x.callPts||0)+(x.pinPts||0); });   // every point moves the jaw the same amount; lost points pull it up
   return Math.max(0,p);
 }
-/* Time to read first (1 s + 0.25 s per word), then −10 points a second, floor 40. */
-function readGrace(st){ return 1+0.25*(st.h||'').split(/\s+/).length; }
-function speedPts(sec,st){ return Math.round(CALL_PTS*Math.max(0.4,Math.min(1,1-(sec-readGrace(st))/10))); }
+/* Time to read first (2 s + 0.35 s per word), then −10 points a second, floor 60. */
+function readGrace(st){ return 2+0.35*(st.h||'').split(/\s+/).length; }
+function speedPts(sec,st){ return Math.round(CALL_PTS*Math.max(0.6,Math.min(1,1-(sec-readGrace(st))/10))); }
 let SPEED_RAF=0;
 function runSpeed(){
   cancelAnimationFrame(SPEED_RAF);
@@ -2423,6 +2437,15 @@ function runSpeed(){
   tick();
 }
 
+/* headline 1 is always an easy true story: a real one with a clue and the fewest words, so every player opens the same way */
+function firstGame(){ return !load('ff_coached') && !Object.keys(load('ff_hist')||{}).length; }
+function easyFirst(rounds){
+  if(!rounds || rounds.length<2) return rounds;
+  let best=-1, bs=1e9;
+  rounds.forEach((x,i)=>{ if(!x.real || x.lat==null) return; const sc=(x.h||'').split(/\s+/).length+(x.clue?0:12); if(sc<bs){ bs=sc; best=i; } });
+  if(best<=0) return rounds;
+  const r=rounds.slice(); const [e]=r.splice(best,1); r.unshift(e); return r;
+}
 function showRound(shown,quiet,gate){
   document.body.classList.remove('answered');
   S.phase = gate ? 'ready' : 'call'; guessLL=null;
@@ -2436,7 +2459,9 @@ function showRound(shown,quiet,gate){
     $('headline').innerHTML='<span class="fakeplace" style="font-size:.78em;line-height:1.05;display:block">'
       + (vsLive() && !S.results.length ? '<b class="challenge">'+VS.name+' dropped his jaw '+VS.m.toFixed(1)+' m today. Beat it.</b>' : '')
       + (S.mode==='back' && !S.results.length ? '<b class="challenge">Back issue #'+dayNumber()+' · '+fmtDate(S.backDate)+'</b>' : '')
-      + 'Guess what\'s real, then deduce where it happened. The clock starts when the headline appears.</span>';
+      + 'Guess what\'s real, then deduce where it happened. The clock starts when the headline appears.'
+      + (firstGame() ? '<b class="challenge" style="margin-top:8px">First time? 8 are true, 2 are made up. Tap the map once to zoom, tap again to pin, then LOCK IN.</b>' : '')
+      + '</span>';
     $('speed').hidden=true; $('feedback').hidden=true; $('mapWrap').hidden=true;
     setBar('start');
     const b=$('btnStart'); b.disabled=false; b.textContent="I'm ready";
@@ -2464,6 +2489,7 @@ function onCall(saysReal){
   const callOk = saysReal === st.real;
   const sec=(performance.now()-S.t0)/1000;
   const pts = st.real ? (callOk?speedPts(sec,st):0) : (callOk?FAKE_PTS:FOOLED_PTS);
+  store('ff_coached',1);
   S.cur = {i:S.i, real:st.real, callOk, callPts:pts, pinPts:0, dist:null, sec};
   S.score += pts;
   saveProgress({cur:S.cur});                        // the call sticks even if the page reloads
@@ -2518,16 +2544,27 @@ function openMap(){
   document.body.classList.add('pinning'); document.body.classList.remove('pinned');
   requestAnimationFrame(()=>requestAnimationFrame(()=>$('mapWrap').classList.add('open')));
   if(!map){
-    map = L.map('map',{worldCopyJump:false,minZoom:1.5,maxZoom:8,zoomSnap:0.5,preferCanvas:true,attributionControl:false,
-                       maxBounds:[[-60,-180],[78,180]],maxBoundsViscosity:1});
+    map = L.map('map',{worldCopyJump:true,minZoom:1.5,maxZoom:8,zoomSnap:0.5,renderer:L.canvas({padding:1}),   // draw a full screen of land beyond each edge so panning while zoomed in never shows blank margins
+                       inertia:true,inertiaDeceleration:2200,attributionControl:false,
+                       maxBounds:[[-60,-540],[78,540]],maxBoundsViscosity:1});   // the world repeats sideways: scroll past Alaska and Asia appears
     fetch('world.json').then(r=>r.json()).then(w=>{
-      L.geoJSON(w.countries,{style:{color:'#7f90b4',weight:1,fillColor:'#2c3850',fillOpacity:1},interactive:false}).addTo(map).bringToBack();
-      L.geoJSON(w.states,{style:{color:'#5a6a8c',weight:0.7,fill:false,dashArray:'2 2'},interactive:false}).addTo(map);
+      WORLDS.forEach(dx=>{
+        L.geoJSON(shiftFC(w.countries,dx),{style:{color:'#7f90b4',weight:1,fillColor:'#2c3850',fillOpacity:1},interactive:false}).addTo(map).bringToBack();
+        L.geoJSON(shiftFC(w.states,dx),{style:{color:'#5a6a8c',weight:0.7,fill:false,dashArray:'2 2'},interactive:false}).addTo(map);
+      });
     }).catch(()=>{});
     layer = L.layerGroup().addTo(map);
+    // faint country names, shown only once you have zoomed in
+    const names=L.layerGroup();
+    COUNTRY_LABELS.forEach(([n,la,ln])=>WORLDS.forEach(dx=>L.marker([la,ln+dx],{icon:L.divIcon({className:'',html:'<span class="cname">'+n+'</span>',iconSize:[0,0]}),interactive:false,keyboard:false}).addTo(names)));
+    const syncNames=()=>{ const on=map.getZoom()>=3.5; if(on&&!map.hasLayer(names)) names.addTo(map); else if(!on&&map.hasLayer(names)) map.removeLayer(names); };
+    map.on('zoomend',syncNames); syncNames();
+    let flyUntil=0;
     map.on('click',e=>{
       if(S.phase!=='pin') return;
-      if(map.getZoom()<4){                       // first tap zooms into that region
+      if(performance.now()<flyUntil) return;     // a tap while the zoom is still flying must not restart it or drop a pin at a half-zoomed spot
+      if(map.getZoom()<3.5){                     // first tap zooms into that region
+        flyUntil=performance.now()+500;
         map.flyTo(e.latlng,4.5,{duration:0.45});
         Sound.play('menu');
         $('btnGuess').textContent='NOW DROP YOUR PIN';
@@ -2535,7 +2572,7 @@ function openMap(){
       }
       guessLL = e.latlng.wrap();
       layer.clearLayers();
-      L.marker(guessLL,{icon:squareIcon('#ff5d73'),interactive:false}).addTo(layer);
+      WORLDS.forEach(dx=>L.marker([guessLL.lat,guessLL.lng+dx],{icon:squareIcon('#ff5d73'),interactive:false}).addTo(layer));
       Sound.play('pin');
       $('btnGuess').disabled=false;
       $('btnGuess').textContent='LOCK IN';
@@ -2543,8 +2580,15 @@ function openMap(){
   }
   layer.clearLayers();
   // the pin clock starts now; time already spent before a reload still counts
-  if(!S.cur.pinWall){ S.cur.pinWall=Date.now(); saveProgress({cur:S.cur}); }
-  S.pinT0=performance.now()-Math.max(0,Date.now()-S.cur.pinWall);
+  // the pin clock starts once the map has finished sliding open; time already spent before a reload still counts
+  S.pinGo=false; S.pinT0=performance.now();
+  const round=S.i, go=()=>{
+    if(!S || S.i!==round || S.phase!=='pin' || S.pinGo) return;
+    if(!S.cur.pinWall){ S.cur.pinWall=Date.now(); saveProgress({cur:S.cur}); }
+    S.pinT0=performance.now()-Math.max(0,Date.now()-S.cur.pinWall); S.pinGo=true;
+  };
+  if(S.cur.pinWall) go();
+  else { const cs=getComputedStyle($('mapWrap')); setTimeout(go, Math.max(0,(parseFloat(cs.transitionDuration)||0)+(parseFloat(cs.transitionDelay)||0))*1000+80); }
   runPinTimer();
   const homeView=()=>{
     map.invalidateSize();
@@ -2572,12 +2616,13 @@ function submitGuess(timedOut){
   if(!S.cur.callOk) pts = Math.round(pts*0.5);
   S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
   Sound.play('lock',pts/PIN_PTS); if(pts>0) Sound.play('jawDown');
-  const actual = L.latLng(st.lat,st.lng);
+  let actual = L.latLng(st.lat,st.lng);
+  if(guessLL) actual = L.latLng(st.lat, st.lng + 360*Math.round((guessLL.lng-st.lng)/360));   // the copy of the world nearest the pin, so the line never wraps the long way round
   if(guessLL){
     L.polyline([guessLL,actual],{color:'#ffcc4d',weight:2,dashArray:'4 4'}).addTo(layer);
     map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.4),{maxZoom:6});
   } else map.setView(actual,5,{animate:true});
-  L.marker(actual,{icon:squareIcon('#4fbf6a'),interactive:false}).addTo(layer);
+  WORLDS.forEach(dx=>L.marker([st.lat,st.lng+dx],{icon:squareIcon('#4fbf6a'),interactive:false}).addTo(layer));
   $('btnGuess').hidden=true;
   $('headline').innerHTML = headlineHTML(st,true);
   $('kicker').textContent = (S.cur.callOk?'Real ✓':'Plot twist: it was real')+(S.kind==='pol'?' · Politics':'');
