@@ -1,6 +1,52 @@
 {
  "real": [
   {
+   "id": 45,
+   "h": "40cm non-venomous snake under cabin carpet cancels regional flight, sparks 24-hour hunt in {}",
+   "h2": "40cm non-venomous [] under cabin carpet cancels regional flight, sparks 24-hour hunt in Fukuoka, Japan",
+   "ans": [
+    "snake",
+    "snakes"
+   ],
+   "place": "Fukuoka, Japan",
+   "geocode": "Fukuoka Airport, Fukuoka, Japan",
+   "lat": 33.586802,
+   "lng": 130.4473939,
+   "country": "Japan",
+   "cc": "JP",
+   "clue": "Prefectures and apologetic airline = Japan",
+   "clue_strength": 2,
+   "unbelievable": 3,
+   "theme": "flight",
+   "src": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQRkw4QnB4TXFsRHhGeW9TOE9EVjV3b0RqWmNyTWJuS2tLbTJPcElyd0Q5OGxhYlU2VjNKckRUSEdnV1RFV1RTY0hHdHA0QXhHcENyVnluMFNveWtPZ1RMek0yb1ZuRGtYRVgtaklhelBMa1ExbGh0SGZkbDZZZlYzQWVUUDJtTWZZOFJmMnZ0M28wWXBMQzlmeTd4QUjSAaIBQVVfeXFMTkl4ME9nRzZrY1ZJcTV3VjJsMGJWbjNjTDlpV1gtb1RVNGFOSXZLNjBKaUtJRjhCcUcxU1hOZ2VGdTBzZlZVZXd6aV9XVFR5WFhfR1M1UVhBSDZmOWw3b3pGb0dkV0ZfZ29tb3ZVcDlXUEdYaWhzYW1nRXNfb29BZFBoWmxCMEZHaEg5U2FST3NvUV9JcDhMa3hXeG1KbWh0dllB?oc=5",
+   "published": "2026-10-21",
+   "banked": "2026-10-28",
+   "rules": 2
+  },
+  {
+   "id": 22,
+   "h": "Man lies down in front of car, hijacks it when driver steps out, crashes in police chase in {}",
+   "h2": "Man lies down in front of a [], steals it when driver steps out, crashes in police chase in Adana, Turkey",
+   "ans": [
+    "car",
+    "cars"
+   ],
+   "place": "Adana, Turkey",
+   "geocode": "Adana, Turkey",
+   "lat": 36.9863599,
+   "lng": 35.3252861,
+   "country": "Turkey",
+   "cc": "TR",
+   "clue": "Provincial plate 01 and Seyhan district = Adana, Turkey",
+   "clue_strength": 1,
+   "unbelievable": 4,
+   "theme": "carjacking",
+   "src": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNd0EyTWV2WTZGYTZIV2hoSjZaOFlNVTdDaU1vWFFVa1pkN1h0VURpS3YyMFFBY3lMMjFRUU94cWRGYnItQ21xbldrMTNlbWRRQ0h6aE9iOUphZHgyUE9MVVB3VGpVMEpuQmItUjBDUG9ZVkZObnRrRU5tbjlaWFNxUXp5MlhobnpTYXdkYndXSXd4UmFaS0ROVDlUWnVYMGhSaEdSSVNZdXNMb0E?oc=5",
+   "published": "2026-10-26",
+   "banked": "2026-10-28",
+   "rules": 2
+  },
+  {
    "id": 41,
    "h": "Striker who scored equaliser slips taking 93rd-minute penalty and misses in second-tier match in {}",
    "h2": "Vigo: striker who scored equaliser slips taking 93rd-minute [] for Tenerife at Celta Fortuna",
@@ -43,31 +89,37 @@
    "published": "2026-10-26",
    "banked": "2026-10-27",
    "rules": 2
-  },
-  {
-   "id": 16,
-   "h": "Man lies down in road, driver steps out, he jumps into light commercial vehicle and flees; crashes in {}",
-   "h2": "Adana man lies in road, then steals light commercial [] when driver gets out; crashes in police chase",
-   "ans": [
-    "vehicle"
-   ],
-   "place": "Adana, Turkey",
-   "geocode": "Adana, Turkey",
-   "lat": 36.9863599,
-   "lng": 35.3252861,
-   "country": "Turkey",
-   "cc": "TR",
-   "clue": "Seyhan district and Turkish plate format = Adana, Turkey",
-   "clue_strength": 1,
-   "unbelievable": 3,
-   "theme": "carjacking",
-   "src": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPT0thQlJ6VElDYXdyTGhZZkc5ZzFoakZBaHp0eVBXcVg5Mnl6Z0pSanVoejRRSGdnZmk1b0d4dXcyeTRZVm5iU2NYQjNBOEs3OW94TzRKWDE2dGtRRjdYSTdoZG04c08yOVppWDlKLUVaYTNOdF9fcnYzMnNZMnBlLTk3ckVGelYybUhpSDdqVHQyQ2NockhOSjR6SDc2WFg5QjZQS1hlbkRRenRSd2tuZHd2S1l0RWowLW9KS1U5aGdPREVidWlDSA?oc=5",
-   "published": "2026-10-26",
-   "banked": "2026-10-27",
-   "rules": 2
   }
  ],
  "fake": [
+  {
+   "h": "Driver in {} fined 2,350 rupees for failing to stop for a passing herd of llamas",
+   "tell": "Llamas are Andean animals, not found roaming Indian roads, so the detail is wrong for the region.",
+   "obvious": 3,
+   "banked": "2026-10-28",
+   "rules": 2
+  },
+  {
+   "h": "Three brothers each win the village skittles cup in {} on their own birthdays, taking home a 37-litre barrel of beer",
+   "tell": "Three separate wins landing on three birthdays is too neat a coincidence.",
+   "obvious": 2,
+   "banked": "2026-10-28",
+   "rules": 2
+  },
+  {
+   "h": "Burglar in {} who stole 18 tins of olive oil caught after slipping on the oil outside the shop, say carabinieri",
+   "tell": "Poetic justice this perfect reads like a punchline, not a police report.",
+   "obvious": 3,
+   "banked": "2026-10-28",
+   "rules": 2
+  },
+  {
+   "h": "Seaside council in {} hires falcon to guard chip shops after gulls swipe 1,260 portions in one summer",
+   "tell": "Nobody can count stolen chips so precisely; the tally sounds invented.",
+   "obvious": 3,
+   "banked": "2026-10-28",
+   "rules": 2
+  },
   {
    "h": "Reindeer herd strolls through beach resort in {} as temperatures hit 38C; lifeguards hand out carrots",
    "tell": "Reindeer are Arctic animals and wouldn't be wandering a hot beach resort.",
