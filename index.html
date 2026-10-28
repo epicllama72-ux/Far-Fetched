@@ -3430,7 +3430,7 @@ function startBlankRound(wall){
   $('headline').innerHTML=blankHTML(st,false);
   $('blankLive').hidden=false; setBar('guess');
   $('guessList').innerHTML=''; $('guessMsg').textContent='';
-  const inp=$('guessIn'); inp.value=''; inp.focus();
+  const inp=$('guessIn'); inp.value='';
   updateTimer();
   TIMER=setInterval(updateTimer,50);
   aim();
