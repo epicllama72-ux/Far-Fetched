@@ -2268,7 +2268,6 @@ function startGame(mode, kind){
     const fresh=rounds.filter(x=>!x.src||!seen.has(x.src));
     if(fresh.length>=5) rounds=fresh;
   }
-  if(!blank) rounds=easyFirst(rounds);
   const reals=rounds.filter(x=>x.real).length;
   S = {mode, kind:KIND, rounds, i:0, results:[], phase:'call', score:0,
        maxScore: blank ? rounds.length*BLANK_MAX : reals*(CALL_PTS+PIN_PTS)+(rounds.length-reals)*FAKE_PTS,
@@ -2437,15 +2436,7 @@ function runSpeed(){
   tick();
 }
 
-/* headline 1 is always an easy true story: a real one with a clue and the fewest words, so every player opens the same way */
 function firstGame(){ return !load('ff_coached') && !Object.keys(load('ff_hist')||{}).length; }
-function easyFirst(rounds){
-  if(!rounds || rounds.length<2) return rounds;
-  let best=-1, bs=1e9;
-  rounds.forEach((x,i)=>{ if(!x.real || x.lat==null) return; const sc=(x.h||'').split(/\s+/).length+(x.clue?0:12); if(sc<bs){ bs=sc; best=i; } });
-  if(best<=0) return rounds;
-  const r=rounds.slice(); const [e]=r.splice(best,1); r.unshift(e); return r;
-}
 function showRound(shown,quiet,gate){
   document.body.classList.remove('answered');
   S.phase = gate ? 'ready' : 'call'; guessLL=null;
