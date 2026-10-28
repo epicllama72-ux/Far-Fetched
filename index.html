@@ -740,6 +740,14 @@ body.pinning .app{padding-bottom:calc(min(30vh,260px) + 96px)}
 .kicker{margin:0 0 7px;font:8px/1.4 var(--px);letter-spacing:.18em;text-transform:uppercase;color:var(--pink)}
 #headline{margin:0;font:26px/1.02 var(--vt);letter-spacing:.02em;font-weight:400;text-wrap:balance}
 body.pinning #headline{font-size:23px}
+/* once a headline is answered (phones): shrink the card and tuck the result under it, so the jaw has room */
+@media not all and (min-width:1100px) and (min-height:600px){
+  body.answered #card{padding:6px 10px 7px;margin-bottom:0}
+  body.answered .kicker{margin-bottom:3px}
+  body.answered #headline,body.answered.pinning #headline{font-size:19px;line-height:1.02}
+  body.answered #feedback{margin-top:-2px;border-top:1px dashed #3a4050;padding:5px 10px 6px;font-size:19px;line-height:1.05}
+  body.answered #feedback small{font-size:16px;margin-top:3px}
+}
 body.pinning #card{padding:8px 12px}
 .redact{display:inline-block;height:.8em;background:#000;vertical-align:-.05em;box-shadow:inset 0 0 0 2px #2b2f3a}
 .reveal{color:var(--accent)}
@@ -1100,7 +1108,6 @@ body.recap #bar{display:none}
    Fakes are invented. Replace/extend this list (or load it from a JSON feed later). */
 const STORIES = [
   // REAL. h = redacted-place headline (Real or Fake mode); h2/ans = redacted-subject headline (Fill the Blank mode)
-  {real:true, h:"Wave of molasses kills 21 and injures 150 after storage tank bursts in {}", h2:"Storage tank of [] bursts in Boston, killing 21 and injuring 150", ans:["molasses"], lat:42.3732, lng:-71.0536, place:"Boston, Massachusetts (1919)", src:"https://en.wikipedia.org/wiki/Great_Molasses_Flood"},
   {real:true, h:"Army sends machine guns to fight emus ravaging farmland near {}", h2:"Army sends machine guns to fight [] ravaging farmland in Western Australia", ans:["emus","emu"], lat:-31.0, lng:118.0, place:"Campion, Western Australia (1932)", src:"https://en.wikipedia.org/wiki/Emu_War"},
   {real:true, h:"Brewery vat bursts, flooding streets with beer and killing eight in {}", h2:"Brewery vat bursts in London, flooding streets with [] and killing eight", ans:["beer"], lat:51.5163, lng:-0.1280, place:"St Giles, London (1814)", src:"https://en.wikipedia.org/wiki/London_Beer_Flood"},
   {real:true, h:"Hundreds dance for days without rest in {} in baffling 'plague'", lat:48.5839, lng:7.7455, place:"Strasbourg, France (1518)", src:"https://en.wikipedia.org/wiki/Dancing_plague_of_1518"},
@@ -1171,15 +1178,44 @@ async function loadDaily(){
 function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
 function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 function shuffle(a,r){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+/* Practice draws from the archive of every story the daily modes have shown (data/practice.json),
+   stories you haven't practised yet first. The few built-in stories only fill in while the archive is small. */
+const PSEEN_KEY='ff_pseen';
+const storyKey=s=>hash(s.h||s.h2||'');
+function practiceSeen(){ return new Set(load(PSEEN_KEY)||[]); }
+function markPractised(rounds){
+  const seen=load(PSEEN_KEY)||[]; const have=new Set(seen);
+  rounds.forEach(s=>{ const k=storyKey(s); if(!have.has(k)){ have.add(k); seen.push(k); } });
+  store(PSEEN_KEY, seen.slice(-5000));
+}
+function freshFirst(list,r){                      // unseen stories first (shuffled), then the rest (shuffled)
+  const seen=practiceSeen();
+  return shuffle(list.filter(s=>!seen.has(storyKey(s))),r).concat(shuffle(list.filter(s=>seen.has(storyKey(s))),r));
+}
+function practicePool(filter,min){
+  // never practise today's daily stories (that would spoil the real round)
+  const today=new Set(DAILY ? (DAILY.call||[]).concat(DAILY.blank||[],DAILY.politics||[]).map(storyKey) : []);
+  const ok=s=>!s._daily && !today.has(storyKey(s)) && !(DAILY && s.day===DAILY.date) && filter(s);
+  const arch=STORIES.filter(s=>s._arch && ok(s));
+  return arch.length>=min ? arch : STORIES.filter(ok);
+}
 function pickBlankRounds(r){
-  return shuffle(STORIES.filter(s=>s.real&&s.h2&&s.cat!=='pol'&&!s._daily),r).slice(0,ROUND_LEN);
+  return freshFirst(practicePool(s=>s.real&&s.h2&&s.ans&&s.cat!=='pol', 30),r).slice(0,ROUND_LEN);
 }
 function pickRounds(r,pol,allowDaily){
-  const pool=STORIES.filter(s=>s.h && (s.cat==='pol')===!!pol && (allowDaily||!s._daily));
-  const nr=Math.min(ROUNDS_REAL,pool.filter(s=>s.real).length);
-  const real=shuffle(pool.filter(s=>s.real),r).slice(0,nr);
-  const fake=shuffle(pool.filter(s=>!s.real),r).slice(0,ROUNDS_FAKE);
-  return shuffle(real.concat(fake),r);
+  const want=s=>s.h && (s.cat==='pol')===!!pol;
+  const pool=allowDaily ? STORIES.filter(want) : practicePool(want, pol?12:30);
+  const reals=freshFirst(pool.filter(s=>s.real),r), fakes=freshFirst(pool.filter(s=>!s.real),r);
+  const nr=Math.min(ROUNDS_REAL,reals.length);
+  return shuffle(reals.slice(0,nr).concat(fakes.slice(0,ROUNDS_FAKE)),r);
+}
+let PRACTICE_P=null;
+function loadPractice(){
+  return PRACTICE_P || (PRACTICE_P=fetch('data/practice.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{
+    if(!d) return;
+    const known=new Set(STORIES.map(storyKey));
+    (d.real||[]).concat(d.fake||[]).forEach(x=>{ if(!x || !(x.h||x.h2)) return; const k=storyKey(x); if(known.has(k)) return; known.add(k); STORIES.push(Object.assign({_arch:true},x)); });
+  }).catch(()=>{}));
 }
 function km(a,b,c,d){
   const R=6371,t=x=>x*Math.PI/180,dLat=t(c-a),dLng=t(d-b);
@@ -2066,20 +2102,20 @@ function startGame(mode, kind){
   const r = daily ? rng(hash(todayKey()+KIND)) : Math.random;
   let rounds;
   if(daily && DAILY && (!pol || (DAILY.politics && DAILY.politics.length))) rounds = DAILY[blank?'blank':pol?'politics':'call'].slice();
+  else if(daily && pol) rounds = pickRounds(rng(hash(todayKey()+'pol')),true,true);
+  else if(daily){
+    // built-in fallback: one shared shuffle so the two modes never show the same story
+    const reals=shuffle(STORIES.filter(s=>s.real&&s.h&&s.cat!=='pol'&&!s._daily&&!s._arch),rng(hash(todayKey())));
+    const fakes=shuffle(STORIES.filter(s=>!s.real&&s.cat!=='pol'&&!s._daily&&!s._arch),rng(hash(todayKey()+'f')));
+    const spare=reals.slice(ROUNDS_REAL).filter(s=>s.h2);
+    rounds = blank ? spare.slice(0,ROUND_LEN)
+                   : shuffle(reals.slice(0,ROUNDS_REAL).concat(fakes.slice(0,ROUNDS_FAKE)),rng(hash(todayKey()+'o')));
+  } else { rounds = blank ? pickBlankRounds(r) : pickRounds(r,false); markPractised(rounds); }   // practice never uses today's stories
   if(daily && DAILY && blank && rounds){                 // never show a Real or Fake story again in Fill the Blank
     const seen=new Set((DAILY.call||[]).concat(DAILY.politics||[]).map(x=>x.src).filter(Boolean));
     const fresh=rounds.filter(x=>!x.src||!seen.has(x.src));
     if(fresh.length>=5) rounds=fresh;
   }
-  else if(daily && pol) rounds = pickRounds(rng(hash(todayKey()+'pol')),true,true);
-  else if(daily){
-    // built-in fallback: one shared shuffle so the two modes never show the same story
-    const reals=shuffle(STORIES.filter(s=>s.real&&s.h&&s.cat!=='pol'&&!s._daily),rng(hash(todayKey())));
-    const fakes=shuffle(STORIES.filter(s=>!s.real&&s.cat!=='pol'&&!s._daily),rng(hash(todayKey()+'f')));
-    const spare=reals.slice(ROUNDS_REAL).filter(s=>s.h2);
-    rounds = blank ? spare.slice(0,ROUND_LEN)
-                   : shuffle(reals.slice(0,ROUNDS_REAL).concat(fakes.slice(0,ROUNDS_FAKE)),rng(hash(todayKey()+'o')));
-  } else rounds = blank ? pickBlankRounds(r) : pickRounds(r,false);   // practice never uses today's stories
   const reals=rounds.filter(x=>x.real).length;
   S = {mode, kind:KIND, rounds, i:0, results:[], phase:'call', score:0,
        maxScore: blank ? rounds.length*BLANK_MAX : reals*(CALL_PTS+PIN_PTS)+(rounds.length-reals)*FAKE_PTS,
@@ -2241,6 +2277,7 @@ function runSpeed(){
 }
 
 function showRound(shown,quiet,gate){
+  document.body.classList.remove('answered');
   S.phase = gate ? 'ready' : 'call'; guessLL=null;
   $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned');
   $('blankUI').hidden=true; $('card').hidden=false;
@@ -2285,6 +2322,7 @@ function onCall(saysReal){
 
 function revealCall(st){
   const c=S.cur, fb=$('feedback');
+  document.body.classList.add('answered');
   $('speed').hidden=true;
   setBar('none');
   if(st.real){
@@ -2297,21 +2335,27 @@ function revealCall(st){
   } else {
     fb.hidden=false;
     if(c.callOk){ Sound.play('catchFake'); Sound.play('jawDown'); Scene.gasp(); } else { Sound.play('fooled'); if(jawPoints()>0||S.results.some(x=>x.real)) Sound.play('jawUp'); }
-    const tell = st.tell ? '<small>Why it smelled fake: '+st.tell+'</small>' : '';
+    const tell = st.tell ? '<button class="why" type="button" aria-expanded="false">why?</button><small class="more">Why it smelled fake: '+st.tell+'</small>' : '';
     $('kicker').textContent = (c.callOk ? 'Fake ✓ caught +'+FAKE_PTS : 'Fooled ✗ −'+Math.abs(FOOLED_PTS))+(S.kind==='pol'?' · Politics':'');
     $('kicker').classList.toggle('bad',!c.callOk);
-    if(c.callOk) fb.innerHTML='<b>Nice catch.</b> That one was invented for this game. +'+FAKE_PTS+'.'+tell;
+    if(c.callOk) fb.innerHTML='<span class="sum"><b>Caught it!</b> Made up · <b>+'+FAKE_PTS+'</b></span>'+tell;
     else {
-      fb.innerHTML='<b>Fooled!</b> That one was invented for this game. −'+Math.abs(FOOLED_PTS)+'.'+tell;
+      fb.innerHTML='<span class="sum"><b>Fooled!</b> Made up · <b>−'+Math.abs(FOOLED_PTS)+'</b></span>'+tell;
       const card=$('card'); card.classList.remove('shake','flash'); void card.offsetWidth; card.classList.add('shake','flash');
       setTimeout(()=>card.classList.remove('flash'),400);
       Scene.fooled();
     }
     $('headline').innerHTML = headlineHTML(st,true);
+    wireWhy(fb);
     finishRound();
   }
   renderDots();
   aim();
+}
+function wireWhy(fb){
+  fb.classList.remove('open');
+  const b=fb.querySelector('.why'); if(!b) return;
+  b.onclick=e=>{ const o=fb.classList.toggle('open'); b.setAttribute('aria-expanded',o); b.textContent=o?'less':'why?'; aim(); };
 }
 
 function squareIcon(fill){
@@ -2394,7 +2438,7 @@ function submitGuess(timedOut){
     + '<button class="why" type="button" aria-expanded="false">why?</button>'
     + '<small class="more">'+(st.clue?'Clues: '+st.clue+'. ':'')+st.place+(st.published?' · '+fmtDate(st.published):'')
     + (st.src?' · <a href="'+st.src+'" target="_blank" rel="noopener">read the story</a>':'')+'</small>';
-  fb.querySelector('.why').onclick=e=>{ const o=fb.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded',o); e.currentTarget.textContent=o?'less':'why?'; aim(); };
+  wireWhy(fb);
   finishRound();
   if(!isDesk()) setTimeout(()=>{      // after a moment the map shrinks to a strip so the jaw is not hidden behind it
     if(S && S.phase==='done' && document.body.classList.contains('pinning')){
@@ -2450,7 +2494,7 @@ function runCountdown(){
 
 function finish(restored){
   stopTimer(); cancelAnimationFrame(SPEED_RAF);
-  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned');
+  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','answered');
   ['card','speed','feedback','mapWrap','blankUI'].forEach(id=>$(id).hidden=true);
   setBar('end');
   getDb().then(d=>{ $('btnBoard').textContent = d ? 'Board' : 'My digs'; });
@@ -2898,6 +2942,7 @@ function blankHTML(st,reveal){
 function stopTimer(){ if(TIMER){ clearInterval(TIMER); TIMER=null; } }
 
 function showBlankRound(live){
+  document.body.classList.remove('answered');
   S.phase='ready'; S.blank=null;
   $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned');
   $('card').hidden=false; $('speed').hidden=true;
@@ -2988,6 +3033,7 @@ function endBlank(){
   S.score+=res.callPts;
   if(res.callPts>0){ Scene.gasp(); Sound.play('jawDown'); }
   $('blankLive').hidden=true;
+  document.body.classList.add('answered');
   $('guessIn').blur();
   $('headline').innerHTML=blankHTML(st,true);
   const fb=$('feedback'); fb.hidden=false;
@@ -2997,7 +3043,8 @@ function endBlank(){
       : '<b>Exact!</b> +'+res.callPts+'.';
   else if(bl.bestWord) line='Time. Closest: <b>'+bl.bestWord+'</b> ('+heat(bl.bestC).toLowerCase()+') for +'+res.callPts+'.';
   else line='Time. No guesses landed.';
-  fb.innerHTML=line+'<small>'+st.place+(st.published?' · '+fmtDate(st.published):'')+(st.src?' · <a href="'+st.src+'" target="_blank" rel="noopener">read the story</a>':'')+'</small>';
+  fb.innerHTML='<span class="sum">'+line+'</span><button class="why" type="button" aria-expanded="false">source</button><small class="more">'+st.place+(st.published?' · '+fmtDate(st.published):'')+(st.src?' · <a href="'+st.src+'" target="_blank" rel="noopener">read the story</a>':'')+'</small>';
+  wireWhy(fb); fb.querySelector('.why').textContent='source';
   S.results.push(res);
   saveProgress();
   const last=S.i===S.rounds.length-1;
@@ -3074,7 +3121,7 @@ $('muteBtn').onclick=e=>{ e.stopPropagation(); Sound.setMuted(!Sound.isMuted());
 renderMute();
 Scene.start();
 updateStreak();
-loadDaily().finally(()=>startGame('daily',KIND));
+Promise.all([loadDaily(),loadPractice()]).finally(()=>startGame('daily',KIND));
 window.addEventListener('resize',()=>{ clearTimeout(window._aimT); window._aimT=setTimeout(()=>aim(),200); });
 </script>
 </body>
