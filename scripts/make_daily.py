@@ -98,7 +98,7 @@ N_CALL_REAL, N_CALL_FAKE, N_BLANK = 8, 2, 10   # Real or Fake always has exactly
 SCREEN_TOP = 50
 SCREEN_PER_COUNTRY = 7  # at most this many shortlisted stories from one country
 # how many screened candidates get their article fetched and go to the editor
-BANK_DAYS, BANK_MAX = 45, 80
+BANK_DAYS, BANK_KEEP, BANK_MAX = 30, 365, 400   # Real or Fake takes banked stories up to 30 days old; Fill the Blank any up to a year
 RULES = 2              # bump when the picking rules change: banked stories chosen under older rules are dropped   # banked stories expire after this many days; keep at most this many
 
 
@@ -714,9 +714,12 @@ def main():
     fresh_src = {r["src"] for r in fresh}
     bank_real = [r for r in bank.get("real", []) if r.get("rules", 1) >= RULES and r.get("banked", "") >= oldest and r.get("banked") != day
                  and r.get("src") not in used and r.get("src") not in fresh_src and not valid_real(r)]
+    keep_from = (dt.date.fromisoformat(day) - dt.timedelta(days=BANK_KEEP)).isoformat()
+    bank_old = [r for r in bank.get("real", []) if r.get("rules", 1) >= RULES and keep_from <= r.get("banked", "") < oldest
+                and r.get("src") not in used and r.get("src") not in fresh_src and r.get("h2")]
     bank_fake = [f for f in bank.get("fake", []) if f.get("rules", 1) >= RULES and f.get("banked", "") >= oldest and f.get("banked") != day and valid_fake(f)]
     prior = prior_stories(day)
-    for lst, name in ((fresh, "fresh"), (bank_real, "banked")):
+    for lst, name in ((fresh, "fresh"), (bank_real, "banked"), (bank_old, "older banked")):
         dup = [r for r in lst if seen_before(r, prior)]
         for r in dup:
             print(f"  drop real (already shown on an earlier day): {r.get('h')}", file=sys.stderr)
@@ -772,10 +775,12 @@ def main():
     print(f"  Real or Fake: {strong}/{len(call_pick)} stories with a usable regional clue; countries {per_country}", file=sys.stderr)
 
     # Fill the Blank: real stories whose answer has a word vector
-    h2words = {w for r in reals for w in re.findall(r"[a-z]+", (r.get("h2") or "").lower())}
-    vecs = load_vectors(os.environ.get("GLOVE"), [a for r in reals for a in (r.get("ans") or [])] + sorted(h2words))
+    # Fill the Blank isn't tied to the news cycle: older banked stories (up to a year) are fair game too.
+    blank_src = sorted(reals, key=merit, reverse=True) + sorted(bank_old, key=merit, reverse=True)
+    h2words = {w for r in blank_src for w in re.findall(r"[a-z]+", (r.get("h2") or "").lower())}
+    vecs = load_vectors(os.environ.get("GLOVE"), [a for r in blank_src for a in (r.get("ans") or [])] + sorted(h2words))
     blank_pool, used_ans = [], []
-    for r in sorted(reals, key=merit, reverse=True):
+    for r in blank_src:
         if r in call_pick or not valid_blank(r):
             continue
         a = next((a for a in r["ans"] if a in vecs), None)
@@ -880,7 +885,7 @@ def main():
     used_today = {r["src"] for r in call_real + blank}
     history[day] = sorted(used_today)
     keep_real, seen_src = [], set()
-    for r in sorted(reals, key=lambda r: r.get("banked", ""), reverse=True):
+    for r in sorted(reals + bank_old, key=lambda r: r.get("banked", ""), reverse=True):
         if r["src"] in used_today or r["src"] in seen_src:
             continue
         seen_src.add(r["src"])
@@ -890,6 +895,37 @@ def main():
     with open(bank_path, "w") as f:
         json.dump({"real": keep_real[:BANK_MAX], "fake": keep_fake[:30]}, f, ensure_ascii=False, indent=1)
     print(f"  bank now holds {min(len(keep_real), BANK_MAX)} stories and {min(len(keep_fake), 30)} fakes", file=sys.stderr)
+
+    # Practice archive: every story the daily modes have shown, from any day, so Practice has a deep pool.
+    arch_path = os.path.join(DATA, "practice.json")
+    arch = json.load(open(arch_path)) if os.path.exists(arch_path) else {"real": [], "fake": []}
+    have = {x.get("src") or x.get("h") or x.get("h2") for x in arch["real"]} | {x.get("h") for x in arch["fake"]}
+    pol_src = {r.get("src") for r in result.get("politics", []) if r.get("real")}
+    for r in call_real + blank:
+        key = r.get("src") or r.get("h")
+        if not key or key in have:
+            continue
+        have.add(key)
+        x = {"real": True, "day": day}
+        for k in ("h", "h2", "ans", "vec", "place", "src", "published", "clue"):
+            if r.get(k):
+                x[k] = r[k]
+        try:
+            x["lat"], x["lng"] = round(float(r["lat"]), 4), round(float(r["lng"]), 4)
+        except Exception:
+            x.pop("h", None)                               # no coordinates: Fill the Blank only
+        if r.get("src") in pol_src:
+            x["cat"] = "pol"
+        if x.get("h") or (x.get("h2") and x.get("ans")):
+            arch["real"].append(x)
+    for f in [c for c in call if not c["real"]] + [c for c in result.get("politics", []) if not c["real"]]:
+        if f["h"] not in have:
+            have.add(f["h"])
+            arch["fake"].append(dict(f, day=day))
+    arch["real"], arch["fake"] = arch["real"][-3000:], arch["fake"][-800:]
+    with open(arch_path, "w") as f:
+        json.dump(arch, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"  practice archive: {len(arch['real'])} real, {len(arch['fake'])} fake", file=sys.stderr)
     cutoff = (dt.date.fromisoformat(day) - dt.timedelta(days=120)).isoformat()
     history = {k: v for k, v in history.items() if k >= cutoff}
     with open(hist_path, "w") as f:
