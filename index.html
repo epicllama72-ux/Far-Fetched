@@ -3736,7 +3736,6 @@ $('practiceList').querySelectorAll('button').forEach(b=>b.onclick=()=>startGame(
 
 Scene.onDepth(m=>{ $('depth').textContent=m; });
 Scene.onZone(name=>showToast(name));
-Scene.onLandmark(txt=>showToast(txt));
 Scene.onBreak(z=>{ Sound.play('crunch'); if(z>=5) Sound.play('core'); });
 Scene.onRumble(l=>Sound.rumble(l));
 function renderMute(){ const m=Sound.isMuted(); $('muteBtn').classList.toggle('off',m); $('muteBtn').setAttribute('aria-pressed',String(m)); $('muteBtn').setAttribute('aria-label',m?'Sound off':'Sound on'); }
