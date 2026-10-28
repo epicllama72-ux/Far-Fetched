@@ -1448,7 +1448,7 @@ const Scene = (function(){
   let W=0,H=0,PX=6,cx=0,U=200,worldEnd=0,dropMax=0,B=[0,0,0,0,0,0],camMin=0,camMax=0,axisX=0,maxPts=3000;
   let dipUntil=0,dipping=false,pops=[],marksEl=null,mks=[],recap=null,markCb=null,paperT=1,paperGoal=1,tp=0,jd=0,camY=0,focusT=0.85,focus=0.85,t=0,last=0,gaspT=-99,foolT=-99,safeTop=120;
   let shake=0,lastZone=-1,emitAcc=0,bestJd=0,panT=-99,zoneCb=null,breakCb=null,rumbleCb=null,sparks=[],kit={},drillV=0;
-  let props=[],lmCb=null;
+  let props=[],lmCb=null,deskView=false;
   let peb=[],gems=[],bubbles=[],worms=[],beetles=[],tunnels=[],cracks=[],parts=[],drips=[],embers=[];
   let labels=[],zoneLabels=[],zones=[],depthCb=null,lastM='',running=false,resizeTimer=0;
 
@@ -1471,6 +1471,7 @@ const Scene = (function(){
     cv.width=W; cv.height=H;
     cv.style.width=(W*PX)+'px'; cv.style.height=(H*PX)+'px';
     cx=Math.floor(W/2);
+    deskView = window.innerWidth>=1100 && window.innerHeight>=600;     // big screens have a lot of empty room to furnish
     // the underground is sized so a perfect day just reaches the core
     const maxChin=13+maxPts*JAW_K+9;
     U=Math.max(170, Math.round(maxChin+26-L0));
@@ -1722,33 +1723,97 @@ const Scene = (function(){
     }
     if(vis(-70,30)){
       // night window with a city skyline: big, and set low in the wall
-      { const GX=Math.max(-56,Math.min(-48,4-cx)), GY=-46, GW=30, GH=38, GB=GY+GH;
+      { const sc=deskView?1.45:1, Z=v=>Math.round(v*sc);        // big screens get a bigger window; on phones it sits lower, its sill level with the bottom of his head
+        const GW=Z(30), GH=Z(38), GB=deskView?-8:9, GY=GB-GH, GX=deskView?-26-GW:Math.max(-56,Math.min(-48,4-cx));
         RO(GX-2,GY-2,GW+4,GH+4,'#6b4430');
         for(let r=0;r<GH;r++) R(GX,GY+r,GW,1,mix('#14203f','#3c4f86',r/GH));
-        [[3,3],[11,9],[19,2],[24,12],[8,18],[27,5]].forEach(([dx,dy],i)=>{ if((Math.floor(t*1.3+i*1.7))%5) R(GX+dx,GY+dy,1,1,'#e8eefc'); });
+        [[3,3],[11,9],[19,2],[24,12],[8,18],[27,5]].forEach(([dx,dy],i)=>{ if((Math.floor(t*1.3+i*1.7))%5) R(GX+Z(dx),GY+Z(dy),1,1,'#e8eefc'); });
         { const mx=GX+GW-9, my=GY+3; R(mx,my,4,4,'#f4efd0'); R(mx-1,my+1,1,2,'#f4efd0'); R(mx+1,my-1,2,1,'#f4efd0'); R(mx+2,my+1,1,1,'#14203f'); }
         [[0,-17,6,17],[5,-23,5,23],[10,-14,7,14],[16,-20,6,20],[22,-12,5,12],[26,-16,4,16]].forEach(([dx,dy,w,h],k)=>{
+          dx=Z(dx); dy=Z(dy); w=Z(w); h=Z(h);
           const x=GX+dx, y=GB+dy;
           R(x,y,w,h,'#0d1426');
           for(let yy=y+2;yy<y+h-1;yy+=3) for(let xx=x+1;xx<x+w-1;xx+=2) if(((xx*7+yy*13+k+Math.floor(t*0.4))%9)<3) R(xx,yy,1,1,'#ffd77a');
         });
         R(GX+GW/2-1,GY,2,GH,'#6b4430'); R(GX,GY+Math.round(GH*0.42),GW,2,'#6b4430'); R(GX-3,GB+2,GW+6,2,'#8c5c3a'); }
       // bookshelf
-      RO(24,-62,28,58,'#5a3a26'); R(25,-61,26,56,'#2c1c14');
+      const SH=deskView?0:17, Rb=(x,y,w,h,c)=>R(x,y+SH,w,h,c), ROb=(x,y,w,h,c)=>RO(x,y+SH,w,h,c);   // on phones the bookcase sits lower, its base level with the bottom of his head
+      const BW=deskView?58:28, DV=24+BW/2-1;      // big screens get a two-bay bookcase twice as wide
+      ROb(24,-62,BW,58,'#5a3a26'); Rb(25,-61,BW-2,56,'#2c1c14'); if(deskView) Rb(DV,-61,2,56,'#5a3a26');
       const BK=['#b0413e','#3e7cb0','#d9a441','#4f8a5a','#8a5aa8','#c96b3a','#e0d6bf'];
       for(let sh=0;sh<4;sh++){
         const by=-61+sh*14, h0=by+13;
-        R(24,h0,28,2,'#7a5238');
+        Rb(24,h0,BW,2,'#7a5238');
         let x=26, k=sh*3;
-        while(x<49){ const w=1+((k*5)%3), h=7+((k*7)%5); R(x,h0-h,w,h,BK[k%BK.length]); if(w>1) R(x,h0-h+2,w,1,'#00000033'); x+=w+((k%4)===0?1:0); k++; }
+        while(x<21+BW){
+          if(deskView && x>=DV-1 && x<DV+3){ x=DV+3; continue; }
+          if(deskView && ((sh===1 && x>=DV+16) || (sh===3 && x>=DV+20))){ x++; continue; }      // a little breathing room on two shelves
+          const w=1+((k*5)%3), h=7+((k*7)%5); if(deskView && x+w>DV-1 && x<DV) { x=DV+3; continue; }
+          Rb(x,h0-h,w,h,BK[k%BK.length]); if(w>1) Rb(x,h0-h+2,w,1,'#00000033'); x+=w+((k%4)===0?1:0); k++;
+        }
       }
-      if(kit.globe){ R(39,-60,10,9,C.ol); R(40,-59,8,7,'#3f7fb8'); R(41,-58,3,2,'#4f9d57'); R(44,-56,3,3,'#4f9d57'); R(41,-55,2,1,'#4f9d57'); R(42,-59,2,1,'#8fc4ee'); R(43,-52,2,2,'#c9a050'); R(41,-50,6,1,'#c9a050'); }
-      if(kit.trophy){ const G='#ffd23f', GS='#c99a1c'; R(28,-72,8,5,C.ol); R(29,-71,6,3,G); R(30,-68,4,1,GS); R(27,-71,1,2,G); R(36,-71,1,2,G); R(31,-67,2,3,GS); R(29,-64,6,2,C.ol); R(30,-64,4,1,G); R(30,-70,1,2,'#fff6c8'); }
-      R(41,-71,8,9,'#b0683a'); R(40,-71,10,2,'#d58a52'); R(43,-78,1,7,'#4f8a5a'); R(45,-80,1,9,'#4f8a5a'); R(41,-76,2,1,'#6fae5f'); R(46,-77,3,1,'#6fae5f'); R(44,-82,2,2,'#6fae5f');
-      // clock above his head, picture on the wall under the bookshelf
+      if(deskView){ Rb(DV+19,-40,6,6,'#c97c48'); Rb(DV+19,-40,6,1,'#d58a52'); Rb(DV+21,-46,1,6,'#4f8a5a'); Rb(DV+23,-48,1,8,'#4f8a5a'); Rb(DV+19,-45,2,1,'#6fae5f'); Rb(DV+24,-47,2,1,'#6fae5f');   // a small plant and a framed photo standing in the gaps
+                    Rb(DV+23,-15,7,9,'#2b2b30'); Rb(DV+24,-14,5,7,'#e8dcc0'); Rb(DV+25,-12,3,3,'#f2c9a0'); Rb(DV+25,-9,3,2,'#3d4f6e'); }
+      if(kit.globe){ Rb(39,-60,10,9,C.ol); Rb(40,-59,8,7,'#3f7fb8'); Rb(41,-58,3,2,'#4f9d57'); Rb(44,-56,3,3,'#4f9d57'); Rb(41,-55,2,1,'#4f9d57'); Rb(42,-59,2,1,'#8fc4ee'); Rb(43,-52,2,2,'#c9a050'); Rb(41,-50,6,1,'#c9a050'); }
+      if(kit.trophy){ const G='#ffd23f', GS='#c99a1c'; Rb(28,-72,8,5,C.ol); Rb(29,-71,6,3,G); Rb(30,-68,4,1,GS); Rb(27,-71,1,2,G); Rb(36,-71,1,2,G); Rb(31,-67,2,3,GS); Rb(29,-64,6,2,C.ol); Rb(30,-64,4,1,G); Rb(30,-70,1,2,'#fff6c8'); }
+      Rb(41,-71,8,9,'#b0683a'); Rb(40,-71,10,2,'#d58a52'); Rb(43,-78,1,7,'#4f8a5a'); Rb(45,-80,1,9,'#4f8a5a'); Rb(41,-76,2,1,'#6fae5f'); Rb(46,-77,3,1,'#6fae5f'); Rb(44,-82,2,2,'#6fae5f');
+      // clock above his head
       RO(-5,-34,10,10,C.frame); R(-4,-33,8,8,C.clockFace);
       { const a=t*0.5; for(let i=1;i<=3;i++) R(Math.round(0+Math.sin(a)*i),Math.round(-29-Math.cos(a)*i),1,1,'#222'); R(0,-29,1,1,'#222'); R(0,-30,1,1,'#222'); }
-      RO(30,8,14,11,C.frame); R(31,9,12,9,C.sky); R(31,14,12,4,C.hill); R(38,10,2,2,'#ffe27a');
+    }
+
+    // 2a. big screens only: furniture and decoration for the empty parts of the room
+    if(deskView && vis(-20,FLOOR+8)){
+      const WD='#5a3a26', WDH='#7a5238';
+      // a lived-in study at the man's scale (the desk top is about 0.75 m, so roughly 50 px a metre): a reading nook on
+      // the left, a sideboard and the door on the right. Pieces are laid out outwards from the desk; wider screens get
+      // roomier gaps, and a piece that does not fit is left out rather than squeezed.
+      const shadow=(x,w)=>{ g.globalAlpha=0.22; R(x-1,FLOOR-2,w+2,2,'#000000'); g.globalAlpha=1; };
+      const sideTable=x=>{ const w=26, top=FLOOR-34, m=x+w/2;
+        shadow(x,w);
+        R(x,top,w,3,WDH); R(x,top+3,w,1,C.ol); R(x+2,top+4,3,FLOOR-top-4,WD); R(x+w-5,top+4,3,FLOOR-top-4,WD); R(x+3,FLOOR-12,w-6,2,WD);
+        R(x+6,FLOOR-17,12,5,'#3e7cb0'); R(x+7,FLOOR-17,10,1,'#6fa3d6');
+        R(m-2,top-10,4,10,'#cfc6b8'); R(m-4,top-1,8,1,'#a89c80');
+        for(let r=0;r<12;r++){ const hw=Math.round(6+r*0.35); R(m-hw,top-23+r,hw*2,1,r<2?'#fff0c0':'#e8d4a0'); }
+        g.globalAlpha=0.05+0.01*Math.sin(t*2); for(let dy=-18;dy<=18;dy++){ const hw=Math.round(Math.sqrt(324-dy*dy)*1.3); R(m-hw,top-16+dy,hw*2,1,'#ffe9a0'); } g.globalAlpha=1; };
+      const armchair=x=>{ const w=48, A='#4f6b5a', AH='#5f7d6a', AD='#425a4c';
+        shadow(x,w);
+        RO(x+6,FLOOR-62,w-12,38,A); R(x+7,FLOOR-61,w-14,3,AH); R(x+w/2,FLOOR-58,1,30,AD);
+        RO(x,FLOOR-34,9,28,AD); RO(x+w-9,FLOOR-34,9,28,AD); R(x+1,FLOOR-33,7,2,A); R(x+w-8,FLOOR-33,7,2,A);
+        RO(x+9,FLOOR-26,w-18,12,A); R(x+10,FLOOR-25,w-20,2,AH); R(x+12,FLOOR-40,12,12,'#c9a050'); R(x+13,FLOOR-39,10,1,'#e0b868');
+        R(x+1,FLOOR-14,w-2,8,AD); R(x+3,FLOOR-6,3,6,WD); R(x+w-6,FLOOR-6,3,6,WD); };
+      const plant=x=>{ const m=x+10;
+        shadow(x+2,16);
+        RO(x+2,FLOOR-18,16,18,'#b0683a'); R(x+1,FLOOR-18,18,3,'#c97c48');
+        R(m,FLOOR-70,2,52,'#3f6b3f'); R(m-3,FLOOR-56,1,30,'#3f6b3f'); R(m+4,FLOOR-48,1,22,'#3f6b3f');
+        [[-10,-66,9],[2,-74,9],[-12,-48,10],[3,-56,10],[-9,-34,8],[4,-38,9],[-5,-80,8]].forEach(([dx,dy,lw],i)=>{ R(m+dx,FLOOR+dy,lw,4,i%2?'#4f8a5a':'#3f7a4a'); R(m+dx+1,FLOOR+dy,lw-2,1,'#6aa86f'); }); };
+      const sideboard=x=>{ const w=66, top=FLOOR-40;
+        shadow(x,w);
+        RO(x,top,w,36,WD); R(x-1,top-1,w+2,3,WDH);
+        [0,1,2].forEach(i=>{ const px=x+3+i*21; R(px,top+5,19,27,'#6b4430'); R(px+1,top+6,17,1,'#7a5238'); R(px+(i===2?2:15),top+17,2,3,'#e0b050'); });
+        R(x+3,FLOOR-4,4,4,WD); R(x+w-7,FLOOR-4,4,4,WD);
+        R(x+6,top-9,20,8,'#efe6cf'); R(x+6,top-8,20,1,'#cfc2a0'); R(x+6,top-5,20,1,'#cfc2a0'); R(x+7,top-10,18,1,'#e4d9bd'); R(x+8,top-7,8,1,'#8d8776');
+        R(x+w-16,top-16,7,15,'#3e7cb0'); R(x+w-15,top-15,2,13,'#6fa3d6'); R(x+w-13,top-24,1,8,'#4f8a5a'); R(x+w-16,top-25,3,3,'#e8453c'); R(x+w-12,top-27,3,3,'#ffd23f'); R(x+w-14,top-29,3,3,'#ff8ab0'); };
+      const door=x=>{ const w=48, top=FLOOR-118;
+        RO(x,top,w,FLOOR-top,'#7a5238'); R(x+3,top+3,w-6,FLOOR-top-3,'#a8794e');
+        [[top+8,40],[top+56,48]].forEach(([py,ph])=>{ R(x+8,py,w-16,ph,'#9a6c44'); R(x+8,py,w-16,1,'#b88a5e'); R(x+8,py+ph-1,w-16,1,'#86593a'); });
+        R(x+w-10,FLOOR-58,3,3,'#e0b050'); R(x+w-9,FLOOR-57,1,1,'#fff0c0'); };
+      const frame=(x,y,w,h,inner)=>{ g.globalAlpha=0.3; R(x+2,y+2,w,h,'#000000'); g.globalAlpha=1; RO(x,y,w,h,'#2b2b30'); R(x+2,y+2,w-4,h-4,'#e8dcc0'); inner(x+3,y+3,w-6,h-6); };
+      R(-62,FLOOR+1,124,6,'#4e3434'); R(-60,FLOOR+2,120,4,'#6e4440'); for(let x=-56;x<56;x+=12) R(x,FLOOR+3,6,2,'#8a5c4c');   // rug under the desk
+      const lay=(items,from,room,dir)=>{   // place items outwards from the desk, dropping any that will not fit, sharing the spare room as gaps
+        let use=items.slice(); const need=l=>l.reduce((a,it)=>a+it.w,0)+8*l.length;
+        while(use.length && need(use)>room) use.pop();
+        const gap=use.length ? Math.min(40,(room-need(use)+8*use.length)/(use.length+1)) : 0;
+        let p=from; return use.map(it=>{ p+=gap; const x0=dir>0?p:-p-it.w; p+=it.w; return {it,x:Math.round(x0)}; });
+      };
+      lay([{w:26,f:sideTable},{w:48,f:armchair,art:true},{w:20,f:plant}],62,cx-4-62,-1).forEach(({it,x})=>{
+        it.f(x);
+        if(it.art) frame(x+7,FLOOR-104,34,26,(ix,iy,iw,ih)=>{ R(ix,iy,iw,ih*0.55,'#8fc0e0'); R(ix,iy+Math.round(ih*0.5),iw,ih-Math.round(ih*0.5),'#4f9d57'); R(ix+iw*0.35,iy+ih*0.5,iw*0.5,ih*0.5,'#3f8a4a'); R(ix+4,iy+3,3,3,'#ffe27a'); });
+      });
+      lay([{w:66,f:sideboard,art:true},{w:48,f:door}],60,W-cx-4-60,1).forEach(({it,x})=>{
+        it.f(x);
+        if(it.art) frame(x+11,FLOOR-108,44,30,(ix,iy,iw,ih)=>{ R(ix,iy,iw,ih,'#3d6fa8'); R(ix+3,iy+3,8,6,'#4f9d57'); R(ix+14,iy+4,10,5,'#4f9d57'); R(ix+12,iy+12,5,8,'#4f9d57'); R(ix+27,iy+13,7,4,'#4f9d57'); R(ix+31,iy+18,4,3,'#4f9d57'); });
+      });
     }
 
     // 2b. his chair: back posts beside the torso, seat and legs under the table
@@ -2064,7 +2129,11 @@ const Scene = (function(){
       sparks.forEach(p=>{ g.globalAlpha=clamp(1-p.age/p.life,0,1); R(Math.round(p.x),Math.round(p.y),2,2,C.gold); }); g.globalAlpha=1;
       if(bestJd>4){
         const by=Math.round(13+bestJd+9);
-        if(vis(by-9,by+2)){ R(-17,by-8,1,9,C.ol); R(-16,by-8,4,3,'#ff6b8b'); R(-16,by-6,4,1,'#c94d6a'); }
+        if(vis(by-9,by+2)){
+          R(-17,by-8,1,9,C.ol); R(-16,by-8,4,3,'#ff6b8b'); R(-16,by-6,4,1,'#c94d6a');
+          const GL={B:['110','101','110','101','110'],E:['111','100','110','100','111'],S:['011','100','010','001','110'],T:['111','010','010','010','010']};
+          [[1,'#1a1220'],[0,'#ff6b8b']].forEach(([sh,col])=>{ 'BEST'.split('').forEach((ch,k)=>GL[ch].forEach((row,ry)=>{ for(let rx=0;rx<3;rx++) if(row[rx]==='1') R(-34+k*4+rx+sh,by-8+ry+sh,1,1,col); })); });   // a tiny "BEST" beside the flag
+        }
       }
     }
 
