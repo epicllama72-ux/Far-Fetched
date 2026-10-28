@@ -99,7 +99,17 @@
    "h2": "Mainland user can't charge MacBook at Hong Kong library as the three-pin [] hits desk underside",
    "ans": [
     "plug",
-    "plugs"
+    "plugs",
+    "adapter",
+    "adaptor",
+    "adapters",
+    "adaptors",
+    "socket",
+    "sockets",
+    "outlet",
+    "outlets",
+    "prong",
+    "prongs"
    ],
    "place": "Hong Kong",
    "src": "https://news.google.com/rss/articles/CBMi6wJBVV95cUxQcnlRcnNVY0NUaFZrazFVTGRMT2g5OVRnSm9BR3d2XzduSlZxbWJKREJIaXlPbE84anRFNE1FRDEyUER1SDJ5UTFhNkpjVVFGall3MnlLOVB6akhXWm5BRzNTWTNPQTBib0x3WXRwZ2JpemhVUVJDdnpnLV9iclRSUF9SV1MtNlljM3h3TUpMYUlrMzJkalFPLU0wRzZ6V0ttWUhCa1ZfUDBpRFBfdGllNkk2RERFWkEzLW9kWDdsRWtocGxpVHdzTjJvNXJZNTBaRXY3eWkyUzcwNlNmdEltQ0I5aGZBelduV3hUbEV2cGtrTHc3OU14bERsazRxQjBzbm9YQ3dWNjlyekZPdnV0eWRweW5SZWoyaG5SX19Xd0RiMjFMOVp4cHRFcGVOM1BNYk1EVFdBcmJ2Q2gycnduNEdDc0FEUF8zSFpRaGtTcS1OcUVRSEJoS0dVX2JlXzRtbUdvZ1BDV0hNSTA?oc=5",
@@ -111,7 +121,13 @@
    "h2": "Two pallets of RTX 5090 [] worth $470,000 vanish at São Paulo airport in Brazil",
    "ans": [
     "cards",
-    "card"
+    "card",
+    "gpus",
+    "gpu",
+    "graphics",
+    "chips",
+    "chip",
+    "processors"
    ],
    "place": "Guarulhos, São Paulo, Brazil",
    "src": "https://www.tomshardware.com/pc-components/gpus/nvidia-rtx-5090-shipment-worth-usd470-000-goes-missing-in-brazilian-airport-two-pallets-disappear-distributor-seeks-explanations-but-met-with-zero-answers",
@@ -123,7 +139,11 @@
    "h2": "Dortmund told not to [] at Baku stadium, Azerbaijan, to avoid Legionella",
    "ans": [
     "shower",
-    "showers"
+    "showers",
+    "showering",
+    "bathe",
+    "wash",
+    "rinse"
    ],
    "place": "Baku, Azerbaijan",
    "src": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPZ18zQkFmbVB6RzBabWxwclJyMXRLX0R5cjl0Vi1qM0JXVUVJYW01el9HT2ZucUhNUlR1WXZpVENDTXZVaHBQRTRBbWtQd21JUlVmN1ZNZ05yNXZ6b05XSEZxTUlPQ0lhQzVZZTRtdWdGRzRhTmJmT182R3UyVnAzRUh4dENGQXBXSXdkWWdpd1BfYVZod0QtY2lHVFVRZ3FjcEF4OXQwTWRDSm5aenpfMzJFbk5NcXVmT1RiS2JNNER1VmlkTWpXelI0clFaZml4N0ZIZmRCQUx0NGxBU1E?oc=5",
@@ -135,7 +155,13 @@
    "h2": "Scammers persuade Norwegians to buy gold and leave it in [] to 'keep it safe'",
    "ans": [
     "forests",
-    "forest"
+    "forest",
+    "woods",
+    "wood",
+    "woodland",
+    "woodlands",
+    "trees",
+    "bush"
    ],
    "place": "Oslo, Norway",
    "src": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQUDZqUUJ1R2FrZlc5bUlvMVcxNmFzV0hJc2xlSkh6T3AwcmpnbGNCWl8zZ2xoc2lhaXFOZDgyVERHMDJqUmlJSlpWam5zaG5LcXlobHFNU2NpdTc0a29nbzh1M01ramtHME82QmZHalJfUUdnVlRlNzVTTm1DSzZBRU9oX3ZjSFJCcW1ycWtUbmRORkQxOGNMYTMtdFZRMW5RV3REQU91cmJnQ2J3RXhnNkc4cTJfN1lpNTBtQkE5bzhaSDRYXzZPU0t2OV9fSGlOa2dEUGZKMTlSTWJCVVpCTS00bGxnRElNY0t1QVRHWEFJbjNFWXfSAfsBQVVfeXFMTkRNeXNIWWtDa3Z0d0RpdVprLUNxR2Mwc3pPZXJ4VUJFbmVwak1uODJtcWl3bHVlUlhzdUdjNWl1OUVFYTRRX21LVmx6dVl6NHJHRC1INEhuQnkzWXk5UzkxX3JDUDZjWnVUTFBmQ1BTQ0p1anFBaDlFdFNJSnRNMkRrVW5qZWE5NU5USGlVZFIyR05sY1FqdDRfcy0tUU9tV1QzZkNKMlVOU2daOXcwZ0ZZMDhxZDBQZlh6NEVPcGVFR19hUkZuYlhNWnhLNUJfWGJocFc5WTR0N05JMU9WRnVVcU1pYks3NTA1NlJ2TkJ3b0dXZjc0UXZqSm8?oc=5",
@@ -147,7 +173,9 @@
    "h2": "Frome, Somerset burglar who stole a stuffed barn [] and a three feet tall African statue gets suspended sentence",
    "ans": [
     "owl",
-    "owls"
+    "owls",
+    "bird",
+    "birds"
    ],
    "place": "Frome, Somerset",
    "src": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxPM3NJd2pfVG1kdmlNZE1CMzJKdTQ3eXJmeVdGNXhSWWVWUy0zZzhZWkhOajR6S29IVGlDLTBKM2FWUFAyc2pMQURTMkoxY1p3M2pJWGhfN1F2U0h3aVkwbFNHY0dkOWdEZG9mREsxaUpFX3hOekJKNjVJVEM1MWZ6VzhnMm9WQnFVakNQVGFPLTVEZGx3OHpiN3NYMlJHWHpYcTliYlJyMS1JWHpoYlJpNXE1TDZuTVM1WERwYk9zSXFhX3lKN0VVV1prRmJ5UFZZOXF0WDBsTDdxNDVVRmRVa09yV3V1TTBhUktLNF9qNEZFbkg5azR0WS1QOUJCQ0hCeHBvVGYyZW9WdUlqQkxMd0pLZFpNSmdjTHJFOWxiTUlnOHZKbUxvMw?oc=5",
@@ -159,7 +187,14 @@
    "h2": "Burglar hiding in Macy's ceiling in Vancouver, Washington crashes down onto waiting []",
    "ans": [
     "police",
-    "officers"
+    "officers",
+    "officer",
+    "cops",
+    "cop",
+    "policemen",
+    "policeman",
+    "constables",
+    "deputies"
    ],
    "place": "Vancouver, Washington",
    "src": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQR3IxenhDaXYtUnZnTURKQ2hyTm05ZlQ1UTFHZFFhaFNIQm5WUk8xSVdTUE00dTFTTEEtVjJfOHVzWGxFMXFJRUx4UEdDYUloWldLdm5JMjhCRWFLWGpRQ1dFeWdLdlpiWlVaamlDNk85eEwwU05NeFZzRjh4SWlrc2NmZi1lX2dIYkJEZUpJWE03VE5BTmt4d3FqU1pMbnJKX1pmQ0hsa2gwQkdOOFpHSXJsT0RJSDM1ZEI5dGJ0VmwxVzl5bnRnVlJWbTkyMnowd1ZEMW9GTGY2WktOSV9zaG1Hb9IB6AFBVV95cUxNbE9rWl92dEllWDE5bmRUVzNwTTF3UDA3VUxTd196QjRxM0g4Mlp0UFhPaDQ5V0dlcklfTWEwdXNqWndMV0pGV0NELU5oVDk4S2hEaUtWNTE1RnFmbGZnanRfM19zcUNNLWdkZXNfNnNCd2FkaFZWd2NiWHFSdlRDU001VVVENUpoLWJuNzVZdU9veWJ1cTRjRWk1YXpaekdncGdFSGUybzhwRUJrazBBdWNrMm9KWmhYaXlreW1FTXo0ZU1Pa3R0U1VEcVQ4SkE3ejRZQTZQZi0tUFdGWEVVemlvZ19BLVdl?oc=5",
@@ -171,7 +206,13 @@
    "h2": "Retired couple find 1.30 m [] in garden hedge in Avrolles, France, bag it, then watch it wake up and climb out",
    "ans": [
     "boa",
-    "boas"
+    "boas",
+    "snake",
+    "snakes",
+    "serpent",
+    "serpents",
+    "constrictor",
+    "constrictors"
    ],
    "place": "Avrolles, Yonne, France",
    "src": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOZ3NHQjJhdXpkNGNUalNnWHAtNU93OG9SOURpRkx1aE55N0w5RVVVMW1nSkJ2eU1ZdU41Y2VndWhhOV9OQ2NYdEs0MGQ0UU1lVmh4ZDM1OTFuRWlldVZSSWdtbmVNVDFRcTNmNDU5ckZCVGtxd05kMlFEbXpFMzFQTmdMRmduZXRmMG1XZ3FIQUlaSXFCNFdIMzhXV0VVMm5GX2d2bEdER3JaNENPa1pheEdnTmV6blJKTDJWYU50c1RVMGxFTm53VllqMVhuX01MREtBOGlWNjVkZGZHb3d3TzJ2WmZZQ1U?oc=5",

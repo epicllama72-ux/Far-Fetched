@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Far-Fetched</title>
 <meta name="description" content="A daily game: real or fake weird news headline? If it's real, pin where it happened. Get fooled and you lose points.">
-<link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="icons/icon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/ff-icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/ff-icon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/ff-icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#1a1220">
 <meta name="apple-mobile-web-app-title" content="Far-Fetched">
@@ -1060,7 +1060,7 @@ body.recap #bar{display:none}
     <button id="muteBtn" aria-label="Sound on" aria-pressed="false">♪</button>
     <div id="menu" hidden>
       <p class="mlbl">GAME</p>
-      <button id="mCall">Real or Fake <small>8 true, 2 fake</small></button>
+      <button id="mCall">Daily Dig <small>real or fake? 8 true, 2 fake</small></button>
       <button id="mBlank">Fill the Blank <small>20 s each</small></button>
       <button id="mPol">Politics <small>hard-to-believe governing</small></button>
       <button id="mPractice">Practice set <small>doesn't count</small></button>
@@ -2170,7 +2170,7 @@ let S = null, map = null, layer = null, guessLL = null;
 
 let KIND = (function(){ try{ const k=localStorage.getItem('ff_kind'); return (k==='blank'||k==='pol')?k:'call'; }catch(e){ return 'call'; } })();
 function saveKey(kind){ return kind==='blank'?'ff_blank':kind==='pol'?'ff_pol':'ff_daily'; }
-function modeName(kind){ return kind==='blank'?'Fill the Blank':kind==='pol'?'Politics':'Real or Fake'; }
+function modeName(kind){ return kind==='blank'?'Fill the Blank':kind==='pol'?'Politics':'Daily Dig'; }
 const BLANK_MAX = 500, BLANK_SECS = 20;
 const FAKE_PTS = 150, JAW_SCALE = 4500;   // caught fake; every mode's jaw is scaled to the same 3000-point world
 
@@ -3240,16 +3240,56 @@ function updateTimer(){
   if(tl<=0){ Sound.play('timeup'); endBlank(); }
 }
 
+/* Generous autocorrect: a near-miss spelling of an accepted answer counts as that answer,
+   and a word that isn't in the list is swapped for the closest word that is. */
+function lev(a,b,max){
+  if(Math.abs(a.length-b.length)>max) return max+1;
+  let prev2=null, prev=Array.from({length:b.length+1},(_,j)=>j);
+  for(let i=1;i<=a.length;i++){
+    const cur=[i]; let best=i;
+    for(let j=1;j<=b.length;j++){
+      cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1));
+      if(prev2&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1]) cur[j]=Math.min(cur[j],prev2[j-2]+1);   // swapped letters count as one slip
+      best=Math.min(best,cur[j]);
+    }
+    if(best>max) return max+1;
+    prev2=prev; prev=cur;
+  }
+  return prev[b.length];
+}
+const typoTol=w=>w.length>=8?2:w.length>=4?1:0;
+let VOCAB=null;
+function fixGuess(word,st){
+  const ans=st.ans||[];
+  if(ans.some(a=>a===word||stem(a)===stem(word))) return {word,fixed:false};
+  for(const a of ans){ const t=typoTol(a); if(t && (lev(word,a,t)<=t || lev(stem(word),stem(a),t)<=t)) return {word:a,fixed:true}; }
+  if(VM && !VM.map.has(word) && word.length>=4){
+    VOCAB=VOCAB||[...VM.map.keys()];
+    // closest spelling; ties go to the same length, then to the more common word (the list is ordered by frequency)
+    const t=typoTol(word); let best=null, bk=[t+1,9,9];
+    for(const v of VOCAB){
+      if(Math.abs(v.length-word.length)>t || v[0]!==word[0]) continue;
+      const d=lev(word,v,t); if(d>t) continue;
+      const same=[...v].sort().join('')===[...word].sort().join('')?0:1;    // same letters, just shuffled: almost certainly the one
+      const k=[d,same,Math.abs(v.length-word.length)];
+      if(k[0]<bk[0] || (k[0]===bk[0] && (k[1]<bk[1] || (k[1]===bk[1] && k[2]<bk[2])))){ bk=k; best=v; }
+    }
+    if(best) return {word:best,fixed:true};
+  }
+  return {word,fixed:false};
+}
+
 function submitWord(raw){
   if(S.phase!=='live') return;
-  const word=(raw||'').toLowerCase().replace(/[^a-z]/g,'');
+  let word=(raw||'').toLowerCase().replace(/[^a-z]/g,'');
   if(!word) return;
   const bl=S.blank, st=S.rounds[S.i];
   const msg=$('guessMsg');
+  const fx=fixGuess(word,st), typed=word; word=fx.word;
   if(bl.seen.has(word)){ msg.textContent='Already guessed "'+word+'".'; return; }
   const c=closeness(word,st);
-  if(c===null){ msg.textContent='"'+word+'" isn\'t in the word list.'; Sound.play('nope'); return; }
-  msg.textContent='';
+  if(c===null){ msg.textContent='"'+typed+'" isn\'t in the word list.'; Sound.play('nope'); return; }
+  msg.textContent = fx.fixed ? 'Read "'+typed+'" as "'+word+'".' : '';
   const tl=Math.max(0,BLANK_SECS-(performance.now()-bl.t0)/1000);
   bl.seen.add(word);
   bl.guesses.push({word,c});
