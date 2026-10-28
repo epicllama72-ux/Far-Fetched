@@ -1515,7 +1515,7 @@ const Scene = (function(){
     }
     for(let i=0;i<3;i++) beetles.push({x0:(r()*2-1)*half, y:Math.round(L0+B[1]+4+r()*(B[2]-B[1]-8)), dir:r()<0.5?-1:1, sp:6+r()*5});
     // a crack seed every few pixels along the jaw's path, on both sides
-    for(let y=74; y<L0+U; y+=5+Math.floor(r()*5)){
+    for(let y=74; y<EXIT-8; y+=5+Math.floor(r()*5)){
       const inMagma = y>=L0+B[3] && y<L0+B[4];      // magma is liquid: it ripples and splashes instead of cracking
       [-1,1].forEach(s=>{
         if(r()<0.25) return;
@@ -1581,12 +1581,10 @@ const Scene = (function(){
     return mix('#3a0a06','#1a0303',clamp((d-B[4])/Math.max(1,worldEnd-L0-B[4]),0,1));
   }
   function rowColor(wy){
-    if(wy>=EXIT){          // the other side of the earth: sky over an Australian beach
+    if(wy>=EXIT){          // the other side of the earth: the sand of an Australian beach, and the sky above it (which is below us)
       const d=wy-EXIT;
-      if(d<58) return mix('#3d9bf0','#bfe9ff',d/58);
-      if(d<62) return '#e8f6ff';
-      if(d<72) return mix('#1f8fd0','#0e6aa8',(d-62)/10);
-      return '#f0d9a0';
+      if(d<9) return '#f0d9a0';
+      return mix('#cdeeff','#3d9bf0',clamp((d-9)/90,0,1));
     }
     if(wy>=EXIT-9) return '#5a3a26';
     if(wy<FLOOR-14) return C.wall;
@@ -1597,6 +1595,7 @@ const Scene = (function(){
     return layerCol(wy-L0);
   }
   function chunkCol(wy){
+    if(wy>=EXIT && wy<EXIT+9) return Math.random()<0.6?'#f0d9a0':'#d9c088';
     if(wy>=EXIT-9) return Math.random()<0.5?'#7a5238':'#5a3a26';
     if(wy<FLOOR) return wy<80?C.deskHi:wy<86?C.deskFront:C.wain;
     if(wy<L0) return C.floorHi;
@@ -1942,32 +1941,36 @@ const Scene = (function(){
         if(p.fx==='flame'){ const f=Math.floor(t*8)%2; R(p.x+1,yy+p.h,3,1,'#ff8a1f'); R(p.x+2-f,yy+p.h+1,2,1,'#ffd23f'); R(p.x+2,yy+p.h-1,1,1,'#ff8a1f'); }
         if(p.id==='gold' && Math.floor(t*2)%3===0) R(p.x+3,yy-1,1,1,'#ffffff');
       });
-      if(vis(EXIT-10,worldEnd)){        // the other side of the earth: a beach in Australia
-        const SY=EXIT+72;
-        for(let x=-cx-4;x<W-cx+4;x++){ const hh=1+(((x*7)>>1)&3)%3; R(x,EXIT,1,hh,'#5a3a26'); if(((x%9)+9)%9===0) R(x,EXIT+hh,1,3+(x&3),'#7a5238'); }
-        const sx=-Math.min(40,cx-14), sy=EXIT+18;
+      if(vis(EXIT-10,worldEnd)){        // the other side of the earth: Australia's ground is our ceiling, so everything there hangs upside down
+        const GY=EXIT+9;                // underside of the sand: the beach surface the jaw breaks through
+        const sand='#f0d9a0', sandDk='#d9c088';
+        for(let x=-cx-4;x<W-cx+4;x++){ if(((x*3)&7)===0) R(x,EXIT+2+((x*5)&3),1,1,sandDk); if(((x%11)+11)%11===0){ R(x,GY,1,2+(x&1),'#4fa84f'); R(x+1,GY,1,1,'#3f8a3f'); } }
+        const seaX=-Math.max(30,Math.min(40,cx-10));
+        R(-cx-4,EXIT,seaX+cx+4,9,'#1f8fd0'); R(-cx-4,EXIT+6,seaX+cx+4,3,'#0e6aa8');
+        for(let x=-cx;x<seaX;x+=6) if(((x+Math.floor(t*4))%5+5)%5===0) R(x,EXIT+2,3,1,'#9fe0ff');
+        R(seaX,EXIT,1,9,'#ffffff'); R(seaX+1,EXIT+(Math.floor(t*3)%2),1,3,'#e8f6ff');
+        const sx=-Math.min(30,cx-16), sy=EXIT+66;
         for(let dy=-6;dy<=6;dy++){ const hw=Math.round(Math.sqrt(36-dy*dy)); R(sx-hw,sy+dy,hw*2+1,1,'#ffd23f'); }
         R(sx-4,sy-1,3,2,'#111111'); R(sx+1,sy-1,3,2,'#111111'); R(sx-1,sy-1,2,1,'#111111'); R(sx-2,sy+3,5,1,'#c0392b');
-        if(Math.floor(t*2)%2){ R(sx-10,sy,3,1,'#ffe27a'); R(sx+8,sy,3,1,'#ffe27a'); R(sx,sy-10,1,3,'#ffe27a'); } else { R(sx-9,sy-6,2,1,'#ffe27a'); R(sx+8,sy+5,2,1,'#ffe27a'); }
+        if(Math.floor(t*2)%2){ R(sx-10,sy,3,1,'#ffe27a'); R(sx+8,sy,3,1,'#ffe27a'); R(sx,sy+8,1,3,'#ffe27a'); } else { R(sx-9,sy+5,2,1,'#ffe27a'); R(sx+8,sy-6,2,1,'#ffe27a'); }
         g.globalAlpha=0.92;
-        for(let k=0;k<2;k++){ const x=Math.round(((t*(2+k)+k*70)%(W+50))-cx-25), y=EXIT+8+k*16; R(x,y,14,3,'#ffffff'); R(x+3,y-2,8,2,'#ffffff'); R(x+9,y+3,6,1,'#e8f6ff'); }
+        for(let k=0;k<2;k++){ const x=Math.round(((t*(2+k)+k*70)%(W+50))-cx-25), y=EXIT+34+k*18; R(x,y,14,3,'#ffffff'); R(x+3,y+3,8,2,'#ffffff'); R(x+9,y-1,6,1,'#e8f6ff'); }
         g.globalAlpha=1;
-        { const gx=Math.round(((t*14)%(W+30))-cx-15), gy=EXIT+40+Math.round(Math.sin(t*3)*2), fl=Math.floor(t*6)%2; R(gx,gy+fl,2,1,'#ffffff'); R(gx+3,gy+fl,2,1,'#ffffff'); R(gx+2,gy+1,1,1,'#ffffff'); }
-        for(let x=-cx;x<W-cx;x+=6) if(((x+Math.floor(t*4))%5+5)%5===0) R(x,EXIT+66,3,1,'#9fe0ff');
-        { const bx=-6+Math.round(Math.sin(t*0.7)*14), by=EXIT+62+Math.round(Math.sin(t*2.4)*0.6);
-          R(bx-4,by+3,9,1,'#ff5d8f'); R(bx-1,by,3,2,'#ff8a1f'); R(bx,by-3,1,3,'#f2c9a0'); R(bx,by-5,2,2,'#f2c9a0'); R(bx+2,by-2,3,1,'#f2c9a0'); }
-        for(let x=-cx;x<W-cx;x+=5) R(x+((x*3)&2),SY+2+((x*5)&7),1,1,'#d9c088');
-        const ux=-Math.min(38,cx-16);
-        R(ux,SY-12,1,15,'#8a5a3a'); R(ux-6,SY-14,13,1,'#e8453c'); R(ux-8,SY-13,17,1,'#ffffff'); R(ux-9,SY-12,19,1,'#e8453c'); R(ux+4,SY+2,11,3,'#6be4ff'); R(ux+4,SY+3,11,1,'#ffffff');
+        { const gx=Math.round(((t*14)%(W+30))-cx-15), gy=EXIT+46+Math.round(Math.sin(t*3)*2), fl=Math.floor(t*6)%2; R(gx,gy-fl,2,1,'#ffffff'); R(gx+3,gy-fl,2,1,'#ffffff'); R(gx+2,gy-1,1,1,'#ffffff'); }
+        { const bx=seaX-12+Math.round(Math.sin(t*0.7)*8), by=EXIT+10;      // an upside-down surfer riding the underside of the water
+          R(bx-4,by,9,1,'#ff5d8f'); R(bx-1,by+1,3,2,'#ff8a1f'); R(bx,by+3,1,3,'#f2c9a0'); R(bx,by+6,2,2,'#f2c9a0'); R(bx+2,by+4,3,1,'#f2c9a0'); }
+        // flag, kangaroo, umbrella, palm and crab all hang down from the sand
+        const fx=-14;
+        R(fx,GY,1,18,'#cfd6de'); R(fx-12,GY,12,7,'#1c3a8a'); R(fx-12,GY+4,5,3,'#ffffff'); R(fx-10,GY+4,1,3,'#c0392b'); R(fx-12,GY+5,5,1,'#c0392b');
+        R(fx-6,GY+2,1,1,'#ffffff'); R(fx-3,GY+4,1,1,'#ffffff'); R(fx-7,GY+6,1,1,'#ffffff'); R(fx-2,GY+1,1,1,'#ffffff');
         const hop=Math.max(0,Math.round(Math.sin(t*3)*5));
-        spr(KANG,KANG_P,Math.min(30,cx-16),SY-11-hop);
+        spr(KANG.slice().reverse(),KANG_P,Math.max(-cx+14,seaX+3),GY+hop);
+        const ux=Math.min(28,cx-22);
+        R(ux,GY,1,15,'#8a5a3a'); R(ux-6,GY+14,13,1,'#e8453c'); R(ux-8,GY+13,17,1,'#ffffff'); R(ux-9,GY+12,19,1,'#e8453c'); R(ux+4,GY-0,11,1,'#6be4ff');
         const px=Math.min(44,cx-8), sw=Math.round(Math.sin(t*1.3));
-        R(px,SY-18,2,19,'#7a5238'); R(px-6+sw,SY-21,6,2,'#3f8a3f'); R(px+2+sw,SY-21,6,2,'#3f8a3f'); R(px-4+sw,SY-23,10,2,'#4fa84f'); R(px,SY-19,2,2,'#5a3a26');
-        const crx=-8+Math.round(Math.sin(t*1.5)*12);
-        R(crx,SY+6,4,2,'#e8453c'); R(crx-1,SY+5,1,1,'#e8453c'); R(crx+4,SY+5,1,1,'#e8453c'); R(crx,SY+8,1,1,'#c0392b'); R(crx+3,SY+8,1,1,'#c0392b');
-        const fx=14;
-        R(fx,SY-16,1,18,'#cfd6de'); R(fx+1,SY-16,12,7,'#1c3a8a'); R(fx+1,SY-16,5,3,'#ffffff'); R(fx+3,SY-16,1,3,'#c0392b'); R(fx+1,SY-15,5,1,'#c0392b');
-        R(fx+8,SY-14,1,1,'#ffffff'); R(fx+10,SY-12,1,1,'#ffffff'); R(fx+7,SY-11,1,1,'#ffffff'); R(fx+11,SY-15,1,1,'#ffffff');
+        R(px,GY,2,19,'#7a5238'); R(px-6+sw,GY+19,6,2,'#3f8a3f'); R(px+2+sw,GY+19,6,2,'#3f8a3f'); R(px-4+sw,GY+21,10,2,'#4fa84f'); R(px,GY+17,2,2,'#5a3a26');
+        const crx=Math.min(14,cx-30)+Math.round(Math.sin(t*1.5)*6);
+        R(crx,GY,4,2,'#e8453c'); R(crx-1,GY+2,1,1,'#e8453c'); R(crx+4,GY+2,1,1,'#e8453c'); R(crx,GY-1,1,1,'#c0392b'); R(crx+3,GY-1,1,1,'#c0392b');
       }
       gems.forEach((q,i)=>{ if(!vis(q.y-2,q.y+3)) return; R(q.x,q.y,2,2,C.gem); if(Math.floor(t*3+i)%4===0){ R(q.x-1,q.y-1,1,1,C.white); R(q.x+2,q.y+2,1,1,C.white); } });
       const my=L0+B[3];
@@ -1996,6 +1999,7 @@ const Scene = (function(){
       R(-14,FLOOR,28,8,C.hole); R(-14,FLOOR,1,8,C.floorDark); R(13,FLOOR,1,8,C.floorDark);
       R(-17,FLOOR-3,2,3,C.floorHi); R(-15,FLOOR-2,2,2,C.floor); R(14,FLOOR-3,2,3,C.floorHi); R(12,FLOOR-2,2,2,C.floor);
     }
+    if(cyNow>EXIT){ R(-10,EXIT,20,9,'#3a2a1a'); R(-13,EXIT+7,3,2,'#f0d9a0'); R(10,EXIT+7,3,2,'#f0d9a0'); R(-12,EXIT+5,2,2,'#d9c088'); R(10,EXIT+4,2,2,'#d9c088'); }
     cracks.forEach(c=>{
       if(c.rt<0 || !vis(c.y-14,c.y+14)) return;
       if(c.lava){        // a molten ripple spreading out from the jaw, with a few flung droplets
@@ -3363,7 +3367,7 @@ function renderDigCard(){
   const w=60, h=100, c=document.createElement('canvas'); c.width=w; c.height=h;
   const g=c.getContext('2d');
   const top=-14, bottom=Math.max(L.L0+L.B[4]+20, d.chin+20, d.chin>=L.EXIT?L.EXIT+40:0), Y=y=>Math.round(2+ (y-top)/(bottom-top)*(h-14));
-  const bands=[[top,'#3d3148'],[74,'#8a5a3a'],[80,'#6a432b'],[L.FLOOR,'#6b4430'],[L.L0,'#2d2b38'],[L.L0+L.B[1],'#4d3426'],[L.L0+L.B[2],'#5b5a66'],[L.L0+L.B[3],'#b32d14'],[L.L0+L.B[4],'#3a0a06'],[L.EXIT,'#7ec8ff'],[L.EXIT+66,'#f0d9a0']];
+  const bands=[[top,'#3d3148'],[74,'#8a5a3a'],[80,'#6a432b'],[L.FLOOR,'#6b4430'],[L.L0,'#2d2b38'],[L.L0+L.B[1],'#4d3426'],[L.L0+L.B[2],'#5b5a66'],[L.L0+L.B[3],'#b32d14'],[L.L0+L.B[4],'#3a0a06'],[L.EXIT,'#f0d9a0'],[L.EXIT+9,'#9fd8ff']];
   bands.forEach(([y0,col],i)=>{ const y1=i<bands.length-1?bands[i+1][0]:bottom; g.fillStyle=col; g.fillRect(0,Y(y0),w,Math.max(1,Y(y1)-Y(y0))); });
   g.fillStyle='#ffd23f'; g.fillRect(w/2-3,Y(L.EXIT-32),6,4);
   const cx=w/2;
