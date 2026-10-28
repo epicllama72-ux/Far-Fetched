@@ -863,6 +863,7 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #backList,#practiceList{display:flex;flex-direction:column;gap:6px;max-height:40vh;overflow:auto;padding-left:10px}
 #backList button,#practiceList button{font-size:19px!important;padding:6px 10px!important}
 .cname{color:rgba(205,218,240,.34);font:15px/1 var(--vt);white-space:nowrap;pointer-events:none;text-shadow:0 1px 0 rgba(0,0,0,.6);transform:translate(-50%,-50%);letter-spacing:.04em}
+.storyLink{display:block;text-align:right;margin:4px 0 0;font:18px/1 var(--vt);color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 .challenge{display:block;margin-top:6px;color:var(--accent)}
 @media not all and (min-width:1100px) and (min-height:600px){ body.returned #final{margin-top:max(0px,calc(100vh - 330px))} }
 #summary canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rendering:crisp-edges;background:#0b0e14;border:1px solid #232a38}
@@ -1108,6 +1109,7 @@ body.recap #bar{display:none}
   <section id="card">
     <p class="kicker" id="kicker" aria-live="polite"></p>
     <h2 id="headline"></h2>
+    <a id="storyLink" class="storyLink" hidden target="_blank" rel="noopener">read the story ↗</a>
     <div id="speed" hidden><div class="trk"><i></i></div><span>+100</span></div>
   </section>
   <div id="feedback" hidden aria-live="polite"></div>
@@ -1385,7 +1387,9 @@ const Scene = (function(){
   const cv = $('bg'), g = cv.getContext('2d'), rulerEl = $('ruler');
   const reduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   const FLOOR = 110, L0 = FLOOR+8, M_PER_PX = 0.02;
+  const AUS_PTS = 4000;        // a top score pokes out the other side of the earth, into Australia
   const JAW_K = 0.13;          // world pixels of jaw drop per point (max 500 per story -> 65 px, still behind the paper)
+  const EXIT = Math.round(13+AUS_PTS*JAW_K+9)-6;   // world y where the earth's crust ends and the sky above an Australian beach begins
   const PT0 = 24, PB0 = 88;    // one folded page held below his chin, its bottom edge resting over the desk
   const C = {
     wall:'#3d3148', wallStripe:'#41354f', rail:'#7a5238', wain:'#5a3b2b', base:'#2b1a12', ol:'#1a1220',
@@ -1407,6 +1411,37 @@ const Scene = (function(){
   const CHEST_P = {B:C.crateDk, D:C.crate, G:C.gold};
   const SKULL = ["....WWWWWWWW......","..WWWWWWWWWWWW....",".WWWWKKWWWWWWWWW..",".WWWWKKWWWWWWWWWWW",".WWWWWWWWWWWWWWWW.","..WWWWWWWWWWWTTTT.","...WWWWWWWWWTWTWT.",".....WWWWWWWWWWW.."];
   const SKULL_P = {W:C.bone, K:C.boneDk, T:C.teeth};
+  /* funny things the jaw meets on the way down; each dig picks a random few per layer */
+  const PD={
+    rat:{text:'A sewer rat. He pays no rent.',fx:'bob',pal:{G:'#8d8f9a',D:'#5d5f6a',P:'#e58a8f',K:'#1a1220'},rows:["......GG....","P...GGGGGG..",".PPGGGGGGGGP","..PGGGDGGGKP","...DD..DD..."]},
+    duck:{text:'A rubber duck. Nobody asked.',fx:'bob',pal:{Y:'#ffd23f',O:'#ff8a1f',K:'#1a1220'},rows:["...YY...","..YYYY..","..YKYOO.","YYYYYY..","YYYYYYY.",".YYYYY.."]},
+    sock:{text:'The lost sock. Found at last.',pal:{R:'#c0392b',W:'#f4f0e4'},rows:[".RRRR.",".WWWW.",".RRRR.",".WWWW.",".RRRRR","RRRRRRR"]},
+    tv:{text:'Static. Even the TV is shocked.',fx:'tv',pal:{B:'#3a3d4a',S:'#9fb8c8',K:'#1a1220'},rows:["BBBBBBBB","BSSSSSKB","BSSSSSKB","BSSSSSKB","BBBBBBBB",".B....B."]},
+    pizza:{text:'Day-old pizza. Down here it is vintage.',pal:{B:'#c9a050',R:'#c0392b',Y:'#ffd23f'},rows:["BBBBBBB","YYRYYRY",".YYYYY.","..YRY..","...Y..."]},
+    fish:{text:'A fossil! Older than your streak.',pal:{W:C.bone,K:C.boneDk},rows:["......W.W.W....","..WWWWWWWWWWW.W",".WWKWWWWWWWWWWW","..WWWWWWWWWWW.W","......W.W.W...."]},
+    ammo:{text:'A fossil! Older than your streak.',pal:{W:C.bone,T:'#a89c80'},rows:["..WWWW..",".WTTTTW.","WTWWWTW.","WTWTWTW.","WTWWWTW.",".WTTTW..","..WWW..."]},
+    ribs:{text:'A fossil! Older than your streak.',pal:{W:C.bone},rows:["..WWWWWWWWWW..",".W..W..W..W.W.","W...W..W..W..W",".W..W..W..W.W.","..WWWWWWWWWW.."]},
+    gnome:{text:'A gnome, upside down. Do not ask.',pal:{W:'#f4f0e4',S:'#f2c9a0',K:'#1a1220',R:'#c0392b'},rows:["..WWW..",".WWWWW.",".SKSKS.","..SSS..",".RRRRR.","..RRR..","...R..."]},
+    boot:{text:'An old boot. Classic.',pal:{L:'#6b4430',D:'#3f281b'},rows:["LLLL.....","LLLL.....","LLLL.....","LLLLLLLL.","LLLLLLLLL","DDDDDDDDD"]},
+    xmark:{text:'X marks the spot. Too deep for pirates.',pal:{R:'#c0392b'},rows:["R...R",".R.R.","..R..",".R.R.","R...R"]},
+    ring:{text:'A lost ring. Somebody is in trouble.',pal:{G:'#ffd23f',S:'#6be4ff'},rows:["..S..",".GGG.","G...G","G...G",".GGG."]},
+    geode:{text:'A geode. Fancy.',pal:{R:'#5b5a66',P:'#c58cff',L:'#f0d9ff'},rows:[".RRRRRR.","RRPPPPRR","RPLPLPPR","RPPLPPPR","RRPPPPRR",".RRRRRR."]},
+    egg:{text:'A dino egg. Do not hatch.',pal:{W:'#f4f0e4',G:'#4f8a5a'},rows:["..WWWW..",".WWGWWW.","WWWWWGWW","WGWWWWWW","WWWWGWWW",".WWWWWW.","..WWWW.."]},
+    mole:{text:'A mole in sunglasses. Cool.',fx:'bob',pal:{M:'#6b5040',N:'#e58a8f',G:'#23232e'},rows:[".MMMMMM.","MMGGMGGM","MMMMMMMM","MMMNNMMM",".MMMMMM."]},
+    pick:{text:'A pickaxe. Someone else tried.',pal:{B:'#7a5238',S:'#9aa0b0'},rows:["SSSSSS","S..B..","...B..","...B..","...B.."]},
+    liz:{text:'A lava surfer. Hang loose.',fx:'bob',pal:{O:'#ff6a1f',G:'#23232e',Y:'#ffd23f'},rows:["....OOOO..","OO.OGGGOO.",".OOOOOOOOO","..O.O..O.O","YYYYYYYYYY"]},
+    marsh:{text:'Marshmallow roast. Smells great.',fx:'flame',pal:{S:'#7a5238',W:'#ffffff',B:'#c9a050'},rows:["..WW..",".WWWW.",".WBBW.","..WW..","..S...",".S....","S....."]},
+    lamp:{text:'A lava lamp. Very on brand.',pal:{B:'#3a3d4a',R:'#ff4f9a',Y:'#ffd23f'},rows:[".BBB.","BRRRB","BRYRB","BRRRB","BYRRB",".BBB.","BBBBB"]},
+    lduck:{text:'A duck in shades. Going full lava.',fx:'bob',pal:{Y:'#ffd23f',O:'#ff8a1f',G:'#23232e'},rows:["...YY...","..YYYY..","..GGYOO.","YYYYYY..","YYYYYYY.",".YYYYY.."]},
+    gold:{text:'A pile of gold. Do not touch.',pal:{G:'#ffd23f',D:'#c99a1c',W:'#fff6c8'},rows:["...GG...","..GGWG..",".GGGGGG.","GGDGGDGG","DDDDDDDD"]},
+    alien:{text:'An alien! Wrong planet, buddy.',fx:'bob',pal:{G:'#6fd36f',D:'#3f8a3f',K:'#1a1220'},rows:["..GGGG..",".GGGGGG.","GKKGGKKG",".GGGGGG.","..GDDG..","..G..G.."]},
+    disco:{text:'A disco ball. Party at the core.',fx:'disco',pal:{S:'#cfd6de',W:'#ffffff',B:'#6be4ff',P:'#ff5d8f'},rows:[".SSSS.","SWSBSS","SBSPSB","SSPSWS",".SSSS.","..SS.."]}
+  };
+  const PROP_POOLS={1:{must:['rat'],more:['duck','sock','tv','pizza']},2:{must:['fossil'],more:['gnome','boot','xmark','ring']},
+                    3:{must:[],more:['geode','egg','mole','pick']},4:{must:['liz'],more:['marsh','lamp','lduck']},5:{must:[],more:['gold','alien','disco']}};
+  const FOSSILS=['fish','ammo','ribs'];
+  const KANG=["....KK....","....KKK...","...KSSKK..","...KKKKKK.","....KKK...","...KKKK...","..KKKKK...",".KKKWKK...",".KKKKKK...","DKKKKKKD..","D..KK.KK..","...KK.KK.."];
+  const KANG_P={K:'#c98a4b',D:'#9a6430',S:'#111111',W:'#fff6c8'};
   const CAT=[".K.K........","KKKKK.......","KAKAKKKKKK..","KKKKKKKKKKKK",".KKKKKKKKKKK"];
   const CAT_P={K:'#4a4458',A:'#1a1220'};
   const BOOT=["...BBB..","...BBB..","...BBB..","BBBBBBB.","BBBBBBBB","SSSSSSSS"];
@@ -1419,6 +1454,7 @@ const Scene = (function(){
   let W=0,H=0,PX=6,cx=0,U=200,worldEnd=0,dropMax=0,B=[0,0,0,0,0,0],camMin=0,camMax=0,axisX=0,maxPts=3000;
   let dipUntil=0,dipping=false,pops=[],marksEl=null,mks=[],recap=null,markCb=null,paperT=1,paperGoal=1,tp=0,jd=0,camY=0,focusT=0.85,focus=0.85,t=0,last=0,gaspT=-99,foolT=-99,safeTop=120;
   let shake=0,lastZone=-1,emitAcc=0,bestJd=0,panT=-99,zoneCb=null,breakCb=null,rumbleCb=null,sparks=[],kit={},drillV=0;
+  let props=[],lmCb=null;
   let peb=[],gems=[],bubbles=[],worms=[],beetles=[],tunnels=[],cracks=[],parts=[],drips=[],embers=[];
   let labels=[],zoneLabels=[],zones=[],depthCb=null,lastM='',running=false,resizeTimer=0;
 
@@ -1445,7 +1481,7 @@ const Scene = (function(){
     const maxChin=13+maxPts*JAW_K+9;
     U=Math.max(170, Math.round(maxChin+26-L0));
     B=[0,Math.round(U*0.16),Math.round(U*0.34),Math.round(U*0.52),Math.round(U*0.68),U];   // magma and the core are within reach of a great run
-    worldEnd=L0+U+Math.round(H*0.25);
+    worldEnd=Math.max(L0+U+Math.round(H*0.25),EXIT+110);
     dropMax=maxPts*JAW_K;
     camMin=-56-Math.max(0,Math.round(H*0.5)-60);
     camMax=Math.max(camMin,worldEnd-H);
@@ -1492,8 +1528,9 @@ const Scene = (function(){
         cracks.push({y, pts, rt:-1});
       });
     }
+    buildProps();
 
-    zones=[[76,'THE DESK'],[L0,'THE FLOOR'],[L0+B[1],'THE BASEMENT'],[L0+B[2],'THE DIRT'],[L0+B[3],'BEDROCK'],[L0+B[4],'MAGMA'],[1e9,'THE CORE']];
+    zones=[[76,'THE DESK'],[L0,'THE FLOOR'],[L0+B[1],'THE BASEMENT'],[L0+B[2],'THE DIRT'],[L0+B[3],'BEDROCK'],[L0+B[4],'MAGMA'],[EXIT,'THE CORE'],[1e9,'AUSTRALIA']];
     rulerEl.innerHTML=''; labels=[]; zoneLabels=[];
     for(let k=0;k*50+13<=worldEnd;k++){
       const sp=document.createElement('span'); sp.className='tick'; sp.textContent=k+' m';
@@ -1508,7 +1545,23 @@ const Scene = (function(){
     draw();
   }
 
-  function zoneIndex(y){ if(y<76) return -1; if(y<L0) return 0; for(let k=1;k<=5;k++) if(y<L0+B[k]) return k; return 5; }
+  function zoneIndex(y){ if(y<76) return -1; if(y<L0) return 0; for(let k=1;k<=4;k++) if(y<L0+B[k]) return k; return y<EXIT?5:6; }
+  /* each dig meets a different handful of oddities: the sewer rat and a fossil always, the rest drawn at random */
+  function buildProps(){
+    props=[];
+    const shuf=a=>{ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+    [[1,L0,L0+B[1]],[2,L0+B[1],L0+B[2]],[3,L0+B[2],L0+B[3]],[4,L0+B[3],L0+B[4]],[5,L0+B[4],EXIT-8]].forEach(([k,y0,y1])=>{
+      const pool=PROP_POOLS[k], more=shuf(pool.more), ids=pool.must.slice();
+      while(ids.length<2) ids.push(more.pop());
+      shuf(ids).forEach((id,i)=>{
+        const real=id==='fossil'?FOSSILS[Math.floor(Math.random()*FOSSILS.length)]:id, d=PD[real];
+        const w=Math.max.apply(null,d.rows.map(r=>r.length)), h=d.rows.length;
+        const side=(i+Math.floor(Math.random()*2))%2?1:-1, room=Math.max(0,Math.min(40,cx-18-w)), off=14+Math.random()*room;
+        const x=Math.round(side>0?off:-off-w), y=Math.round(y0+(i+0.25+Math.random()*0.5)*(y1-y0)/2-h/2);
+        props.push({id:real,rows:d.rows,pal:d.pal,fx:d.fx||'',text:d.text,x,y:clamp(y,y0+2,y1-h-2),ph:Math.random()*6,hit:false,h});
+      });
+    });
+  }
 
   function layerCol(d){
     if(d<B[1]){ let c=mix(C.bsmtTop,C.bsmtBot,d/B[1]); if(d%8===0) c=mix(c,C.mortar,0.6); return c; }
@@ -1526,6 +1579,14 @@ const Scene = (function(){
     return mix('#3a0a06','#1a0303',clamp((d-B[4])/Math.max(1,worldEnd-L0-B[4]),0,1));
   }
   function rowColor(wy){
+    if(wy>=EXIT){          // the other side of the earth: sky over an Australian beach
+      const d=wy-EXIT;
+      if(d<58) return mix('#3d9bf0','#bfe9ff',d/58);
+      if(d<62) return '#e8f6ff';
+      if(d<72) return mix('#1f8fd0','#0e6aa8',(d-62)/10);
+      return '#f0d9a0';
+    }
+    if(wy>=EXIT-9) return '#5a3a26';
     if(wy<FLOOR-14) return C.wall;
     if(wy<FLOOR-12) return C.rail;
     if(wy<FLOOR-2) return C.wain;
@@ -1534,6 +1595,7 @@ const Scene = (function(){
     return layerCol(wy-L0);
   }
   function chunkCol(wy){
+    if(wy>=EXIT-9) return Math.random()<0.5?'#7a5238':'#5a3a26';
     if(wy<FLOOR) return wy<80?C.deskHi:wy<86?C.deskFront:C.wain;
     if(wy<L0) return C.floorHi;
     const d=wy-L0;
@@ -1593,12 +1655,14 @@ const Scene = (function(){
     if(z>lastZone && z>=0){
       burst(z>=5?60:26,cy,z>=5?2:1.5); shake=z>=5?3:2.2;
       if(breakCb) breakCb(z);
-      if(zoneCb && z>=1) zoneCb(['','THE BASEMENT','THE DIRT','BEDROCK','MAGMA','THE CORE'][z]||'');
+      if(zoneCb && z>=1) zoneCb(['','THE BASEMENT','THE DIRT','BEDROCK','MAGMA','THE CORE','AUSTRALIA'][z]||'');
+      if(z===6 && lmCb) lmCb("G'DAY! YOU DUG RIGHT THROUGH THE EARTH");
       if(z>=5) for(let i=0;i<12;i++){ const a=i/12*Math.PI*2; sparks.push({x:0,y:cy,vx:Math.cos(a)*40,vy:Math.sin(a)*40,age:0,life:1.2}); }
     }
     lastZone=z;
     shake=Math.max(0,shake-dt*3);
     cracks.forEach(c=>{ if(c.rt<0 && cy>c.y+2) c.rt=t; });
+    props.forEach(p=>{ if(!p.hit && cy>p.y+(p.h>>1)){ p.hit=true; if(lmCb) lmCb(p.text); } });
     for(let i=sparks.length-1;i>=0;i--){ const p=sparks[i]; p.age+=dt; if(p.age>p.life){ sparks.splice(i,1); continue; } p.x+=p.vx*dt; p.y+=p.vy*dt; p.vx*=0.97; p.vy*=0.97; }
     for(let i=parts.length-1;i>=0;i--){
       const p=parts[i]; p.age+=dt;
@@ -1862,6 +1926,43 @@ const Scene = (function(){
       });
       spr(CHEST,CHEST_P,-26,L0+B[1]+Math.round((B[2]-B[1])*0.55));
       spr(SKULL,SKULL_P,14,L0+B[2]+Math.round((B[3]-B[2])*0.4));
+      props.forEach(p=>{
+        if(!vis(p.y-3,p.y+p.h+4)) return;
+        let yy=p.y, pal=p.pal;
+        if(p.fx==='bob') yy+=Math.round(Math.sin(t*2.2+p.ph));
+        else if(p.fx==='tv') pal=Object.assign({},pal,{S:Math.floor(t*12)%2?'#cfe0ea':'#6f8794'});
+        else if(p.fx==='disco') pal=Object.assign({},pal,{W:Math.floor(t*6)%2?'#ffffff':'#6be4ff',B:Math.floor(t*6)%2?'#6be4ff':'#ff5d8f'});
+        spr(p.rows,pal,p.x,yy);
+        if(p.fx==='flame'){ const f=Math.floor(t*8)%2; R(p.x+1,yy+p.h,3,1,'#ff8a1f'); R(p.x+2-f,yy+p.h+1,2,1,'#ffd23f'); R(p.x+2,yy+p.h-1,1,1,'#ff8a1f'); }
+        if(p.id==='gold' && Math.floor(t*2)%3===0) R(p.x+3,yy-1,1,1,'#ffffff');
+      });
+      if(vis(EXIT-10,worldEnd)){        // the other side of the earth: a beach in Australia
+        const SY=EXIT+72;
+        for(let x=-cx-4;x<W-cx+4;x++){ const hh=1+(((x*7)>>1)&3)%3; R(x,EXIT,1,hh,'#5a3a26'); if(((x%9)+9)%9===0) R(x,EXIT+hh,1,3+(x&3),'#7a5238'); }
+        const sx=-Math.min(40,cx-14), sy=EXIT+18;
+        for(let dy=-6;dy<=6;dy++){ const hw=Math.round(Math.sqrt(36-dy*dy)); R(sx-hw,sy+dy,hw*2+1,1,'#ffd23f'); }
+        R(sx-4,sy-1,3,2,'#111111'); R(sx+1,sy-1,3,2,'#111111'); R(sx-1,sy-1,2,1,'#111111'); R(sx-2,sy+3,5,1,'#c0392b');
+        if(Math.floor(t*2)%2){ R(sx-10,sy,3,1,'#ffe27a'); R(sx+8,sy,3,1,'#ffe27a'); R(sx,sy-10,1,3,'#ffe27a'); } else { R(sx-9,sy-6,2,1,'#ffe27a'); R(sx+8,sy+5,2,1,'#ffe27a'); }
+        g.globalAlpha=0.92;
+        for(let k=0;k<2;k++){ const x=Math.round(((t*(2+k)+k*70)%(W+50))-cx-25), y=EXIT+8+k*16; R(x,y,14,3,'#ffffff'); R(x+3,y-2,8,2,'#ffffff'); R(x+9,y+3,6,1,'#e8f6ff'); }
+        g.globalAlpha=1;
+        { const gx=Math.round(((t*14)%(W+30))-cx-15), gy=EXIT+40+Math.round(Math.sin(t*3)*2), fl=Math.floor(t*6)%2; R(gx,gy+fl,2,1,'#ffffff'); R(gx+3,gy+fl,2,1,'#ffffff'); R(gx+2,gy+1,1,1,'#ffffff'); }
+        for(let x=-cx;x<W-cx;x+=6) if(((x+Math.floor(t*4))%5+5)%5===0) R(x,EXIT+66,3,1,'#9fe0ff');
+        { const bx=-6+Math.round(Math.sin(t*0.7)*14), by=EXIT+62+Math.round(Math.sin(t*2.4)*0.6);
+          R(bx-4,by+3,9,1,'#ff5d8f'); R(bx-1,by,3,2,'#ff8a1f'); R(bx,by-3,1,3,'#f2c9a0'); R(bx,by-5,2,2,'#f2c9a0'); R(bx+2,by-2,3,1,'#f2c9a0'); }
+        for(let x=-cx;x<W-cx;x+=5) R(x+((x*3)&2),SY+2+((x*5)&7),1,1,'#d9c088');
+        const ux=-Math.min(38,cx-16);
+        R(ux,SY-12,1,15,'#8a5a3a'); R(ux-6,SY-14,13,1,'#e8453c'); R(ux-8,SY-13,17,1,'#ffffff'); R(ux-9,SY-12,19,1,'#e8453c'); R(ux+4,SY+2,11,3,'#6be4ff'); R(ux+4,SY+3,11,1,'#ffffff');
+        const hop=Math.max(0,Math.round(Math.sin(t*3)*5));
+        spr(KANG,KANG_P,Math.min(30,cx-16),SY-11-hop);
+        const px=Math.min(44,cx-8), sw=Math.round(Math.sin(t*1.3));
+        R(px,SY-18,2,19,'#7a5238'); R(px-6+sw,SY-21,6,2,'#3f8a3f'); R(px+2+sw,SY-21,6,2,'#3f8a3f'); R(px-4+sw,SY-23,10,2,'#4fa84f'); R(px,SY-19,2,2,'#5a3a26');
+        const crx=-8+Math.round(Math.sin(t*1.5)*12);
+        R(crx,SY+6,4,2,'#e8453c'); R(crx-1,SY+5,1,1,'#e8453c'); R(crx+4,SY+5,1,1,'#e8453c'); R(crx,SY+8,1,1,'#c0392b'); R(crx+3,SY+8,1,1,'#c0392b');
+        const fx=14;
+        R(fx,SY-16,1,18,'#cfd6de'); R(fx+1,SY-16,12,7,'#1c3a8a'); R(fx+1,SY-16,5,3,'#ffffff'); R(fx+3,SY-16,1,3,'#c0392b'); R(fx+1,SY-15,5,1,'#c0392b');
+        R(fx+8,SY-14,1,1,'#ffffff'); R(fx+10,SY-12,1,1,'#ffffff'); R(fx+7,SY-11,1,1,'#ffffff'); R(fx+11,SY-15,1,1,'#ffffff');
+      }
       gems.forEach((q,i)=>{ if(!vis(q.y-2,q.y+3)) return; R(q.x,q.y,2,2,C.gem); if(Math.floor(t*3+i)%4===0){ R(q.x-1,q.y-1,1,1,C.white); R(q.x+2,q.y+2,1,1,C.white); } });
       const my=L0+B[3];
       if(vis(my-4,my+2)){ for(let x=-cx-4;x<W-cx+4;x++){ const bump=(((x%9)+9)%9)<3 ? 2+((x*7)&1) : 1; R(x,my-bump+1,1,bump,C.crust); } }
@@ -1870,7 +1971,7 @@ const Scene = (function(){
         bubbles.forEach(b=>{ const yy=L0+B[4]-(((b.y0+t*b.sp)%mh)+mh)%mh; R(b.x,Math.round(yy),2,2,C.magmaBright); });
         embers.forEach(e=>{ g.globalAlpha=clamp(1-e.age/e.life,0,1); R(Math.round(e.x),Math.round(e.y),1,1,C.coreHot); }); g.globalAlpha=1;
       }
-      const ccy=L0+U+Math.round(H*0.12);
+      const ccy=EXIT-32;
       if(vis(ccy-30,ccy+30)){
         const off=Math.round(Math.sin(t*2));
         [[26+off,C.magmaHi],[18+off,C.magmaBright],[12+off,C.coreHot],[6+off,'#fff6c8']].forEach(([rad,col])=>{
@@ -1946,7 +2047,7 @@ const Scene = (function(){
 
     // 9b. the diamond at the core, sparks, and your best-ever depth flag
     {
-      const ccy=L0+U+Math.round(H*0.12);
+      const ccy=EXIT-32;
       if(vis(ccy-4,ccy+4)){ R(-1,ccy-2,3,1,'#bff6ff'); R(-2,ccy-1,5,1,'#6be4ff'); R(-2,ccy,5,1,'#3fb8e0'); R(-1,ccy+1,3,1,'#6be4ff'); R(0,ccy+2,1,1,'#bff6ff'); }
       sparks.forEach(p=>{ g.globalAlpha=clamp(1-p.age/p.life,0,1); R(Math.round(p.x),Math.round(p.y),2,2,C.gold); }); g.globalAlpha=1;
       if(bestJd>4){
@@ -2053,7 +2154,7 @@ const Scene = (function(){
     update(dt); draw();
     requestAnimationFrame(frame);
   }
-  function settle(){ jd=target(); focus=focusT; camY=camFor(); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); emitDepth(); draw(); }
+  function settle(){ jd=target(); focus=focusT; camY=camFor(); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); props.forEach(p=>{ if(chinY()>p.y) p.hit=true; }); emitDepth(); draw(); }
   /* points earned on true stories; the jaw moves JAW_K world px per point */
   function setJaw(points){
     const before=tp; tp=Math.max(0,points);
@@ -2077,10 +2178,10 @@ const Scene = (function(){
     if(d>=1 && chin<PB0) zone='BEHIND THE PAPER';
     return {m:(d*M_PER_PX).toFixed(1), zone};
   }
-  function restore(points){ tp=Math.max(0,points); jd=target(); emitAcc=0; camY=camFor(); lastZone=zoneIndex(chinY()); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); emitDepth(); }
+  function restore(points){ tp=Math.max(0,points); jd=target(); emitAcc=0; camY=camFor(); lastZone=zoneIndex(chinY()); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); props.forEach(p=>{ p.hit=chinY()>p.y; }); emitDepth(); }
   function reset(){
     paperT=paperGoal=1; dipUntil=0; dipping=false; tp=0; jd=0; gaspT=-99; foolT=-99; focusT=0.85; focus=0.85; parts=[]; sparks=[]; shake=0; panT=-99;
-    cracks.forEach(c=>c.rt=-1);
+    cracks.forEach(c=>c.rt=-1); props.forEach(p=>p.hit=false);
     if(W){ camY=camFor(); lastZone=zoneIndex(chinY()); emitDepth(); if(reduce) settle(); }
   }
   function start(){
@@ -2089,7 +2190,7 @@ const Scene = (function(){
     if(!reduce && !running){ running=true; requestAnimationFrame(frame); }
   }
   function setPaper(up,instant){ dipUntil=0; dipping=false; paperGoal=up?1:0; if(instant||reduce){ paperT=paperGoal; if(reduce) draw(); } }
-  function layout(){ return {FLOOR,L0,B:B.slice(),U,K:JAW_K,M:M_PER_PX,PB0,jd:target(),worldEnd}; }
+  function layout(){ return {EXIT,FLOOR,L0,B:B.slice(),U,K:JAW_K,M:M_PER_PX,PB0,jd:target(),worldEnd}; }
   function camDepth(){ return camY+H*0.5; }        // world y at the middle of the screen
   function setBest(m){ bestJd=Math.min(dropMax+30,(m||0)/M_PER_PX); }
   function panDown(){ if(reduce) return; camY=camMin; panT=t; }
@@ -2130,7 +2231,7 @@ const Scene = (function(){
     el.style.opacity=0;
   }
   return {setKit,chinAt,playRecap,endRecap,onMark,popPts,setPaper,start,setJaw,configure,restore,gasp,fooled:fooledReact,setFocus,setSafeTop,info,reset,setBest,panDown,layout,camDepth,
-          onDepth:cb=>{depthCb=cb;}, onZone:cb=>{zoneCb=cb;}, onBreak:cb=>{breakCb=cb;}, onRumble:cb=>{rumbleCb=cb;}};
+          onDepth:cb=>{depthCb=cb;}, onZone:cb=>{zoneCb=cb;}, onBreak:cb=>{breakCb=cb;}, onRumble:cb=>{rumbleCb=cb;}, onLandmark:cb=>{lmCb=cb;}};
 })();
 
 /* ---------- Sound: small synthesized effects (Web Audio, no files) ---------- */
@@ -2453,7 +2554,7 @@ function showRound(shown,quiet,gate){
   document.body.classList.remove('answered');
   S.phase = gate ? 'ready' : 'call'; guessLL=null;
   $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned');
-  $('blankUI').hidden=true; $('card').hidden=false;
+  $('blankUI').hidden=true; $('card').hidden=false; $('storyLink').hidden=true;
   const st = S.rounds[S.i];
   $('kicker').textContent = 'Real or fake?'+(S.kind==='pol'?' · Politics':'')+(S.mode==='practice'?' · practice':'');
   $('kicker').classList.remove('bad');
@@ -2472,6 +2573,7 @@ function showRound(shown,quiet,gate){
     renderDots(); aim();
     return;
   }
+  $('storyLink').hidden=true;
   $('headline').innerHTML = headlineHTML(st,false);
   $('speed').hidden=false; $('speed').classList.remove('pin','low');
   setBar('call');
@@ -2628,6 +2730,7 @@ function submitGuess(timedOut){
   WORLDS.forEach(dx=>L.marker([st.lat,st.lng+dx],{icon:squareIcon('#4fbf6a'),interactive:false}).addTo(layer));
   $('btnGuess').hidden=true;
   $('headline').innerHTML = headlineHTML(st,true);
+  if(st.src){ const a=$('storyLink'); a.href=st.src; a.hidden=false; }
   $('kicker').textContent = (S.cur.callOk?'Real ✓':'Plot twist: it was real')+(S.kind==='pol'?' · Politics':'');
   const fb=$('feedback'); fb.hidden=false;
   fb.classList.remove('open');
@@ -2858,7 +2961,7 @@ function updateStreak(){
 }
 
 /* ---------- The Dig Kit: cosmetic unlocks for coming back, with a wardrobe to wear them ---------- */
-const ZONE_ORDER=['THE BASEMENT','THE DIRT','BEDROCK','MAGMA','THE CORE'];
+const ZONE_ORDER=['THE BASEMENT','THE DIRT','BEDROCK','MAGMA','THE CORE','AUSTRALIA'];
 const KIT=[
   {id:'badge',   slot:'pocket', name:'Press badge',        icon:'🪪', need:'3-day streak',   ok:L=>L.best>=3},
   {id:'goldtooth',slot:'teeth', name:'Gold tooth',         icon:'🪙', need:'7-day streak',   ok:L=>L.best>=7},
@@ -3229,7 +3332,7 @@ async function openBoard(){
 /* ---------- The dig, as a picture and as emoji ---------- */
 function digZones(){
   const L=Scene.layout(), chin=13+(S.finalM!=null ? S.finalM/L.M : L.jd)+9;   // the saved result, so a reload (which resets the man) still draws the real dig
-  const z=[['🪑','desk',76],['🧱','basement',L.L0],['🟫','dirt',L.L0+L.B[1]],['🪨','bedrock',L.L0+L.B[2]],['🌋','magma',L.L0+L.B[3]],['💎','core',L.L0+L.B[4]]];
+  const z=[['🪑','desk',76],['🧱','basement',L.L0],['🟫','dirt',L.L0+L.B[1]],['🪨','bedrock',L.L0+L.B[2]],['🌋','magma',L.L0+L.B[3]],['💎','core',L.L0+L.B[4]],['🦘','australia',L.EXIT]];
   return {L, chin, passed:z.filter(r=>chin>r[2])};
 }
 function digInfo(){ const i=Scene.info(); return S.finalM!=null ? {m:S.finalM.toFixed(1), zone:S.finalZone||i.zone} : i; }
@@ -3242,10 +3345,10 @@ function renderDigCard(){
   const d=digZones(), L=d.L, inf=digInfo();
   const w=60, h=100, c=document.createElement('canvas'); c.width=w; c.height=h;
   const g=c.getContext('2d');
-  const top=-14, bottom=Math.max(L.L0+L.B[4]+20, d.chin+20), Y=y=>Math.round(2+ (y-top)/(bottom-top)*(h-14));
-  const bands=[[top,'#3d3148'],[74,'#8a5a3a'],[80,'#6a432b'],[L.FLOOR,'#6b4430'],[L.L0,'#2d2b38'],[L.L0+L.B[1],'#4d3426'],[L.L0+L.B[2],'#5b5a66'],[L.L0+L.B[3],'#b32d14'],[L.L0+L.B[4],'#3a0a06']];
+  const top=-14, bottom=Math.max(L.L0+L.B[4]+20, d.chin+20, d.chin>=L.EXIT?L.EXIT+40:0), Y=y=>Math.round(2+ (y-top)/(bottom-top)*(h-14));
+  const bands=[[top,'#3d3148'],[74,'#8a5a3a'],[80,'#6a432b'],[L.FLOOR,'#6b4430'],[L.L0,'#2d2b38'],[L.L0+L.B[1],'#4d3426'],[L.L0+L.B[2],'#5b5a66'],[L.L0+L.B[3],'#b32d14'],[L.L0+L.B[4],'#3a0a06'],[L.EXIT,'#7ec8ff'],[L.EXIT+66,'#f0d9a0']];
   bands.forEach(([y0,col],i)=>{ const y1=i<bands.length-1?bands[i+1][0]:bottom; g.fillStyle=col; g.fillRect(0,Y(y0),w,Math.max(1,Y(y1)-Y(y0))); });
-  g.fillStyle='#ffd23f'; g.fillRect(w/2-3,Y(L.L0+L.B[4])+4,6,4);
+  g.fillStyle='#ffd23f'; g.fillRect(w/2-3,Y(L.EXIT-32),6,4);
   const cx=w/2;
   g.fillStyle='#f2c9a0'; g.fillRect(cx-4,Y(-10),8,Y(13)-Y(-10));
   g.fillStyle='#4a2e1f'; g.fillRect(cx-4,Y(-10),8,2);
@@ -3427,6 +3530,7 @@ function startBlankRound(wall){
   saveProgress({live:{i:S.i, wall:w}});
   if(typeof wall!=='number') Sound.play('start');
   S.blank.lastSec=Math.ceil(BLANK_SECS);
+  $('storyLink').hidden=true;
   $('headline').innerHTML=blankHTML(st,false);
   $('blankLive').hidden=false; setBar('guess');
   $('guessList').innerHTML=''; $('guessMsg').textContent='';
@@ -3528,6 +3632,7 @@ function endBlank(){
   document.body.classList.add('answered');
   $('guessIn').blur();
   $('headline').innerHTML=blankHTML(st,true);
+  if(st.real && st.src){ const a=$('storyLink'); a.href=st.src; a.hidden=false; }
   const fb=$('feedback'); fb.hidden=false;
   let line;
   if(bl.exact) line = (bl.exactWord && st.ans && bl.exactWord!==st.ans[0])
@@ -3617,6 +3722,7 @@ $('practiceList').querySelectorAll('button').forEach(b=>b.onclick=()=>startGame(
 
 Scene.onDepth(m=>{ $('depth').textContent=m; });
 Scene.onZone(name=>showToast(name));
+Scene.onLandmark(txt=>showToast(txt));
 Scene.onBreak(z=>{ Sound.play('crunch'); if(z>=5) Sound.play('core'); });
 Scene.onRumble(l=>Sound.rumble(l));
 function renderMute(){ const m=Sound.isMuted(); $('muteBtn').classList.toggle('off',m); $('muteBtn').setAttribute('aria-pressed',String(m)); $('muteBtn').setAttribute('aria-label',m?'Sound off':'Sound on'); }
