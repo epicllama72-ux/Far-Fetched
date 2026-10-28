@@ -1,24 +1,25 @@
 {
  "real": [
   {
-   "id": 29,
-   "h": "Star striker, 34, sent off for covering his mouth with hand while talking to opponent in {}",
-   "h2": "Santos, Brazil: Neymar sent off for covering his [] with hand while speaking to opponent",
+   "id": 34,
+   "h": "Man lies down in front of car, then jumps up and steals it when the driver steps out in {}",
+   "h2": "Man lies in front of car in Adana, Turkey, then jumps up and steals it when the [] steps out",
    "ans": [
-    "mouth"
+    "driver",
+    "drivers"
    ],
-   "place": "Santos, Brazil",
-   "geocode": "Santos, São Paulo, Brazil",
-   "lat": -23.9609448,
-   "lng": -46.3166316,
-   "country": "Brazil",
-   "cc": "BR",
-   "clue": "Neymar's club in Brazil's national league",
+   "place": "Adana, Turkey",
+   "geocode": "Adana, Turkey",
+   "lat": 36.9863599,
+   "lng": 35.3252861,
+   "country": "Turkey",
+   "cc": "TR",
+   "clue": "plate starting 01 and Turkish police = Adana, Turkey",
    "clue_strength": 1,
-   "unbelievable": 3,
-   "theme": "football",
-   "src": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNQ3ZNQzRuR0oxNGZydmVhcEI1SUI2SGdSZTRUb1VnR29MRmZpYWFNbHFxMkdDTjBId0lkUzdSUW1RWWJDNUxkbzFtNWlBRF9LTmZaVU1zdGJBWFlhTnVnSVNVSHZzbnBTbEp0NEpyNXdkaXNjSFFNSTdYcFloM3ZwS2p0MEZCWXFWRlJ2QzBfRzZXd0FQU3ZpMXVQajItWmN0Mk5Mb2xidm13TFMzR1lvUXdIbHowajN5N3FTYjVqUWZIV012RUhNYjBKSkYyYlF6SGxZNFV3ellnY0VpTEZQRTdJVV9aVjh1QlVBZE11b0RiM3l4SlZISUtTcHBUdw?oc=5",
-   "published": "2026-10-25",
+   "unbelievable": 4,
+   "theme": "carjacking",
+   "src": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNd0EyTWV2WTZGYTZIV2hoSjZaOFlNVTdDaU1vWFFVa1pkN1h0VURpS3YyMFFBY3lMMjFRUU94cWRGYnItQ21xbldrMTNlbWRRQ0h6aE9iOUphZHgyUE9MVVB3VGpVMEpuQmItUjBDUG9ZVkZObnRrRU5tbjlaWFNxUXp5MlhobnpTYXdkYndXSXd4UmFaS0ROVDlUWnVYMGhSaEdSSVNZdXNMb0E?oc=5",
+   "published": "2026-10-26",
    "banked": "2026-10-28",
    "rules": 2
   },
@@ -69,50 +70,50 @@
  ],
  "fake": [
   {
-   "h": "Heatwave of 43C in {} melts road markings; roadworkers repaint 18 km overnight",
-   "tell": "Repainting 18 km of road markings overnight is too tidy a fix for a heatwave.",
+   "h": "Moose wanders into a junior hockey rink in {}, play resumes after 19 minutes",
+   "tell": "Too tidy and quick: a moose indoors would stop a game far longer.",
    "obvious": 2,
-   "theme": "weather",
+   "theme": "wildlife",
    "banked": "2026-10-28",
    "rules": 2
   },
   {
-   "h": "Baboons steal 11 school lunchboxes in {}; headteacher moves lunch to 10am to outwit them",
-   "tell": "Over-tidy cause and effect: schools don't rearrange timetables around raiding primates.",
+   "h": "Taxi driver in {} returns a bag holding 14,800 rand to a passenger, then learns it was his own",
+   "tell": "An over-neat coincidence: nobody forgets their own bag in their own cab.",
    "obvious": 3,
-   "theme": "primates",
+   "theme": "taxi",
    "banked": "2026-10-28",
    "rules": 2
   },
   {
-   "h": "Maple syrup thieves in {} caught after sticky tyre tracks lead police to 1,260-litre haul",
-   "tell": "A convenient trail of sticky tracks solves the case a little too neatly.",
+   "h": "Cheese warehouse in {} loses 29 wheels of Gouda; thieves abandon the van after it runs out of diesel",
+   "tell": "The cause and effect is too tidy, and the thieves' failure arrives like a punchline.",
    "obvious": 2,
-   "theme": "syrup",
+   "theme": "cheese",
    "banked": "2026-10-28",
    "rules": 2
   },
   {
-   "h": "Town hall in {} bans e-bikes from canal towpaths on market days; fine set at 85 euros",
-   "tell": "Bans tied to market days with a fixed euro fine sound invented, not typical local bylaws.",
+   "h": "Shire in {} bans backyard cricket after 17 balls land in neighbours' pools; fine set at A$220",
+   "tell": "Shires don't ban a sport outright over a number of balls; fines target noise or nuisance.",
    "obvious": 3,
-   "theme": "ebike",
+   "theme": "sport",
    "banked": "2026-10-28",
    "rules": 2
   },
   {
-   "h": "Sheep rustlers haul away 87 ewes on a stolen school bus in {}",
-   "tell": "Nobody rustles sheep with a school bus; the vehicle detail is slightly off.",
+   "h": "Vending machine in {} serves only hot canned drinks for 12 days in August; owner refunds 3,900 yen",
+   "tell": "A thermostat fault wouldn't heat every can in summer, and owners rarely refund a whole machine's sales.",
+   "obvious": 3,
+   "theme": "vending",
+   "banked": "2026-10-28",
+   "rules": 2
+  },
+  {
+   "h": "Bus driver in {} halts route for 40 minutes to let 53 turkeys cross, passengers applaud",
+   "tell": "Passengers applauding a delay is a movie-style detail that real commuters rarely deliver.",
    "obvious": 2,
-   "theme": "rustling",
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
-   "h": "Man returns three books 52 years overdue on the library's 52nd anniversary in {}",
-   "tell": "The overdue years matching the anniversary is an unlikely coincidence.",
-   "obvious": 3,
-   "theme": "library",
+   "theme": "transport",
    "banked": "2026-10-28",
    "rules": 2
   },
@@ -145,64 +146,22 @@
    "rules": 2
   }
  ],
- "pol": [
-  {
-   "id": 13,
-   "h": "Two dogs added to the mayoral ballot to boost voter turnout in {}",
-   "place": "Kitimat, British Columbia, Canada",
-   "geocode": "CA",
-   "lat": 54.05,
-   "lng": -128.65,
-   "src": "https://news.google.com/rss/articles/CBMihwFBVV95cUxONjBfZlBLcXY3b3l1dDFlaUJ1YWhMa3Rla2hxOU1YRjkzSWFqRExRd083eU52RWdmRE5sVWpwdEp3OXRYaGJZRVBpTTNlLUlHRUY2Uks5MnNpdDVheENHR3lLWUJKOF90dnZ2SjRMSjZ1dXJXTVlMSTB4bTBrZmdGS1hJZ0Y3ZG8?oc=5",
-   "published": "2026-10-17",
-   "banked": "2026-10-28"
-  },
-  {
-   "id": 18,
-   "h": "Mayoral election tie in {} broken by random draw after election-night stalemate",
-   "place": "Lytton, British Columbia, Canada",
-   "geocode": "CA",
-   "lat": 50.23,
-   "lng": -121.58,
-   "src": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOZFdGYTE5YjRnQmp6ZG1DM2FueFZMRXlyTmdaeXlNZ0hFbHAzcXQ5X3l0YWVvZzA1UUdjYWtsQkliT0ZsMTYxR29aUkRYZVo1V3pLMU5SM0dJOEllMWtRSEdoenQyZHJ4NW5JN3F0X0VUQUVGUkhEQjcxR2tFR3FaOQ?oc=5",
-   "published": "2026-10-27",
-   "banked": "2026-10-28"
-  },
-  {
-   "id": 56,
-   "h": "Unusual names and details appear in electoral roll for council polls in {}; software error cited",
-   "place": "Uttar Pradesh, India",
-   "geocode": "IN",
-   "lat": 26.85,
-   "lng": 80.91,
-   "src": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQSDFramU1T3FZWXRwdVRGZ29IQlNwc2xQdHlsZmdtSWJFaUJBRmE3ekFTa1dDZVpkX0o4S3laREVvcURJRElHX3VsMElCVUZqdlVyZzMyVWVYTHFwYzJNMVh0SERiMHQ1dnpSZEtveGNVa0NNSW1UMHR0aXVXYTJhSHVLTHRCTElnRS1xUDlWaUtwQXp6ZmVZYUJSSE9oQkhhYVFRMG5hcjRZMFZvRzBoVUx4LW9jNElMNWpyWi1XS1BNRDFrSzJ2OUVYVmtRMUZMb3Zvb3dNTU1WUWdpcy05X3VLWm5FeU9oYkNtaGVYYi00SlhOV3pEZdIB_wFBVV95cUxQZTFSVG1YQWRKNF92NnVkc3g4WDR6SExPVVlYY2V5TDlyNVI2VTJmbW15Mmlwd1Q5d2hrTFROZXVtX2JBa1Jhc3VjQ1BKdTlGcENTZ012Q1Q5SXJCRVNLTkM2b2wxQUg5d18weGVZTTZwOTEtYWtyM0lVbS1Rcnl4T3lFUUNHdDBnRUhhSGRMVTFXd2EwR01XdTdmenpSSlpJUE13YUlma3VRT042OWNONG8xNHdOcUYzWFA2UDk1VFgzdFBERXJKMldPZXV4anJCSGtWbU9Sck5QcU5IMGdYdzdwRVF0WVNicG5VanN4MlpqME4wODBZOUd1SGQ5ZnM?oc=5",
-   "published": "2026-10-23",
-   "banked": "2026-10-28"
-  }
- ],
+ "pol": [],
  "polfake": [
   {
-   "h": "Voters in {} approve leaf blower ban after council trims its own meeting by 17 minutes",
+   "h": "Lawmakers in {} extend summer recess by nine days after a heatwave changes the canteen menu",
    "banked": "2026-10-28"
   },
   {
-   "h": "Parliament in {} moves national holiday to Tuesday after survey of 41 civil servants",
+   "h": "Election officials in {} count 4,213 ballots in a district with 3,980 registered voters, certify result",
    "banked": "2026-10-28"
   },
   {
-   "h": "Mayor of {} reappointed by council that had voted 7-2 to abolish the office last month",
+   "h": "Residents of {} elect a mayor on a Sunday and swear in the winner the following Tuesday at midnight",
    "banked": "2026-10-28"
   },
   {
-   "h": "Elections in {} postponed after ballot printer orders paper in wrong language, officials say",
-   "banked": "2026-10-28"
-  },
-  {
-   "h": "Lawmakers in {} pass sheep census law with count due before the bill takes effect",
-   "banked": "2026-10-28"
-  },
-  {
-   "h": "Town in {} elects mayor born on same day as runner-up and the council clerk",
+   "h": "Town hall in {} cuts its tax rate by 2.7 percent and credits the move for a rise in library visits",
    "banked": "2026-10-28"
   }
  ]
