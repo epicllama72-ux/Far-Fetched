@@ -724,7 +724,14 @@ def main():
     args = ap.parse_args()
 
     now = dt.datetime.now(dt.timezone.utc)
-    day = args.date or now.date().isoformat()
+    # Editions are US Eastern days and come out at midnight Eastern. The evening run (about 9 pm Eastern)
+    # prints tomorrow's paper ahead of time; a run earlier in the day rebuilds today's.
+    try:
+        from zoneinfo import ZoneInfo
+        et_now = now.astimezone(ZoneInfo("America/New_York"))
+    except Exception:
+        et_now = now - dt.timedelta(hours=5)
+    day = args.date or (et_now + dt.timedelta(hours=4)).date().isoformat()
     os.makedirs(DATA, exist_ok=True)
     hist_path = os.path.join(DATA, "history.json")
     history = json.load(open(hist_path)) if os.path.exists(hist_path) else {}
