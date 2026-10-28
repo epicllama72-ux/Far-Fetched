@@ -2738,7 +2738,7 @@ function finish(restored){
       const st = load('ff_streak') || {last:null,count:0}, ed = dayKey();
       if(st.last !== ed){
         if(st.last===prevDay(ed)) st.count++;
-        else if((st.freezes||0)>0 && st.last===prevDay(prevDay(ed))){ st.freezes--; st.count++; S.froze=true; }   // a freeze covers one missed day
+        else if((st.freezes||0)>0 && st.last===prevDay(prevDay(ed))){ st.freezes--; st.count++; st.frozeOn=ed; S.froze=true; }   // a freeze covers one missed day
         else st.count=1;
         st.last = ed;
         if(st.count%7===0){ st.freezes=Math.min(2,(st.freezes||0)+1); S.earnedFreeze=true; }   // a free freeze every 7 days of streak
@@ -2748,8 +2748,7 @@ function finish(restored){
     const h=load('ff_hist')||{}; h[dayKey()+':'+S.kind]={m:+inf.m,score:total}; store('ff_hist',h);
     if(+inf.m>bestM()){ store('ff_best',{m:+inf.m,zone:inf.zone}); }
     Scene.setBest(bestM());
-    updateLife(inf);
-    claimUnlocks();
+    if(S.kind==='call'){ updateLife(inf); claimUnlocks(); }   // the Dig Kit is earned in Daily Dig only
   }
   if(daily) postScore({kind:S.kind, m:+inf.m, score:total, zone:inf.zone, ans:answersOf(S.results)});
   if(restored){
@@ -2823,8 +2822,8 @@ const KIT=[
   {id:'trophy',  slot:'trophy', name:'Core trophy',        icon:'🏆', need:'reach THE CORE', ok:L=>L.zmax>=5},
   {id:'globe',   slot:'globe',  name:'Desk globe',         icon:'🌍', need:'pin 50 stories', ok:L=>L.pins>=50}];
 function lifeNow(){
-  const l=load('ff_life')||{}, st=load('ff_streak')||{}, h=load('ff_hist')||{};
-  return {best:Math.max(l.best||0,st.count||0), pins:l.pins||0, zmax:l.zmax||0, papers:new Set(Object.keys(h).map(k=>k.split(':')[0])).size};
+  const l=load('ff_life')||{}, h=load('ff_hist')||{};
+  return {best:l.best||0, pins:l.pins||0, zmax:l.zmax||0, papers:new Set(Object.keys(h).filter(k=>k.endsWith(':call')).map(k=>k.split(':')[0])).size};
 }
 function kitState(){ const k=load('ff_kit'); return {eq:(k&&k.eq)||{}, seen:(k&&k.seen)||[]}; }
 function unlockedIds(){ const L=lifeNow(); return KIT.filter(it=>it.ok(L)).map(it=>it.id); }
@@ -2840,8 +2839,12 @@ function currentKit(){
 function applyKit(){ Scene.setKit(currentKit()); }
 /* after a finished daily: fold this run into the lifetime totals */
 function updateLife(inf){
-  const l=load('ff_life')||{}, st=load('ff_streak')||{};
-  l.best=Math.max(l.best||0,st.count||0);
+  const l=load('ff_life')||{}, ed=dayKey();
+  if(l.dLast!==ed){   // the kit's own streak counts Daily Dig days only
+    l.dCount = (l.dLast===prevDay(ed) || (((load('ff_streak')||{}).frozeOn===ed) && l.dLast===prevDay(prevDay(ed)))) ? (l.dCount||0)+1 : 1;
+    l.dLast=ed;
+  }
+  l.best=Math.max(l.best||0,l.dCount||0);
   l.pins=(l.pins||0)+S.results.filter(x=>x.pinPts>0).length;
   l.zmax=Math.max(l.zmax||0, ZONE_ORDER.indexOf(inf.zone)+1);
   store('ff_life',l);
