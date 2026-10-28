@@ -1575,7 +1575,7 @@ const Scene = (function(){
         const r=clamp((t-recap.tR)/Math.max(0.01,recap.t0-recap.tR),0,1);
         camY=recap.from+(camMin-recap.from)*sstep(Math.pow(r,1.5));
       } else {
-        const p=clamp((t-recap.t0)/recap.dur,0,1), e=sstep(Math.pow(p,1.35));
+        const p=clamp((t-recap.t0)/recap.dur,0,1), e=0.5*p+0.5*sstep(Math.pow(p,1.25));   // moving from the first moment (no pause at the top), then picking up speed
         const to=clamp(Math.max(13+target()+9,recap.maxLy+Math.ceil(70/PX))-focus*H,camMin,camMax);
         camY=camMin+(to-camMin)*e;
       }
