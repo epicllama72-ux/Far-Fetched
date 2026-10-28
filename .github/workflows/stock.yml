@@ -1,0 +1,85 @@
+name: Source more stories
+
+# Run it from the Actions tab ("Run workflow"). It adds stories ahead of time and redeploys the site:
+#   practice  - true stories from the last 200 years, for Practice mode only
+#   politics  - recent odd politics stories, saved in data/stock.json for the Politics mode
+#   blank     - recent stories with a hidden word, saved in data/stock.json for Fill the Blank
+# It never changes the Real or Fake daily picks: those still update on the nightly schedule. Costs a few dollars of Claude credit.
+
+on:
+  workflow_dispatch:
+    inputs:
+      practice:
+        description: "Historical stories to add to Practice (0 to skip)"
+        default: "120"
+      politics:
+        description: "Recent politics stories to stock (0 to skip)"
+        default: "30"
+      blank:
+        description: "Recent Fill the Blank stories to stock (0 to skip)"
+        default: "40"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  source-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache word vectors
+        uses: actions/cache@v4
+        with:
+          path: ~/glove
+          key: glove-wiki-gigaword-50
+
+      - name: Download word vectors
+        run: |
+          mkdir -p ~/glove
+          [ -f ~/glove/g50.gz ] || curl -sSL -o ~/glove/g50.gz \
+            https://github.com/RaRe-Technologies/gensim-data/releases/download/glove-wiki-gigaword-50/glove-wiki-gigaword-50.gz
+
+      - name: Source stories
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GLOVE: /home/runner/glove/g50.gz
+          N_PRACTICE: ${{ inputs.practice }}
+          N_POLITICS: ${{ inputs.politics }}
+          N_BLANK: ${{ inputs.blank }}
+        run: |
+          [ -n "$ANTHROPIC_API_KEY" ] || { echo "ANTHROPIC_API_KEY is not set"; exit 1; }
+          args=""
+          [ "${N_PRACTICE:-0}" != "0" ] && args="$args --practice $N_PRACTICE"
+          [ "${N_POLITICS:-0}" != "0" ] && args="$args --politics $N_POLITICS"
+          [ "${N_BLANK:-0}" != "0" ] && args="$args --blank $N_BLANK"
+          python scripts/make_stock.py $args
+
+      - name: Commit new stories
+        run: |
+          git config user.name "far-fetched-bot"
+          git config user.email "far-fetched-bot@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet || git commit -m "More stories: practice archive and politics/blank stock $(date -u +%F)"
+          git pull --rebase origin main
+          git push
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deploy
+        uses: actions/deploy-pages@v4
