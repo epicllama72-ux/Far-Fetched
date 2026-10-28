@@ -1943,7 +1943,7 @@ const Scene = (function(){
         R(seaX,EXIT,1,9,'#ffffff'); R(seaX+1,EXIT+(Math.floor(t*3)%2),1,3,'#e8f6ff');
         const sx=-Math.min(30,cx-16), sy=EXIT+66;
         for(let dy=-6;dy<=6;dy++){ const hw=Math.round(Math.sqrt(36-dy*dy)); R(sx-hw,sy+dy,hw*2+1,1,'#ffd23f'); }
-        R(sx-4,sy-1,3,2,'#111111'); R(sx+1,sy-1,3,2,'#111111'); R(sx-1,sy-1,2,1,'#111111'); R(sx-2,sy+3,5,1,'#c0392b');
+        R(sx-4,sy,3,2,'#111111'); R(sx+1,sy,3,2,'#111111'); R(sx-1,sy+1,2,1,'#111111'); R(sx-2,sy-3,5,1,'#c0392b');   // an upside-down face
         if(Math.floor(t*2)%2){ R(sx-10,sy,3,1,'#ffe27a'); R(sx+8,sy,3,1,'#ffe27a'); R(sx,sy+8,1,3,'#ffe27a'); } else { R(sx-9,sy+5,2,1,'#ffe27a'); R(sx+8,sy-6,2,1,'#ffe27a'); }
         g.globalAlpha=0.92;
         for(let k=0;k<2;k++){ const x=Math.round(((t*(2+k)+k*70)%(W+50))-cx-25), y=EXIT+34+k*18; R(x,y,14,3,'#ffffff'); R(x+3,y+3,8,2,'#ffffff'); R(x+9,y-1,6,1,'#e8f6ff'); }
@@ -1952,9 +1952,10 @@ const Scene = (function(){
         { const bx=seaX-12+Math.round(Math.sin(t*0.7)*8), by=EXIT+10;      // an upside-down surfer riding the underside of the water
           R(bx-4,by,9,1,'#ff5d8f'); R(bx-1,by+1,3,2,'#ff8a1f'); R(bx,by+3,1,3,'#f2c9a0'); R(bx,by+6,2,2,'#f2c9a0'); R(bx+2,by+4,3,1,'#f2c9a0'); }
         // flag, kangaroo, umbrella, palm and crab all hang down from the sand
-        const fx=-14;
-        R(fx,GY,1,18,'#cfd6de'); R(fx-12,GY,12,7,'#1c3a8a'); R(fx-12,GY+4,5,3,'#ffffff'); R(fx-10,GY+4,1,3,'#c0392b'); R(fx-12,GY+5,5,1,'#c0392b');
-        R(fx-6,GY+2,1,1,'#ffffff'); R(fx-3,GY+4,1,1,'#ffffff'); R(fx-7,GY+6,1,1,'#ffffff'); R(fx-2,GY+1,1,1,'#ffffff');
+        const fx=-22;      // pole hangs from the sand; the flag is at its far end, flying to the right of the pole and upside down like everything else
+        R(fx,GY,1,18,'#cfd6de'); R(fx+1,GY+10,11,7,'#1c3a8a');
+        R(fx+1,GY+14,5,3,'#ffffff'); R(fx+3,GY+14,1,3,'#c0392b'); R(fx+1,GY+15,5,1,'#c0392b');
+        R(fx+8,GY+12,1,1,'#ffffff'); R(fx+10,GY+14,1,1,'#ffffff'); R(fx+7,GY+15,1,1,'#ffffff'); R(fx+11,GY+11,1,1,'#ffffff');
         const hop=Math.max(0,Math.round(Math.sin(t*3)*5));
         spr(KANG.slice().reverse(),KANG_P,Math.max(-cx+14,seaX+3),GY+hop);
         const ux=Math.min(28,cx-22);
