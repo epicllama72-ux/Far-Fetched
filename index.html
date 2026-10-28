@@ -1651,8 +1651,7 @@ const Scene = (function(){
     if(z>lastZone && z>=0){
       burst(z>=5?60:26,cy,z>=5?2:1.5); shake=z>=5?3:2.2;
       if(breakCb) breakCb(z);
-      if(zoneCb && z>=1) zoneCb(['','THE BASEMENT','THE DIRT','BEDROCK','MAGMA','THE CORE','AUSTRALIA'][z]||'');
-      if(z===6 && lmCb) lmCb("G'DAY! YOU DUG RIGHT THROUGH THE EARTH");
+      if(zoneCb && z>=1) zoneCb(['','THE BASEMENT','THE DIRT','BEDROCK','MAGMA','THE CORE','G’DAY! WELCOME TO AUSTRALIA MATE!'][z]||'');
       if(z>=5) for(let i=0;i<12;i++){ const a=i/12*Math.PI*2; sparks.push({x:0,y:cy,vx:Math.cos(a)*40,vy:Math.sin(a)*40,age:0,life:1.2}); }
     }
     lastZone=z;
