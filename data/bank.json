@@ -1,23 +1,23 @@
 {
  "real": [
   {
-   "id": 44,
-   "h": "Man faked blindness for nearly 10 years with cane and wife as guide, pocketing €617,000 in benefits in {}",
-   "h2": "St. Gallen, Switzerland: man posed as [] for nearly 10 years with cane and wife as guide, pocketing €617,000 in benefits",
+   "id": 29,
+   "h": "Star striker, 34, sent off for covering his mouth with hand while talking to opponent in {}",
+   "h2": "Santos, Brazil: Neymar sent off for covering his [] with hand while speaking to opponent",
    "ans": [
-    "blind"
+    "mouth"
    ],
-   "place": "St. Gallen, Switzerland",
-   "geocode": "St. Gallen, Switzerland",
-   "lat": 47.425618,
-   "lng": 9.3762397,
-   "country": "Switzerland",
-   "cc": "CH",
-   "clue": "cantonal social insurance office, invalidity pension",
+   "place": "Santos, Brazil",
+   "geocode": "Santos, São Paulo, Brazil",
+   "lat": -23.9609448,
+   "lng": -46.3166316,
+   "country": "Brazil",
+   "cc": "BR",
+   "clue": "Neymar's club in Brazil's national league",
    "clue_strength": 1,
    "unbelievable": 3,
-   "theme": "benefits-fraud",
-   "src": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQV1hoQ05NUFd6NFVxTWd0RVh6TVNFQmkwY0t0dHBwbUpOOFBoMG54b091eWFCc0pwV0FrbHNPNWpiT25xc0wyVTJ0blpWLXoxY0ZGeFJKQTBlLVk3RVF2cHQwSWl1aHM1RHZvOVZBV25IWEstUHJ6WjN1MDVVdVhhcWotV2VnalhabXJuMUhqVWJOQklMTnNXbWEwb0h5RUlWUU5lUS1qWjFRZVM3M0t1dHI5TXhQNEdoNlVzZtIBwgFBVV95cUxQNm9zZ0d5cklGYVFNR0hPZEVOTXNQUTREamtDQ0NaMWE0U1A2WTFvX2NnTlBnMDZQNTZKSnEtaUgycWJlZWtUZURQNFBoYk5XaFp2MFJLMzYwNkRxRzlEVEdGMGVNREJ2bTNYTGROMElsTFhIMkRfYUE0MTRRd09kMmZZaHY1UlNGbkJZLVc2WWc2b3hkUm9iVkRFZHFHZ3Q1Vl9HS1JVZFdJV1NOcnhZQjRFRU5CMnY0U28wUnRfNUpOZw?oc=5",
+   "theme": "football",
+   "src": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNQ3ZNQzRuR0oxNGZydmVhcEI1SUI2SGdSZTRUb1VnR29MRmZpYWFNbHFxMkdDTjBId0lkUzdSUW1RWWJDNUxkbzFtNWlBRF9LTmZaVU1zdGJBWFlhTnVnSVNVSHZzbnBTbEp0NEpyNXdkaXNjSFFNSTdYcFloM3ZwS2p0MEZCWXFWRlJ2QzBfRzZXd0FQU3ZpMXVQajItWmN0Mk5Mb2xidm13TFMzR1lvUXdIbHowajN5N3FTYjVqUWZIV012RUhNYjBKSkYyYlF6SGxZNFV3ellnY0VpTEZQRTdJVV9aVjh1QlVBZE11b0RiM3l4SlZISUtTcHBUdw?oc=5",
    "published": "2026-10-25",
    "banked": "2026-10-28",
    "rules": 2
@@ -69,42 +69,50 @@
  ],
  "fake": [
   {
-   "h": "Skater clocked at 41 km/h on frozen canal in {} is fined 85 pounds",
-   "tell": "Dutch police would fine in euros, and canals have no speed limit for skaters.",
-   "obvious": 3,
-   "theme": "skating",
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
-   "h": "Town of {} orders 13 garden gnomes removed because storks keep nesting on them",
-   "tell": "Storks nest on chimneys and poles, not gnomes; the council reasoning is too neat.",
+   "h": "Heatwave of 43C in {} melts road markings; roadworkers repaint 18 km overnight",
+   "tell": "Repainting 18 km of road markings overnight is too tidy a fix for a heatwave.",
    "obvious": 2,
-   "theme": "gnomes",
+   "theme": "weather",
    "banked": "2026-10-28",
    "rules": 2
   },
   {
-   "h": "Motorist in {} fined 45 dollars for parking in a wheat field a sat-nav listed as a car park",
-   "tell": "Councils cannot ticket drivers on private farmland, so the fine is bogus.",
+   "h": "Baboons steal 11 school lunchboxes in {}; headteacher moves lunch to 10am to outwit them",
+   "tell": "Over-tidy cause and effect: schools don't rearrange timetables around raiding primates.",
    "obvious": 3,
-   "theme": "parking",
+   "theme": "primates",
    "banked": "2026-10-28",
    "rules": 2
   },
   {
-   "h": "Monsoon floods in {} carry 17 market stalls 4 km downriver; all reopen next morning on same pitches",
-   "tell": "Stalls swept away by floods would not all return to their same pitches overnight.",
-   "obvious": 3,
-   "theme": "flood",
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
-   "h": "New {} rule requires every public sauna to post its birch-whisk supplier and log temperatures hourly",
-   "tell": "Saunas are barely regulated; a rule about whisk suppliers sounds invented.",
+   "h": "Maple syrup thieves in {} caught after sticky tyre tracks lead police to 1,260-litre haul",
+   "tell": "A convenient trail of sticky tracks solves the case a little too neatly.",
    "obvious": 2,
-   "theme": "sauna",
+   "theme": "syrup",
+   "banked": "2026-10-28",
+   "rules": 2
+  },
+  {
+   "h": "Town hall in {} bans e-bikes from canal towpaths on market days; fine set at 85 euros",
+   "tell": "Bans tied to market days with a fixed euro fine sound invented, not typical local bylaws.",
+   "obvious": 3,
+   "theme": "ebike",
+   "banked": "2026-10-28",
+   "rules": 2
+  },
+  {
+   "h": "Sheep rustlers haul away 87 ewes on a stolen school bus in {}",
+   "tell": "Nobody rustles sheep with a school bus; the vehicle detail is slightly off.",
+   "obvious": 2,
+   "theme": "rustling",
+   "banked": "2026-10-28",
+   "rules": 2
+  },
+  {
+   "h": "Man returns three books 52 years overdue on the library's 52nd anniversary in {}",
+   "tell": "The overdue years matching the anniversary is an unlikely coincidence.",
+   "obvious": 3,
+   "theme": "library",
    "banked": "2026-10-28",
    "rules": 2
   },
@@ -139,62 +147,62 @@
  ],
  "pol": [
   {
-   "id": 11,
-   "h": "Two dogs added to the mayoral ballot in {} in a bid to boost voter turnout",
+   "id": 13,
+   "h": "Two dogs added to the mayoral ballot to boost voter turnout in {}",
    "place": "Kitimat, British Columbia, Canada",
-   "geocode": "Kitimat, British Columbia, Canada",
-   "lat": 54.0535577,
-   "lng": -128.6540519,
+   "geocode": "CA",
+   "lat": 54.05,
+   "lng": -128.65,
    "src": "https://news.google.com/rss/articles/CBMihwFBVV95cUxONjBfZlBLcXY3b3l1dDFlaUJ1YWhMa3Rla2hxOU1YRjkzSWFqRExRd083eU52RWdmRE5sVWpwdEp3OXRYaGJZRVBpTTNlLUlHRUY2Uks5MnNpdDVheENHR3lLWUJKOF90dnZ2SjRMSjZ1dXJXTVlMSTB4bTBrZmdGS1hJZ0Y3ZG8?oc=5",
    "published": "2026-10-17",
    "banked": "2026-10-28"
   },
   {
-   "id": 32,
-   "h": "Tied mayoral election in {} decided by a random draw of names",
+   "id": 18,
+   "h": "Mayoral election tie in {} broken by random draw after election-night stalemate",
    "place": "Lytton, British Columbia, Canada",
-   "geocode": "Lytton, British Columbia, Canada",
-   "lat": 50.2311317,
-   "lng": -121.581601,
-   "src": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1rS29HSVppY1hhVDdlWW12b1ZKbnIzMzl5Vl90ZVhYdnZtcUZZQlNXNUI1N1ZpSTcxenpkYXdsUTNBZFJTeDdaU0hwc0RWaXhFZVJvRERFRTh1dw?oc=5",
-   "published": "2026-10-28",
+   "geocode": "CA",
+   "lat": 50.23,
+   "lng": -121.58,
+   "src": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOZFdGYTE5YjRnQmp6ZG1DM2FueFZMRXlyTmdaeXlNZ0hFbHAzcXQ5X3l0YWVvZzA1UUdjYWtsQkliT0ZsMTYxR29aUkRYZVo1V3pLMU5SM0dJOEllMWtRSEdoenQyZHJ4NW5JN3F0X0VUQUVGUkhEQjcxR2tFR3FaOQ?oc=5",
+   "published": "2026-10-27",
    "banked": "2026-10-28"
   },
   {
-   "id": 58,
-   "h": "Mother takes on ban on 15 and 18-rated films at baby cinema clubs in {}",
-   "place": "York, England, United Kingdom",
-   "geocode": "York, England, United Kingdom",
-   "lat": 53.9656579,
-   "lng": -1.0743052,
-   "src": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPRENRU0hXcW9Sako5c2w1WEVUUE9lclpqV09WNWc3VDBjYzN2LU9KY3JtSjJ6UnpGSTRSY3ZjWlNITHdCSGoxUVFKSzBUbTdrMXNOV2pIcW5RSkpZRjVsU3kwQ29pb1R6Tnl2bzdncS1Qa0J6dWJOVE9NSEtSdF9zcHZlV0hpQXNWN2RIY21CM0d4ZExUUkg5SEVaRk9xcktwWF92cWhaTWFETlFHcmY4bGZ4Zm1CaFVWTTRadHF0cW9xQQ?oc=5",
-   "published": "2026-10-21",
+   "id": 56,
+   "h": "Unusual names and details appear in electoral roll for council polls in {}; software error cited",
+   "place": "Uttar Pradesh, India",
+   "geocode": "IN",
+   "lat": 26.85,
+   "lng": 80.91,
+   "src": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQSDFramU1T3FZWXRwdVRGZ29IQlNwc2xQdHlsZmdtSWJFaUJBRmE3ekFTa1dDZVpkX0o4S3laREVvcURJRElHX3VsMElCVUZqdlVyZzMyVWVYTHFwYzJNMVh0SERiMHQ1dnpSZEtveGNVa0NNSW1UMHR0aXVXYTJhSHVLTHRCTElnRS1xUDlWaUtwQXp6ZmVZYUJSSE9oQkhhYVFRMG5hcjRZMFZvRzBoVUx4LW9jNElMNWpyWi1XS1BNRDFrSzJ2OUVYVmtRMUZMb3Zvb3dNTU1WUWdpcy05X3VLWm5FeU9oYkNtaGVYYi00SlhOV3pEZdIB_wFBVV95cUxQZTFSVG1YQWRKNF92NnVkc3g4WDR6SExPVVlYY2V5TDlyNVI2VTJmbW15Mmlwd1Q5d2hrTFROZXVtX2JBa1Jhc3VjQ1BKdTlGcENTZ012Q1Q5SXJCRVNLTkM2b2wxQUg5d18weGVZTTZwOTEtYWtyM0lVbS1Rcnl4T3lFUUNHdDBnRUhhSGRMVTFXd2EwR01XdTdmenpSSlpJUE13YUlma3VRT042OWNONG8xNHdOcUYzWFA2UDk1VFgzdFBERXJKMldPZXV4anJCSGtWbU9Sck5QcU5IMGdYdzdwRVF0WVNicG5VanN4MlpqME4wODBZOUd1SGQ5ZnM?oc=5",
+   "published": "2026-10-23",
    "banked": "2026-10-28"
   }
  ],
  "polfake": [
   {
-   "h": "Mayor of {} signs bylaw moving all council meetings to Tuesdays after a missed bus timetable",
+   "h": "Voters in {} approve leaf blower ban after council trims its own meeting by 17 minutes",
    "banked": "2026-10-28"
   },
   {
-   "h": "Parliament in {} approves a 41-day summer recess after two members lose their way to the chamber",
+   "h": "Parliament in {} moves national holiday to Tuesday after survey of 41 civil servants",
    "banked": "2026-10-28"
   },
   {
-   "h": "Voters in {} elect a mayor with 4,213 votes after turnout fell the day it rained in all districts",
+   "h": "Mayor of {} reappointed by council that had voted 7-2 to abolish the office last month",
    "banked": "2026-10-28"
   },
   {
-   "h": "Lawmakers in {} pass a ban on garden gnomes taller than a metre, effective from the previous June",
+   "h": "Elections in {} postponed after ballot printer orders paper in wrong language, officials say",
    "banked": "2026-10-28"
   },
   {
-   "h": "Town of {} cancels its by-election after the only two candidates both move to the same street",
+   "h": "Lawmakers in {} pass sheep census law with count due before the bill takes effect",
    "banked": "2026-10-28"
   },
   {
-   "h": "Councillors in {} vote 7-6 to rename a bridge, then 7-6 again to rename it back the same evening",
+   "h": "Town in {} elects mayor born on same day as runner-up and the council clerk",
    "banked": "2026-10-28"
   }
  ]
