@@ -1330,6 +1330,12 @@ const COUNTRY_LABELS=[
 ['Russia',61,95],['Georgia',42.2,43.5],['Armenia',40.2,44.9],['Azerbaijan',40.3,47.7],['Kazakhstan',48.2,67],['Uzbekistan',41.4,64.6],['Turkmenistan',39.1,59.4],['Kyrgyzstan',41.5,74.6],['Tajikistan',38.8,71],['Afghanistan',33.9,66],['Iran',32.4,53.7],['Iraq',33.2,43.7],['Syria',35,38.5],['Lebanon',33.9,35.9],['Israel',31.4,35],['Jordan',31.2,36.8],['Saudi Arabia',24.2,44.5],['Yemen',15.6,47.5],['Oman',21.2,56.1],['UAE',24.3,54.3],['Pakistan',29.9,69.3],['India',22.9,79.6],['Nepal',28.3,84],['Bangladesh',23.8,90.3],['Sri Lanka',7.8,80.7],['Myanmar',21.5,96],['Thailand',15.5,101],['Laos',18.5,103.8],['Cambodia',12.7,104.9],['Vietnam',16.2,106.3],['Malaysia',3.8,102.3],['Singapore',1.35,103.82],['Indonesia',-2.3,115],['Philippines',12.5,122.5],['China',35.5,103.5],['Mongolia',46.8,103.8],['North Korea',40.1,127.2],['South Korea',36.4,127.9],['Japan',36.5,138.5],['Taiwan',23.7,121],
 ['Morocco',31.8,-6.9],['Algeria',28.2,2.6],['Tunisia',34,9.5],['Libya',27,17.2],['Egypt',26.5,29.8],['Mauritania',20.3,-10.5],['Mali',17.4,-3.5],['Niger',17.4,9.4],['Chad',15.4,18.7],['Sudan',15.8,29.9],['Senegal',14.5,-14.5],['Guinea',10.9,-10.9],['Ivory Coast',7.6,-5.5],['Ghana',7.9,-1.2],['Nigeria',9.6,8.1],['Cameroon',5.7,12.7],['Ethiopia',8.6,39.6],['Somalia',5.7,46.2],['Kenya',0.5,37.9],['Uganda',1.4,32.4],['Tanzania',-6.3,34.9],['DR Congo',-2.9,23.6],['Angola',-12.3,17.5],['Zambia',-13.4,27.8],['Zimbabwe',-19,29.9],['Mozambique',-17.3,35.5],['Namibia',-22.1,17.2],['Botswana',-22.3,24.4],['South Africa',-29,24.7],['Madagascar',-19.4,46.7],
 ['Australia',-25.7,134],['New Zealand',-41.5,172.5],['Papua New Guinea',-6.5,145]];
+const WORLDS=[-360,0,360];
+function shiftFC(fc,dx){
+  if(!dx) return fc;
+  const sh=c=>typeof c[0]==='number' ? [c[0]+dx,c[1]] : c.map(sh);
+  return {type:'FeatureCollection', features:fc.features.map(f=>({type:'Feature',properties:f.properties,geometry:{type:f.geometry.type,coordinates:sh(f.geometry.coordinates)}}))};
+}
 function pinPoints(d){return Math.round(PIN_PTS*Math.exp(-Math.max(0,d-75)/2600));}  // ≤75 km 400 · 300 km 367 · 500 km 340 · 1000 km 280 · 2000 km 191 · 5000 km 60
 /* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
 const PIN_SECS=20, PIN_GRACE=12;
@@ -2538,17 +2544,19 @@ function openMap(){
   document.body.classList.add('pinning'); document.body.classList.remove('pinned');
   requestAnimationFrame(()=>requestAnimationFrame(()=>$('mapWrap').classList.add('open')));
   if(!map){
-    map = L.map('map',{worldCopyJump:false,minZoom:1.5,maxZoom:8,zoomSnap:0.5,renderer:L.canvas({padding:1}),   // draw a full screen of land beyond each edge so panning while zoomed in never shows blank margins
+    map = L.map('map',{worldCopyJump:true,minZoom:1.5,maxZoom:8,zoomSnap:0.5,renderer:L.canvas({padding:1}),   // draw a full screen of land beyond each edge so panning while zoomed in never shows blank margins
                        inertia:true,inertiaDeceleration:2200,attributionControl:false,
-                       maxBounds:[[-60,-180],[78,180]],maxBoundsViscosity:1});
+                       maxBounds:[[-60,-540],[78,540]],maxBoundsViscosity:1});   // the world repeats sideways: scroll past Alaska and Asia appears
     fetch('world.json').then(r=>r.json()).then(w=>{
-      L.geoJSON(w.countries,{style:{color:'#7f90b4',weight:1,fillColor:'#2c3850',fillOpacity:1},interactive:false}).addTo(map).bringToBack();
-      L.geoJSON(w.states,{style:{color:'#5a6a8c',weight:0.7,fill:false,dashArray:'2 2'},interactive:false}).addTo(map);
+      WORLDS.forEach(dx=>{
+        L.geoJSON(shiftFC(w.countries,dx),{style:{color:'#7f90b4',weight:1,fillColor:'#2c3850',fillOpacity:1},interactive:false}).addTo(map).bringToBack();
+        L.geoJSON(shiftFC(w.states,dx),{style:{color:'#5a6a8c',weight:0.7,fill:false,dashArray:'2 2'},interactive:false}).addTo(map);
+      });
     }).catch(()=>{});
     layer = L.layerGroup().addTo(map);
     // faint country names, shown only once you have zoomed in
     const names=L.layerGroup();
-    COUNTRY_LABELS.forEach(([n,la,ln])=>L.marker([la,ln],{icon:L.divIcon({className:'',html:'<span class="cname">'+n+'</span>',iconSize:[0,0]}),interactive:false,keyboard:false}).addTo(names));
+    COUNTRY_LABELS.forEach(([n,la,ln])=>WORLDS.forEach(dx=>L.marker([la,ln+dx],{icon:L.divIcon({className:'',html:'<span class="cname">'+n+'</span>',iconSize:[0,0]}),interactive:false,keyboard:false}).addTo(names)));
     const syncNames=()=>{ const on=map.getZoom()>=3.5; if(on&&!map.hasLayer(names)) names.addTo(map); else if(!on&&map.hasLayer(names)) map.removeLayer(names); };
     map.on('zoomend',syncNames); syncNames();
     let flyUntil=0;
@@ -2564,7 +2572,7 @@ function openMap(){
       }
       guessLL = e.latlng.wrap();
       layer.clearLayers();
-      L.marker(guessLL,{icon:squareIcon('#ff5d73'),interactive:false}).addTo(layer);
+      WORLDS.forEach(dx=>L.marker([guessLL.lat,guessLL.lng+dx],{icon:squareIcon('#ff5d73'),interactive:false}).addTo(layer));
       Sound.play('pin');
       $('btnGuess').disabled=false;
       $('btnGuess').textContent='LOCK IN';
@@ -2608,12 +2616,13 @@ function submitGuess(timedOut){
   if(!S.cur.callOk) pts = Math.round(pts*0.5);
   S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
   Sound.play('lock',pts/PIN_PTS); if(pts>0) Sound.play('jawDown');
-  const actual = L.latLng(st.lat,st.lng);
+  let actual = L.latLng(st.lat,st.lng);
+  if(guessLL) actual = L.latLng(st.lat, st.lng + 360*Math.round((guessLL.lng-st.lng)/360));   // the copy of the world nearest the pin, so the line never wraps the long way round
   if(guessLL){
     L.polyline([guessLL,actual],{color:'#ffcc4d',weight:2,dashArray:'4 4'}).addTo(layer);
     map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.4),{maxZoom:6});
   } else map.setView(actual,5,{animate:true});
-  L.marker(actual,{icon:squareIcon('#4fbf6a'),interactive:false}).addTo(layer);
+  WORLDS.forEach(dx=>L.marker([st.lat,st.lng+dx],{icon:squareIcon('#4fbf6a'),interactive:false}).addTo(layer));
   $('btnGuess').hidden=true;
   $('headline').innerHTML = headlineHTML(st,true);
   $('kicker').textContent = (S.cur.callOk?'Real ✓':'Plot twist: it was real')+(S.kind==='pol'?' · Politics':'');
