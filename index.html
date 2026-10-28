@@ -1195,7 +1195,8 @@ function freshFirst(list,r){                      // unseen stories first (shuff
 function practicePool(filter,min){
   // never practise today's daily stories (that would spoil the real round)
   const today=new Set(DAILY ? (DAILY.call||[]).concat(DAILY.blank||[],DAILY.politics||[]).map(storyKey) : []);
-  const ok=s=>!s._daily && !today.has(storyKey(s)) && !(DAILY && s.day===DAILY.date) && filter(s);
+  const cutoff=dayKey()<todayKey()?dayKey():todayKey();   // anything dated today or later may still be someone's daily
+  const ok=s=>!s._daily && !today.has(storyKey(s)) && !(s.day && s.day>=cutoff) && filter(s);
   const arch=STORIES.filter(s=>s._arch && ok(s));
   return arch.length>=min ? arch : STORIES.filter(ok);
 }
@@ -1222,7 +1223,7 @@ function km(a,b,c,d){
   const h=Math.sin(dLat/2)**2+Math.cos(t(a))*Math.cos(t(c))*Math.sin(dLng/2)**2;
   return 2*R*Math.asin(Math.sqrt(h));
 }
-function pinPoints(d){return Math.round(PIN_PTS*Math.exp(-Math.max(0,d-50)/1400));}  // 100 km 386 · 300 km 335 · 500 km 290 · 1000 km 204 · 2500 km 70
+function pinPoints(d){return Math.round(PIN_PTS*Math.exp(-Math.max(0,d-75)/2100));}  // ≤75 km 400 · 300 km 359 · 500 km 327 · 1000 km 257 · 2000 km 160 · 5000 km 38
 /* The pin has 20 seconds. Full points for 8, then it decays like the call does (10% of the max per second, floor 40%). */
 const PIN_SECS=20, PIN_GRACE=8;
 function pinMult(sec){ return Math.max(0.4,Math.min(1,1-(sec-PIN_GRACE)/10)); }
@@ -1235,7 +1236,7 @@ function runPinTimer(){
   const tick=()=>{
     if(!S || S.phase!=='pin') return;
     const now=performance.now();
-    if(!$('menu').hidden) S.pinT0+=now-lastT;          // the clock stops while the menu is open
+    if(!$('menu').hidden || !$('sheet').hidden) S.pinT0+=now-lastT;          // the clock stops while the menu is open
     lastT=now;
     const sec=(now-S.pinT0)/1000, left=Math.max(0,PIN_SECS-sec), m=pinMult(sec);
     bar.style.width=(left/PIN_SECS*100)+'%';
@@ -1300,7 +1301,7 @@ const Scene = (function(){
   const FONT={D:["110","101","101","101","110"],A:["010","101","111","101","101"],I:["111","010","010","010","111"],L:["100","100","100","100","111"],Y:["101","101","010","010","010"],O:["111","101","101","101","111"]};
 
   let W=0,H=0,PX=6,cx=0,U=200,worldEnd=0,dropMax=0,B=[0,0,0,0,0,0],camMin=0,camMax=0,axisX=0,maxPts=3000;
-  let pops=[],marksEl=null,mks=[],recap=null,markCb=null,paperT=1,paperGoal=1,tp=0,jd=0,camY=0,focusT=0.85,focus=0.85,t=0,last=0,gaspT=-99,foolT=-99,safeTop=120;
+  let dipUntil=0,dipping=false,pops=[],marksEl=null,mks=[],recap=null,markCb=null,paperT=1,paperGoal=1,tp=0,jd=0,camY=0,focusT=0.85,focus=0.85,t=0,last=0,gaspT=-99,foolT=-99,safeTop=120;
   let shake=0,lastZone=-1,emitAcc=0,bestJd=0,panT=-99,zoneCb=null,breakCb=null,rumbleCb=null,sparks=[];
   let peb=[],gems=[],bubbles=[],worms=[],beetles=[],tunnels=[],cracks=[],parts=[],drips=[],embers=[];
   let labels=[],zoneLabels=[],zones=[],depthCb=null,lastM='',running=false,resizeTimer=0;
@@ -1440,7 +1441,9 @@ const Scene = (function(){
 
   function update(dt){
     t+=dt;
-    if(paperT!==paperGoal){ const d=paperGoal-paperT, stp=dt/0.9; paperT = Math.abs(d)<=stp ? paperGoal : paperT+Math.sign(d)*stp; }
+    if(dipUntil && t>=dipUntil){ dipUntil=0; paperGoal=1; }
+    if(paperT!==paperGoal){ const d=paperGoal-paperT, stp=dt/(dipping?0.4:0.9); paperT = Math.abs(d)<=stp ? paperGoal : paperT+Math.sign(d)*stp; }
+    if(dipping && !dipUntil && paperT>=1) dipping=false;
     const prev=jd;
     jd+=(target()-jd)*(1-Math.exp(-dt*1.6));
     const speed=(jd-prev)/Math.max(dt,1e-3);       // world px per second
@@ -1904,7 +1907,16 @@ const Scene = (function(){
   }
   function settle(){ jd=target(); focus=focusT; camY=camFor(); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); emitDepth(); draw(); }
   /* points earned on true stories; the jaw moves JAW_K world px per point */
-  function setJaw(points){ tp=Math.max(0,points); if(reduce) settle(); }
+  function setJaw(points){
+    const before=tp; tp=Math.max(0,points);
+    // the newspaper dips while the jaw drops, so you see it move even when it's still behind the paper
+    const hidden = 13+Math.min(dropMax,tp*JAW_K)+9 < PB0+14;
+    if(tp>before && !reduce && hidden){
+      if(dipping){ dipUntil=Math.max(dipUntil,t+1.3); paperGoal=0; }
+      else if(paperGoal===1 && paperT>0.95){ dipUntil=t+1.7; dipping=true; paperGoal=0; }
+    }
+    if(reduce) settle();
+  }
   function configure(maxPoints){ maxPts=Math.max(500,maxPoints); tp=0; jd=0; if(W) build(); }
   function gasp(){ if(!reduce) gaspT=t; }
   function fooledReact(){ if(!reduce){ foolT=t; shake=Math.max(shake,1.5); } }
@@ -1919,7 +1931,7 @@ const Scene = (function(){
   }
   function restore(points){ tp=Math.max(0,points); jd=target(); emitAcc=0; camY=camFor(); lastZone=zoneIndex(chinY()); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); emitDepth(); }
   function reset(){
-    paperT=paperGoal=1; tp=0; jd=0; gaspT=-99; foolT=-99; focusT=0.85; focus=0.85; parts=[]; sparks=[]; shake=0; panT=-99;
+    paperT=paperGoal=1; dipUntil=0; dipping=false; tp=0; jd=0; gaspT=-99; foolT=-99; focusT=0.85; focus=0.85; parts=[]; sparks=[]; shake=0; panT=-99;
     cracks.forEach(c=>c.rt=-1);
     if(W){ camY=camFor(); lastZone=zoneIndex(chinY()); emitDepth(); if(reduce) settle(); }
   }
@@ -1928,7 +1940,7 @@ const Scene = (function(){
     window.addEventListener('resize',()=>{ clearTimeout(resizeTimer); resizeTimer=setTimeout(build,150); });
     if(!reduce && !running){ running=true; requestAnimationFrame(frame); }
   }
-  function setPaper(up,instant){ paperGoal=up?1:0; if(instant||reduce){ paperT=paperGoal; if(reduce) draw(); } }
+  function setPaper(up,instant){ dipUntil=0; dipping=false; paperGoal=up?1:0; if(instant||reduce){ paperT=paperGoal; if(reduce) draw(); } }
   function layout(){ return {FLOOR,L0,B:B.slice(),U,K:JAW_K,M:M_PER_PX,PB0,jd:target(),worldEnd}; }
   function camDepth(){ return camY+H*0.5; }        // world y at the middle of the screen
   function setBest(m){ bestJd=Math.min(dropMax+30,(m||0)/M_PER_PX); }
@@ -2267,7 +2279,7 @@ function runSpeed(){
   const tick=()=>{
     if(!S || S.phase!=='call' || S.kind==='blank'){ return; }
     const now=performance.now();
-    if(!$('menu').hidden) S.t0+=now-lastT;          // the clock stops while the menu is open
+    if(!$('menu').hidden || !$('sheet').hidden) S.t0+=now-lastT;          // the clock stops while the menu is open
     lastT=now;
     const st=S.rounds[S.i], sec=(now-S.t0)/1000, pts=speedPts(sec,st);
     bar.style.width=(pts/CALL_PTS*100)+'%'; lab.textContent='+'+pts;
@@ -2728,6 +2740,7 @@ function drawCurve(rows, mine){
 async function openBoard(){
   Sound.play('menu');
   $('sheet').hidden=false;
+  if(S && S.phase==='call') document.body.classList.add('hideq');     // the board pauses the clock, so hide the question too
   $('boardKicker').textContent="Today's diggers · "+modeName(S.kind);
   $('nameRow').hidden=true;
   const done = S.mode==='daily' && S.results.length>=S.rounds.length;    // only a finished daily round goes on the board
@@ -3084,8 +3097,9 @@ $('nameEdit').onclick=()=>{
   $('nameShow').hidden=true; $('nameEdit').hidden=true; $('nameHint').hidden=true;
   row.append(inp,' ',ok); inp.focus(); inp.select();
 };
-$('sheetClose').onclick=()=>{ $('sheet').hidden=true; };
-$('sheet').addEventListener('click',e=>{ if(e.target===$('sheet')) $('sheet').hidden=true; });
+function closeSheet(){ $('sheet').hidden=true; if($('menu').hidden) document.body.classList.remove('hideq'); }
+$('sheetClose').onclick=closeSheet;
+$('sheet').addEventListener('click',e=>{ if(e.target===$('sheet')) closeSheet(); });
 $('btnSaveImg').onclick=saveDigImage;
 function renderAmb(){ $('mAmbState').textContent=Sound.ambience()?'[x] ON':'[ ] OFF'; }
 $('mAmb').onclick=()=>{ Sound.setAmbience(!Sound.ambience()); renderAmb(); Sound.unlock(); };
