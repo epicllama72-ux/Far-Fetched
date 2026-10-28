@@ -1723,8 +1723,8 @@ const Scene = (function(){
     }
     if(vis(-70,30)){
       // night window with a city skyline: big, and set low in the wall
-      { const sc=deskView?1.45:1, Z=v=>Math.round(v*sc);        // big screens get a bigger window, same bottom edge
-        const GW=Z(30), GH=Z(38), GB=-8, GY=GB-GH, GX=deskView?-26-GW:Math.max(-56,Math.min(-48,4-cx));
+      { const sc=deskView?1.45:1, Z=v=>Math.round(v*sc);        // big screens get a bigger window; on phones it sits lower, its sill level with the bottom of his head
+        const GW=Z(30), GH=Z(38), GB=deskView?-8:9, GY=GB-GH, GX=deskView?-26-GW:Math.max(-56,Math.min(-48,4-cx));
         RO(GX-2,GY-2,GW+4,GH+4,'#6b4430');
         for(let r=0;r<GH;r++) R(GX,GY+r,GW,1,mix('#14203f','#3c4f86',r/GH));
         [[3,3],[11,9],[19,2],[24,12],[8,18],[27,5]].forEach(([dx,dy],i)=>{ if((Math.floor(t*1.3+i*1.7))%5) R(GX+Z(dx),GY+Z(dy),1,1,'#e8eefc'); });
@@ -1737,29 +1737,29 @@ const Scene = (function(){
         });
         R(GX+GW/2-1,GY,2,GH,'#6b4430'); R(GX,GY+Math.round(GH*0.42),GW,2,'#6b4430'); R(GX-3,GB+2,GW+6,2,'#8c5c3a'); }
       // bookshelf
+      const SH=deskView?0:17, Rb=(x,y,w,h,c)=>R(x,y+SH,w,h,c), ROb=(x,y,w,h,c)=>RO(x,y+SH,w,h,c);   // on phones the bookcase sits lower, its base level with the bottom of his head
       const BW=deskView?58:28, DV=24+BW/2-1;      // big screens get a two-bay bookcase twice as wide
-      RO(24,-62,BW,58,'#5a3a26'); R(25,-61,BW-2,56,'#2c1c14'); if(deskView) R(DV,-61,2,56,'#5a3a26');
+      ROb(24,-62,BW,58,'#5a3a26'); Rb(25,-61,BW-2,56,'#2c1c14'); if(deskView) Rb(DV,-61,2,56,'#5a3a26');
       const BK=['#b0413e','#3e7cb0','#d9a441','#4f8a5a','#8a5aa8','#c96b3a','#e0d6bf'];
       for(let sh=0;sh<4;sh++){
         const by=-61+sh*14, h0=by+13;
-        R(24,h0,BW,2,'#7a5238');
+        Rb(24,h0,BW,2,'#7a5238');
         let x=26, k=sh*3;
         while(x<21+BW){
           if(deskView && x>=DV-1 && x<DV+3){ x=DV+3; continue; }
           if(deskView && ((sh===1 && x>=DV+16) || (sh===3 && x>=DV+20))){ x++; continue; }      // a little breathing room on two shelves
           const w=1+((k*5)%3), h=7+((k*7)%5); if(deskView && x+w>DV-1 && x<DV) { x=DV+3; continue; }
-          R(x,h0-h,w,h,BK[k%BK.length]); if(w>1) R(x,h0-h+2,w,1,'#00000033'); x+=w+((k%4)===0?1:0); k++;
+          Rb(x,h0-h,w,h,BK[k%BK.length]); if(w>1) Rb(x,h0-h+2,w,1,'#00000033'); x+=w+((k%4)===0?1:0); k++;
         }
       }
-      if(deskView){ R(DV+19,-40,6,6,'#c97c48'); R(DV+19,-40,6,1,'#d58a52'); R(DV+21,-46,1,6,'#4f8a5a'); R(DV+23,-48,1,8,'#4f8a5a'); R(DV+19,-45,2,1,'#6fae5f'); R(DV+24,-47,2,1,'#6fae5f');   // a small plant and a framed photo standing in the gaps
-                    R(DV+23,-15,7,9,'#2b2b30'); R(DV+24,-14,5,7,'#e8dcc0'); R(DV+25,-12,3,3,'#f2c9a0'); R(DV+25,-9,3,2,'#3d4f6e'); }
-      if(kit.globe){ R(39,-60,10,9,C.ol); R(40,-59,8,7,'#3f7fb8'); R(41,-58,3,2,'#4f9d57'); R(44,-56,3,3,'#4f9d57'); R(41,-55,2,1,'#4f9d57'); R(42,-59,2,1,'#8fc4ee'); R(43,-52,2,2,'#c9a050'); R(41,-50,6,1,'#c9a050'); }
-      if(kit.trophy){ const G='#ffd23f', GS='#c99a1c'; R(28,-72,8,5,C.ol); R(29,-71,6,3,G); R(30,-68,4,1,GS); R(27,-71,1,2,G); R(36,-71,1,2,G); R(31,-67,2,3,GS); R(29,-64,6,2,C.ol); R(30,-64,4,1,G); R(30,-70,1,2,'#fff6c8'); }
-      R(41,-71,8,9,'#b0683a'); R(40,-71,10,2,'#d58a52'); R(43,-78,1,7,'#4f8a5a'); R(45,-80,1,9,'#4f8a5a'); R(41,-76,2,1,'#6fae5f'); R(46,-77,3,1,'#6fae5f'); R(44,-82,2,2,'#6fae5f');
-      // clock above his head, picture on the wall under the bookshelf
+      if(deskView){ Rb(DV+19,-40,6,6,'#c97c48'); Rb(DV+19,-40,6,1,'#d58a52'); Rb(DV+21,-46,1,6,'#4f8a5a'); Rb(DV+23,-48,1,8,'#4f8a5a'); Rb(DV+19,-45,2,1,'#6fae5f'); Rb(DV+24,-47,2,1,'#6fae5f');   // a small plant and a framed photo standing in the gaps
+                    Rb(DV+23,-15,7,9,'#2b2b30'); Rb(DV+24,-14,5,7,'#e8dcc0'); Rb(DV+25,-12,3,3,'#f2c9a0'); Rb(DV+25,-9,3,2,'#3d4f6e'); }
+      if(kit.globe){ Rb(39,-60,10,9,C.ol); Rb(40,-59,8,7,'#3f7fb8'); Rb(41,-58,3,2,'#4f9d57'); Rb(44,-56,3,3,'#4f9d57'); Rb(41,-55,2,1,'#4f9d57'); Rb(42,-59,2,1,'#8fc4ee'); Rb(43,-52,2,2,'#c9a050'); Rb(41,-50,6,1,'#c9a050'); }
+      if(kit.trophy){ const G='#ffd23f', GS='#c99a1c'; Rb(28,-72,8,5,C.ol); Rb(29,-71,6,3,G); Rb(30,-68,4,1,GS); Rb(27,-71,1,2,G); Rb(36,-71,1,2,G); Rb(31,-67,2,3,GS); Rb(29,-64,6,2,C.ol); Rb(30,-64,4,1,G); Rb(30,-70,1,2,'#fff6c8'); }
+      Rb(41,-71,8,9,'#b0683a'); Rb(40,-71,10,2,'#d58a52'); Rb(43,-78,1,7,'#4f8a5a'); Rb(45,-80,1,9,'#4f8a5a'); Rb(41,-76,2,1,'#6fae5f'); Rb(46,-77,3,1,'#6fae5f'); Rb(44,-82,2,2,'#6fae5f');
+      // clock above his head
       RO(-5,-34,10,10,C.frame); R(-4,-33,8,8,C.clockFace);
       { const a=t*0.5; for(let i=1;i<=3;i++) R(Math.round(0+Math.sin(a)*i),Math.round(-29-Math.cos(a)*i),1,1,'#222'); R(0,-29,1,1,'#222'); R(0,-30,1,1,'#222'); }
-      RO(30,8,14,11,C.frame); R(31,9,12,9,C.sky); R(31,14,12,4,C.hill); R(38,10,2,2,'#ffe27a');
     }
 
     // 2a. big screens only: furniture and decoration for the empty parts of the room
