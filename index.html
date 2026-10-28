@@ -1078,7 +1078,7 @@ body.recap #bar{display:none}
     <button id="muteBtn" aria-label="Sound on" aria-pressed="false">♪</button>
     <div id="menu" hidden>
       <p class="mlbl">GAME</p>
-      <button id="mCall">Daily Dig <small>real or fake? 8 true, 2 fake</small></button>
+      <button id="mCall">Daily Dig <small>real or fake? 5 true, 2 fake</small></button>
       <button id="mBlank">Fill the Blank <small>20 s each</small></button>
       <button id="mPol">Politics <small>hard-to-believe governing</small></button>
       <button id="mPractice">Practice set <small>doesn't count · pick a mode</small></button>
@@ -1240,8 +1240,10 @@ const STORIES = [
 /* ---------- Helpers ---------- */
 const $ = id => document.getElementById(id);
 const START = Date.UTC(2026, 9, 27);
-const ROUNDS_REAL = 8, ROUNDS_FAKE = 2, ROUND_LEN = 10;   // always exactly 2 fakes
+const ROUNDS_REAL = 8, ROUNDS_FAKE = 2, ROUND_LEN = 10;   // practice: 8 true + 2 fake
+const DIG_REAL = 5;                                       // Daily Dig: 5 true + 2 fake
 const CALL_PTS = 100, FOOLED_PTS = -75, PIN_PTS = 400;
+let PK = 1;   // per-true-story points multiplier: keeps a Daily Dig's top score the same however many true stories it has (8 true = x1)
 
 function pad(n){return String(n).padStart(2,'0');}
 function keyOf(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
@@ -1353,13 +1355,13 @@ function shiftFC(g,dx){   // shift any GeoJSON (collection, feature or bare geom
   if(g.type==='Feature') return {type:'Feature',properties:g.properties,geometry:geom(g.geometry)};
   return geom(g);
 }
-function pinPoints(d){return Math.round(PIN_PTS*Math.exp(-Math.max(0,d-75)/2600));}  // ≤75 km 400 · 300 km 367 · 500 km 340 · 1000 km 280 · 2000 km 191 · 5000 km 60
+function pinPoints(d){return Math.round(PK*PIN_PTS*Math.exp(-Math.max(0,d-75)/2600));}  // ≤75 km 400 · 300 km 367 · 500 km 340 · 1000 km 280 · 2000 km 191 · 5000 km 60
 /* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
 const PIN_SECS=20, PIN_GRACE=12;
 function pinMult(sec){ return Math.max(0.6,Math.min(1,1-(sec-PIN_GRACE)*0.05)); }
 /* Bonus for a fast, fairly accurate pin (true call only): up to +60. Full if within 150 km in 6 s or less; fades to nothing at 800 km or 11 s. */
 const PIN_BONUS=60;
-function pinBonus(d,sec){ return Math.round(PIN_BONUS*Math.max(0,Math.min(1,(11-sec)/5))*Math.max(0,Math.min(1,(800-d)/650))); }
+function pinBonus(d,sec){ return Math.round(PK*PIN_BONUS*Math.max(0,Math.min(1,(11-sec)/5))*Math.max(0,Math.min(1,(800-d)/650))); }
 let PIN_RAF=0;
 function runPinTimer(){
   cancelAnimationFrame(PIN_RAF);
@@ -2488,9 +2490,9 @@ function startGame(mode, kind){
     // built-in fallback: one shared shuffle so the two modes never show the same story
     const reals=shuffle(STORIES.filter(s=>s.real&&s.h&&s.cat!=='pol'&&!s._daily&&!s._arch),rng(hash(todayKey())));
     const fakes=shuffle(STORIES.filter(s=>!s.real&&s.cat!=='pol'&&!s._daily&&!s._arch),rng(hash(todayKey()+'f')));
-    const spare=reals.slice(ROUNDS_REAL).filter(s=>s.h2);
+    const spare=reals.slice(DIG_REAL).filter(s=>s.h2);
     rounds = blank ? spare.slice(0,ROUND_LEN)
-                   : shuffle(reals.slice(0,ROUNDS_REAL).concat(fakes.slice(0,ROUNDS_FAKE)),rng(hash(todayKey()+'o')));
+                   : shuffle(reals.slice(0,DIG_REAL).concat(fakes.slice(0,ROUNDS_FAKE)),rng(hash(todayKey()+'o')));
   } else { rounds = blank ? pickBlankRounds(r) : pickRounds(r,pol); markPractised(rounds); }   // practice never uses today's stories
   if(daily && DAILY && blank && rounds){                 // never show a Real or Fake story again in Fill the Blank
     const seen=new Set((DAILY.call||[]).concat(DAILY.politics||[]).map(x=>x.src).filter(Boolean));
@@ -2498,9 +2500,10 @@ function startGame(mode, kind){
     if(fresh.length>=5) rounds=fresh;
   }
   const reals=rounds.filter(x=>x.real).length;
+  PK = (!blank && !pol && reals>0) ? Math.max(1, ROUNDS_REAL/reals) : 1;
   S = {mode, kind:KIND, rounds, i:0, results:[], phase:'call', score:0,
-       maxScore: blank ? rounds.length*BLANK_MAX : reals*(CALL_PTS+PIN_PTS+PIN_BONUS)+(rounds.length-reals)*FAKE_PTS,
-       maxJaw: blank ? rounds.length*BLANK_MAX : reals*(CALL_PTS+PIN_PTS+PIN_BONUS)};
+       maxScore: blank ? rounds.length*BLANK_MAX : Math.round(reals*PK*(CALL_PTS+PIN_PTS+PIN_BONUS))+(rounds.length-reals)*FAKE_PTS,
+       maxJaw: blank ? rounds.length*BLANK_MAX : Math.round(reals*PK*(CALL_PTS+PIN_PTS+PIN_BONUS))};
   S.jawK = 1;                                        // one point = the same jaw drop in every mode
   if(mode==='back' && BACK) S.backDate=BACK.date;
   S.sig = hash(rounds.map(x=>x.h||x.h2||'').join('|'));
@@ -2559,7 +2562,7 @@ function resultClass(x){
   if(x.blank) return x.c>=0.999?'ok':x.c>=0.6?'meh':x.c>=0.3?'warm':'no';
   if(!x.real) return x.callOk?'fake':'fooled';
   if(!x.callOk) return 'no';
-  const f=(x.pinPts||0)/PIN_PTS;
+  const f=(x.pinPts||0)/(PK*PIN_PTS);
   return f>=0.75?'ok':f>=0.25?'meh':'warm';
 }
 const CLASS_EMOJI={ok:'🟩',meh:'🟨',warm:'🟧',no:'🟥',fake:'🟦',fooled:'⬛'};
@@ -2647,7 +2650,7 @@ function jawPoints(){
 }
 /* Time to read first (2 s + 0.35 s per word), then −10 points a second, floor 60. */
 function readGrace(st){ return 2+0.35*(st.h||'').split(/\s+/).length; }
-function speedPts(sec,st){ return Math.round(CALL_PTS*Math.max(0.6,Math.min(1,1-(sec-readGrace(st))/10))); }
+function speedPts(sec,st){ return Math.round(PK*CALL_PTS*Math.max(0.6,Math.min(1,1-(sec-readGrace(st))/10))); }
 let SPEED_RAF=0;
 function runSpeed(){
   cancelAnimationFrame(SPEED_RAF);
@@ -2659,7 +2662,7 @@ function runSpeed(){
     if(!$('menu').hidden || !$('sheet').hidden || !$('wardrobe').hidden) S.t0+=now-lastT;          // the clock stops while the menu is open
     lastT=now;
     const st=S.rounds[S.i], sec=(now-S.t0)/1000, pts=speedPts(sec,st);
-    bar.style.width=(pts/CALL_PTS*100)+'%'; lab.textContent='+'+pts;
+    bar.style.width=(pts/(PK*CALL_PTS)*100)+'%'; lab.textContent='+'+pts;
     SPEED_RAF=requestAnimationFrame(tick);
   };
   tick();
@@ -2839,7 +2842,7 @@ function submitGuess(timedOut){
   const bonus = guessLL && S.cur.callOk ? pinBonus(d,sec) : 0;
   pts += bonus; S.cur.pinBonus = bonus;
   S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
-  Sound.play('lock',pts/PIN_PTS); if(pts>0) Sound.play('jawDown');
+  Sound.play('lock',pts/(PK*PIN_PTS)); if(pts>0) Sound.play('jawDown');
   let actual = L.latLng(st.lat,st.lng);
   if(guessLL) actual = L.latLng(st.lat, st.lng + 360*Math.round((guessLL.lng-st.lng)/360));   // the copy of the world nearest the pin, so the line never wraps the long way round
   if(guessLL){
