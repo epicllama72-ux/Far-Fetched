@@ -1723,8 +1723,8 @@ const Scene = (function(){
     }
     if(vis(-70,30)){
       // night window with a city skyline: big, and set low in the wall
-      { const sc=deskView?1.45:1, Z=v=>Math.round(v*sc);        // big screens get a bigger window; on phones it sits lower, its sill level with the bottom of his head
-        const GW=Z(30), GH=Z(38), GB=deskView?-8:9, GY=GB-GH, GX=deskView?-26-GW:Math.max(-56,Math.min(-48,4-cx));
+      { const sc=deskView?1.45:1, Z=v=>Math.round(v*sc);        // big screens get a bigger window; it sits low, its sill level with the bottom of his head
+        const GW=Z(30), GH=Z(38), GB=9, GY=GB-GH, GX=deskView?-26-GW:Math.max(-56,Math.min(-48,4-cx));
         RO(GX-2,GY-2,GW+4,GH+4,'#6b4430');
         for(let r=0;r<GH;r++) R(GX,GY+r,GW,1,mix('#14203f','#3c4f86',r/GH));
         [[3,3],[11,9],[19,2],[24,12],[8,18],[27,5]].forEach(([dx,dy],i)=>{ if((Math.floor(t*1.3+i*1.7))%5) R(GX+Z(dx),GY+Z(dy),1,1,'#e8eefc'); });
@@ -1737,7 +1737,7 @@ const Scene = (function(){
         });
         R(GX+GW/2-1,GY,2,GH,'#6b4430'); R(GX,GY+Math.round(GH*0.42),GW,2,'#6b4430'); R(GX-3,GB+2,GW+6,2,'#8c5c3a'); }
       // bookshelf
-      const SH=deskView?0:17, Rb=(x,y,w,h,c)=>R(x,y+SH,w,h,c), ROb=(x,y,w,h,c)=>RO(x,y+SH,w,h,c);   // on phones the bookcase sits lower, its base level with the bottom of his head
+      const SH=17, Rb=(x,y,w,h,c)=>R(x,y+SH,w,h,c), ROb=(x,y,w,h,c)=>RO(x,y+SH,w,h,c);   // the bookcase sits low, its base level with the bottom of his head
       const BW=deskView?58:28, DV=24+BW/2-1;      // big screens get a two-bay bookcase twice as wide
       ROb(24,-62,BW,58,'#5a3a26'); Rb(25,-61,BW-2,56,'#2c1c14'); if(deskView) Rb(DV,-61,2,56,'#5a3a26');
       const BK=['#b0413e','#3e7cb0','#d9a441','#4f8a5a','#8a5aa8','#c96b3a','#e0d6bf'];
