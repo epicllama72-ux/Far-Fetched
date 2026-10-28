@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Far-Fetched</title>
 <meta name="description" content="A daily game: real or fake weird news headline? If it's real, pin where it happened. Get fooled and you lose points.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Far-Fetched">
+<meta property="og:title" content="Far-Fetched · How far did your jaw drop?">
+<meta property="og:description" content="10 weird headlines a day. Real or fake? If it's real, find where it happened. Every point drops his jaw deeper.">
+<meta property="og:url" content="https://epicllama72-ux.github.io/Far-Fetched/">
+<meta property="og:image" content="https://epicllama72-ux.github.io/Far-Fetched/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Far-Fetched · How far did your jaw drop?">
+<meta name="twitter:description" content="10 weird headlines a day. Real or fake? If it's real, find where it happened.">
+<meta name="twitter:image" content="https://epicllama72-ux.github.io/Far-Fetched/og.png">
 <style>
 /* required styles */
 
@@ -828,6 +840,38 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #finalLine b{font-weight:400;color:var(--accent)}
 #finalScoreLine{margin:0 0 14px;font:24px/1 var(--vt);color:var(--dim)}
 #finalScoreLine b{font-weight:400;color:var(--pink);font-size:30px}
+#summary{margin:6px 0 12px}
+#vsLine{margin:8px 0 10px;padding:8px 10px;border:2px solid var(--accent);background:#14120a;display:flex;flex-direction:column;gap:5px}
+#vsLine .vsH{font:8px/1.4 var(--px);letter-spacing:.14em;color:var(--accent)}
+#vsLine .vsRow{display:grid;grid-template-columns:7em 1fr auto;gap:8px;align-items:center;font:19px/1 var(--vt);color:#dfe4ee}
+#vsLine .vsRow span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#vsLine .vsRow i{display:block;height:10px;background:var(--accent);min-width:3px}
+#vsLine .vsRow.them i{background:#7fe3ff}
+#vsLine .vsRow b{font-weight:400}
+#crowdTop{margin:6px 0 8px;font:19px/1.15 var(--vt);color:#c3cad8}
+#crowdTop b{font-weight:400;color:var(--accent)}
+#recapList .crowd{display:block;font-size:16px;color:#7fe3ff;margin-top:2px}
+#backList{display:flex;flex-direction:column;gap:6px;max-height:40vh;overflow:auto;padding-left:10px}
+#backList button{font-size:19px!important;padding:6px 10px!important}
+.challenge{display:block;margin-top:6px;color:var(--accent)}
+@media not all and (min-width:1100px) and (min-height:600px){ body.returned #final{margin-top:max(0px,calc(100vh - 330px))} }
+#summary canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rendering:crisp-edges;background:#0b0e14;border:1px solid #232a38}
+#sumRank{margin:8px 0 2px;font:9px/1.4 var(--px);letter-spacing:.16em;color:var(--cyan);text-transform:uppercase}
+#sumRank b{font-weight:400;color:var(--accent)}
+.slbl{margin:16px 0 6px;font:8px/1 var(--px);letter-spacing:.18em;color:#9aa3b5;display:flex;gap:10px;align-items:center}
+.slbl span{color:#5d6577}
+.slbl::after{content:'';flex:1;border-top:1px dashed #2d3444}
+#tiers{list-style:none;margin:0;padding:0}
+#tiers li{display:grid;grid-template-columns:24px auto 1fr;column-gap:10px;align-items:center;padding:7px 6px;border-bottom:1px solid #222938;color:#7d8597;font:18px/1.1 var(--vt)}
+#tiers li .ti{font-size:18px;text-align:center}
+#tiers li .tr{font-size:17px;color:#8a93a6;white-space:nowrap;min-width:5.6em}
+#tiers li .tn{display:block}
+#tiers li .tl{display:block;font-size:16px;color:#69718a}
+#tiers li.me .tl{color:#c3cad8}
+#tiers li b{font-weight:400;color:#c3cad8}
+#tiers li.me{background:#171c27;color:#eef0f4;box-shadow:inset 3px 0 0 var(--accent)}
+#tiers li.me b{color:var(--accent)}
+#tiers li.me .tr{color:var(--accent)}
 #grid{display:flex;gap:6px;margin:0 0 10px}
 .sq{width:34px;height:34px;display:grid;place-items:center;font:24px/1 var(--vt);color:#0a0c10;border:2px solid var(--ink);box-shadow:0 0 0 1px #3a4050}
 .sq.ok{background:var(--good)}.sq.no{background:var(--bad)}.sq.meh{background:#d9a441}.sq.fake{background:#5a6070;color:#eef0f4}
@@ -1012,6 +1056,8 @@ body.recap #bar{display:none}
       <button id="mPol">Politics <small>hard-to-believe governing</small></button>
       <button id="mPractice">Practice set <small>doesn't count</small></button>
       <button id="mBoard">Leaderboard <small>today's deepest digs</small></button>
+      <button id="mBack" hidden>Back issues <small>earlier papers · no streak</small></button>
+      <div id="backList" hidden></div>
       <p class="mlbl">SOUND</p>
       <button id="mAmb">Background newsroom <small id="mAmbState">On</small></button>
       <p class="mlbl">YOUR RECORD</p>
@@ -1076,6 +1122,15 @@ body.recap #bar{display:none}
     <p id="finalLine"></p>
     <p id="finalScoreLine"></p>
     <div id="grid"></div>
+    <div id="summary">
+      <p id="vsLine" hidden></p>
+      <p id="crowdTop" hidden></p>
+      <div id="sumBoard" hidden><canvas id="sumCurve" width="320" height="110" aria-label="Today's scores"></canvas><p id="sumRank"></p></div>
+      <p class="slbl">YOUR DIG <span>deeper = more points</span></p>
+      <canvas id="digLog" width="320" height="150" aria-label="Points per headline"></canvas>
+      <p class="slbl">THE SCALE</p>
+      <ol id="tiers"></ol>
+    </div>
     <details id="recap"><summary id="recapSum">▸ All stories + sources</summary><ol id="recapList"></ol></details>
     <p id="nextEd" hidden></p>
     <p id="comeBack"></p>
@@ -1151,7 +1206,9 @@ function pad(n){return String(n).padStart(2,'0');}
 function keyOf(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
 function todayKey(){return keyOf(new Date());}
 function yesterdayKey(){const d=new Date();d.setDate(d.getDate()-1);return keyOf(d);}
+function issueNumber(date){ const p=date.split('-').map(Number); return Math.floor((Date.UTC(p[0],p[1]-1,p[2])-START)/864e5)+1; }
 function dayNumber(){
+  if(S && S.mode==='back' && S.backDate) return issueNumber(S.backDate);
   if(DAILY && DAILY.date){ const p=DAILY.date.split('-').map(Number); return Math.floor((Date.UTC(p[0],p[1]-1,p[2])-START)/864e5)+1; }
   const d=new Date();return Math.floor((Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())-START)/864e5)+1;
 }
@@ -2108,12 +2165,13 @@ function startGame(mode, kind){
   if(kind) KIND = kind;
   try{ localStorage.setItem('ff_kind',KIND); }catch(e){}
   stopTimer(); hideToast(); $('sheet').hidden=true;
-  RECAP_ON=false; document.body.classList.remove('recap'); Scene.endRecap();
+  RECAP_ON=false; document.body.classList.remove('recap','returned'); Scene.endRecap();
   const daily = mode === 'daily';
   const blank = KIND === 'blank', pol = KIND === 'pol';
   const r = daily ? rng(hash(todayKey()+KIND)) : Math.random;
   let rounds;
-  if(daily && DAILY && (!pol || (DAILY.politics && DAILY.politics.length))) rounds = DAILY[blank?'blank':pol?'politics':'call'].slice();
+  if(mode==='back' && BACK) rounds = (BACK[blank?'blank':pol?'politics':'call']||BACK.call||[]).slice();
+  else if(daily && DAILY && (!pol || (DAILY.politics && DAILY.politics.length))) rounds = DAILY[blank?'blank':pol?'politics':'call'].slice();
   else if(daily && pol) rounds = pickRounds(rng(hash(todayKey()+'pol')),true,true);
   else if(daily){
     // built-in fallback: one shared shuffle so the two modes never show the same story
@@ -2133,6 +2191,7 @@ function startGame(mode, kind){
        maxScore: blank ? rounds.length*BLANK_MAX : reals*(CALL_PTS+PIN_PTS)+(rounds.length-reals)*FAKE_PTS,
        maxJaw: blank ? rounds.length*BLANK_MAX : reals*(CALL_PTS+PIN_PTS)};
   S.jawK = 1;                                        // one point = the same jaw drop in every mode
+  if(mode==='back' && BACK) S.backDate=BACK.date;
   S.sig = hash(rounds.map(x=>x.h||x.h2||'').join('|'));
   let pending=null;
   if(daily){
@@ -2194,6 +2253,13 @@ function resultClass(x){
 }
 const CLASS_EMOJI={ok:'🟩',meh:'🟨',warm:'🟧',no:'🟥',fake:'🟦',fooled:'⬛'};
 const CLASS_TITLE={ok:'Great',meh:'Good',warm:'Far off',no:'Missed',fake:'Caught the fake',fooled:'Fooled'};
+/* share grid: one square per headline. Pins by distance: 🎯 <75 km · 🟩 <500 · 🟨 <1,500 · 🟧 further · ⬛ no pin; 🟦 caught fake, 🟥 fooled */
+function shareEmoji(x){
+  if(x.blank) return CLASS_EMOJI[resultClass(x)];
+  if(!x.real) return x.callOk?'🟦':'🟥';
+  if(x.dist==null) return '⬛';
+  return x.dist<75?'🎯':x.dist<500?'🟩':x.dist<1500?'🟨':'🟧';
+}
 
 function renderDots(){
   $('dots').innerHTML = S.rounds.map((_,i)=>{
@@ -2298,7 +2364,10 @@ function showRound(shown,quiet,gate){
   $('kicker').classList.remove('bad');
   if(gate){
     // nothing is shown, and no clock runs, until the player says they are ready
-    $('headline').innerHTML='<span class="fakeplace" style="font-size:.78em;line-height:1.05;display:block">Guess what\'s real, then deduce where it happened. The clock starts when the headline appears.</span>';
+    $('headline').innerHTML='<span class="fakeplace" style="font-size:.78em;line-height:1.05;display:block">'
+      + (vsLive() && !S.results.length ? '<b class="challenge">'+VS.name+' dropped his jaw '+VS.m.toFixed(1)+' m today. Beat it.</b>' : '')
+      + (S.mode==='back' && !S.results.length ? '<b class="challenge">Back issue #'+dayNumber()+' · '+fmtDate(S.backDate)+'</b>' : '')
+      + 'Guess what\'s real, then deduce where it happened. The clock starts when the headline appears.</span>';
     $('speed').hidden=true; $('feedback').hidden=true; $('mapWrap').hidden=true;
     setBar('start');
     const b=$('btnStart'); b.disabled=false; b.textContent="I'm ready";
@@ -2504,6 +2573,57 @@ function runCountdown(){
   tick(); CD_T=setInterval(tick,1000);
 }
 
+/* ---------- Run summary: tiers, dig log, today's curve ---------- */
+const TIERS=[
+  {f:0,    icon:'🥱', name:'Unfazed',          line:'Old news. The jaw barely twitched.'},
+  {f:0.35, icon:'🤨', name:'Eyebrow Raised',   line:'A few of those got you.'},
+  {f:0.55, icon:'☕', name:'Spat Out My Coffee', line:'That one\'s going in the group chat.'},
+  {f:0.70, icon:'😱', name:'Gobsmacked',       line:'Through the floorboards and still going.'},
+  {f:0.85, icon:'🌋', name:'Earth-Shattering', line:'Jaw meets magma. Legendary reading.'}];
+function tierOf(total,max){ let k=0; TIERS.forEach((t,i)=>{ if(total>=Math.round(t.f*max/50)*50) k=i; }); return k; }
+function renderSummary(total,max,mineM){
+  const k=tierOf(total,max), cut=TIERS.map(t=>Math.round(t.f*max/50)*50);
+  $('tiers').innerHTML=TIERS.map((t,i)=>{
+    const lo=cut[i], hi=i<TIERS.length-1?cut[i+1]-1:max;
+    return '<li'+(i===k?' class="me"':'')+'><span class="ti">'+t.icon+'</span><span class="tr">'+(i===TIERS.length-1?lo+'+':lo+'–'+hi)+'</span><span><b class="tn">'+t.name+'</b><span class="tl">'+t.line+'</span></span></li>';
+  }).join('');
+  drawDigLog();
+  $('sumBoard').hidden=true;
+  if(S.mode!=='daily') return;
+  loadBoard(S.kind).then(b=>{
+    if(!b || !b.rows) return;
+    const rows=b.rows.slice();
+    if(b.me && !rows.some(r=>r.id===b.me)) rows.push({id:b.me,m:mineM,score:total,ans:answersOf(S.results)});
+    renderCrowd(rows);
+    if(rows.length<3) return;
+    const others=rows.filter(r=>r.id!==b.me);
+    const below=others.filter(r=>r.m<mineM).length, ties=others.filter(r=>r.m===mineM).length;
+    const pct=Math.round(100*(below+ties*0.5)/Math.max(1,others.length));
+    $('sumBoard').hidden=false;
+    drawCurve(rows, mineM, $('sumCurve'));
+    $('sumRank').innerHTML='Deeper than <b>'+pct+'%</b> of today\'s '+rows.length+' players';
+  }).catch(()=>{});
+}
+/* one line per headline, dropping as far as its points went (fooled ones stay up top, in red) */
+function drawDigLog(){
+  const cv=$('digLog'), g=cv.getContext('2d'), W=cv.width, H=cv.height, n=S.results.length;
+  g.imageSmoothingEnabled=false; g.fillStyle='#0b0e14'; g.fillRect(0,0,W,H);
+  const top=14, bot=H-20, left=30, right=W-10, maxP=Math.max(500,...S.results.map(x=>x.callPts+(x.pinPts||0)));
+  const Y=p=>Math.round(top+(bot-top)*Math.max(0,p)/maxP);
+  g.font='10px monospace'; g.textAlign='right';
+  for(let p=0;p<=maxP;p+=100){ g.fillStyle='#1b2130'; for(let x=left;x<right;x+=4) g.fillRect(x,Y(p),2,1); g.fillStyle='#5d6577'; g.fillText(p?'+'+p:'0',left-4,Y(p)+3); }
+  const COL={ok:'#4fbf6a',meh:'#d9a441',warm:'#e07a3a',no:'#ff5d73',fake:'#4a8fe0',fooled:'#ff5d73'};
+  g.textAlign='center';
+  S.results.forEach((x,i)=>{
+    const cx=Math.round(left+12+(right-left-24)*(n>1?i/(n-1):0.5)), p=x.callPts+(x.pinPts||0), c=resultClass(x), col=COL[c]||'#8a91a3';
+    g.fillStyle='#3a4357'; g.fillRect(cx,top,1,Y(p)-top);
+    g.fillStyle=col;
+    if(c==='fooled'){ g.fillRect(cx-3,top-3,7,7); g.fillStyle='#0b0e14'; g.fillRect(cx-1,top-1,3,3); }
+    else { g.fillRect(cx-3,Y(p)-3,7,7); g.fillStyle='#ffffff55'; g.fillRect(cx-3,Y(p)-3,7,1); }
+    g.fillStyle='#8a91a3'; g.fillText(String(i+1),cx,H-6);
+  });
+}
+
 function finish(restored){
   stopTimer(); cancelAnimationFrame(SPEED_RAF);
   $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','answered');
@@ -2513,12 +2633,12 @@ function finish(restored){
   const total = sumPts(S.results), max = S.maxScore;
   S.score = total; renderDots();
   const inf = Scene.info();
-  $('finalKicker').textContent = (S.mode==='daily' ? 'Daily #'+dayNumber()+' complete' : 'Practice complete')+' · '+modeName(S.kind);
+  $('finalKicker').textContent = (S.mode==='daily' ? 'Daily #'+dayNumber()+' complete' : S.mode==='back' ? 'Back issue #'+dayNumber()+' complete' : 'Practice complete')+' · '+modeName(S.kind);
   $('finalLine').innerHTML = inf.zone==='NOWHERE' ? 'His jaw stayed <b>shut</b>.' : inf.zone==='BEHIND THE PAPER' ? 'Jaw dropped <b>'+inf.m+'&nbsp;m</b>, still behind the paper.' : 'Jaw dropped <b>'+inf.m+'&nbsp;m</b> to <b>'+inf.zone.replace(/ /g,'&nbsp;')+'</b>.';
   $('finalScoreLine').innerHTML = 'Score <b>'+fmtPts(total)+'</b> / '+max;
   S.total=total; S.max=max;
   const cls=S.results.map(resultClass);
-  S.shareLines=[cls.map(c=>CLASS_EMOJI[c]).join('')].concat(digEmoji());
+  S.shareLines=[S.results.map(shareEmoji).join('')];
   $('grid').innerHTML = cls.map(c=>'<span class="sq '+c+'" title="'+CLASS_TITLE[c]+'"></span>').join('');
   $('recapSum').textContent='▸ All '+S.results.length+' stories + sources';
   $('recapList').innerHTML = S.results.map((x,i)=>{
@@ -2536,7 +2656,11 @@ function finish(restored){
   $('comeBack').innerHTML = daily && todo ? '<button class="linkish" id="tryOther">'+modeName(todo)+' is waiting →</button>' : '';
   if(daily && todo) $('tryOther').onclick=()=>startGame('daily',todo);
   $('final').hidden=false;
-  if(!restored) startRecap(true); 
+  S.finalM=+inf.m; S.finalZone=inf.zone;
+  renderSummary(total,max,+inf.m);
+  renderVs();
+  if(S.mode==='back' && S.backDate && !restored){ store('ff_back:'+S.backDate+':'+S.kind,{m:+inf.m,score:total}); }
+  if(!restored) startRecap(true);
   aim(0.74);
 
   if(daily && !restored){
@@ -2552,8 +2676,15 @@ function finish(restored){
     if(+inf.m>bestM()){ store('ff_best',{m:+inf.m,zone:inf.zone}); }
     Scene.setBest(bestM());
   }
-  if(daily) postScore({kind:S.kind, m:+inf.m, score:total, zone:inf.zone});
-  setTimeout(renderDigCard,2600);
+  if(daily) postScore({kind:S.kind, m:+inf.m, score:total, zone:inf.zone, ans:answersOf(S.results)});
+  if(restored){
+    // coming back to a finished day: the room looks like it did before you played, with your run summarised
+    renderDigCard();
+    Scene.reset(); Scene.setPaper(false,true);
+    setTimeout(()=>Scene.setFocus(isDesk()?0.6:0.28),80);   // frame the man at his table above the summary
+    S.returned=true; document.body.classList.add('returned');
+    setTimeout(()=>{ $('depth').textContent=inf.m; },60);
+  } else setTimeout(renderDigCard,2600);
   updateStreak(); renderStats();
 }
 
@@ -2587,6 +2718,7 @@ function endRecapUI(skipped){
 function startRecap(auto){
   if(!S || !S.results.length) return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){ if(auto) Sound.play('fanfare'); return; }
+  if(S.returned){ Scene.restore(jawPoints()*S.jawK); Scene.setPaper(true,true); S.returned=false; document.body.classList.remove('returned'); }   // replaying from the returning view
   const list=recapList();
   RECAP_ON=true; document.body.classList.add('recap'); closeMenu(); $('sheet').hidden=true;
   Scene.playRecap(list, 5+1.9*list.length, ()=>endRecapUI());
@@ -2598,9 +2730,92 @@ function updateStreak(){
   $('streak').textContent = n ? n+'-DAY STREAK' : '';
 }
 
+/* ---------- Friend challenge: the share link carries your dig; a friend who opens it is told to beat it ---------- */
+function siteUrl(){ return window.claude ? location.href.split('#')[0] : location.origin+location.pathname; }
+function shareUrl(){
+  if(S.mode!=='daily' || window.claude) return siteUrl();
+  const v=[playerName(), (S.finalM||0).toFixed(1), Math.round(S.total), dayKey(), S.kind].map(x=>String(x).replace(/~/g,'-')).join('~');
+  return siteUrl()+'?vs='+encodeURIComponent(v);
+}
+const VS=(()=>{ try{
+  const v=new URLSearchParams(location.search).get('vs'); if(!v) return null;
+  const [name,m,score,day,kind]=v.split('~');
+  if(!name || isNaN(+m)) return null;
+  return {name:name.replace(/[<>&]/g,'').slice(0,24), m:+m, score:+score||0, day:day||'', kind:kind||'call'};
+}catch(e){ return null; } })();
+function vsLive(){ return VS && S && S.mode==='daily' && S.kind===VS.kind && VS.day===dayKey() && VS.name!==playerName(); }
+function renderVs(){
+  const el=$('vsLine'); if(!el) return;
+  if(!vsLive()){ el.hidden=true; return; }
+  const me=S.finalM||0, them=VS.m, w=Math.max(me,them,0.1);
+  const verdict = me>them ? 'You win. Send it back.' : me<them ? VS.name+' wins this one.' : 'Dead heat.';
+  el.hidden=false;
+  el.innerHTML='<span class="vsH">CHALLENGE · '+verdict+'</span>'
+    +'<span class="vsRow"><span>You</span><i style="width:'+Math.round(100*me/w)+'%"></i><b>'+me.toFixed(1)+' m</b></span>'
+    +'<span class="vsRow them"><span>'+VS.name+'</span><i style="width:'+Math.round(100*them/w)+'%"></i><b>'+them.toFixed(1)+' m</b></span>';
+}
+
+/* ---------- Back issues: earlier editions, playable any time (no streak, no leaderboard) ---------- */
+let ISSUES=[];
+function loadIssues(){
+  return fetch('data/issues.json',{cache:'no-cache'}).then(r=>r.ok?r.json():[]).then(d=>{ ISSUES=Array.isArray(d)?d:[]; renderIssues(); }).catch(()=>{});
+}
+function renderIssues(){
+  const past=ISSUES.filter(x=>x && x.date && x.date<dayKey());
+  $('mBack').hidden=!past.length;
+  $('backList').innerHTML=past.map(x=>{
+    const done=load('ff_back:'+x.date+':call');
+    return '<button data-d="'+x.date+'">#'+issueNumber(x.date)+' · '+fmtDate(x.date)+(done?' <small>✓ '+done.m.toFixed(1)+' m</small>':'')+'</button>';
+  }).join('');
+  $('backList').querySelectorAll('button').forEach(b=>b.onclick=()=>openBackIssue(b.dataset.d));
+}
+let BACK=null;
+async function openBackIssue(date){
+  try{
+    const r=await fetch('data/'+date+'.json',{cache:'no-cache'}); if(!r.ok) return;
+    BACK=await r.json(); BACK.date=date;
+    closeMenu(); startGame('back', KIND==='blank'?'blank':KIND==='pol'&&BACK.politics&&BACK.politics.length?'pol':'call');
+  }catch(e){}
+}
+
+/* ---------- Crowd stats: how everyone else did on each story today ---------- */
+function crowdFor(rows,i,st){
+  const a=rows.map(r=>r.ans&&r.ans[i]).filter(Boolean);
+  if(a.length<3) return '';
+  if(st.real===false){ const f=a.filter(x=>!x[0]).length; return Math.round(100*f/a.length)+'% were fooled'; }
+  const right=a.filter(x=>x[0]).length, d=a.map(x=>x[1]).filter(x=>typeof x==='number').sort((p,q)=>p-q);
+  const med=d.length ? d[Math.floor(d.length/2)] : null;
+  return Math.round(100*right/a.length)+'% called it real'+(med!=null?' · median pin '+med.toLocaleString()+' km':'');
+}
+function renderCrowd(rows){
+  if(S.kind==='blank') return;
+  const have=rows.filter(r=>Array.isArray(r.ans)).length;
+  if(have<3) return;
+  document.querySelectorAll('#recapList li').forEach((li,i)=>{
+    const st=S.rounds[i]; if(!st) return;
+    const t=crowdFor(rows,i,st); if(!t) return;
+    let c=li.querySelector('.crowd'); if(!c){ c=document.createElement('span'); c.className='crowd'; li.querySelector('div').append(c); }
+    c.textContent='Crowd: '+t;
+  });
+  // the story that fooled or stumped the most people today
+  let worst=null;
+  S.rounds.forEach((st,i)=>{ const a=rows.map(r=>r.ans&&r.ans[i]).filter(Boolean); if(a.length<3) return;
+    const miss=a.filter(x=>!x[0]).length/a.length; if(!worst||miss>worst.miss) worst={i,miss,st}; });
+  if(worst && worst.miss>0){
+    $('crowdTop').hidden=false;
+    $('crowdTop').innerHTML='Today\'s trickiest: <b>#'+(worst.i+1)+'</b> '+(worst.st.real===false?'fooled':'stumped')+' <b>'+Math.round(worst.miss*100)+'%</b> of players.';
+  }
+}
+function answersOf(results){ return results.map(x=>[x.callOk?1:0, x.dist==null?null:Math.round(x.dist)]); }
+
 async function share(){
-  const label = (S.mode==='daily' ? 'Far-Fetched #'+dayNumber() : 'Far-Fetched (practice)')+(S.kind!=='call'?' · '+modeName(S.kind):'');
-  const text = label+' — '+fmtPts(S.total)+'/'+S.max+'\n'+S.shareLines.join('\n')+'\n'+location.href;
+  const label = (S.mode==='daily' ? 'Far-Fetched #'+dayNumber() : S.mode==='back' ? 'Far-Fetched #'+dayNumber()+' (back issue)' : 'Far-Fetched (practice)')+(S.kind!=='call'?' · '+modeName(S.kind):'');
+  const zone = S.finalZone && S.finalZone!=='NOWHERE' ? ' · '+S.finalZone : '';
+  const t = TIERS[tierOf(S.total,S.max)];
+  const text = label+' · 🦷 '+(S.finalM!=null?S.finalM.toFixed(1):'0.0')+' m'+zone+'\n'
+    + S.shareLines.join('\n')+'\n'
+    + t.icon+' '+t.name+' · '+fmtPts(S.total)+'/'+S.max+'\n'
+    + shareUrl();
   const btn=$('btnShare');
   try{
     if(navigator.share){
@@ -2643,20 +2858,23 @@ function autoName(id){
 }
 function playerName(){ return (load('ff_name')||'').trim() || autoName(playerId()); }
 async function sbPost(entry){
+  const row={player:playerId(), name:playerName().slice(0,24), day:dayKey(), kind:entry.kind,
+             m:Math.round(entry.m*10)/10, score:Math.round(entry.score), zone:String(entry.zone||'').slice(0,24)};
+  const send=body=>fetch(SUPABASE_URL+'/rest/v1/scores?on_conflict=player,day,kind',{method:'POST',
+      headers:sbHeaders({Prefer:'resolution=ignore-duplicates,return=minimal'}), body:JSON.stringify(body)});
   try{
-    const r=await fetch(SUPABASE_URL+'/rest/v1/scores?on_conflict=player,day,kind',{method:'POST',
-      headers:sbHeaders({Prefer:'resolution=ignore-duplicates,return=minimal'}),
-      body:JSON.stringify({player:playerId(), name:playerName().slice(0,24), day:dayKey(), kind:entry.kind,
-                           m:Math.round(entry.m*10)/10, score:Math.round(entry.score), zone:String(entry.zone||'').slice(0,24)})});
+    let r=await send(entry.ans ? Object.assign({answers:entry.ans},row) : row);
+    if(!r.ok && entry.ans) r=await send(row);          // the answers column isn't set up yet: still save the score
     return r.ok;
   }catch(e){ return false; }
 }
 async function sbBoard(kind){
-  const q='select=player,name,m,score,zone&day=eq.'+encodeURIComponent(dayKey())+'&kind=eq.'+encodeURIComponent(kind)+'&order=m.desc,score.desc&limit=2000';
-  const r=await fetch(SUPABASE_URL+'/rest/v1/scores?'+q,{headers:sbHeaders()});
+  const q='&day=eq.'+encodeURIComponent(dayKey())+'&kind=eq.'+encodeURIComponent(kind)+'&order=m.desc,score.desc&limit=2000';
+  let r=await fetch(SUPABASE_URL+'/rest/v1/scores?select=player,name,m,score,zone,answers'+q,{headers:sbHeaders()});
+  if(!r.ok) r=await fetch(SUPABASE_URL+'/rest/v1/scores?select=player,name,m,score,zone'+q,{headers:sbHeaders()});
   if(!r.ok) throw new Error('HTTP '+r.status);
   const data=await r.json(), names={}, me=playerId();
-  const rows=data.map(x=>{ names[x.player]=x.player===me?'You':x.name; return {id:x.player, m:+x.m, score:+x.score, zone:x.zone||''}; });
+  const rows=data.map(x=>{ names[x.player]=x.player===me?'You':x.name; return {id:x.player, m:+x.m, score:+x.score, zone:x.zone||'', ans:Array.isArray(x.answers)?x.answers:null}; });
   return {rows, me, names, sb:true};
 }
 
@@ -2680,7 +2898,7 @@ async function postScore(entry){
     const cutoff=new Date(); cutoff.setDate(cutoff.getDate()-30);
     const keep={};
     Object.keys(data).forEach(k=>{ if(k.slice(0,10)>=keyOf(cutoff)) keep[k]=data[k]; });
-    keep[runKey(entry.kind)]={m:entry.m, score:entry.score, zone:entry.zone, t:Date.now()};
+    keep[runKey(entry.kind)]={m:entry.m, score:entry.score, zone:entry.zone, t:Date.now(), ans:entry.ans||null};
     await ref.set(keep);
     return true;
   }catch(e){ return false; }
@@ -2692,8 +2910,8 @@ async function loadBoard(kind){
   const me=user ? await user.id() : null;
   const snap=await db.collection('scores').limit(1000).get();
   const k=runKey(kind), rows=[];
-  snap.forEach ? snap.forEach(d=>{ const v=(d.data()||{})[k]; if(v && typeof v.m==='number') rows.push({id:d.id, m:v.m, score:v.score||0, zone:v.zone||''}); })
-              : (snap.docs||[]).forEach(d=>{ const v=(d.data()||{})[k]; if(v && typeof v.m==='number') rows.push({id:d.id, m:v.m, score:v.score||0, zone:v.zone||''}); });
+  snap.forEach ? snap.forEach(d=>{ const v=(d.data()||{})[k]; if(v && typeof v.m==='number') rows.push({id:d.id, m:v.m, score:v.score||0, zone:v.zone||'', ans:v.ans||null}); })
+              : (snap.docs||[]).forEach(d=>{ const v=(d.data()||{})[k]; if(v && typeof v.m==='number') rows.push({id:d.id, m:v.m, score:v.score||0, zone:v.zone||'', ans:v.ans||null}); });
   rows.sort((a,b)=>b.m-a.m || b.score-a.score);
   let names={};
   if(user && rows.length){ try{ const ps=await user.profiles(rows.slice(0,8).map(r=>r.id).concat(me?[me]:[])); Object.keys(ps||{}).forEach(i=>names[i]=ps[i]&&ps[i].name); }catch(e){} }
@@ -2701,8 +2919,8 @@ async function loadBoard(kind){
 }
 
 /* bell curve of today's depths with your spot marked */
-function drawCurve(rows, mine){
-  const cv=$('curve'), g=cv.getContext('2d'), W=cv.width, H=cv.height;
+function drawCurve(rows, mine, cvEl){
+  const cv=cvEl||$('curve'), g=cv.getContext('2d'), W=cv.width, H=cv.height;
   g.imageSmoothingEnabled=false;
   g.fillStyle='#0b0e14'; g.fillRect(0,0,W,H);
   const xs=rows.map(r=>r.m); if(typeof mine==='number') xs.push(mine);
@@ -2744,7 +2962,7 @@ async function openBoard(){
   $('boardKicker').textContent="Today's diggers · "+modeName(S.kind);
   $('nameRow').hidden=true;
   const done = S.mode==='daily' && S.results.length>=S.rounds.length;    // only a finished daily round goes on the board
-  const inf=Scene.info(), mine=done ? +inf.m : null;
+  const inf=Scene.info(), mine=done ? (S.finalM!=null ? S.finalM : +inf.m) : null;
   drawCurve([], mine);
   $('rankLine').textContent='Loading the leaderboard…'; $('topList').innerHTML='';
   $('digImg').parentElement.hidden=!done;
@@ -3087,6 +3305,7 @@ $('replayDig').onclick=()=>startRecap(false);
 Scene.onMark(()=>Sound.play('pin'));
 $('btnBoard').onclick=openBoard;
 $('mBoard').onclick=()=>{ closeMenu(); openBoard(); };
+$('mBack').onclick=()=>{ $('backList').hidden=!$('backList').hidden; renderIssues(); };
 $('nameEdit').onclick=()=>{
   const row=$('nameRow');
   if(row.querySelector('input')) return;
@@ -3105,7 +3324,7 @@ function renderAmb(){ $('mAmbState').textContent=Sound.ambience()?'[x] ON':'[ ] 
 $('mAmb').onclick=()=>{ Sound.setAmbience(!Sound.ambience()); renderAmb(); Sound.unlock(); };
 renderAmb();
 $('btnPractice').onclick=()=>startGame('practice',KIND==='pol'?'call':KIND);
-function closeMenu(){ document.body.classList.remove('hideq'); $('menu').hidden=true; $('menuBtn').setAttribute('aria-expanded','false'); }
+function closeMenu(){ document.body.classList.remove('hideq'); $('menu').hidden=true; $('backList').hidden=true; $('menuBtn').setAttribute('aria-expanded','false'); }
 $('menuBtn').onclick=e=>{ e.stopPropagation(); Sound.play('menu'); const open=$('menu').hidden; $('menu').hidden=!open; document.body.classList.toggle('hideq',open && !!S && S.phase==='call'); $('menuBtn').setAttribute('aria-expanded',String(open)); if(open) renderStats(); };
 $('menu').addEventListener('click',e=>e.stopPropagation());
 document.addEventListener('click',closeMenu);
@@ -3135,7 +3354,7 @@ $('muteBtn').onclick=e=>{ e.stopPropagation(); Sound.setMuted(!Sound.isMuted());
 renderMute();
 Scene.start();
 updateStreak();
-Promise.all([loadDaily(),loadPractice()]).finally(()=>startGame('daily',KIND));
+Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS?VS.kind:KIND); loadIssues(); });
 window.addEventListener('resize',()=>{ clearTimeout(window._aimT); window._aimT=setTimeout(()=>aim(),200); });
 </script>
 </body>
