@@ -715,13 +715,13 @@ body.pinning .app{padding-bottom:calc(min(30vh,260px) + 96px)}
 
 /* HUD */
 .topline{position:relative;display:flex;align-items:center;gap:10px;margin:0 0 8px;font:10px/1 var(--px);letter-spacing:.14em;color:var(--dim);text-shadow:0 2px 0 #000}
-.topline .logo{flex:1}
-#menuBtn{width:30px;height:30px;padding:0;display:grid;place-items:center;background:var(--panel);box-shadow:0 0 0 2px var(--line);color:var(--accent);font:20px/1 var(--vt)}
+.topline .logo{flex:1;margin-left:40px}   /* room for the menu button, which is pinned to the screen (see pinMenu) */
+#menuBtn{position:fixed;z-index:30;width:30px;height:30px;padding:0;display:grid;place-items:center;background:var(--panel);box-shadow:0 0 0 2px var(--line);color:var(--accent);font:20px/1 var(--vt)}
 #menuBtn[aria-expanded="true"]{background:var(--accent);color:#2b2000}
 #muteBtn{width:30px;height:30px;padding:0;display:grid;place-items:center;background:var(--panel);box-shadow:0 0 0 2px var(--line);color:var(--cyan);font:20px/1 var(--vt);position:relative}
 #muteBtn.off{color:#5d6475}
 #muteBtn.off::after{content:'';position:absolute;left:5px;right:5px;top:50%;height:2px;background:#ff5d73;transform:rotate(-45deg)}
-#menu{position:absolute;left:0;top:38px;z-index:20;width:min(300px,calc(100vw - 32px));background:var(--card);background-image:var(--scan);border:2px solid var(--line);box-shadow:0 0 0 3px var(--ink),6px 6px 0 3px var(--ink);padding:10px;display:flex;flex-direction:column;gap:8px;text-shadow:none}
+#menu{position:fixed;z-index:20;width:min(300px,calc(100vw - 32px));background:var(--card);background-image:var(--scan);border:2px solid var(--line);box-shadow:0 0 0 3px var(--ink),6px 6px 0 3px var(--ink);padding:10px;display:flex;flex-direction:column;gap:8px;text-shadow:none}
 #menu .mlbl{font:8px/1 var(--px);letter-spacing:.18em;color:#7d8494;margin:4px 2px 0}
 #menu button{width:100%;text-align:left;font:22px/1 var(--vt);padding:8px 12px;background:var(--panel);box-shadow:0 0 0 2px var(--line);display:flex;flex-direction:column;align-items:flex-start;gap:3px;white-space:nowrap}
 #menu button.on{background:var(--accent);color:#2b2000;box-shadow:inset -3px -3px 0 rgba(0,0,0,.25),inset 3px 3px 0 rgba(255,255,255,.25),0 0 0 2px var(--ink)}
@@ -3388,8 +3388,16 @@ function renderAmb(){ $('mAmbState').textContent=Sound.ambience()?'[x] ON':'[ ] 
 $('mAmb').onclick=()=>{ Sound.setAmbience(!Sound.ambience()); renderAmb(); Sound.unlock(); };
 renderAmb();
 $('btnPractice').onclick=()=>startGame('practice',KIND==='pol'?'call':KIND);
+/* the menu button follows its spot in the header until the page scrolls past it, then stays on screen */
+function pinMenu(){
+  const tl=document.querySelector('.topline'); if(!tl) return;
+  const r=tl.getBoundingClientRect(), top=Math.max(10,Math.round(r.top)), left=Math.round(r.left);
+  $('menuBtn').style.top=top+'px'; $('menuBtn').style.left=left+'px';
+  $('menu').style.top=(top+38)+'px'; $('menu').style.left=left+'px';
+}
+window.addEventListener('scroll',pinMenu,{passive:true}); window.addEventListener('resize',pinMenu); pinMenu();
 function closeMenu(){ document.body.classList.remove('hideq'); $('menu').hidden=true; $('backList').hidden=true; $('menuBtn').setAttribute('aria-expanded','false'); }
-$('menuBtn').onclick=e=>{ e.stopPropagation(); Sound.play('menu'); const open=$('menu').hidden; $('menu').hidden=!open; document.body.classList.toggle('hideq',open && !!S && S.phase==='call'); $('menuBtn').setAttribute('aria-expanded',String(open)); if(open) renderStats(); };
+$('menuBtn').onclick=e=>{ e.stopPropagation(); Sound.play('menu'); const open=$('menu').hidden; $('menu').hidden=!open; document.body.classList.toggle('hideq',open && !!S && S.phase==='call'); $('menuBtn').setAttribute('aria-expanded',String(open)); if(open){ renderStats(); pinMenu(); } };
 $('menu').addEventListener('click',e=>e.stopPropagation());
 document.addEventListener('click',closeMenu);
 document.addEventListener('keydown',e=>{
