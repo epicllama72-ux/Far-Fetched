@@ -1428,17 +1428,11 @@ const Scene = (function(){
     geode:{text:'A geode. Fancy.',pal:{R:'#5b5a66',P:'#c58cff',L:'#f0d9ff'},rows:[".RRRRRR.","RRPPPPRR","RPLPLPPR","RPPLPPPR","RRPPPPRR",".RRRRRR."]},
     egg:{text:'A dino egg. Do not hatch.',pal:{W:'#f4f0e4',G:'#4f8a5a'},rows:["..WWWW..",".WWGWWW.","WWWWWGWW","WGWWWWWW","WWWWGWWW",".WWWWWW.","..WWWW.."]},
     mole:{text:'A mole in sunglasses. Cool.',fx:'bob',pal:{M:'#6b5040',N:'#e58a8f',G:'#23232e'},rows:[".MMMMMM.","MMGGMGGM","MMMMMMMM","MMMNNMMM",".MMMMMM."]},
+    ore:{text:'Diamond ore! Mining level up.',fx:'glint',pal:{S:'#8b8a97',D:'#2e2d38',L:'#a4a3b0',C:'#4fe8e0',W:'#e0fffd'},rows:["DDDDDDDD","DSLSSCCD","DSSCWCSD","DLSSCCSD","DSCCSSLD","DCWCSSSD","DSSCSLSD","DDDDDDDD"]},
     pick:{text:'A pickaxe. Someone else tried.',pal:{B:'#7a5238',S:'#9aa0b0'},rows:["SSSSSS","S..B..","...B..","...B..","...B.."]},
-    liz:{text:'A lava surfer. Hang loose.',fx:'bob',pal:{O:'#ff6a1f',G:'#23232e',Y:'#ffd23f'},rows:["....OOOO..","OO.OGGGOO.",".OOOOOOOOO","..O.O..O.O","YYYYYYYYYY"]},
-    marsh:{text:'Marshmallow roast. Smells great.',fx:'flame',pal:{S:'#7a5238',W:'#ffffff',B:'#c9a050'},rows:["..WW..",".WWWW.",".WBBW.","..WW..","..S...",".S....","S....."]},
-    lamp:{text:'A lava lamp. Very on brand.',pal:{B:'#3a3d4a',R:'#ff4f9a',Y:'#ffd23f'},rows:[".BBB.","BRRRB","BRYRB","BRRRB","BYRRB",".BBB.","BBBBB"]},
-    lduck:{text:'A duck in shades. Going full lava.',fx:'bob',pal:{Y:'#ffd23f',O:'#ff8a1f',G:'#23232e'},rows:["...YY...","..YYYY..","..GGYOO.","YYYYYY..","YYYYYYY.",".YYYYY.."]},
-    gold:{text:'A pile of gold. Do not touch.',pal:{G:'#ffd23f',D:'#c99a1c',W:'#fff6c8'},rows:["...GG...","..GGWG..",".GGGGGG.","GGDGGDGG","DDDDDDDD"]},
-    alien:{text:'An alien! Wrong planet, buddy.',fx:'bob',pal:{G:'#6fd36f',D:'#3f8a3f',K:'#1a1220'},rows:["..GGGG..",".GGGGGG.","GKKGGKKG",".GGGGGG.","..GDDG..","..G..G.."]},
-    disco:{text:'A disco ball. Party at the core.',fx:'disco',pal:{S:'#cfd6de',W:'#ffffff',B:'#6be4ff',P:'#ff5d8f'},rows:[".SSSS.","SWSBSS","SBSPSB","SSPSWS",".SSSS.","..SS.."]}
   };
   const PROP_POOLS={1:{must:['rat'],more:['duck','sock','tv','pizza']},2:{must:['fossil'],more:['gnome','boot','xmark','ring']},
-                    3:{must:[],more:['geode','egg','mole','pick']},4:{must:['liz'],more:['marsh','lamp','lduck']},5:{must:[],more:['gold','alien','disco']}};
+                    3:{must:[],more:['geode','egg','mole','pick'],maybe:[['ore',0.5]]}};   // the magma and core stay clear: the diamond ore shows up in about half of the digs
   const FOSSILS=['fish','ammo','ribs'];
   const KANG=["....KK....","....KKK...","...KSSKK..","...KKKKKK.","....KKK...","...KKKK...","..KKKKK...",".KKKWKK...",".KKKKKK...","DKKKKKKD..","D..KK.KK..","...KK.KK.."];
   const KANG_P={K:'#c98a4b',D:'#9a6430',S:'#111111',W:'#fff6c8'};
@@ -1552,14 +1546,15 @@ const Scene = (function(){
   function buildProps(){
     props=[];
     const shuf=a=>{ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
-    [[1,L0,L0+B[1]],[2,L0+B[1],L0+B[2]],[3,L0+B[2],L0+B[3]],[4,L0+B[3],L0+B[4]],[5,L0+B[4],EXIT-8]].forEach(([k,y0,y1])=>{
+    [[1,L0,L0+B[1]],[2,L0+B[1],L0+B[2]],[3,L0+B[2],L0+B[3]]].forEach(([k,y0,y1])=>{
       const pool=PROP_POOLS[k], more=shuf(pool.more), ids=pool.must.slice();
       while(ids.length<2) ids.push(more.pop());
+      (pool.maybe||[]).forEach(([id,pr])=>{ if(Math.random()<pr) ids.push(id); });
       shuf(ids).forEach((id,i)=>{
         const real=id==='fossil'?FOSSILS[Math.floor(Math.random()*FOSSILS.length)]:id, d=PD[real];
         const w=Math.max.apply(null,d.rows.map(r=>r.length)), h=d.rows.length;
         const side=(i+Math.floor(Math.random()*2))%2?1:-1, room=Math.max(0,Math.min(40,cx-18-w)), off=14+Math.random()*room;
-        const x=Math.round(side>0?off:-off-w), y=Math.round(y0+(i+0.25+Math.random()*0.5)*(y1-y0)/2-h/2);
+        const n=ids.length, x=Math.round(side>0?off:-off-w), y=Math.round(y0+(i+0.25+Math.random()*0.5)*(y1-y0)/n-h/2);
         props.push({id:real,rows:d.rows,pal:d.pal,fx:d.fx||'',text:d.text,x,y:clamp(y,y0+2,y1-h-2),ph:Math.random()*6,hit:false,h});
       });
     });
@@ -1936,10 +1931,8 @@ const Scene = (function(){
         let yy=p.y, pal=p.pal;
         if(p.fx==='bob') yy+=Math.round(Math.sin(t*2.2+p.ph));
         else if(p.fx==='tv') pal=Object.assign({},pal,{S:Math.floor(t*12)%2?'#cfe0ea':'#6f8794'});
-        else if(p.fx==='disco') pal=Object.assign({},pal,{W:Math.floor(t*6)%2?'#ffffff':'#6be4ff',B:Math.floor(t*6)%2?'#6be4ff':'#ff5d8f'});
         spr(p.rows,pal,p.x,yy);
-        if(p.fx==='flame'){ const f=Math.floor(t*8)%2; R(p.x+1,yy+p.h,3,1,'#ff8a1f'); R(p.x+2-f,yy+p.h+1,2,1,'#ffd23f'); R(p.x+2,yy+p.h-1,1,1,'#ff8a1f'); }
-        if(p.id==='gold' && Math.floor(t*2)%3===0) R(p.x+3,yy-1,1,1,'#ffffff');
+        if(p.id==='ore' && Math.floor(t*2+p.ph)%4===0) R(p.x+3,yy+2,1,1,'#ffffff');
       });
       if(vis(EXIT-10,worldEnd)){        // the other side of the earth: Australia's ground is our ceiling, so everything there hangs upside down
         const GY=EXIT+9;                // underside of the sand: the beach surface the jaw breaks through
