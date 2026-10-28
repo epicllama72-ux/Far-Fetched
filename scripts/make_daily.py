@@ -188,7 +188,7 @@ PROMPT = """You are the editor of "Far-Fetched", a daily guessing game built on 
 
 Below are candidate news stories from the past month (JSON). Some include "text", the opening of the article: use it for the facts and the punchline. Some are not in English: write everything you output in English. Do two jobs and reply with ONE JSON object only, no prose.
 
-1) "real": pick 20 of the best stories for the game, best first. You MUST return at least 14; if clue-rich stories run short, fill the rest with the most surprising remaining ones (low clue_strength is fine), never return fewer than 14 (rank by clue_strength plus unbelievable). Rank by how HARD TO BELIEVE the story is: favour the ones a reader would assume are made up (absurd specifics, improbable coincidences, odd rules, unlikely animals or objects) but that really happened. Strongly prefer stories where the event is linked to the place it happened, so a player can DEDUCE the location from the headline instead of guessing: local wildlife or climate (a kangaroo, a moose, monsoon flooding, snow in summer), regional industry, food, sport or customs, a local law or institution type, driving side, currency, units or typical local jobs. Stories that could have happened anywhere rank lower but are still acceptable fillers. The game should be FUNNY, EDUCATIONAL and reward broad general knowledge: favour stories that make a reader laugh out loud or are so ridiculous they feel like something out of the movie Idiocracy (absurd decisions, baffling rules, dumbfounding mix-ups, spectacularly dumb but harmless events), and whose clues connect to things a well-read person could know about the place (geography, climate, wildlife, languages, currencies, laws, food, history, sport, industries), so that general knowledge lets them reason to the right region, not luck. Good picks are surprising, funny or delightful, happened in ONE specific identifiable town/city/county, and are light-hearted. Skip BORING stories: a rare animal spotted, a nice rescue, a big vegetable, a quiet record, a mild oddity with no real twist. Every pick needs a real punchline, an absurd mistake or a jaw-dropping detail. STRANGE, FUNNY CRIME stories are welcome and wanted (dumb criminals, bizarre thefts, absurd arrests, getaway fails, odd things stolen or smuggled, ridiculous excuses) as long as they are non-violent and nobody is seriously hurt. Never pick stories about death, serious injury, violent crimes against people, abuse, sexual content, children in danger, war, politics, disasters or tragedy. That includes floods, storms, wildfires, quakes, heatwaves and outbreaks, even when the story itself is light-hearted (a man swimming down a flooded street is out), because they are often tied to real tragedies. Write headlines in plain words a general reader knows: no local weather jargon or acronyms (never 'DANA', 'derecho', 'haboob' and the like). Avoid near-duplicates (e.g. several lottery wins) - at most one lottery story. Spread your picks around the WORLD: at most 3 from any one country, and at least half from outside the US, UK, Canada, Australia, New Zealand and Ireland whenever the candidates allow it (Latin America, Europe, Asia, Africa and the Middle East are all welcome). Include at least one story from Africa, one from South America and one from Oceania or the Pacific whenever the candidates have a usable one, and never more than two stories about the same kind of thing (dogs, goats, cheese and so on). For each pick give:
+1) "real": pick 20 of the best stories for the game, best first. You MUST return at least 14; if clue-rich stories run short, fill the rest with the most surprising remaining ones (low clue_strength is fine), never return fewer than 14 (rank by clue_strength plus unbelievable). Rank by how HARD TO BELIEVE the story is: favour the ones a reader would assume are made up (absurd specifics, improbable coincidences, odd rules, unlikely animals or objects) but that really happened. Strongly prefer stories where the event is linked to the place it happened, so a player can DEDUCE the location from the headline instead of guessing: local wildlife or climate (a kangaroo, a moose, monsoon flooding, snow in summer), regional industry, food, sport or customs, a local law or institution type, driving side, currency, units or typical local jobs. Stories that could have happened anywhere rank lower but are still acceptable fillers. The game should be FUNNY, EDUCATIONAL and reward broad general knowledge: favour stories that make a reader laugh out loud or are so ridiculous they feel like something out of the movie Idiocracy (absurd decisions, baffling rules, dumbfounding mix-ups, spectacularly dumb but harmless events), and whose clues connect to things a well-read person could know about the place (geography, climate, wildlife, languages, currencies, laws, food, history, sport, industries), so that general knowledge lets them reason to the right region, not luck. Good picks are surprising, funny or delightful, happened in ONE specific identifiable town/city/county, and are light-hearted. Every pick must make sense on its own: a reader must understand exactly what happened from the headline alone (no missing context, no confusing or contradictory details), and the hidden place must be where it actually happened. Skip BORING stories: a rare animal spotted, a nice rescue, a big vegetable, a quiet record, a mild oddity with no real twist. Every pick needs a real punchline, an absurd mistake or a jaw-dropping detail. STRANGE, FUNNY CRIME stories are welcome and wanted (dumb criminals, bizarre thefts, absurd arrests, getaway fails, odd things stolen or smuggled, ridiculous excuses) as long as they are non-violent and nobody is seriously hurt. Never pick stories about death, serious injury, violent crimes against people, abuse, sexual content, children in danger, war, politics, disasters or tragedy. That includes floods, storms, wildfires, quakes, heatwaves and outbreaks, even when the story itself is light-hearted (a man swimming down a flooded street is out), because they are often tied to real tragedies. Write headlines in plain words a general reader knows: no local weather jargon or acronyms (never 'DANA', 'derecho', 'haboob' and the like). Avoid near-duplicates (e.g. several lottery wins) - at most one lottery story. Spread your picks around the WORLD: at most 3 from any one country, and at least half from outside the US, UK, Canada, Australia, New Zealand and Ireland whenever the candidates allow it (Latin America, Europe, Asia, Africa and the Middle East are all welcome). Include at least one story from Africa, one from South America and one from Oceania or the Pacific whenever the candidates have a usable one, and never more than two stories about the same kind of thing (dogs, goats, cheese and so on). For each pick give:
    - "id": the candidate id.
    - "h": a punchy wire-style headline, max 100 characters, keeping every fact of the story exactly as reported (never change what happened, who or what was involved, numbers or outcome). You MAY reword and add short descriptive wording that makes the region easier to deduce, as long as it is generically true of that place and does not alter or add to the story: e.g. local terms and institutions ("the county sheriff", "council", "constabulary", "a roo", "monsoon rains", "rupees", "kilometres", "on the ski slopes"), local climate, wildlife or customs, or spelling and units typical of the country. Replace the place with the literal token {} exactly once (e.g. "... in {}"). Remove every EXPLICIT location clue: no state/country/city names, demonyms, local team, landmark, university or company names that reveal the place, no "Florida man". But KEEP the implicit, deducible clues that are part of the story (the animal, the weather, the local custom, currency or units, the type of institution), so a sharp player can reason their way to the right region. Keep the oddity intact.
    - "h2": the same story as a headline that DOES name the place (city + state/country), with the main subject noun of the story (the animal, object or kind of person it is about, e.g. "kangaroo", "pelicans", "kitten") replaced by the literal token [] exactly once. The hidden word must be an ordinary common noun that is written in lowercase in normal text: never a name, brand, product, model, company, team, place or nationality (not "Maserati" or "Vegemite" - use "car" or "spread" instead, or pick another noun). The rest of h2 must NOT contain the hidden word, a synonym or a close variant of it (if the hidden word is "toilets", h2 must not say "potties" or "loo"), and give each pick a different hidden word than the other picks (not both "burglar" and "thief").
@@ -200,6 +200,7 @@ Below are candidate news stories from the past month (JSON). Some include "text"
    - "cc": the ISO 3166-1 alpha-2 country code ("US", "GB" for anywhere in the UK, "JP", ...).
    - "clue": at most 80 characters, written for the PLAYER after the reveal: the regional hints that point to the place, e.g. "moose + wire fencing = northern US/Canada", "monsoon flooding = South Asia", "metres and rupees". It may draw on details from the story itself, not only words in the headline. Use "" if there is none.
    - "clue_strength": 0-3. 3 = the headline strongly points to a region; 2 = a fair hint that a well-read general player could use; 1 = a weak hint; 0 = could be anywhere, OR the hint is misleading (an animal or object that is out of place, such as a kangaroo in Tennessee, is a surprise, not a clue: give it 0). JARGON-ONLY CLUES DO NOT COUNT: if the only regional hint is a local term, acronym or specialist word that a general player would not know (e.g. "cold-drop DANA", a regional dish or agency name nobody outside the country has heard of), set "jargon_only" to true and give clue_strength 0 or 1. A clue must work by general knowledge: currency, units, driving side, climate, wildlife, institution types, sport, language of well-known words.
+   - "mappable": 0-3, how sensibly a player can drop a pin for this story. 3 = it happened at ONE specific town, city or county and the headline's clues point to that region; 2 = one specific place but the clues are thin; 1 = the place is only approximate (a region, a journey, or the HQ or court that reported it rather than where it happened); 0 = a pin makes no sense (online, nationwide, several places, a place unrelated to the event). Be strict: when in doubt, score lower.
    - "unbelievable": 1-5, how likely a reader is to assume the story is made up (5 = sounds like a joke but is true).
    - "theme": one lowercase word for the topic (e.g. "lottery", "escaped-animal", "record"). Never pick two stories with the same theme.
    Keep the source's own units and currency; NEVER convert them (a "4.7 miles" story from South Africa must read in kilometres if the source said kilometres), because units are clues.
@@ -207,7 +208,7 @@ Below are candidate news stories from the past month (JSON). Some include "text"
 2) "fake": write 8 invented headlines in exactly the same style, each with {} for the redacted place. Like the real ones, give each fake implicit regional clues a player could use (a local animal, climate, custom or unit) without naming the place. They should pass at first glance (specific numbers, ordinary local institutions, plausible animals and objects) but be SLIGHTLY easier to spot than the real ones: give each one small tell, and VARY the kind of tell: an over-tidy cause and effect, a detail slightly wrong for the region, an unlikely coincidence, a plausible-sounding but slightly off local rule. NO quotes from officials or spokespeople, no puns, no punchlines - those are tells players learn fast. Do NOT end with an absurd official reaction (a fine, a ban, a decree, a new rule, an apology): at most ONE fake in the set may do that. Vary how the fakes finish: some stop at the plain odd event, some end on a number, some on a consequence for ordinary people. Keep each fake at most 95 characters (no longer than a typical real headline), start each one differently (never two starting with the same two words, never "Council in"), and give each a different topic from each other and from the real picks (if a real story is about a kangaroo, no fake about kangaroos, wallabies or koalas). NEVER use the word "exactly", round numbers (100, 500, 1,000...) or "to the second" - players learn those tells within a week; use ordinary specific numbers like 37 or 1,260. Make the fakes as odd as the real stories, not odder: the real stories are routine local news with one strange twist, so the fakes must not be the only headlines that sound like jokes. Never cartoonish. Not about real people, and not resembling any candidate story. Strange non-violent crime (dumb criminals, bizarre thefts) is fine for fakes too. Do not write about death, injury, violence or tragedy. Give each as {"h": "...", "tell": "one sentence of at most 18 words for the PLAYER explaining why it should have smelled fake, e.g. 'councils fine overgrown hedges, not ones that look too lifelike'", "obvious": 1-5, "theme": "one lowercase word for the topic, same vocabulary as the real picks' theme"} where obvious rates how easy it is to spot as invented (aim for 2 or 3: slightly easier to spot than a real story, never a giveaway).
 
 Output format:
-{"real":[{"id":0,"h":"...","h2":"...","ans":["..."],"place":"...","geocode":"...","lat":0,"lng":0,"country":"...","cc":"..","clue":"...","clue_strength":0,"jargon_only":false,"unbelievable":1,"theme":"..."}], "fake":[{"h":"...","tell":"...","obvious":3,"theme":"..."}]}
+{"real":[{"id":0,"h":"...","h2":"...","ans":["..."],"place":"...","geocode":"...","lat":0,"lng":0,"country":"...","cc":"..","clue":"...","clue_strength":0,"jargon_only":false,"mappable":0,"unbelievable":1,"theme":"..."}], "fake":[{"h":"...","tell":"...","obvious":3,"theme":"..."}]}
 
 Candidates:
 """
@@ -217,7 +218,7 @@ POL_PROMPT = """You are the editor of the Politics mode of "Far-Fetched", a dail
 
 Below are candidate stories (JSON). Reply with ONE JSON object only.
 
-1) "real": pick up to 8 stories about hard-to-believe POLITICAL or GOVERNMENT happenings anywhere in the world: odd election results and tiebreaks, animal or joke candidates, strange council votes, unusual laws, quirky parliamentary moments. Keep it light and strictly non-partisan. Never pick stories about violence, death, scandals, allegations, crimes, wars, protests, or anything that mocks or praises a party, ideology or named politician. Skip BORING ones: every pick needs a real punchline or a ridiculous, Idiocracy-style detail (a plain tied vote or a routine procedural story is not enough), and pick at most ONE tie or tiebreak story. Never pick two stories about the same event or the same place. Spread picks around the world, at most 3 from one country. Prefer the hardest-to-believe ones whose details hint at the region (local customs, institutions, offices, voting rules) so a player can deduce where it happened. Each must be tied to one specific place. Pick at most ONE story about animal or dog candidates, and make sure the set is not all the same kind of story. "place" must be a specific town, city or county (with its region or country after a comma), NEVER just a country. For each give "id", "h" (wire-style headline, max 100 chars, only facts from the candidate, the place replaced by the literal token {} exactly once, no other location clues, and no names of real politicians or parties), "place", "geocode", "lat", "lng", and "clue" (at most 80 characters, written for the PLAYER after the reveal: the regional hints that point to the place, drawn from the story, e.g. "mayor + council + wards = Canada or Commonwealth"; never empty).
+1) "real": pick up to 8 stories about hard-to-believe POLITICAL or GOVERNMENT happenings anywhere in the world: odd election results and tiebreaks, animal or joke candidates, strange council votes, unusual laws, quirky parliamentary moments. Keep it light and strictly non-partisan. Never pick stories about violence, death, scandals, allegations, crimes, wars, protests, or anything that mocks or praises a party, ideology or named politician. Skip BORING ones: every pick needs a real punchline or a ridiculous, Idiocracy-style detail (a plain tied vote or a routine procedural story is not enough), and pick at most ONE tie or tiebreak story. Never pick two stories about the same event or the same place. Spread picks around the world, at most 3 from one country. Prefer the hardest-to-believe ones whose details hint at the region (local customs, institutions, offices, voting rules) so a player can deduce where it happened. Each must be tied to one specific place where it actually happened, and must make complete sense from the headline alone. Pick at most ONE story about animal or dog candidates, and make sure the set is not all the same kind of story. "place" must be a specific town, city or county (with its region or country after a comma), NEVER just a country. For each give "id", "h" (wire-style headline, max 100 chars, only facts from the candidate, the place replaced by the literal token {} exactly once, no other location clues, and no names of real politicians or parties), "place", "geocode", "lat", "lng", and "clue" (at most 80 characters, written for the PLAYER after the reveal: the regional hints that point to the place, drawn from the story, e.g. "mayor + council + wards = Canada or Commonwealth"; never empty).
 
 2) "fake": write 6 invented headlines in the same style, each with {} for the place, about councils, parliaments, mayors, elections or laws. Each must pass at first glance but carry one small tell, varied across the six (over-tidy cause and effect, a detail slightly wrong for the region, an unlikely coincidence). No quotes from officials, no puns or punchlines, at most 95 characters, each starting differently (never "Council in"). Never use the word "exactly" or round numbers. NEVER name or hint at a real person, party, politician or real event, and never take a side. Give each as {"h": "..."}.
 
@@ -452,7 +453,9 @@ CHECK_PROMPT = """You fact-check headlines for "Far-Fetched", a game built on TR
 ok=false if:
 - "h" or "h2" states something the source does not support: a changed event, outcome, number, animal/object or who did what, or an invented detail;
 - the place is wrong, or the source does not support it;
-- "h" names or explicitly reveals the place ("{}" stands for the hidden place).
+- "h" names or explicitly reveals the place ("{}" stands for the hidden place);
+- the headline is confusing, contradicts itself, or only makes sense with context it does not give;
+- the named place is not where the event actually happened (a company's headquarters, the court or capital that reported it, or just one of several places involved).
 ALLOWED, not a reason to fail: rewording, and short added wording that is generically true of that place (local terms like "county sheriff" or "constabulary", local units or currency, climate, wildlife, customs).
 If the source material is too thin to judge but nothing contradicts the headline, ok=true.
 
@@ -713,6 +716,40 @@ def pick_fakes(fakes, reals, day, n, rank):
     return chosen
 
 
+# A clue only counts when general knowledge can use it: jargon-only hints (like "cold-drop DANA") are downgraded.
+JARGON = re.compile(r"\b(dana|gota fr[ií]a)\b", re.I)
+
+
+def eff_strength(r):
+    try:
+        cs = int(r.get("clue_strength", 0) or 0)
+    except Exception:
+        cs = 0
+    if r.get("jargon_only") or JARGON.search(r.get("h") or "") or JARGON.search(r.get("clue") or ""):
+        cs = min(cs, 1)
+    return cs
+
+
+def map_score(r):
+    """The editor's 0-3 rating of how sensibly the story can be pinned (2 when an older banked story has none)."""
+    try:
+        return int(r.get("mappable", 2))
+    except Exception:
+        return 2
+
+
+def merit(r):
+    try:
+        return 2 * eff_strength(r) + 2 * map_score(r) + int(r.get("unbelievable", 1)) + r.get("_fresh", 0)
+    except Exception:
+        return 1
+
+
+def fit_to_map(r):
+    """Good enough to be a Real or Fake / Practice story: it can be pinned and carries at least a thin regional clue."""
+    return map_score(r) >= 2 and eff_strength(r) >= 1
+
+
 STOCK_KEEP = 120   # days a story sourced by make_stock.py stays eligible
 
 
@@ -855,21 +892,14 @@ def main():
         sys.exit(0)
 
     # Real or Fake wants stories whose place can be DEDUCED, and a spread of countries and themes.
-    # A clue only counts when general knowledge can use it: jargon-only hints (like "cold-drop DANA") are downgraded.
-    JARGON = re.compile(r"\b(dana|gota fr[ií]a)\b", re.I)
-    def eff_strength(r):
-        try:
-            cs = int(r.get("clue_strength", 0) or 0)
-        except Exception:
-            cs = 0
-        if r.get("jargon_only") or JARGON.search(r.get("h") or "") or JARGON.search(r.get("clue") or ""):
-            cs = min(cs, 1)
-        return cs
-    def merit(r):
-        try:
-            return 2 * eff_strength(r) + int(r.get("unbelievable", 1)) + r.get("_fresh", 0)
-        except Exception:
-            return 1
+    # Daily Dig only takes stories a player can sensibly pin: when the pool is deep enough, anything the editor rates as hard to map
+    # (or with no usable regional clue at all) stays out; a thin day relaxes this rather than printing a short round.
+    fit = [r for r in reals if fit_to_map(r)]
+    if len(fit) >= N_CALL_REAL + 3:
+        print(f"  {len(reals) - len(fit)} stories left out of Real or Fake: hard to pin or no regional clue", file=sys.stderr)
+        reals = fit
+    else:
+        print(f"  only {len(fit)} easily mapped stories; Real or Fake keeps the weaker ones as fillers", file=sys.stderr)
     seen_theme, uniq = set(), []
     for r in sorted(reals, key=merit, reverse=True):
         th = (r.get("theme") or "").strip().lower()
@@ -902,12 +932,12 @@ def main():
         if len(call_pick) == N_CALL_REAL:
             break
         print(f"  only {len(call_pick)} stories fit the country spread (max {cap}/country, {anglo_cap} English-speaking); loosening", file=sys.stderr)
-    # at least 6 of the 8 true stories need a fair regional clue: swap weak picks for stronger ones from the pool
-    MIN_STRONG = 6
-    strong_n = lambda lst: sum(1 for r in lst if eff_strength(r) >= 2)
+    # at least 7 of the 8 true stories need a fair regional clue and a sensible pin: swap weak picks for stronger ones from the pool
+    MIN_STRONG = 7
+    strong_n = lambda lst: sum(1 for r in lst if eff_strength(r) >= 2 and map_score(r) >= 2)
     if len(call_pick) == N_CALL_REAL and strong_n(call_pick) < MIN_STRONG:
-        weak = sorted([r for r in call_pick if eff_strength(r) < 2], key=merit)
-        for cand in [r for r in reals if r not in call_pick and eff_strength(r) >= 2]:
+        weak = sorted([r for r in call_pick if eff_strength(r) < 2 or map_score(r) < 2], key=merit)
+        for cand in [r for r in reals if r not in call_pick and eff_strength(r) >= 2 and map_score(r) >= 2]:
             if strong_n(call_pick) >= MIN_STRONG or not weak:
                 break
             cc = ccode(cand)
@@ -918,7 +948,7 @@ def main():
         for r in call_pick:
             per_country[ccode(r)] = per_country.get(ccode(r), 0) + 1
         if strong_n(call_pick) < MIN_STRONG:
-            print(f"  WARNING: only {strong_n(call_pick)} of {len(call_pick)} true stories have a fair regional clue (wanted {MIN_STRONG})", file=sys.stderr)
+            print(f"  WARNING: only {strong_n(call_pick)} of {len(call_pick)} true stories have a fair regional clue and a sensible pin (wanted {MIN_STRONG})", file=sys.stderr)
     strong = strong_n(call_pick)
     print(f"  Real or Fake: {strong}/{len(call_pick)} stories with a usable regional clue; countries {per_country}", file=sys.stderr)
 
