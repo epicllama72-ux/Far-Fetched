@@ -93,8 +93,8 @@ POL_FEEDS = [  # Google News searches for odd local-government and election stor
 ]
 MAX_AGE_DAYS = 30
 POL_MAX_AGE_DAYS = 45
-N_POL_REAL, N_POL_FAKE = 8, 2   # Politics: also exactly 2 fakes
-N_CALL_REAL, N_CALL_FAKE, N_BLANK = 5, 2, 10   # Daily Dig: 5 true + exactly 2 fakes
+N_POL_REAL, N_POL_FAKE = 5, 2   # Politics: 5 true + exactly 2 fakes
+N_CALL_REAL, N_CALL_FAKE, N_BLANK = 5, 2, 7   # Daily Dig: 5 true + exactly 2 fakes
 SCREEN_TOP = 50
 SCREEN_PER_COUNTRY = 7  # at most this many shortlisted stories from one country
 # how many screened candidates get their article fetched and go to the editor

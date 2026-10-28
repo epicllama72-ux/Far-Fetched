@@ -1240,10 +1240,10 @@ const STORIES = [
 /* ---------- Helpers ---------- */
 const $ = id => document.getElementById(id);
 const START = Date.UTC(2026, 9, 27);
-const ROUNDS_REAL = 8, ROUNDS_FAKE = 2, ROUND_LEN = 10;   // practice: 8 true + 2 fake
-const DIG_REAL = 5;                                       // Daily Dig: 5 true + 2 fake
+const ROUNDS_REAL = 5, ROUNDS_FAKE = 2, ROUND_LEN = 7;    // every mode: 7 stories (Real or Fake / Politics: 5 true + 2 fake)
+const DIG_REAL = ROUNDS_REAL, OLD_REAL = 8, OLD_BLANK = 10;   // the old 8 true / 10 blank rounds set the top score
 const CALL_PTS = 100, FOOLED_PTS = -75, PIN_PTS = 400;
-let PK = 1;   // per-true-story points multiplier: keeps a Daily Dig's top score the same however many true stories it has (8 true = x1)
+let PK = 1;   // per-true-story points multiplier: keeps a Daily Dig's top score the same however many true stories it has (8 true = x1; now 5 true = x1.6)
 
 function pad(n){return String(n).padStart(2,'0');}
 function keyOf(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
@@ -2471,7 +2471,7 @@ let S = null, map = null, layer = null, guessLL = null;
 let KIND = (function(){ try{ const k=localStorage.getItem('ff_kind'); return (k==='blank'||k==='pol')?k:'call'; }catch(e){ return 'call'; } })();
 function saveKey(kind){ return kind==='blank'?'ff_blank':kind==='pol'?'ff_pol':'ff_daily'; }
 function modeName(kind){ return kind==='blank'?'Fill the Blank':kind==='pol'?'Politics':'Daily Dig'; }
-const BLANK_MAX = 500, BLANK_SECS = 20;
+let BLANK_MAX = 500; const BLANK_SECS = 20;
 const FAKE_PTS = 150, JAW_SCALE = 4500;   // caught fake; every mode's jaw is scaled to the same 3000-point world
 
 function startGame(mode, kind){
@@ -2500,7 +2500,8 @@ function startGame(mode, kind){
     if(fresh.length>=5) rounds=fresh;
   }
   const reals=rounds.filter(x=>x.real).length;
-  PK = (!blank && !pol && reals>0) ? Math.max(1, ROUNDS_REAL/reals) : 1;
+  PK = (!blank && reals>0) ? Math.max(1, OLD_REAL/reals) : 1;
+  BLANK_MAX = blank ? Math.round(OLD_BLANK*500/Math.max(1,rounds.length)) : 500;   // top score for 7 words = the old 10
   S = {mode, kind:KIND, rounds, i:0, results:[], phase:'call', score:0,
        maxScore: blank ? rounds.length*BLANK_MAX : Math.round(reals*PK*(CALL_PTS+PIN_PTS+PIN_BONUS))+(rounds.length-reals)*FAKE_PTS,
        maxJaw: blank ? rounds.length*BLANK_MAX : Math.round(reals*PK*(CALL_PTS+PIN_PTS+PIN_BONUS))};
@@ -3615,7 +3616,7 @@ function fmtDate(iso){ try{ const p=iso.split('-').map(Number); return new Date(
 /* Exact answers carry the round; near misses pay little so spamming related words doesn't. */
 function blankPts(c,tl,n){
   const pace=0.6+0.4*tl/BLANK_SECS, spam=Math.max(0.5,1-0.05*Math.max(0,n-3));
-  return Math.round((c>=1 ? BLANK_MAX*pace : 300*c*c*pace)*spam);
+  return Math.round((c>=1 ? BLANK_MAX*pace : 300*(BLANK_MAX/500)*c*c*pace)*spam);
 }
 function heat(c){ return c>=1?'EXACT':c>=0.8?'HOT':c>=0.6?'WARM':c>=0.4?'MILD':'COLD'; }
 
