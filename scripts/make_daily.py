@@ -713,6 +713,23 @@ def pick_fakes(fakes, reals, day, n, rank):
     return chosen
 
 
+STOCK_KEEP = 120   # days a story sourced by make_stock.py stays eligible
+
+
+def load_stock(day, used, prior):
+    """Extra Politics and Fill the Blank stories sourced ahead of time by scripts/make_stock.py (data/stock.json).
+    They only ever feed those two modes, never Real or Fake. Returns (the whole file, the usable stories)."""
+    try:
+        st = json.load(open(os.path.join(DATA, "stock.json")))
+    except Exception:
+        return {}, {"pol": [], "polfake": [], "blank": []}
+    keep_from = (dt.date.fromisoformat(day) - dt.timedelta(days=STOCK_KEEP)).isoformat()
+    ok = lambda r: r.get("banked", "") >= keep_from and r.get("src") not in used and not valid_real(r) and not seen_before(r, prior)
+    return st, {"pol": [r for r in st.get("pol", []) if ok(r)],
+                "polfake": [f for f in st.get("polfake", []) if f.get("banked", "") >= keep_from and valid_fake(f)],
+                "blank": [r for r in st.get("blank", []) if ok(r) and r.get("h2")]}
+
+
 def valid_blank(r):
     h2, ans = r.get("h2", ""), r.get("ans") or []
     if h2.count("[]") != 1 or not ans or not all(re.fullmatch(r"[a-z]+", a) for a in ans):
@@ -826,6 +843,8 @@ def main():
         for r in dup:
             print(f"  drop real (already shown on an earlier day): {r.get('h')}", file=sys.stderr)
             lst.remove(r)
+    stock_all, stock = load_stock(day, used, prior)
+    print(f"  stock: {len(stock['pol'])} politics, {len(stock['polfake'])} politics fakes, {len(stock['blank'])} Fill the Blank", file=sys.stderr)
     for r in fresh:
         r["_fresh"] = 1
     reals = fresh + bank_real
@@ -905,7 +924,7 @@ def main():
 
     # Fill the Blank: real stories whose answer has a word vector
     # Fill the Blank isn't tied to the news cycle: older banked stories (up to a year) are fair game too.
-    blank_src = sorted(reals, key=merit, reverse=True) + sorted(bank_old, key=merit, reverse=True)
+    blank_src = sorted(reals + stock["blank"], key=merit, reverse=True) + sorted(bank_old, key=merit, reverse=True)
     h2words = {w for r in blank_src for w in re.findall(r"[a-z]+", (r.get("h2") or "").lower())}
     vecs = load_vectors(os.environ.get("GLOVE"), [a for r in blank_src for a in (r.get("ans") or [])] + sorted(h2words))
     blank_pool, used_ans = [], []
@@ -1006,13 +1025,13 @@ def main():
                     if near:
                         r["lat"], r["lng"] = gg
             preal.append(r)
-        pfake = [dict(f, banked=day) for f in pol.get("fake", []) if valid_fake(f)] + bank_polfake
+        pfake = [dict(f, banked=day) for f in pol.get("fake", []) if valid_fake(f)] + stock["polfake"] + bank_polfake
         pchosen = pick_fakes(pfake, [r for r in pol.get("real", []) if r.get("h")], day, N_POL_FAKE, lambda f: 0 if f.get("banked") == day else 1)
         pfake = pchosen + [f for f in pfake if f not in pchosen]
         for r in preal:
             r["banked"] = day
         seen_place, uniq_pol = set(), []
-        for r in preal + bank_pol:                     # fresh first, then banked politics stories                                # one story per place: no two takes on the same dog-mayor race
+        for r in preal + stock["pol"] + bank_pol:                     # fresh first, then banked politics stories                                # one story per place: no two takes on the same dog-mayor race
             key = (r.get("place") or "").split(",")[0].strip().lower()
             if key and key in seen_place:
                 continue
@@ -1032,12 +1051,23 @@ def main():
             result["politics"] = items
             call_real = call_real + preal
     pol_src = {r["src"] for r in preal} if result.get("politics") else set()
+    stock_pol_src, stock_pf = {r.get("src") for r in stock["pol"]}, {f.get("h") for f in stock["polfake"]}
+    keep_pol = [r for r in keep_pol if r.get("src") not in stock_pol_src]        # stock stories stay in data/stock.json, not the bank
+    keep_polfake = [f for f in keep_polfake if f.get("h") not in stock_pf]
 
     for name in (f"{day}.json", "latest.json"):
         with open(os.path.join(DATA, name), "w") as f:
             json.dump(result, f, ensure_ascii=False, indent=1)
 
     used_today = {r["src"] for r in call_real + blank}
+    if stock_all:       # stories from data/stock.json that ran today leave it; very old ones expire
+        keep_from = (dt.date.fromisoformat(day) - dt.timedelta(days=STOCK_KEEP)).isoformat()
+        used_pol = {f["h"] for f in pfake[:N_POL_FAKE]} if result.get("politics") else set()
+        stock_all["pol"] = [r for r in stock_all.get("pol", []) if r.get("src") not in used_today and r.get("banked", "") >= keep_from]
+        stock_all["blank"] = [r for r in stock_all.get("blank", []) if r.get("src") not in used_today and r.get("banked", "") >= keep_from]
+        stock_all["polfake"] = [f for f in stock_all.get("polfake", []) if f.get("h") not in used_pol and f.get("banked", "") >= keep_from]
+        with open(os.path.join(DATA, "stock.json"), "w") as f:
+            json.dump(stock_all, f, ensure_ascii=False, indent=1)
     history[day] = sorted(used_today)
     keep_real, seen_src = [], set()
     for r in sorted(reals + bank_old, key=lambda r: r.get("banked", ""), reverse=True):
