@@ -1448,7 +1448,7 @@ const Scene = (function(){
   let W=0,H=0,PX=6,cx=0,U=200,worldEnd=0,dropMax=0,B=[0,0,0,0,0,0],camMin=0,camMax=0,axisX=0,maxPts=3000;
   let dipUntil=0,dipping=false,pops=[],marksEl=null,mks=[],recap=null,markCb=null,paperT=1,paperGoal=1,tp=0,jd=0,camY=0,focusT=0.85,focus=0.85,t=0,last=0,gaspT=-99,foolT=-99,safeTop=120;
   let shake=0,lastZone=-1,emitAcc=0,bestJd=0,panT=-99,zoneCb=null,breakCb=null,rumbleCb=null,sparks=[],kit={},drillV=0;
-  let props=[],lmCb=null,deskView=false;
+  let props=[],lmCb=null,deskView=false,coreT=-99;   // coreT: -99 intact, -98 already collapsed, otherwise the time the core blew
   let peb=[],gems=[],bubbles=[],worms=[],beetles=[],tunnels=[],cracks=[],parts=[],drips=[],embers=[];
   let labels=[],zoneLabels=[],zones=[],depthCb=null,lastM='',running=false,resizeTimer=0;
 
@@ -1659,6 +1659,11 @@ const Scene = (function(){
     shake=Math.max(0,shake-dt*3);
     cracks.forEach(c=>{ if(c.rt<0 && cy>c.y+2) c.rt=t; });
     props.forEach(p=>{ if(!p.hit && cy>p.y+(p.h>>1)){ p.hit=true; if(lmCb) lmCb(p.text); } });
+    if(coreT===-99 && cy>EXIT-32){       // the jaw has gone through the centre of the core: it blows up, then falls in on itself
+      coreT=t; burst(110,cy,2.8); shake=6.5;
+      for(let i=0;i<44;i++){ const an=Math.random()*Math.PI*2, sp=40+Math.random()*90; sparks.push({x:0,y:EXIT-32,vx:Math.cos(an)*sp,vy:Math.sin(an)*sp,age:0,life:1.1+Math.random()*0.9,c:['#fff6c8','#ffd23f','#ff8a1f','#ff5a1f'][i%4]}); }
+      if(breakCb) breakCb(7);
+    }
     for(let i=sparks.length-1;i>=0;i--){ const p=sparks[i]; p.age+=dt; if(p.age>p.life){ sparks.splice(i,1); continue; } p.x+=p.vx*dt; p.y+=p.vy*dt; p.vx*=0.97; p.vy*=0.97; }
     for(let i=parts.length-1;i>=0;i--){
       const p=parts[i]; p.age+=dt;
@@ -2039,11 +2044,26 @@ const Scene = (function(){
         embers.forEach(e=>{ g.globalAlpha=clamp(1-e.age/e.life,0,1); R(Math.round(e.x),Math.round(e.y),1,1,C.coreHot); }); g.globalAlpha=1;
       }
       const ccy=EXIT-32;
-      if(vis(ccy-30,ccy+30)){
-        const off=Math.round(Math.sin(t*2));
-        [[26+off,C.magmaHi],[18+off,C.magmaBright],[12+off,C.coreHot],[6+off,'#fff6c8']].forEach(([rad,col])=>{
-          for(let dy=-rad;dy<=rad;dy++){ const hw=Math.round(Math.sqrt(Math.max(0,rad*rad-dy*dy))); R(-hw,ccy+dy,hw*2,1,col); }
+      if(vis(ccy-90,ccy+90)){
+        const a=coreT>=0?t-coreT:(coreT===-98?9:-1);      // seconds since the core blew (-1: it has not)
+        const disc=(sc,mixw)=>[[26,C.magmaHi],[18,C.magmaBright],[12,C.coreHot],[6,'#fff6c8']].forEach(([rad0,col])=>{
+          const rad=Math.round(rad0*sc); if(rad<1) return; const cc=mixw?mix(col,'#ffffff',mixw):col;
+          for(let dy=-rad;dy<=rad;dy++){ const hw=Math.round(Math.sqrt(Math.max(0,rad*rad-dy*dy))); R(-hw,ccy+dy,hw*2,1,cc); }
         });
+        if(a<0){ disc(1+Math.sin(t*2)*0.04,0); }
+        else if(a<0.2){ disc(1+a*4,a/0.2); }                                      // it swells and whites out...
+        else if(a<1.1){ const k=1-(a-0.2)/0.9; disc(Math.max(0,k*k*1.8)+0.0,0.4*k); }   // ...then collapses in on itself
+        if(a>=0 && a<1.6){      // shockwave rings rolling outwards
+          [0,0.12].forEach(dl=>{ const q=a-dl; if(q<0||q>1.3) return; const rr=20+q*70; g.globalAlpha=clamp(1-q/1.3,0,1)*0.9;
+            for(let i=0,n=Math.round(rr*5);i<n;i++){ const an=i/n*Math.PI*2; R(Math.round(Math.cos(an)*rr),Math.round(ccy+Math.sin(an)*rr),2,1,dl?C.magmaHi:'#fff6c8'); }
+          }); g.globalAlpha=1;
+        }
+        if(a>=1.1){      // what is left: a scorched crater with a few embers
+          for(let dy=-9;dy<=9;dy++){ const hw=Math.round(Math.sqrt(81-dy*dy)); R(-hw,ccy+dy,hw*2,1,'#1c0503'); }
+          for(let dy=-5;dy<=5;dy++){ const hw=Math.round(Math.sqrt(25-dy*dy)); R(-hw,ccy+dy,hw*2,1,'#2d0a06'); }
+          [[-4,-2],[3,-3],[0,3],[5,2],[-3,4]].forEach(([ex,ey],i)=>{ if(Math.floor(t*3+i)%3) R(ex,ccy+ey,1,1,i%2?C.magmaHi:C.magmaBright); });
+          for(let i=0;i<10;i++){ const an=i*0.63+0.3; R(Math.round(Math.cos(an)*(12+(i%3)*3)),Math.round(ccy+Math.sin(an)*(12+(i%3)*3)),2,1,'#3a0f08'); }
+        }
       }
     }
 
@@ -2125,8 +2145,8 @@ const Scene = (function(){
     // 9b. the diamond at the core, sparks, and your best-ever depth flag
     {
       const ccy=EXIT-32;
-      if(vis(ccy-4,ccy+4)){ R(-1,ccy-2,3,1,'#bff6ff'); R(-2,ccy-1,5,1,'#6be4ff'); R(-2,ccy,5,1,'#3fb8e0'); R(-1,ccy+1,3,1,'#6be4ff'); R(0,ccy+2,1,1,'#bff6ff'); }
-      sparks.forEach(p=>{ g.globalAlpha=clamp(1-p.age/p.life,0,1); R(Math.round(p.x),Math.round(p.y),2,2,C.gold); }); g.globalAlpha=1;
+      if((coreT===-99 || (coreT>=0 && t-coreT<0.2)) && vis(ccy-4,ccy+4)){ R(-1,ccy-2,3,1,'#bff6ff'); R(-2,ccy-1,5,1,'#6be4ff'); R(-2,ccy,5,1,'#3fb8e0'); R(-1,ccy+1,3,1,'#6be4ff'); R(0,ccy+2,1,1,'#bff6ff'); }
+      sparks.forEach(p=>{ g.globalAlpha=clamp(1-p.age/p.life,0,1); R(Math.round(p.x),Math.round(p.y),2,2,p.c||C.gold); }); g.globalAlpha=1;
       if(bestJd>4){
         const by=Math.round(13+bestJd+9);
         if(vis(by-9,by+2)){
@@ -2235,7 +2255,7 @@ const Scene = (function(){
     update(dt); draw();
     requestAnimationFrame(frame);
   }
-  function settle(){ jd=target(); focus=focusT; camY=camFor(); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); props.forEach(p=>{ if(chinY()>p.y) p.hit=true; }); emitDepth(); draw(); }
+  function settle(){ jd=target(); focus=focusT; camY=camFor(); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); props.forEach(p=>{ if(chinY()>p.y) p.hit=true; }); coreT=chinY()>EXIT-32?-98:-99; emitDepth(); draw(); }
   /* points earned on true stories; the jaw moves JAW_K world px per point */
   function setJaw(points){
     const before=tp; tp=Math.max(0,points);
@@ -2247,7 +2267,7 @@ const Scene = (function(){
     }
     if(reduce) settle();
   }
-  function configure(maxPoints){ maxPts=Math.max(500,maxPoints); tp=0; jd=0; if(W) build(); }
+  function configure(maxPoints){ maxPts=Math.max(500,maxPoints); tp=0; jd=0; coreT=-99; if(W) build(); }
   function gasp(){ if(!reduce) gaspT=t; }
   function fooledReact(){ if(!reduce){ foolT=t; shake=Math.max(shake,1.5); } }
   function setFocus(f){ focusT=clamp(f,0.25,0.95); if(reduce) settle(); }
@@ -2259,10 +2279,10 @@ const Scene = (function(){
     if(d>=1 && chin<PB0) zone='BEHIND THE PAPER';
     return {m:(d*M_PER_PX).toFixed(1), zone};
   }
-  function restore(points){ tp=Math.max(0,points); jd=target(); emitAcc=0; camY=camFor(); lastZone=zoneIndex(chinY()); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); props.forEach(p=>{ p.hit=chinY()>p.y; }); emitDepth(); }
+  function restore(points){ tp=Math.max(0,points); jd=target(); emitAcc=0; camY=camFor(); lastZone=zoneIndex(chinY()); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); props.forEach(p=>{ p.hit=chinY()>p.y; }); coreT=chinY()>EXIT-32?-98:-99; emitDepth(); }
   function reset(){
     paperT=paperGoal=1; dipUntil=0; dipping=false; tp=0; jd=0; gaspT=-99; foolT=-99; focusT=0.85; focus=0.85; parts=[]; sparks=[]; shake=0; panT=-99;
-    cracks.forEach(c=>c.rt=-1); props.forEach(p=>p.hit=false);
+    cracks.forEach(c=>c.rt=-1); props.forEach(p=>p.hit=false); coreT=-99;
     if(W){ camY=camFor(); lastZone=zoneIndex(chinY()); emitDepth(); if(reduce) settle(); }
   }
   function start(){
@@ -3330,15 +3350,17 @@ function drawCurve(rows, mine, cvEl){
   g.imageSmoothingEnabled=false;
   g.fillStyle='#0b0e14'; g.fillRect(0,0,W,H);
   const xs=rows.map(r=>r.m); if(typeof mine==='number') xs.push(mine);
-  // a tidy axis: whole-number marks every 1, 2, 5 or 10 m, with at most 6 intervals, and the right edge on a mark
-  const reach=Math.max(...xs,1)+0.5, step=[1,2,5,10,20,50].find(s=>Math.ceil(reach/s)<=6)||100;
-  const maxM=Math.max(2,Math.ceil(reach/step)*step);
-  const X=m=>Math.round(14+(W-28)*m/maxM), base=H-22;
-  // grid and axis
-  g.fillStyle='#1c2230'; for(let m=0;m<=maxM;m+=step){ g.fillRect(X(m),12,1,base-12); }
-  g.fillStyle='#8a91a3'; g.font='10px monospace'; g.textAlign='center';
-  for(let m=0;m<=maxM;m+=step) g.fillText(m+'m',Math.min(W-12,Math.max(12,X(m))),H-8);
-  g.fillStyle='#3a4050'; g.fillRect(14,base,W-28,2);
+  // x axis: whole-number marks every 1, 2, 5, 10 ... m, framed tightly around the scores (but starting at 0 when the dig is shallow)
+  const lo0=Math.max(0,Math.min(...xs,99)-0.5), hi0=Math.max(...xs,1)+0.5;
+  const step=[1,2,5,10,20,50].find(st=>Math.ceil(hi0/st)-Math.floor(lo0/st)<=6)||100;
+  let lo=lo0<1.5*step?0:Math.floor(lo0/step)*step, hi=Math.ceil(hi0/step)*step;
+  if(hi-lo<2*step) hi=lo+2*step;
+  const L=24, R=W-24, X=m=>Math.round(L+(R-L)*(m-lo)/(hi-lo)), base=H-24;
+  // grid, ticks and labels
+  g.fillStyle='#1c2230'; for(let m=lo;m<=hi;m+=step){ g.fillRect(X(m),12,1,base-12); }
+  g.fillStyle='#3a4050'; g.fillRect(L-8,base,R-L+16,2);
+  g.fillStyle='#8a91a3'; g.font='15px VT323, monospace'; g.textAlign='center'; g.textBaseline='alphabetic';
+  for(let m=lo;m<=hi;m+=step){ g.fillRect(X(m),base+2,1,3); g.fillText(String(m)+(m===hi?' m':''),X(m),H-6); }
   // histogram of players (0.5 m bins, 1 m bins on a wide axis)
   const bw=step>=5?1:0.5, bins={}; rows.forEach(r=>{ const b=Math.floor(r.m/bw)*bw; bins[b]=(bins[b]||0)+1; });
   const top=Math.max(1,...Object.values(bins));
@@ -3349,19 +3371,21 @@ function drawCurve(rows, mine, cvEl){
     const mean=rows.reduce((a,r)=>a+r.m,0)/rows.length;
     const sd=Math.max(0.35,Math.sqrt(rows.reduce((a,r)=>a+(r.m-mean)**2,0)/rows.length));
     g.fillStyle='#ffcc4d';
-    for(let px=14;px<W-14;px+=2){
-      const m=(px-14)/(W-28)*maxM, y=Math.exp(-0.5*((m-mean)/sd)**2);
+    for(let px=L;px<=R;px+=2){
+      const m=lo+(px-L)/(R-L)*(hi-lo), y=Math.exp(-0.5*((m-mean)/sd)**2);
       g.fillRect(px,Math.round(base-(base-20)*y),2,2);
     }
-    g.fillStyle='#ffcc4d'; g.fillRect(X(mean),base+2,1,4);
+    g.fillRect(clamp01(X(mean),L,R),base+2,1,4);
   }
   // you
   if(typeof mine==='number'){
-    const x=X(mine);
+    const x=clamp01(X(mine),L,R);
     g.fillStyle='#ff6b8b'; g.fillRect(x-1,10,3,base-10);
-    g.fillRect(x-14,0,28,11); g.fillStyle='#0b0e14'; g.font='9px monospace'; g.fillText('YOU',x,8);
+    const lx=Math.max(14,Math.min(W-14,x));
+    g.fillRect(lx-14,0,28,11); g.fillStyle='#0b0e14'; g.font='9px monospace'; g.fillText('YOU',lx,8);
   }
 }
+function clamp01(v,a,b){ return Math.max(a,Math.min(b,v)); }
 
 async function openBoard(){
   Sound.play('menu');
