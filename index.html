@@ -860,8 +860,8 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #crowdTop{margin:6px 0 8px;font:19px/1.15 var(--vt);color:#c3cad8}
 #crowdTop b{font-weight:400;color:var(--accent)}
 #recapList .crowd{display:block;font-size:16px;color:#7fe3ff;margin-top:2px}
-#backList{display:flex;flex-direction:column;gap:6px;max-height:40vh;overflow:auto;padding-left:10px}
-#backList button{font-size:19px!important;padding:6px 10px!important}
+#backList,#practiceList{display:flex;flex-direction:column;gap:6px;max-height:40vh;overflow:auto;padding-left:10px}
+#backList button,#practiceList button{font-size:19px!important;padding:6px 10px!important}
 .challenge{display:block;margin-top:6px;color:var(--accent)}
 @media not all and (min-width:1100px) and (min-height:600px){ body.returned #final{margin-top:max(0px,calc(100vh - 330px))} }
 #summary canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rendering:crisp-edges;background:#0b0e14;border:1px solid #232a38}
@@ -1063,7 +1063,12 @@ body.recap #bar{display:none}
       <button id="mCall">Daily Dig <small>real or fake? 8 true, 2 fake</small></button>
       <button id="mBlank">Fill the Blank <small>20 s each</small></button>
       <button id="mPol">Politics <small>hard-to-believe governing</small></button>
-      <button id="mPractice">Practice set <small>doesn't count</small></button>
+      <button id="mPractice">Practice set <small>doesn't count · pick a mode</small></button>
+      <div id="practiceList" hidden>
+        <button data-k="call">Daily Dig</button>
+        <button data-k="blank">Fill the Blank</button>
+        <button data-k="pol">Politics</button>
+      </div>
       <button id="mBoard">Leaderboard <small>today's deepest digs</small></button>
       <button id="mBack" hidden>Back issues <small>earlier papers · no streak</small></button>
       <div id="backList" hidden></div>
@@ -2201,7 +2206,7 @@ function startGame(mode, kind){
     const spare=reals.slice(ROUNDS_REAL).filter(s=>s.h2);
     rounds = blank ? spare.slice(0,ROUND_LEN)
                    : shuffle(reals.slice(0,ROUNDS_REAL).concat(fakes.slice(0,ROUNDS_FAKE)),rng(hash(todayKey()+'o')));
-  } else { rounds = blank ? pickBlankRounds(r) : pickRounds(r,false); markPractised(rounds); }   // practice never uses today's stories
+  } else { rounds = blank ? pickBlankRounds(r) : pickRounds(r,pol); markPractised(rounds); }   // practice never uses today's stories
   if(daily && DAILY && blank && rounds){                 // never show a Real or Fake story again in Fill the Blank
     const seen=new Set((DAILY.call||[]).concat(DAILY.politics||[]).map(x=>x.src).filter(Boolean));
     const fresh=rounds.filter(x=>!x.src||!seen.has(x.src));
@@ -3371,7 +3376,7 @@ $('replayDig').onclick=()=>startRecap(false);
 Scene.onMark(()=>Sound.play('pin'));
 $('btnBoard').onclick=openBoard;
 $('mBoard').onclick=()=>{ closeMenu(); openBoard(); };
-$('mBack').onclick=()=>{ $('backList').hidden=!$('backList').hidden; renderIssues(); };
+$('mBack').onclick=()=>{ $('practiceList').hidden=true; $('backList').hidden=!$('backList').hidden; renderIssues(); };
 $('nameEdit').onclick=()=>{
   const row=$('nameRow');
   if(row.querySelector('input')) return;
@@ -3389,7 +3394,7 @@ $('btnSaveImg').onclick=saveDigImage;
 function renderAmb(){ $('mAmbState').textContent=Sound.ambience()?'[x] ON':'[ ] OFF'; }
 $('mAmb').onclick=()=>{ Sound.setAmbience(!Sound.ambience()); renderAmb(); Sound.unlock(); };
 renderAmb();
-$('btnPractice').onclick=()=>startGame('practice',KIND==='pol'?'call':KIND);
+$('btnPractice').onclick=()=>startGame('practice',KIND);
 /* the menu button follows its spot in the header until the page scrolls past it, then stays on screen */
 function pinMenu(){
   const tl=document.querySelector('.topline'); if(!tl) return;
@@ -3398,7 +3403,7 @@ function pinMenu(){
   $('menu').style.top=(top+38)+'px'; $('menu').style.left=left+'px';
 }
 window.addEventListener('scroll',pinMenu,{passive:true}); window.addEventListener('resize',pinMenu); pinMenu();
-function closeMenu(){ document.body.classList.remove('hideq'); $('menu').hidden=true; $('backList').hidden=true; $('menuBtn').setAttribute('aria-expanded','false'); }
+function closeMenu(){ document.body.classList.remove('hideq'); $('menu').hidden=true; $('backList').hidden=true; $('practiceList').hidden=true; $('menuBtn').setAttribute('aria-expanded','false'); }
 $('menuBtn').onclick=e=>{ e.stopPropagation(); Sound.play('menu'); const open=$('menu').hidden; $('menu').hidden=!open; document.body.classList.toggle('hideq',open && !!S && S.phase==='call'); $('menuBtn').setAttribute('aria-expanded',String(open)); if(open){ renderStats(); pinMenu(); } };
 $('menu').addEventListener('click',e=>e.stopPropagation());
 document.addEventListener('click',closeMenu);
@@ -3417,7 +3422,8 @@ document.addEventListener('keydown',e=>{
 $('mCall').onclick=()=>startGame('daily','call');
 $('mBlank').onclick=()=>startGame('daily','blank');
 $('mPol').onclick=()=>startGame('daily','pol');
-$('mPractice').onclick=()=>startGame('practice',KIND==='pol'?'call':KIND);
+$('mPractice').onclick=()=>{ const l=$('practiceList'); l.hidden=!l.hidden; $('backList').hidden=true; l.querySelectorAll('button').forEach(b=>b.classList.toggle('on',S&&S.mode==='practice'&&b.dataset.k===S.kind)); };
+$('practiceList').querySelectorAll('button').forEach(b=>b.onclick=()=>startGame('practice',b.dataset.k));
 
 Scene.onDepth(m=>{ $('depth').textContent=m; });
 Scene.onZone(name=>showToast(name));
