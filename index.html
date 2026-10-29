@@ -724,7 +724,7 @@ body.pinning .app{padding-bottom:calc(min(30vh,260px) + 96px)}
 #muteBtn{width:30px;height:30px;padding:0;display:grid;place-items:center;background:var(--panel);box-shadow:0 0 0 2px var(--line);color:var(--cyan);font:20px/1 var(--vt);position:relative}
 #muteBtn.off{color:#5d6475}
 #muteBtn.off::after{content:'';position:absolute;left:5px;right:5px;top:50%;height:2px;background:#ff5d73;transform:rotate(-45deg)}
-#menu{position:fixed;z-index:20;width:min(300px,calc(100vw - 32px));background:var(--card);background-image:var(--scan);border:2px solid var(--line);box-shadow:0 0 0 3px var(--ink),6px 6px 0 3px var(--ink);padding:10px;display:flex;flex-direction:column;gap:8px;text-shadow:none}
+#menu{position:fixed;z-index:20;width:min(300px,calc(100vw - 32px));background:var(--card);background-image:var(--scan);border:2px solid var(--line);box-shadow:0 0 0 3px var(--ink),6px 6px 0 3px var(--ink);padding:10px;display:flex;flex-direction:column;gap:8px;text-shadow:none;max-height:calc(100vh - 64px);max-height:calc(100dvh - 64px);overflow-y:auto;overscroll-behavior:contain}
 #menu .mlbl{font:8px/1 var(--px);letter-spacing:.18em;color:#7d8494;margin:4px 2px 0}
 #menu button{width:100%;text-align:left;font:22px/1 var(--vt);padding:8px 12px;background:var(--panel);box-shadow:0 0 0 2px var(--line);display:flex;flex-direction:column;align-items:flex-start;gap:3px;white-space:nowrap}
 #menu button.on{background:var(--accent);color:#2b2000;box-shadow:inset -3px -3px 0 rgba(0,0,0,.25),inset 3px 3px 0 rgba(255,255,255,.25),0 0 0 2px var(--ink)}
@@ -963,6 +963,10 @@ body.recap #bar{display:none}
 #endBtns .ghost{margin-top:0;flex:0 0 38%}
 #endBtns button{flex:1}
 #endBtns .ghost{flex:1}
+#about{position:fixed;inset:0;z-index:40;background:rgba(5,6,10,.55);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:16px}
+#about .aboutIn{width:min(480px,100%);max-height:80vh;overflow:auto;background:rgba(20,24,34,.82);border:2px solid var(--accent);box-shadow:0 0 0 3px var(--ink);padding:12px 16px 16px}
+#about .aboutIn p:not(.kicker){margin:12px 0 0;font:20px/1.3 var(--vt);color:var(--text)}
+#aboutClose{width:34px;height:34px;padding:0;font:28px/1 var(--vt);background:var(--panel);box-shadow:0 0 0 2px var(--line)}
 #sheet,#wardrobe{position:fixed;inset:0;z-index:30;background:rgba(5,6,10,.72);display:flex;align-items:flex-end;justify-content:center;padding:0 0 env(safe-area-inset-bottom,0px)}
 #sheet .sheetIn,#wardrobe .sheetIn{width:min(560px,100%);max-height:88vh;overflow:auto;background:var(--card);background-image:var(--scan);border-top:3px solid var(--accent);padding:12px max(16px,env(safe-area-inset-left,0px)) 18px;box-shadow:0 -6px 0 var(--ink)}
 .sheetTop{display:flex;justify-content:space-between;align-items:center}
@@ -1098,10 +1102,9 @@ body.recap #bar{display:none}
       <button id="mAmb">Background newsroom <small id="mAmbState">On</small></button>
       <p class="mlbl">YOUR RECORD</p>
       <p class="how" id="menuStats"></p>
-      <p class="mlbl">ABOUT</p>
-      <p class="how">Far-Fetched is a free daily news game. Every day you get seven weird headlines: five really happened and two were made up. Call each one real or fake, then pin the real ones on the map. Every point drops the digger's jaw deeper. Fill the Blank and Politics are daily too, and Practice lets you play older stories without touching your streak.</p>
       <p class="mlbl">HOW TO SCORE</p>
       <p class="how" id="howText"></p>
+      <button id="mAbout">About Far-Fetched</button>
     </div>
   </div>
   <div class="lcol">
@@ -1180,6 +1183,12 @@ body.recap #bar{display:none}
 
   <div id="toast" hidden></div>
   <button class="ghost" id="skipRecap">Skip ▸</button>
+  <section id="about" hidden aria-label="About Far-Fetched">
+    <div class="aboutIn">
+      <div class="sheetTop"><p class="kicker">About Far-Fetched</p><button id="aboutClose" aria-label="Close">×</button></div>
+      <p>Far-Fetched is a free daily news game. Every day you get seven weird headlines: five really happened and two were made up. Call each one real or fake, then pin the real ones on the map. Every point drops the digger's jaw deeper. Fill the Blank and Politics are daily too, and Practice lets you play older stories without touching your streak.</p>
+    </div>
+  </section>
   <section id="wardrobe" hidden aria-label="Wardrobe">
     <div class="sheetIn">
       <div class="sheetTop"><p class="kicker">Wardrobe</p><button id="wardClose" aria-label="Close">×</button></div>
@@ -3185,6 +3194,11 @@ function renderWardrobe(){
 }
 $('mWardrobe').onclick=openWardrobe;
 $('wardClose').onclick=closeWardrobe;
+const closeAbout=()=>{ $('about').hidden=true; };
+$('mAbout').onclick=()=>{ Sound.play('menu'); closeMenu(); $('about').hidden=false; };
+$('aboutClose').onclick=closeAbout;
+$('about').addEventListener('click',e=>{ if(e.target===$('about')) closeAbout(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && !$('about').hidden) closeAbout(); });
 $('wardrobe').addEventListener('click',e=>{ if(e.target===$('wardrobe')) closeWardrobe(); });
 
 /* ---------- Friend challenge: the share link carries your dig; a friend who opens it is told to beat it ---------- */
