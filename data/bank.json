@@ -24,28 +24,6 @@
    "rules": 2
   },
   {
-   "id": 41,
-   "h": "Striker who scored equaliser slips taking 93rd-minute penalty and misses in second-tier match in {}",
-   "h2": "Vigo: striker who scored equaliser slips taking 93rd-minute [] for Tenerife at Celta Fortuna",
-   "ans": [
-    "penalty"
-   ],
-   "place": "Vigo, Spain",
-   "geocode": "Balaídos, Vigo, Spain",
-   "lat": 42.2114076,
-   "lng": -8.7440784,
-   "country": "Spain",
-   "cc": "ES",
-   "clue": "Segunda División with a Celta reserve side and Tenerife = Spain",
-   "clue_strength": 2,
-   "unbelievable": 3,
-   "theme": "penalty",
-   "src": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1xbjR2YlhMMk16Wmd0MHFGWG9DX0RXTTJtRWphX1pvdXpLME9SSXV4MXk1blFPS3BWSkJYUTlaMWU5anBCSU1PanBralFLYW9qYTNwaTJuZUF5Y19ab0JnT0lWNUVScV9nbC10Y3F1a2poSHRYbnZDa9IBjAFBVV95cUxNQnlHS2FDLTBXZy1qVjBReEpsTXdmZFJBNnNuNmg0Y1Z1QTNPM3ItNGUtQ0UtUWlTclhjY3dsNnVFQ21EUWdhaW1RUzNzMlkzM3VTajgyWFFwaU9SQlRsc0swNDR3b0R1LXptVkVBWXc4TVFWM0lFNFdkWmM4dlh3ZVVFXzJmZzlWVWtPag?oc=5",
-   "published": "2026-10-19",
-   "banked": "2026-10-27",
-   "rules": 2
-  },
-  {
    "id": 47,
    "h": "Three officers at roadside check video-call a colleague to find a pickup's engine number; driver offers 'I can ask ChatGPT' in {}",
    "h2": "Yerba Buena, Tucumán: driver offers to ask [] as officers struggle to find his Hilux's engine number",
@@ -69,6 +47,54 @@
   }
  ],
  "fake": [
+  {
+   "h": "Delivery van in {} loses 1,260 parcels on a mountain pass; all recovered within a day",
+   "tell": "Scattered parcels on a pass would never all be found so fast.",
+   "obvious": 2,
+   "theme": "parcels",
+   "banked": "2026-10-29",
+   "rules": 2
+  },
+  {
+   "h": "Trawler crew off {} nets a 1960s fridge holding 23 unopened beers, still cold",
+   "tell": "Beer would not stay cold after decades underwater; the detail is too neat.",
+   "obvious": 3,
+   "theme": "fridge",
+   "banked": "2026-10-29",
+   "rules": 2
+  },
+  {
+   "h": "Storks nest on a tram power pole in {}, so trams run on a changed timetable for 5 weeks",
+   "tell": "Trams are rarely rescheduled for nests; the cause and effect is too tidy.",
+   "obvious": 2,
+   "theme": "tram",
+   "banked": "2026-10-29",
+   "rules": 2
+  },
+  {
+   "h": "Customs officers at {} airport find 14 kilos of saffron inside a hollowed-out wedding cake",
+   "tell": "Smugglers rarely choose a fragile cake, and the quantity is oddly convenient.",
+   "obvious": 3,
+   "theme": "spice",
+   "banked": "2026-10-29",
+   "rules": 2
+  },
+  {
+   "h": "Bus driver in {} detours 11 km so passengers can watch the last over of a Test match on a shop TV",
+   "tell": "Scheduled public buses do not leave their route for a sports broadcast.",
+   "obvious": 3,
+   "theme": "cricket",
+   "banked": "2026-10-29",
+   "rules": 2
+  },
+  {
+   "h": "Mountain hut in {} starts charging 4 francs for a glass of tap water, on Sundays only",
+   "tell": "A weekday-versus-Sunday pricing rule for tap water is plausible-sounding but oddly specific.",
+   "obvious": 2,
+   "theme": "water",
+   "banked": "2026-10-29",
+   "rules": 2
+  },
   {
    "h": "Moose wanders into a junior hockey rink in {}, play resumes after 19 minutes",
    "tell": "Too tidy and quick: a moose indoors would stop a game far longer.",
@@ -148,6 +174,26 @@
  ],
  "pol": [],
  "polfake": [
+  {
+   "h": "Voters in {} approve a measure to abolish the post of county coroner, an office the area never had",
+   "banked": "2026-10-29"
+  },
+  {
+   "h": "Parliament in {} passes a dress-code law for lawmakers after attendance rose 14 percent",
+   "banked": "2026-10-29"
+  },
+  {
+   "h": "Mayor of {} wins re-election by 3 votes after 41 ballots were found in a school locker",
+   "banked": "2026-10-29"
+  },
+  {
+   "h": "Lawmakers in {} ban snow shovels longer than 1.4 metres in a city that rarely sees snow",
+   "banked": "2026-10-29"
+  },
+  {
+   "h": "Elections in {} delayed a day after the only polling station ran short of pens, officials say",
+   "banked": "2026-10-29"
+  },
   {
    "h": "Lawmakers in {} extend summer recess by nine days after a heatwave changes the canteen menu",
    "banked": "2026-10-28"
