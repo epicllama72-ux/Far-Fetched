@@ -1509,7 +1509,6 @@ const Scene = (function(){
   /* funny things the jaw meets on the way down; each dig picks a random few per layer */
   const PD={
     rat:{text:'A sewer rat. He pays no rent.',fx:'bob',pal:{G:'#8d8f9a',D:'#5d5f6a',P:'#e58a8f',K:'#1a1220'},rows:["......GG....","P...GGGGGG..",".PPGGGGGGGGP","..PGGGDGGGKP","...DD..DD..."]},
-    duck:{text:'A rubber duck. Nobody asked.',fx:'bob',pal:{Y:'#ffd23f',O:'#ff8a1f',K:'#1a1220'},rows:["...YY...","..YYYY..","..YKYOO.","YYYYYY..","YYYYYYY.",".YYYYY.."]},
     sock:{text:'The lost sock. Found at last.',pal:{R:'#c0392b',W:'#f4f0e4'},rows:[".RRRR.",".WWWW.",".RRRR.",".WWWW.",".RRRRR","RRRRRRR"]},
     tv:{text:'Static. Even the TV is shocked.',fx:'tv',pal:{B:'#3a3d4a',S:'#9fb8c8',K:'#1a1220'},rows:["BBBBBBBB","BSSSSSKB","BSSSSSKB","BSSSSSKB","BBBBBBBB",".B....B."]},
     pizza:{text:'Day-old pizza. Down here it is vintage.',pal:{B:'#c9a050',R:'#c0392b',Y:'#ffd23f'},rows:["BBBBBBB","YYRYYRY",".YYYYY.","..YRY..","...Y..."]},
@@ -1526,7 +1525,7 @@ const Scene = (function(){
     ore:{text:'Diamond ore! Mining level up.',fx:'glint',pal:{S:'#8b8a97',D:'#2e2d38',L:'#a4a3b0',C:'#4fe8e0',W:'#e0fffd'},rows:["DDDDDDDD","DSLSSCCD","DSSCWCSD","DLSSCCSD","DSCCSSLD","DCWCSSSD","DSSCSLSD","DDDDDDDD"]},
     pick:{text:'A pickaxe. Someone else tried.',pal:{B:'#7a5238',S:'#9aa0b0'},rows:["SSSSSS","S..B..","...B..","...B..","...B.."]},
   };
-  const PROP_POOLS={1:{must:['rat'],more:['duck','sock','tv','pizza']},2:{must:['fossil'],more:['gnome','boot','xmark','ring']},
+  const PROP_POOLS={1:{must:['rat'],more:['sock','tv','pizza']},2:{must:['fossil'],more:['gnome','boot','xmark','ring']},
                     3:{must:[],more:['geode','egg','mole','pick'],maybe:[['ore',0.5]]}};   // the magma and core stay clear: the diamond ore shows up in about half of the digs
   const FOSSILS=['fish','ammo','ribs'];
   const KANG=["....KK....","....KKK...","...KSSKK..","...KKKKKK.","....KKK...","...KKKK...","..KKKKK...",".KKKWKK...",".KKKKKK...","DKKKKKKD..","D..KK.KK..","...KK.KK.."];
