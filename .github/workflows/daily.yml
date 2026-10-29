@@ -1,9 +1,21 @@
 name: Daily headlines + deploy
 
+# Each edition is a US Eastern day and goes live at midnight Eastern (the page won't show a paper dated in the future).
+# GitHub's scheduler often runs late or drops runs, so the build is attempted several times each evening.
+# An attempt only spends Claude credit when the next paper doesn't exist yet; later attempts see it and skip.
 on:
   schedule:
-    - cron: "7 1 * * *"      # 01:07 UTC = 9:07 pm EDT / 8:07 pm EST: prints tomorrow's paper, out at midnight Eastern
+    - cron: "41 0 * * *"     # 8:41 pm EDT / 7:41 pm EST: prints tomorrow's paper
+    - cron: "53 1 * * *"     # 9:53 pm EDT / 8:53 pm EST: retry
+    - cron: "7 3 * * *"      # 11:07 pm EDT / 10:07 pm EST: retry
+    - cron: "37 4 * * *"     # 12:37 am EDT / 11:37 pm EST: last chance (after midnight it builds the day that has started)
+    - cron: "29 5 * * *"     # 1:29 am EDT / 12:29 am EST: catch-up
   workflow_dispatch:          # "Run workflow" button for a manual refresh
+    inputs:
+      force:
+        description: "Rebuild even if the paper already exists (spends Claude credit)"
+        type: boolean
+        default: false
   push:
     branches: [main]          # redeploy when you change the game
 
@@ -19,6 +31,7 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 40
     env:
       HAS_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
     environment:
@@ -27,43 +40,84 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Is the next paper already printed?
+        id: check
+        if: github.event_name != 'push'
+        run: |
+          day=$(python3 -c "
+          import datetime as dt
+          from zoneinfo import ZoneInfo
+          et = dt.datetime.now(dt.timezone.utc).astimezone(ZoneInfo('America/New_York'))
+          print((et + dt.timedelta(hours=4)).date().isoformat())")
+          echo "day=$day" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ inputs.force }}" != "true" ]; then
+            if [ -f "data/$day.json" ]; then
+              echo "Paper for $day already exists; nothing to build."
+              echo "build=false" >> "$GITHUB_OUTPUT"; exit 0
+            fi
+          fi
+          if [ "$HAS_KEY" != "true" ]; then
+            echo "::error::ANTHROPIC_API_KEY secret is not set, so no paper can be built."; exit 1
+          fi
+          echo "Building the paper for $day."
+          echo "build=true" >> "$GITHUB_OUTPUT"
+
       - uses: actions/setup-python@v5
-        if: github.event_name != 'push' && env.HAS_KEY == 'true'
+        if: steps.check.outputs.build == 'true'
         with:
           python-version: "3.12"
 
       - name: Cache word vectors
-        if: github.event_name != 'push' && env.HAS_KEY == 'true'
+        if: steps.check.outputs.build == 'true'
         uses: actions/cache@v4
         with:
           path: ~/glove
           key: glove-wiki-gigaword-50
 
       - name: Download word vectors
-        if: github.event_name != 'push' && env.HAS_KEY == 'true'
+        if: steps.check.outputs.build == 'true'
         run: |
           mkdir -p ~/glove
           [ -f ~/glove/g50.gz ] || curl -sSL -o ~/glove/g50.gz \
             https://github.com/RaRe-Technologies/gensim-data/releases/download/glove-wiki-gigaword-50/glove-wiki-gigaword-50.gz
 
-      - name: Build today's headlines
-        if: github.event_name != 'push' && env.HAS_KEY == 'true'
+      - name: Build the headlines
+        if: steps.check.outputs.build == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: GLOVE=~/glove/g50.gz python scripts/make_daily.py
+        run: GLOVE=~/glove/g50.gz python scripts/make_daily.py --date "${{ steps.check.outputs.day }}"
+
+      - name: Check the paper is complete
+        if: steps.check.outputs.build == 'true'
+        run: |
+          python3 - "${{ steps.check.outputs.day }}" <<'EOF'
+          import json, sys
+          day = sys.argv[1]
+          d = json.load(open(f"data/{day}.json"))
+          call = d.get("call", [])
+          real = [x for x in call if x.get("real")]
+          mapped = [x for x in real if isinstance(x.get("lat"), (int, float)) and isinstance(x.get("lng"), (int, float))]
+          print(f"{day}: {len(real)} true + {len(call) - len(real)} fake in the Daily Dig, {len(mapped)} pinnable; {len(d.get('blank', []))} Fill the Blank")
+          if d.get("date") != day or len(call) < 7 or len(mapped) < 5:
+              sys.exit("::error::The new paper is incomplete; not publishing it.")
+          EOF
 
       - name: Commit new data
-        if: github.event_name != 'push' && env.HAS_KEY == 'true'
+        if: steps.check.outputs.build == 'true'
         run: |
           git config user.name "far-fetched-bot"
           git config user.email "far-fetched-bot@users.noreply.github.com"
           git add data
-          git diff --cached --quiet || git commit -m "Daily headlines $(date -u +%F)"
+          git diff --cached --quiet || git commit -m "Daily headlines ${{ steps.check.outputs.day }}"
+          git pull --rebase origin main
           git push
 
       - uses: actions/configure-pages@v5
+        if: github.event_name == 'push' || steps.check.outputs.build == 'true'
       - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'push' || steps.check.outputs.build == 'true'
         with:
           path: .
       - id: deploy
+        if: github.event_name == 'push' || steps.check.outputs.build == 'true'
         uses: actions/deploy-pages@v4

@@ -755,7 +755,7 @@ STOCK_KEEP = 120   # days a story sourced by make_stock.py stays eligible
 
 def load_stock(day, used, prior):
     """Extra Politics and Fill the Blank stories sourced ahead of time by scripts/make_stock.py (data/stock.json).
-    They only ever feed those two modes, never Real or Fake. Returns (the whole file, the usable stories)."""
+    They feed those two modes, and top up the Daily Dig only on a day too thin to fill it otherwise. Returns (the whole file, the usable stories)."""
     try:
         st = json.load(open(os.path.join(DATA, "stock.json")))
     except Exception:
@@ -887,9 +887,18 @@ def main():
     reals = fresh + bank_real
     fakes = fresh_fakes + bank_fake
     print(f"  {len(fresh)} fresh real stories + {len(bank_real)} from the bank; {len(fresh_fakes)} fresh fakes + {len(bank_fake)} banked", file=sys.stderr)
+    # A thin day must still print a full Daily Dig: top up with older banked stories, then recent stock stories, mappable ones only
+    if len([r for r in reals if fit_to_map(r)]) < N_CALL_REAL + 3:
+        extra = sorted([r for r in bank_old + stock["blank"] if r not in reals and fit_to_map(r) and not valid_real(r)], key=merit, reverse=True)
+        if extra:
+            print(f"  thin day: {len(extra)} mappable stories available from the older bank and the stock to top up", file=sys.stderr)
+        reals = reals + extra
+    if len(fakes) < N_CALL_FAKE:
+        fakes = fakes + [f for f in bank.get("fake", []) if f.get("rules", 1) >= RULES and f.get("banked") != day and valid_fake(f) and f not in fakes]
     if len(reals) < N_CALL_REAL or len(fakes) < N_CALL_FAKE:
-        print(f"Only {len(reals)} usable real / {len(fakes)} fake headlines even with the bank; keeping yesterday's set.", file=sys.stderr)
-        sys.exit(0)
+        # fail loudly: the run goes red (GitHub emails the owner) and the next scheduled attempt tries again
+        print(f"ERROR: only {len(reals)} usable real / {len(fakes)} fake headlines even with the bank and stock; no new paper printed.", file=sys.stderr)
+        sys.exit(1)
 
     # Real or Fake wants stories whose place can be DEDUCED, and a spread of countries and themes.
     # Daily Dig only takes stories a player can sensibly pin: when the pool is deep enough, anything the editor rates as hard to map
@@ -955,6 +964,7 @@ def main():
     # Fill the Blank: real stories whose answer has a word vector
     # Fill the Blank isn't tied to the news cycle: older banked stories (up to a year) are fair game too.
     blank_src = sorted(reals + stock["blank"], key=merit, reverse=True) + sorted(bank_old, key=merit, reverse=True)
+    blank_src = [r for i, r in enumerate(blank_src) if not any(r is q for q in blank_src[:i])]   # a topped-up story can sit in two lists
     h2words = {w for r in blank_src for w in re.findall(r"[a-z]+", (r.get("h2") or "").lower())}
     vecs = load_vectors(os.environ.get("GLOVE"), [a for r in blank_src for a in (r.get("ans") or [])] + sorted(h2words))
     blank_pool, used_ans = [], []
