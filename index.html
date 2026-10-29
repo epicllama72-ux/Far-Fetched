@@ -710,12 +710,11 @@ body{margin:0;background:var(--bg);color:var(--text);font:22px/1.15 var(--vt);ov
 .ptpop.neg{color:#ff5d73}
 @media (min-width:1100px) and (min-height:600px){ .ptpop{font-size:40px} }
 body.intro #ruler,body.intro #browseHint{visibility:hidden}
-#planetCap{position:fixed;left:50%;transform:translateX(-50%);z-index:3;max-width:calc(100vw - 32px);padding:6px 12px;background:rgba(13,15,20,.82);border:2px solid var(--line);color:#eef0f4;font:19px/1.15 var(--vt);text-align:center;pointer-events:none;opacity:0;transition:opacity .4s}
-#planetCap b{color:var(--accent);font-weight:400}
-#planetCap.on{opacity:1}
-#planetCap small{display:block;color:var(--dim);font-size:15px;margin-top:2px}
-body.planetview #final,body.planetview #bar,body.planetview #comeBack{opacity:0;pointer-events:none}
-#final,#bar{transition:opacity .45s}
+body.planetview #final,body.planetview #bar,body.planetview #comeBack,body.planetview #nextEd{opacity:0;transform:translateY(60px);pointer-events:none}
+#final,#bar,#comeBack{transition:opacity .45s,transform .45s}
+#sumTab{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:6;padding:8px 14px;background:rgba(13,15,20,.85);border:2px solid var(--line);color:var(--accent);font:10px/1 var(--px);letter-spacing:1px;cursor:pointer;animation:tabBob 1.6s ease-in-out infinite}
+@keyframes tabBob{50%{transform:translateX(-50%) translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){#sumTab{animation:none}}
 #intro{position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:-1;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;image-rendering:pixelated;pointer-events:none}
 #bg{position:fixed;left:0;top:0;z-index:-2;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;image-rendering:pixelated}
 #browseHint{position:fixed;left:50%;top:112px;transform:translateX(-50%);z-index:5;display:none;padding:4px 10px;background:rgba(13,15,20,.78);color:var(--dim);font:16px/1 var(--vt);pointer-events:none;white-space:nowrap}
@@ -1096,7 +1095,7 @@ body.recap #bar{display:none}
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
 <canvas id="intro" aria-hidden="true" hidden></canvas>
-<div id="planetCap" hidden></div>
+<button id="sumTab" type="button" hidden>▲ SUMMARY</button>
 <div id="browseHint" aria-hidden="true">↕ drag or scroll to explore your dig</div>
 <div id="ruler" aria-hidden="true"></div>
 <div class="app">
@@ -2576,6 +2575,7 @@ let BLANK_MAX = 500; const BLANK_SECS = 20;
 const FAKE_PTS = 150, JAW_SCALE = 4500;   // caught fake; every mode's jaw is scaled to the same 3000-point world
 
 function startGame(mode, kind){
+  if(typeof Intro!=='undefined' && Intro.planetOn()) Intro.hide(true);
   if(typeof Intro!=='undefined' && Intro.active()) setTimeout(Intro.check,60);   // a finished day has no ready button: drop straight to the room
   if(kind) KIND = kind;
   try{ localStorage.setItem('ff_kind',KIND); }catch(e){}
@@ -3143,6 +3143,7 @@ function finish(restored){
     renderDigCard();
     Scene.restore(jawPoints()*S.jawK); Scene.setPaper(false,true);   // paper down, jaw dropped to where today's dig ended
     Scene.browseStart();                                             // view back up on the guy; the player can scroll the dig
+    Intro.planet(inf.zone);                                          // and the planet, zoomed out, damaged as this dig left it
     S.returned=true; document.body.classList.add('returned');
     setTimeout(()=>{ $('depth').textContent=inf.m; },60);
   } else setTimeout(renderDigCard,2600);
@@ -3294,7 +3295,7 @@ $('wardClose').onclick=closeWardrobe;
    starting on the open scene scrolls only the dig, so the two never drag each other along.
    The summary counts as everything level with or below its top edge across its width (plus a margin each side), not just the card's own pixels. */
 (function(){
-  const open=()=>document.body.classList.contains('returned') && $('menu').hidden && $('sheet').hidden && $('wardrobe').hidden && $('about').hidden;
+  const open=()=>document.body.classList.contains('returned') && !Intro.planetOn() && $('menu').hidden && $('sheet').hidden && $('wardrobe').hidden && $('about').hidden;
   const sceneEl=t=>{ const e=t&&t.nodeType===1?t:document.body; return e===document.documentElement || e===document.body || e.matches('.app,#bg,#ruler,#marks,#browseHint,.topline'); };
   const onSummary=(x,y)=>{ const f=$('final'); if(!f||f.hidden) return false; const r=f.getBoundingClientRect(); return r.height>0 && y>=r.top-8 && x>=r.left-28 && x<=r.right+28; };
   const sceneAt=(t,x,y)=>sceneEl(t) && !onSummary(x,y);
@@ -4220,7 +4221,7 @@ const Intro=(function(){
       lat0=tgt[0]; lon0=tgt[1];
       drawDive(p,tt,E.R,E.ey,tier===3 && p<0.5);
       cv.style.opacity=String(clamp01(T/0.25));
-      if(T>=D){ mode='end'; endT=now; parts=[]; if(tier>=1) Sound.play(tier>=2?'core':'crunch'); capOn(); }
+      if(T>=D){ mode='end'; endT=now; parts=[]; if(tier>=1) Sound.play(tier>=2?'core':'crunch'); summaryLater(2000); }
     } else {                             // the damage report: the planet, as your dig left it
       const E=endPos(), age=(now-endT)/1000;
       if(tier===4){                      // swing round to Australia, where the chin came out
@@ -4235,36 +4236,50 @@ const Intro=(function(){
   }
   function show(){
     if(reduce || on) return;
-    size(); on=true; mode='idle'; dive=null; gen++; document.body.classList.add('intro'); tgt=pickTarget(); lon0=tgt[1]-110; lat0=15; cv.style.opacity='1'; cv.style.transition=''; cv.hidden=false; last=0;
+    size(); on=true; mode='idle'; dive=null; gen++; document.body.classList.add('intro'); tgt=spot(); lon0=tgt[1]-110; lat0=15; cv.style.opacity='1'; cv.style.transition=''; cv.hidden=false; last=0;
     raf=requestAnimationFrame(frame);
   }
   /* after the dig replay: zoom from his roof back out to space and show what the dig did to the planet.
      zone: the deepest zone reached. 0 nothing, 1 bedrock (cracks), 2 magma (a volcano), 3 the core (the planet burns), 4 Australia (the chin pokes out) */
-  const CAPS=['The planet barely noticed. Dig deeper tomorrow.','Damage report: <b>you cracked the crust.</b>','Damage report: <b>a volcano where his house was.</b>','Damage report: <b>the whole planet is on fire.</b>','Damage report: <b>his chin came out in Australia.</b>'];
-  let capT=0;
-  function summaryBack(){ clearTimeout(capT); document.body.classList.remove('planetview'); }
-  function capOff(){ const c=$('planetCap'); c.classList.remove('on'); setTimeout(()=>{ if(!c.classList.contains('on')) c.hidden=true; },420); }
-  function capOn(){
-    const c=$('planetCap'), E=endPos(), narrow=innerWidth<1100;
-    c.innerHTML=CAPS[tier]+(narrow?'<small>tap to see your summary</small>':'');
-    c.style.top=Math.round((E.ey+E.R)*PX+(tier===3?28:14))+'px';
-    c.hidden=false; requestAnimationFrame(()=>c.classList.add('on'));
-    clearTimeout(capT); if(narrow) capT=setTimeout(()=>{ summaryBack(); capOff(); },6000);   // the summary comes back on its own after a few seconds
+  /* the summary steps aside while the planet is on show; scroll or swipe to pull it back up or push it away */
+  let sumT=0;
+  const sumReady=()=>!$('final').hidden;
+  function summaryBack(){ clearTimeout(sumT); document.body.classList.remove('planetview'); $('sumTab').hidden=true; }
+  function summaryAway(){ if(!sumReady()) return; clearTimeout(sumT); document.body.classList.add('planetview'); $('sumTab').hidden=false; }
+  function summaryLater(ms){ clearTimeout(sumT); sumT=setTimeout(summaryBack,ms); }
+  function spot(){                        // one spot per edition, so the damage sits where today's dive landed
+    try{ const v=JSON.parse(localStorage.getItem('ff_spot')||'null'); if(v && v.d===dayKey()) return [v.la,v.lo]; }catch(e){}
+    const t=pickTarget(); try{ localStorage.setItem('ff_spot',JSON.stringify({d:dayKey(),la:t[0],lo:t[1]})); }catch(e){}
+    return t;
   }
+  const tierOf=zone=>({'BEDROCK':1,'MAGMA':2,'THE CORE':3,'AUSTRALIA':4}[zone]||0);
   function outro(zone){
     if(reduce) return;
-    tier={'BEDROCK':1,'MAGMA':2,'THE CORE':3,'AUSTRALIA':4}[zone]||0;
+    tier=tierOf(zone);
     cancelAnimationFrame(raf); size(); gen++;
-    if(!tgt) tgt=pickTarget();
+    if(!tgt) tgt=spot();
     on=true; mode='out'; dive=null; out={t0:performance.now()}; cracks=null; parts=[]; aus=null;
-    document.body.classList.add('intro'); capOff();
-    if(innerWidth<1100){ document.body.classList.add('planetview'); }   // phones: the summary steps aside while the planet is on show
+    document.body.classList.add('intro','planetview'); $('sumTab').hidden=true; clearTimeout(sumT);
     cv.style.transition=''; cv.style.opacity='0'; cv.hidden=false; last=0; Sound.play('dive');
+    raf=requestAnimationFrame(frame);
+  }
+  /* coming back to a finished mode: the planet is already zoomed out, damaged as that dig left it */
+  function planet(zone){
+    if(reduce) return;
+    tier=tierOf(zone);
+    cancelAnimationFrame(raf); size(); gen++;
+    tgt=spot(); lat0=tgt[0]; lon0=tgt[1];
+    on=true; mode='end'; dive=null; cracks=null; parts=[]; endT=performance.now()-4000;
+    aus=tier===4 ? {lat:-20,lon:134} : null; if(tier===4){ lat0=-20; lon0=134; }
+    document.body.classList.add('intro','planetview'); $('sumTab').hidden=true;
+    cv.style.transition='opacity .4s'; cv.style.opacity='0'; cv.hidden=false; last=0;
+    requestAnimationFrame(()=>{ cv.style.opacity='1'; });
+    summaryLater(2000);
     raf=requestAnimationFrame(frame);
   }
   function hide(now){
     if(!on) return;
-    document.body.classList.remove('intro'); capOff(); summaryBack();
+    document.body.classList.remove('intro'); summaryBack();
     if(now){ on=false; mode='idle'; cancelAnimationFrame(raf); cv.hidden=true; return; }
     const my=++gen;
     cv.style.transition='opacity .35s'; cv.style.opacity='0';
@@ -4275,15 +4290,33 @@ const Intro=(function(){
     dive={t0:performance.now(),lat:lat0,lon:lon0,cb}; mode='dive'; Sound.play('dive');
     return true;
   }
-  // tapping the open scene (not a button or the summary) takes you back down to the room
+  const planetUp=()=>on && mode==='end' && sumReady() && $('menu').hidden && $('sheet').hidden && $('wardrobe').hidden && $('about').hidden;
+  const away=()=>document.body.classList.contains('planetview');
+  $('sumTab').onclick=()=>{ summaryBack(); Sound.play('menu'); };
+  // wheel: scrolling down brings the summary up; scrolling up past its top pushes it away
+  window.addEventListener('wheel',e=>{
+    if(!planetUp()) return;
+    if(away()){ if(e.deltaY>0){ e.preventDefault(); summaryBack(); } else e.preventDefault(); return; }
+    if(e.deltaY<0 && window.scrollY<=0){ const r=document.querySelector('.rcol'); if(!r || r.scrollTop<=0){ e.preventDefault(); summaryAway(); } }
+  },{passive:false});
+  // touch: swipe up to pull the summary up; pull down from the top to put it away
+  let ty0=null, done=false;
+  window.addEventListener('touchstart',e=>{ ty0=planetUp() && e.touches.length===1 ? e.touches[0].clientY : null; done=false; },{passive:true});
+  window.addEventListener('touchmove',e=>{
+    if(ty0===null || done) return;
+    const dy=e.touches[0].clientY-ty0;
+    if(away()){ e.preventDefault(); if(dy<-30){ summaryBack(); done=true; } return; }
+    if(dy>50 && window.scrollY<=0){ summaryAway(); done=true; }
+  },{passive:false});
+  window.addEventListener('touchend',()=>{ ty0=null; });
+  // tapping the open scene while the summary is up takes you back down to the room
   window.addEventListener('pointerdown',e=>{
-    if(!on || (mode!=='end' && mode!=='out')) return;
-    if(document.body.classList.contains('planetview')){ summaryBack(); capOff(); return; }
-    const t=e.target; if(t && t.closest && t.closest('button,a,input,#final,#menu,#sheet,#wardrobe,#about,#card,#log,.panel,.topline')) return;
+    if(!on || mode!=='end' || away()) return;
+    const t=e.target; if(t && t.closest && t.closest('button,a,input,#final,#menu,#sheet,#wardrobe,#about,#card,#log,.panel,.topline,#bar')) return;
     hide();
   });
   window.addEventListener('resize',()=>{ if(on && mode!=='dive' && mode!=='out') size(); });
-  return {show,hide,go,outro,active:()=>on,diving:()=>mode==='dive',check:()=>{ if(on && mode==='idle' && $('btnStart').hidden) hide(); }};
+  return {show,hide,go,outro,planet,planetOn:()=>on&&(mode==='end'||mode==='out'),active:()=>on,diving:()=>mode==='dive',check:()=>{ if(on && mode==='idle' && $('btnStart').hidden) hide(); }};
 })();
 
 Scene.onDepth(m=>{ $('depth').textContent=m; });
