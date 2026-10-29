@@ -2096,6 +2096,7 @@ const Scene = (function(){
           for(let dy=-rad;dy<=rad;dy++){ const hw=Math.round(Math.sqrt(Math.max(0,rad*rad-dy*dy))); R(-hw,ccy+dy,hw*2,1,cc); }
         });
         if(a>=0.3){      // what the blast leaves: a real hole where the core was, scorched and cracked all round it
+          g.save(); g.beginPath(); g.rect(0,(L0+B[4])-camI,W*PX+99,EXIT-(L0+B[4])); g.clip();   // only inside the core layer: nothing spills onto the magma above or Australia below
           const gr=clamp((a-0.3)/0.9,0,1), ease=1-(1-gr)*(1-gr), hn=k=>{ const v=Math.sin(k*127.1+311.7)*43758.5453; return v-Math.floor(v); };
           const ring=(rad,col,al)=>{ g.globalAlpha=al*gr; for(let dy=-rad;dy<=rad;dy++){ const hw=Math.round(Math.sqrt(Math.max(0,rad*rad-dy*dy))); R(-hw,ccy+dy,hw*2,1,col); } g.globalAlpha=1; };
           ring(48,'#000000',0.16); ring(40,'#000000',0.2); ring(33,'#1a0603',0.35);          // soot, darkest nearest the blast
@@ -2126,6 +2127,7 @@ const Scene = (function(){
               g.globalAlpha=(1-ph)*0.45; R(x,y,3+Math.round(ph*3),2,'#6a6470'); g.globalAlpha=1;
             }
           }
+          g.restore();
         }
         if(a<0){ disc(1+Math.sin(t*2)*0.04,0); }
         else if(a<0.2){ disc(1+a*4,a/0.2); }                                      // it swells and whites out...
