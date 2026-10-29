@@ -710,6 +710,12 @@ body{margin:0;background:var(--bg);color:var(--text);font:22px/1.15 var(--vt);ov
 .ptpop.neg{color:#ff5d73}
 @media (min-width:1100px) and (min-height:600px){ .ptpop{font-size:40px} }
 body.intro #ruler,body.intro #browseHint{visibility:hidden}
+#planetCap{position:fixed;left:50%;transform:translateX(-50%);z-index:3;max-width:calc(100vw - 32px);padding:6px 12px;background:rgba(13,15,20,.82);border:2px solid var(--line);color:#eef0f4;font:19px/1.15 var(--vt);text-align:center;pointer-events:none;opacity:0;transition:opacity .4s}
+#planetCap b{color:var(--accent);font-weight:400}
+#planetCap.on{opacity:1}
+#planetCap small{display:block;color:var(--dim);font-size:15px;margin-top:2px}
+body.planetview #final,body.planetview #bar,body.planetview #comeBack{opacity:0;pointer-events:none}
+#final,#bar{transition:opacity .45s}
 #intro{position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:-1;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;image-rendering:pixelated;pointer-events:none}
 #bg{position:fixed;left:0;top:0;z-index:-2;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;image-rendering:pixelated}
 #browseHint{position:fixed;left:50%;top:112px;transform:translateX(-50%);z-index:5;display:none;padding:4px 10px;background:rgba(13,15,20,.78);color:var(--dim);font:16px/1 var(--vt);pointer-events:none;white-space:nowrap}
@@ -1090,6 +1096,7 @@ body.recap #bar{display:none}
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
 <canvas id="intro" aria-hidden="true" hidden></canvas>
+<div id="planetCap" hidden></div>
 <div id="browseHint" aria-hidden="true">↕ drag or scroll to explore your dig</div>
 <div id="ruler" aria-hidden="true"></div>
 <div class="app">
@@ -3168,12 +3175,14 @@ function endRecapUI(skipped){
   if(!RECAP_ON) return;
   RECAP_ON=false; document.body.classList.remove('recap');
   Scene.endRecap(); Sound.play('fanfare'); aim(0.74);
+  setTimeout(()=>{ if(S && !RECAP_ON && !$('final').hidden) Intro.outro(Scene.info().zone); }, skipped?300:1400);   // zoom back out to the planet, damaged by how deep you dug
   if(S && S.newUnlocks && S.newUnlocks.length && !S.unlockPlayed){ S.unlockPlayed=true; setTimeout(()=>Sound.play('unlock'),500); }
 }
 function startRecap(auto){
   if(!S || !S.results.length) return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){ if(auto) Sound.play('fanfare'); if(S && S.newUnlocks && S.newUnlocks.length) Sound.play('unlock'); return; }
   if(S.returned){ Scene.browseEnd(); Scene.restore(jawPoints()*S.jawK); Scene.setPaper(true,true); S.returned=false; document.body.classList.remove('returned'); }   // replaying from the returning view
+  Intro.hide(true);                                 // back down from space for the replay
   const list=recapList();
   RECAP_ON=true; document.body.classList.add('recap'); closeMenu(); $('sheet').hidden=true;
   Scene.playRecap(list, 5+1.9*list.length, ()=>endRecapUI());
@@ -4045,7 +4054,8 @@ const Intro=(function(){
   const ease=x=>x<0?0:x>1?1:x<0.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
   const clamp01=x=>x<0?0:x>1?1:x;
   function cloudN(la,lo,tt){ return Math.sin(lo*0.09+tt*0.05)*Math.sin(la*0.13+lo*0.03)+0.6*Math.sin(lo*0.23-la*0.19+1.7)+0.35*Math.sin(la*0.41+lo*0.37+tt*0.08); }
-  function drawEarth(R,ex,ey,tt,starA){
+  const LAVA_SEA=['#8a1c0c','#c0381a','#ef6a1f','#ffb43a'].map(hex), SCORCH=['#1c0a08','#3a120a','#5a1c0e','#7a2a12'].map(hex), SMOKE=['#3a3238','#55494f','#74686c','#8f8488'].map(hex), FIRE_RIM=hex('#ff8a1f');
+  function drawEarth(R,ex,ey,tt,starA,burn){
     const d=img.data, Lx=-0.55, Ly=0.45, Lz=0.7, sa=Math.sin(lat0*D2R), ca=Math.cos(lat0*D2R);
     for(let y=0;y<h;y++) for(let x=0;x<w;x++){
       const i=(y*w+x)*4, dx=(x+0.5-ex)/R, dy=-(y+0.5-ey)/R, r2=dx*dx+dy*dy;
@@ -4054,12 +4064,20 @@ const Intro=(function(){
         const z=Math.sqrt(1-r2), Y=dy*ca+z*sa, Z=-dy*sa+z*ca, la=Math.asin(Y)/D2R; let lo=Math.atan2(dx,Z)/D2R+lon0; lo=((lo+540)%360)-180;
         const lit=Math.max(0,dx*Lx+dy*Ly+z*Lz), dith=((x+y)&1)*0.12, k=Math.min(3,Math.floor((0.25+lit*0.9+dith)*3.2));
         const cn=cloudN(la,lo,tt);
-        if(cn>1.15) c=CLOUD[Math.min(3,k+1)];
-        else if(Math.abs(la)>70 || la<-62) c=ICE[k];
-        else if(land(la,lo)) c=(Math.abs(la)>14&&Math.abs(la)<32&&Math.sin(lo*0.05)>-0.2)?DESERT[k]:LANDC[k];
-        else c=OCEAN[k];
-        if(r2>0.9 && ((x^y)&1)) c=RIM;
-      } else if(r2<1.1 && ((x+y)&1)) c=RIM;
+        if(burn){                         // the whole planet is on fire: seas of magma, scorched land, smoke for clouds
+          const fl=Math.sin(lo*0.3+la*0.2+tt*3)>0.6?1:0;
+          if(cn>1.15) c=SMOKE[k];
+          else if(land(la,lo)) c=SCORCH[k];
+          else c=LAVA_SEA[Math.min(3,k+fl)];
+          if(r2>0.9 && ((x^y)&1)) c=FIRE_RIM;
+        } else {
+          if(cn>1.15) c=CLOUD[Math.min(3,k+1)];
+          else if(Math.abs(la)>70 || la<-62) c=ICE[k];
+          else if(land(la,lo)) c=(Math.abs(la)>14&&Math.abs(la)<32&&Math.sin(lo*0.05)>-0.2)?DESERT[k]:LANDC[k];
+          else c=OCEAN[k];
+          if(r2>0.9 && ((x^y)&1)) c=RIM;
+        }
+      } else if(r2<1.1 && ((x+y)&1)) c=burn?FIRE_RIM:RIM;
       d[i]=c[0]; d[i+1]=c[1]; d[i+2]=c[2]; d[i+3]=255;
     }
     if(starA>0) stars.forEach(([sx,sy,ph,big])=>{
@@ -4067,6 +4085,68 @@ const Intro=(function(){
       const b=Math.round(starA*(150+105*Math.max(0,Math.sin(tt*2+ph)))); d[i]=d[i+1]=b; d[i+2]=Math.min(255,b+30);
     });
     g.putImageData(img,0,0);
+  }
+  /* where a spot on the globe lands on screen: [x, y, facing] (facing > 0 means on the near side) */
+  function proj(la,lo,R,ex,ey){
+    const X=Math.cos(la*D2R)*Math.sin((lo-lon0)*D2R), Y=Math.sin(la*D2R), Z=Math.cos(la*D2R)*Math.cos((lo-lon0)*D2R);
+    const sa=Math.sin(lat0*D2R), ca=Math.cos(lat0*D2R), y=Y*ca-Z*sa, z=Y*sa+Z*ca;
+    return [ex+X*R, ey-y*R, z];
+  }
+  function px(x,y,c,s){ g.fillStyle=c; g.fillRect(Math.round(x),Math.round(y),s||1,s||1); }
+  function line(a,b,c,s){ const n=Math.max(1,Math.ceil(Math.hypot(b[0]-a[0],b[1]-a[1]))); for(let i=0;i<=n;i++) px(a[0]+(b[0]-a[0])*i/n,a[1]+(b[1]-a[1])*i/n,c,s); }
+  function sprite(rows,pal,x,y,s){ rows.forEach((r,j)=>{ for(let i=0;i<r.length;i++){ const c=pal[r[i]]; if(c) { g.fillStyle=c; g.fillRect(Math.round(x+i*s),Math.round(y+j*s),s,s); } } }); }
+  let cracks=null, parts=[];
+  function makeCracks(n,len){            // jagged fault lines spreading from his house
+    let seed=Math.floor((tgt[0]+90)*1000+(tgt[1]+180)*7); const rnd=()=>{ seed=(seed*1103515245+12345)&0x7fffffff; return seed/0x7fffffff; };
+    cracks=[];
+    for(let i=0;i<n;i++){
+      let la=tgt[0], lo=tgt[1], ang=i/n*6.283+rnd()*0.6; const pts=[[la,lo]];
+      for(let k=0;k<len;k++){ ang+=(rnd()-0.5)*1.1; la+=Math.sin(ang)*(3+rnd()*4); lo+=Math.cos(ang)*(3+rnd()*4)/Math.max(0.3,Math.cos(la*D2R)); la=Math.max(-80,Math.min(80,la)); pts.push([la,lo]); }
+      cracks.push(pts);
+    }
+  }
+  function drawCracks(R,ex,ey,grow,glow,tt){
+    if(!cracks) return;
+    cracks.forEach(pts=>{
+      const upto=Math.floor(grow*(pts.length-1));
+      for(let k=0;k<upto;k++){
+        const a=proj(pts[k][0],pts[k][1],R,ex,ey), b=proj(pts[k+1][0],pts[k+1][1],R,ex,ey);
+        if(a[2]<0.05||b[2]<0.05) continue;
+        line(a,b,'#1a1220');
+        if(glow) line([a[0]+1,a[1]],[b[0]+1,b[1]],Math.sin(tt*6+k)>0?'#ff8a1f':'#ffd23f');
+      }
+    });
+  }
+  const VOLC=[".....YY.....","....YRRY....","...BRRRRB...","...BBRRBB...","..BBBBRBBB..","..BBBBRBBBB.",".BBBBBBRBBB.",".BBBBBBBBBBB","BBBBBBBBBBBB"];
+  const CHIN=["..SSSSSSSSSS..",".SKKKKKKKKKKS.","SKKKPPPPPPKKKS","STTTTTTTTTTTTS","SSSSSSSSSSSSSS","SSSSSaSSaSSSSS",".SSSSSSSSSSSS.","..aaSSSSSSaa..","....aaaaaa....","dddddddddddddd"];
+  function drawDamage(tier,R,ex,ey,tt,age,dt){
+    const grow=clamp01(age/1.2);
+    if(tier>=1 && tier!==4){ if(!cracks) makeCracks(tier===1?5:tier===2?4:11, tier===1?5:tier===2?3:13); drawCracks(R,ex,ey,grow,tier>=2,tt); }
+    const home=proj(tgt[0],tgt[1],R,ex,ey), s=Math.max(1,Math.round(R/45)), sb=Math.max(1,Math.round(R/26));
+    if(tier===2 && home[2]>0.1){       // a volcano where his house was
+      const vx=home[0]-6*sb, vy=home[1]-9*sb*grow+2*sb;
+      sprite(VOLC,{B:'#4a2e22',R:'#ff5a1f',Y:'#ffd23f'},vx,vy,sb);
+      for(let k=0;k<2;k++) if(Math.random()<0.9*dt*60) parts.push({x:home[0],y:vy+sb,vx:(Math.random()-0.5)*16*sb,vy:-(14+Math.random()*20)*sb,life:1.0,c:Math.random()<0.5?'#ff8a1f':'#ffd23f',sz:sb});
+      if(Math.random()<0.4*dt*60) parts.push({x:home[0]+(Math.random()-0.5)*2*sb,y:vy,vx:(Math.random()-0.5)*3*sb,vy:-5*sb,life:2.2,c:'#55494f',smoke:1,sz:sb});
+    }
+    if(tier===3){                       // flames licking off the whole rim
+      for(let a=0;a<6.283;a+=0.09){
+        const fl=(2+3*Math.abs(Math.sin(tt*7+a*9)))*s*grow;
+        const x0=ex+Math.cos(a)*R, y0=ey+Math.sin(a)*R;
+        for(let k=0;k<fl;k+=s){ px(x0+Math.cos(a)*k,y0+Math.sin(a)*k-k*0.4,k<fl*0.5?'#ff8a1f':'#ffd23f',s); }
+      }
+      if(Math.random()<0.8*dt*60){ const a=Math.random()*6.283; parts.push({x:ex+Math.cos(a)*R,y:ey+Math.sin(a)*R,vx:Math.cos(a)*10*s,vy:Math.sin(a)*10*s-6*s,life:1.2,c:'#ffd23f',nog:1}); }
+    }
+    if(tier===4){                       // his chin pokes out of Australia
+      const au=proj(-25,134,R,ex,ey);
+      if(au[2]>0.1){
+        const sc=Math.max(1,Math.round(R/36)), rise=grow*(1+0.08*Math.sin(tt*3)), cx=au[0]-7*sc, cy=au[1]-10*sc*rise+2*sc;
+        sprite(CHIN,{S:'#f2c9a0',a:'#4a2e1f',K:'#2a0c14',T:'#f4f0e4',P:'#d4607a',d:'#6b4430'},cx,cy,sc);
+        if(age<1.6 && Math.random()<0.7) parts.push({x:au[0]+(Math.random()-0.5)*10*sb,y:au[1],vx:(Math.random()-0.5)*20*sb,vy:-(6+Math.random()*14)*sb,life:0.7,c:'#8a5a3a',sz:sb});
+      }
+    }
+    parts=parts.filter(q=>(q.life-=dt)>0);
+    parts.forEach(q=>{ q.x+=q.vx*dt; q.y+=q.vy*dt; if(!q.nog) q.vy+=(q.smoke?-2:30)*(q.sz||s)*dt; px(q.x,q.y,q.c,(q.sz||s)*(q.smoke?2:1)); });
   }
   function hash(a,b){ let n=(a*73856093)^(b*19349663); n=(n^(n>>>13))*1274126177; return ((n^(n>>>16))>>>0)/4294967296; }
   function drawTown(s,ex,ey){          // top-down neighbourhood; s = screen pixels per metre-ish unit
@@ -4106,52 +4186,104 @@ const Intro=(function(){
     g.globalAlpha=a*0.55*clamp01((p-0.3)/0.4); g.fillStyle='#ffffff'; g.fillRect(0,0,w,h);
     g.globalAlpha=1;
   }
+  let mode='idle', out=null, tier=0, endT=0, aus=null, gen=0;
+  const endPos=()=>({R:Math.min(w,h)*(innerWidth<700?0.36:0.34), ex:w/2, ey:h*(innerWidth<700?0.48:0.47)});
+  function drawDive(p,tt,R0,ey,burn){   // p 0 = whole earth, 1 = on his roof (shared by the dive in and the zoom back out)
+    const ex=w/2, pz=clamp01((p-0.06)/0.56), R=R0*Math.exp(Math.pow(pz,1.6)*5.2), eyN=ey+(h/2-ey)*pz;
+    if(p<0.7) drawEarth(R,ex,eyN,tt,1-clamp01(p/0.35),burn);
+    if(p>=0.6){
+      const pt=clamp01((p-0.58)/0.36);
+      g.globalAlpha=p<0.7?clamp01((p-0.6)/0.1):1;
+      const sc=0.35*Math.exp(Math.pow(pt,1.15)*Math.log(Math.max(w,h)/(4.4*0.35)*1.15));   // his roof grows until it fills the screen
+      drawTown(sc,w/2-5*sc,h/2-5*sc);
+      g.globalAlpha=1;
+    }
+    drawClouds((p-0.4)/0.34,tt);
+    return {R,ex,ey:eyN};
+  }
   function frame(now){
     if(!on) return;
     const dt=Math.min(0.05,(now-(last||now))/1000), tt=now/1000; last=now;
     const R0=Math.min(w,h)*0.36, ex=w/2, ey=h*(innerWidth<700?0.56:0.5);
-    if(!dive){
+    if(mode==='idle'){
       lon0+=dt*7; drawEarth(R0,ex,ey,tt,1);
-    } else {
+    } else if(mode==='dive'){
       const T=(now-dive.t0)/1000, D=2.0, p=T/D;
       const pr=ease(clamp01(p/0.32));
       let dl=((tgt[1]-dive.lon)%360+540)%360-180;
       lon0=dive.lon+dl*pr; lat0=dive.lat+(tgt[0]-dive.lat)*pr;
-      const pz=clamp01((p-0.06)/0.56), R=R0*Math.exp(Math.pow(pz,1.6)*5.2);
-      const eyN=ey+(h/2-ey)*pz;
-      if(p<0.7) drawEarth(R,ex,eyN,tt,1-clamp01(p/0.35));
-      const pt=clamp01((p-0.58)/0.36);
-      if(p>=0.6){
-        g.globalAlpha=p<0.7?clamp01((p-0.6)/0.1):1;
-        const sc=0.35*Math.exp(Math.pow(pt,1.15)*Math.log(Math.max(w,h)/(4.4*0.35)*1.15));   // his roof grows until it fills the screen
-        drawTown(sc,w/2-5*sc,h/2-5*sc);
-        g.globalAlpha=1;
-      }
-      drawClouds((p-0.4)/0.34,tt);
+      drawDive(p,tt,R0,ey,false);
       cv.style.opacity=String(1-clamp01((p-0.94)/0.06));
       if(p>=1){ const cb=dive.cb; hide(true); if(cb) cb(); return; }
+    } else if(mode==='out'){
+      const T=(now-out.t0)/1000, D=2.2, p=1-ease(clamp01(T/D)), E=endPos();
+      lat0=tgt[0]; lon0=tgt[1];
+      drawDive(p,tt,E.R,E.ey,tier===3 && p<0.5);
+      cv.style.opacity=String(clamp01(T/0.25));
+      if(T>=D){ mode='end'; endT=now; parts=[]; if(tier>=1) Sound.play(tier>=2?'core':'crunch'); capOn(); }
+    } else {                             // the damage report: the planet, as your dig left it
+      const E=endPos(), age=(now-endT)/1000;
+      if(tier===4){                      // swing round to Australia, where the chin came out
+        if(!aus) aus={lat:lat0,lon:lon0};
+        const k=ease(clamp01((age-0.3)/1.4)); let dl=((134-aus.lon)%360+540)%360-180;
+        lat0=aus.lat+(-20-aus.lat)*k; lon0=aus.lon+dl*k;
+      }
+      drawEarth(E.R,E.ex,E.ey,tt,1,tier===3);
+      drawDamage(tier,E.R,E.ex,E.ey,tt,tier===4?Math.max(0,age-1.5):age,dt);
     }
     raf=requestAnimationFrame(frame);
   }
   function show(){
     if(reduce || on) return;
-    size(); on=true; dive=null; document.body.classList.add('intro'); tgt=pickTarget(); lon0=tgt[1]-110; lat0=15; cv.style.opacity='1'; cv.hidden=false; last=0;
+    size(); on=true; mode='idle'; dive=null; gen++; document.body.classList.add('intro'); tgt=pickTarget(); lon0=tgt[1]-110; lat0=15; cv.style.opacity='1'; cv.style.transition=''; cv.hidden=false; last=0;
+    raf=requestAnimationFrame(frame);
+  }
+  /* after the dig replay: zoom from his roof back out to space and show what the dig did to the planet.
+     zone: the deepest zone reached. 0 nothing, 1 bedrock (cracks), 2 magma (a volcano), 3 the core (the planet burns), 4 Australia (the chin pokes out) */
+  const CAPS=['The planet barely noticed. Dig deeper tomorrow.','Damage report: <b>you cracked the crust.</b>','Damage report: <b>a volcano where his house was.</b>','Damage report: <b>the whole planet is on fire.</b>','Damage report: <b>his chin came out in Australia.</b>'];
+  let capT=0;
+  function summaryBack(){ clearTimeout(capT); document.body.classList.remove('planetview'); }
+  function capOff(){ const c=$('planetCap'); c.classList.remove('on'); setTimeout(()=>{ if(!c.classList.contains('on')) c.hidden=true; },420); }
+  function capOn(){
+    const c=$('planetCap'), E=endPos(), narrow=innerWidth<1100;
+    c.innerHTML=CAPS[tier]+(narrow?'<small>tap to see your summary</small>':'');
+    c.style.top=Math.round((E.ey+E.R)*PX+(tier===3?28:14))+'px';
+    c.hidden=false; requestAnimationFrame(()=>c.classList.add('on'));
+    clearTimeout(capT); if(narrow) capT=setTimeout(()=>{ summaryBack(); capOff(); },6000);   // the summary comes back on its own after a few seconds
+  }
+  function outro(zone){
+    if(reduce) return;
+    tier={'BEDROCK':1,'MAGMA':2,'THE CORE':3,'AUSTRALIA':4}[zone]||0;
+    cancelAnimationFrame(raf); size(); gen++;
+    if(!tgt) tgt=pickTarget();
+    on=true; mode='out'; dive=null; out={t0:performance.now()}; cracks=null; parts=[]; aus=null;
+    document.body.classList.add('intro'); capOff();
+    if(innerWidth<1100){ document.body.classList.add('planetview'); }   // phones: the summary steps aside while the planet is on show
+    cv.style.transition=''; cv.style.opacity='0'; cv.hidden=false; last=0; Sound.play('dive');
     raf=requestAnimationFrame(frame);
   }
   function hide(now){
     if(!on) return;
-    document.body.classList.remove('intro');
-    if(now){ on=false; cancelAnimationFrame(raf); cv.hidden=true; return; }
+    document.body.classList.remove('intro'); capOff(); summaryBack();
+    if(now){ on=false; mode='idle'; cancelAnimationFrame(raf); cv.hidden=true; return; }
+    const my=++gen;
     cv.style.transition='opacity .35s'; cv.style.opacity='0';
-    setTimeout(()=>{ on=false; cancelAnimationFrame(raf); cv.hidden=true; cv.style.transition=''; },380);
+    setTimeout(()=>{ if(my!==gen) return; on=false; mode='idle'; cancelAnimationFrame(raf); cv.hidden=true; cv.style.transition=''; },380);
   }
   function go(cb){                       // returns false when there is nothing to play, so the caller just starts
-    if(!on || dive) return !!dive;
-    dive={t0:performance.now(),lat:lat0,lon:lon0,cb}; Sound.play('dive');
+    if(!on || mode!=='idle') return mode==='dive';
+    dive={t0:performance.now(),lat:lat0,lon:lon0,cb}; mode='dive'; Sound.play('dive');
     return true;
   }
-  window.addEventListener('resize',()=>{ if(on && !dive) size(); });
-  return {show,hide,go,active:()=>on,diving:()=>!!dive,check:()=>{ if(on && !dive && $('btnStart').hidden) hide(); }};
+  // tapping the open scene (not a button or the summary) takes you back down to the room
+  window.addEventListener('pointerdown',e=>{
+    if(!on || (mode!=='end' && mode!=='out')) return;
+    if(document.body.classList.contains('planetview')){ summaryBack(); capOff(); return; }
+    const t=e.target; if(t && t.closest && t.closest('button,a,input,#final,#menu,#sheet,#wardrobe,#about,#card,#log,.panel,.topline')) return;
+    hide();
+  });
+  window.addEventListener('resize',()=>{ if(on && mode!=='dive' && mode!=='out') size(); });
+  return {show,hide,go,outro,active:()=>on,diving:()=>mode==='dive',check:()=>{ if(on && mode==='idle' && $('btnStart').hidden) hide(); }};
 })();
 
 Scene.onDepth(m=>{ $('depth').textContent=m; });
