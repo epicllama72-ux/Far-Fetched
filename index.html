@@ -713,7 +713,6 @@ body{margin:0;background:var(--bg);color:var(--text);font:22px/1.15 var(--vt);ov
 #ruler{position:fixed;left:0;top:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:hidden}
 .tick{position:absolute;transform:translateY(-50%);font:16px/1 var(--vt);color:#c9cfdb;background:rgba(13,15,20,.8);padding:1px 4px;white-space:nowrap}
 .tick.zone{font:8px/1 var(--px);letter-spacing:.12em;color:var(--accent);background:#0d0f14;border:1px solid var(--accent);padding:4px 5px}
-.about{max-width:560px;margin:0 auto;padding:0 16px 80px;color:var(--dim);font:16px/1.35 var(--vt)}.about h2{font:10px/1.4 var(--px);letter-spacing:.14em;margin:0 0 8px}.about p{margin:0 0 8px}
 .app{max-width:560px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-right,0px)) 120px max(16px,env(safe-area-inset-left,0px))}
 body.pinning .app{padding-bottom:calc(min(30vh,260px) + 96px)}
 
@@ -1099,6 +1098,8 @@ body.recap #bar{display:none}
       <button id="mAmb">Background newsroom <small id="mAmbState">On</small></button>
       <p class="mlbl">YOUR RECORD</p>
       <p class="how" id="menuStats"></p>
+      <p class="mlbl">ABOUT</p>
+      <p class="how">Far-Fetched is a free daily news game. Every day you get seven weird headlines: five really happened and two were made up. Call each one real or fake, then pin the real ones on the map. Every point drops the digger's jaw deeper. Fill the Blank and Politics are daily too, and Practice lets you play older stories without touching your streak.</p>
       <p class="mlbl">HOW TO SCORE</p>
       <p class="how" id="howText"></p>
     </div>
@@ -1201,11 +1202,6 @@ body.recap #bar{display:none}
   </section>
 </div>
 
-<footer class="about">
-<h2>ABOUT FAR-FETCHED</h2>
-<p>Far-Fetched is a free daily news game. Every day you get seven weird headlines. Five really happened and two were made up. Call each one real or fake, then pin the real ones on the map to find where they happened. Every point drops the digger's jaw deeper.</p>
-<p>Daily Dig is the main game. Fill the Blank asks you to guess the missing word in a true headline. Politics collects the hardest-to-believe government stories. New puzzles arrive every day, and Practice mode lets you play older stories without affecting your streak.</p>
-</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 /* ---------- Content ----------
@@ -1892,6 +1888,11 @@ const Scene = (function(){
       });
       R(-2,3,4,1,kit.shades?'#15151d':C.glasses);
       if(kit.shades){ R(-13,2,3,1,'#15151d'); R(10,2,3,1,'#15151d'); }
+      if(kit.monocle){   // detective monocle: gold ring round his right eye, a chain down the cheek
+        const G='#d9a93a', xm=3;
+        R(xm-2,0,9,1,G); R(xm-2,3+eh,9,1,G); R(xm-2,1,1,eh+2,G); R(xm+6,1,1,eh+2,G); R(xm-1,1,2,1,'#fff6c8');
+        R(xm+7,3+eh,1,3,G); R(xm+8,6+eh,1,2,G); R(xm+7,8+eh,1,1,G);
+      }
       R(-2,6,3,3,C.skinSh);
       if(jdE>12){ R(-10,7,3,2,C.blush); R(7,7,3,2,C.blush); }
       if(fooled){ R(14,-1,1,1,C.sweat); R(13,0,3,3,C.sweat); R(14,3,1,1,C.sweat); }
@@ -2693,7 +2694,7 @@ function showRound(shown,quiet,gate){
       + (vsLive() && !S.results.length ? '<b class="challenge">'+VS.name+' dropped his jaw '+VS.m.toFixed(1)+' m today. Beat it.</b>' : '')
       + (S.mode==='back' && !S.results.length ? '<b class="challenge">Back issue #'+dayNumber()+' · '+fmtDate(S.backDate)+'</b>' : '')
       + 'Guess what\'s real, then deduce where it happened. The clock starts when the headline appears.'
-      + (firstGame() ? '<b class="challenge" style="margin-top:8px">First time? 8 are true, 2 are made up. Tap the map once to zoom, tap again to pin, then LOCK IN.</b>' : '')
+      + (firstGame() ? '<b class="challenge" style="margin-top:8px">First time? 5 are true, 2 are made up. Tap the map once to zoom, tap again to pin, then LOCK IN.</b>' : '')
       + '</span>';
     $('speed').hidden=true; $('feedback').hidden=true; $('mapWrap').hidden=true;
     setBar('start');
@@ -3104,10 +3105,11 @@ const KIT=[
   {id:'mug',     slot:'mug',    name:'Gold mug',           icon:'☕', need:'10 papers finished', ok:L=>L.papers>=10},
   {id:'trophy',  slot:'trophy', name:'Core trophy',        icon:'🏆', need:'reach THE CORE', ok:L=>L.zmax>=5},
   {id:'globe',   slot:'globe',  name:'Desk globe',         icon:'🌍', need:'pin 50 stories', ok:L=>L.pins>=50},
-  {id:'shades',  slot:'glasses',name:'Aussie sunglasses',  icon:'🕶️', need:'dig through to Australia', ok:L=>L.zmax>=6}];
+  {id:'shades',  slot:'glasses',name:'Aussie sunglasses',  icon:'🕶️', need:'dig through to Australia', ok:L=>L.zmax>=6},
+  {id:'monocle',slot:'monocle',name:'Detective monocle',   icon:'🧐', need:'catch 20 fake stories', ok:L=>L.catches>=20}];
 function lifeNow(){
   const l=load('ff_life')||{}, h=load('ff_hist')||{};
-  return {best:l.best||0, pins:l.pins||0, zmax:l.zmax||0, papers:new Set(Object.keys(h).filter(k=>k.endsWith(':call')).map(k=>k.split(':')[0])).size};
+  return {best:l.best||0, pins:l.pins||0, catches:l.catches||0, zmax:l.zmax||0, papers:new Set(Object.keys(h).filter(k=>k.endsWith(':call')).map(k=>k.split(':')[0])).size};
 }
 function kitState(){ const k=load('ff_kit'); return {eq:(k&&k.eq)||{}, seen:(k&&k.seen)||[]}; }
 function unlockedIds(){ const L=lifeNow(); return KIT.filter(it=>it.ok(L)).map(it=>it.id); }
@@ -3116,6 +3118,7 @@ function currentKit(){
   const get=slot=>{ const id=eq[slot]; return id && have.has(id) ? KIT.find(i=>i.id===id) : null; };
   const hd=get('head'); if(hd) o.head=hd.id;
   if(get('glasses')) o.shades=true;
+  if(get('monocle')) o.monocle=true;
   if(get('pocket')) o.badge=true;
   const te=get('teeth'); if(te) o.teeth=te.id;
   if(get('mug')) o.mug=true; if(get('trophy')) o.trophy=true; if(get('globe')) o.globe=true;
@@ -3131,6 +3134,7 @@ function updateLife(inf){
   }
   l.best=Math.max(l.best||0,l.dCount||0);
   l.pins=(l.pins||0)+S.results.filter(x=>x.pinPts>0).length;
+  l.catches=(l.catches||0)+S.results.filter(x=>x.real===false && x.callOk).length;
   l.zmax=Math.max(l.zmax||0, ZONE_ORDER.indexOf(inf.zone)+1);
   store('ff_life',l);
 }
@@ -3166,7 +3170,7 @@ function closeWardrobe(){ $('wardrobe').hidden=true; if($('menu').hidden && $('s
 function renderWardrobe(){
   const k=kitState(), have=new Set(unlockedIds()), st=load('ff_streak')||{}, fz=st.freezes||0;
   $('wardNote').innerHTML='Streak freezes: <b>'+fz+'</b> of 2. You earn one every 7 days of streak, and it covers one missed day.';
-  const secs=[['HEAD',['head']],['EYES',['glasses']],['POCKET',['pocket']],['TEETH',['teeth']],['DESK AND SHELF',['mug','trophy','globe']]];
+  const secs=[['HEAD',['head']],['EYES',['glasses','monocle']],['POCKET',['pocket']],['TEETH',['teeth']],['DESK AND SHELF',['mug','trophy','globe']]];
   $('wardBody').innerHTML=secs.map(([name,slots])=>'<p class="wsec">'+name+'</p><div class="wgrid">'
     + KIT.filter(it=>slots.includes(it.slot)).map(it=>{
         const own=have.has(it.id), on=own && k.eq[it.slot]===it.id;
