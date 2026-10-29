@@ -729,6 +729,8 @@ body.planetview #final,body.planetview #bar,body.planetview #comeBack,body.plane
 #introHowText b{color:var(--accent);font-weight:400}
 #introHowText .sc{color:var(--dim)}
 body.introIdle #card{display:none}
+button.soon,button.soon:hover{opacity:.45;filter:grayscale(1);cursor:not-allowed}
+button.soon small{font-size:.8em}
 #intro{position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:-1;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;image-rendering:pixelated;pointer-events:none}
 #bg{position:fixed;left:0;top:0;z-index:-2;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;image-rendering:pixelated}
 #browseHint{position:fixed;left:50%;top:112px;transform:translateX(-50%);z-index:5;display:none;padding:4px 10px;background:rgba(13,15,20,.78);color:var(--dim);font:16px/1 var(--vt);pointer-events:none;white-space:nowrap}
@@ -1121,12 +1123,12 @@ body.recap #bar{display:none}
       <p class="mlbl">GAME</p>
       <button id="mCall">Daily Dig <small>real or fake? 5 true, 2 fake</small></button>
       <button id="mBlank">Fill the Blank <small>20 s each</small></button>
-      <button id="mPol">Politics <small>hard-to-believe governing</small></button>
+      <button id="mPol" class="soon" disabled aria-disabled="true">Politics <small>coming soon</small></button>
       <button id="mPractice">Practice set <small>doesn't count · pick a mode</small></button>
       <div id="practiceList" hidden>
         <button data-k="call">Daily Dig</button>
         <button data-k="blank">Fill the Blank</button>
-        <button data-k="pol">Politics</button>
+        <button data-k="pol" class="soon" disabled aria-disabled="true">Politics <small>coming soon</small></button>
       </div>
       <button id="mBoard">Leaderboard <small>today's deepest digs</small></button>
       <button id="mWardrobe">Wardrobe <small id="wardSub">dress the digger</small></button>
@@ -2582,7 +2584,8 @@ const Sound=(function(){
 /* ---------- State ---------- */
 let S = null, map = null, layer = null, guessLL = null;
 
-let KIND = (function(){ try{ const k=localStorage.getItem('ff_kind'); return (k==='blank'||k==='pol')?k:'call'; }catch(e){ return 'call'; } })();
+const POL_ON = false;   // Politics mode is on hold: greyed out in the menu as "coming soon"
+let KIND = (function(){ try{ const k=localStorage.getItem('ff_kind'); return (k==='blank'||(POL_ON&&k==='pol'))?k:'call'; }catch(e){ return 'call'; } })();
 function saveKey(kind){ return kind==='blank'?'ff_blank':kind==='pol'?'ff_pol':'ff_daily'; }
 function modeName(kind){ return kind==='blank'?'Fill the Blank':kind==='pol'?'Politics':'Daily Dig'; }
 let BLANK_MAX = 500; const BLANK_SECS = 20;
@@ -3121,7 +3124,7 @@ function finish(restored){
   }).join('');
   const daily=S.mode==='daily';
   $('nextEd').hidden=!daily; if(daily) runCountdown();
-  const others=['call','blank'].concat(DAILY&&DAILY.politics&&DAILY.politics.length?['pol']:[]).filter(k=>k!==S.kind);
+  const others=['call','blank'].concat(POL_ON&&DAILY&&DAILY.politics&&DAILY.politics.length?['pol']:[]).filter(k=>k!==S.kind);
   const need=k=>DAILY ? ((k==='blank'?DAILY.blank:k==='pol'?DAILY.politics:DAILY.call)||[]).length : ROUND_LEN;
   const todo=others.find(k=>{ const s=load(saveKey(k)); return !(s && s.date===dayKey() && s.results && s.results.length>=need(k)); });
   $('comeBack').innerHTML = daily && todo ? '<button class="linkish" id="tryOther">'+modeName(todo)+' is waiting →</button>' : '';
@@ -3383,7 +3386,7 @@ async function openBackIssue(date){
   try{
     const r=await fetch('data/'+date+'.json',{cache:'no-cache'}); if(!r.ok) return;
     BACK=await r.json(); BACK.date=date;
-    closeMenu(); startGame('back', KIND==='blank'?'blank':KIND==='pol'&&BACK.politics&&BACK.politics.length?'pol':'call');
+    closeMenu(); startGame('back', KIND==='blank'?'blank':POL_ON&&KIND==='pol'&&BACK.politics&&BACK.politics.length?'pol':'call');
   }catch(e){}
 }
 
@@ -4033,9 +4036,9 @@ document.addEventListener('keydown',e=>{
 });
 $('mCall').onclick=()=>startGame('daily','call');
 $('mBlank').onclick=()=>startGame('daily','blank');
-$('mPol').onclick=()=>startGame('daily','pol');
+$('mPol').onclick=()=>{ if(POL_ON) startGame('daily','pol'); };
 $('mPractice').onclick=()=>{ const l=$('practiceList'); l.hidden=!l.hidden; $('backList').hidden=true; l.querySelectorAll('button').forEach(b=>b.classList.toggle('on',S&&S.mode==='practice'&&b.dataset.k===S.kind)); };
-$('practiceList').querySelectorAll('button').forEach(b=>b.onclick=()=>startGame('practice',b.dataset.k));
+$('practiceList').querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(!b.disabled) startGame('practice',b.dataset.k); });
 
 
 /* ---------- Intro: the earth from space. "I'm ready" dives through the clouds and lands on his house. ---------- */
@@ -4264,7 +4267,7 @@ const Intro=(function(){
     $('introLine').textContent = blank ? n+' true headlines, one word missing. Fill in the blank.' : n+' stories, '+r+' true, '+f+' false. Map the true ones.';
     $('introHowText').innerHTML = (blank
       ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how <b>hot or cold</b> it is.</li><li>You have <b>20 seconds</b> per headline. The exact word, found fast, scores the most.</li><li>Every point drops his jaw a little further.</li></ol>'
-      : '<ol><li>Read the headline. The place is <b>blacked out</b>.</li><li>Call it <b>REAL</b> or <b>FAKE</b>. Quick answers score more.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin where you think it happened, then <b>LOCK IN</b>. You get 20 seconds: closer and faster scores more.</li><li>Every point drops his jaw. Dig deep enough and see what happens to the planet.</li></ol>')
+      : '<ol><li>Read the headline. The place is <b>blacked out</b>.</li><li>Call it <b>REAL</b> or <b>FAKE</b>. Quick answers score more.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin where you think it happened, then <b>LOCK IN</b>. You get 20 seconds: closer and faster scores more.</li><li>Every point drops his jaw.</li></ol>')
       + '<p class="sc">'+$('howText').innerHTML+'</p>';
   }
   function titleOn(){                   // the game's name, the day's line and "how to play" above the turning planet
@@ -4349,7 +4352,7 @@ renderMute();
 Scene.start(); applyKit(); renderWardSub();
 Intro.show();                                   // the earth from space until you say you're ready
 updateStreak();
-Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS?VS.kind:KIND); loadIssues(); setTimeout(Intro.check,60); });
+Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS&&(POL_ON||VS.kind!=='pol')?VS.kind:KIND); loadIssues(); setTimeout(Intro.check,60); });
 window.addEventListener('resize',()=>{ clearTimeout(window._aimT); window._aimT=setTimeout(()=>aim(),200); });
 </script>
 </body>
