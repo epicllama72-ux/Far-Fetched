@@ -1,278 +1,249 @@
 {
- "date": "2026-10-28",
- "generated": "2026-10-28T03:32:26+00:00",
+ "date": "2026-10-29",
+ "generated": "2026-10-29T04:17:38+00:00",
  "call": [
   {
-   "real": false,
-   "h": "Monsoon rains in {} wash 38 rickshaws into a lake, owners fined 640 rupees each for illegal parking",
-   "tell": "Authorities wouldn't fine owners for parking after a flood swept their vehicles away."
-  },
-  {
    "real": true,
-   "h": "Man buys house, finds he also owns 324-pupil school next door after solicitor's form error in {}",
-   "lat": 52.4949,
-   "lng": -1.8518,
-   "place": "Birmingham, England",
-   "src": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9RRDEzQ0pHT0hTQU9KN2lZaUJpSDNFWUotR1lUUXBjakRyRWM5Y0RVR000LWtFSXVuVUV1QlJxMmRkZDNKdUlTNVhEUEkyWVFLLUlWZ0hoRnFuVHFwb3RYdA?oc=5",
-   "published": "2026-10-16",
-   "clue": "council-owned school, solicitors and land registry = England"
-  },
-  {
-   "real": true,
-   "h": "Car dealer swaps rusty Lada for 100 kilos of beef sausage worth about 100,000 lira in {}",
-   "lat": 39.7744,
-   "lng": 30.5191,
-   "place": "Eskişehir, Turkey",
-   "src": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPWi1GdktyNWlYai1uNFJiVWlXVzRoM21IeERNc3ZMTU4wbURvYWlEQTFYcXR0TlFaNzVnNV80VHpsSHphQXliOU9IZ3FKY3dEOTNMakdZQkZTUEpLYkxHZVM5VEZaV25wZmhrMnpVTG12bTRUVjh0LTJXQXM5R29aSFpKN003RjBsMk50OUcxSjFoT2w0LWUxanQ3Mi1SbFU?oc=5",
-   "published": "2026-10-27",
-   "clue": "lira and spicy beef sucuk = Turkey"
-  },
-  {
-   "real": true,
-   "h": "Dad collects 10,600 deposit cans over two years to fund family's Disneyland trip, earns about 1,600 euros in {}",
-   "lat": 52.1638,
-   "lng": 5.4089,
-   "place": "Amersfoort, Netherlands",
-   "src": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQbUVtYmNsWS05czF5UWUzZWo1dU1aLU1MWm9QVGYxa2xHNFhETHFNcjNvZXJ0eGdpblh2cXVtSGpjbG5MWFdHU2V1RlY4OEU4NkJOV215TGxQbE10OU1TRW1KQ3hrYWJKU000SzNNWDhYUERtTDBjNDFPQW51VWU4NWZtYU02NUtpS1U5WWRTbnp1Mk84WVE?oc=5",
-   "published": "2026-10-23",
-   "clue": "euros and a bottle and can deposit scheme = northwest Europe"
-  },
-  {
-   "real": true,
-   "h": "Man swims along flooded street after cold-drop DANA storm in {}",
-   "lat": 38.9676,
-   "lng": -0.1803,
-   "place": "Gandía, Valencia, Spain",
-   "src": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOajhqZkVnT1FoNHlVZjBFR2Vsa1YzLUdHajlLeDcxUjB0U3A4azhvRnNvMmRLRFpXTEdpSjZrdHk3bGNfbmxVLWRRR19VODJRTjFPVHZqZlpkLXNPcXRGVG50cWpPejRVQ2RncXBPVDIxeGUwcURrZ2Y2N3JuTjF3SUx4eW05YkloOWhiOFd4RS1xOXJjVXI4M2lBY0EtRmYwRjQtTUV2Z21NQjhXRENQd09wTG9USmdVLWhMR2FQUkNPRTRoRTNteGp5cjFOSTVWRnkwZ2Iyek1zT3l0RXIxa0U1UjM0Rnc?oc=5",
-   "published": "2026-10-22",
-   "clue": "DANA is the Spanish term for a cold-drop storm"
-  },
-  {
-   "real": true,
-   "h": "Man chasing a 90 million yuan prize scam vanishes for 3 months, turns up herding sheep in {}",
-   "lat": 43.2565,
-   "lng": 118.9759,
-   "place": "Chifeng, Inner Mongolia",
-   "src": "https://news.google.com/rss/articles/CBMikwNBVV95cUxQbnk1c0V2X0VjQ3U5RTJTNHBXNkV5N0EySzAySk5pX08xVW5EVmJiUkl0d1hTT2o3blBITmJFaEpULUV1WkFEdF9zSFRfZTRtY1BtT21CS09VN21Ya3cyMEhlV0VvNzU3elMwWjQ0blhwelBtSVV0Y1lXam9kQThRNGlOZVEwdW43aEJGMkZKdVNBTTFJNlpxNWpFcHlaSHRHWm03cUlxY0laWFJCVHlnSmJEOE8xa3ltQXZsU1o1R3Z1Nld2UnJXTVN2V3lDUU9ldkpldVJCZHIwWnlSaW1FVDZrSTl1aU5BMHlNa0lqc01lQXFsem1Ha3RIOVNfTTUtVVQ3bnRCSzBVa0lpQXhkOU9VR2pDQXRrakFMaDA4OTNrZU4xbHdSNUtVQ210cVFlRU1mU1hoeXNLN0Q3ZkZvN05rdEZsZ3BYRDh5WUxVajNteHRpZ0lMU1AwOHBTX0tGMnBtcHJRUzVJbUNuN0xkVmZ2ajBMMENjcUlON3ZUUmM4WGFPQzVPVzFIUkRDQThqQjE0?oc=5",
-   "published": "2026-10-06",
-   "clue": "yuan, a trip to the capital and sheep herding = northern China"
-  },
-  {
-   "real": true,
-   "h": "Woman, 33, pleads guilty to marrying 14 men to fund $300,000 gambling habit in {}",
-   "lat": 36.1674,
-   "lng": -115.1484,
-   "place": "Las Vegas, Nevada",
-   "src": "https://www.the-independent.com/news/world/americas/crime/las-vegas-woman-marriage-14-men-gambling-habit-b3012255.html",
-   "published": "2026-10-07",
-   "clue": "lax wedding laws and gambling = Sin City"
+   "h": "Justice of the peace pastes chatbot's 'wait for the AI's reply' into civil ruling; appeal fails in {}",
+   "lat": 40.0266,
+   "lng": 8.6796,
+   "place": "Oristano, Sardinia, Italy",
+   "src": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOYmgwZ0I1Z0pSWDVtNWxfZm1Xc2RTOHk4d2p0aXJNQU03bUxjOGc0UFp5MENjMlJKTUZaRE1YbXhTVi1aZjZscGwxSUs3MGVyVmR4VzNqdHFhNGVJSXpldkUzUVZsV3JVNkhkMkEwdGU2MFl2cE1QZy1KeHRuWjJ4WFBIcFhxWmY5WEhrQXJCVE5ya29nRWZNRWJOeklBZWIzUXppYThn?oc=5",
+   "published": "2026-10-26",
+   "clue": "giudice di pace (justice of the peace) is an Italian institution"
   },
   {
    "real": false,
-   "h": "Fishermen in {} haul up 63 kilos of lost golf balls from a fjord, club says it was missing none",
-   "tell": "The coincidence is too neat: a club would notice, and fjord fishermen rarely net golf balls."
+   "h": "Dredging crew in {} pulls 37 stolen auto-rickshaws from a canal, matching a police list from 2019",
+   "tell": "Recovered items matching an old police list perfectly is an over-tidy coincidence."
   },
   {
    "real": true,
-   "h": "Railway company hires two goats named Nagi and Pokke to trim weeds on a slope beside station in {}",
-   "lat": 35.686,
-   "lng": 139.7306,
-   "place": "Yotsuya, Tokyo, Japan",
-   "src": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNeUV6Ym5hMmRfcURFN05MUUR6M3p5YWdBU25OaldlSE1SRHpTVFlVaG5MMThmTXpsYXFEUkd1SGJhRFBzM1VLN05fcmlrZGkxaGpvMWwzamx0X29VRHAyS09BekxuTGcxR0xfaWZSa2QxWVpHX2g0ZWhxV3lOdFpIWHhYSm0zbmRkYldBQ3I4Qm5OQm1uZkJpdzFTejBYdTRFV0lVMUVXbGJJdjJFYmkzaGN3N0pXd2xMeGI2dm5JR0l1RWR1UWlXckVR0gHPAUFVX3lxTE5BNHktX1cyRnlUMjdhd3hVeVhqcDA0RnpiTnBlSE9XUnRYXzVHVnQtSEZGQXAtZFFCdnB4QzdJMHlyM2RrZ2RVRVpoVGVuVHRUOEZUOEV5eEJUNFlSVjdYa1BNbUpKUFJnY3VhR0JFY0xsVERPMVNjV21zNWdZZzRRUzg0b1pFeDhoRlRzUUJTZ0pYbHlVaVFrLUJ6Z2doTGxmZzNIY3dMeFRQTTF4T3ZQYWRpMW5EdGQyVFNWR0xYYjVQaWZjM2o2eTR0MDlWOA?oc=5",
-   "published": "2026-10-27",
-   "clue": "Japanese-sounding goat names and a big-city rail operator"
-  },
-  {
-   "real": true,
-   "h": "Woman who registered her dog to vote has case dismissed, pays for billboards of pooch with 'I voted' sticker in {}",
-   "lat": 33.6633,
-   "lng": -117.9033,
-   "place": "Costa Mesa, California",
-   "src": "https://www.nbclosangeles.com/news/local/costa-mesa-womans-voter-fraud-case-dismissed-after-she-admits-registering-dog-to-vote/3956777/",
+   "h": "Striker who scored equaliser slips taking 93rd-minute penalty and misses in second-tier match in {}",
+   "lat": 42.2114,
+   "lng": -8.7441,
+   "place": "Vigo, Spain",
+   "src": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1xbjR2YlhMMk16Wmd0MHFGWG9DX0RXTTJtRWphX1pvdXpLME9SSXV4MXk1blFPS3BWSkJYUTlaMWU5anBCSU1PanBralFLYW9qYTNwaTJuZUF5Y19ab0JnT0lWNUVScV9nbC10Y3F1a2poSHRYbnZDa9IBjAFBVV95cUxNQnlHS2FDLTBXZy1qVjBReEpsTXdmZFJBNnNuNmg0Y1Z1QTNPM3ItNGUtQ0UtUWlTclhjY3dsNnVFQ21EUWdhaW1RUzNzMlkzM3VTajgyWFFwaU9SQlRsc0swNDR3b0R1LXptVkVBWXc4TVFWM0lFNFdkWmM4dlh3ZVVFXzJmZzlWVWtPag?oc=5",
    "published": "2026-10-19",
-   "clue": "gubernatorial recall election, county DA, freeways = California"
+   "clue": "Segunda División with a Celta reserve side and Tenerife = Spain"
+  },
+  {
+   "real": false,
+   "h": "Moose spends an afternoon in the lobby of a curling club in {} before leaving by the back door",
+   "tell": "A moose indoors would trigger a wildlife call-out, not a calm afternoon and polite exit."
+  },
+  {
+   "real": true,
+   "h": "Drone stops play at a League Cup tie between a lower-league club and a top-flight giant in {}",
+   "lat": 53.9246,
+   "lng": -3.0076,
+   "place": "Fleetwood, Lancashire, England",
+   "src": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPTWZQeU1yNjdMWFpaMmx0YlRtZXpVbFQzclRBczBZTXRxa2F1YUdUaGdwUDFLZ1JQYmJVbm94UW9uT2E3NW5RUW5HOTAwaDVvUzVCX2x4TmZGUzZEMTJhY3B0UGRFTjR1SE1iVFh4WjQyckFNMnY2UjVrNXF5LTdTNzl0MGg5VGx4WHd3?oc=5",
+   "published": "2026-10-27",
+   "clue": "League Cup is an English football competition"
+  },
+  {
+   "real": true,
+   "h": "Driver frees cat from carrier on the autobahn, gets bitten, car lands in ravine; drone hunts cat in {}",
+   "lat": 47.4464,
+   "lng": 11.9079,
+   "place": "Radfeld, Tyrol, Austria",
+   "src": "https://news.google.com/rss/articles/CBMijwJBVV95cUxNcGh0VFRwUDRMYUFIcUpqb1F6V0VXbkF3RFJCSkp0RzFfSmliNUVJTjF3a2E1V0Fwc0dfSEZnZlJYWWsxd2tDV1ZYeGRXM09rOFNQNzFhZzktY2o3SExxTFA3VHgzcjd6NUxFZXcyZUotUThjSF8wZkxwd1RQT2lkcmt3VWI3V0h3T3pKMzFLaGx6MXA0SV9uTkZ6YkotaWlxTmI1NlBEa21vWGdXQXZ1dVdGZkozSmFsWU56aWRXRDlqSFdaZjlhTzg4aUxzWXMxN1FjbUU5MkIzbXYwQWZqenZXZEFIV0M4M2lUWlgzRm5DZXJSMjZXemctSFBDVG42VElwSEUyTTlnWVR5bjFF?oc=5",
+   "published": "2026-10-02",
+   "clue": "autobahn heading for Germany through Alpine valley = Austria"
+  },
+  {
+   "real": true,
+   "h": "Culture centre politely begs woman filmed stealing a toilet seat to return it by a deadline in {}",
+   "lat": 49.5609,
+   "lng": 22.207,
+   "place": "Sanok, Poland",
+   "src": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQSFBqMS1SUGpWbHpGeGZHUThEUmlUMFBPUFluc0NHWFBQWnBxNlBPR0F0Y0hiNU90N1hxUjQ5d2FJLXRrYTRmUi10ZnY2VWtlaERkMUI2UHlQUnVZV2djWWEwWWFQcFRyejFTSEZaV2MtLVcycDNXSUJ5cUFRanV0cE5BbjAwc3lzNGZqRHYtQTJ5dEN0bVBkNE5yMk5TeGdJM1RfaXdFNmd6eHZVdU5KQ25kQ0xlRTUwYnROdGpnZzNBOWduTUNuUnVteGpEX3k4Sk94RU5pLU5GSl9DMGdCdExXUU13VEVNV0xz?oc=5",
+   "published": "2026-10-28",
+   "clue": "a 'house of culture' is a classic Central/Eastern European institution"
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "Mainland user can't charge MacBook at Hong Kong library as the three-pin [] hits desk underside",
+   "h2": "Droitwich, England: student sells miniature paintings made by her pet [] for £15 each",
    "ans": [
-    "plug",
-    "plugs",
-    "adapter",
-    "adaptor",
-    "adapters",
-    "adaptors",
-    "socket",
-    "sockets",
-    "outlet",
-    "outlets",
-    "prong",
-    "prongs"
+    "rats",
+    "rat",
+    "rodents",
+    "rodent",
+    "mice",
+    "mouse"
    ],
-   "place": "Hong Kong",
-   "src": "https://news.google.com/rss/articles/CBMi6wJBVV95cUxQcnlRcnNVY0NUaFZrazFVTGRMT2g5OVRnSm9BR3d2XzduSlZxbWJKREJIaXlPbE84anRFNE1FRDEyUER1SDJ5UTFhNkpjVVFGall3MnlLOVB6akhXWm5BRzNTWTNPQTBib0x3WXRwZ2JpemhVUVJDdnpnLV9iclRSUF9SV1MtNlljM3h3TUpMYUlrMzJkalFPLU0wRzZ6V0ttWUhCa1ZfUDBpRFBfdGllNkk2RERFWkEzLW9kWDdsRWtocGxpVHdzTjJvNXJZNTBaRXY3eWkyUzcwNlNmdEltQ0I5aGZBelduV3hUbEV2cGtrTHc3OU14bERsazRxQjBzbm9YQ3dWNjlyekZPdnV0eWRweW5SZWoyaG5SX19Xd0RiMjFMOVp4cHRFcGVOM1BNYk1EVFdBcmJ2Q2gycnduNEdDc0FEUF8zSFpRaGtTcS1OcUVRSEJoS0dVX2JlXzRtbUdvZ1BDV0hNSTA?oc=5",
-   "published": "2026-10-24",
-   "vec": "J/N/JbkyA/oIEPYW7i4DOwMpJcIhxe4GGMv2KDbGYhPiDPA8DOoeyxv+3gTsDTYVBuQ="
+   "place": "Droitwich, Worcestershire, England",
+   "src": "https://news.google.com/rss/articles/CBMirwJBVV95cUxPQWRzNkY2Ml9hUDFnOS1IcXY0TGc5b0NYOWIxaEU0NmhBdE9lVFJwRklpc1FtcDNwRVd6NmVObmlxMWVEQ0puRGVObExTTGxQNnhQWjJCb09ZZUtaZHR4RzVwY2U0Sk0wdXhVd3ZoTk5XTzN0LWx0S041RjlGUjBVREV1ZlROcDVlMHFzWWRWWFJod2FCOUIzQkhJbTVXcmxnM2ZBNXhiVkl0bV9hZTY4VEZyZEVSVkh6NzJIU09GWTRFLUtHTUc1NHNuVHE4cDZtNnlwUXhTbU9XV3JvYWlOc0UxNUxyOW00ZmxBM1AyVkNmQkNDbWNaOVhIMDVUczRleUM0Mm50QXN3S2RibGc3a2lvUkk2elV5dzh4ZkNEcUtXUmhqQzh5XzN0LXcxbkHSAbQCQVVfeXFMUHZodDF6R3NleDNJVmdKY1p5NHQxV0ZiLV9ZTGlWUUZLQWlEYUF6Sl8tQnJTcjZaLTdHZDRGWDVRVk1LZ3NUVTNlZkdydTA0YVZZWEVrcmtFdnA5VUNiUkQ1cFhtS3R4OE1pTUdQcmNYTnM0VGdNUTZLdWZDcHp2ZU1Bd2RBUFFnNjZnR3pndWUwYVJJSW41NU9jUXMzYWU4TF9DU0ZJSFZObTU0M2hZZ1VWYlJYeU41X3RvaFRQU1NWQm9QSXM2V3R6MG56WWVVX1pLR0IyaUh5aklaSHpzNHdSSXRUN0l4cVNjOUx5VlI4eHlhNkIyOEV0UkxvbkdsWjg2bktNbDVrN1RzZHZhZzNyM1pEcjBxV1dtUFdEdG9RUE1vQzRXbzgzMHozQW1kdHd0RXQ?oc=5",
+   "published": "2026-10-28",
+   "vec": "Tqv8ruYp8LNL+EEGWwsQRStAkALg7H8VA9XJEvLFTTX8wfQvEA5O+rkC41to5CesCfo="
   },
   {
    "real": true,
-   "h2": "Two pallets of RTX 5090 [] worth $470,000 vanish at São Paulo airport in Brazil",
+   "h2": "Kütahya, Turkey: 4,000-year-old [] prints found in mud brick at Tavşanlı Höyük dig",
    "ans": [
-    "cards",
-    "card",
-    "gpus",
-    "gpu",
-    "graphics",
-    "chips",
-    "chip",
-    "processors"
+    "paw",
+    "paws",
+    "dog",
+    "dogs",
+    "animal",
+    "pawprints"
    ],
-   "place": "Guarulhos, São Paulo, Brazil",
-   "src": "https://www.tomshardware.com/pc-components/gpus/nvidia-rtx-5090-shipment-worth-usd470-000-goes-missing-in-brazilian-airport-two-pallets-disappear-distributor-seeks-explanations-but-met-with-zero-answers",
-   "published": "2026-10-19",
-   "vec": "9RI8ER8A2N76DfoiGggw9sDoGtEdxvoS5s/m8BiufzQACQ49If/k4C8F8jb35gMUIdg="
+   "place": "Tavşanlı, Kütahya, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQWkVFOVRuNFdWNHFyTkNVWlFIOGlHQ0s2NmVlMDdzaGNQdkpld2JRR2tMSkI4YlY0OThRVUdEZVRUb2NRZ2NNYWpjZ3YxNTVlZVBEWEE2TE5DRldoZ0ZRREFfQTJlM1RuSW1fMVVhZ0h1czFXTUEzTWFISm8xT1pTVmVuQms1SDBmVkFiRHdrazBtaGRfQTI1UFVLRnJtQVlCdlhDTHhMLVlOTGxUcjlvcQ?oc=5",
+   "published": "2026-10-26",
+   "vec": "FvcFyQALy6lJ0QEbCsKxEv8Q7yOx6hDa/+SaVQCBCwPxX/oS688V3APxuvv7q0bKHcY="
   },
   {
    "real": true,
-   "h2": "Dortmund told not to [] at Baku stadium, Azerbaijan, to avoid Legionella",
+   "h2": "South Tyrol, Italy: [] lost in a glacier crevasse in 1978 resurfaces, still drinkable",
    "ans": [
-    "shower",
-    "showers",
-    "showering",
-    "bathe",
-    "wash",
-    "rinse"
+    "keg",
+    "kegs",
+    "barrel",
+    "barrels",
+    "cask",
+    "casks"
    ],
-   "place": "Baku, Azerbaijan",
-   "src": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPZ18zQkFmbVB6RzBabWxwclJyMXRLX0R5cjl0Vi1qM0JXVUVJYW01el9HT2ZucUhNUlR1WXZpVENDTXZVaHBQRTRBbWtQd21JUlVmN1ZNZ05yNXZ6b05XSEZxTUlPQ0lhQzVZZTRtdWdGRzRhTmJmT182R3UyVnAzRUh4dENGQXBXSXdkWWdpd1BfYVZod0QtY2lHVFVRZ3FjcEF4OXQwTWRDSm5aenpfMzJFbk5NcXVmT1RiS2JNNER1VmlkTWpXelI0clFaZml4N0ZIZmRCQUx0NGxBU1E?oc=5",
-   "published": "2026-10-21",
-   "vec": "Kzv62Of5Ji8FF+D8M1cyQ9gryYtKOBnT7efSWEkJYkrEF+NWUQdV7gItukYu5Q2BBfU="
+   "place": "Schwarzenstein hut, South Tyrol, Italy",
+   "src": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQU29TcGIxUUFuXzgyYlMyMjVyWTZiTnZZc1dPclFTQVMxajk5ZmUyalNWazZpdElyWlQ2MGpLS3NOQXZ0NEtQMy1nUnN0cHVmUldqdmRCbjU1NC1acnFMMUJvbTludW9oT1piZUhxWUoxTXBiLXVSb2lWbl9ONXh5dE9MYUUzTElUTTRySTE4eFgzZXZqanUxdWczRVVoVEEyNDAwdVZ3UnlScEl2dVJjbXo3X3lsUjFwckZ3NldINnd5ZlZQdWNqeWNtc3NjN3dLTFpUWXVFMFVDTGdtTXZ2ZE9BckVUT0hWcldab3Vn?oc=5",
+   "published": "2026-10-26",
+   "vec": "7xgY7xMtCs/5E+PlDFEMTStsEM8n5mZj5OvXf1NA3BiCXA3xtgdARQUFp0D0L/oXOpo="
   },
   {
    "real": true,
-   "h2": "Scammers persuade Norwegians to buy gold and leave it in [] to 'keep it safe'",
+   "h2": "[] chasing birds climbs minaret of Karatahta Mosque in Mut, Mersin, Turkey",
    "ans": [
-    "forests",
-    "forest",
-    "woods",
-    "wood",
-    "woodland",
-    "woodlands",
-    "trees",
-    "bush"
+    "fox",
+    "foxes",
+    "vixen",
+    "animal",
+    "predator"
    ],
-   "place": "Oslo, Norway",
-   "src": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQUDZqUUJ1R2FrZlc5bUlvMVcxNmFzV0hJc2xlSkh6T3AwcmpnbGNCWl8zZ2xoc2lhaXFOZDgyVERHMDJqUmlJSlpWam5zaG5LcXlobHFNU2NpdTc0a29nbzh1M01ramtHME82QmZHalJfUUdnVlRlNzVTTm1DSzZBRU9oX3ZjSFJCcW1ycWtUbmRORkQxOGNMYTMtdFZRMW5RV3REQU91cmJnQ2J3RXhnNkc4cTJfN1lpNTBtQkE5bzhaSDRYXzZPU0t2OV9fSGlOa2dEUGZKMTlSTWJCVVpCTS00bGxnRElNY0t1QVRHWEFJbjNFWXfSAfsBQVVfeXFMTkRNeXNIWWtDa3Z0d0RpdVprLUNxR2Mwc3pPZXJ4VUJFbmVwak1uODJtcWl3bHVlUlhzdUdjNWl1OUVFYTRRX21LVmx6dVl6NHJHRC1INEhuQnkzWXk5UzkxX3JDUDZjWnVUTFBmQ1BTQ0p1anFBaDlFdFNJSnRNMkRrVW5qZWE5NU5USGlVZFIyR05sY1FqdDRfcy0tUU9tV1QzZkNKMlVOU2daOXcwZ0ZZMDhxZDBQZlh6NEVPcGVFR19hUkZuYlhNWnhLNUJfWGJocFc5WTR0N05JMU9WRnVVcU1pYks3NTA1NlJ2TkJ3b0dXZjc0UXZqSm8?oc=5",
-   "published": "2026-10-23",
-   "vec": "Cv8AFOLu1M0rzAH2ULryM0kHAui/ABzjDyAcJBUjf8oA4vojyN8Q3dXsNAMBIvLVA8I="
+   "place": "Mut, Mersin, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9ua2JnTWNQS1U2NllSSU56SDEzQVNKNTFSNmx5VlJmcWVDT1VGaHp2RlVJclhGYjBhN3d4anY2b0xEWXlWV3gwRVJORjREemdYMzRhRkptbHBlRThSZjBCenVjSDE3SjltOWhHbtIBckFVX3lxTE16YjU4dGJKWmdoZ0wtYXd1a0wtTXZ0U1JQcWlTYV9oZzVKM1Qxek9PWXRvYklNTUkwdFl1QlFEa0hRd19GYTVzNVlNWHJHWERzYWg3M01RS2M2VV9oa0J5emlNamNhQkgwdlB5SGtlOGRYZw?oc=5",
+   "published": "2026-10-28",
+   "vec": "HwQLQg0Rj8fo7+kf+CQfDvX9xRwEFDgX8LL6HA7Wfxvq1snU1M/Qy/03udbI5N3i9Ws="
   },
   {
    "real": true,
-   "h2": "Frome, Somerset burglar who stole a stuffed barn [] and a three feet tall African statue gets suspended sentence",
+   "h2": "Cairo: [] runs onto pitch and stops Egyptian Premier League match at Cairo Stadium",
    "ans": [
-    "owl",
-    "owls",
-    "bird",
-    "birds"
+    "dog",
+    "dogs",
+    "stray",
+    "puppy",
+    "hound",
+    "pooch",
+    "canine"
    ],
-   "place": "Frome, Somerset",
-   "src": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxPM3NJd2pfVG1kdmlNZE1CMzJKdTQ3eXJmeVdGNXhSWWVWUy0zZzhZWkhOajR6S29IVGlDLTBKM2FWUFAyc2pMQURTMkoxY1p3M2pJWGhfN1F2U0h3aVkwbFNHY0dkOWdEZG9mREsxaUpFX3hOekJKNjVJVEM1MWZ6VzhnMm9WQnFVakNQVGFPLTVEZGx3OHpiN3NYMlJHWHpYcTliYlJyMS1JWHpoYlJpNXE1TDZuTVM1WERwYk9zSXFhX3lKN0VVV1prRmJ5UFZZOXF0WDBsTDdxNDVVRmRVa09yV3V1TTBhUktLNF9qNEZFbkg5azR0WS1QOUJCQ0hCeHBvVGYyZW9WdUlqQkxMd0pLZFpNSmdjTHJFOWxiTUlnOHZKbUxvMw?oc=5",
-   "published": "2026-10-19",
-   "vec": "/+XO5hoGxp8a3Ag1dBH7KAsyshfABPUODPECPvTQINQRFgkdDIECyusB7y0Y8TD8Hvs="
+   "place": "Cairo, Egypt",
+   "src": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPSlFacElIaU1HMUcyVktBTTBNWldaZ284QTlfV1JuVjFWbTVvOTc1YWpaUkFkQ0NNdmZPaUFPNkhLU2NydGwzTlQwLVM5c2dlTWdXNzBKSWF0Q19UVnlHanR3QjhYV1FnWlE3U2NZNzh4a2lHaVIxdnBDeVdRRHdMdXNmOEx5bUlacTZOdjRNM0RYU3dWNnRRRVhWYnpOUXNnRzRtZl9MUGpSdw?oc=5",
+   "published": "2026-10-28",
+   "vec": "COTX7DMnsuNT1wAmLiIj8w1CqtblGDc2IYG1Hx7PcRTULvobCeASy/oR0Txa2wPBMxw="
   },
   {
    "real": true,
-   "h2": "Burglar hiding in Macy's ceiling in Vancouver, Washington crashes down onto waiting []",
+   "h2": "Mar del Plata, Argentina: court denies insurance payout for stolen [] left running with keys in",
    "ans": [
-    "police",
-    "officers",
-    "officer",
-    "cops",
-    "cop",
-    "policemen",
-    "policeman",
-    "constables",
-    "deputies"
+    "pickup",
+    "truck",
+    "pickups",
+    "trucks",
+    "ute",
+    "van",
+    "vehicle",
+    "car"
    ],
-   "place": "Vancouver, Washington",
-   "src": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQR3IxenhDaXYtUnZnTURKQ2hyTm05ZlQ1UTFHZFFhaFNIQm5WUk8xSVdTUE00dTFTTEEtVjJfOHVzWGxFMXFJRUx4UEdDYUloWldLdm5JMjhCRWFLWGpRQ1dFeWdLdlpiWlVaamlDNk85eEwwU05NeFZzRjh4SWlrc2NmZi1lX2dIYkJEZUpJWE03VE5BTmt4d3FqU1pMbnJKX1pmQ0hsa2gwQkdOOFpHSXJsT0RJSDM1ZEI5dGJ0VmwxVzl5bnRnVlJWbTkyMnowd1ZEMW9GTGY2WktOSV9zaG1Hb9IB6AFBVV95cUxNbE9rWl92dEllWDE5bmRUVzNwTTF3UDA3VUxTd196QjRxM0g4Mlp0UFhPaDQ5V0dlcklfTWEwdXNqWndMV0pGV0NELU5oVDk4S2hEaUtWNTE1RnFmbGZnanRfM19zcUNNLWdkZXNfNnNCd2FkaFZWd2NiWHFSdlRDU001VVVENUpoLWJuNzVZdU9veWJ1cTRjRWk1YXpaekdncGdFSGUybzhwRUJrazBBdWNrMm9KWmhYaXlreW1FTXo0ZU1Pa3R0U1VEcVQ4SkE3ejRZQTZQZi0tUFdGWEVVemlvZ19BLVdl?oc=5",
-   "published": "2026-10-07",
-   "vec": "F8kR/CDg9BsDu/3S3u0U6u8O4+0NNvYd2Y4HA+7if/PrwRsvH8oRN/M5G/Yq19kGJ+I="
+   "place": "Mar del Plata, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPbTFBY21EN0tvVEx3VUlrRmMwVzUza2VpSFJBWTQ4bUUzb0lULW9rTjhkTDQzVjlVaHFWU1FWMVlYTHd4X290Yml2SkFGWFBma0RUMS16ZkJhN2ZXTDlvdjY0dG9fcnRYa3lMa09iM2E2UnFNQjRfcTluaEdqbkxDVlpzOW5NbG95cFRVbUFrS1ZialNVMzl3UEt2RWpKUTFsbng4RHRfanUxcUpHUjVlaWNhRGJra1ZoTDdQeDA4eEpTN2YybVY2UTVaS0dXZ0Z2ZWVabQ?oc=5",
+   "published": "2026-10-28",
+   "vec": "2Plp5hzhrOkGvfzTywoQ6rwuCIH5wson9tGyMmAHbAfvK3EwBNHzDegD5bEL5UkNKu8="
   },
   {
    "real": true,
-   "h2": "Retired couple find 1.30 m [] in garden hedge in Avrolles, France, bag it, then watch it wake up and climb out",
+   "h2": "Two office [] caught on giant screen watching Test cricket from their desks in Cape Town, South Africa",
    "ans": [
-    "boa",
-    "boas",
-    "snake",
-    "snakes",
-    "serpent",
-    "serpents",
-    "constrictor",
-    "constrictors"
+    "workers",
+    "worker",
+    "employees",
+    "employee",
+    "staff",
+    "clerks",
+    "colleagues"
    ],
-   "place": "Avrolles, Yonne, France",
-   "src": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOZ3NHQjJhdXpkNGNUalNnWHAtNU93OG9SOURpRkx1aE55N0w5RVVVMW1nSkJ2eU1ZdU41Y2VndWhhOV9OQ2NYdEs0MGQ0UU1lVmh4ZDM1OTFuRWlldVZSSWdtbmVNVDFRcTNmNDU5ckZCVGtxd05kMlFEbXpFMzFQTmdMRmduZXRmMG1XZ3FIQUlaSXFCNFdIMzhXV0VVMm5GX2d2bEdER3JaNENPa1pheEdnTmV6blJKTDJWYU50c1RVMGxFTm53VllqMVhuX01MREtBOGlWNjVkZGZHb3d3TzJ2WmZZQ1U?oc=5",
-   "published": "2026-10-23",
-   "vec": "K+izLdb2690ZDhM/JAIJ0xcN9Mqr7/L3+B4pSIG4IPbzSezyI9EJpur56vvyzPDUV9g="
+   "place": "Cape Town, South Africa",
+   "src": "https://news.google.com/rss/articles/CBMihAJBVV95cUxOMndoaElOLXJvaWJaWFNIQ1VDNERWME0yNlJpQVh2bHM1eUtQMXRVNVVPNm9FcVlfNUdBLW96YjQ5SFQ1aF9fTTUyNWQtZW44X21VbXdNUzJmSm9LUWd1MDk0eWJQZEJVV1pPZDRLVk1pWTJVdEJSQ2hUeFpFYWYybm9GVUlYZEw3eXF2SFRyNVlGY2pjRmEzR19hQnh6RkMwc3I3bURidkpTTlhDWUZvbWZBdDNwWm9BbUxlWWZTaWFRcmJIOWVuTFlqbi1TZnQyZWhCQWtLUzFhUmxMX19Ec1ByZlNJSnhtZlNxMV9IUDlPYzQ0MDNEZzQtNC1EOWlCRjFOT9IBigJBVV95cUxOTllpeGxEeWpUbS1hZnppaDJTZGtLa2JfeklsTUt4c2JXdGVRSVZ2eDg4c2pYMkdiTWdyRXlsWXZUTlRCQ3ZsRk1pcjl3dEZvTE55eWJ4WjdQUVhyQlBUenJhUVdXMXJ4a0RmMUd0YWpWTWdBWlZMLW5qdDBER2g3RlUzOG5DUGtkSmRIUHN5TmJKLTVBMmJRTmJRZHdYdmRHdXFYRW5RMjNEekgzME1hNG5aZVVna1VuQVpBbk4wZFVEdW5EWC10QmVpblpoSC1uclJhdFV1aFFDZm56WEYtLUI5QVdIc3cwY2dCSXo1cnVwTXJ0SnVScURDbHNDZjBzbXl1WjdqTFdBUQ?oc=5",
+   "published": "2026-10-28",
+   "vec": "Eekb5vn91xgM4A3bFvsY6fohFsoNCOgC89IB6wMGfxPyAPID/uwnE+LuIgwg6swL9fQ="
   }
  ],
  "politics": [
   {
    "real": true,
-   "h": "Mayoral candidates deadlocked after election night; random draw names the winner in {}",
-   "lat": 50.2311,
-   "lng": -121.5816,
-   "place": "Lytton, British Columbia",
-   "src": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOZFdGYTE5YjRnQmp6ZG1DM2FueFZMRXlyTmdaeXlNZ0hFbHAzcXQ5X3l0YWVvZzA1UUdjYWtsQkliT0ZsMTYxR29aUkRYZVo1V3pLMU5SM0dJOEllMWtRSEdoenQyZHJ4NW5JN3F0X0VUQUVGUkhEQjcxR2tFR3FaOQ?oc=5",
-   "published": "2026-10-27",
-   "clue": "",
+   "h": "Residents denied food and garden bins as {} council serves developments of up to four homes only",
+   "lat": -37.7695,
+   "lng": 144.8902,
+   "place": "Maribyrnong, Victoria, Australia",
+   "src": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNclV0bW1XUk00ZVY1WW9uRzV4eG1zMGlMeUw2eVI0WFVkX0p4TjZwZFh0Yjh4T1l3LXpxRGhWc0JZVldHejVfQ3M4YThwVC1HYm9Zb04zaHg2Z2kxNzlWV1pwRDFORXdEbE5sdTl0MExLX1Y0aTJub1l6anRTa2lnajhqSVplWGZ0OU1tN1RkNHpNMHNXNEI5d0dQa0JrS1YzUmJWRnBxZ1dkQQ?oc=5",
+   "published": "2026-10-12",
+   "clue": "FOGO bins + council CEO + 'Melbourne's west' = Victoria, Australia",
    "cat": "pol"
   },
   {
    "real": true,
-   "h": "Dog park elects its first-ever dog mayor, a pooch named Tater, in {}",
-   "lat": 39.9819,
-   "lng": -83.045,
-   "place": "Grandview Heights, Ohio",
-   "src": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxORDRFcFBLaC1LRFM0SkthMmw4SW1GUkpKQWNubmFVSnpxWDhac1phbk5Fd05ybllqdnpacjlFZGxVQWR2VWxGdDN6eGdVQVFlTFlZYVItTE1HSjhFMUdfRWhpdkkzN1EzaHMyT1AzYWxmRGx3MjZTLXdERkxEbXBrT2Z1YndfRGpiczd3STFZU1d5Z05aYmc5djZMa3VJRlJuNjBOTmRxNG9nVWQzMkFVZi1HbklraFZBRVp3OWk5MEItUkZRd3M4NU9uM2tZbDRaOXVEN1NobGRuZGFCa0FNczZn?oc=5",
-   "published": "2026-10-09",
-   "clue": "",
+   "h": "Engineer wins {} council seat after campaigning on slogans 'Fine. I'll do it' and 'How hard could it be?'",
+   "lat": 49.8879,
+   "lng": -119.4959,
+   "place": "Kelowna, British Columbia, Canada",
+   "src": "https://news.google.com/rss/articles/CBMingNBVV95cUxPVG9ES2dOd01XZ3dNX2FqX25NUUU2RTJpSDBDRzhYcEczeVVtVjNkTlVwMWl3cGdkVE5GNkQ2R2MwM2VndzUyajhqRFR1ZU9qYUJVT25BcmRSTndVWkhZaXhEMEN3RUNGZ0lRSHNRVGQ4RnZMVy1vNVVuRzNIMTd0cDRHN0RZQ0cxX0YtSEpfY3pRcGp5bzBRNG9Cc093eXVGU29sQmlNejFMTXJ2Y2llZVp1Y2xmOVN3NGJtWHI1TlF2eC04eUpGU2NzRTV5SUxkWEhnTnlsM3l4YzBLRnNzeDY5X21nS3JYVXJGSUJocGVxazV6M05Bd3hZNUwtZWtoOE1neDZBcG1fMmN1R3ZJb3hUUHJYTzNxdUh5aWxlRUk3SVFtRUd3U1RmbXVZWmtWWXVMZC1VS0VSWksxbVRSSUJRVkwxRTRCWWpPYTI4VEpXalpTMmRHWEV2ZjNYUHAzNXdGUDVrdVd3eHZzN1p6MUw3Wkw1S0hEZ2FDYXJaQjJlNG5yenVxSXJGb2dPT2lJdUtaMy11ZmNiUzJpMVE?oc=5",
+   "published": "2026-10-21",
+   "clue": "city council + provincial election + Instagram thanks = Canada (B.C.)",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "Tied House primary in {} settled by drawing a capsule from a woven basket; top court later voids it",
+   "lat": 21.3448,
+   "lng": -158.0633,
+   "place": "Kapolei, Hawaii, USA",
+   "src": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOZTJJcVBZd2NfWlJTTUtxelVQUUpCd3hKYkQtb1oxdzZfQnVXOGc5UWsyU1pCVF9GMUt0aXBYWGZWTG5xQlB3UnIxd0VZRGwxY3ZYWl9TcFFkaURWM19JVEp2TmotLTFQRzdoeVVzb2M5QVlXZlBabXZlMFV3M2hhTFBPRjl3Z9IBhgFBVV95cUxOZTJJcVBZd2NfWlJTTUtxelVQUUpCd3hKYkQtb1oxdzZfQnVXOGc5UWsyU1pCVF9GMUt0aXBYWGZWTG5xQlB3UnIxd0VZRGwxY3ZYWl9TcFFkaURWM19JVEp2TmotLTFQRzdoeVVzb2M5QVlXZlBabXZlMFV3M2hhTFBPRjl3Zw?oc=5",
+   "published": "2026-10-28",
+   "clue": "Lauhala basket draw + state Office of Elections + House district = Hawaii",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "Mayoral hopeful holds up pink bra at {} debate, says he'll 'change his sex' to win women's votes",
+   "lat": 46.3092,
+   "lng": -79.4608,
+   "place": "North Bay, Ontario, Canada",
+   "src": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQSTV5UHVxUldsNFlIMTR5WTVrQ1hHdXVMcUJZZlR6Y0pmamdXVzM5Z21WTS1sUnQxSWdJUTFKWFNQY1NkTFZCUG12RVpZaldOQm1LbjN4WVFYOVBHd0NsU0pOSlVDUmdLTEYtdkFrb0lxSGxacUdjcmFKU1Rsa203ZEt5TzROODIweXBqaERCSWRRaEhXR0kwRVJxWVpuSkJHdmJNUHRMY0Y?oc=5",
+   "published": "2026-10-23",
+   "clue": "Mayoral debate + student union + provincial attention = Ontario, Canada",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "Councillors weigh letting baby cinema clubs in {} show 15 and 18-rated films to under-12-month-olds",
+   "lat": 53.9591,
+   "lng": -1.0815,
+   "place": "York, England",
+   "src": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPRENRU0hXcW9Sako5c2w1WEVUUE9lclpqV09WNWc3VDBjYzN2LU9KY3JtSjJ6UnpGSTRSY3ZjWlNITHdCSGoxUVFKSzBUbTdrMXNOV2pIcW5RSkpZRjVsU3kwQ29pb1R6Tnl2bzdncS1Qa0J6dWJOVE9NSEtSdF9zcHZlV0hpQXNWN2RIY21CM0d4ZExUUkg5SEVaRk9xcktwWF92cWhaTWFETlFHcmY4bGZ4Zm1CaFVWTTRadHF0cW9xQQ?oc=5",
+   "published": "2026-10-21",
+   "clue": "BBFC ratings (15, 18, 12A) + council licensing + Holgate = England",
    "cat": "pol"
   },
   {
    "real": false,
-   "h": "Village mayor in {} wins re-election by 17 votes after the only rival moves away the week before",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "Man named after two wartime dictators wins a mayoral race in {}",
-   "lat": -6.87,
-   "lng": -75.0459,
-   "place": "Peru",
-   "src": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1SSkRhNXBFQ19mVHNFMlBQRTRFYWpxazhfNXlaZFIyVFlPMVdQZW1jNEV0M01rYUZOaUpYX25aQUlsZ2tLQmNrZWI3alBYeXlEQl9ZS29Odw?oc=5",
-   "published": "2026-10-10",
-   "clue": "",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "Two dogs added to the mayoral ballot to boost turnout; one wins the town's first Dog Mayor vote in {}",
-   "lat": 54.0536,
-   "lng": -128.6541,
-   "place": "Kitimat, British Columbia",
-   "src": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPTXpxV3ZWa3BGMVpyam1iUF80aTlSTHhoOVVJeFdoazNTcWNjTUlVY1FybGczbDBpamlJa0lqbU5LU3dQQ3RtdmRlRFltWWpBd2Z2ekpHbkw5Z0Jwd0RKQnpDRjhWT2JLZVhIdlZlYkEyMzM5ZG9xZ2czeHJDMEZ1Q2RWQnU4b3U2V0E?oc=5",
-   "published": "2026-10-20",
-   "clue": "",
+   "h": "A new law in {} requires lamp posts to be repainted every 17 months",
    "cat": "pol"
   },
   {
    "real": false,
-   "h": "Pigeon numbers fall 14% a day after {} passes feeding ban, and officials say the ban is working",
+   "h": "{} town council votes 7-2 to rename its main bridge after a bakery that closed last spring",
    "cat": "pol"
   }
  ]
