@@ -1728,7 +1728,7 @@ const Scene = (function(){
         const r=clamp((t-recap.tR)/Math.max(0.01,recap.t0-recap.tR),0,1);
         camY=recap.from+(camMin-recap.from)*sstep(Math.pow(r,1.5));
       } else {
-        const p=clamp((t-recap.t0)/recap.dur,0,1), e=0.5*p+0.5*sstep(Math.pow(p,1.25));   // moving from the first moment (no pause at the top), then picking up speed
+        const p=clamp((t-recap.t0)/recap.dur,0,1), e=0.7*p+0.3*sstep(Math.pow(p,1.25));   // moving briskly from the first moment (no pause at the top), then picking up a little more speed
         const to=clamp(Math.max(13+target()+9,recap.maxLy+Math.ceil(70/PX))-focus*H,camMin,camMax);
         camY=camMin+(to-camMin)*e;
       }
@@ -4244,7 +4244,7 @@ const Intro=(function(){
       lat0=tgt[0]; lon0=tgt[1];
       drawDive(p,tt,E.R,E.ey,tier>=3 && p<0.5);
       cv.style.opacity=String(clamp01(T/0.25));
-      if(T>=D){ mode='end'; endT=now; parts=[]; if(tier>=1) Sound.play(tier>=2?'core':'crunch'); summaryLater(2000); }
+      if(T>=D){ mode='end'; endT=now; parts=[]; if(tier>=1) Sound.play(tier>=2?'core':'crunch'); summaryLater(1000); }
     } else {                             // the damage report: the planet, as your dig left it
       const E=endPos(), age=(now-endT)/1000;
       if(tier===4){                      // swing round to Australia, where the chin came out
