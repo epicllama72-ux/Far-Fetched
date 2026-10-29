@@ -112,6 +112,15 @@ jobs:
           git pull --rebase origin main
           git push
 
+      # Publish the newest main, not the commit this run started from: a deploy queued behind a nightly build
+      # would otherwise put the previous paper back up.
+      - name: Use the newest main
+        if: github.event_name == 'push' || steps.check.outputs.build == 'true'
+        run: |
+          git fetch --depth=1 origin main
+          git reset --hard FETCH_HEAD
+          git log -1 --format='Deploying %h %s'
+
       - uses: actions/configure-pages@v5
         if: github.event_name == 'push' || steps.check.outputs.build == 'true'
       - uses: actions/upload-pages-artifact@v3
