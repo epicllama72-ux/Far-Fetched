@@ -3178,7 +3178,7 @@ function openWardrobe(){
 function closeWardrobe(){ $('wardrobe').hidden=true; if($('menu').hidden && $('sheet').hidden) document.body.classList.remove('hideq'); }
 function renderWardrobe(){
   const k=kitState(), have=new Set(unlockedIds()), st=load('ff_streak')||{}, fz=st.freezes||0;
-  $('wardNote').innerHTML='Streak freezes: <b>'+fz+'</b> of 2. You earn one every 7 days of streak, and it covers one missed day.';
+  $('wardNote').innerHTML='Streak freezes: <b>'+fz+'</b> of 2. You earn one every 7 days of streak, and it covers one missed day.<br>Only the Daily Dig counts toward wardrobe items. Fill the Blank, Politics and Practice don\'t.';
   const secs=[['HEAD',['head']],['EYES',['glasses','monocle']],['POCKET',['pocket']],['TEETH',['teeth']],['DESK AND SHELF',['mug','trophy','globe']]];
   $('wardBody').innerHTML=secs.map(([name,slots])=>'<p class="wsec">'+name+'</p><div class="wgrid">'
     + KIT.filter(it=>slots.includes(it.slot)).map(it=>{
