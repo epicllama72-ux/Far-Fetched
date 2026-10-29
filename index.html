@@ -3405,6 +3405,16 @@ async function sbPost(entry){
     return r.ok;
   }catch(e){ return false; }
 }
+/* a renamed player's earlier scores take the new name too (needs the UPDATE policy in scripts/supabase_rename.sql) */
+async function sbRename(name){
+  if(!sbOn()) return false;
+  try{
+    const r=await fetch(SUPABASE_URL+'/rest/v1/scores?player=eq.'+encodeURIComponent(playerId()),{method:'PATCH',
+      headers:sbHeaders({Prefer:'return=representation'}), body:JSON.stringify({name:name.slice(0,24)})});
+    if(!r.ok){ console.warn('rename failed: HTTP '+r.status); return false; }
+    return true;
+  }catch(e){ return false; }
+}
 async function sbBoard(kind){
   const q='&day=eq.'+encodeURIComponent(dayKey())+'&kind=eq.'+encodeURIComponent(kind)+'&order=m.desc,score.desc&limit=2000';
   let r=await fetch(SUPABASE_URL+'/rest/v1/scores?select=player,name,m,score,zone,answers'+q,{headers:sbHeaders()});
@@ -3903,7 +3913,7 @@ $('nameEdit').onclick=()=>{
   if(row.querySelector('input')) return;
   const inp=document.createElement('input'); inp.type='text'; inp.maxLength=24; inp.value=playerName(); inp.id='nameIn'; inp.setAttribute('aria-label','Leaderboard name');
   const ok=document.createElement('button'); ok.type='button'; ok.className='linkish'; ok.textContent='save';
-  const save=()=>{ store('ff_name', inp.value.replace(/[<>]/g,'').trim().slice(0,24)); $('nameShow').textContent=playerName(); inp.remove(); ok.remove(); $('nameShow').hidden=false; $('nameEdit').hidden=false; $('nameHint').hidden=false; };
+  const save=()=>{ store('ff_name', inp.value.replace(/[<>]/g,'').trim().slice(0,24)); $('nameShow').textContent=playerName(); sbRename(playerName()); inp.remove(); ok.remove(); $('nameShow').hidden=false; $('nameEdit').hidden=false; $('nameHint').hidden=false; };
   ok.onclick=save; inp.onkeydown=e=>{ if(e.key==='Enter') save(); };
   $('nameShow').hidden=true; $('nameEdit').hidden=true; $('nameHint').hidden=true;
   row.append(inp,' ',ok); inp.focus(); inp.select();
