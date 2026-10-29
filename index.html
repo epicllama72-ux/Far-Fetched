@@ -1405,7 +1405,7 @@ function shiftFC(g,dx){   // shift any GeoJSON (collection, feature or bare geom
 }
 function pinPoints(d){return Math.round(PK*PIN_PTS*Math.exp(-Math.max(0,d-75)/1500));}  // ≤75 km 350 · 300 km 301 · 500 km 264 · 1000 km 189 · 2000 km 97 · 5000 km 13
 /* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
-const PIN_SECS=20, PIN_GRACE=12;
+const PIN_SECS=20, PIN_GRACE=10;
 function pinMult(sec){ return Math.max(0.6,Math.min(1,1-(sec-PIN_GRACE)*0.05)); }
 /* Bonus for a fast, fairly accurate pin (true call only): up to +60. Full if within 150 km in 6 s or less; fades to nothing at 800 km or 11 s. */
 const PIN_BONUS=60;
@@ -2611,7 +2611,7 @@ function startGame(mode, kind){
   $('mPractice').classList.toggle('on',!daily);
   $('howText').innerHTML = blank
     ? 'Guess the hidden word in each true headline. The exact word scores up to <b>500</b>, more the faster you get it. Near misses pay a little, and every guess after your third costs 5%.'
-    : 'Right call on a true story: up to <b>+100</b>, more for answering quickly. Catching a fake: <b>+150</b>. Fooled by a fake: <b>−75</b>. Then pin where the true story happened for up to <b>+350</b>, plus <b>+50</b> if your pin is in the right country: you have 20 seconds, with full points for the first 12. A fast, fairly close pin earns up to <b>+60</b> more. Every point drops his jaw the same distance, and losing points pulls it back up.';
+    : 'Right call on a true story: up to <b>+100</b>, more for answering quickly. Catching a fake: <b>+150</b>. Fooled by a fake: <b>−75</b>. Then pin where the true story happened for up to <b>+350</b>, plus <b>+50</b> if your pin is in the right country: you have 20 seconds, with full points for the first 10. A fast, fairly close pin earns up to <b>+60</b> more. Every point drops his jaw the same distance, and losing points pulls it back up.';
   renderStats();
   closeMenu();
   Scene.configure(JAW_SCALE);
