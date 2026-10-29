@@ -4,7 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Far-Fetched</title>
-<meta name="description" content="A daily game: real or fake weird news headline? If it's real, pin where it happened. Get fooled and you lose points.">
+<meta name="description" content="A free daily news game. Seven weird headlines: spot the two that are made up, then pin the real ones on the map. Plus Fill the Blank and Politics. New puzzles every day.">
+<link rel="canonical" href="https://farfetchedgame.com/">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/ff-icon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="icons/ff-icon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/ff-icon-180.png">
@@ -17,15 +19,16 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Far-Fetched">
 <meta property="og:title" content="Far-Fetched · How far did your jaw drop?">
-<meta property="og:description" content="10 weird headlines a day. Real or fake? If it's real, find where it happened. Every point drops his jaw deeper.">
-<meta property="og:url" content="https://epicllama72-ux.github.io/Far-Fetched/">
-<meta property="og:image" content="https://epicllama72-ux.github.io/Far-Fetched/og.png">
+<meta property="og:description" content="7 weird headlines a day. Real or fake? If it's real, find where it happened. Every point drops his jaw deeper.">
+<meta property="og:url" content="https://farfetchedgame.com/">
+<meta property="og:image" content="https://farfetchedgame.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Far-Fetched · How far did your jaw drop?">
-<meta name="twitter:description" content="10 weird headlines a day. Real or fake? If it's real, find where it happened.">
-<meta name="twitter:image" content="https://epicllama72-ux.github.io/Far-Fetched/og.png">
+<meta name="twitter:description" content="7 weird headlines a day. Real or fake? If it's real, find where it happened.">
+<meta name="twitter:image" content="https://farfetchedgame.com/og.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Far-Fetched","url":"https://farfetchedgame.com/","description":"A free daily browser game. Spot which weird news headlines are real and which are made up, then pin the real ones on a map. New stories every day.","genre":["Puzzle","Trivia","Geography"],"applicationCategory":"Game","operatingSystem":"Any (web browser)","gamePlatform":"Web browser","inLanguage":"en","image":"https://farfetchedgame.com/og.png","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <style>
 /* required styles */
 
@@ -710,6 +713,7 @@ body{margin:0;background:var(--bg);color:var(--text);font:22px/1.15 var(--vt);ov
 #ruler{position:fixed;left:0;top:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:hidden}
 .tick{position:absolute;transform:translateY(-50%);font:16px/1 var(--vt);color:#c9cfdb;background:rgba(13,15,20,.8);padding:1px 4px;white-space:nowrap}
 .tick.zone{font:8px/1 var(--px);letter-spacing:.12em;color:var(--accent);background:#0d0f14;border:1px solid var(--accent);padding:4px 5px}
+.about{max-width:560px;margin:0 auto;padding:0 16px 80px;color:var(--dim);font:16px/1.35 var(--vt)}.about h2{font:10px/1.4 var(--px);letter-spacing:.14em;margin:0 0 8px}.about p{margin:0 0 8px}
 .app{max-width:560px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-right,0px)) 120px max(16px,env(safe-area-inset-left,0px))}
 body.pinning .app{padding-bottom:calc(min(30vh,260px) + 96px)}
 
@@ -1197,6 +1201,11 @@ body.recap #bar{display:none}
   </section>
 </div>
 
+<footer class="about">
+<h2>ABOUT FAR-FETCHED</h2>
+<p>Far-Fetched is a free daily news game. Every day you get seven weird headlines. Five really happened and two were made up. Call each one real or fake, then pin the real ones on the map to find where they happened. Every point drops the digger's jaw deeper.</p>
+<p>Daily Dig is the main game. Fill the Blank asks you to guess the missing word in a true headline. Politics collects the hardest-to-believe government stories. New puzzles arrive every day, and Practice mode lets you play older stories without affecting your streak.</p>
+</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 /* ---------- Content ----------
