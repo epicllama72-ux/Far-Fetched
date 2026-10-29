@@ -19,16 +19,16 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Far-Fetched">
 <meta property="og:title" content="Far-Fetched · How far did your jaw drop?">
-<meta property="og:description" content="7 weird headlines a day. Real or fake? If it's real, find where it happened. Every point drops his jaw deeper.">
+<meta property="og:description" content="7 offbeat stories, 5 true, 2 false. Map the true ones. Every point drops his jaw deeper.">
 <meta property="og:url" content="https://farfetchedgame.com/">
-<meta property="og:image" content="https://farfetchedgame.com/og.png?v=2">
+<meta property="og:image" content="https://farfetchedgame.com/og.png?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Far-Fetched · How far did your jaw drop?">
-<meta name="twitter:description" content="7 weird headlines a day. Real or fake? If it's real, find where it happened.">
-<meta name="twitter:image" content="https://farfetchedgame.com/og.png?v=2">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Far-Fetched","url":"https://farfetchedgame.com/","description":"A free daily browser game. Spot which weird news headlines are real and which are made up, then pin the real ones on a map. New stories every day.","genre":["Puzzle","Trivia","Geography"],"applicationCategory":"Game","operatingSystem":"Any (web browser)","gamePlatform":"Web browser","inLanguage":"en","image":"https://farfetchedgame.com/og.png?v=2","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<meta name="twitter:description" content="7 offbeat stories, 5 true, 2 false. Map the true ones.">
+<meta name="twitter:image" content="https://farfetchedgame.com/og.png?v=3">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Far-Fetched","url":"https://farfetchedgame.com/","description":"A free daily browser game. Spot which weird news headlines are real and which are made up, then pin the real ones on a map. New stories every day.","genre":["Puzzle","Trivia","Geography"],"applicationCategory":"Game","operatingSystem":"Any (web browser)","gamePlatform":"Web browser","inLanguage":"en","image":"https://farfetchedgame.com/og.png?v=3","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <style>
 /* required styles */
 
@@ -4283,7 +4283,7 @@ const Intro=(function(){
   function introText(){
     if(!S || !S.rounds) return;
     const blank=S.kind==='blank', n=S.rounds.length, r=S.rounds.filter(x=>x.real).length, f=n-r;
-    $('introLine').textContent = blank ? n+' true headlines, one word missing. Fill in the blank.' : n+' stories, '+r+' true, '+f+' false. Map the true ones.';
+    $('introLine').textContent = blank ? n+' true headlines, one word missing. Fill in the blank.' : n+' offbeat stories, '+r+' true, '+f+' false. Map the true ones.';
     $('introHowText').innerHTML = (blank
       ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how <b>hot or cold</b> it is.</li><li>You have <b>20 seconds</b> per headline. The exact word, found fast, scores the most.</li><li>Every point drops his jaw a little further.</li></ol>'
       : '<ol><li>Read the headline. The place is <b>blacked out</b>.</li><li>Call it <b>REAL</b> or <b>FAKE</b>. Quick answers score more.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin where you think it happened, then <b>LOCK IN</b>. You get 20 seconds: closer and faster scores more.</li><li>Every point drops his jaw.</li></ol>')
