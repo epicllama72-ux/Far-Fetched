@@ -3058,7 +3058,7 @@ function finish(restored){
     // coming back to a finished day: his jaw stays dropped where your dig ended, with your run summarised
     renderDigCard();
     Scene.restore(jawPoints()*S.jawK); Scene.setPaper(false,true);   // paper down, jaw dropped to where today's dig ended
-    Scene.browseStart();                                             // view back up on the guy; the player can scroll the dig   // frame the man at his table above the summary
+    Scene.browseStart();                                             // view back up on the guy; the player can scroll the dig
     S.returned=true; document.body.classList.add('returned');
     setTimeout(()=>{ $('depth').textContent=inf.m; },60);
   } else setTimeout(renderDigCard,2600);
