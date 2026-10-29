@@ -1264,7 +1264,7 @@ const $ = id => document.getElementById(id);
 const START = Date.UTC(2026, 9, 27);
 const ROUNDS_REAL = 5, ROUNDS_FAKE = 2, ROUND_LEN = 7;    // every mode: 7 stories (Real or Fake / Politics: 5 true + 2 fake)
 const DIG_REAL = ROUNDS_REAL, OLD_REAL = 8, OLD_BLANK = 10;   // the old 8 true / 10 blank rounds set the top score
-const CALL_PTS = 100, FOOLED_PTS = -75, PIN_PTS = 400;
+const CALL_PTS = 100, FOOLED_PTS = -75, PIN_PTS = 350, COUNTRY_PTS = 50;   // a perfect pin is still 400: 350 for distance + 50 for the right country
 let PK = 1;   // per-true-story points multiplier: keeps a Daily Dig's top score the same however many true stories it has (8 true = x1; now 5 true = x1.6)
 
 function pad(n){return String(n).padStart(2,'0');}
@@ -1369,6 +1369,32 @@ const COUNTRY_LABELS=[
 ['Morocco',31.8,-6.9],['Algeria',28.2,2.6],['Tunisia',34,9.5],['Libya',27,17.2],['Egypt',26.5,29.8],['Mauritania',20.3,-10.5],['Mali',17.4,-3.5],['Niger',17.4,9.4],['Chad',15.4,18.7],['Sudan',15.8,29.9],['Senegal',14.5,-14.5],['Guinea',10.9,-10.9],['Ivory Coast',7.6,-5.5],['Ghana',7.9,-1.2],['Nigeria',9.6,8.1],['Cameroon',5.7,12.7],['Ethiopia',8.6,39.6],['Somalia',5.7,46.2],['Kenya',0.5,37.9],['Uganda',1.4,32.4],['Tanzania',-6.3,34.9],['DR Congo',-2.9,23.6],['Angola',-12.3,17.5],['Zambia',-13.4,27.8],['Zimbabwe',-19,29.9],['Mozambique',-17.3,35.5],['Namibia',-22.1,17.2],['Botswana',-22.3,24.4],['South Africa',-29,24.7],['Madagascar',-19.4,46.7],
 ['Australia',-25.7,134],['New Zealand',-41.5,172.5],['Papua New Guinea',-6.5,145]];
 const WORLDS=[-360,0,360];
+/* which country a point is in, from the same outlines the map draws (so the pin and the story are judged alike) */
+let WORLD_FC=null, CBOX=null, CNAMES=null;
+function polysOf(f){ const g=f.geometry; return !g ? [] : g.type==='MultiPolygon' ? g.coordinates : g.type==='Polygon' ? [g.coordinates] : []; }
+function inRing(x,y,r){ let c=false; for(let i=0,j=r.length-1;i<r.length;j=i++){ const [x1,y1]=r[i],[x2,y2]=r[j]; if((y1>y)!==(y2>y) && x<(x2-x1)*(y-y1)/(y2-y1)+x1) c=!c; } return c; }
+function countryAt(lat,lng,snapKm){
+  if(!WORLD_FC) return -1;
+  const fs=WORLD_FC.features||[];
+  if(!CBOX) CBOX=fs.map(f=>{ let a=[180,90,-180,-90]; polysOf(f).forEach(p=>p[0].forEach(([x,y])=>{ a=[Math.min(a[0],x),Math.min(a[1],y),Math.max(a[2],x),Math.max(a[3],y)]; })); return a; });
+  const x=((lng+540)%360)-180, y=lat;
+  for(let i=0;i<fs.length;i++){
+    const b=CBOX[i]; if(x<b[0]||x>b[2]||y<b[1]||y>b[3]) continue;
+    if(polysOf(fs[i]).some(p=>inRing(x,y,p[0]) && !p.slice(1).some(h=>inRing(x,y,h)))) return i;
+  }
+  if(!snapKm) return -1;                     // a coastal town can sit just off these coarse outlines: take the nearest country within reach
+  let best=-1, bd=snapKm, dg=snapKm/80+0.5;
+  for(let i=0;i<fs.length;i++){
+    const b=CBOX[i]; if(x<b[0]-dg||x>b[2]+dg||y<b[1]-dg||y>b[3]+dg) continue;
+    polysOf(fs[i]).forEach(p=>p[0].forEach(([vx,vy])=>{ const k=km(y,x,vy,vx); if(k<bd){ bd=k; best=i; } }));
+  }
+  return best;
+}
+function countryName(i){
+  if(i<0) return '';
+  if(!CNAMES){ CNAMES={}; COUNTRY_LABELS.forEach(([n,la,ln])=>{ const j=countryAt(la,ln,0); if(j>=0 && !(j in CNAMES)) CNAMES[j]=n; }); }
+  return CNAMES[i]||'';
+}
 function shiftFC(g,dx){   // shift any GeoJSON (collection, feature or bare geometry) sideways by dx degrees
   if(!dx || !g) return g;
   const sh=c=>typeof c[0]==='number' ? [c[0]+dx,c[1]] : c.map(sh);
@@ -1377,7 +1403,7 @@ function shiftFC(g,dx){   // shift any GeoJSON (collection, feature or bare geom
   if(g.type==='Feature') return {type:'Feature',properties:g.properties,geometry:geom(g.geometry)};
   return geom(g);
 }
-function pinPoints(d){return Math.round(PK*PIN_PTS*Math.exp(-Math.max(0,d-75)/2600));}  // ≤75 km 400 · 300 km 367 · 500 km 340 · 1000 km 280 · 2000 km 191 · 5000 km 60
+function pinPoints(d){return Math.round(PK*PIN_PTS*Math.exp(-Math.max(0,d-75)/2600));}  // ≤75 km 350 · 300 km 321 · 500 km 298 · 1000 km 245 · 2000 km 167 · 5000 km 53
 /* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
 const PIN_SECS=20, PIN_GRACE=12;
 function pinMult(sec){ return Math.max(0.6,Math.min(1,1-(sec-PIN_GRACE)*0.05)); }
@@ -2563,8 +2589,8 @@ function startGame(mode, kind){
   PK = (!blank && reals>0) ? Math.max(1, OLD_REAL/reals) : 1;
   BLANK_MAX = blank ? Math.round(OLD_BLANK*500/Math.max(1,rounds.length)) : 500;   // top score for 7 words = the old 10
   S = {mode, kind:KIND, rounds, i:0, results:[], phase:'call', score:0,
-       maxScore: blank ? rounds.length*BLANK_MAX : Math.round(reals*PK*(CALL_PTS+PIN_PTS+PIN_BONUS))+(rounds.length-reals)*FAKE_PTS,
-       maxJaw: blank ? rounds.length*BLANK_MAX : Math.round(reals*PK*(CALL_PTS+PIN_PTS+PIN_BONUS))};
+       maxScore: blank ? rounds.length*BLANK_MAX : Math.round(reals*PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS))+(rounds.length-reals)*FAKE_PTS,
+       maxJaw: blank ? rounds.length*BLANK_MAX : Math.round(reals*PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS))};
   S.jawK = 1;                                        // one point = the same jaw drop in every mode
   if(mode==='back' && BACK) S.backDate=BACK.date;
   S.sig = hash(rounds.map(x=>x.h||x.h2||'').join('|'));
@@ -2584,7 +2610,7 @@ function startGame(mode, kind){
   $('mPractice').classList.toggle('on',!daily);
   $('howText').innerHTML = blank
     ? 'Guess the hidden word in each true headline. The exact word scores up to <b>500</b>, more the faster you get it. Near misses pay a little, and every guess after your third costs 5%.'
-    : 'Right call on a true story: up to <b>+100</b>, more for answering quickly. Catching a fake: <b>+150</b>. Fooled by a fake: <b>−75</b>. Then pin where the true story happened for up to <b>+400</b>: you have 20 seconds, with full points for the first 12. A fast, fairly close pin earns up to <b>+60</b> more. Every point drops his jaw the same distance, and losing points pulls it back up.';
+    : 'Right call on a true story: up to <b>+100</b>, more for answering quickly. Catching a fake: <b>+150</b>. Fooled by a fake: <b>−75</b>. Then pin where the true story happened for up to <b>+350</b>, plus <b>+50</b> if your pin is in the right country: you have 20 seconds, with full points for the first 12. A fast, fairly close pin earns up to <b>+60</b> more. Every point drops his jaw the same distance, and losing points pulls it back up.';
   renderStats();
   closeMenu();
   Scene.configure(JAW_SCALE);
@@ -2623,7 +2649,7 @@ function resultClass(x){
   if(x.blank) return x.c>=0.999?'ok':x.c>=0.6?'meh':x.c>=0.3?'warm':'no';
   if(!x.real) return x.callOk?'fake':'fooled';
   if(!x.callOk) return 'no';
-  const f=(x.pinPts||0)/(PK*PIN_PTS);
+  const f=Math.min(1,(x.pinPts||0)/(PK*(PIN_PTS+COUNTRY_PTS)));
   return f>=0.75?'ok':f>=0.25?'meh':'warm';
 }
 const CLASS_EMOJI={ok:'🟩',meh:'🟨',warm:'🟧',no:'🟥',fake:'🟦',fooled:'⬛'};
@@ -2834,6 +2860,7 @@ function openMap(){
                        inertia:true,inertiaDeceleration:2200,attributionControl:false,
                        maxBounds:[[-60,-540],[78,540]],maxBoundsViscosity:1});   // the world repeats sideways: scroll past Alaska and Asia appears
     fetch('world.json').then(r=>r.json()).then(w=>{
+      WORLD_FC=w.countries; CBOX=null; CNAMES=null;
       WORLDS.forEach(dx=>{
         L.geoJSON(shiftFC(w.countries,dx),{style:{color:'#7f90b4',weight:1,fillColor:'#2c3850',fillOpacity:1},interactive:false}).addTo(map).bringToBack();
         L.geoJSON(shiftFC(w.states,dx),{style:{color:'#5a6a8c',weight:0.7,fill:false,dashArray:'2 2'},interactive:false}).addTo(map);
@@ -2902,8 +2929,11 @@ function submitGuess(timedOut){
   if(!S.cur.callOk) pts = Math.round(pts*0.5);
   const bonus = guessLL && S.cur.callOk ? pinBonus(d,sec) : 0;
   pts += bonus; S.cur.pinBonus = bonus;
+  const cTrue = guessLL ? countryAt(st.lat,st.lng,60) : -1, cOk = cTrue>=0 && countryAt(guessLL.lat,guessLL.lng,0)===cTrue;
+  const cPts = cOk ? Math.round(PK*COUNTRY_PTS*(S.cur.callOk?1:0.5)) : 0;   // a flat bonus for the right country (half credit after a wrong call, like the pin)
+  pts += cPts; S.cur.countryPts = cPts;
   S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
-  Sound.play('lock',pts/(PK*PIN_PTS)); if(pts>0) Sound.play('jawDown');
+  Sound.play('lock',Math.min(1,pts/(PK*(PIN_PTS+COUNTRY_PTS)))); if(pts>0) Sound.play('jawDown');
   let actual = L.latLng(st.lat,st.lng);
   if(guessLL) actual = L.latLng(st.lat, st.lng + 360*Math.round((guessLL.lng-st.lng)/360));   // the copy of the world nearest the pin, so the line never wraps the long way round
   if(guessLL){
@@ -2918,7 +2948,7 @@ function submitGuess(timedOut){
   const fb=$('feedback'); fb.hidden=false;
   fb.classList.remove('open');
   fb.innerHTML = '<span class="sum">'+(S.cur.callOk?'<b>+'+S.cur.callPts+'</b> call · ':'')
-    + (guessLL ? Math.round(d).toLocaleString()+' km · <b>+'+pts+'</b>'+(S.cur.callOk?' pin':' half credit')+(mult<1?' (slow −'+Math.round((1-mult)*100)+'%)':'')+(bonus?' · <b>+'+bonus+'</b> quick and close':'') : 'Time! No pin · <b>+0</b>')+'</span>'
+    + (guessLL ? Math.round(d).toLocaleString()+' km · <b>+'+pts+'</b>'+(S.cur.callOk?' pin':' half credit')+(mult<1?' (slow −'+Math.round((1-mult)*100)+'%)':'')+(cPts?' · <b>+'+cPts+'</b> ✓ '+(countryName(cTrue)||'right country'):'')+(bonus?' · <b>+'+bonus+'</b> quick and close':'') : 'Time! No pin · <b>+0</b>')+'</span>'
     + '<button class="why" type="button" aria-expanded="false">why?</button>'
     + '<small class="more">'+(st.clue?'Clues: '+st.clue+'. ':'')+st.place+(st.published?' · '+fmtDate(st.published):'')
     + (st.src?' · <a href="'+st.src+'" target="_blank" rel="noopener">read the story</a>':'')+'</small>';
