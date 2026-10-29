@@ -2095,6 +2095,38 @@ const Scene = (function(){
           const rad=Math.round(rad0*sc); if(rad<1) return; const cc=mixw?mix(col,'#ffffff',mixw):col;
           for(let dy=-rad;dy<=rad;dy++){ const hw=Math.round(Math.sqrt(Math.max(0,rad*rad-dy*dy))); R(-hw,ccy+dy,hw*2,1,cc); }
         });
+        if(a>=0.3){      // what the blast leaves: a real hole where the core was, scorched and cracked all round it
+          const gr=clamp((a-0.3)/0.9,0,1), ease=1-(1-gr)*(1-gr), hn=k=>{ const v=Math.sin(k*127.1+311.7)*43758.5453; return v-Math.floor(v); };
+          const ring=(rad,col,al)=>{ g.globalAlpha=al*gr; for(let dy=-rad;dy<=rad;dy++){ const hw=Math.round(Math.sqrt(Math.max(0,rad*rad-dy*dy))); R(-hw,ccy+dy,hw*2,1,col); } g.globalAlpha=1; };
+          ring(48,'#000000',0.16); ring(40,'#000000',0.2); ring(33,'#1a0603',0.35);          // soot, darkest nearest the blast
+          for(let i=0;i<14;i++){      // blast cracks fanning out of the hole, getting thinner as they go
+            const an=i/14*Math.PI*2+hn(i)*0.35, len=Math.round((22+hn(i+9)*20)*ease);
+            for(let r=20,w=0;r<20+len;r++,w++){ const j=Math.round(Math.sin(r*0.7+i)*1.2), x=Math.round(Math.cos(an)*r)+(Math.abs(Math.cos(an))<0.5?j:0), y=Math.round(ccy+Math.sin(an)*r)+(Math.abs(Math.cos(an))>=0.5?j:0);
+              g.globalAlpha=clamp(1-w/(len+4),0.25,1); R(x,y,1,1,'#080101'); if(w<len*0.5 && (r+i)%3===0) R(x,y+1,1,1,'#2d0a06'); }
+          } g.globalAlpha=1;
+          const HR=Math.round(23*ease);      // the hole itself: a ragged edge, black inside
+          for(let dy=-HR-3;dy<=HR+3;dy++){
+            const yy=ccy+dy, e=Math.round(hn(dy+40)*3-1), hw=Math.round(Math.sqrt(Math.max(0,(HR+e)*(HR+e)-dy*dy)));
+            if(hw<1) continue;
+            R(-hw-2,yy,hw*2+4,1,'#2a0c07');                                         // charred lip
+            R(-hw,yy,hw*2,1,Math.abs(dy)>HR*0.55?'#060101':'#000000');             // the hole
+            if(dy>HR*0.35 && ease>0.9){ g.globalAlpha=0.5+0.3*Math.sin(t*3+dy); R(-hw+2,yy,hw*2-4,1,'#7a1d08'); g.globalAlpha=1; }   // magma glow far down
+          }
+          if(ease>0.8){
+            for(let i=0;i<36;i++){      // glowing cracks along the lip
+              const an=hn(i+3)*Math.PI*2, r=HR+1+Math.round(hn(i)*2);
+              if(Math.floor(t*2.5+i)%4) R(Math.round(Math.cos(an)*r),Math.round(ccy+Math.sin(an)*r),1,1,i%3?C.magmaBright:C.coreHot);
+            }
+            for(let i=0;i<9;i++){       // chunks of rock flung out and left lying about
+              const an=hn(i+50)*Math.PI*2, r=HR+6+Math.round(hn(i+60)*24), sz=1+Math.round(hn(i+70)*2), x=Math.round(Math.cos(an)*r), y=Math.round(ccy+Math.sin(an)*r);
+              R(x,y,sz+1,sz,'#3a1810'); R(x,y,sz,1,'#6b3a24');
+            }
+            for(let i=0;i<5;i++){       // smoke curling up out of the hole
+              const ph=(t*0.35+i*0.2)%1, x=Math.round(Math.sin(ph*6+i*2)*(4+ph*7)+(i-2)*3), y=Math.round(ccy-HR+2-ph*30);
+              g.globalAlpha=(1-ph)*0.45; R(x,y,3+Math.round(ph*3),2,'#6a6470'); g.globalAlpha=1;
+            }
+          }
+        }
         if(a<0){ disc(1+Math.sin(t*2)*0.04,0); }
         else if(a<0.2){ disc(1+a*4,a/0.2); }                                      // it swells and whites out...
         else if(a<1.1){ const k=1-(a-0.2)/0.9; disc(Math.max(0,k*k*1.8)+0.0,0.4*k); }   // ...then collapses in on itself
@@ -2102,12 +2134,6 @@ const Scene = (function(){
           [0,0.12].forEach(dl=>{ const q=a-dl; if(q<0||q>1.3) return; const rr=20+q*70; g.globalAlpha=clamp(1-q/1.3,0,1)*0.9;
             for(let i=0,n=Math.round(rr*5);i<n;i++){ const an=i/n*Math.PI*2; R(Math.round(Math.cos(an)*rr),Math.round(ccy+Math.sin(an)*rr),2,1,dl?C.magmaHi:'#fff6c8'); }
           }); g.globalAlpha=1;
-        }
-        if(a>=1.1){      // what is left: a scorched crater with a few embers
-          for(let dy=-9;dy<=9;dy++){ const hw=Math.round(Math.sqrt(81-dy*dy)); R(-hw,ccy+dy,hw*2,1,'#1c0503'); }
-          for(let dy=-5;dy<=5;dy++){ const hw=Math.round(Math.sqrt(25-dy*dy)); R(-hw,ccy+dy,hw*2,1,'#2d0a06'); }
-          [[-4,-2],[3,-3],[0,3],[5,2],[-3,4]].forEach(([ex,ey],i)=>{ if(Math.floor(t*3+i)%3) R(ex,ccy+ey,1,1,i%2?C.magmaHi:C.magmaBright); });
-          for(let i=0;i<10;i++){ const an=i*0.63+0.3; R(Math.round(Math.cos(an)*(12+(i%3)*3)),Math.round(ccy+Math.sin(an)*(12+(i%3)*3)),2,1,'#3a0f08'); }
         }
       }
     }
