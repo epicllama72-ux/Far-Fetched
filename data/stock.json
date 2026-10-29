@@ -120,107 +120,6 @@
  ],
  "blank": [
   {
-   "h": "Tenant's 33-gram gold necklace vanishes from under kitchen sink; police trace the thief to a rat hole in {}",
-   "h2": "Tenant's 33-gram gold necklace vanishes from under kitchen sink in Jiaxing, China; thief was a []",
-   "ans": [
-    "rat",
-    "rats",
-    "mouse",
-    "mice",
-    "rodent",
-    "rodents"
-   ],
-   "place": "Jiaxing, Zhejiang, China",
-   "src": "https://news.google.com/rss/articles/CBMi6ANBVV95cUxQUmhkaU5BZEtQMFIyLWFnQ1M1ZFBnUGw4SGI1dGNmb1VBdC13aGdqR2JfZEJlUnNGUUJmVWVLazNBMmdKTTRhWEVNMFZucFNIcVgzSEVvdW5RRG0zMW9pOTdLdzg1YklUYTNjV3diUG55T0tvRzZIbVRKcmlrU1BzdjJraGFldHo5eVV6SlVQcWxDT0hXVmJsanpfeVktY1NfNVkxcjdUbV9fM1ZDblhEWjN4SGxqV3VsZU1RQmlITVZmcktiT2NGcW9ZU1FhVUtvdmVYMmU5ZTk3RDlMWkNUVWpGNmVxSWJ6R29NVkVrbXlvd2dPWm9ENGNPck9LY3huTGsyTElzanNPMF9HM0RScG9LMTV0eDAzSHZ4VnJKLXB5amg2NG4xOF9lTmhzUXlURXVCSHJtOHJBNzFtdXFWVExJUXRVbU1kay1fVEYxOVNoMmJicF9DMDRJUElJTTFFS0s1RUc5OTlhUm9zTE1WVkVjNUQwY21FX2JqVHJKOHVPNHhMXzRPQU9pTkVJVnNUZ04yYmVxeFQ1YTRPU0I4VmhSbnpKYzFEZTVmQzZzRVNMTUpCVENuWEw0WDQ0Sm85UXhvLTNYZTYyMk1WclV2VWl3MTFrZWlTRFE4VEdUcEgteXMzV2F5bg?oc=5",
-   "published": "2026-10-28",
-   "clue": "police station call-out for a tenant's gold chain = China",
-   "country": "China",
-   "cc": "CN",
-   "clue_strength": 1,
-   "unbelievable": 4,
-   "theme": "rodent",
-   "lat": 30.7474,
-   "lng": 120.7511,
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
-   "h": "300 kg piano lowered 61 metres down a gold mine for 'world-first' concert marking 175 years of gold in {}",
-   "h2": "300 kg [] lowered 61 metres down a gold mine for 'world-first' concert in Bendigo, Victoria, Australia",
-   "ans": [
-    "piano",
-    "pianos",
-    "keyboard",
-    "grandpiano",
-    "instrument"
-   ],
-   "place": "Bendigo, Victoria, Australia",
-   "src": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQUDR3Q3dZRUppZk8wcUNTd0R1Rno4MnZpbGIxb2p0Zk1JNVVMUnNSZUlsUGlCdVpHNnI4RDhyMkZ4bmNGdTc0ZDEzWUNVZVlPTWVHeWNQSDhyZUdMYU9vcE5fY3hFT24xT0pWNmNoZ183R2ZURjlBeVZ4U3p2cmNzbTJiRWlHbFdmQTU1VmRhOVpaTkRKOENn?oc=5",
-   "published": "2026-10-09",
-   "clue": "gold discovered 175 years ago in a central city = Victorian gold rush",
-   "country": "Australia",
-   "cc": "AU",
-   "clue_strength": 2,
-   "unbelievable": 2,
-   "theme": "concert",
-   "lat": -36.759,
-   "lng": 144.2827,
-   "banked": "2026-10-28",
-   "rules": 2,
-   "vec": "3yTE1/kvBCPEQRUc7Sz1yuIdBb8tG+kOJP/X793Gf9UnICMMQDIoHhL67OMJHS/HvRg="
-  },
-  {
-   "h": "Mystery farter repeatedly drives reporters out of press briefing room at a summit of European leaders in {}",
-   "h2": "Mystery farter repeatedly drives [] out of press briefing room at EU summit in Brussels, Belgium",
-   "ans": [
-    "reporters",
-    "reporter",
-    "journalists",
-    "journalist",
-    "correspondents",
-    "media"
-   ],
-   "place": "Brussels, Belgium",
-   "src": "https://www.indiatoday.in/world/story/a-load-of-hot-air-phantom-farter-leaves-reporters-fleeing-zelenskyy-briefing-wait-turns-pungent-eu-summit-brussels-x-posts-3019434-2026-10-17",
-   "published": "2026-10-17",
-   "clue": "European leaders' summit = seat of EU institutions",
-   "country": "Belgium",
-   "cc": "BE",
-   "clue_strength": 2,
-   "unbelievable": 4,
-   "theme": "smell",
-   "lat": 50.8467,
-   "lng": 4.3525,
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
-   "h": "Helicopters drop 6,000 logs into remote streams to restore 38 km of salmon habitat in {}",
-   "h2": "Helicopters drop 6,000 [] into remote streams to restore salmon habitat in central Washington State",
-   "ans": [
-    "logs",
-    "log",
-    "trees",
-    "trunks",
-    "timber",
-    "wood"
-   ],
-   "place": "Wenatchee area, Washington",
-   "src": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNbWJKcHVZMGEyNW1EZUw5b0VaWjZLRmtuMnVReDlGYnp2MVdDZXoyZFdFLTZRemlvY3B4MDlPR1c4dkFXUVlnOWZKV0NUdEJLTVJUNm5Za3pNMFlJQkthLVI0OE9mdzRERWM3Tkw0cWt1TUcxai1aa2k2eHRaQnZ2MFVLdmMwb0x1OTFESHJxdmoxTEstano0?oc=5",
-   "published": "2026-10-25",
-   "clue": "salmon streams and remote valleys = Pacific Northwest",
-   "country": "United States",
-   "cc": "US",
-   "clue_strength": 2,
-   "unbelievable": 3,
-   "theme": "restoration",
-   "lat": 47.4235,
-   "lng": -120.3103,
-   "banked": "2026-10-28",
-   "rules": 2,
-   "vec": "C/BRCQXksNxCusocMwUX9M0NMKIp4TbZRQEjQSnpaqMCFPw59eYIBhW8/DsW5RjzBYE="
-  },
-  {
    "h": "Luxury cruise meant to sail around the world for 3.5 years stuck in port as fuel prices soar in {}",
    "h2": "Luxury world [] meant to last 3.5 years stuck in Sihanoukville, Cambodia as fuel prices soar",
    "ans": [
@@ -268,34 +167,6 @@
    "banked": "2026-10-28",
    "rules": 2,
    "vec": "EgnfybI19eT1wUQRDz/3WFAn1ewDgdJZ7+8qGe0RNj/dOP6rHMb769WlKgYPGDtMAhI="
-  },
-  {
-   "h": "Shoppers get electric shocks at a hypermarket for 15 years, and even the electrician is baffled in {}",
-   "h2": "[] get electric shocks at E.Leclerc in Saint-Just-en-Chaussée, France, for 15 years; electrician baffled",
-   "ans": [
-    "shoppers",
-    "shopper",
-    "customers",
-    "customer",
-    "clients",
-    "buyers",
-    "people",
-    "consumers"
-   ],
-   "place": "Saint-Just-en-Chaussée, France",
-   "src": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQYzl5bVRkd1FfVG1lR2NaNWwtX1BKLUFBSWVWWjlFcmVxNmhwbnBiaUV4Ml90UkVwVS1HMWxpellaMWxobVBnblUzOXh3LWdEaXBQd0diUFF5eFNlQmktZHN1NUZOakk3RS1BNWRaa0JMcGFfSEZOSlNNNkhKdjFVWkMweGVDcmJwLWJPNDJfTURqR0lQRHNJbGFjVG1rUnZDM2daN1hOZzJkMDJ3d0FSbU5HWWd1N3JidjFwMVBiSEVFeEloODBrYlkxQzBOM3JCYlE?oc=5",
-   "published": "2026-10-18",
-   "clue": "Hypermarket chain with French-style retail = France",
-   "country": "France",
-   "cc": "FR",
-   "clue_strength": 1,
-   "unbelievable": 4,
-   "theme": "static",
-   "lat": 49.5052,
-   "lng": 2.4338,
-   "banked": "2026-10-28",
-   "rules": 2,
-   "vec": "LtE2tj28gvoWIOK8MPUtJdrOCq1O/Mxu7t3dCE/kZX8y9hD+0Qfy8gwiCytZ8gD3MQ8="
   },
   {
    "h": "Police stumped finding pickup's engine number at roadside check; driver offers to ask ChatGPT in {}",
@@ -380,34 +251,6 @@
    "rules": 2
   },
   {
-   "h": "DJ Baguette spins decks in a village bakery: 'I've never seen that!' in {}",
-   "h2": "DJ Baguette mixes in a [] in Sault-de-Navailles, France: 'I've never seen that!'",
-   "ans": [
-    "bakery",
-    "bakeries",
-    "boulangerie",
-    "bakehouse",
-    "baker",
-    "bakers",
-    "shop",
-    "store"
-   ],
-   "place": "Sault-de-Navailles, France",
-   "src": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNaVN0WDNMbU1zWlUwSlphYmZkZTloVHRZMkx1Ni0xWFJndkszTTFQLXZ6dURaaUNmaDV6Q1g3aWVhYjRSNkF2czhwTFdKRTBoa05yLVIwa2RudHZxbWZrTDZPTnhSZ2tSeWx0RnRCZ0NnMTRRNV9ZSUNvQ0U3dW1YSE5XbEpQWmhnMlFXOUFDREpNWHZwRmRBaXRseWxvNmlWVnBzeHlYd2hpeU5Cd0RHMWFQQ01CaE5LX1hlU0xOZ2lGb1kzX1JSNmR2Q0lvYjEySm9PcEx4UHFPUDZoQTFrYWYxVGlON2RlYWVxNm55cU5zWFU?oc=5",
-   "published": "2026-10-18",
-   "clue": "Baguette and boulangerie culture = France",
-   "country": "France",
-   "cc": "FR",
-   "clue_strength": 2,
-   "unbelievable": 3,
-   "theme": "dj",
-   "lat": 43.5502,
-   "lng": -0.6735,
-   "banked": "2026-10-28",
-   "rules": 2,
-   "vec": "MObI90nvkQ4xD++9AQXx6O1OMPxsEdFpvvfJI0fFSsX5fx8D40dlVS3t49FIJsbBBxE="
-  },
-  {
    "h": "Customer test-driving electric car crashes through showroom window into a newsstand cafe in {}",
    "h2": "Customer test-driving electric [] crashes through dealership window near the Obelisco in Buenos Aires, Argentina",
    "ans": [
@@ -432,34 +275,6 @@
    "lng": -58.3816,
    "banked": "2026-10-28",
    "rules": 2
-  },
-  {
-   "h": "Hiker's two emergency calls send two helicopters from either side of the border, nose to nose, in {}",
-   "h2": "Hiker's two emergency calls send two [] from France and Spain nose to nose in the Aspe Valley, Pyrenees",
-   "ans": [
-    "helicopters",
-    "helicopter",
-    "choppers",
-    "chopper",
-    "helis",
-    "heli",
-    "aircraft",
-    "copters"
-   ],
-   "place": "Aspe Valley, Pyrenees, France",
-   "src": "https://news.google.com/rss/articles/CBMigwJBVV95cUxOaWxRSXlCQTQ2d2NKVUZkeDR6SE9pMjd1enl3azdWQTVCTUlJSHdCV1NkY1dXTzlUMWR5ZUxMWjNaUVlEUTlXQU9oVVFwalk5Wnc1RzVwZXIyTlROeTA0RWl0ODVoR1RHMGhydnJjQUhoZVgtY2podDd1QlVSTFAxMVR2V1M1QjdKZmtoeERQbE02Y2ttY2VYVFVEZzA2bUlzNVVGUENuVXJvZWlncmh6dTg4SDZXdW1Vekd3cU5LMy0wU2N4UWhFZ2FvY0JialN0Tzc3Q242MVhLb20xUTREdldQTlZidmhzTWRKaDlqOHhHb21LRTVJVEh2TzBuc3hCaXpr?oc=5",
-   "published": "2026-10-17",
-   "clue": "112 number and a mountain border = Pyrenees",
-   "country": "France",
-   "cc": "FR",
-   "clue_strength": 2,
-   "unbelievable": 3,
-   "theme": "helicopter",
-   "lat": 42.8914,
-   "lng": -0.6342,
-   "banked": "2026-10-28",
-   "rules": 2,
-   "vec": "ccJf3tPhofT/pg77KROf9NMukNfrRQOt89j9HC/mfzrZH0JGAcDPJxkrQsUY6Oww3Ok="
   },
   {
    "h": "Driver with revoked licence parks and walks off at checkpoint; drone films him, 200,000 lira fine in {}",
@@ -510,33 +325,6 @@
    "banked": "2026-10-28",
    "rules": 2,
    "vec": "gRfh9fUKh+/M5OQ/nt0j3N0RA8j6KcgKEcTr5TqtPvgQOkctEEA7RQI/5/b1IAe16yM="
-  },
-  {
-   "h": "Cashier, 26, pastes own payment QR code over supermarket's, diverts up to 400,000 pesos a day in {}",
-   "h2": "La Plata, Argentina: [] pastes own payment QR code over supermarket's, diverting up to 400,000 pesos a day",
-   "ans": [
-    "cashier",
-    "cashiers",
-    "clerk",
-    "teller",
-    "checkout",
-    "employee",
-    "worker"
-   ],
-   "place": "La Plata, Argentina",
-   "src": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQbTRiT1VfNGt2WEktbGpLUlJvMHJkZkRXd0JSc2R0WHZsMVZpT3lPU2RidXdzYU42RXFKQXFSWTNiUEFSWm90UTVvdFV3dUYxaEh4UHlENDRJcmhEWVpFWHpGMnk0QU9ZT1R6SlFwUFVmWVRkT0dyeV9FMjl3VlBoS205OERXRkdDNHMyVGI0QWZ3VmhscXNnRWpBUmR0UWgwb0lfUVBfR0tZNUYxT21TUThONy1XSVZWYTFsdkpERjhqZUdjOGZka1BYeXdiMld2ckVTc0huazFlT3BfNjBmUmxKNkTSAeoBQVVfeXFMTUEtbVd1ZXhwcm9sZURRY1V0SElkS2JLVEFhcm44UFVsM3B6R2k2TzRtNHQ5dEhLVGNmU3lnS19yZVM5elNzQlJvQjVlOFdQQWNmeHRFTE9OWUtVMEtpTDNRTTlSLUFfaVNxbjdTRWc2ck9rWWtRYkswTlRZTHNYRFUtRDJhSkt5UEpEN2pZUzViTW51bldpekM2bVZQMjVmZ1U1alY0QmNXaDNyYW5UX2d6TENwMnVFaDlvOUQ5OXQ1X05KeTJ5OG1sR3FUMGhhUVFmRXJuVGRXbF9ta0JtZTVOdkZlTXZZcmF3?oc=5",
-   "published": "2026-10-22",
-   "clue": "pesos in the millions plus a trip to Brazil = Argentina",
-   "country": "Argentina",
-   "cc": "AR",
-   "clue_strength": 2,
-   "unbelievable": 3,
-   "theme": "fraud",
-   "lat": -34.9207,
-   "lng": -57.9538,
-   "banked": "2026-10-28",
-   "rules": 2,
-   "vec": "AsUd22u+1yAJ0/oJHvtCC483YwFt37A02Kj3HQK0Cg8oYgUyDy9nBjA4zC4Agf/zRSo="
   },
   {
    "h": "Bus driver sacked on probation takes tribunal case after colleague says her fart was so foul she needed a shower in {}",
@@ -615,7 +403,8 @@
    "lat": 28.5978,
    "lng": -81.351,
    "banked": "2026-10-28",
-   "rules": 2
+   "rules": 2,
+   "vec": "7Q304j8kxxAFFRMUBA417ccu8xfPUAMsFYnlBxTUf+fyFiMkEs0WvugP2vk93RO0EgE="
   },
   {
    "h": "Family's new wooden back door and iron security gate both fitted to open outwards; TikTok blames blacksmith in {}",
