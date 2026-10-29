@@ -713,6 +713,9 @@ body{margin:0;background:var(--bg);color:var(--text);font:22px/1.15 var(--vt);ov
 #browseHint{position:fixed;left:50%;top:112px;transform:translateX(-50%);z-index:5;display:none;padding:4px 10px;background:rgba(13,15,20,.78);color:var(--dim);font:16px/1 var(--vt);pointer-events:none;white-space:nowrap}
 body.returned #browseHint{display:block;animation:bh 7s forwards}
 @keyframes bh{0%,70%{opacity:1}100%{opacity:0}}
+#btnStart:not([hidden]):not(:disabled){animation:readyBob 2.6s ease-in-out infinite}   /* a slow bob so the start button invites a tap */
+@keyframes readyBob{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@media (prefers-reduced-motion:reduce){#btnStart{animation:none!important}}
 #ruler{position:fixed;left:0;top:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:hidden}
 .tick{position:absolute;transform:translateY(-50%);font:16px/1 var(--vt);color:#c9cfdb;background:rgba(13,15,20,.8);padding:1px 4px;white-space:nowrap}
 .tick.zone{font:8px/1 var(--px);letter-spacing:.12em;color:var(--accent);background:#0d0f14;border:1px solid var(--accent);padding:4px 5px}
