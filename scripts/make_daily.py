@@ -471,7 +471,12 @@ For each story, decide whether the headline ALONE gives a well-read player a fai
 - If it already has a fair clue, return the headline unchanged with "ok": true.
 - If not, rewrite it with "ok": false. Keep every fact exactly as reported (who, what, numbers, outcome) and keep it punchy, at most 100 characters, with the literal {} exactly once where the place goes. Work in one or two words of real regional clue, taken from the text or "clue", or generically true of that place (e.g. "Segunda Division", "giudice di pace", "house of culture", "rupees", "the county sheriff", "Alpine"). Never write the town, region or country name, a nationality, a local team, landmark or company that hands over the answer: the player should be able to DEDUCE the region, not read it.
 
-Reply with ONE JSON object only: {"real":[{"id":0,"ok":true,"h":"..."}]}
+Then rate the FINAL headline (yours, or the original when unchanged) as the player will see it:
+- "clue_strength": 0-3. 3 = strongly points to a region; 2 = a fair hint a well-read general player could use; 1 = a weak hint; 0 = could be anywhere, or the hint is misleading.
+- "jargon_only": true when the only hint is a local term or acronym a general player would not know.
+If the article simply holds no fair regional detail, say so honestly with a low clue_strength rather than inventing one.
+
+Reply with ONE JSON object only: {"real":[{"id":0,"ok":true,"h":"...","clue_strength":2,"jargon_only":false}]}
 
 Stories:
 """
@@ -491,13 +496,21 @@ def sharpen(stories, model, texts):
         except Exception:
             continue
         h = (x.get("h") or "").strip()
-        if x.get("ok") is not False or not h or h == r.get("h"):
-            continue
-        if h.count("{}") != 1 or len(h) > 110 or leaks(h.replace("{}", ""), r.get("place", "")):
+        rewrite = x.get("ok") is False and h and h != r.get("h")
+        if rewrite and (h.count("{}") != 1 or len(h) > 110 or leaks(h.replace("{}", ""), r.get("place", ""))):
             print(f"  rewrite rejected (place leaks or bad format), keeping: {r.get('h')}", file=sys.stderr)
-            continue
-        print(f"  sharpened headline: {r.get('h')}  ->  {h}", file=sys.stderr)
-        r["h"] = h
+            continue                                   # its rating was for the rejected wording, so the old one stands
+        try:
+            cs = max(0, min(3, int(x.get("clue_strength"))))
+        except Exception:
+            cs = None
+        if rewrite:
+            print(f"  sharpened headline (clue {r.get('clue_strength')} -> {cs}): {r.get('h')}  ->  {h}", file=sys.stderr)
+            r["h"] = h
+            if cs is not None and cs >= 2 and map_score(r) == 2:
+                r["mappable"] = 3                      # one specific place, and now the headline points to its region
+        if cs is not None:
+            r["clue_strength"], r["jargon_only"] = cs, bool(x.get("jargon_only"))
 
 
 def fact_check(reals, model):
@@ -939,6 +952,15 @@ def main():
     # Real or Fake wants stories whose place can be DEDUCED, and a spread of countries and themes.
     # Daily Dig only takes stories a player can sensibly pin: when the pool is deep enough, anything the editor rates as hard to map
     # (or with no usable regional clue at all) stays out; a thin day relaxes this rather than printing a short round.
+    # Before choosing: give great stories with a weak headline clue a chance, by rewriting them with a clue from the article
+    if not args.picks:
+        weak = [r for r in reals if eff_strength(r) < 2 and map_score(r) >= 2]
+        weak = sorted(weak, key=lambda r: (merit(r) - 2 * eff_strength(r), r.get("_fresh", 0)), reverse=True)[:15]   # the most surprising first, clue aside
+        if weak:
+            before = sum(1 for r in reals if eff_strength(r) >= 2 and map_score(r) >= 2)
+            sharpen(weak, model, src_text)
+            after = sum(1 for r in reals if eff_strength(r) >= 2 and map_score(r) >= 2)
+            print(f"  sharpening pass: {len(weak)} weak-clue stories reviewed; strong, pinnable stories {before} -> {after}", file=sys.stderr)
     fit = [r for r in reals if fit_to_map(r)]
     if len(fit) >= N_CALL_REAL + 3:
         print(f"  {len(reals) - len(fit)} stories left out of Real or Fake: hard to pin or no regional clue", file=sys.stderr)
