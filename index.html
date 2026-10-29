@@ -710,6 +710,9 @@ body{margin:0;background:var(--bg);color:var(--text);font:22px/1.15 var(--vt);ov
 .ptpop.neg{color:#ff5d73}
 @media (min-width:1100px) and (min-height:600px){ .ptpop{font-size:40px} }
 #bg{position:fixed;left:0;top:0;z-index:-2;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;image-rendering:pixelated}
+#browseHint{position:fixed;left:50%;top:112px;transform:translateX(-50%);z-index:5;display:none;padding:4px 10px;background:rgba(13,15,20,.78);color:var(--dim);font:16px/1 var(--vt);pointer-events:none;white-space:nowrap}
+body.returned #browseHint{display:block;animation:bh 7s forwards}
+@keyframes bh{0%,70%{opacity:1}100%{opacity:0}}
 #ruler{position:fixed;left:0;top:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:hidden}
 .tick{position:absolute;transform:translateY(-50%);font:16px/1 var(--vt);color:#c9cfdb;background:rgba(13,15,20,.8);padding:1px 4px;white-space:nowrap}
 .tick.zone{font:8px/1 var(--px);letter-spacing:.12em;color:var(--accent);background:#0d0f14;border:1px solid var(--accent);padding:4px 5px}
@@ -1078,6 +1081,7 @@ body.recap #bar{display:none}
 </head>
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
+<div id="browseHint" aria-hidden="true">↕ drag or scroll to explore your dig</div>
 <div id="ruler" aria-hidden="true"></div>
 <div class="app">
   <div class="topline">
@@ -1478,7 +1482,7 @@ const Scene = (function(){
   const FONT={D:["110","101","101","101","110"],A:["010","101","111","101","101"],I:["111","010","010","010","111"],L:["100","100","100","100","111"],Y:["101","101","010","010","010"],O:["111","101","101","101","111"]};
 
   let W=0,H=0,PX=6,cx=0,U=200,worldEnd=0,dropMax=0,B=[0,0,0,0,0,0],camMin=0,camMax=0,axisX=0,maxPts=3000;
-  let dipUntil=0,dipping=false,pops=[],marksEl=null,mks=[],recap=null,markCb=null,paperT=1,paperGoal=1,tp=0,jd=0,camY=0,focusT=0.85,focus=0.85,t=0,last=0,gaspT=-99,foolT=-99,safeTop=120;
+  let dipUntil=0,dipping=false,pops=[],marksEl=null,mks=[],recap=null,markCb=null,paperT=1,paperGoal=1,tp=0,jd=0,camY=0,browse=false,browseY=0,focusT=0.85,focus=0.85,t=0,last=0,gaspT=-99,foolT=-99,safeTop=120;
   let shake=0,lastZone=-1,emitAcc=0,bestJd=0,panT=-99,zoneCb=null,breakCb=null,rumbleCb=null,sparks=[],kit={},drillV=0;
   let props=[],lmCb=null,deskView=false,coreT=-99;   // coreT: -99 intact, -98 already collapsed, otherwise the time the core blew
   let peb=[],gems=[],bubbles=[],worms=[],beetles=[],tunnels=[],cracks=[],parts=[],drips=[],embers=[];
@@ -1671,7 +1675,8 @@ const Scene = (function(){
         camY=camMin+(to-camMin)*e;
       }
       if(t>=recap.t0+recap.dur && !recap.finished){ recap.finished=true; const d=recap.done; if(d) setTimeout(d,700); }
-    } else camY+=(camFor()-camY)*(1-Math.exp(-dt*(panning?1.1:6)));
+    } else if(browse) camY+=(browseY-camY)*(1-Math.exp(-dt*9));   // free scrolling on a finished day
+    else camY+=(camFor()-camY)*(1-Math.exp(-dt*(panning?1.1:6)));
     const cy=chinY();
     // breaking through: debris, dust, rumble
     if(rumbleCb) rumbleCb(cy>70 && Math.abs(speed)>0.8 ? clamp(Math.abs(speed)/35,0.15,1) : 0);
@@ -2318,7 +2323,7 @@ const Scene = (function(){
   }
   function restore(points){ tp=Math.max(0,points); jd=target(); emitAcc=0; camY=camFor(); lastZone=zoneIndex(chinY()); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); props.forEach(p=>{ p.hit=chinY()>p.y; }); coreT=chinY()>EXIT-32?-98:-99; emitDepth(); }
   function reset(){
-    paperT=paperGoal=1; dipUntil=0; dipping=false; tp=0; jd=0; gaspT=-99; foolT=-99; focusT=0.85; focus=0.85; parts=[]; sparks=[]; shake=0; panT=-99;
+    browse=false; paperT=paperGoal=1; dipUntil=0; dipping=false; tp=0; jd=0; gaspT=-99; foolT=-99; focusT=0.85; focus=0.85; parts=[]; sparks=[]; shake=0; panT=-99;
     cracks.forEach(c=>c.rt=-1); props.forEach(p=>p.hit=false); coreT=-99;
     if(W){ camY=camFor(); lastZone=zoneIndex(chinY()); emitDepth(); if(reduce) settle(); }
   }
@@ -2333,6 +2338,10 @@ const Scene = (function(){
   function setBest(m){ bestJd=Math.min(dropMax+30,(m||0)/M_PER_PX); }
   function panDown(){ if(reduce) return; camY=camMin; panT=t; }
   function chinAt(p){ return 13+Math.min(dropMax,Math.max(0,p)*JAW_K)+9; }
+  /* a finished day: start at the top with his jaw dropped, then let the player scroll the whole dig by hand */
+  function browseStart(){ browse=true; browseY=camMin; camY=camMin; if(reduce) draw(); }
+  function browseBy(dy){ if(!browse) return; browseY=clamp(browseY+dy/PX,camMin,camMax); if(reduce){ camY=browseY; draw(); } }
+  function browseEnd(){ browse=false; }
   function endRecap(){
     recap=null; mks=[]; if(marksEl) marksEl.innerHTML='';
   }
@@ -2368,7 +2377,7 @@ const Scene = (function(){
     document.body.appendChild(el); pops.push({el,t0:t+pops.length*0.25});     // a second pop right after the first waits its turn
     el.style.opacity=0;
   }
-  return {setKit,chinAt,playRecap,endRecap,onMark,popPts,setPaper,start,setJaw,configure,restore,gasp,fooled:fooledReact,setFocus,setSafeTop,info,reset,setBest,panDown,layout,camDepth,
+  return {setKit,chinAt,playRecap,endRecap,onMark,popPts,setPaper,start,setJaw,configure,restore,gasp,fooled:fooledReact,setFocus,setSafeTop,info,reset,setBest,panDown,layout,camDepth,browseStart,browseBy,browseEnd,
           onDepth:cb=>{depthCb=cb;}, onZone:cb=>{zoneCb=cb;}, onBreak:cb=>{breakCb=cb;}, onRumble:cb=>{rumbleCb=cb;}, onLandmark:cb=>{lmCb=cb;}};
 })();
 
@@ -3049,7 +3058,7 @@ function finish(restored){
     // coming back to a finished day: his jaw stays dropped where your dig ended, with your run summarised
     renderDigCard();
     Scene.restore(jawPoints()*S.jawK); Scene.setPaper(false,true);   // paper down, jaw dropped to where today's dig ended
-    setTimeout(()=>Scene.setFocus(isDesk()?0.6:0.28),80);   // frame the man at his table above the summary
+    Scene.browseStart();                                             // view back up on the guy; the player can scroll the dig   // frame the man at his table above the summary
     S.returned=true; document.body.classList.add('returned');
     setTimeout(()=>{ $('depth').textContent=inf.m; },60);
   } else setTimeout(renderDigCard,2600);
@@ -3087,7 +3096,7 @@ function endRecapUI(skipped){
 function startRecap(auto){
   if(!S || !S.results.length) return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){ if(auto) Sound.play('fanfare'); if(S && S.newUnlocks && S.newUnlocks.length) Sound.play('unlock'); return; }
-  if(S.returned){ Scene.restore(jawPoints()*S.jawK); Scene.setPaper(true,true); S.returned=false; document.body.classList.remove('returned'); }   // replaying from the returning view
+  if(S.returned){ Scene.browseEnd(); Scene.restore(jawPoints()*S.jawK); Scene.setPaper(true,true); S.returned=false; document.body.classList.remove('returned'); }   // replaying from the returning view
   const list=recapList();
   RECAP_ON=true; document.body.classList.add('recap'); closeMenu(); $('sheet').hidden=true;
   Scene.playRecap(list, 5+1.9*list.length, ()=>endRecapUI());
@@ -3195,6 +3204,20 @@ function renderWardrobe(){
 }
 $('mWardrobe').onclick=openWardrobe;
 $('wardClose').onclick=closeWardrobe;
+/* a finished day can be scrolled by hand: wheel, touch drag or arrow keys move the camera along the dig */
+(function(){
+  const live=e=>document.body.classList.contains('returned') && $('menu').hidden && $('sheet').hidden && $('wardrobe').hidden && $('about').hidden
+    && !(e.target.closest && e.target.closest('#final,#menu,button,a,input,textarea'));
+  window.addEventListener('wheel',e=>{ if(!live(e)) return; e.preventDefault(); Scene.browseBy(e.deltaY*(e.deltaMode===1?24:1)); },{passive:false});
+  let ty=null;
+  window.addEventListener('touchstart',e=>{ ty=live(e)&&e.touches.length===1 ? e.touches[0].clientY : null; },{passive:true});
+  window.addEventListener('touchmove',e=>{ if(ty===null||!live(e)) return; const y=e.touches[0].clientY; e.preventDefault(); Scene.browseBy(ty-y); ty=y; },{passive:false});
+  window.addEventListener('touchend',()=>{ ty=null; });
+  window.addEventListener('keydown',e=>{
+    const k={ArrowDown:60,ArrowUp:-60,PageDown:400,PageUp:-400,End:99999,Home:-99999}[e.key];
+    if(k && document.body.classList.contains('returned') && live({target:document.body})){ e.preventDefault(); Scene.browseBy(k); }
+  });
+})();
 const closeAbout=()=>{ $('about').hidden=true; };
 $('mAbout').onclick=()=>{ Sound.play('menu'); closeMenu(); $('about').hidden=false; };
 $('aboutClose').onclick=closeAbout;
