@@ -821,6 +821,9 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #feedback .why{display:inline-block;width:auto;margin:0 0 0 10px;padding:1px 8px 2px;font:17px/1.1 var(--vt);color:var(--cyan);background:none;border:1px solid #3d4558;box-shadow:none;vertical-align:2px;cursor:pointer}
 #feedback .more{display:none}
 #feedback.open .more{display:block}
+#feedback .brk{display:block}
+#feedback .brk i{font-style:normal;color:var(--dim)}
+#feedback .brk.dim{color:var(--dim);margin-top:4px}
 .kicker.bad{color:#ff5d73}
 #feedback a{color:var(--accent)}
 
@@ -2928,6 +2931,7 @@ function submitGuess(timedOut){
   const d = guessLL ? km(guessLL.lat,guessLL.lng,st.lat,st.lng) : null;
   let pts = guessLL ? Math.round(pinPoints(d)*mult) : 0;
   if(!S.cur.callOk) pts = Math.round(pts*0.5);
+  const distPts = pts;                                  // distance points alone, for the breakdown
   const bonus = guessLL && S.cur.callOk ? pinBonus(d,sec) : 0;
   pts += bonus; S.cur.pinBonus = bonus;
   const cTrue = guessLL ? countryAt(st.lat,st.lng,60) : -1, cOk = cTrue>=0 && countryAt(guessLL.lat,guessLL.lng,0)===cTrue;
@@ -2948,11 +2952,17 @@ function submitGuess(timedOut){
   $('kicker').textContent = (S.cur.callOk?'Real ✓':'Plot twist: it was real')+(S.kind==='pol'?' · Politics':'');
   const fb=$('feedback'); fb.hidden=false;
   fb.classList.remove('open');
-  fb.innerHTML = '<span class="sum">'+(S.cur.callOk?'<b>+'+S.cur.callPts+'</b> call · ':'')
-    + (guessLL ? Math.round(d).toLocaleString()+' km · <b>+'+pts+'</b>'+(S.cur.callOk?' pin':' half credit')+(mult<1?' (slow −'+Math.round((1-mult)*100)+'%)':'')+(cPts?' · <b>+'+cPts+'</b> ✓ '+(countryName(cTrue)||'right country'):'')+(bonus?' · <b>+'+bonus+'</b> quick and close':'') : 'Time! No pin · <b>+0</b>')+'</span>'
+  const row=(label,val,note)=>'<span class="brk">'+label+' <b>'+(val<0?'−':'+')+Math.abs(val)+'</b>'+(note?' <i>'+note+'</i>':'')+'</span>';
+  const breakdown = guessLL
+    ? (S.cur.callOk?row('Call',S.cur.callPts):'')
+      + row('Distance · '+Math.round(d).toLocaleString()+' km',distPts,(S.cur.callOk?'':'half credit')+(mult<1?(S.cur.callOk?'':' · ')+'slow −'+Math.round((1-mult)*100)+'%':''))
+      + (cPts?row('Right country · '+(countryName(cTrue)||'✓'),cPts):'')
+      + (bonus?row('Quick and close',bonus):'')
+    : (S.cur.callOk?row('Call',S.cur.callPts):'')+'<span class="brk">No pin before time ran out</span>';
+  fb.innerHTML = '<span class="sum">'+(guessLL ? Math.round(d).toLocaleString()+' km · <b>+'+pts+'</b> pin' : 'Time! No pin · <b>+0</b>')+'</span>'
     + '<button class="why" type="button" aria-expanded="false">why?</button>'
-    + '<small class="more">'+(st.clue?'Clues: '+st.clue+'. ':'')+st.place+(st.published?' · '+fmtDate(st.published):'')
-    + (st.src?' · <a href="'+st.src+'" target="_blank" rel="noopener">read the story</a>':'')+'</small>';
+    + '<small class="more">'+breakdown+'<span class="brk dim">'+(st.clue?'Clues: '+st.clue+'. ':'')+st.place+(st.published?' · '+fmtDate(st.published):'')
+    + (st.src?' · <a href="'+st.src+'" target="_blank" rel="noopener">read the story</a>':'')+'</span></small>';
   wireWhy(fb);
   finishRound();
   if(!isDesk()) setTimeout(()=>{      // after a moment the map shrinks to a strip so the jaw is not hidden behind it
