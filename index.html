@@ -2740,7 +2740,7 @@ function jawPoints(){
   return Math.max(0,p);
 }
 /* Time to read first (2 s + 0.35 s per word), then −10 points a second, floor 60. */
-function readGrace(st){ return 2+0.35*(st.h||'').split(/\s+/).length; }
+function readGrace(st){ return 2+0.25*(st.h||'').split(/\s+/).length; }
 function speedPts(sec,st){ return Math.round(PK*CALL_PTS*Math.max(0.6,Math.min(1,1-(sec-readGrace(st))/10))); }
 let SPEED_RAF=0;
 function runSpeed(){
