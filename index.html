@@ -1527,6 +1527,7 @@ const Scene = (function(){
   }
   const target=()=>Math.min(dropMax, tp*JAW_K);
   const chinY=()=>13+jd+9;
+  const coreY=()=>Math.round((L0+B[4]+EXIT)/2);   // the glowing core sits in the middle of the core layer
   const camFor=()=>clamp(chinY()-focus*H,camMin,camMax);
 
   function build(){
@@ -1725,9 +1726,9 @@ const Scene = (function(){
     shake=Math.max(0,shake-dt*3);
     cracks.forEach(c=>{ if(c.rt<0 && cy>c.y+2) c.rt=t; });
     props.forEach(p=>{ if(!p.hit && cy>p.y+(p.h>>1)){ p.hit=true; if(lmCb) lmCb(p.text); } });
-    if(coreT===-99 && cy>EXIT-32){       // the jaw has gone through the centre of the core: it blows up, then falls in on itself
+    if(coreT===-99 && cy>coreY()){       // the jaw has gone through the centre of the core: it blows up, then falls in on itself
       coreT=t; burst(110,cy,2.8); shake=6.5;
-      for(let i=0;i<44;i++){ const an=Math.random()*Math.PI*2, sp=40+Math.random()*90; sparks.push({x:0,y:EXIT-32,vx:Math.cos(an)*sp,vy:Math.sin(an)*sp,age:0,life:1.1+Math.random()*0.9,c:['#fff6c8','#ffd23f','#ff8a1f','#ff5a1f'][i%4]}); }
+      for(let i=0;i<44;i++){ const an=Math.random()*Math.PI*2, sp=40+Math.random()*90; sparks.push({x:0,y:coreY(),vx:Math.cos(an)*sp,vy:Math.sin(an)*sp,age:0,life:1.1+Math.random()*0.9,c:['#fff6c8','#ffd23f','#ff8a1f','#ff5a1f'][i%4]}); }
       if(breakCb) breakCb(7);
     }
     for(let i=sparks.length-1;i>=0;i--){ const p=sparks[i]; p.age+=dt; if(p.age>p.life){ sparks.splice(i,1); continue; } p.x+=p.vx*dt; p.y+=p.vy*dt; p.vx*=0.97; p.vy*=0.97; }
@@ -2114,7 +2115,7 @@ const Scene = (function(){
         bubbles.forEach(b=>{ const yy=L0+B[4]-(((b.y0+t*b.sp)%mh)+mh)%mh; R(b.x,Math.round(yy),2,2,C.magmaBright); });
         embers.forEach(e=>{ g.globalAlpha=clamp(1-e.age/e.life,0,1); R(Math.round(e.x),Math.round(e.y),1,1,C.coreHot); }); g.globalAlpha=1;
       }
-      const ccy=EXIT-32;
+      const ccy=coreY();
       if(vis(ccy-90,ccy+90)){
         const a=coreT>=0?t-coreT:(coreT===-98?9:-1);      // seconds since the core blew (-1: it has not)
         const disc=(sc,mixw)=>[[26,C.magmaHi],[18,C.magmaBright],[12,C.coreHot],[6,'#fff6c8']].forEach(([rad0,col])=>{
@@ -2243,7 +2244,7 @@ const Scene = (function(){
 
     // 9b. the diamond at the core, sparks, and your best-ever depth flag
     {
-      const ccy=EXIT-32;
+      const ccy=coreY();
       if((coreT===-99 || (coreT>=0 && t-coreT<0.2)) && vis(ccy-4,ccy+4)){ R(-1,ccy-2,3,1,'#bff6ff'); R(-2,ccy-1,5,1,'#6be4ff'); R(-2,ccy,5,1,'#3fb8e0'); R(-1,ccy+1,3,1,'#6be4ff'); R(0,ccy+2,1,1,'#bff6ff'); }
       sparks.forEach(p=>{ g.globalAlpha=clamp(1-p.age/p.life,0,1); R(Math.round(p.x),Math.round(p.y),2,2,p.c||C.gold); }); g.globalAlpha=1;
       if(bestJd>4){
@@ -2354,7 +2355,7 @@ const Scene = (function(){
     update(dt); draw();
     requestAnimationFrame(frame);
   }
-  function settle(){ jd=target(); focus=focusT; camY=camFor(); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); props.forEach(p=>{ if(chinY()>p.y) p.hit=true; }); coreT=chinY()>EXIT-32?-98:-99; emitDepth(); draw(); }
+  function settle(){ jd=target(); focus=focusT; camY=camFor(); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); props.forEach(p=>{ if(chinY()>p.y) p.hit=true; }); coreT=chinY()>coreY()?-98:-99; emitDepth(); draw(); }
   /* points earned on true stories; the jaw moves JAW_K world px per point */
   function setJaw(points){
     const before=tp; tp=Math.max(0,points);
@@ -2378,7 +2379,7 @@ const Scene = (function(){
     if(d>=1 && chin<PB0) zone='BEHIND THE PAPER';
     return {m:(d*M_PER_PX).toFixed(1), zone};
   }
-  function restore(points){ tp=Math.max(0,points); jd=target(); emitAcc=0; camY=camFor(); lastZone=zoneIndex(chinY()); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); props.forEach(p=>{ p.hit=chinY()>p.y; }); coreT=chinY()>EXIT-32?-98:-99; emitDepth(); }
+  function restore(points){ tp=Math.max(0,points); jd=target(); emitAcc=0; camY=camFor(); lastZone=zoneIndex(chinY()); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); props.forEach(p=>{ p.hit=chinY()>p.y; }); coreT=chinY()>coreY()?-98:-99; emitDepth(); }
   function reset(){
     browse=false; paperT=paperGoal=1; dipUntil=0; dipping=false; tp=0; jd=0; gaspT=-99; foolT=-99; focusT=0.85; focus=0.85; parts=[]; sparks=[]; shake=0; panT=-99;
     cracks.forEach(c=>c.rt=-1); props.forEach(p=>p.hit=false); coreT=-99;
@@ -2390,7 +2391,7 @@ const Scene = (function(){
     if(!reduce && !running){ running=true; requestAnimationFrame(frame); }
   }
   function setPaper(up,instant){ dipUntil=0; dipping=false; paperGoal=up?1:0; if(instant||reduce){ paperT=paperGoal; if(reduce) draw(); } }
-  function layout(){ return {EXIT,FLOOR,L0,B:B.slice(),U,K:JAW_K,M:M_PER_PX,PB0,jd:target(),worldEnd}; }
+  function layout(){ return {EXIT,CY:coreY(),FLOOR,L0,B:B.slice(),U,K:JAW_K,M:M_PER_PX,PB0,jd:target(),worldEnd}; }
   function camDepth(){ return camY+H*0.5; }        // world y at the middle of the screen
   function setBest(m){ bestJd=Math.min(dropMax+30,(m||0)/M_PER_PX); }
   function panDown(){ if(reduce) return; camY=camMin; panT=t; }
@@ -3610,7 +3611,7 @@ function renderDigCard(){
   const top=-14, bottom=Math.max(L.L0+L.B[4]+20, d.chin+20, d.chin>=L.EXIT?L.EXIT+40:0), Y=y=>Math.round(2+ (y-top)/(bottom-top)*(h-14));
   const bands=[[top,'#3d3148'],[74,'#8a5a3a'],[80,'#6a432b'],[L.FLOOR,'#6b4430'],[L.L0,'#2d2b38'],[L.L0+L.B[1],'#4d3426'],[L.L0+L.B[2],'#5b5a66'],[L.L0+L.B[3],'#b32d14'],[L.L0+L.B[4],'#3a0a06'],[L.EXIT,'#f0d9a0'],[L.EXIT+9,'#9fd8ff']];
   bands.forEach(([y0,col],i)=>{ const y1=i<bands.length-1?bands[i+1][0]:bottom; g.fillStyle=col; g.fillRect(0,Y(y0),w,Math.max(1,Y(y1)-Y(y0))); });
-  g.fillStyle='#ffd23f'; g.fillRect(w/2-3,Y(L.EXIT-32),6,4);
+  g.fillStyle='#ffd23f'; g.fillRect(w/2-3,Y(L.CY),6,4);
   const cx=w/2;
   g.fillStyle='#f2c9a0'; g.fillRect(cx-4,Y(-10),8,Y(13)-Y(-10));
   g.fillStyle='#4a2e1f'; g.fillRect(cx-4,Y(-10),8,2);
