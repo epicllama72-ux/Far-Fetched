@@ -1452,7 +1452,7 @@ const Scene = (function(){
   const cv = $('bg'), g = cv.getContext('2d'), rulerEl = $('ruler');
   const reduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   const FLOOR = 110, L0 = FLOOR+8, M_PER_PX = 0.02;
-  const AUS_PTS = 4000;        // a top score pokes out the other side of the earth, into Australia
+  const AUS_PTS = 4200;        // a top score (about 87% of a perfect day) pokes out the other side of the earth, into Australia
   const JAW_K = 0.13;          // world pixels of jaw drop per point (max 500 per story -> 65 px, still behind the paper)
   const EXIT = Math.round(13+AUS_PTS*JAW_K+9)-6;   // world y where the earth's crust ends and the sky above an Australian beach begins
   const PT0 = 24, PB0 = 88;    // one folded page held below his chin, its bottom edge resting over the desk
