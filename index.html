@@ -3046,9 +3046,9 @@ function finish(restored){
   }
   if(daily) postScore({kind:S.kind, m:+inf.m, score:total, zone:inf.zone, ans:answersOf(S.results)});
   if(restored){
-    // coming back to a finished day: the room looks like it did before you played, with your run summarised
+    // coming back to a finished day: his jaw stays dropped where your dig ended, with your run summarised
     renderDigCard();
-    Scene.reset(); Scene.setPaper(false,true);
+    Scene.restore(jawPoints()*S.jawK); Scene.setPaper(false,true);   // paper down, jaw dropped to where today's dig ended
     setTimeout(()=>Scene.setFocus(isDesk()?0.6:0.28),80);   // frame the man at his table above the summary
     S.returned=true; document.body.classList.add('returned');
     setTimeout(()=>{ $('depth').textContent=inf.m; },60);
