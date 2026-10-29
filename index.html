@@ -4257,7 +4257,7 @@ const Intro=(function(){
     const tb=top.hidden ? 120 : top.getBoundingClientRect().bottom;
     const bar=$('bar'), bb=narrow && bar && bar.offsetParent ? bar.getBoundingClientRect().top : innerHeight-16;
     const room=Math.max(80,bb-tb-16);
-    const Rpx=Math.min(innerWidth*(narrow?0.42:0.3), room/2-(narrow?0:14)), eyPx=tb+8+room/2;
+    const Rpx=Math.min(innerWidth*(narrow?0.42:0.3), room/2-(narrow?0:14)), eyPx=tb+14+Rpx;   // tucked right under How to play
     IP={R:Rpx/PX, ey:eyPx/PX};
   }
   const idlePos=()=>IP || {R:Math.min(w,h)*0.32, ey:h*0.6};
