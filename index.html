@@ -3267,26 +3267,30 @@ function renderWardrobe(){
 $('mWardrobe').onclick=openWardrobe;
 $('wardClose').onclick=closeWardrobe;
 /* a finished day can be scrolled by hand. A gesture belongs to whatever it started on and keeps it: starting on the summary scrolls only the page,
-   starting on the open scene scrolls only the dig, so the two never drag each other along */
+   starting on the open scene scrolls only the dig, so the two never drag each other along.
+   The summary counts as everything level with or below its top edge across its width (plus a margin each side), not just the card's own pixels. */
 (function(){
   const open=()=>document.body.classList.contains('returned') && $('menu').hidden && $('sheet').hidden && $('wardrobe').hidden && $('about').hidden;
-  const sceneArea=t=>{ const e=t&&t.nodeType===1?t:document.body; return e===document.documentElement || e===document.body || e.matches('.app,#bg,#ruler,#marks,#browseHint,.topline'); };
-  let lock=null, lastWheel=0;
+  const sceneEl=t=>{ const e=t&&t.nodeType===1?t:document.body; return e===document.documentElement || e===document.body || e.matches('.app,#bg,#ruler,#marks,#browseHint,.topline'); };
+  const onSummary=(x,y)=>{ const f=$('final'); if(!f||f.hidden) return false; const r=f.getBoundingClientRect(); return r.height>0 && y>=r.top-8 && x>=r.left-28 && x<=r.right+28; };
+  const sceneAt=(t,x,y)=>sceneEl(t) && !onSummary(x,y);
+  let lock=null, lastWheel=0, lastScene=true;
   window.addEventListener('wheel',e=>{
     if(!open()) return;
     const now=performance.now();
-    if(!lock || now-lastWheel>250) lock = sceneArea(e.target) ? 'scene' : 'panel';
-    lastWheel=now;
+    if(!lock || now-lastWheel>250) lock = sceneAt(e.target,e.clientX,e.clientY) ? 'scene' : 'panel';
+    lastWheel=now; lastScene = lock==='scene';
     if(lock==='scene'){ e.preventDefault(); Scene.browseBy(e.deltaY*(e.deltaMode===1?24:1)); }
   },{passive:false});
   let ty=null;
-  window.addEventListener('touchstart',e=>{ ty=open() && e.touches.length===1 && sceneArea(e.target) ? e.touches[0].clientY : null; },{passive:true});
+  window.addEventListener('touchstart',e=>{ const t=e.touches[0]; ty=open() && e.touches.length===1 && sceneAt(e.target,t.clientX,t.clientY) ? t.clientY : null; lastScene = ty!==null; },{passive:true});
   window.addEventListener('touchmove',e=>{ if(ty===null||!open()) return; const y=e.touches[0].clientY; e.preventDefault(); Scene.browseBy(ty-y); ty=y; },{passive:false});
   window.addEventListener('touchend',()=>{ ty=null; });
   window.addEventListener('touchcancel',()=>{ ty=null; });
-  window.addEventListener('keydown',e=>{
+  window.addEventListener('mousemove',e=>{ lastScene = open() && sceneAt(e.target,e.clientX,e.clientY); },{passive:true});
+  window.addEventListener('keydown',e=>{     // keys move the dig only while the pointer was last over the open scene
     const k={ArrowDown:60,ArrowUp:-60,PageDown:400,PageUp:-400,End:99999,Home:-99999}[e.key];
-    if(k && open() && !/^(INPUT|TEXTAREA|BUTTON|SELECT)$/.test((document.activeElement||{}).tagName||'')){ e.preventDefault(); Scene.browseBy(k); }
+    if(k && open() && lastScene && !/^(INPUT|TEXTAREA|BUTTON|SELECT|A)$/.test((document.activeElement||{}).tagName||'')){ e.preventDefault(); Scene.browseBy(k); }
   });
 })();
 const closeAbout=()=>{ $('about').hidden=true; };
