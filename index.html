@@ -709,6 +709,8 @@ body{margin:0;background:var(--bg);color:var(--text);font:22px/1.15 var(--vt);ov
 .ptpop{position:fixed;z-index:-1;pointer-events:none;font:30px/1 var(--vt);color:var(--accent);text-shadow:2px 0 #05070a,-2px 0 #05070a,0 2px #05070a,0 -2px #05070a,2px 2px #05070a,-2px -2px #05070a}
 .ptpop.neg{color:#ff5d73}
 @media (min-width:1100px) and (min-height:600px){ .ptpop{font-size:40px} }
+body.intro #ruler,body.intro #browseHint{visibility:hidden}
+#intro{position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:-1;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;image-rendering:pixelated;pointer-events:none}
 #bg{position:fixed;left:0;top:0;z-index:-2;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;image-rendering:pixelated}
 #browseHint{position:fixed;left:50%;top:112px;transform:translateX(-50%);z-index:5;display:none;padding:4px 10px;background:rgba(13,15,20,.78);color:var(--dim);font:16px/1 var(--vt);pointer-events:none;white-space:nowrap}
 body.returned #browseHint{display:block;animation:bh 7s forwards}
@@ -1087,6 +1089,7 @@ body.recap #bar{display:none}
 </head>
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
+<canvas id="intro" aria-hidden="true" hidden></canvas>
 <div id="browseHint" aria-hidden="true">↕ drag or scroll to explore your dig</div>
 <div id="ruler" aria-hidden="true"></div>
 <div class="app">
@@ -2489,6 +2492,7 @@ const Sound=(function(){
     crunch:()=>{ noise(0.4,{vol:0.32,freq:700,to:110}); tone(72,0.32,{type:'triangle',vol:0.28,to:40}); },
     core:()=>{ [1047,1319,1568,2093].forEach((f,i)=>tone(f,0.28,{vol:0.11,type:'triangle',at:0.1+i*0.07})); },
     start:()=>{ tone(440,0.06,{vol:0.14}); tone(880,0.1,{vol:0.14,at:0.06}); },
+    dive:()=>{ noise(1.3,{vol:0.16,type:'bandpass',freq:300,to:2400,q:1.2}); tone(880,1.1,{vol:0.05,type:'triangle',to:180}); tone(196,0.18,{vol:0.12,type:'square',at:1.25}); },
     guess:c=>tone(220+c*700,0.09,{vol:0.13,type:c>=0.6?'square':'triangle'}),
     exact:()=>{ [659,784,988,1319].forEach((f,i)=>tone(f,0.14,{vol:0.15,at:i*0.06})); },
     tick:()=>tone(1250,0.03,{vol:0.07}),
@@ -2565,6 +2569,7 @@ let BLANK_MAX = 500; const BLANK_SECS = 20;
 const FAKE_PTS = 150, JAW_SCALE = 4500;   // caught fake; every mode's jaw is scaled to the same 3000-point world
 
 function startGame(mode, kind){
+  if(typeof Intro!=='undefined' && Intro.active()) setTimeout(Intro.check,60);   // a finished day has no ready button: drop straight to the room
   if(kind) KIND = kind;
   try{ localStorage.setItem('ff_kind',KIND); }catch(e){}
   stopTimer(); hideToast(); $('sheet').hidden=true;
@@ -3940,7 +3945,12 @@ if(window.visualViewport){
   visualViewport.addEventListener('resize',lift); visualViewport.addEventListener('scroll',lift);
 }
 
-$('btnStart').onclick=()=>{ if(S.kind==='blank') startBlankRound(); else startCallRound(); };
+$('btnStart').onclick=()=>{
+  const begin=()=>{ if(S.kind==='blank') startBlankRound(); else startCallRound(); };
+  if(Intro.diving()) return;                        // already on the way down
+  if(Intro.active()){ $('btnStart').disabled=true; Intro.go(()=>{ $('btnStart').disabled=false; begin(); }); return; }
+  begin();
+};
 $('guessForm').addEventListener('submit',e=>{ e.preventDefault(); const inp=$('guessIn'); const v=inp.value; inp.value=''; submitWord(v); inp.focus(); });
 
 $('btnReal').onclick=()=>onCall(true);
@@ -4003,6 +4013,147 @@ $('mPol').onclick=()=>startGame('daily','pol');
 $('mPractice').onclick=()=>{ const l=$('practiceList'); l.hidden=!l.hidden; $('backList').hidden=true; l.querySelectorAll('button').forEach(b=>b.classList.toggle('on',S&&S.mode==='practice'&&b.dataset.k===S.kind)); };
 $('practiceList').querySelectorAll('button').forEach(b=>b.onclick=()=>startGame('practice',b.dataset.k));
 
+
+/* ---------- Intro: the earth from space. "I'm ready" dives through the clouds and lands on his house. ---------- */
+const Intro=(function(){
+  const LAND='AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/AAH//gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////////7wAAAAAAAGwAAAAAAAAAAAAAAAAAAAAAAB//////////AAAP8QH//gDB/AAAAAAAAAAAAAAAAABP//////////AAAf//AHngAwD/4AAAAAAAAAAAAAAAD+//////////8AAB//AAAAAAAAP4AAAAAAAAAAAAAAD/////j//////gAAA5gAAAP8ABP/+AAHhoAAAAAAAAAH////8AB/////AAAAAAAAH+AGf//4AA//AAAAAAAAAB/53//8AB////4AAABAAAB+Buf////fCeAAAAAAAAAAP/////8AD///+AAAAAAAAPgP//////+j/gAADAD/4ADf///v//AP///4BgAAH+AA/h///////////gAYAf//////////+A////gAAAP//gNn//////////////8H//////////f+B///wAAAB/////////////////////f/////////5/+H//gfwAAP///////////////////////////////P/wP/4D/gAB////////////////////j//////////+/+A/8AH8AAf///////////////////+DP////////x//4B/gAAAwH////////////////////wx////////8A//gD+AAABMf+f/////////////////4BP////////gD/3ABwAAABx/////////////////+fsAAD/AH/////gD/8AAAAAA+H/3/////////////+Bn8AAMD8AH/////wf/4AAAAAD4H///////////////wA/gAAB9AAP/////9//4AAAAAPgfz/////////////+AD/wAA+AAAf/////3//4AAAAD/n////////////////APzAD/AAAB/////////gAAAAP/////////////////8AcAycAAAAC////////+AAAAA7/////////////////4DgAMAAAAAD////////8AAAAAf////////////////9gcAAAAAAAAD////////4AAAAA/////////////////+BAAAAAAAAAH////////gAAAAD////////////////+4YAAAAAAAAAf///////AAAAAAB////////////////7vAAAAAAAAAB///////0AAAAADH/f/3/3//////////PwAAAAAAAAAH//////EAAAAAAf/v/+A/v/////////58AAAAAAAAAAf/////+AAAAAAB/5n///nf////////4HAAAAAAAAAAB//////gAAABAAH/2f///9//P//////AYAAAAAAAAAAH/////8AAAAFgAf+b7///3///////68DgAAAAAAAAAAP/////gAAAABgB/f/P////////////8eAAAAAAAAAAAf////+AAAAAAAB//If///////////Hv4AAAAAAAAAAA/////wAAAAAAAP/+AY//////////8f/AAAAAAAAAAAD////8AYAAAABh//+OA//////////5/kAAAAAAAAAAAD////gBAAAAAAH//+////////////gwAAAAAAAAAAAAH///+AAAAAAAA////////////////DAAAAAAAAAAAABP/+44AAAAAAB///////+////////4YAAAAAAAAAAAAB//wB4AAAAAAH////////////////hAEAAAAAAAAAAAB/+AHwAAAAAAH///////7///////8MAQAAAAAAAAAAAD/4AbwAAAAAA////////+////////AAAAAAAAAAAAAAH/gD/AAAAAAD//////f/+D/////9gAAAAAAAAOAAAAAD+H//AAAAAAf////////4H/////GAAAAAAAAAMAAAAAP8eH8AAAAAB/////////Af/x//gIAAAAAAAAAQAAAAEf/w9/gAAAAD//////3/8Af+D/2BgABAAAAAAAAAAAAA//A3/gAAAYP//////f/gB/wH/4HAAEAAAAAAAAAAAAAf/gAGAAAAw////////4AD+A//AcAAQAAAAAAAAAAAAAH+AAIAAADH///////+AAPwAf8B4ABAAAAAAAAAAAAAAH4AAwAAAAP///////mAA/AZ/wHgAMAAAAAAAAAAAAAAHgfCAAAAA///////z4AF4Bn/A/AAAAAAAAAAAAAAAAAOD/4AAAAD///////+AAXgEZ8D8AAAAIAAAAAAAAAAAAf//wAAAAD///////4AAPARzAZwCAAAAAAAAAAAAAAAA///gAAAAP///////AAE+AnABPhABgB4AAAAAAAAAAAAP//wAAAAf//////8AAA4DPAPsAAAICgAAAAAAAAAAAA///wAAAAfx/////gAAgAHch8YAAAEAAAAgAAAAAAAAD///AAAAAAB////8AACAAP/fBkAAAAMAABgAAAAAAAAf//+AAAAAAH////gAAAAA/n+PAAAAAwAAAAAAAAAAMB///4AAAAAAv///8AAAAAB+f/sAAAABAAAAAAAAAAA4P///+AAAAAA////gAAAAAH5/8/gCACiAQAAAAAAAAAA/////AAAAAD///8AAAAAAP/7//4+AAABgBAAAAAAAAD////+AAAAAH///gAAAAAAf/vf/8cAAAWAEAAAAAAAAP////+AAAAAP//+AEAAAAA8A8D//4AAAAAQAAAAAAAA/////8AAAAA///4AAAAAAA/5YM/8wAAAAAAAAAAAAAB/////wAEAAB///gAABAAAB///H/T4AAGAAAMAAAAAAH////+AAAAAH//+AAAAAAAAP/gHvngAAAAAAQAAAAAAP////4AAAAAf//4AAAAAAAQB45E8DYAAAAIAAAAAAAA/////AAAAAB///uwAAAACAABD8wMYgQmAAAAAAAAAAB////4AAAAAP//+LAAAAAAAABvzgABAEIAAAAAAAAAAH////gAAAAA///8cAAAAAAAAP/PAAMAgAAI4AAAAAAAP///+AAAEAD///nwAAAAAAAB//8AAwPAAAwSAAAAAAAP///4AAAAAP//8fAAAAAAAAP//4ABB8kAABMAAAAAAAf///AAAAAA///h8AAAAAAAB///gECCkAAABAAAAAAAA///8AAAAAB//4HhwAAAAAB////AD4AQAgAAAAAAAAAD///gAAAAAH//w+EAAAAAAP////AHCAAAAAAAAAAAAAf//+AAAAAAP//D4AAAAAAA////8AEAAAAAAAgAAAAAB///AAAAAAA//8HAAAAAAAD////8AAAAAAAAAAAAAAAH//wAAAAAAD//AYAAAAAAAP////gAAAAAAAAAACAAAAf//AAAAAAAP/8AAAAAAAAA/////AAAAAAAAAAAAAAAB//8AAAAAAAf/wAAAAAAAAB////8AQAAAAAAAAAAAAAH//gAAAAAAA/+AAAAAAAAAH////gAAAAAAAAAAAAAAAf/8AAAAAAAD/wAAAAAAAAAf///+AAAAAAAAAAAAAABD//gAAAAAAAP+AAAAAAAAAB/wf/4AAAAAAAAAAAAAAAP/+AAAAAAAAfgAAAAAAAAAH8A//AAMAAAAAAAAAAAAA//AAAAAAAAAAAAAAAAAAAAAAB/8AAYAAAAAAAAAAAAH/8AAAAAAAAAAAAAAAAAAAAAAB/gAA4AAAAAAAAAAAAf/wAAAAAAAAAAAAAAAAAAAAAAD4AAHgAAAAAAAAAAAB/wAAAAAAAAAAAAAAAAAAAAAAADQAA8AAAAAAAAAAAAH/AAAAAAAAAAAAAAAAAAAAAAAAPAAHwAAAAAAAAAAAA/4AAAAAAAAAAAAAAAAAAAAAAAAcAA8CAAAAAAAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAgAPwAAAAAAAAAAAAP8AAAAAAAAAAAAAIAAAAAAAAAAAAA8AAAAAAAAAAAAA/wAAAAAAAAAAAIAgAAAAAAAAAAAABgAAAAAAAAAAAAD/AAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAPwAAAAAAAAAAAAAAAOAAAAAAAAAAAgAAAAAAAAAAAAA/DgAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAD8OAAAAAAAAAAAAAAAIAAAAAAAAAACAAAAAAAAAAAAAH+AADgAAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAH4AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==';
+  const MW=256, MH=128, D2R=Math.PI/180;
+  let mask=null;
+  function land(lat,lon){
+    if(!mask){ const b=atob(LAND); mask=new Uint8Array(b.length); for(let i=0;i<b.length;i++) mask[i]=b.charCodeAt(i); }
+    let u=Math.floor((lon+180)/360*MW)%MW; if(u<0) u+=MW;
+    const v=Math.max(0,Math.min(MH-1,Math.floor((90-lat)/180*MH)));
+    return (mask[v*32+(u>>3)]>>(7-(u&7)))&1;
+  }
+  const reduce=!!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const cv=$('intro'), g=cv.getContext('2d');
+  const hex=c=>[parseInt(c.slice(1,3),16),parseInt(c.slice(3,5),16),parseInt(c.slice(5,7),16)];
+  const OCEAN=['#0f2f5a','#184b88','#2565ad','#3a86cc'].map(hex), LANDC=['#244d27','#356f37','#4b8f45','#69ad55'].map(hex),
+        DESERT=['#6b5a33','#8f7a45','#b39a5a','#cdb676'].map(hex), ICE=['#8fa1b5','#b9c8d8','#dde6ee','#ffffff'].map(hex),
+        CLOUD=['#9fb0c4','#c9d4e0','#eef3f8','#ffffff'].map(hex), RIM=hex('#6fc3ff'), SPACE=hex('#05060c');
+  let w=0,h=0,PX=4,img=null,on=false,raf=0,last=0,lat0=18,lon0=-40,stars=[],dive=null,fade=1,tgt=null,drift=0;
+  function size(){
+    const W=innerWidth, H=innerHeight;
+    PX=Math.max(3,Math.round(Math.min(W,H)/150));
+    w=Math.ceil(W/PX); h=Math.ceil(H/PX); cv.width=w; cv.height=h; img=g.createImageData(w,h);
+    stars=[]; for(let i=0;i<Math.round(w*h/90);i++) stars.push([Math.random()*w|0,Math.random()*h|0,Math.random()*6.28,Math.random()<0.15]);
+  }
+  function pickTarget(){              // somewhere on land, a new spot every visit
+    for(let i=0;i<400;i++){ const la=-45+Math.random()*105, lo=-180+Math.random()*360; if(land(la,lo)) return [la,lo]; }
+    return [42.6,-71.3];
+  }
+  const ease=x=>x<0?0:x>1?1:x<0.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+  const clamp01=x=>x<0?0:x>1?1:x;
+  function cloudN(la,lo,tt){ return Math.sin(lo*0.09+tt*0.05)*Math.sin(la*0.13+lo*0.03)+0.6*Math.sin(lo*0.23-la*0.19+1.7)+0.35*Math.sin(la*0.41+lo*0.37+tt*0.08); }
+  function drawEarth(R,ex,ey,tt,starA){
+    const d=img.data, Lx=-0.55, Ly=0.45, Lz=0.7, sa=Math.sin(lat0*D2R), ca=Math.cos(lat0*D2R);
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){
+      const i=(y*w+x)*4, dx=(x+0.5-ex)/R, dy=-(y+0.5-ey)/R, r2=dx*dx+dy*dy;
+      let c=SPACE;
+      if(r2<1){
+        const z=Math.sqrt(1-r2), Y=dy*ca+z*sa, Z=-dy*sa+z*ca, la=Math.asin(Y)/D2R; let lo=Math.atan2(dx,Z)/D2R+lon0; lo=((lo+540)%360)-180;
+        const lit=Math.max(0,dx*Lx+dy*Ly+z*Lz), dith=((x+y)&1)*0.12, k=Math.min(3,Math.floor((0.25+lit*0.9+dith)*3.2));
+        const cn=cloudN(la,lo,tt);
+        if(cn>1.15) c=CLOUD[Math.min(3,k+1)];
+        else if(Math.abs(la)>70 || la<-62) c=ICE[k];
+        else if(land(la,lo)) c=(Math.abs(la)>14&&Math.abs(la)<32&&Math.sin(lo*0.05)>-0.2)?DESERT[k]:LANDC[k];
+        else c=OCEAN[k];
+        if(r2>0.9 && ((x^y)&1)) c=RIM;
+      } else if(r2<1.1 && ((x+y)&1)) c=RIM;
+      d[i]=c[0]; d[i+1]=c[1]; d[i+2]=c[2]; d[i+3]=255;
+    }
+    if(starA>0) stars.forEach(([sx,sy,ph,big])=>{
+      const i=(sy*w+sx)*4; if(d[i]!==SPACE[0]||d[i+1]!==SPACE[1]) return;
+      const b=Math.round(starA*(150+105*Math.max(0,Math.sin(tt*2+ph)))); d[i]=d[i+1]=b; d[i+2]=Math.min(255,b+30);
+    });
+    g.putImageData(img,0,0);
+  }
+  function hash(a,b){ let n=(a*73856093)^(b*19349663); n=(n^(n>>>13))*1274126177; return ((n^(n>>>16))>>>0)/4294967296; }
+  function drawTown(s,ex,ey){          // top-down neighbourhood; s = screen pixels per metre-ish unit
+    g.fillStyle='#4f9d57'; g.fillRect(0,0,w,h);
+    const B=14, x0=Math.floor((-ex)/s/B)-1, x1=Math.ceil((w-ex)/s/B)+1, y0=Math.floor((-ey)/s/B)-1, y1=Math.ceil((h-ey)/s/B)+1;
+    if((x1-x0)*(y1-y0)>4000) return;
+    for(let by=y0;by<=y1;by++) for(let bx=x0;bx<=x1;bx++){
+      const X=ex+bx*B*s, Y=ey+by*B*s;
+      g.fillStyle=hash(bx,by)<0.3?'#5aa552':'#468f4c'; g.fillRect(X+2*s,Y+2*s,(B-2)*s,(B-2)*s);
+      g.fillStyle='#7d828c'; g.fillRect(X,Y,B*s,2*s); g.fillRect(X,Y,2*s,B*s);       // roads
+      if(s*B>6){ g.fillStyle='#e8d36a'; for(let k=3;k<B;k+=3) g.fillRect(X+k*s,Y+0.9*s,Math.max(1,s),Math.max(1,0.25*s)); }
+      for(let k=0;k<4;k++){                                                         // houses around the block
+        if(bx===0&&by===0&&k===0) continue;
+        const hx=X+(k%2?8.2:3.6)*s, hy=Y+(k<2?3.6:8.2)*s, rc=['#8a3b2f','#5a5f73','#7a5238','#3f6a8a'][Math.floor(hash(bx*4+k,by)*4)];
+        g.fillStyle='#2b1a12'; g.fillRect(hx-0.2*s,hy-0.2*s,3.4*s,3.4*s);
+        g.fillStyle=rc; g.fillRect(hx,hy,3*s,3*s);
+        g.fillStyle='rgba(0,0,0,.25)'; g.fillRect(hx+1.5*s,hy,1.5*s,3*s);
+      }
+    }
+    // his house: red roof, chimney, right in the middle
+    const hx=ex+2.8*s, hy=ey+2.8*s, S=4.4*s;
+    g.fillStyle='#1a1220'; g.fillRect(hx-0.3*s,hy-0.3*s,S+0.6*s,S+0.6*s);
+    g.fillStyle='#c0392b'; g.fillRect(hx,hy,S,S);
+    g.fillStyle='#93281e'; g.fillRect(hx+S/2,hy,S/2,S);
+    g.fillStyle='#e05a48'; g.fillRect(hx+S/2-Math.max(1,0.18*s),hy,Math.max(1,0.36*s),S);
+    g.fillStyle='#6a432b'; g.fillRect(hx+0.6*s,hy+0.6*s,0.9*s,0.9*s);
+    g.fillStyle='#8a8f99'; g.fillRect(hx+0.75*s,hy+0.75*s,0.6*s,0.6*s);
+  }
+  function drawClouds(p,tt){            // puffs rushing past the camera on the way down
+    const a=Math.sin(Math.PI*clamp01(p)); if(a<=0) return;
+    for(let i=0;i<9;i++){
+      const ang=i*2.4+0.7, dist=(0.15+((i*0.37+p*1.8)%1)*1.4)*Math.max(w,h), sc=0.4+dist/Math.max(w,h);
+      const cx=w/2+Math.cos(ang)*dist, cy=h/2+Math.sin(ang)*dist*0.8, r=Math.max(4,18*sc*(1+p*2));
+      g.globalAlpha=a*0.9; g.fillStyle='#eef3f8';
+      for(let k=0;k<5;k++){ const ox=(k-2)*r*0.55, oy=((k%2)?-0.3:0.15)*r, rr=r*(k===2?1:0.7); g.fillRect(Math.round(cx+ox-rr),Math.round(cy+oy-rr*0.6),Math.round(rr*2),Math.round(rr*1.2)); }
+    }
+    g.globalAlpha=a*0.55*clamp01((p-0.3)/0.4); g.fillStyle='#ffffff'; g.fillRect(0,0,w,h);
+    g.globalAlpha=1;
+  }
+  function frame(now){
+    if(!on) return;
+    const dt=Math.min(0.05,(now-(last||now))/1000), tt=now/1000; last=now;
+    const R0=Math.min(w,h)*0.36, ex=w/2, ey=h*(innerWidth<700?0.56:0.5);
+    if(!dive){
+      lon0+=dt*7; drawEarth(R0,ex,ey,tt,1);
+    } else {
+      const T=(now-dive.t0)/1000, D=2.0, p=T/D;
+      const pr=ease(clamp01(p/0.32));
+      let dl=((tgt[1]-dive.lon)%360+540)%360-180;
+      lon0=dive.lon+dl*pr; lat0=dive.lat+(tgt[0]-dive.lat)*pr;
+      const pz=clamp01((p-0.06)/0.56), R=R0*Math.exp(Math.pow(pz,1.6)*5.2);
+      const eyN=ey+(h/2-ey)*pz;
+      if(p<0.7) drawEarth(R,ex,eyN,tt,1-clamp01(p/0.35));
+      const pt=clamp01((p-0.58)/0.36);
+      if(p>=0.6){
+        g.globalAlpha=p<0.7?clamp01((p-0.6)/0.1):1;
+        const sc=0.35*Math.exp(Math.pow(pt,1.15)*Math.log(Math.max(w,h)/(4.4*0.35)*1.15));   // his roof grows until it fills the screen
+        drawTown(sc,w/2-5*sc,h/2-5*sc);
+        g.globalAlpha=1;
+      }
+      drawClouds((p-0.4)/0.34,tt);
+      cv.style.opacity=String(1-clamp01((p-0.94)/0.06));
+      if(p>=1){ const cb=dive.cb; hide(true); if(cb) cb(); return; }
+    }
+    raf=requestAnimationFrame(frame);
+  }
+  function show(){
+    if(reduce || on) return;
+    size(); on=true; dive=null; document.body.classList.add('intro'); tgt=pickTarget(); lon0=tgt[1]-110; lat0=15; cv.style.opacity='1'; cv.hidden=false; last=0;
+    raf=requestAnimationFrame(frame);
+  }
+  function hide(now){
+    if(!on) return;
+    document.body.classList.remove('intro');
+    if(now){ on=false; cancelAnimationFrame(raf); cv.hidden=true; return; }
+    cv.style.transition='opacity .35s'; cv.style.opacity='0';
+    setTimeout(()=>{ on=false; cancelAnimationFrame(raf); cv.hidden=true; cv.style.transition=''; },380);
+  }
+  function go(cb){                       // returns false when there is nothing to play, so the caller just starts
+    if(!on || dive) return !!dive;
+    dive={t0:performance.now(),lat:lat0,lon:lon0,cb}; Sound.play('dive');
+    return true;
+  }
+  window.addEventListener('resize',()=>{ if(on && !dive) size(); });
+  return {show,hide,go,active:()=>on,diving:()=>!!dive,check:()=>{ if(on && !dive && $('btnStart').hidden) hide(); }};
+})();
+
 Scene.onDepth(m=>{ $('depth').textContent=m; });
 Scene.onZone(name=>showToast(name));
 Scene.onBreak(z=>{ Sound.play('crunch'); if(z>=5) Sound.play('core'); });
@@ -4011,8 +4162,9 @@ function renderMute(){ const m=Sound.isMuted(); $('muteBtn').classList.toggle('o
 $('muteBtn').onclick=e=>{ e.stopPropagation(); Sound.setMuted(!Sound.isMuted()); renderMute(); if(!Sound.isMuted()) Sound.play('menu'); };
 renderMute();
 Scene.start(); applyKit(); renderWardSub();
+Intro.show();                                   // the earth from space until you say you're ready
 updateStreak();
-Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS?VS.kind:KIND); loadIssues(); });
+Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS?VS.kind:KIND); loadIssues(); setTimeout(Intro.check,60); });
 window.addEventListener('resize',()=>{ clearTimeout(window._aimT); window._aimT=setTimeout(()=>aim(),200); });
 </script>
 </body>
