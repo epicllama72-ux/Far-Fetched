@@ -465,6 +465,41 @@ Items:
 """
 
 
+SHARPEN_PROMPT = """You edit headlines for "Far-Fetched", a daily game. Players read a TRUE weird-news headline with the place hidden as {} and must pin where it happened on a world map. They see ONLY the headline: the "clue" and "text" below are for you, not them.
+
+For each story, decide whether the headline ALONE gives a well-read player a fair, reasonable clue to the country or region: a local institution, league or competition, currency, unit, climate, landscape, wildlife, food, custom, law, office or a language-specific term. Vague wording that fits half the world ("second-tier match", "justice of the peace", "local council") does not count.
+- If it already has a fair clue, return the headline unchanged with "ok": true.
+- If not, rewrite it with "ok": false. Keep every fact exactly as reported (who, what, numbers, outcome) and keep it punchy, at most 100 characters, with the literal {} exactly once where the place goes. Work in one or two words of real regional clue, taken from the text or "clue", or generically true of that place (e.g. "Segunda Division", "giudice di pace", "house of culture", "rupees", "the county sheriff", "Alpine"). Never write the town, region or country name, a nationality, a local team, landmark or company that hands over the answer: the player should be able to DEDUCE the region, not read it.
+
+Reply with ONE JSON object only: {"real":[{"id":0,"ok":true,"h":"..."}]}
+
+Stories:
+"""
+
+
+def sharpen(stories, model, texts):
+    """Rewrite Daily Dig headlines that give no reasonable location clue on their own, using clues from the article."""
+    items = [{"id": i, "h": r.get("h", ""), "place": r.get("place", ""), "clue": r.get("clue", ""), "text": texts.get(r.get("src"), "")}
+             for i, r in enumerate(stories)]
+    res = call_claude(SHARPEN_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=3000, fatal=False, keys=["real"])
+    if not res or "real" not in res:
+        print("  headline sharpening unavailable; keeping the headlines as they are", file=sys.stderr)
+        return
+    for x in res["real"]:
+        try:
+            r = stories[int(x["id"])]
+        except Exception:
+            continue
+        h = (x.get("h") or "").strip()
+        if x.get("ok") is not False or not h or h == r.get("h"):
+            continue
+        if h.count("{}") != 1 or len(h) > 110 or leaks(h.replace("{}", ""), r.get("place", "")):
+            print(f"  rewrite rejected (place leaks or bad format), keeping: {r.get('h')}", file=sys.stderr)
+            continue
+        print(f"  sharpened headline: {r.get('h')}  ->  {h}", file=sys.stderr)
+        r["h"] = h
+
+
 def fact_check(reals, model):
     items = [{"id": i, "h": r.get("h", ""), "h2": r.get("h2", ""), "place": r.get("place", ""),
               "source": {"title": r.get("_title", ""), "summary": r.get("_summary", ""), "text": r.get("_text", "")}}
@@ -829,7 +864,7 @@ def main():
         else:
             print("  too few fresh stories to ask the editor; relying on the bank", file=sys.stderr)
 
-    fresh = []
+    fresh, src_text = [], {}
     for r in picks.get("real", []):
         c = cands[r["id"]] if isinstance(r.get("id"), int) and r["id"] < len(cands) else r
         r["src"] = r.get("src") or c.get("link", "")
@@ -852,6 +887,7 @@ def main():
             elif g:
                 print(f"  geocoder disagrees for {r['place']} (likely a same-name town elsewhere); keeping the editor's coordinates", file=sys.stderr)
         r["banked"], r["rules"] = day, RULES
+        src_text[r["src"]] = (r.get("_text") or r.get("_summary") or "")[:1500]   # kept for the headline sharpening pass
         for k in ("_title", "_summary", "_text"):
             r.pop(k, None)
     fresh_fakes = []
@@ -958,6 +994,8 @@ def main():
             per_country[ccode(r)] = per_country.get(ccode(r), 0) + 1
         if strong_n(call_pick) < MIN_STRONG:
             print(f"  WARNING: only {strong_n(call_pick)} of {len(call_pick)} true stories have a fair regional clue and a sensible pin (wanted {MIN_STRONG})", file=sys.stderr)
+    if not args.picks:
+        sharpen(call_pick, model, src_text)
     strong = strong_n(call_pick)
     print(f"  Real or Fake: {strong}/{len(call_pick)} stories with a usable regional clue; countries {per_country}", file=sys.stderr)
 
