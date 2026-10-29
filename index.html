@@ -2463,7 +2463,7 @@ const Scene = (function(){
     document.body.appendChild(el); pops.push({el,t0:t+pops.length*0.25});     // a second pop right after the first waits its turn
     el.style.opacity=0;
   }
-  return {setKit,chinAt,playRecap,endRecap,onMark,popPts,setPaper,start,setJaw,configure,restore,gasp,fooled:fooledReact,setFocus,setSafeTop,info,reset,setBest,panDown,layout,camDepth,browseStart,browseBy,browseEnd,
+  return {coreBlown:()=>13+target()+9>coreY(), setKit,chinAt,playRecap,endRecap,onMark,popPts,setPaper,start,setJaw,configure,restore,gasp,fooled:fooledReact,setFocus,setSafeTop,info,reset,setBest,panDown,layout,camDepth,browseStart,browseBy,browseEnd,
           onDepth:cb=>{depthCb=cb;}, onZone:cb=>{zoneCb=cb;}, onBreak:cb=>{breakCb=cb;}, onRumble:cb=>{rumbleCb=cb;}, onLandmark:cb=>{lmCb=cb;}};
 })();
 
@@ -2593,7 +2593,7 @@ const FAKE_PTS = 150, JAW_SCALE = 4500;   // caught fake; every mode's jaw is sc
 
 function startGame(mode, kind){
   if(typeof Intro!=='undefined' && Intro.planetOn()) Intro.hide(true);
-  if(typeof Intro!=='undefined' && Intro.active()) setTimeout(Intro.check,60);   // a finished day has no ready button: drop straight to the room
+  if(typeof Intro!=='undefined') setTimeout(Intro.check,60);   // a fresh start opens on the planet; a finished day shows it zoomed out   // a finished day has no ready button: drop straight to the room
   if(kind) KIND = kind;
   try{ localStorage.setItem('ff_kind',KIND); }catch(e){}
   stopTimer(); hideToast(); $('sheet').hidden=true;
@@ -3160,7 +3160,7 @@ function finish(restored){
     renderDigCard();
     Scene.restore(jawPoints()*S.jawK); Scene.setPaper(false,true);   // paper down, jaw dropped to where today's dig ended
     Scene.browseStart();                                             // view back up on the guy; the player can scroll the dig
-    Intro.planet(inf.zone);                                          // and the planet, zoomed out, damaged as this dig left it
+    Intro.planet(inf.zone, Scene.coreBlown());                                          // and the planet, zoomed out, damaged as this dig left it
     S.returned=true; document.body.classList.add('returned');
     setTimeout(()=>{ $('depth').textContent=inf.m; },60);
   } else setTimeout(renderDigCard,2600);
@@ -3191,9 +3191,9 @@ function recapList(){
 }
 function endRecapUI(skipped){
   if(!RECAP_ON) return;
-  RECAP_ON=false; document.body.classList.remove('recap');
+  RECAP_ON=false; Intro.hold(); document.body.classList.remove('recap');   // the summary waits until the planet has zoomed out
   Scene.endRecap(); Sound.play('fanfare'); aim(0.74);
-  setTimeout(()=>{ if(S && !RECAP_ON && !$('final').hidden) Intro.outro(Scene.info().zone); }, skipped?300:1400);   // zoom back out to the planet, damaged by how deep you dug
+  setTimeout(()=>{ if(S && !RECAP_ON && !$('final').hidden) Intro.outro(Scene.info().zone, Scene.coreBlown()); }, skipped?300:1400);   // zoom back out to the planet, damaged by how deep you dug
   if(S && S.newUnlocks && S.newUnlocks.length && !S.unlockPlayed){ S.unlockPlayed=true; setTimeout(()=>Sound.play('unlock'),500); }
 }
 function startRecap(auto){
@@ -4301,10 +4301,11 @@ const Intro=(function(){
     const t=pickTarget(); try{ localStorage.setItem('ff_spot',JSON.stringify({d:dayKey(),la:t[0],lo:t[1]})); }catch(e){}
     return t;
   }
-  const tierOf=zone=>({'BEDROCK':1,'MAGMA':2,'THE CORE':3,'AUSTRALIA':4}[zone]||0);
-  function outro(zone){
+  // the planet only burns once the jaw has detonated the core; reaching the core layer without that is a volcano
+  const tierOf=(zone,blown)=>({'BEDROCK':1,'MAGMA':2,'THE CORE':blown?3:2,'AUSTRALIA':4}[zone]||0);
+  function outro(zone,blown){
     if(reduce) return;
-    tier=tierOf(zone);
+    tier=tierOf(zone,blown);
     cancelAnimationFrame(raf); size(); gen++;
     if(!tgt) tgt=spot();
     on=true; mode='out'; dive=null; out={t0:performance.now()}; cracks=null; parts=[]; aus=null;
@@ -4313,9 +4314,9 @@ const Intro=(function(){
     raf=requestAnimationFrame(frame);
   }
   /* coming back to a finished mode: the planet is already zoomed out, damaged as that dig left it */
-  function planet(zone){
+  function planet(zone,blown){
     if(reduce) return;
-    tier=tierOf(zone);
+    tier=tierOf(zone,blown);
     cancelAnimationFrame(raf); size(); gen++;
     tgt=spot(); lat0=tgt[0]; lon0=tgt[1];
     on=true; mode='end'; dive=null; cracks=null; parts=[]; endT=performance.now()-4000;
@@ -4326,8 +4327,9 @@ const Intro=(function(){
     raf=requestAnimationFrame(frame);
   }
   function hide(now){
+    clearTimeout(sumT); document.body.classList.remove('planetview','peek');
     if(!on) return;
-    clearTimeout(sumT); titleOff(); document.body.classList.remove('intro','planetview','peek');
+    titleOff(); document.body.classList.remove('intro');
     if(now){ on=false; mode='idle'; cancelAnimationFrame(raf); cv.hidden=true; return; }
     const my=++gen;
     cv.style.transition='opacity .35s'; cv.style.opacity='0';
@@ -4339,7 +4341,15 @@ const Intro=(function(){
     return true;
   }
   window.addEventListener('resize',()=>{ if(on && mode!=='dive' && mode!=='out'){ size(); if(mode==='idle') titleOn(); } });
-  return {show,hide,go,outro,planet,planetOn:()=>on&&(mode==='end'||mode==='out'),active:()=>on,diving:()=>mode==='dive',check:()=>{ if(on && mode==='idle'){ if($('btnStart').hidden) hide(); else titleOn(); } }};
+  /* every fresh start of a mode (Daily Dig, Fill the Blank, practice, back issues) opens on the planet; anything else drops it */
+  function check(){
+    const fresh=S && !$('btnStart').hidden && S.i===0 && !S.results.length;
+    if(fresh){
+      if(on && mode!=='idle') hide(true);
+      if(!on) show(); else titleOn();
+    } else if(on && mode==='idle') hide();
+  }
+  return {show,hide,go,outro,planet,planetOn:()=>on&&(mode==='end'||mode==='out'),active:()=>on,diving:()=>mode==='dive',check, hold:()=>{ if(!reduce) document.body.classList.add('planetview'); }};
 })();
 
 Scene.onDepth(m=>{ $('depth').textContent=m; });
