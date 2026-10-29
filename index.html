@@ -712,9 +712,23 @@ body{margin:0;background:var(--bg);color:var(--text);font:22px/1.15 var(--vt);ov
 body.intro #ruler,body.intro #browseHint{visibility:hidden}
 body.planetview #final,body.planetview #bar,body.planetview #comeBack,body.planetview #nextEd{opacity:0;transform:translateY(60px);pointer-events:none}
 #final,#bar,#comeBack{transition:opacity .45s,transform .45s}
-#introTitle{position:fixed;left:50%;transform:translateX(-50%);z-index:-1;pointer-events:none;white-space:nowrap;font:clamp(18px,6.4vw,44px)/1 var(--px);color:#c9ced8;letter-spacing:2px;text-shadow:3px 3px 0 #1a1220;opacity:0;transition:opacity .5s}
-#introTitle b{font-weight:400;color:var(--accent)}
-#introTitle.on{opacity:1}
+#introTop{position:fixed;left:50%;transform:translateX(-50%);z-index:5;width:min(520px,calc(100vw - 32px));}
+#introTop{text-align:center;opacity:0;transition:opacity .5s}
+#introTop.on{opacity:1}
+#introTop .it{font:clamp(20px,7vw,44px)/1 var(--px);color:#c9ced8;letter-spacing:2px;text-shadow:3px 3px 0 #1a1220;white-space:nowrap}
+#introTop .it b{font-weight:400;color:var(--accent)}
+@media (min-width:1100px){#introTop{width:min(440px,calc(100vw - 32px))} #introTop .it{font-size:34px}}
+#introLine{margin:14px 0 10px;font:23px/1.15 var(--vt);color:#eef0f4;text-shadow:2px 2px 0 #05060c}
+#introHow summary{display:inline-block;cursor:pointer;list-style:none;font:10px/1 var(--px);color:var(--accent);padding:7px 10px;border:2px solid var(--line);background:rgba(13,15,20,.7)}
+#introHow summary::-webkit-details-marker{display:none}
+#introHow summary::after{content:' ▾'}
+#introHow[open] summary::after{content:' ▴'}
+#introHowText{margin-top:8px;padding:10px 14px;text-align:left;background:rgba(13,15,20,.92);border:2px solid var(--line);font:19px/1.25 var(--vt);color:#d6dae3;max-height:46vh;overflow:auto}
+#introHowText ol{margin:0 0 8px;padding-left:20px}
+#introHowText li{margin:0 0 5px}
+#introHowText b{color:var(--accent);font-weight:400}
+#introHowText .sc{color:var(--dim)}
+body.introIdle #card{display:none}
 #intro{position:fixed;left:0;top:0;width:100vw;height:100vh;z-index:-1;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;image-rendering:pixelated;pointer-events:none}
 #bg{position:fixed;left:0;top:0;z-index:-2;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;image-rendering:pixelated}
 #browseHint{position:fixed;left:50%;top:112px;transform:translateX(-50%);z-index:5;display:none;padding:4px 10px;background:rgba(13,15,20,.78);color:var(--dim);font:16px/1 var(--vt);pointer-events:none;white-space:nowrap}
@@ -1095,7 +1109,7 @@ body.recap #bar{display:none}
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
 <canvas id="intro" aria-hidden="true" hidden></canvas>
-<div id="introTitle" aria-hidden="true" hidden>FAR-<b>FETCHED</b></div>
+<div id="introTop" hidden><div class="it">FAR-<b>FETCHED</b></div><p id="introLine"></p><details id="introHow"><summary>HOW TO PLAY</summary><div id="introHowText"></div></details></div>
 <div id="browseHint" aria-hidden="true">↕ drag or scroll to explore your dig</div>
 <div id="ruler" aria-hidden="true"></div>
 <div class="app">
@@ -4215,7 +4229,7 @@ const Intro=(function(){
       lon0=dive.lon+dl*pr; lat0=dive.lat+(tgt[0]-dive.lat)*pr;
       drawDive(p,tt,R0,ey,false);
       cv.style.opacity=String(1-clamp01((p-0.94)/0.06));
-      if(p>=1){ const cb=dive.cb; hide(true); if(cb) cb(); return; }
+      if(p>=1){ const cb=dive.cb; hide(true); document.body.classList.remove('introIdle'); if(cb) cb(); return; }
     } else if(mode==='out'){
       const T=(now-out.t0)/1000, D=2.2, p=1-ease(clamp01(T/D)), E=endPos();
       lat0=tgt[0]; lon0=tgt[1];
@@ -4234,19 +4248,34 @@ const Intro=(function(){
     }
     raf=requestAnimationFrame(frame);
   }
-  const idlePos=()=>innerWidth<700 ? {R:Math.min(w,h)*(innerHeight<700?0.27:0.32), ey:h*(innerHeight<700?0.64:0.62)} : {R:Math.min(w,h)*0.33, ey:h*0.55};
-  function titleOn(){                   // the game's name above the turning planet, before the day's dig
-    const t=$('introTitle'), I=idlePos(), top=(I.ey-I.R)*PX, th=t.offsetHeight||36;
-    let y;
-    if(innerWidth<1100){                // phones and tablets: in the gap between the headline card and the planet
-      const c=$('card'), cb=c && !c.hidden ? c.getBoundingClientRect().bottom : 60;
-      if(top-cb < th+12){ t.classList.remove('on'); t.hidden=true; return; }   // no room on a short screen: leave it out
-      y=cb+(top-cb-th)/2;
-    } else y=Math.max(70,top-th-28);
-    t.style.top=Math.round(y)+'px';
-    t.hidden=false; requestAnimationFrame(()=>t.classList.add('on'));
+  let IP=null;                          // where the opening planet sits: in the space between the intro text and the ready button
+  function layoutIdle(){
+    const top=$('introTop'), narrow=innerWidth<1100;
+    const tb=top.hidden ? 120 : top.getBoundingClientRect().bottom;
+    const bar=$('bar'), bb=narrow && bar && bar.offsetParent ? bar.getBoundingClientRect().top : innerHeight-16;
+    const room=Math.max(80,bb-tb-16);
+    const Rpx=Math.min(innerWidth*(narrow?0.42:0.3), room/2-(narrow?0:14)), eyPx=tb+8+room/2;
+    IP={R:Rpx/PX, ey:eyPx/PX};
   }
-  function titleOff(){ const t=$('introTitle'); t.classList.remove('on'); setTimeout(()=>{ if(!t.classList.contains('on')) t.hidden=true; },520); }
+  const idlePos=()=>IP || {R:Math.min(w,h)*0.32, ey:h*0.6};
+  function introText(){
+    if(!S || !S.rounds) return;
+    const blank=S.kind==='blank', n=S.rounds.length, r=S.rounds.filter(x=>x.real).length, f=n-r;
+    $('introLine').textContent = blank ? n+' true headlines, one word missing. Fill in the blank.' : n+' stories, '+r+' true, '+f+' false. Map the true ones.';
+    $('introHowText').innerHTML = (blank
+      ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how <b>hot or cold</b> it is.</li><li>You have <b>20 seconds</b> per headline. The exact word, found fast, scores the most.</li><li>Every point drops his jaw a little further.</li></ol>'
+      : '<ol><li>Read the headline. The place is <b>blacked out</b>.</li><li>Call it <b>REAL</b> or <b>FAKE</b>. Quick answers score more.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin where you think it happened, then <b>LOCK IN</b>. You get 20 seconds: closer and faster scores more.</li><li>Every point drops his jaw. Dig deep enough and see what happens to the planet.</li></ol>')
+      + '<p class="sc">'+$('howText').innerHTML+'</p>';
+  }
+  function titleOn(){                   // the game's name, the day's line and "how to play" above the turning planet
+    const t=$('introTop'), hud=document.querySelector('.hud'), narrow=innerWidth<1100;
+    introText();
+    t.style.top=Math.round(narrow && hud ? hud.getBoundingClientRect().bottom+18 : 76)+'px';
+    t.hidden=false; document.body.classList.add('introIdle');
+    layoutIdle();
+    requestAnimationFrame(()=>t.classList.add('on'));
+  }
+  function titleOff(keepCard){ const t=$('introTop'); t.classList.remove('on'); $('introHow').open=false; if(!keepCard) document.body.classList.remove('introIdle'); setTimeout(()=>{ if(!t.classList.contains('on')) t.hidden=true; },520); }
   function show(){
     if(reduce || on) return;
     size(); on=true; mode='idle'; dive=null; gen++; document.body.classList.add('intro'); titleOn(); tgt=spot(); lon0=tgt[1]-110; lat0=15; cv.style.opacity='1'; cv.style.transition=''; cv.hidden=false; last=0;
@@ -4303,7 +4332,7 @@ const Intro=(function(){
   }
   function go(cb){                       // returns false when there is nothing to play, so the caller just starts
     if(!on || mode!=='idle') return mode==='dive';
-    dive={t0:performance.now(),lat:lat0,lon:lon0,cb}; mode='dive'; titleOff(); Sound.play('dive');
+    dive={t0:performance.now(),lat:lat0,lon:lon0,cb}; mode='dive'; titleOff(true); Sound.play('dive');
     return true;
   }
   window.addEventListener('resize',()=>{ if(on && mode!=='dive' && mode!=='out'){ size(); if(mode==='idle') titleOn(); } });
