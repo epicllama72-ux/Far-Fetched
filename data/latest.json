@@ -1,238 +1,182 @@
 {
- "date": "2026-10-30",
- "generated": "2026-10-30T02:04:21+00:00",
+ "date": "2026-10-31",
+ "generated": "2026-10-30T16:15:16+00:00",
  "call": [
   {
    "real": false,
-   "h": "Brewery in {} recalls 2,380 half-litre bottles after labels listed its lager as a soft drink",
-   "tell": "Recalls follow contamination, not a mislabelled drink type; regulators would just order new labels."
+   "h": "Reindeer herders in {} switch to e-bikes for the winter round-up after snowmobile fuel runs short",
+   "tell": "E-bikes would be useless in deep Arctic snow, so the detail is wrong for the region."
   },
   {
    "real": true,
-   "h": "Bus driver sacked on probation takes tribunal case after colleague says her fart was so foul she needed a shower in {}",
-   "lat": 50.7887,
-   "lng": 0.3063,
-   "place": "Brighton, England",
-   "src": "https://metro.co.uk/2026/10/16/bus-drivers-farts-bad-colleague-needed-take-a-shower-29715627/",
-   "published": "2026-10-16",
-   "clue": "an employment tribunal and an electric bus firm = Britain"
-  },
-  {
-   "real": true,
-   "h": "Police called to youth soccer game after boy, 3, scores 10 goals against 5-year-olds, family says, in {}",
-   "lat": 28.5978,
-   "lng": -81.351,
-   "place": "Winter Park, Florida",
-   "src": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNVWkxNnBHR2h1WHVJbHJtVXNiNng2aGx4a2xwOE44SWNtcVN1aVRDTFAydGNuMG1oRU5nU1ROM1pvdjgzSjUzZWcxWUhPOUtFM1hkUEFpSHZkUDk5MHNsR0FSb240dzVvd0VzbU5aNWo3UlFicU9WYUg2ekF4VmJoaW1QeGRWZi0zYXh0REtWUWZCV180eGRHQXV5R3JGdnNoSGMwOUl2cG50WFdZSTdIb09SRnlqSTV4bXRjMmQ3R3JDcXBDUE0xQzJGc1BsaWFJMXB2cFFiSzZBTm5lNlZQb0hkOTdOemFtMXJIZEhR?oc=5",
-   "published": "2026-10-27",
-   "clue": "'soccer' and youth leagues in parks = United States"
-  },
-  {
-   "real": true,
-   "h": "Driver with revoked licence parks and walks off at checkpoint; drone films him, 200,000 lira fine in {}",
-   "lat": 39.886,
-   "lng": 33.8279,
-   "place": "Kırıkkale, Turkey",
-   "src": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxONDdTZVpCbTBVekgzYW0yU3FpY1lydUQzcHdlUDBKLUhleWdxSlpjN3JtUEY0YmwyMzVMV3RiZk1lc2tDREFkLVVQT01FeWlfc3g0QmpHbi0yMjNhSGhib0M3MFAxWi1YemJlaGhDUFFpb2VZVGdiSFpBa2VPbnM4UkozLVlheUNGWDM0dmZmanNxRmpLRDlhaFBVdG1HRnB1TXl4eUxTLTRGNkhZNHFES054YVU1ZnU4TnJJWEFqWGctdTlIZWZJTHdZT3g0TUdsaldQOWctSGpoMWo2am5vVUU0Zlg4dw?oc=5",
+   "h": "Hi-vis YouTubers with selfie sticks guard a shark stuck in a harbour canal for a month, 1.6 million visit in {}",
+   "lat": 35.18,
+   "lng": 129.0752,
+   "place": "Busan, South Korea",
+   "src": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOZDBOM20tY01USzRneVZsNk1XVmZRN1BLc25KVklNSk50S3R5WDlidDktYy1wVHRHUVoxdGhLdEpFMS1xdXNoOVJxN1JlWWJxRkFfMTFOMHdGVnNfVkIza1d3Z3ZQNDJHUnpwSFhnMWdyMUlxVXQxY1N4Z2FFMWRGSkVISnRXeERCbDNvMzh5eUxFWWo0V2MtUnBsTWJ2MDJJOGx5OVl5SFJfd2JaeWc?oc=5",
    "published": "2026-10-21",
-   "clue": "Fine in lira = Turkey"
+   "clue": "oceans ministry and YouTuber vigilantes = South Korea",
+   "hint": "a huge port city with Haeundae beach, across a strait from Kyushu"
   },
   {
    "real": true,
-   "h": "Fifth-tier football club scheduled to play two games within 30 minutes, will field two squads in {}",
-   "lat": 55.8365,
-   "lng": -4.5123,
-   "place": "Johnstone, Scotland",
-   "src": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQVlVlZFBFQlA3WTR1dkdoSlJfdGJGZXk2Zl9ZcEpJMnBPeGpNV1BfVm95ZnE5T0ljV01NMk5Kc241aXZZb1VHR2V1V0g3UllMT05hMkZYajRnTndKTGdHNEs3RC0yUXpwTktqdGpDLVNaQVM4ZUdVc25kdWtoRHp5Ry16Q0dqSXgySDdKQlc2anpWVC1tcUhDbjFIQzVoMHVrYnZTcFVLbU1CZmM5LTV6MFRQQTRhZFpmZ3dZVdIBvwFBVV95cUxPWlR3YmR3U3VyMXBHZzAzbGNkS2xCekVfcVZyeDVDS3d2RFVYcnNpeS1EdmVnMnR5dHByZXNyUVhVM1VXRk9qSk4wdnFvNmJMSG5iLU83YnJvcDNfb2k2VTFuc0VFYXRSUVowcEJTZnlpQW93REV3bTR4TkhCRTFQMWtueURQSXc0RElBYnFud2VXVGI0Tl9fUWdjSjVQdkpKSC1IdHhqb29sTndOQkI3OWVEeWJOeGwtN0E2NVQ2WQ?oc=5",
-   "published": "2026-10-28",
-   "clue": "fifth-tier club in a Scottish cup draw"
+   "h": "Army officer suspended for leaving post 64 times in 10 months to 'feed his lizard', court upholds ban in {}",
+   "lat": 35.18,
+   "lng": 129.0752,
+   "place": "Busan, South Korea",
+   "src": "https://www.koreaherald.com/article/10904113",
+   "published": "2026-10-29",
+   "clue": "District court, Army, Korea Herald-style story = South Korea",
+   "hint": "a huge port city with Haeundae beach, across a strait from Kyushu"
   },
   {
    "real": true,
-   "h": "Fair Work Ombudsman posts guide on asking for unpaid leave to play GTA 6 in {}",
-   "lat": -35.2976,
-   "lng": 149.1013,
-   "place": "Canberra, Australia",
-   "src": "https://www.videogameschronicle.com/news/australian-government-advises-citizens-on-how-to-request-unpaid-leave-to-play-gta-6",
-   "published": "2026-10-17",
-   "clue": "Ombudsman and 'leave' wording = Commonwealth, Australia"
+   "h": "Man lies down in front of a car, then jumps up and drives it off when the driver gets out, crashing while police chase in {}",
+   "lat": 36.9864,
+   "lng": 35.3253,
+   "place": "Adana, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNd0EyTWV2WTZGYTZIV2hoSjZaOFlNVTdDaU1vWFFVa1pkN1h0VURpS3YyMFFBY3lMMjFRUU94cWRGYnItQ21xbldrMTNlbWRRQ0h6aE9iOUphZHgyUE9MVVB3VGpVMEpuQmItUjBDUG9ZVkZObnRrRU5tbjlaWFNxUXp5MlhobnpTYXdkYndXSXd4UmFaS0ROVDlUWnVYMGhSaEdSSVNZdXNMb0E?oc=5",
+   "published": "2026-10-26",
+   "clue": "police 'asayis' patrols and Turkish plates; hard to place",
+   "hint": "a big city on the Seyhan river in a cotton-growing plain"
+  },
+  {
+   "real": true,
+   "h": "Man on the run from provincial authorities takes his pet raccoon in for a rabies shot in {}",
+   "lat": 45.5017,
+   "lng": -73.5673,
+   "place": "Montreal, Quebec, Canada",
+   "src": "https://www.ctvnews.ca/montreal/article/montreal-man-on-the-run-from-authorities-takes-pet-raccoon-for-rabies-vaccination/",
+   "published": "2026-10-26",
+   "clue": "provincial authorities + raccoon rabies outbreak = Canada (Quebec)",
+   "hint": ""
   },
   {
    "real": false,
-   "h": "Monkey steals umpire's hat, halting village cricket match in {} for 27 minutes",
-   "tell": "Every element fits too neatly, like a joke setup with a precisely timed pause."
+   "h": "Pensioner in {} sells 1,860 jars of homemade chutney through an unattended honesty box at a bus shelter",
+   "tell": "The sales total is suspiciously tidy and an unattended box would not clear that many jars."
+  },
+  {
+   "real": true,
+   "h": "Zoo's viral pool photo of two capybaras was dad with the pregnant mum's sister; triplets born in {}",
+   "lat": 55.9424,
+   "lng": -3.267,
+   "place": "Edinburgh, Scotland",
+   "src": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxONVBPUGVUX1J6b2I3TEFLVjFFVWV1UTNIMFZKT0dScWdGQVV6LTVySnVUbEU0WWlDd3lxUS1NSzVtOWRKZTRjdTNhOEpnQjBQMGZBdzRhdWNoUkpJR1JCOWVQaTJEZVh3VGE2SVJXWjFBZEF1LXluNFRJbC0yaE1ZQmkxTEVUcTU3eXhaVlQ1V1laVGlKa2w1RHFpSTlCYkNtSVpQVElDemVsVXdFSVBUMS0zSVFySUlla0pFSTZvaUc1R1pRcGhORmc3aGU1WDV6b3BsQ2YyYXU2Zw?oc=5",
+   "published": "2026-10-29",
+   "clue": "Royal Zoological Society zoo; hard to place",
+   "hint": "a castle-topped capital built around an extinct volcano"
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "[] in Yerba Buena, Argentina, stumped finding pickup's engine number at roadside check; driver offers ChatGPT",
+   "h2": "Goiás, Brazil: [] goes viral with unusual test using cattle's drinking water",
    "ans": [
-    "police",
-    "officers",
-    "officer",
-    "cops",
-    "cop",
-    "policemen",
-    "policeman",
-    "agents"
+    "auctioneer",
+    "auctioneers",
+    "seller",
+    "saleswoman",
+    "host",
+    "presenter"
    ],
-   "place": "Yerba Buena, Tucumán, Argentina",
-   "src": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQclYweFFRQmlHblVTd0ZLTmphQzNTMzQ4WjhWOGEyZ0RsaU9OMUlla3lldzNudENEUlE4VExBdWtFcVZZc2kyZEltUExxV014RFZvLUZQcDNHeHRaNlVyU090Z0JoQzE0N1RwVzh6Vm14cU5mSlc4ZjJRNUZWMFpMWlhBN3pWNHBNZEZEVkhMYTNyalNRZ0JvT3dEN1d0OENvNWR3bmY3aXo1RDAwanFCSmRpc3FmUXlXeXIxUlY1NGVsVzFK0gHKAUFVX3lxTE9jVDVTUUl3a1FRQlYzUHY4ME1McEFqQURPQmlNcXgyY3BYRUR0Sld5OElKeTBlR0pWTS1mdkUwUko2NmRkcXk4TFNXN1NFcTh4dHJRR3VXQVYycGZ4LVhKMTA2TmFfdkUzNDhVbW5tWUpmWVlLSlZyRkNmZmF4VDBiTjQ0VEZYc2lDZVE4UnhQYmV4ZHBoMUZTYlZjakQzakNZNUpaRDdQeDRyMGhvWkxrVDNxeFFSQk84cml5Qk5iX2NwdGM5VmhGTmc?oc=5",
-   "published": "2026-10-26",
-   "vec": "F8kR/CDg9BsDu/3S3u0U6u8O4+0NNvYd2Y4HA+7if/PrwRsvH8oRN/M5G/Yq19kGJ+I="
-  },
-  {
-   "real": true,
-   "h2": "Sleman, Yogyakarta, Indonesia: [] to hold a motorbike for over 20 hours, last one standing wins it",
-   "ans": [
-    "contest",
-    "competition",
-    "challenge",
-    "race",
-    "game",
-    "tournament"
-   ],
-   "place": "Sleman, Yogyakarta, Indonesia",
-   "src": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNTi1qQWlLVUpHMGtJbmlEZ1hxRmRHclZ6ajZQVHgwM0FDZFhraXhHbjhsVnpYMVN1eVduOXFNT083NGhSOFpSU3NQWDRqUnJEWjlMT1lLeFFtWkVVMXQtMjNJM0RfaHRKb1duRS10RG9McHh3MGpFOW9tUktfQ1hiR0hqZzF0WmswVXJjQno0QUdSQ05BT25ubjFtTndxc3QwMTlMV0p2SFNFQ2lKNWtSUGJxbDd1MmFwdlFiYmQ2eXpLNVRqNVpWTXhnbmxzTWN1bVliSVRtT1Rjdw?oc=5",
-   "published": "2026-10-26",
-   "vec": "vQvZNvU1+SD9Gd7B9Rc42xIIz9gp+iQm/6fe7ej0fxmx2/b3BTDKufX9uwTc9gTmEAI="
-  },
-  {
-   "real": true,
-   "h2": "Kloetinge, Netherlands player sent off for Zidane-style [] against SC Cambuur",
-   "ans": [
-    "headbutt",
-    "headbutts",
-    "headbutting",
-    "headbutted",
-    "nut"
-   ],
-   "place": "Kloetinge, Netherlands",
-   "src": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPZEFrUk94VHVZN091WEdRRHQ1eXRzOUpoUk9kTWNrVHhVXy1EclhBX2VfRDRSQl8wcDgzdmdZa1A3TmZwaUdEMDNuYzV6WVlnTFpaeTQtVDFpSlJ5XzY4YUlnSEZQZ2NJYTNkR2lLYkVKWm9ZVzFFdzl1bjhJamVQX25Pc1k5UzFTWElFSWI4WFZNS1dvc0RLX0NwVFV3ODZObzZVcWRJSXREa2VrVC0xd0NONnhxOHVXbGVmNFRBN2FoVTh2?oc=5",
-   "published": "2026-10-27",
-   "vec": "Oua/AMI1PhpiLxgm6DlHy/3ogQvn9PXtIMkdNRoVvBbtCdhLOgbW3DgyBAgb0ksYQNg="
-  },
-  {
-   "real": true,
-   "h2": "Driver with revoked licence abandons car at checkpoint, [] films him, fined 200,000 lira in Kırıkkale, Turkey",
-   "ans": [
-    "drone",
-    "drones",
-    "uav",
-    "camera",
-    "quadcopter"
-   ],
-   "place": "Kırıkkale, Turkey",
-   "src": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxONDdTZVpCbTBVekgzYW0yU3FpY1lydUQzcHdlUDBKLUhleWdxSlpjN3JtUEY0YmwyMzVMV3RiZk1lc2tDREFkLVVQT01FeWlfc3g0QmpHbi0yMjNhSGhib0M3MFAxWi1YemJlaGhDUFFpb2VZVGdiSFpBa2VPbnM4UkozLVlheUNGWDM0dmZmanNxRmpLRDlhaFBVdG1HRnB1TXl4eUxTLTRGNkhZNHFES054YVU1ZnU4TnJJWEFqWGctdTlIZWZJTHdZT3g0TUdsaldQOWctSGpoMWo2am5vVUU0Zlg4dw?oc=5",
-   "published": "2026-10-21",
-   "vec": "Ro1pCskLCQg+/QvJA3upBtAnj0fnMhAOJKH0AzEPXp0KJj4CGYGCLf8nIdVF8khXnhg="
-  },
-  {
-   "real": true,
-   "h2": "Winter Park, Florida: police called on [], 3, after he scores 10 goals against 5-year-olds",
-   "ans": [
-    "boy",
-    "boys",
-    "child",
-    "kid",
-    "toddler",
-    "youngster",
-    "son",
-    "lad"
-   ],
-   "place": "Winter Park, Florida",
-   "src": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNVWkxNnBHR2h1WHVJbHJtVXNiNng2aGx4a2xwOE44SWNtcVN1aVRDTFAydGNuMG1oRU5nU1ROM1pvdjgzSjUzZWcxWUhPOUtFM1hkUEFpSHZkUDk5MHNsR0FSb240dzVvd0VzbU5aNWo3UlFicU9WYUg2ekF4VmJoaW1QeGRWZi0zYXh0REtWUWZCV180eGRHQXV5R3JGdnNoSGMwOUl2cG50WFdZSTdIb09SRnlqSTV4bXRjMmQ3R3JDcXBDUE0xQzJGc1BsaWFJMXB2cFFiSzZBTm5lNlZQb0hkOTdOemFtMXJIZEhR?oc=5",
-   "published": "2026-10-27",
-   "vec": "7Q304j8kxxAFFRMUBA417ccu8xfPUAMsFYnlBxTUf+fyFiMkEs0WvugP2vk93RO0EgE="
-  },
-  {
-   "real": true,
-   "h2": "Brighton, England: electric bus driver's [] so foul a colleague 'needed to take a shower'",
-   "ans": [
-    "fart",
-    "farts",
-    "flatulence",
-    "wind",
-    "gas",
-    "smell"
-   ],
-   "place": "Brighton, England",
-   "src": "https://metro.co.uk/2026/10/16/bus-drivers-farts-bad-colleague-needed-take-a-shower-29715627/",
+   "place": "Goiás, Brazil",
+   "src": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOMUlOVmo0OHo1cmJicDZ0dmd4RnVIWnczSDlMWHRKMmZRZXEtNlBjUzZSMUR5d3p3dmpWSzFSLWFxRWUwZk9sdlVWU1I3SkIwNkFrOXFaZUF3c0gyTnAwS1BWQmxwc2hOWEZoc1pJa3NGMDRUTEhZcTFHYUFub3BfMENpS1RMV3hPRGdCbDIyNDBmLVZtV2Z3UzJjZTRjR1NrRGNxdlVqdUR5WWFWNTRB?oc=5",
    "published": "2026-10-16",
-   "vec": "gQX+zrJiOuixScr8TgtIIhFvMSAY7v05ftfsRF3T4f8WWOlmMv4KMg4ytV4R2jkeIfQ="
+   "vec": "7cbxISTUk+kYO/EIDv1Z9Aj46sF/A64qE+f3584A0c8HOtfK6DEX9HIq1Ucaze0bNQw="
   },
   {
    "real": true,
-   "h2": "Luxury world [] meant to last 3.5 years stuck in Sihanoukville, Cambodia as fuel prices soar",
+   "h2": "Bugatti boss's Chiron stolen from open campus near Zagreb, Croatia after he left the [] inside",
    "ans": [
-    "cruise",
-    "cruises",
-    "voyage",
-    "trip",
-    "journey",
-    "sailing"
+    "keys",
+    "key",
+    "fob",
+    "keyfob",
+    "keycard"
    ],
-   "place": "Sihanoukville, Cambodia",
-   "src": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOSGxCbEMzSmpaeTg5TDdmejR5clkxSjk0RDZlQ2lDT2djM0tVdlFVNXZjNG9lM25iU18waXpVOVVZRlI0WnN3Z09rR3ZyZl9mY2ZHOFlhdkpDQXZGb2ZqNmUxZ0htSEJvaldGZjUwYzFWOUc5elE1U1JiQTE5ckZ3UGhBMEhYUXFHaGVzTVRiNFQ3SVVVVU9qbTVEa1djR2duelB3VmpWU2RUM3NFV19pUQ?oc=5",
-   "published": "2026-10-28",
-   "vec": "eDj2DrkAq/0w/fM0EUcbAuUmgeouJNAPGJ4OBDT9cj/wOCz2CPKl/R83Wubu6wfn4T0="
-  }
- ],
- "politics": [
-  {
-   "real": true,
-   "h": "Drawing of lots breaks tie in municipal election in {}",
-   "lat": 49.4605,
-   "lng": -120.508,
-   "place": "Princeton, British Columbia, Canada",
-   "src": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPMTBzSkJ4SlZIM3ZHYXpMZGJZbmh2Um5NZGNDYWVCUWtneVk3clpqeTRCbGY1TDRUVkRDdXh5b2VZM0EzdGttVGJTY3RBd0ZsRm9YN3ZuaXFSS0dJS25zRW1TZkJMTWIxcEgwZjY3clgyRXpSTTRmZXJ3bDdVZ2dONFJrMm5CM3dtUExtZ3hQMnliSlh3RHN3cnFuQTlEenNUcmVoQnVQNHI?oc=5",
-   "published": "2026-10-27",
-   "clue": "municipal election + drawing of lots = Canadian local tiebreak",
-   "cat": "pol"
+   "place": "Sveta Nedelja, Croatia",
+   "src": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQSUdoa2ZEYm8zbGxTTXhUWERncUJ4Sk9pMmZvYzdkUmQ4a29pS25VV0FFczBONnRGelFoMkpBVUdhUWZOVXdLS05UcE1CMjJfVGs3SnhxOU1QLV9yV2Nqa3N6UlN6cThQOHpKVHNYR1pYYnIzbThZU2NIYnljeVZHU1hpTkRCNzFmQ1VpNWdNRzhFU2pET1J0ck82MHZPeUd1RjVoQkdfdFZ5d3QxZW9CUEdBZWdSZmNWR2FzQUd2SDNiVW9CTnJGQnJiVjc5NHFxTjZYSnhvOGluSDFBQUEyOV9ZcVpGZ9IB6wFBVV95cUxNb3JuR2lUQlpyR3hBOXBGQ3ViRk1IQ2l3TS1tQ0dMVWRuajMtckdqMTJzZ21RRk1DTTk5WlUwVjJsZ0dHa1p3T2NVbHJ4dEdhZDZoU0ZzOWVMbWlDYzJkZ0VrRUhOV0pIcGRvZHg3UXpOc3ItYVJtMFpzOGJzZFZJcTNyVXVxNWFTMHRycVhpSlpZdGJqNDFGS0dlaWJiMm5rX0xYQldLcWc1Z3NLb1BlWmhwbG1RNXltcERpS2lnWlhRczZrOEVTajMxQjdHT2lQOVV1d3luaFNCQ1dOdUhLblN0LWlQUWdTOG53?oc=5",
+   "published": "2026-10-30",
+   "vec": "/govHxv09xYgBAAqFiLnB+vKJrv5/vYRFfLh7hG5f+wD+T4lJ9UC+QkX/v/nByK5/OY="
   },
   {
    "real": true,
-   "h": "Woman named honorary 'mayor' of {} says neighbours helped her after a fire",
-   "lat": 28.0857,
-   "lng": -82.7569,
-   "place": "Palm Harbor, Florida, USA",
-   "src": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPOHJWcVFxRDVPUUZqMkZOWExZUHFtMjQ5Q2hmZlktVy1pcl9UZWgzV3RUdHJxSnh5ejdIZlFrNGR3V0pMQkpELXljaF9Nb2kxZy05STBwSTVDS3RMc1FQQlhSbWpZSm95WXh3ME9iNlc5SkhGMHdQVkdzNXNOVGtaRDJEWTA4ZTZQSGFQcVBxWnQ3MHVsTUhWNFlvNnV1dGRLN1NZWjlhNmR0ZlVXdFAxT29ndXFQYjlwQ2c?oc=5",
-   "published": "2026-10-18",
-   "clue": "honorary mayor of an unincorporated community = Florida, USA",
-   "cat": "pol"
-  },
-  {
-   "real": false,
-   "h": "Mayor of {} signs bylaw moving council meetings to Tuesdays after a week of rain closed the hall",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "Two favorites in {} council vacancy race face unusual challenge: keeping voters from mixing them up",
-   "lat": 39.7392,
-   "lng": -104.9849,
-   "place": "Denver, Colorado, US",
-   "src": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQamlMVjV4ak1TR09ja0ZmMmVyQ1pNZTkzcHJXd3JBNV9ZQ0FPY2kyT3FISWFRT3p4cTB6QVpTT2VVd3VtVDlOTlJ3dDNmV2JzSW1ncUotQjZzRnpMejNxenZ1T1RqS1Q0OHZaX3pseHdFVENkMnkxbl9VZm12UUVEXzhIX01odmxRMjRWdkt3?oc=5",
-   "published": "2026-10-15",
-   "clue": "council vacancy race to fill a seat = US city; mid-term special contest",
-   "cat": "pol"
+   "h2": "Administrative [] visits lane in Gilching, Bavaria after a neighbour reported a man parked on public ground for 38 years",
+   "ans": [
+    "judge",
+    "judges",
+    "magistrate",
+    "justice",
+    "court"
+   ],
+   "place": "Gilching, Germany",
+   "src": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNMnFKY2d1Nkl0LUk1MkliRnU4M3dMV2F0QU9KejVMRW4tQThWSER1aUQtUmpITTRTQVRMOTB0aWdtR1h4azFOcGpnMWMydzd0RFpTc0JlS0VkMjdrTTJqOW1fbmpqQjQxeWN0VFJKTTFQbXlpbDJONlIxVEduZkFkb0VRV1IyN1NkTDJNTVdNWGJtRnQ5UWRQT2hZNnJLVC1ZU3piUE5hWFhHZVpSMU0xMGEwSjF4RkxQTjBMTHlzQjNsRmR6QjBrN3JDX2ZRVmxyVGstN21rbE9mQXJDcWVv?oc=5",
+   "published": "2026-10-29",
+   "vec": "69rZBTQHGjMD9eoY5/Q/+vm9CtUcIf4K54EK+MjjSrDjxxfSNvgY+fZREQHfAOXiDTA="
   },
   {
    "real": true,
-   "h": "Unusual names and details appear in electoral roll for state council polls; commission blames software error in {}",
-   "lat": 26.8381,
-   "lng": 80.9346,
-   "place": "Lucknow, Uttar Pradesh, India",
-   "src": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQSDFramU1T3FZWXRwdVRGZ29IQlNwc2xQdHlsZmdtSWJFaUJBRmE3ekFTa1dDZVpkX0o4S3laREVvcURJRElHX3VsMElCVUZqdlVyZzMyVWVYTHFwYzJNMVh0SERiMHQ1dnpSZEtveGNVa0NNSW1UMHR0aXVXYTJhSHVLTHRCTElnRS1xUDlWaUtwQXp6ZmVZYUJSSE9oQkhhYVFRMG5hcjRZMFZvRzBoVUx4LW9jNElMNWpyWi1XS1BNRDFrSzJ2OUVYVmtRMUZMb3Zvb3dNTU1WUWdpcy05X3VLWm5FeU9oYkNtaGVYYi00SlhOV3pEZdIB_wFBVV95cUxQZTFSVG1YQWRKNF92NnVkc3g4WDR6SExPVVlYY2V5TDlyNVI2VTJmbW15Mmlwd1Q5d2hrTFROZXVtX2JBa1Jhc3VjQ1BKdTlGcENTZ012Q1Q5SXJCRVNLTkM2b2wxQUg5d18weGVZTTZwOTEtYWtyM0lVbS1Rcnl4T3lFUUNHdDBnRUhhSGRMVTFXd2EwR01XdTdmenpSSlpJUE13YUlma3VRT042OWNONG8xNHdOcUYzWFA2UDk1VFgzdFBERXJKMldPZXV4anJCSGtWbU9Sck5QcU5IMGdYdzdwRVF0WVNicG5VanN4MlpqME4wODBZOUd1SGQ5ZnM?oc=5",
-   "published": "2026-10-23",
-   "clue": "MLC polls + ECI = India's state legislative council elections",
-   "cat": "pol"
+   "h2": "Tunja, Colombia: Boyacá Chicó allegedly charges visiting [] for press boxes at empty-stadium match",
+   "ans": [
+    "journalists",
+    "journalist",
+    "reporters",
+    "reporter",
+    "media",
+    "writers"
+   ],
+   "place": "Tunja, Colombia",
+   "src": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPOENOM3ctYkVMaWJ6MjgtWDNTdVdNclFMVXlSaG4yQzQ4LXZHLV9WU3BWejBEd09PMlZKRnlybVVQS1NZUmhsR2FEVnh1UDdxNHY2alUxd3g1a2trOWo1aldpcDZNY1MzWDIxWUF1MXRaZTBIZlhPQ2ZLV0hUZThieUZGVnFwQTk3VFR6QU91X01SbGNDNTY2dUdmZDBEUTR2cDdMZjcwVkNONXpkTW5tYkUtSTPSAbQBQVVfeXFMUDVULS00S29keVJsb080czBGRnk4MTY4MVJWSVB5dnI2SE9KRUlKVjRUajgxdVhFYThyUEF2dnJaMWxGUXBRYkhXX3gtRDNndEpWcG9LbDNmbHhYV2c4V2pncVl6SDl2bmhodktnZHAxVE1rODk1T0FUalUwbU9vcE40bVNvTktDQXdncnNINTN6cGpGTjMwdVVOY2RZYVk1bGRpVW5iNHh1TUtpU3VnS0VHRG9z?oc=5",
+   "published": "2026-10-24",
+   "vec": "+QIb9/7L5Br34fLX/Ck62QXuD9ggZCMtDazz5cUQfwvsx9IIB9fSKRE0QQ8b0a0tAdo="
   },
   {
-   "real": false,
-   "h": "Candidate in {} wins a seat on 41 votes after rival's name was printed on the ballot twice",
-   "cat": "pol"
+   "real": true,
+   "h2": "Thief takes man's [] and car key at a supermarket, then returns to steal his new Peugeot in Plottier, Argentina",
+   "ans": [
+    "backpack",
+    "backpacks",
+    "bag",
+    "rucksack",
+    "knapsack",
+    "satchel"
+   ],
+   "place": "Plottier, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOQ2FHWGo2RGZLaFBaRW9aSndjMjFJZXVfOE5JOVhPak1uZ3dxbDVrcUtCUUhfaWo2bFUxX0t1NzNMY2o2Qkl1Zm5aTXpDMGItZlc5emN5NXVuWUM3TGJmcE9icG1RcnFHUHlMODJlTlp1bGhSRzN0cW5lRXUtTVZsbDhjRmdONUxuUmZLQ2tIVHBteEh4VExaV0ZfZGZ4dmlKZi1OdEY0Ynl3M0xHdDZSemI2NkhjOE4yaXRWSHUtWklpNkcyM0IzdW8yU3JzNk52WThqMU5VWmFiRlBn0gHiAUFVX3lxTE4wcnFnZ1BqbXd3V0pSNUZvLUhDb08ySXJIOWh5bFdFdkR6QnZTZ3JpLXhIVU9BMXhrMjA1VzVBYzBra0NxemF2RlVhN19xQjNzWHpuenNWTjNYNHpyRHlsQngzNGZGSl9nb2oxMFdtczktZERJMXlJR01FSG90b2w0RkU3ZUQ3Y0RaV0NDcTlMM2FBY3hpR2FNbmpLa2lsbW9CZEdId0V5RHNlbXBVZXUwOXFuWFhXM2JuZlRBWVR0M2tZRzhTbURiUjh1ZjcteEFBM0RhR2hRVGowa18weF9FcUE?oc=5",
+   "published": "2026-10-29",
+   "vec": "Eg8/vy8P5MZX4OntACYWB6RX998HKgP+8azlbVO/CSbWLEN/JR8BCTsH/B4vyDf9KMU="
+  },
+  {
+   "real": true,
+   "h2": "Officers caught up in bizarre chase with an [] in California",
+   "ans": [
+    "emu",
+    "emus",
+    "bird",
+    "birds"
+   ],
+   "place": "California, USA",
+   "src": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNREVVYU5Kb1JmQkdONG5EQ2psb0lwM25WNDVTUU1LLXZ5VmM1aFNlZnYwMklIQTQ5VTRyOWJaV2ZiOG5UX0ljeHhqSzYtU2xzQS1uWGljTFdhbWJRdVJ5QlI2WllhUEdoUFh5UFZuVWJvSnlzSFBlbDZvb2IxbTZDTFZtRkhKdnJLcXc?oc=5",
+   "published": "2026-10-19",
+   "vec": "EgnfybI19eT1wUQRDz/3WFAn1ewDgdJZ7+8qGe0RNj/dOP6rHMb769WlKgYPGDtMAhI="
+  },
+  {
+   "real": true,
+   "h2": "Sign [] strikes in Petkum district of Emden, Germany: 'Reformation City of Europe' lettering stolen",
+   "ans": [
+    "thief",
+    "thieves",
+    "robber",
+    "burglar",
+    "crook",
+    "stealer",
+    "vandal"
+   ],
+   "place": "Emden, Germany",
+   "src": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNTlhlb1ktYS1iY2otM1ZnSUt2VF8zZnpkRzhmV05EMnhNZFA2aG5VRzhrZnc4akQ0YXpUcUU0OF83ckVCby1sLUR5aEhPYWdlZ1B0alpVZ1B2TE5MeThSbi1Ld3JTQ3RULTBjTTJmaVBfVzEzZ2dkTmdhS0J6ZmdXT0phX0todXhhWFJZclAzUlc?oc=5",
+   "published": "2026-10-29",
+   "vec": "+fH+4UMO+xwZOQFP8Q9AtiNBv/cK8OdJBYHD8krSEcvfHiE09s4d0x8u/xIouBKzYNw="
   }
  ]
 }

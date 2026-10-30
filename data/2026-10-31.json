@@ -1,0 +1,182 @@
+{
+ "date": "2026-10-31",
+ "generated": "2026-10-30T16:15:16+00:00",
+ "call": [
+  {
+   "real": false,
+   "h": "Reindeer herders in {} switch to e-bikes for the winter round-up after snowmobile fuel runs short",
+   "tell": "E-bikes would be useless in deep Arctic snow, so the detail is wrong for the region."
+  },
+  {
+   "real": true,
+   "h": "Hi-vis YouTubers with selfie sticks guard a shark stuck in a harbour canal for a month, 1.6 million visit in {}",
+   "lat": 35.18,
+   "lng": 129.0752,
+   "place": "Busan, South Korea",
+   "src": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOZDBOM20tY01USzRneVZsNk1XVmZRN1BLc25KVklNSk50S3R5WDlidDktYy1wVHRHUVoxdGhLdEpFMS1xdXNoOVJxN1JlWWJxRkFfMTFOMHdGVnNfVkIza1d3Z3ZQNDJHUnpwSFhnMWdyMUlxVXQxY1N4Z2FFMWRGSkVISnRXeERCbDNvMzh5eUxFWWo0V2MtUnBsTWJ2MDJJOGx5OVl5SFJfd2JaeWc?oc=5",
+   "published": "2026-10-21",
+   "clue": "oceans ministry and YouTuber vigilantes = South Korea",
+   "hint": "a huge port city with Haeundae beach, across a strait from Kyushu"
+  },
+  {
+   "real": true,
+   "h": "Army officer suspended for leaving post 64 times in 10 months to 'feed his lizard', court upholds ban in {}",
+   "lat": 35.18,
+   "lng": 129.0752,
+   "place": "Busan, South Korea",
+   "src": "https://www.koreaherald.com/article/10904113",
+   "published": "2026-10-29",
+   "clue": "District court, Army, Korea Herald-style story = South Korea",
+   "hint": "a huge port city with Haeundae beach, across a strait from Kyushu"
+  },
+  {
+   "real": true,
+   "h": "Man lies down in front of a car, then jumps up and drives it off when the driver gets out, crashing while police chase in {}",
+   "lat": 36.9864,
+   "lng": 35.3253,
+   "place": "Adana, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNd0EyTWV2WTZGYTZIV2hoSjZaOFlNVTdDaU1vWFFVa1pkN1h0VURpS3YyMFFBY3lMMjFRUU94cWRGYnItQ21xbldrMTNlbWRRQ0h6aE9iOUphZHgyUE9MVVB3VGpVMEpuQmItUjBDUG9ZVkZObnRrRU5tbjlaWFNxUXp5MlhobnpTYXdkYndXSXd4UmFaS0ROVDlUWnVYMGhSaEdSSVNZdXNMb0E?oc=5",
+   "published": "2026-10-26",
+   "clue": "police 'asayis' patrols and Turkish plates; hard to place",
+   "hint": "a big city on the Seyhan river in a cotton-growing plain"
+  },
+  {
+   "real": true,
+   "h": "Man on the run from provincial authorities takes his pet raccoon in for a rabies shot in {}",
+   "lat": 45.5017,
+   "lng": -73.5673,
+   "place": "Montreal, Quebec, Canada",
+   "src": "https://www.ctvnews.ca/montreal/article/montreal-man-on-the-run-from-authorities-takes-pet-raccoon-for-rabies-vaccination/",
+   "published": "2026-10-26",
+   "clue": "provincial authorities + raccoon rabies outbreak = Canada (Quebec)",
+   "hint": ""
+  },
+  {
+   "real": false,
+   "h": "Pensioner in {} sells 1,860 jars of homemade chutney through an unattended honesty box at a bus shelter",
+   "tell": "The sales total is suspiciously tidy and an unattended box would not clear that many jars."
+  },
+  {
+   "real": true,
+   "h": "Zoo's viral pool photo of two capybaras was dad with the pregnant mum's sister; triplets born in {}",
+   "lat": 55.9424,
+   "lng": -3.267,
+   "place": "Edinburgh, Scotland",
+   "src": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxONVBPUGVUX1J6b2I3TEFLVjFFVWV1UTNIMFZKT0dScWdGQVV6LTVySnVUbEU0WWlDd3lxUS1NSzVtOWRKZTRjdTNhOEpnQjBQMGZBdzRhdWNoUkpJR1JCOWVQaTJEZVh3VGE2SVJXWjFBZEF1LXluNFRJbC0yaE1ZQmkxTEVUcTU3eXhaVlQ1V1laVGlKa2w1RHFpSTlCYkNtSVpQVElDemVsVXdFSVBUMS0zSVFySUlla0pFSTZvaUc1R1pRcGhORmc3aGU1WDV6b3BsQ2YyYXU2Zw?oc=5",
+   "published": "2026-10-29",
+   "clue": "Royal Zoological Society zoo; hard to place",
+   "hint": "a castle-topped capital built around an extinct volcano"
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Goiás, Brazil: [] goes viral with unusual test using cattle's drinking water",
+   "ans": [
+    "auctioneer",
+    "auctioneers",
+    "seller",
+    "saleswoman",
+    "host",
+    "presenter"
+   ],
+   "place": "Goiás, Brazil",
+   "src": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOMUlOVmo0OHo1cmJicDZ0dmd4RnVIWnczSDlMWHRKMmZRZXEtNlBjUzZSMUR5d3p3dmpWSzFSLWFxRWUwZk9sdlVWU1I3SkIwNkFrOXFaZUF3c0gyTnAwS1BWQmxwc2hOWEZoc1pJa3NGMDRUTEhZcTFHYUFub3BfMENpS1RMV3hPRGdCbDIyNDBmLVZtV2Z3UzJjZTRjR1NrRGNxdlVqdUR5WWFWNTRB?oc=5",
+   "published": "2026-10-16",
+   "vec": "7cbxISTUk+kYO/EIDv1Z9Aj46sF/A64qE+f3584A0c8HOtfK6DEX9HIq1Ucaze0bNQw="
+  },
+  {
+   "real": true,
+   "h2": "Bugatti boss's Chiron stolen from open campus near Zagreb, Croatia after he left the [] inside",
+   "ans": [
+    "keys",
+    "key",
+    "fob",
+    "keyfob",
+    "keycard"
+   ],
+   "place": "Sveta Nedelja, Croatia",
+   "src": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQSUdoa2ZEYm8zbGxTTXhUWERncUJ4Sk9pMmZvYzdkUmQ4a29pS25VV0FFczBONnRGelFoMkpBVUdhUWZOVXdLS05UcE1CMjJfVGs3SnhxOU1QLV9yV2Nqa3N6UlN6cThQOHpKVHNYR1pYYnIzbThZU2NIYnljeVZHU1hpTkRCNzFmQ1VpNWdNRzhFU2pET1J0ck82MHZPeUd1RjVoQkdfdFZ5d3QxZW9CUEdBZWdSZmNWR2FzQUd2SDNiVW9CTnJGQnJiVjc5NHFxTjZYSnhvOGluSDFBQUEyOV9ZcVpGZ9IB6wFBVV95cUxNb3JuR2lUQlpyR3hBOXBGQ3ViRk1IQ2l3TS1tQ0dMVWRuajMtckdqMTJzZ21RRk1DTTk5WlUwVjJsZ0dHa1p3T2NVbHJ4dEdhZDZoU0ZzOWVMbWlDYzJkZ0VrRUhOV0pIcGRvZHg3UXpOc3ItYVJtMFpzOGJzZFZJcTNyVXVxNWFTMHRycVhpSlpZdGJqNDFGS0dlaWJiMm5rX0xYQldLcWc1Z3NLb1BlWmhwbG1RNXltcERpS2lnWlhRczZrOEVTajMxQjdHT2lQOVV1d3luaFNCQ1dOdUhLblN0LWlQUWdTOG53?oc=5",
+   "published": "2026-10-30",
+   "vec": "/govHxv09xYgBAAqFiLnB+vKJrv5/vYRFfLh7hG5f+wD+T4lJ9UC+QkX/v/nByK5/OY="
+  },
+  {
+   "real": true,
+   "h2": "Administrative [] visits lane in Gilching, Bavaria after a neighbour reported a man parked on public ground for 38 years",
+   "ans": [
+    "judge",
+    "judges",
+    "magistrate",
+    "justice",
+    "court"
+   ],
+   "place": "Gilching, Germany",
+   "src": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNMnFKY2d1Nkl0LUk1MkliRnU4M3dMV2F0QU9KejVMRW4tQThWSER1aUQtUmpITTRTQVRMOTB0aWdtR1h4azFOcGpnMWMydzd0RFpTc0JlS0VkMjdrTTJqOW1fbmpqQjQxeWN0VFJKTTFQbXlpbDJONlIxVEduZkFkb0VRV1IyN1NkTDJNTVdNWGJtRnQ5UWRQT2hZNnJLVC1ZU3piUE5hWFhHZVpSMU0xMGEwSjF4RkxQTjBMTHlzQjNsRmR6QjBrN3JDX2ZRVmxyVGstN21rbE9mQXJDcWVv?oc=5",
+   "published": "2026-10-29",
+   "vec": "69rZBTQHGjMD9eoY5/Q/+vm9CtUcIf4K54EK+MjjSrDjxxfSNvgY+fZREQHfAOXiDTA="
+  },
+  {
+   "real": true,
+   "h2": "Tunja, Colombia: Boyacá Chicó allegedly charges visiting [] for press boxes at empty-stadium match",
+   "ans": [
+    "journalists",
+    "journalist",
+    "reporters",
+    "reporter",
+    "media",
+    "writers"
+   ],
+   "place": "Tunja, Colombia",
+   "src": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPOENOM3ctYkVMaWJ6MjgtWDNTdVdNclFMVXlSaG4yQzQ4LXZHLV9WU3BWejBEd09PMlZKRnlybVVQS1NZUmhsR2FEVnh1UDdxNHY2alUxd3g1a2trOWo1aldpcDZNY1MzWDIxWUF1MXRaZTBIZlhPQ2ZLV0hUZThieUZGVnFwQTk3VFR6QU91X01SbGNDNTY2dUdmZDBEUTR2cDdMZjcwVkNONXpkTW5tYkUtSTPSAbQBQVVfeXFMUDVULS00S29keVJsb080czBGRnk4MTY4MVJWSVB5dnI2SE9KRUlKVjRUajgxdVhFYThyUEF2dnJaMWxGUXBRYkhXX3gtRDNndEpWcG9LbDNmbHhYV2c4V2pncVl6SDl2bmhodktnZHAxVE1rODk1T0FUalUwbU9vcE40bVNvTktDQXdncnNINTN6cGpGTjMwdVVOY2RZYVk1bGRpVW5iNHh1TUtpU3VnS0VHRG9z?oc=5",
+   "published": "2026-10-24",
+   "vec": "+QIb9/7L5Br34fLX/Ck62QXuD9ggZCMtDazz5cUQfwvsx9IIB9fSKRE0QQ8b0a0tAdo="
+  },
+  {
+   "real": true,
+   "h2": "Thief takes man's [] and car key at a supermarket, then returns to steal his new Peugeot in Plottier, Argentina",
+   "ans": [
+    "backpack",
+    "backpacks",
+    "bag",
+    "rucksack",
+    "knapsack",
+    "satchel"
+   ],
+   "place": "Plottier, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOQ2FHWGo2RGZLaFBaRW9aSndjMjFJZXVfOE5JOVhPak1uZ3dxbDVrcUtCUUhfaWo2bFUxX0t1NzNMY2o2Qkl1Zm5aTXpDMGItZlc5emN5NXVuWUM3TGJmcE9icG1RcnFHUHlMODJlTlp1bGhSRzN0cW5lRXUtTVZsbDhjRmdONUxuUmZLQ2tIVHBteEh4VExaV0ZfZGZ4dmlKZi1OdEY0Ynl3M0xHdDZSemI2NkhjOE4yaXRWSHUtWklpNkcyM0IzdW8yU3JzNk52WThqMU5VWmFiRlBn0gHiAUFVX3lxTE4wcnFnZ1BqbXd3V0pSNUZvLUhDb08ySXJIOWh5bFdFdkR6QnZTZ3JpLXhIVU9BMXhrMjA1VzVBYzBra0NxemF2RlVhN19xQjNzWHpuenNWTjNYNHpyRHlsQngzNGZGSl9nb2oxMFdtczktZERJMXlJR01FSG90b2w0RkU3ZUQ3Y0RaV0NDcTlMM2FBY3hpR2FNbmpLa2lsbW9CZEdId0V5RHNlbXBVZXUwOXFuWFhXM2JuZlRBWVR0M2tZRzhTbURiUjh1ZjcteEFBM0RhR2hRVGowa18weF9FcUE?oc=5",
+   "published": "2026-10-29",
+   "vec": "Eg8/vy8P5MZX4OntACYWB6RX998HKgP+8azlbVO/CSbWLEN/JR8BCTsH/B4vyDf9KMU="
+  },
+  {
+   "real": true,
+   "h2": "Officers caught up in bizarre chase with an [] in California",
+   "ans": [
+    "emu",
+    "emus",
+    "bird",
+    "birds"
+   ],
+   "place": "California, USA",
+   "src": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNREVVYU5Kb1JmQkdONG5EQ2psb0lwM25WNDVTUU1LLXZ5VmM1aFNlZnYwMklIQTQ5VTRyOWJaV2ZiOG5UX0ljeHhqSzYtU2xzQS1uWGljTFdhbWJRdVJ5QlI2WllhUEdoUFh5UFZuVWJvSnlzSFBlbDZvb2IxbTZDTFZtRkhKdnJLcXc?oc=5",
+   "published": "2026-10-19",
+   "vec": "EgnfybI19eT1wUQRDz/3WFAn1ewDgdJZ7+8qGe0RNj/dOP6rHMb769WlKgYPGDtMAhI="
+  },
+  {
+   "real": true,
+   "h2": "Sign [] strikes in Petkum district of Emden, Germany: 'Reformation City of Europe' lettering stolen",
+   "ans": [
+    "thief",
+    "thieves",
+    "robber",
+    "burglar",
+    "crook",
+    "stealer",
+    "vandal"
+   ],
+   "place": "Emden, Germany",
+   "src": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNTlhlb1ktYS1iY2otM1ZnSUt2VF8zZnpkRzhmV05EMnhNZFA2aG5VRzhrZnc4akQ0YXpUcUU0OF83ckVCby1sLUR5aEhPYWdlZ1B0alpVZ1B2TE5MeThSbi1Ld3JTQ3RULTBjTTJmaVBfVzEzZ2dkTmdhS0J6ZmdXT0phX0todXhhWFJZclAzUlc?oc=5",
+   "published": "2026-10-29",
+   "vec": "+fH+4UMO+xwZOQFP8Q9AtiNBv/cK8OdJBYHD8krSEcvfHiE09s4d0x8u/xIouBKzYNw="
+  }
+ ]
+}
