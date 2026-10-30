@@ -3445,10 +3445,12 @@ function renderCrowd(rows){
 }
 function answersOf(results){ return results.map(x=>[x.callOk?1:0, x.dist==null?null:Math.round(x.dist)]); }
 
+/* the zone his jaw reached, in plain words for the share text: "bedrock", "magma", "core"... */
+function shareZone(z){ return z==='NOWHERE' ? 'jaw shut' : String(z||'').toLowerCase().replace(/^the /,''); }
 async function share(){
   const label = (S.mode==='daily' ? 'Far-Fetched #'+dayNumber() : S.mode==='back' ? 'Far-Fetched #'+dayNumber()+' (back issue)' : 'Far-Fetched (practice)')+(S.kind!=='call'?' · '+modeName(S.kind):'');
   const text = label+' · 🌎 '+(S.finalM!=null?S.finalM.toFixed(1):'0.0')+' m\n'
-    + S.shareLines.join('\n')+'  '+fmtPts(S.total)+'\n'
+    + S.shareLines.join('\n')+'  '+shareZone(S.finalZone)+'\n'
     + shareUrl();                      // the link also carries the friend challenge
   const btn=$('btnShare');
   try{
