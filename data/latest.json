@@ -8,15 +8,15 @@
    "tell": "E-bikes would be useless in deep Arctic snow, so the detail is wrong for the region."
   },
   {
-   "real": true,
-   "h": "Hi-vis YouTubers with selfie sticks guard a shark stuck in a harbour canal for a month, 1.6 million visit in {}",
-   "lat": 35.18,
-   "lng": 129.0752,
-   "place": "Busan, South Korea",
-   "src": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOZDBOM20tY01USzRneVZsNk1XVmZRN1BLc25KVklNSk50S3R5WDlidDktYy1wVHRHUVoxdGhLdEpFMS1xdXNoOVJxN1JlWWJxRkFfMTFOMHdGVnNfVkIza1d3Z3ZQNDJHUnpwSFhnMWdyMUlxVXQxY1N4Z2FFMWRGSkVISnRXeERCbDNvMzh5eUxFWWo0V2MtUnBsTWJ2MDJJOGx5OVl5SFJfd2JaeWc?oc=5",
+   "h": "New Costco could be built on historical site over 3,000 years old in {}",
+   "lat": 32.233,
+   "lng": -111.04,
+   "place": "Northwest Tucson, Arizona",
+   "src": "https://www.azpm.org/indigenous/2026-10-21/new-costco-could-be-built-on-historical-site-thats-over-3-000-years-old",
    "published": "2026-10-21",
-   "clue": "oceans ministry and YouTuber vigilantes = South Korea",
-   "hint": "a huge port city with Haeundae beach, across a strait from Kyushu"
+   "clue": "Pima County land sale near I-10 in the Sonoran desert, Tucson",
+   "hint": "a desert city ringed by mountains and saguaro cactus forests",
+   "real": true
   },
   {
    "real": true,
@@ -49,7 +49,7 @@
    "src": "https://www.ctvnews.ca/montreal/article/montreal-man-on-the-run-from-authorities-takes-pet-raccoon-for-rabies-vaccination/",
    "published": "2026-10-26",
    "clue": "provincial authorities + raccoon rabies outbreak = Canada (Quebec)",
-   "hint": ""
+   "hint": "a big island city in the St. Lawrence River"
   },
   {
    "real": false,
