@@ -1236,9 +1236,11 @@ def main():
 
     # Back-fill from every earlier edition on file, stamped with that edition's own day (never today's).
     ed_day = {}
+    from zoneinfo import ZoneInfo
+    et_today = dt.datetime.now(dt.timezone.utc).astimezone(ZoneInfo("America/New_York")).date().isoformat()
     for fn in sorted(os.listdir(DATA)):
         m = re.fullmatch(r"(\d{4}-\d{2}-\d{2})\.json", fn)
-        if not m or m.group(1) >= day:
+        if not m or m.group(1) >= min(day, et_today):      # an edition joins the Practice pool only once its day is over
             continue
         try:
             d = json.load(open(os.path.join(DATA, fn)))
@@ -1263,13 +1265,8 @@ def main():
         if x.get("day", "") >= day and x.get("h") not in todays_fake:
             x["day"] = yesterday
 
-    for r in call_real + blank:
-        add_real(r, day)
-    for r in result.get("politics", []):
-        if r.get("real"):
-            add_real(r, day, True)
-    for f in [c for c in call if not c["real"]] + [c for c in result.get("politics", []) if not c["real"]]:
-        add_fake(f, day)
+    # The new edition's own stories are NOT added here: data/practice.json is public, and a Daily Dig story must not appear anywhere
+    # else before its day. The next build back-fills them (above) once their day has passed.
     arch["real"], arch["fake"] = arch["real"][-3000:], arch["fake"][-800:]
     with open(arch_path, "w") as f:
         json.dump(arch, f, ensure_ascii=False, separators=(",", ":"))
