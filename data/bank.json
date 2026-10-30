@@ -164,6 +164,25 @@
    "published": "",
    "banked": "2026-10-30",
    "rules": 2
+  },
+  {
+   "h": "New Costco could be built on historical site over 3,000 years old in {}",
+   "place": "Northwest Tucson, Arizona",
+   "geocode": "Sunset Road and Interstate 10, Tucson, Arizona",
+   "lat": 32.233,
+   "lng": -111.04,
+   "country": "United States",
+   "cc": "US",
+   "clue": "Pima County land sale near I-10 in the Sonoran desert, Tucson",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 2,
+   "unbelievable": 3,
+   "theme": "odd news",
+   "src": "https://www.azpm.org/indigenous/2026-10-21/new-costco-could-be-built-on-historical-site-thats-over-3-000-years-old",
+   "published": "2026-10-21",
+   "banked": "2026-10-30",
+   "rules": 2
   }
  ],
  "fake": [
