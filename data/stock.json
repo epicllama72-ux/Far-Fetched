@@ -120,32 +120,6 @@
  ],
  "blank": [
   {
-   "h": "Luxury cruise meant to sail around the world for 3.5 years stuck in port as fuel prices soar in {}",
-   "h2": "Luxury world [] meant to last 3.5 years stuck in Sihanoukville, Cambodia as fuel prices soar",
-   "ans": [
-    "cruise",
-    "cruises",
-    "voyage",
-    "trip",
-    "journey",
-    "sailing"
-   ],
-   "place": "Sihanoukville, Cambodia",
-   "src": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOSGxCbEMzSmpaeTg5TDdmejR5clkxSjk0RDZlQ2lDT2djM0tVdlFVNXZjNG9lM25iU18waXpVOVVZRlI0WnN3Z09rR3ZyZl9mY2ZHOFlhdkpDQXZGb2ZqNmUxZ0htSEJvaldGZjUwYzFWOUc5elE1U1JiQTE5ckZ3UGhBMEhYUXFHaGVzTVRiNFQ3SVVVVU9qbTVEa1djR2duelB3VmpWU2RUM3NFV19pUQ?oc=5",
-   "published": "2026-10-28",
-   "clue": "tropical port city in Southeast Asia",
-   "country": "Cambodia",
-   "cc": "KH",
-   "clue_strength": 1,
-   "unbelievable": 3,
-   "theme": "cruise",
-   "lat": 10.622,
-   "lng": 103.5223,
-   "banked": "2026-10-28",
-   "rules": 2,
-   "vec": "eDj2DrkAq/0w/fM0EUcbAuUmgeouJNAPGJ4OBDT9cj/wOCz2CPKl/R83Wubu6wfn4T0="
-  },
-  {
    "h": "Officers caught up in bizarre chase with an emu in {}",
    "h2": "Officers caught up in bizarre chase with an [] in California",
    "ans": [
@@ -167,61 +141,6 @@
    "banked": "2026-10-28",
    "rules": 2,
    "vec": "EgnfybI19eT1wUQRDz/3WFAn1ewDgdJZ7+8qGe0RNj/dOP6rHMb769WlKgYPGDtMAhI="
-  },
-  {
-   "h": "Police stumped finding pickup's engine number at roadside check; driver offers to ask ChatGPT in {}",
-   "h2": "[] in Yerba Buena, Argentina, stumped finding pickup's engine number at roadside check; driver offers ChatGPT",
-   "ans": [
-    "police",
-    "officers",
-    "officer",
-    "cops",
-    "cop",
-    "policemen",
-    "policeman",
-    "agents"
-   ],
-   "place": "Yerba Buena, Tucumán, Argentina",
-   "src": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQclYweFFRQmlHblVTd0ZLTmphQzNTMzQ4WjhWOGEyZ0RsaU9OMUlla3lldzNudENEUlE4VExBdWtFcVZZc2kyZEltUExxV014RFZvLUZQcDNHeHRaNlVyU090Z0JoQzE0N1RwVzh6Vm14cU5mSlc4ZjJRNUZWMFpMWlhBN3pWNHBNZEZEVkhMYTNyalNRZ0JvT3dEN1d0OENvNWR3bmY3aXo1RDAwanFCSmRpc3FmUXlXeXIxUlY1NGVsVzFK0gHKAUFVX3lxTE9jVDVTUUl3a1FRQlYzUHY4ME1McEFqQURPQmlNcXgyY3BYRUR0Sld5OElKeTBlR0pWTS1mdkUwUko2NmRkcXk4TFNXN1NFcTh4dHJRR3VXQVYycGZ4LVhKMTA2TmFfdkUzNDhVbW5tWUpmWVlLSlZyRkNmZmF4VDBiTjQ0VEZYc2lDZVE4UnhQYmV4ZHBoMUZTYlZjakQzakNZNUpaRDdQeDRyMGhvWkxrVDNxeFFSQk84cml5Qk5iX2NwdGM5VmhGTmc?oc=5",
-   "published": "2026-10-26",
-   "clue": "Spanish-language video and provincial police = Latin America",
-   "country": "Argentina",
-   "cc": "AR",
-   "clue_strength": 1,
-   "unbelievable": 4,
-   "theme": "police",
-   "lat": -26.8122,
-   "lng": -65.2982,
-   "banked": "2026-10-28",
-   "rules": 2,
-   "vec": "F8kR/CDg9BsDu/3S3u0U6u8O4+0NNvYd2Y4HA+7if/PrwRsvH8oRN/M5G/Yq19kGJ+I="
-  },
-  {
-   "h": "National workplace ombudsman posts guide on asking for unpaid leave to play GTA 6 in {}",
-   "h2": "Australia's Fair Work Ombudsman advises citizens how to request unpaid [] to play GTA 6",
-   "ans": [
-    "leave",
-    "holiday",
-    "holidays",
-    "vacation",
-    "time",
-    "break",
-    "absence",
-    "days"
-   ],
-   "place": "Canberra, Australia",
-   "src": "https://www.videogameschronicle.com/news/australian-government-advises-citizens-on-how-to-request-unpaid-leave-to-play-gta-6",
-   "published": "2026-10-17",
-   "clue": "Ombudsman and 'leave' wording = Commonwealth, Australia",
-   "country": "Australia",
-   "cc": "AU",
-   "clue_strength": 1,
-   "unbelievable": 3,
-   "theme": "gaming",
-   "lat": -35.2976,
-   "lng": 149.1013,
-   "banked": "2026-10-28",
-   "rules": 2
   },
   {
    "h": "Players patch hole in pitch with bricks and cement mid-match in regional league in {}",
@@ -277,31 +196,6 @@
    "rules": 2
   },
   {
-   "h": "Driver with revoked licence parks and walks off at checkpoint; drone films him, 200,000 lira fine in {}",
-   "h2": "Driver with revoked licence abandons car at checkpoint, [] films him, fined 200,000 lira in Kırıkkale, Turkey",
-   "ans": [
-    "drone",
-    "drones",
-    "uav",
-    "camera",
-    "quadcopter"
-   ],
-   "place": "Kırıkkale, Turkey",
-   "src": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxONDdTZVpCbTBVekgzYW0yU3FpY1lydUQzcHdlUDBKLUhleWdxSlpjN3JtUEY0YmwyMzVMV3RiZk1lc2tDREFkLVVQT01FeWlfc3g0QmpHbi0yMjNhSGhib0M3MFAxWi1YemJlaGhDUFFpb2VZVGdiSFpBa2VPbnM4UkozLVlheUNGWDM0dmZmanNxRmpLRDlhaFBVdG1HRnB1TXl4eUxTLTRGNkhZNHFES054YVU1ZnU4TnJJWEFqWGctdTlIZWZJTHdZT3g0TUdsaldQOWctSGpoMWo2am5vVUU0Zlg4dw?oc=5",
-   "published": "2026-10-21",
-   "clue": "Fine in lira = Turkey",
-   "country": "Turkey",
-   "cc": "TR",
-   "clue_strength": 2,
-   "unbelievable": 2,
-   "theme": "drone",
-   "lat": 39.886,
-   "lng": 33.8279,
-   "banked": "2026-10-28",
-   "rules": 2,
-   "vec": "Ro1pCskLCQg+/QvJA3upBtAnj0fnMhAOJKH0AzEPXp0KJj4CGYGCLf8nIdVF8khXnhg="
-  },
-  {
    "h": "Barber, 61, and wife arrested in the act over one cannabis plant on their home terrace in {}",
    "h2": "[], 61, and wife arrested over single cannabis plant on home terrace in Aira, Kagoshima, Japan",
    "ans": [
@@ -325,86 +219,6 @@
    "banked": "2026-10-28",
    "rules": 2,
    "vec": "gRfh9fUKh+/M5OQ/nt0j3N0RA8j6KcgKEcTr5TqtPvgQOkctEEA7RQI/5/b1IAe16yM="
-  },
-  {
-   "h": "Bus driver sacked on probation takes tribunal case after colleague says her fart was so foul she needed a shower in {}",
-   "h2": "Brighton, England: electric bus driver's [] so foul a colleague 'needed to take a shower'",
-   "ans": [
-    "fart",
-    "farts",
-    "flatulence",
-    "wind",
-    "gas",
-    "smell"
-   ],
-   "place": "Brighton, England",
-   "src": "https://metro.co.uk/2026/10/16/bus-drivers-farts-bad-colleague-needed-take-a-shower-29715627/",
-   "published": "2026-10-16",
-   "clue": "an employment tribunal and an electric bus firm = Britain",
-   "country": "United Kingdom",
-   "cc": "GB",
-   "clue_strength": 1,
-   "unbelievable": 4,
-   "theme": "tribunal",
-   "lat": 50.7887,
-   "lng": 0.3063,
-   "banked": "2026-10-28",
-   "rules": 2,
-   "vec": "gQX+zrJiOuixScr8TgtIIhFvMSAY7v05ftfsRF3T4f8WWOlmMv4KMg4ytV4R2jkeIfQ="
-  },
-  {
-   "h": "Contest where people hold a motorbike for over 20 hours ends with last one standing winning it in {}",
-   "h2": "Sleman, Yogyakarta, Indonesia: [] to hold a motorbike for over 20 hours, last one standing wins it",
-   "ans": [
-    "contest",
-    "competition",
-    "challenge",
-    "race",
-    "game",
-    "tournament"
-   ],
-   "place": "Sleman, Yogyakarta, Indonesia",
-   "src": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNTi1qQWlLVUpHMGtJbmlEZ1hxRmRHclZ6ajZQVHgwM0FDZFhraXhHbjhsVnpYMVN1eVduOXFNT083NGhSOFpSU3NQWDRqUnJEWjlMT1lLeFFtWkVVMXQtMjNJM0RfaHRKb1duRS10RG9McHh3MGpFOW9tUktfQ1hiR0hqZzF0WmswVXJjQno0QUdSQ05BT25ubjFtTndxc3QwMTlMV0p2SFNFQ2lKNWtSUGJxbDd1MmFwdlFiYmQ2eXpLNVRqNVpWTXhnbmxzTWN1bVliSVRtT1Rjdw?oc=5",
-   "published": "2026-10-26",
-   "clue": "motorbike-obsessed Southeast Asia, endurance contests with bikes as prizes",
-   "country": "Indonesia",
-   "cc": "ID",
-   "clue_strength": 1,
-   "unbelievable": 4,
-   "theme": "contest",
-   "lat": -7.6894,
-   "lng": 110.3813,
-   "banked": "2026-10-28",
-   "rules": 2,
-   "vec": "vQvZNvU1+SD9Gd7B9Rc42xIIz9gp+iQm/6fe7ej0fxmx2/b3BTDKufX9uwTc9gTmEAI="
-  },
-  {
-   "h": "Police called to youth soccer game after boy, 3, scores 10 goals against 5-year-olds, family says, in {}",
-   "h2": "Winter Park, Florida: police called on [], 3, after he scores 10 goals against 5-year-olds",
-   "ans": [
-    "boy",
-    "boys",
-    "child",
-    "kid",
-    "toddler",
-    "youngster",
-    "son",
-    "lad"
-   ],
-   "place": "Winter Park, Florida",
-   "src": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNVWkxNnBHR2h1WHVJbHJtVXNiNng2aGx4a2xwOE44SWNtcVN1aVRDTFAydGNuMG1oRU5nU1ROM1pvdjgzSjUzZWcxWUhPOUtFM1hkUEFpSHZkUDk5MHNsR0FSb240dzVvd0VzbU5aNWo3UlFicU9WYUg2ekF4VmJoaW1QeGRWZi0zYXh0REtWUWZCV180eGRHQXV5R3JGdnNoSGMwOUl2cG50WFdZSTdIb09SRnlqSTV4bXRjMmQ3R3JDcXBDUE0xQzJGc1BsaWFJMXB2cFFiSzZBTm5lNlZQb0hkOTdOemFtMXJIZEhR?oc=5",
-   "published": "2026-10-27",
-   "clue": "'soccer' and youth leagues in parks = United States",
-   "country": "United States",
-   "cc": "US",
-   "clue_strength": 1,
-   "unbelievable": 3,
-   "theme": "youth-sport",
-   "lat": 28.5978,
-   "lng": -81.351,
-   "banked": "2026-10-28",
-   "rules": 2,
-   "vec": "7Q304j8kxxAFFRMUBA417ccu8xfPUAMsFYnlBxTUf+fyFiMkEs0WvugP2vk93RO0EgE="
   },
   {
    "h": "Family's new wooden back door and iron security gate both fitted to open outwards; TikTok blames blacksmith in {}",

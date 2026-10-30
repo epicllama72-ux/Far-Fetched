@@ -1,319 +1,6 @@
 {
  "real": [
   {
-   "id": 30,
-   "h": "Fifth-tier club told to play two cup ties 30 minutes apart on same afternoon, will field two squads in {}",
-   "h2": "Johnstone, Scotland: [] club must play two cup ties 30 minutes apart, fields two squads",
-   "ans": [
-    "football",
-    "soccer",
-    "footy",
-    "fitba"
-   ],
-   "place": "Johnstone, Scotland",
-   "geocode": "Johnstone, Renfrewshire, Scotland",
-   "lat": 55.836517,
-   "lng": -4.5122831,
-   "country": "United Kingdom",
-   "cc": "GB",
-   "clue": "fifth-tier club in a Scottish cup draw",
-   "clue_strength": 1,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 4,
-   "theme": "sport",
-   "src": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQVlVlZFBFQlA3WTR1dkdoSlJfdGJGZXk2Zl9ZcEpJMnBPeGpNV1BfVm95ZnE5T0ljV01NMk5Kc241aXZZb1VHR2V1V0g3UllMT05hMkZYajRnTndKTGdHNEs3RC0yUXpwTktqdGpDLVNaQVM4ZUdVc25kdWtoRHp5Ry16Q0dqSXgySDdKQlc2anpWVC1tcUhDbjFIQzVoMHVrYnZTcFVLbU1CZmM5LTV6MFRQQTRhZFpmZ3dZVdIBvwFBVV95cUxPWlR3YmR3U3VyMXBHZzAzbGNkS2xCekVfcVZyeDVDS3d2RFVYcnNpeS1EdmVnMnR5dHByZXNyUVhVM1VXRk9qSk4wdnFvNmJMSG5iLU83YnJvcDNfb2k2VTFuc0VFYXRSUVowcEJTZnlpQW93REV3bTR4TkhCRTFQMWtueURQSXc0RElBYnFud2VXVGI0Tl9fUWdjSjVQdkpKSC1IdHhqb29sTndOQkI3OWVEeWJOeGwtN0E2NVQ2WQ?oc=5",
-   "published": "2026-10-28",
-   "banked": "2026-10-29",
-   "rules": 2
-  },
-  {
-   "id": 23,
-   "h": "Amateur player sent off after 30 minutes for a Zidane-style headbutt when his shirt was tugged, in {}",
-   "h2": "Kloetinge, Netherlands player sent off for Zidane-style [] against SC Cambuur",
-   "ans": [
-    "headbutt",
-    "headbutts",
-    "headbutting",
-    "headbutted",
-    "nut"
-   ],
-   "place": "Kloetinge, Netherlands",
-   "geocode": "Kloetinge, Goes, Zeeland, Netherlands",
-   "lat": 51.4984694,
-   "lng": 3.9130606,
-   "country": "Netherlands",
-   "cc": "NL",
-   "clue": "amateur club facing a Dutch second-tier side",
-   "clue_strength": 1,
-   "jargon_only": false,
-   "mappable": 2,
-   "unbelievable": 2,
-   "theme": "red-card",
-   "src": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPZEFrUk94VHVZN091WEdRRHQ1eXRzOUpoUk9kTWNrVHhVXy1EclhBX2VfRDRSQl8wcDgzdmdZa1A3TmZwaUdEMDNuYzV6WVlnTFpaeTQtVDFpSlJ5XzY4YUlnSEZQZ2NJYTNkR2lLYkVKWm9ZVzFFdzl1bjhJamVQX25Pc1k5UzFTWElFSWI4WFZNS1dvc0RLX0NwVFV3ODZObzZVcWRJSXREa2VrVC0xd0NONnhxOHVXbGVmNFRBN2FoVTh2?oc=5",
-   "published": "2026-10-27",
-   "banked": "2026-10-29",
-   "rules": 2
-  },
-  {
-   "h": "Police stumped finding pickup's engine number at roadside check; driver offers to ask ChatGPT in {}",
-   "h2": "[] in Yerba Buena, Argentina, stumped finding pickup's engine number at roadside check; driver offers ChatGPT",
-   "ans": [
-    "police",
-    "officers",
-    "officer",
-    "cops",
-    "cop",
-    "policemen",
-    "policeman",
-    "agents"
-   ],
-   "place": "Yerba Buena, Tucumán, Argentina",
-   "src": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQclYweFFRQmlHblVTd0ZLTmphQzNTMzQ4WjhWOGEyZ0RsaU9OMUlla3lldzNudENEUlE4VExBdWtFcVZZc2kyZEltUExxV014RFZvLUZQcDNHeHRaNlVyU090Z0JoQzE0N1RwVzh6Vm14cU5mSlc4ZjJRNUZWMFpMWlhBN3pWNHBNZEZEVkhMYTNyalNRZ0JvT3dEN1d0OENvNWR3bmY3aXo1RDAwanFCSmRpc3FmUXlXeXIxUlY1NGVsVzFK0gHKAUFVX3lxTE9jVDVTUUl3a1FRQlYzUHY4ME1McEFqQURPQmlNcXgyY3BYRUR0Sld5OElKeTBlR0pWTS1mdkUwUko2NmRkcXk4TFNXN1NFcTh4dHJRR3VXQVYycGZ4LVhKMTA2TmFfdkUzNDhVbW5tWUpmWVlLSlZyRkNmZmF4VDBiTjQ0VEZYc2lDZVE4UnhQYmV4ZHBoMUZTYlZjakQzakNZNUpaRDdQeDRyMGhvWkxrVDNxeFFSQk84cml5Qk5iX2NwdGM5VmhGTmc?oc=5",
-   "published": "2026-10-26",
-   "clue": "Spanish-language video and provincial police = Latin America",
-   "country": "Argentina",
-   "cc": "AR",
-   "clue_strength": 1,
-   "unbelievable": 4,
-   "theme": "police",
-   "lat": -26.8122,
-   "lng": -65.2982,
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
-   "h": "Players patch hole in pitch with bricks and cement mid-match in regional league in {}",
-   "h2": "[] patch hole in pitch with bricks and cement mid-match in Cebreros, Spain; late goal wins 1-0",
-   "ans": [
-    "players",
-    "player",
-    "footballers",
-    "footballer",
-    "team",
-    "teams",
-    "athletes",
-    "men"
-   ],
-   "place": "Cebreros, Ávila, Spain",
-   "src": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOREduV2hkTDJOSHQ4YmN2RFB3T0VMRWVSOEc1TER0SDVfT2pUWThCa3hLYWduMDNUTzJVdm1XYm10VjNIREZpUHZTdk5fU25SQzRmejZkY2o0TXpkN1l1OEZfTVlFb3NQSmVDWWRhcFRKckM2Q3FCUk9ucG56UWItVm5sTldNSEJFcmhDRW5GT005UlZSeFdEYmxzVnFQR0k5MmRZR3RHeEs1R2RpRHFHVEd3SGpvaVd5S2s0am5B?oc=5",
-   "published": "2026-10-11",
-   "clue": "Regional division of Castile and León = Spain",
-   "country": "Spain",
-   "cc": "ES",
-   "clue_strength": 1,
-   "unbelievable": 4,
-   "theme": "football",
-   "lat": 40.4552,
-   "lng": -4.4652,
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
-   "h": "Driver with revoked licence parks and walks off at checkpoint; drone films him, 200,000 lira fine in {}",
-   "h2": "Driver with revoked licence abandons car at checkpoint, [] films him, fined 200,000 lira in Kırıkkale, Turkey",
-   "ans": [
-    "drone",
-    "drones",
-    "uav",
-    "camera",
-    "quadcopter"
-   ],
-   "place": "Kırıkkale, Turkey",
-   "src": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxONDdTZVpCbTBVekgzYW0yU3FpY1lydUQzcHdlUDBKLUhleWdxSlpjN3JtUEY0YmwyMzVMV3RiZk1lc2tDREFkLVVQT01FeWlfc3g0QmpHbi0yMjNhSGhib0M3MFAxWi1YemJlaGhDUFFpb2VZVGdiSFpBa2VPbnM4UkozLVlheUNGWDM0dmZmanNxRmpLRDlhaFBVdG1HRnB1TXl4eUxTLTRGNkhZNHFES054YVU1ZnU4TnJJWEFqWGctdTlIZWZJTHdZT3g0TUdsaldQOWctSGpoMWo2am5vVUU0Zlg4dw?oc=5",
-   "published": "2026-10-21",
-   "clue": "Fine in lira = Turkey",
-   "country": "Turkey",
-   "cc": "TR",
-   "clue_strength": 2,
-   "unbelievable": 2,
-   "theme": "drone",
-   "lat": 39.886,
-   "lng": 33.8279,
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
-   "h": "Bus driver sacked on probation takes tribunal case after colleague says her fart was so foul she needed a shower in {}",
-   "h2": "Brighton, England: electric bus driver's [] so foul a colleague 'needed to take a shower'",
-   "ans": [
-    "fart",
-    "farts",
-    "flatulence",
-    "wind",
-    "gas",
-    "smell"
-   ],
-   "place": "Brighton, England",
-   "src": "https://metro.co.uk/2026/10/16/bus-drivers-farts-bad-colleague-needed-take-a-shower-29715627/",
-   "published": "2026-10-16",
-   "clue": "an employment tribunal and an electric bus firm = Britain",
-   "country": "United Kingdom",
-   "cc": "GB",
-   "clue_strength": 1,
-   "unbelievable": 4,
-   "theme": "tribunal",
-   "lat": 50.7887,
-   "lng": 0.3063,
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
-   "h": "Contest where people hold a motorbike for over 20 hours ends with last one standing winning it in {}",
-   "h2": "Sleman, Yogyakarta, Indonesia: [] to hold a motorbike for over 20 hours, last one standing wins it",
-   "ans": [
-    "contest",
-    "competition",
-    "challenge",
-    "race",
-    "game",
-    "tournament"
-   ],
-   "place": "Sleman, Yogyakarta, Indonesia",
-   "src": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNTi1qQWlLVUpHMGtJbmlEZ1hxRmRHclZ6ajZQVHgwM0FDZFhraXhHbjhsVnpYMVN1eVduOXFNT083NGhSOFpSU3NQWDRqUnJEWjlMT1lLeFFtWkVVMXQtMjNJM0RfaHRKb1duRS10RG9McHh3MGpFOW9tUktfQ1hiR0hqZzF0WmswVXJjQno0QUdSQ05BT25ubjFtTndxc3QwMTlMV0p2SFNFQ2lKNWtSUGJxbDd1MmFwdlFiYmQ2eXpLNVRqNVpWTXhnbmxzTWN1bVliSVRtT1Rjdw?oc=5",
-   "published": "2026-10-26",
-   "clue": "motorbike-obsessed Southeast Asia, endurance contests with bikes as prizes",
-   "country": "Indonesia",
-   "cc": "ID",
-   "clue_strength": 1,
-   "unbelievable": 4,
-   "theme": "contest",
-   "lat": -7.6894,
-   "lng": 110.3813,
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
-   "h": "Luxury cruise meant to sail around the world for 3.5 years stuck in port as fuel prices soar in {}",
-   "h2": "Luxury world [] meant to last 3.5 years stuck in Sihanoukville, Cambodia as fuel prices soar",
-   "ans": [
-    "cruise",
-    "cruises",
-    "voyage",
-    "trip",
-    "journey",
-    "sailing"
-   ],
-   "place": "Sihanoukville, Cambodia",
-   "src": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOSGxCbEMzSmpaeTg5TDdmejR5clkxSjk0RDZlQ2lDT2djM0tVdlFVNXZjNG9lM25iU18waXpVOVVZRlI0WnN3Z09rR3ZyZl9mY2ZHOFlhdkpDQXZGb2ZqNmUxZ0htSEJvaldGZjUwYzFWOUc5elE1U1JiQTE5ckZ3UGhBMEhYUXFHaGVzTVRiNFQ3SVVVVU9qbTVEa1djR2duelB3VmpWU2RUM3NFV19pUQ?oc=5",
-   "published": "2026-10-28",
-   "clue": "tropical port city in Southeast Asia",
-   "country": "Cambodia",
-   "cc": "KH",
-   "clue_strength": 1,
-   "unbelievable": 3,
-   "theme": "cruise",
-   "lat": 10.622,
-   "lng": 103.5223,
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
-   "h": "National workplace ombudsman posts guide on asking for unpaid leave to play GTA 6 in {}",
-   "h2": "Australia's Fair Work Ombudsman advises citizens how to request unpaid [] to play GTA 6",
-   "ans": [
-    "leave",
-    "holiday",
-    "holidays",
-    "vacation",
-    "time",
-    "break",
-    "absence",
-    "days"
-   ],
-   "place": "Canberra, Australia",
-   "src": "https://www.videogameschronicle.com/news/australian-government-advises-citizens-on-how-to-request-unpaid-leave-to-play-gta-6",
-   "published": "2026-10-17",
-   "clue": "Ombudsman and 'leave' wording = Commonwealth, Australia",
-   "country": "Australia",
-   "cc": "AU",
-   "clue_strength": 1,
-   "unbelievable": 3,
-   "theme": "gaming",
-   "lat": -35.2976,
-   "lng": 149.1013,
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
-   "h": "Customer test-driving electric car crashes through showroom window into a newsstand cafe in {}",
-   "h2": "Customer test-driving electric [] crashes through dealership window near the Obelisco in Buenos Aires, Argentina",
-   "ans": [
-    "car",
-    "cars",
-    "vehicle",
-    "automobile",
-    "auto",
-    "ev",
-    "motor"
-   ],
-   "place": "Buenos Aires, Argentina",
-   "src": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQTU1Mb0xWdEstdHNRcFlGdHJjQ3JoWlZidkl3ZC1Fc3VGcVNvaGtsTHc2MU53ZEt2VlAyeUZMYjlsU3VoX2ZkLS1fUzBPT3ZjakJrRkRVX2Frc1B1SU9rT3p1U0ctNnNaMW9HbFRLQjhpWnI4M2Z3WFZYM2dWNVRRc2FjN0d5WVJtaTBwa1RMSzJrN2x2NTlHamJkNDMwaVRVaW9ieDk5cmRvMHZQZ2JWOWdINEZJSjctSkg4ZU5RQ0g2YjdlYldZRjRUZi1McTNI?oc=5",
-   "published": "2026-10-25",
-   "clue": "Kiosk newsstands doubling as cafes = Latin American capital",
-   "country": "Argentina",
-   "cc": "AR",
-   "clue_strength": 1,
-   "unbelievable": 3,
-   "theme": "car-crash",
-   "lat": -34.6037,
-   "lng": -58.3816,
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
-   "h": "Police called to youth soccer game after boy, 3, scores 10 goals against 5-year-olds, family says, in {}",
-   "h2": "Winter Park, Florida: police called on [], 3, after he scores 10 goals against 5-year-olds",
-   "ans": [
-    "boy",
-    "boys",
-    "child",
-    "kid",
-    "toddler",
-    "youngster",
-    "son",
-    "lad"
-   ],
-   "place": "Winter Park, Florida",
-   "src": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNVWkxNnBHR2h1WHVJbHJtVXNiNng2aGx4a2xwOE44SWNtcVN1aVRDTFAydGNuMG1oRU5nU1ROM1pvdjgzSjUzZWcxWUhPOUtFM1hkUEFpSHZkUDk5MHNsR0FSb240dzVvd0VzbU5aNWo3UlFicU9WYUg2ekF4VmJoaW1QeGRWZi0zYXh0REtWUWZCV180eGRHQXV5R3JGdnNoSGMwOUl2cG50WFdZSTdIb09SRnlqSTV4bXRjMmQ3R3JDcXBDUE0xQzJGc1BsaWFJMXB2cFFiSzZBTm5lNlZQb0hkOTdOemFtMXJIZEhR?oc=5",
-   "published": "2026-10-27",
-   "clue": "'soccer' and youth leagues in parks = United States",
-   "country": "United States",
-   "cc": "US",
-   "clue_strength": 1,
-   "unbelievable": 3,
-   "theme": "youth-sport",
-   "lat": 28.5978,
-   "lng": -81.351,
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
-   "h": "Top-flight club allegedly charges visiting reporters for press boxes at match played in empty stands in {}",
-   "h2": "Tunja, Colombia: Boyacá Chicó allegedly charges visiting [] for press boxes at empty-stadium match",
-   "ans": [
-    "journalists",
-    "journalist",
-    "reporters",
-    "reporter",
-    "media",
-    "writers"
-   ],
-   "place": "Tunja, Colombia",
-   "src": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPOENOM3ctYkVMaWJ6MjgtWDNTdVdNclFMVXlSaG4yQzQ4LXZHLV9WU3BWejBEd09PMlZKRnlybVVQS1NZUmhsR2FEVnh1UDdxNHY2alUxd3g1a2trOWo1aldpcDZNY1MzWDIxWUF1MXRaZTBIZlhPQ2ZLV0hUZThieUZGVnFwQTk3VFR6QU91X01SbGNDNTY2dUdmZDBEUTR2cDdMZjcwVkNONXpkTW5tYkUtSTPSAbQBQVVfeXFMUDVULS00S29keVJsb080czBGRnk4MTY4MVJWSVB5dnI2SE9KRUlKVjRUajgxdVhFYThyUEF2dnJaMWxGUXBRYkhXX3gtRDNndEpWcG9LbDNmbHhYV2c4V2pncVl6SDl2bmhodktnZHAxVE1rODk1T0FUalUwbU9vcE40bVNvTktDQXdncnNINTN6cGpGTjMwdVVOY2RZYVk1bGRpVW5iNHh1TUtpU3VnS0VHRG9z?oc=5",
-   "published": "2026-10-24",
-   "clue": "Spanish-speaking football league played in a highland city",
-   "country": "Colombia",
-   "cc": "CO",
-   "clue_strength": 1,
-   "unbelievable": 2,
-   "theme": "journalism",
-   "lat": 5.5324,
-   "lng": -73.3616,
-   "banked": "2026-10-28",
-   "rules": 2
-  },
-  {
    "h": "Female auctioneer goes viral with unusual test using cattle's drinking water in {}",
    "h2": "Goiás, Brazil: [] goes viral with unusual test using cattle's drinking water",
    "ans": [
@@ -336,26 +23,11 @@
    "lat": -15.9324,
    "lng": -50.1393,
    "banked": "2026-10-28",
-   "rules": 2
+   "rules": 2,
+   "jargon_only": false
   }
  ],
  "fake": [
-  {
-   "h": "Monkey steals umpire's hat, halting village cricket match in {} for 27 minutes",
-   "tell": "Every element fits too neatly, like a joke setup with a precisely timed pause.",
-   "obvious": 3,
-   "theme": "cricket",
-   "banked": "2026-10-29",
-   "rules": 2
-  },
-  {
-   "h": "Brewery in {} recalls 2,380 half-litre bottles after labels listed its lager as a soft drink",
-   "tell": "Recalls follow contamination, not a mislabelled drink type; regulators would just order new labels.",
-   "obvious": 3,
-   "theme": "brewery",
-   "banked": "2026-10-29",
-   "rules": 2
-  },
   {
    "h": "Burglar in {} tunnels 16 metres under a bakery to reach a till holding only 9 euros",
    "tell": "Digging a long tunnel for a nearly empty till is too much effort to be believable.",
@@ -465,45 +137,24 @@
    "rules": 2
   }
  ],
- "pol": [
-  {
-   "id": 25,
-   "h": "Drawing of lots breaks tie in municipal election in {}",
-   "place": "Princeton, British Columbia, Canada",
-   "geocode": "Princeton, British Columbia, Canada",
-   "lat": 49.460459,
-   "lng": -120.507973,
-   "clue": "municipal election + drawing of lots = Canadian local tiebreak",
-   "src": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPMTBzSkJ4SlZIM3ZHYXpMZGJZbmh2Um5NZGNDYWVCUWtneVk3clpqeTRCbGY1TDRUVkRDdXh5b2VZM0EzdGttVGJTY3RBd0ZsRm9YN3ZuaXFSS0dJS25zRW1TZkJMTWIxcEgwZjY3clgyRXpSTTRmZXJ3bDdVZ2dONFJrMm5CM3dtUExtZ3hQMnliSlh3RHN3cnFuQTlEenNUcmVoQnVQNHI?oc=5",
-   "published": "2026-10-27",
-   "banked": "2026-10-29"
-  },
-  {
-   "id": 39,
-   "h": "Woman named honorary 'mayor' of {} says neighbours helped her after a fire",
-   "place": "Palm Harbor, Florida, USA",
-   "geocode": "Palm Harbor, Florida, USA",
-   "lat": 28.0856815,
-   "lng": -82.756907,
-   "clue": "honorary mayor of an unincorporated community = Florida, USA",
-   "src": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPOHJWcVFxRDVPUUZqMkZOWExZUHFtMjQ5Q2hmZlktVy1pcl9UZWgzV3RUdHJxSnh5ejdIZlFrNGR3V0pMQkpELXljaF9Nb2kxZy05STBwSTVDS3RMc1FQQlhSbWpZSm95WXh3ME9iNlc5SkhGMHdQVkdzNXNOVGtaRDJEWTA4ZTZQSGFQcVBxWnQ3MHVsTUhWNFlvNnV1dGRLN1NZWjlhNmR0ZlVXdFAxT29ndXFQYjlwQ2c?oc=5",
-   "published": "2026-10-18",
-   "banked": "2026-10-29"
-  },
-  {
-   "id": 56,
-   "h": "Unusual names and details appear in electoral roll for state council polls; commission blames software error in {}",
-   "place": "Lucknow, Uttar Pradesh, India",
-   "geocode": "Lucknow, Uttar Pradesh, India",
-   "lat": 26.8381,
-   "lng": 80.9346001,
-   "clue": "MLC polls + ECI = India's state legislative council elections",
-   "src": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQSDFramU1T3FZWXRwdVRGZ29IQlNwc2xQdHlsZmdtSWJFaUJBRmE3ekFTa1dDZVpkX0o4S3laREVvcURJRElHX3VsMElCVUZqdlVyZzMyVWVYTHFwYzJNMVh0SERiMHQ1dnpSZEtveGNVa0NNSW1UMHR0aXVXYTJhSHVLTHRCTElnRS1xUDlWaUtwQXp6ZmVZYUJSSE9oQkhhYVFRMG5hcjRZMFZvRzBoVUx4LW9jNElMNWpyWi1XS1BNRDFrSzJ2OUVYVmtRMUZMb3Zvb3dNTU1WUWdpcy05X3VLWm5FeU9oYkNtaGVYYi00SlhOV3pEZdIB_wFBVV95cUxQZTFSVG1YQWRKNF92NnVkc3g4WDR6SExPVVlYY2V5TDlyNVI2VTJmbW15Mmlwd1Q5d2hrTFROZXVtX2JBa1Jhc3VjQ1BKdTlGcENTZ012Q1Q5SXJCRVNLTkM2b2wxQUg5d18weGVZTTZwOTEtYWtyM0lVbS1Rcnl4T3lFUUNHdDBnRUhhSGRMVTFXd2EwR01XdTdmenpSSlpJUE13YUlma3VRT042OWNONG8xNHdOcUYzWFA2UDk1VFgzdFBERXJKMldPZXV4anJCSGtWbU9Sck5QcU5IMGdYdzdwRVF0WVNicG5VanN4MlpqME4wODBZOUd1SGQ5ZnM?oc=5",
-   "published": "2026-10-23",
-   "banked": "2026-10-29"
-  }
- ],
+ "pol": [],
  "polfake": [
+  {
+   "h": "Voters in {} approve a ballot measure to rename a ward, then discover the new name was already taken",
+   "banked": "2026-10-30"
+  },
+  {
+   "h": "Parliament in {} delays a budget vote after the speaker's microphone was found unplugged for a third time",
+   "banked": "2026-10-30"
+  },
+  {
+   "h": "Town of {} bans leaf blowers on election day, and turnout rises the same afternoon",
+   "banked": "2026-10-30"
+  },
+  {
+   "h": "Councillors in {} pass a motion on parking permits in under four minutes, then adjourn for a fire drill",
+   "banked": "2026-10-30"
+  },
   {
    "h": "Mayor of {} delays budget vote after the council chamber clock is found running four minutes fast",
    "banked": "2026-10-29"
