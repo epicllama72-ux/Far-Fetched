@@ -2774,7 +2774,7 @@ function jawPoints(){
   return Math.max(0,p);
 }
 /* Time to read first (2 s + 0.35 s per word), then −10 points a second, floor 60. */
-function readGrace(st){ return 2+0.25*(st.h||'').split(/\s+/).length; }
+function readGrace(st){ return 2+0.35*(st.h||'').split(/\s+/).length; }
 function speedPts(sec,st){ return Math.round(PK*CALL_PTS*Math.max(0.6,Math.min(1,1-(sec-readGrace(st))/10))); }
 let SPEED_RAF=0;
 function runSpeed(){
@@ -2853,10 +2853,10 @@ function revealCall(st){
   if(st.real){
     Scene.gasp();
     if(c.callOk){ Sound.play('real'); Sound.play('jawDown'); } else Sound.play('twist');
-    $('kicker').textContent = c.callOk ? 'Real ✓ +'+c.callPts+' · where did it happen?' : 'Plot twist: it\'s real · pin it for half credit';
+    $('kicker').textContent = c.callOk ? 'Real ✓ +'+c.callPts+' · where did it happen?' : 'Plot twist: it\'s real · pin it for 75% credit';
     fb.hidden=true;
     openMap();
-    if(!c.callOk) $('btnGuess').textContent='HALF CREDIT · TAP A REGION';
+    if(!c.callOk) $('btnGuess').textContent='75% CREDIT · TAP A REGION';
   } else {
     fb.hidden=false;
     if(c.callOk){ Sound.play('catchFake'); Sound.play('jawDown'); Scene.gasp(); } else { Sound.play('fooled'); if(jawPoints()>0||S.results.some(x=>x.real)) Sound.play('jawUp'); }
@@ -2980,12 +2980,12 @@ function submitGuess(timedOut){
   const sec = Math.min(PIN_SECS,(performance.now()-S.pinT0)/1000), mult = pinMult(sec);
   const d = guessLL ? km(guessLL.lat,guessLL.lng,st.lat,st.lng) : null;
   let pts = guessLL ? Math.round(pinPoints(d)*mult) : 0;
-  if(!S.cur.callOk) pts = Math.round(pts*0.5);
+  if(!S.cur.callOk) pts = Math.round(pts*0.75);
   const distPts = pts;                                  // distance points alone, for the breakdown
   const bonus = guessLL && S.cur.callOk ? pinBonus(d,sec) : 0;
   pts += bonus; S.cur.pinBonus = bonus;
   const cTrue = guessLL ? countryAt(st.lat,st.lng,60) : -1, cOk = cTrue>=0 && countryAt(guessLL.lat,guessLL.lng,0)===cTrue;
-  const cPts = cOk ? Math.round(PK*COUNTRY_PTS*(S.cur.callOk?1:0.5)) : 0;   // a flat bonus for the right country (half credit after a wrong call, like the pin)
+  const cPts = cOk ? Math.round(PK*COUNTRY_PTS*(S.cur.callOk?1:0.75)) : 0;   // a flat bonus for the right country (75% credit after a wrong call, like the pin)
   pts += cPts; S.cur.countryPts = cPts;
   S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
   Sound.play('lock',Math.min(1,pts/(PK*(PIN_PTS+COUNTRY_PTS)))); if(pts>0) Sound.play('jawDown');
@@ -3005,7 +3005,7 @@ function submitGuess(timedOut){
   const row=(label,val,note)=>'<span class="brk">'+label+' <b>'+(val<0?'−':'+')+Math.abs(val)+'</b>'+(note?' <i>'+note+'</i>':'')+'</span>';
   const breakdown = guessLL
     ? (S.cur.callOk?row('Call',S.cur.callPts):'')
-      + row('Distance · '+Math.round(d).toLocaleString()+' km',distPts,(S.cur.callOk?'':'half credit')+(mult<1?(S.cur.callOk?'':' · ')+'slow −'+Math.round((1-mult)*100)+'%':''))
+      + row('Distance · '+Math.round(d).toLocaleString()+' km',distPts,(S.cur.callOk?'':'75% credit')+(mult<1?(S.cur.callOk?'':' · ')+'slow −'+Math.round((1-mult)*100)+'%':''))
       + (cPts?row('Right country · '+(countryName(cTrue)||'✓'),cPts):'')
       + (bonus?row('Quick and close',bonus):'')
     : (S.cur.callOk?row('Call',S.cur.callPts):'')+'<span class="brk">No pin before time ran out</span>';
