@@ -183,6 +183,25 @@
    "published": "2026-10-21",
    "banked": "2026-10-30",
    "rules": 2
+  },
+  {
+   "h": "Colouring book handed out at a show in {} shows Bluey held at knifepoint",
+   "place": "Mount Gambier, South Australia",
+   "geocode": "Mount Gambier, South Australia",
+   "lat": -37.8284,
+   "lng": 140.7806,
+   "country": "Australia",
+   "cc": "AU",
+   "clue": "South Australian country town; Bluey is an Australian cartoon; ABC complaint",
+   "clue_strength": 1,
+   "jargon_only": false,
+   "mappable": 2,
+   "unbelievable": 2,
+   "theme": "odd news",
+   "src": "https://www.abc.net.au/news/2026-10-28/one-nation-colouring-book-generates-controversy/107313670",
+   "published": "2026-10-28",
+   "banked": "2026-10-30",
+   "rules": 2
   }
  ],
  "fake": [
