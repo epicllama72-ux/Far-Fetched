@@ -1502,10 +1502,17 @@ function showHint(st){
   el.hidden=false; el.style.animation='none'; void el.offsetWidth; el.style.animation='';
   drawHint(); requestAnimationFrame(drawHint);
 }
+// Before the call there is no redaction bar: "in {}, a capital on a volcano" reads "in a capital on a volcano"; a bare "in {}" is dropped.
+function noBlank(h){
+  const t=h.replace(/\s+(in|near|outside|at)\s+\{\},\s+((?:an?|the|home|birthplace|site)\s)/i,' $1 $2')
+           .replace(/\s+(?:in|near|outside|at|of|from|around|across)\s+\{\}/i,'')
+           .replace(/\{\}/,'');
+  return t.replace(/\s+([,.;])/g,'$1').replace(/\s{2,}/g,' ').trim();
+}
 function headlineHTML(story, reveal){
   const w = 70 + (hash(story.h) % 60);
   const bar = '<span class="redact" role="img" aria-label="place hidden" style="width:'+w+'px"></span>';
-  if(!reveal) return story.h.replace('{}', bar);
+  if(!reveal) return noBlank(story.h);
   if(story.real) return story.h.replace('{}', '<span class="reveal">'+story.place+'</span>');
   return story.h.replace('{}', '<span class="fakeplace">[invented]</span>');
 }
