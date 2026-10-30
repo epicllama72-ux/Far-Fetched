@@ -905,10 +905,10 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 .ccap{color:rgba(232,238,250,.62);font:14px/1 var(--vt);white-space:nowrap;pointer-events:none;text-shadow:0 1px 0 rgba(0,0,0,.75);transform:translate(7px,-50%);letter-spacing:.03em}
 .cname{color:rgba(205,218,240,.34);font:15px/1 var(--vt);white-space:nowrap;pointer-events:none;text-shadow:0 1px 0 rgba(0,0,0,.6);transform:translate(-50%,-50%);letter-spacing:.04em}
 /* the hint sticker: a scalloped oval at the bottom right of the headline box, shown only once the story has been called real or fake */
-#hint{position:relative;display:block;width:fit-content;max-width:84%;margin:10px 0 4px auto;padding:9px 20px 10px;font:19px/1.05 var(--vt);color:#2b2000;text-align:center;filter:drop-shadow(3px 3px 0 #05060c);animation:hintPop .3s steps(3)}
+#hint{position:relative;display:block;width:fit-content;max-width:74%;margin:20px 12px 20px auto;padding:7px 16px 8px;font:16px/1.05 var(--vt);color:#2b2000;text-align:center;transform:rotate(-14deg);transform-origin:center;filter:drop-shadow(2px 2px 0 #05060c);animation:hintPop .3s steps(3)}
 #hint svg{position:absolute;left:0;top:0;width:100%;height:100%;z-index:0;overflow:visible}
 #hint span{position:relative;z-index:1}
-@keyframes hintPop{from{transform:translateY(5px);opacity:0}to{transform:none;opacity:1}}
+@keyframes hintPop{from{transform:rotate(-14deg) scale(.4);opacity:0}to{transform:rotate(-14deg);opacity:1}}
 @media (prefers-reduced-motion:reduce){#hint{animation:none}}
 .storyLink{display:block;text-align:right;margin:4px 0 0;font:18px/1 var(--vt);color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 .challenge{display:block;margin-top:6px;color:var(--accent)}
@@ -1479,13 +1479,13 @@ function sumPts(rs){return rs.reduce((a,x)=>a+x.callPts+x.pinPts,0);}
 function drawHint(){
   const el=$('hint'), svg=$('hintBg'); if(el.hidden) return;
   const w=el.offsetWidth, h=el.offsetHeight; if(!w||!h) return;
-  const bump=4, a=w/2-2-bump, b=h/2-2-bump, N=480, base=[];
+  const bump=3.5, a=w/2-2-bump, b=h/2-2-bump, N=480, base=[];
   for(let i=0;i<N;i++){                                                                       // a squarish oval...
     const t=i/N*Math.PI*2, c=Math.cos(t), sn=Math.sin(t);
     base.push([a*Math.sign(c)*Math.pow(Math.abs(c),0.5), b*Math.sign(sn)*Math.pow(Math.abs(sn),0.5)]);
   }
   const len=[0]; for(let i=1;i<=N;i++){ const p0=base[i-1], p1=base[i%N]; len.push(len[i-1]+Math.hypot(p1[0]-p0[0],p1[1]-p0[1])); }
-  const per=len[N], humps=Math.max(10,Math.round(per/15)), pts=[];                             // ...with round scallops spaced evenly along its rim
+  const per=len[N], humps=Math.max(10,Math.round(per/16)), pts=[];                             // ...with round scallops spaced evenly along its rim
   for(let i=0;i<=N;i++){
     const [x,y]=base[i%N], d=Math.hypot(x/a,y/b)||1, off=bump*Math.abs(Math.sin(Math.PI*humps*len[i]/per));
     pts.push((w/2+x+(x/a/d)*off).toFixed(1)+','+(h/2+y+(y/b/d)*off).toFixed(1));
