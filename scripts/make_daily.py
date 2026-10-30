@@ -994,6 +994,7 @@ def main():
             if len(out) == N_CALL_REAL:
                 break
         return out, per
+    reals = sorted(reals, key=lambda r: not r.get("priority"))   # stories hand-picked into the bank ("priority") go first; the country spread still applies
     for cap, anglo_cap in ((2, N_CALL_REAL // 2), (2, N_CALL_REAL), (3, N_CALL_REAL), (N_CALL_REAL, N_CALL_REAL)):
         call_pick, per_country = pick_call(cap, anglo_cap)
         if len(call_pick) == N_CALL_REAL:
