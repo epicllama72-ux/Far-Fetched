@@ -192,7 +192,8 @@ Below are candidate news stories from the past month (JSON). Some include "text"
    - "id": the candidate id.
    - "h": a punchy wire-style headline, max 110 characters, keeping every fact of the story exactly as reported (never change what happened, who or what was involved, numbers or outcome). You MAY reword and add short descriptive wording that makes the region easier to deduce, as long as it is generically true of that place and does not alter or add to the story: e.g. local terms and institutions ("the county sheriff", "council", "constabulary", "a roo", "monsoon rains", "rupees", "kilometres", "on the ski slopes"), local climate, wildlife or customs, or spelling and units typical of the country. Replace the place with the literal token {} exactly once (e.g. "... in {}"). Remove every EXPLICIT location clue: no state/country/city names, demonyms, local team, landmark, university or company names that reveal the place (landmarks and nearby cities belong in "hint", not here), no "Florida man". But KEEP the implicit, deducible clues that are part of the story (the animal, the weather, the local custom, currency or units, the type of institution), so a sharp player can reason their way to the right region. Keep the oddity intact. The clues do NOT have to come from the original headline: the article text ("text") often holds the best ones (a currency, a unit, a local institution, an animal, the weather, a local custom or law, a sport, a typical job). If a great story's clues sit in the body, WRITE them into "h" in your own words, as long as they are facts the text states or are generically true of that place, so the game headline can differ a lot from the source headline. A story whose body gives a fair regional clue is better than one with a punchier headline and nothing to deduce from.
    - "h2": the same story as a headline that DOES name the place (city + state/country), with the main subject noun of the story (the animal, object or kind of person it is about, e.g. "kangaroo", "pelicans", "kitten") replaced by the literal token [] exactly once. The hidden word must be an ordinary common noun that is written in lowercase in normal text: never a name, brand, product, model, company, team, place or nationality (not "Maserati" or "Vegemite" - use "car" or "spread" instead, or pick another noun). The rest of h2 must NOT contain the hidden word, a synonym or a close variant of it (if the hidden word is "toilets", h2 must not say "potties" or "loo"), and give each pick a different hidden word than the other picks (not both "burglar" and "thief").
-   - "ans": 4-14 lowercase single-word answers that should all COUNT as correct for [] - the exact hidden word first, then its singular/plural, then every reasonable synonym, informal word, regional variant or obvious broader word a player might type for it (e.g. "boa" -> ["boa","boas","snake","snakes","serpent","constrictor"]; "police" -> ["police","officers","officer","cops","cop","policemen","policeman","constables"]; "sofa" -> ["sofa","sofas","couch","couches","settee"]). Be generous, but never include a word that means something clearly different (not "lizard" for snake). Letters only.
+   - "ans": 1-8 lowercase single-word answers that count as an EXACT match for []: the hidden word first, then its singular/plural, then ONLY words a player has no way to tell apart from it given the headline. Exactness matters: a synonym is NOT exact ("car" is not "vehicle", "cops" is not "police"). The one exception is a specific type of something when nothing in the headline says which type: if the hidden word is a particular species, breed, variety or model, the general category and its sibling types are exact too (e.g. "boa" -> ["boa","boas","snake","snakes","python","pythons","cobra","cobras"] because nothing says which snake; "poodle" -> ["poodle","poodles","dog","dogs"]). Letters only.
+   - "alt": up to 8 lowercase single words that are close but NOT exact: synonyms, informal words, regional variants, a broader or narrower word the headline does rule out (e.g. for "police": "officers","cops","constables"; for "car": "vehicle","auto","automobile"). They earn big partial credit, never full. Never a word that means something clearly different. Letters only.
    - "place": display name like "Appleton, Wisconsin" or "Mykolaiv, Ukraine".
    - "geocode": a precise query for a geocoder, like "Appleton, Wisconsin, USA".
    - "lat", "lng": your best coordinates for the place (decimal degrees).
@@ -209,7 +210,7 @@ Below are candidate news stories from the past month (JSON). Some include "text"
 2) "fake": write 8 invented headlines in exactly the same style, each with {} for the redacted place. Like the real ones, give each fake implicit regional clues a player could use (a local animal, climate, custom or unit) without naming the place. They should pass at first glance (specific numbers, ordinary local institutions, plausible animals and objects) but be SLIGHTLY easier to spot than the real ones: give each one small tell, and VARY the kind of tell: an over-tidy cause and effect, a detail slightly wrong for the region, an unlikely coincidence, a plausible-sounding but slightly off local rule. NO quotes from officials or spokespeople, no puns, no punchlines - those are tells players learn fast. Do NOT end with an absurd official reaction (a fine, a ban, a decree, a new rule, an apology): at most ONE fake in the set may do that. Vary how the fakes finish: some stop at the plain odd event, some end on a number, some on a consequence for ordinary people. Keep each fake at most 95 characters (no longer than a typical real headline), start each one differently (never two starting with the same two words, never "Council in"), and give each a different topic from each other and from the real picks (if a real story is about a kangaroo, no fake about kangaroos, wallabies or koalas). NEVER use the word "exactly", round numbers (100, 500, 1,000...) or "to the second" - players learn those tells within a week; use ordinary specific numbers like 37 or 1,260. Make the fakes as odd as the real stories, not odder: the real stories are routine local news with one strange twist, so the fakes must not be the only headlines that sound like jokes. Never cartoonish. Not about real people, and not resembling any candidate story. Strange non-violent crime (dumb criminals, bizarre thefts) is fine for fakes too. Do not write about death, injury, violence or tragedy. Give each as {"h": "...", "tell": "one sentence of at most 18 words for the PLAYER explaining why it should have smelled fake, e.g. 'councils fine overgrown hedges, not ones that look too lifelike'", "obvious": 1-5, "theme": "one lowercase word for the topic, same vocabulary as the real picks' theme"} where obvious rates how easy it is to spot as invented (aim for 2 or 3: slightly easier to spot than a real story, never a giveaway).
 
 Output format:
-{"real":[{"id":0,"h":"...","h2":"...","ans":["..."],"place":"...","geocode":"...","lat":0,"lng":0,"country":"...","cc":"..","hint":"...","clue":"...","clue_strength":0,"jargon_only":false,"mappable":0,"unbelievable":1,"theme":"..."}], "fake":[{"h":"...","tell":"...","obvious":3,"theme":"..."}]}
+{"real":[{"id":0,"h":"...","h2":"...","ans":["..."],"alt":["..."],"place":"...","geocode":"...","lat":0,"lng":0,"country":"...","cc":"..","hint":"...","clue":"...","clue_strength":0,"jargon_only":false,"mappable":0,"unbelievable":1,"theme":"..."}], "fake":[{"h":"...","tell":"...","obvious":3,"theme":"..."}]}
 
 Candidates:
 """
@@ -836,6 +837,8 @@ def valid_blank(r):
         return False
     # synonyms that happen to appear elsewhere in the headline are simply dropped from the accepted list
     r["ans"] = [ans[0]] + [a for a in dict.fromkeys(ans[1:]) if a != ans[0] and not re.search(r"\b" + a + r"\b", low)][:15]
+    r["alt"] = [a for a in dict.fromkeys(r.get("alt") or []) if isinstance(a, str) and re.fullmatch(r"[a-z]+", a) and a not in r["ans"]
+                and not re.search(r"\b" + a + r"\b", low)][:10]
     return True
 
 
@@ -1083,7 +1086,7 @@ def main():
                 "place": r["place"], "src": r["src"], "published": r["published"], "clue": (r.get("clue") or "")[:80]}
 
     def real_blank(r):
-        out = {"real": True, "h2": r["h2"], "ans": r["ans"], "place": r["place"], "src": r["src"],
+        out = {"real": True, "h2": r["h2"], "ans": r["ans"], "alt": r.get("alt") or [], "place": r["place"], "src": r["src"],
                "published": r["published"]}
         if "vec" in r:
             out["vec"] = r["vec"]
@@ -1217,7 +1220,7 @@ def main():
             return
         have.add(key)
         x = {"real": True, "day": d}
-        for k in ("h", "h2", "ans", "vec", "place", "src", "published", "clue"):
+        for k in ("h", "h2", "ans", "alt", "vec", "place", "src", "published", "clue"):
             if r.get(k):
                 x[k] = r[k]
         try:
