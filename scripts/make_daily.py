@@ -971,6 +971,7 @@ def main():
             after = sum(1 for r in reals if eff_strength(r) >= 2 and map_score(r) >= 2)
             print(f"  sharpening pass: {len(weak)} weak-clue stories reviewed; strong, pinnable stories {before} -> {after}", file=sys.stderr)
     fit = [r for r in reals if fit_to_map(r)]
+    dropped_unfit = [r for r in reals if r not in fit]   # not good enough for today's map, but still worth keeping in the bank
     if len(fit) >= N_CALL_REAL + 3:
         print(f"  {len(reals) - len(fit)} stories left out of Real or Fake: hard to pin or no regional clue", file=sys.stderr)
         reals = fit
@@ -990,21 +991,25 @@ def main():
     # Spread over the world: at most 2 per country and at most half from the English-speaking six.
     # The pool already includes the bank, so banked stories fill gaps before any limit is loosened.
     def pick_call(cap, anglo_cap):
-        out, per, ang = [], {}, 0
+        out, per, ang, cities = [], {}, 0, set()
         for r in reals:
             cc = ccode(r)
+            city = (r.get("place") or "").split(",")[0].strip().lower()
+            if city and city in cities:      # one story per city, always
+                continue
             if cc != "?" and per.get(cc, 0) >= cap:
                 continue
             if cc in ANGLO and ang >= anglo_cap:
                 continue
             per[cc] = per.get(cc, 0) + 1
             ang += cc in ANGLO
+            cities.add(city)
             out.append(r)
             if len(out) == N_CALL_REAL:
                 break
         return out, per
     reals = sorted(reals, key=lambda r: not r.get("priority"))   # stories hand-picked into the bank ("priority") go first; the country spread still applies
-    for cap, anglo_cap in ((2, N_CALL_REAL // 2), (2, N_CALL_REAL), (3, N_CALL_REAL), (N_CALL_REAL, N_CALL_REAL)):
+    for cap, anglo_cap in ((1, N_CALL_REAL // 2), (1, N_CALL_REAL), (2, N_CALL_REAL // 2), (2, N_CALL_REAL), (3, N_CALL_REAL), (N_CALL_REAL, N_CALL_REAL)):
         call_pick, per_country = pick_call(cap, anglo_cap)
         if len(call_pick) == N_CALL_REAL:
             break
@@ -1180,7 +1185,7 @@ def main():
             json.dump(stock_all, f, ensure_ascii=False, indent=1)
     history[day] = sorted(used_today)
     keep_real, seen_src = [], set()
-    for r in sorted(reals + bank_old, key=lambda r: r.get("banked", ""), reverse=True):
+    for r in sorted(reals + dropped_unfit + bank_old, key=lambda r: r.get("banked", ""), reverse=True):
         if r["src"] in used_today or r["src"] in seen_src:
             continue
         seen_src.add(r["src"])
