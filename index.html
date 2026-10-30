@@ -904,6 +904,12 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #backList button,#practiceList button{font-size:19px!important;padding:6px 10px!important}
 .ccap{color:rgba(232,238,250,.62);font:14px/1 var(--vt);white-space:nowrap;pointer-events:none;text-shadow:0 1px 0 rgba(0,0,0,.75);transform:translate(7px,-50%);letter-spacing:.03em}
 .cname{color:rgba(205,218,240,.34);font:15px/1 var(--vt);white-space:nowrap;pointer-events:none;text-shadow:0 1px 0 rgba(0,0,0,.6);transform:translate(-50%,-50%);letter-spacing:.04em}
+/* the hint badge: a scalloped sticker at the bottom right of the headline box, shown only once the story has been called real or fake */
+#hint{position:relative;display:block;width:fit-content;max-width:80%;margin:8px 0 0 auto;padding:8px 18px 9px;font:17px/1.1 var(--vt);color:#2b2000;text-align:center;transform:rotate(-1.5deg);animation:hintPop .32s steps(4)}
+#hint svg{position:absolute;left:0;top:0;width:100%;height:100%;z-index:0;overflow:visible}
+#hint span{position:relative;z-index:1}
+@keyframes hintPop{from{transform:scale(.35) rotate(-8deg);opacity:0}to{transform:rotate(-1.5deg);opacity:1}}
+@media (prefers-reduced-motion:reduce){#hint{animation:none}}
 .storyLink{display:block;text-align:right;margin:4px 0 0;font:18px/1 var(--vt);color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 .challenge{display:block;margin-top:6px;color:var(--accent)}
 @media not all and (min-width:1100px) and (min-height:600px){ body.returned #final,body.peek #final{margin-top:max(0px,calc(100vh - 330px))} }
@@ -1160,6 +1166,7 @@ body.recap #bar{display:none}
     <p class="kicker" id="kicker" aria-live="polite"></p>
     <h2 id="headline"></h2>
     <a id="storyLink" class="storyLink" hidden target="_blank" rel="noopener">read the story ↗</a>
+    <div id="hint" hidden><svg id="hintBg" aria-hidden="true"></svg><span id="hintTxt"></span></div>
     <div id="speed" hidden><div class="trk"><i></i></div><span>+100</span></div>
   </section>
   <div id="feedback" hidden aria-live="polite"></div>
@@ -1468,6 +1475,29 @@ function store(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
 function load(k){try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;}}
 function sumPts(rs){return rs.reduce((a,x)=>a+x.callPts+x.pinPts,0);}
 
+/* the hint is held back until the player has made their call, then pops in at the bottom right of the headline box */
+function drawHint(){
+  const el=$('hint'), svg=$('hintBg'); if(el.hidden) return;
+  const w=el.offsetWidth, h=el.offsetHeight; if(!w||!h) return;
+  const n=Math.max(8,Math.round((w+h)/20)), bump=4, a=w/2-2-bump, b=h/2-2-bump, pts=[];
+  for(let i=0;i<=240;i++){
+    const t=i/240*Math.PI*2, c=Math.cos(t), sn=Math.sin(t);                                   // a squarish oval...
+    let x=a*Math.sign(c)*Math.pow(Math.abs(c),0.5), y=b*Math.sign(sn)*Math.pow(Math.abs(sn),0.5);
+    const d=Math.hypot(x/a,y/b)||1, off=bump*Math.abs(Math.sin(n*t/2));                       // ...with round scallops pushed outwards from its rim
+    x=w/2+x+(x/a/d)*off*1.0; y=h/2+y+(y/b/d)*off*1.0;
+    pts.push(x.toFixed(1)+','+y.toFixed(1));
+  }
+  svg.setAttribute('viewBox','0 0 '+w+' '+h);
+  svg.innerHTML='<polygon points="'+pts.join(' ')+'" fill="#ffcc4d" stroke="#05060c" stroke-width="2" stroke-linejoin="round"/>';
+}
+function hideHint(){ $('hint').hidden=true; }
+function showHint(st){
+  if(!st || !st.real || !st.hint){ hideHint(); return; }
+  const el=$('hint');
+  $('hintTxt').textContent=String(st.hint).replace(/^[\s,;:-]+/,'');
+  el.hidden=false; el.style.animation='none'; void el.offsetWidth; el.style.animation='';
+  drawHint(); requestAnimationFrame(drawHint);
+}
 function headlineHTML(story, reveal){
   const w = 70 + (hash(story.h) % 60);
   const bar = '<span class="redact" role="img" aria-label="place hidden" style="width:'+w+'px"></span>';
@@ -2798,7 +2828,7 @@ function showRound(shown,quiet,gate){
   document.body.classList.remove('answered');
   S.phase = gate ? 'ready' : 'call'; guessLL=null;
   $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned');
-  $('blankUI').hidden=true; $('card').hidden=false; $('storyLink').hidden=true;
+  $('blankUI').hidden=true; $('card').hidden=false; $('storyLink').hidden=true; hideHint();
   const st = S.rounds[S.i];
   $('kicker').textContent = 'Real or fake?'+(S.kind==='pol'?' · Politics':'')+(S.mode==='practice'?' · practice':'');
   $('kicker').classList.remove('bad');
@@ -2855,6 +2885,7 @@ function revealCall(st){
     if(c.callOk){ Sound.play('real'); Sound.play('jawDown'); } else Sound.play('twist');
     $('kicker').textContent = c.callOk ? 'Real ✓ +'+c.callPts+' · where did it happen?' : 'Plot twist: it\'s real · pin it for 75% credit';
     fb.hidden=true;
+    showHint(st);
     openMap();
     if(!c.callOk) $('btnGuess').textContent='75% CREDIT · TAP A REGION';
   } else {
