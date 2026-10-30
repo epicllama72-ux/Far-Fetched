@@ -992,8 +992,8 @@ body.recap #bar{display:none}
 #guessList{display:flex;flex-wrap:wrap;gap:6px}
 .chip{font:20px/1 var(--vt);padding:5px 8px;background:#141821;border:2px solid var(--line);color:var(--text)}
 .chip b{font-weight:400;margin-left:6px;font-size:16px}
-.chip.hot b{color:var(--accent)}.chip.warm b{color:#e07a3a}.chip.mild b{color:var(--dim)}.chip.cold b{color:#6a7184}
-.chip.hot{border-color:var(--accent)}.chip.new{box-shadow:0 0 0 2px var(--cyan)}.chip.more{color:var(--dim)}
+.chip.onfire b{color:#ff5a36}.chip.hot b{color:var(--accent)}.chip.warm b{color:#e07a3a}.chip.cool b{color:#7fa6c9}.chip.cold b{color:#6a7184}
+.chip.onfire{border-color:#ff5a36}.chip.hot{border-color:var(--accent)}.chip.new{box-shadow:0 0 0 2px var(--cyan)}.chip.more{color:var(--dim)}
 /* compact results */
 #final{padding:10px 14px}
 #finalLine{font-size:26px!important;margin:0 0 4px}
@@ -2729,7 +2729,7 @@ function saveProgress(extra){
 
 /* one colour language for the HUD strip, the results grid and the share text */
 function resultClass(x){
-  if(x.blank) return x.c>=0.999?'ok':x.c>=0.6?'meh':x.c>=0.3?'warm':'no';
+  if(x.blank) return x.c>=0.999?'ok':x.c>=0.55?'meh':x.c>=0.38?'warm':'no';
   if(!x.real) return x.callOk?'fake':'fooled';
   if(!x.callOk) return 'no';
   const f=Math.min(1,(x.pinPts||0)/(PK*(PIN_PTS+COUNTRY_PTS)));
@@ -3841,17 +3841,55 @@ function vecOf(st){
     if(a.length===VM.d) st._v={a,n:Math.sqrt(n)||1}; }catch(e){} }
   return st._v;
 }
+/* ---- Fill the Blank scoring ----
+   EXACT (1): the hidden word, its plural, or a word the headline gives no way to tell apart from it (the editor lists these in "ans").
+   Close synonyms ("alt", or the extra words of older papers) count as ON FIRE (0.9) but never exact.
+   Everything else is ranked against the whole word list: how many of the 45k words sit closer to the answer than the guess does.
+   Rank 0 is the closest word of all, and the heat follows the rank, so the same word always runs as hot or cold whatever the headline. */
+const exactSet=st=>st.alt!==undefined ? st.ans : [st.ans[0]];
+const nearSet=st=>st.alt!==undefined ? st.alt : st.ans.slice(1);
+const sameWord=(a,b)=>a===b || stem(a)===stem(b);
+function isExactWord(word,st){
+  if(exactSet(st).some(a=>sameWord(a,word))) return true;
+  if(st.alt===undefined){                       // older papers listed synonyms and inflections together: inflections of the answer stay exact
+    const p=st.ans[0];
+    return st.ans.slice(1).some(a=>sameWord(a,word) && (stem(a)===stem(p) || (lev(a,p,2)<=2 && a.slice(0,3)===p.slice(0,3))));
+  }
+  return false;
+}
+const isNearWord=(word,st)=>nearSet(st).some(a=>sameWord(a,word));
+/* closeness of every word in the list to the answer (best over the exact words and the sentence-slot vector), then sorted for ranking */
+function simsFor(st){
+  if(st._sims) return st._sims;
+  const n=VM.norms.length, d=VM.d, A=VM.arr, best=new Float32Array(n).fill(-1);
+  const targets=[];
+  exactSet(st).forEach(a=>{ const i=VM.map.get(a); if(i!==undefined) targets.push({a:A.subarray(i*d,i*d+d),n:VM.norms[i]}); });
+  const sv=vecOf(st); if(sv) targets.push({a:sv.a,n:sv.n});
+  targets.forEach(t=>{
+    for(let i=0;i<n;i++){
+      let dot=0; const o=i*d;
+      for(let k=0;k<d;k++) dot+=A[o+k]*t.a[k];
+      const c=dot/(VM.norms[i]*t.n); if(c>best[i]) best[i]=c;
+    }
+  });
+  const sorted=Float32Array.from(best).sort();      // ascending
+  return st._sims={best,sorted,ok:targets.length>0};
+}
+function rankOf(gi,st){
+  const S_=simsFor(st); if(!S_.ok) return null;
+  const v=S_.best[gi], a=S_.sorted; let lo=0, hi=a.length;
+  while(lo<hi){ const m=(lo+hi)>>1; if(a[m]<=v) lo=m+1; else hi=m; }
+  return a.length-lo;                              // how many words are strictly closer than this one
+}
 /* returns closeness 0..1 (1 = exact) or null if the word isn't in the list */
 function closeness(word, st){
-  if(st.ans.some(a=>stem(a)===stem(word))) return 1;
+  if(isExactWord(word,st)) return 1;
+  if(isNearWord(word,st)) return 0.9;
   const gi=VM.map.get(word);
   if(gi===undefined) return null;
-  let cs=-1;
-  st.ans.forEach(a=>{ const ai=VM.map.get(a); if(ai!==undefined) cs=Math.max(cs,cosIdx(gi,ai)); });
-  const sv=vecOf(st);
-  if(sv){ const d=VM.d, A=VM.arr; let dot=0; for(let k=0;k<d;k++) dot+=A[gi*d+k]*sv.a[k]; cs=Math.max(cs,dot/(VM.norms[gi]*sv.n)); }
-  if(cs<-0.99) return null;
-  return Math.max(0,Math.min(0.95,(cs-0.15)/0.75));
+  const r=rankOf(gi,st);
+  if(r===null) return 0;
+  return Math.max(0,Math.min(0.88,0.9-0.2*Math.log10(r+1)));
 }
 function fmtDate(iso){ try{ const p=iso.split('-').map(Number); return new Date(p[0],p[1]-1,p[2]).toLocaleDateString(undefined,{month:'short',day:'numeric'}); }catch(e){ return iso; } }
 /* Exact answers carry the round; near misses pay little so spamming related words doesn't. */
@@ -3859,7 +3897,7 @@ function blankPts(c,tl,n){
   const pace=0.6+0.4*tl/BLANK_SECS, spam=Math.max(0.5,1-0.05*Math.max(0,n-3));
   return Math.round((c>=1 ? BLANK_MAX*pace : 300*(BLANK_MAX/500)*c*c*pace)*spam);
 }
-function heat(c){ return c>=1?'EXACT':c>=0.8?'HOT':c>=0.6?'WARM':c>=0.4?'MILD':'COLD'; }
+function heat(c){ return c>=1?'EXACT':c>=0.72?'ON FIRE':c>=0.55?'HOT':c>=0.38?'WARM':c>=0.2?'COOL':'COLD'; }
 
 function blankHTML(st,reveal){
   const w = 70 + (hash(st.h2) % 60);
@@ -3909,6 +3947,7 @@ function startBlankRound(wall){
   const inp=$('guessIn'); inp.value='';
   updateTimer();
   TIMER=setInterval(updateTimer,50);
+  setTimeout(()=>{ try{ simsFor(st); }catch(e){} },0);     // rank every word against the answer once, up front
   aim();
 }
 
@@ -3943,10 +3982,13 @@ function lev(a,b,max){
 const typoTol=w=>w.length>=8?2:w.length>=4?1:0;
 let VOCAB=null;
 function fixGuess(word,st){
-  const ans=st.ans||[];
-  if(ans.some(a=>a===word||stem(a)===stem(word))) return {word,fixed:false};
-  for(const a of ans){ const t=typoTol(a); if(t && (lev(word,a,t)<=t || lev(stem(word),stem(a),t)<=t)) return {word:a,fixed:true}; }
-  if(VM && !VM.map.has(word) && word.length>=4){
+  const ans=exactSet(st).concat(nearSet(st));
+  if(ans.some(a=>sameWord(a,word))) return {word,fixed:false};
+  // a real, common word is never rewritten into the answer ("lamb" stays "lamb" when the answer is "lamp"); only unknown or very rare spellings are
+  const idx=VM ? VM.map.get(word) : undefined;
+  const typo = idx===undefined || idx>15000;
+  if(typo) for(const a of ans){ const t=typoTol(a); if(t && (lev(word,a,t)<=t || lev(stem(word),stem(a),t)<=t)) return {word:a,fixed:true}; }
+  if(VM && idx===undefined && word.length>=4){
     VOCAB=VOCAB||[...VM.map.keys()];
     // closest spelling; ties go to the same length, then to the more common word (the list is ordered by frequency)
     const t=typoTol(word); let best=null, bk=[t+1,9,9];
@@ -3993,7 +4035,7 @@ function renderGuesses(){
   const sorted=bl.guesses.slice().sort((a,b)=>b.c-a.c).slice(0,3);
   const lastW=bl.guesses.length?bl.guesses[bl.guesses.length-1].word:'';
   $('guessList').innerHTML=sorted.map(x=>{
-    const h=heat(x.c), cl=h.toLowerCase();
+    const h=heat(x.c), cl=h.toLowerCase().replace(' ','');
     return '<span class="chip '+cl+(x.word===lastW?' new':'')+'">'+x.word+' <b>'+h+'</b></span>';
   }).join('')+(bl.guesses.length>3?'<span class="chip more">+'+(bl.guesses.length-3)+'</span>':'');
 }
@@ -4003,7 +4045,7 @@ function endBlank(){
   stopTimer();
   S.phase='done';
   const bl=S.blank, st=S.rounds[S.i];
-  const res={blank:true, real:st.real, c:bl.bestC, callOk:bl.bestC>=0.5, callPts:bl.bestPts, pinPts:0, callWord:bl.bestWord};
+  const res={blank:true, real:st.real, c:bl.bestC, callOk:bl.bestC>=0.55, callPts:bl.bestPts, pinPts:0, callWord:bl.bestWord};
   S.score+=res.callPts;
   if(res.callPts>0){ Scene.gasp(); Sound.play('jawDown'); }
   $('blankLive').hidden=true;
@@ -4359,7 +4401,7 @@ const Intro=(function(){
     const blank=S.kind==='blank', n=S.rounds.length, r=S.rounds.filter(x=>x.real).length, f=n-r;
     $('introLine').textContent = blank ? n+' true headlines, one word missing. Fill in the blank.' : n+' offbeat stories, '+r+' true, '+f+' false. Map the true ones.';
     $('introHowText').innerHTML = (blank
-      ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how <b>hot or cold</b> it is.</li><li>You have <b>20 seconds</b> per headline. The exact word, found fast, scores the most.</li><li>Every point drops his jaw a little further.</li></ol>'
+      ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how close it is: <b>cold, cool, warm, hot, on fire</b>, or exact. Spelling slips are fixed for you.</li><li>You have <b>20 seconds</b> per headline. The exact word, found fast, scores the most.</li><li>Every point drops his jaw a little further.</li></ol>'
       : '<ol><li>Read the headline. The place is <b>blacked out</b>.</li><li>Call it <b>REAL</b> or <b>FAKE</b>. Quick answers score more.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin where you think it happened, then <b>LOCK IN</b>. You get 20 seconds: closer and faster scores more.</li><li>Every point drops his jaw.</li></ol>')
       + '<p class="sc">'+$('howText').innerHTML+'</p>';
   }
