@@ -198,7 +198,7 @@ Below are candidate news stories from the past month (JSON). Some include "text"
    - "lat", "lng": your best coordinates for the place (decimal degrees).
    - "country": the country name.
    - "cc": the ISO 3166-1 alpha-2 country code ("US", "GB" for anywhere in the UK, "JP", ...).
-   - "hint": at most 60 characters, a short phrase that continues the headline after "in {}", shown to the player ONLY after they have called the story real or fake, to help them place it. It is a KNOWLEDGE clue, so the game rewards what a well-read person knows: a landmark the place is known for, a historical fact, its geography or surroundings (a nearby famous city, coast, mountains, lake, climate), a political or institutional fact, or a media reference (a film, show or book set there). Give one even when the source never mentions it, as long as it is TRUE of that place; it describes the PLACE, never the event. It must be a hint, not an answer: never write the hidden place, its state/region/country or a nationality, though a famous landmark or a different, nearby big city is fine. Good examples: "home of the Royal Pavilion", "near the theme parks", "a short train ride from Glasgow", "the planned capital beside a man-made lake", "a factory town east of the capital". Use "" if you are not sure of a true one.
+   - "hint": a SHORT noun phrase (at most 38 characters) that will be attached to the headline right after "in {}" as an appositive (for example "in {}, a castle-topped capital"), to help the player place it. It is a KNOWLEDGE clue, so the game rewards what a well-read person knows: a landmark the place is known for, a historical fact, its geography or surroundings (a nearby famous city, coast, mountains, lake, climate), a political or institutional fact, or a media reference (a film, show or book set there). Give one even when the source never mentions it, as long as it is TRUE of that place; it describes the PLACE, never the event. It must be a hint, not an answer: never write the hidden place, its state/region/country or a nationality, though a famous landmark or a different, nearby big city is fine. Good examples: "home of the Royal Pavilion", "near the theme parks", "a capital on an extinct volcano", "a desert city ringed by mountains", "a factory town east of the capital". Keep it SHORT: the headline box must not grow. Use "" if you are not sure of a true one.
    - "clue": at most 80 characters, written for the PLAYER after the reveal: the regional hints that point to the place, e.g. "moose + wire fencing = northern US/Canada", "monsoon flooding = South Asia", "metres and rupees". It may draw on details from the story itself, not only words in the headline. Use "" if there is none.
    - "clue_strength": 0-3. 3 = the headline strongly points to a region; 2 = a fair hint that a well-read general player could use; 1 = a weak hint; 0 = could be anywhere, OR the hint is misleading (an animal or object that is out of place, such as a kangaroo in Tennessee, is a surprise, not a clue: give it 0). JARGON-ONLY CLUES DO NOT COUNT: if the only regional hint is a local term, acronym or specialist word that a general player would not know (e.g. "cold-drop DANA", a regional dish or agency name nobody outside the country has heard of), set "jargon_only" to true and give clue_strength 0 or 1. A clue must work by general knowledge: currency, units, driving side, climate, wildlife, institution types, sport, language of well-known words.
    - "mappable": 0-3, how sensibly a player can drop a pin for this story. 3 = it happened at ONE specific town, city or county and the headline's clues point to that region; 2 = one specific place but the clues are thin; 1 = the place is only approximate (a region, a journey, or the HQ or court that reported it rather than where it happened); 0 = a pin makes no sense (online, nationwide, several places, a place unrelated to the event). Be strict: when in doubt, score lower.
@@ -458,7 +458,7 @@ ok=false if:
 - the headline is confusing, contradicts itself, or only makes sense with context it does not give;
 - the named place is not where the event actually happened (a company's headquarters, the court or capital that reported it, or just one of several places involved).
 ALLOWED, not a reason to fail: rewording, and short added wording that is generically true of that place (local terms like "county sheriff" or "constabulary", local units or currency, climate, wildlife, customs).
-Each item may also carry a "hint" that is shown to players after they call the story. It is NOT part of the story, so it need not appear in the source, but ok=false if the hint is false or doubtful for that place, is about the event instead of the place, or names the hidden place, its state/region/country or a nationality. A landmark the place is known for, a historical or geographic fact, a different nearby famous city and a film/show/book set there are all fine when true.
+Each item may also carry a "hint" that is attached to the headline. It is NOT part of the story, so it need not appear in the source, but ok=false if the hint is false or doubtful for that place, is about the event instead of the place, or names the hidden place, its state/region/country or a nationality. A landmark the place is known for, a historical or geographic fact, a different nearby famous city and a film/show/book set there are all fine when true.
 If the source material is too thin to judge but nothing contradicts the headline, ok=true.
 
 Reply with ONE JSON object only: {"checks":[{"id":0,"ok":true,"why":"at most 10 words"}]}
@@ -469,7 +469,7 @@ Items:
 
 SHARPEN_PROMPT = """You edit hints for "Far-Fetched", a daily KNOWLEDGE game. Players read a TRUE weird-news headline with the place hidden as {}, call it real or fake, and then see a short HINT before they pin where it happened on a world map. They see ONLY the headline and the hint: the "clue" and "text" below are for you, not them.
 
-For each story give a "hint": a short phrase that continues the headline after "in {}", shown to the player ONLY after they have called the story real or fake, to help them place it. It is a KNOWLEDGE clue, so the game rewards what a well-read person knows: a landmark the place is known for, a historical fact, its geography or surroundings (a nearby famous city, coast, mountains, lake, climate), a political or institutional fact, or a media reference (a film, show or book set there). Give one even when the source never mentions it, as long as it is TRUE of that place; it describes the PLACE, never the event. It must be a hint, not an answer: never write the hidden place, its state/region/country or a nationality, though a famous landmark or a different, nearby big city is fine. Good examples: "home of the Royal Pavilion", "near the theme parks", "a short train ride from Glasgow", "the planned capital beside a man-made lake", "a factory town east of the capital". Use "" if you are not sure of a true one.
+For each story give a "hint": a SHORT noun phrase (at most 38 characters) that will be attached to the headline right after "in {}" as an appositive (for example "in {}, a castle-topped capital"), to help the player place it. It is a KNOWLEDGE clue, so the game rewards what a well-read person knows: a landmark the place is known for, a historical fact, its geography or surroundings (a nearby famous city, coast, mountains, lake, climate), a political or institutional fact, or a media reference (a film, show or book set there). Give one even when the source never mentions it, as long as it is TRUE of that place; it describes the PLACE, never the event. It must be a hint, not an answer: never write the hidden place, its state/region/country or a nationality, though a famous landmark or a different, nearby big city is fine. Good examples: "home of the Royal Pavilion", "near the theme parks", "a capital on an extinct volcano", "a desert city ringed by mountains", "a factory town east of the capital". Keep it SHORT: the headline box must not grow. Use "" if you are not sure of a true one.
 
 If the story already has a "hint" that is true, short and fits those rules, keep it unchanged. If it is false, doubtful, names the place or the country, or is about the event, replace it. The headline itself stays as it is.
 
@@ -487,7 +487,7 @@ Stories:
 def hint_ok(hint, place):
     """A hint is shown after the call, so it must be short, must not name the hidden place or its country, and must not carry the {} token."""
     hint = (hint or "").strip()
-    return bool(hint) and len(hint) <= 70 and "{}" not in hint and not leaks(hint, place)
+    return bool(hint) and len(hint) <= 42 and "{}" not in hint and not leaks(hint, place)
 
 
 def sharpen(stories, model, texts):
@@ -1071,9 +1071,16 @@ def main():
     if len(blank) < N_BLANK:
         print(f"  Fill the Blank has {len(blank)} stories today (no sharing with Real or Fake)", file=sys.stderr)
 
+    def with_hint(h, hint):
+        """The knowledge clue rides in the headline itself: 'in {}, a capital on an extinct volcano'. Skipped if it would make the headline too long."""
+        hint = (hint or "").strip().rstrip(".,")
+        if not hint or h.count("{}") != 1 or len(h) + len(hint) + 2 > 135:
+            return h
+        return h.replace("{}", "{}, " + hint, 1)
+
     def real_call(r):
-        return {"real": True, "h": r["h"], "lat": round(float(r["lat"]), 4), "lng": round(float(r["lng"]), 4),
-                "place": r["place"], "src": r["src"], "published": r["published"], "clue": (r.get("clue") or "")[:80], "hint": (r.get("hint") or "")[:70]}
+        return {"real": True, "h": with_hint(r["h"], r.get("hint")), "lat": round(float(r["lat"]), 4), "lng": round(float(r["lng"]), 4),
+                "place": r["place"], "src": r["src"], "published": r["published"], "clue": (r.get("clue") or "")[:80]}
 
     def real_blank(r):
         out = {"real": True, "h2": r["h2"], "ans": r["ans"], "place": r["place"], "src": r["src"],
@@ -1210,7 +1217,7 @@ def main():
             return
         have.add(key)
         x = {"real": True, "day": d}
-        for k in ("h", "h2", "ans", "vec", "place", "src", "published", "clue", "hint"):
+        for k in ("h", "h2", "ans", "vec", "place", "src", "published", "clue"):
             if r.get(k):
                 x[k] = r[k]
         try:
