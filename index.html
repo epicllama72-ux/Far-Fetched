@@ -905,10 +905,11 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 .ccap{color:rgba(232,238,250,.62);font:14px/1 var(--vt);white-space:nowrap;pointer-events:none;text-shadow:0 1px 0 rgba(0,0,0,.75);transform:translate(7px,-50%);letter-spacing:.03em}
 .cname{color:rgba(205,218,240,.34);font:15px/1 var(--vt);white-space:nowrap;pointer-events:none;text-shadow:0 1px 0 rgba(0,0,0,.6);transform:translate(-50%,-50%);letter-spacing:.04em}
 /* the hint sticker: a scalloped oval at the bottom right of the headline box, shown only once the story has been called real or fake */
-#hint{position:relative;display:block;width:fit-content;max-width:74%;margin:20px 12px 20px auto;padding:7px 16px 8px;font:16px/1.05 var(--vt);color:#2b2000;text-align:center;transform:rotate(-14deg);transform-origin:center;filter:drop-shadow(2px 2px 0 #05060c);animation:hintPop .3s steps(3)}
+#hint{position:relative;display:block;width:fit-content;max-width:74%;margin:20px 12px 20px auto;padding:7px 16px 8px;font:16px/1.05 var(--vt);color:#2b2000;text-align:center;transform:rotate(-14deg);transform-origin:center;filter:drop-shadow(2px 2px 0 #05060c);animation:hintPop .3s steps(3),hintFloat 3.2s ease-in-out .3s infinite}
 #hint svg{position:absolute;left:0;top:0;width:100%;height:100%;z-index:0;overflow:visible}
 #hint span{position:relative;z-index:1}
 @keyframes hintPop{from{transform:rotate(-14deg) scale(.4);opacity:0}to{transform:rotate(-14deg);opacity:1}}
+@keyframes hintFloat{0%,100%{translate:0 0}50%{translate:0 -4px}}   /* a gentle bob, separate from the tilt and the pop-in */
 @media (prefers-reduced-motion:reduce){#hint{animation:none}}
 .storyLink{display:block;text-align:right;margin:4px 0 0;font:18px/1 var(--vt);color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 .challenge{display:block;margin-top:6px;color:var(--accent)}
