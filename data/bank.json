@@ -25,6 +25,31 @@
    "banked": "2026-10-28",
    "rules": 2,
    "jargon_only": false
+  },
+  {
+   "h": "Man on the run from provincial authorities takes his pet raccoon in for a rabies shot in {}",
+   "h2": "Montreal man on the run from provincial authorities takes his pet [] in for a rabies shot",
+   "ans": [
+    "raccoon",
+    "raccoons"
+   ],
+   "place": "Montreal, Quebec, Canada",
+   "geocode": "Montreal, Quebec, Canada",
+   "lat": 45.5017,
+   "lng": -73.5673,
+   "country": "Canada",
+   "cc": "CA",
+   "clue": "provincial authorities + raccoon rabies outbreak = Canada (Quebec)",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 2,
+   "unbelievable": 3,
+   "theme": "animals",
+   "src": "https://www.ctvnews.ca/montreal/article/montreal-man-on-the-run-from-authorities-takes-pet-raccoon-for-rabies-vaccination/",
+   "published": "2026-10-26",
+   "banked": "2026-10-30",
+   "rules": 2,
+   "priority": true
   }
  ],
  "fake": [
