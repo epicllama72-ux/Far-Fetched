@@ -12,6 +12,10 @@ on:
     - cron: "29 5 * * *"     # 1:29 am EDT / 12:29 am EST: catch-up
   workflow_dispatch:          # "Run workflow" button for a manual refresh
     inputs:
+      date:
+        description: "Edition date to build, e.g. 2026-10-31 (leave empty for the next paper by the clock)"
+        type: string
+        default: ""
       force:
         description: "Rebuild even if the paper already exists (spends Claude credit)"
         type: boolean
@@ -44,11 +48,13 @@ jobs:
         id: check
         if: github.event_name != 'push'
         run: |
-          day=$(python3 -c "
+          day="${{ inputs.date }}"
+          [ -n "$day" ] || day=$(python3 -c "
           import datetime as dt
           from zoneinfo import ZoneInfo
           et = dt.datetime.now(dt.timezone.utc).astimezone(ZoneInfo('America/New_York'))
           print((et + dt.timedelta(hours=4)).date().isoformat())")
+          echo "$day" | grep -Eq '^[0-9]{4}-[0-9]{2}-[0-9]{2}$' || { echo "::error::bad edition date: $day"; exit 1; }
           echo "day=$day" >> "$GITHUB_OUTPUT"
           if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ inputs.force }}" != "true" ]; then
             if [ -f "data/$day.json" ]; then
