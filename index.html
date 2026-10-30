@@ -3455,13 +3455,14 @@ async function share(){
   const btn=$('btnShare');
   try{
     if(navigator.share){               // text only: no picture goes with it
-      try{ await navigator.share({text}); return; }
-      catch(e){ if(e && e.name==='AbortError') return; }
+      try{ await navigator.share({text}); settleBar(); return; }
+      catch(e){ if(e && e.name==='AbortError'){ settleBar(); return; } }
     }
     await navigator.clipboard.writeText(text);
     btn.textContent='Copied!';
   }catch(e){ btn.textContent='Copy failed'; }
   setTimeout(()=>btn.textContent='Share',1500);
+  settleBar();
 }
 
 /* ---------- Shared leaderboard (artifact db) ----------
@@ -3982,11 +3983,23 @@ function endBlank(){
   aim();
 }
 
-/* keep the bottom bar above the on-screen keyboard */
-if(window.visualViewport){
-  const lift=()=>{ const vv=visualViewport; const off=Math.max(0,innerHeight-vv.height-vv.offsetTop); $('bar').style.bottom=off+'px'; };
-  visualViewport.addEventListener('resize',lift); visualViewport.addEventListener('scroll',lift);
+/* keep the bottom bar above the on-screen keyboard. It is only lifted while a text box is being typed in, and it is put straight back
+   whenever the page comes back into view (after the share sheet or another app) or the window changes size: the browser can report a
+   stale, shorter viewport right after returning, which used to leave the buttons stuck out of place. */
+function liftBar(){
+  const bar=$('bar'); if(!bar) return;
+  const vv=window.visualViewport;
+  const typing=/^(INPUT|TEXTAREA)$/.test((document.activeElement||{}).tagName||'');
+  let off = vv ? Math.max(0,innerHeight-vv.height-vv.offsetTop) : 0;
+  if(!typing || off<80) off=0;
+  bar.style.bottom = off ? off+'px' : '';
 }
+if(window.visualViewport){ visualViewport.addEventListener('resize',liftBar); visualViewport.addEventListener('scroll',liftBar); }
+const settleBar=()=>{ liftBar(); setTimeout(liftBar,250); setTimeout(liftBar,900); };
+document.addEventListener('visibilitychange',()=>{ if(!document.hidden) settleBar(); });
+window.addEventListener('pageshow',settleBar); window.addEventListener('focus',settleBar);
+window.addEventListener('resize',settleBar); window.addEventListener('orientationchange',settleBar);
+document.addEventListener('focusout',()=>setTimeout(liftBar,50));
 
 $('btnStart').onclick=()=>{
   const begin=()=>{ if(S.kind==='blank') startBlankRound(); else startCallRound(); };
