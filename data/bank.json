@@ -202,6 +202,25 @@
    "published": "2026-10-28",
    "banked": "2026-10-30",
    "rules": 2
+  },
+  {
+   "h": "Lawmaker in {} urges president to play new Call of Duty to understand the threat from the North",
+   "place": "Seoul, South Korea",
+   "geocode": "Seoul, South Korea",
+   "lat": 37.5665,
+   "lng": 126.978,
+   "country": "South Korea",
+   "cc": "KR",
+   "clue": "South Korean lawmaker; North Korea invasion; Korean president",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 2,
+   "unbelievable": 2,
+   "theme": "politics",
+   "src": "https://mbiz.heraldcorp.com/article/10912196",
+   "published": "2026-10-23",
+   "banked": "2026-10-30",
+   "rules": 2
   }
  ],
  "fake": [
