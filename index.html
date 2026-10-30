@@ -2692,10 +2692,10 @@ function resultClass(x){
 }
 const CLASS_EMOJI={ok:'🟩',meh:'🟨',warm:'🟧',no:'🟥',fake:'🟦',fooled:'⬛'};
 const CLASS_TITLE={ok:'Great',meh:'Good',warm:'Far off',no:'Missed',fake:'Caught the fake',fooled:'Fooled'};
-/* share grid: one square per headline. Pins by distance: 🎯 <75 km · 🟩 <500 · 🟨 <1,500 · 🟧 further · ⬛ no pin; 🟦 caught fake, 🟥 fooled */
+/* share grid: one square per headline. Pins by distance: 🎯 <75 km · 🟩 <500 · 🟨 <1,500 · 🟧 further · ⬛ no pin; · fakes: 🟧 caught, 🟨 not caught */
 function shareEmoji(x){
   if(x.blank) return CLASS_EMOJI[resultClass(x)];
-  if(!x.real) return x.callOk?'🟦':'🟥';
+  if(!x.real) return x.callOk?'🟧':'🟨';
   if(x.dist==null) return '⬛';
   return x.dist<75?'🎯':x.dist<500?'🟩':x.dist<1500?'🟨':'🟧';
 }
