@@ -4,7 +4,7 @@
  "call": [
   {
    "real": false,
-   "h": "Reindeer herders in {} switch to e-bikes for the winter round-up after snowmobile fuel runs short",
+   "h": "Reindeer herders in {}, the official hometown of Santa Claus, switch to e-bikes for the winter round-up after snowmobile fuel runs short",
    "tell": "E-bikes would be useless in deep Arctic snow, so the detail is wrong for the region."
   },
   {
@@ -49,7 +49,7 @@
   },
   {
    "real": false,
-   "h": "Pensioner in {} sells 1,860 jars of homemade chutney through an unattended honesty box at a bus shelter",
+   "h": "Pensioner in {}, home of Wallace and Gromit, sells 1,860 jars of homemade chutney through an unattended honesty box at a bus shelter",
    "tell": "The sales total is suspiciously tidy and an unattended box would not clear that many jars."
   },
   {
