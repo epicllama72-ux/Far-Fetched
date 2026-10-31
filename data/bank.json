@@ -209,18 +209,6 @@
    "rules": 2
   },
   {
-   "h": "Hi-vis YouTubers with selfie sticks guard a shark stuck in a harbour canal for a month, 1.6 million visit in {}",
-   "lat": 35.18,
-   "lng": 129.0752,
-   "place": "Busan, South Korea",
-   "src": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOZDBOM20tY01USzRneVZsNk1XVmZRN1BLc25KVklNSk50S3R5WDlidDktYy1wVHRHUVoxdGhLdEpFMS1xdXNoOVJxN1JlWWJxRkFfMTFOMHdGVnNfVkIza1d3Z3ZQNDJHUnpwSFhnMWdyMUlxVXQxY1N4Z2FFMWRGSkVISnRXeERCbDNvMzh5eUxFWWo0V2MtUnBsTWJ2MDJJOGx5OVl5SFJfd2JaeWc?oc=5",
-   "published": "2026-10-21",
-   "clue": "oceans ministry and YouTuber vigilantes = South Korea",
-   "hint": "a huge port city with Haeundae beach, across a strait from Kyushu",
-   "banked": "2026-10-31",
-   "id": 44
-  },
-  {
    "id": 45,
    "h": "Hitler Mussolini wins local election in {}",
    "place": "Queropalca, Huánuco, Peru",
@@ -260,6 +248,28 @@
    "theme": "crime",
    "src": "https://www.lbc.co.uk/news/uk/batman-chases-bag-thief-norwich/",
    "published": "2026-09-20",
+   "banked": "2026-10-31",
+   "rules": 2,
+   "priority": true
+  },
+  {
+   "id": 47,
+   "h": "Shark made city ambassador in {}",
+   "place": "Busan, South Korea",
+   "geocode": "Busan, South Korea",
+   "lat": 35.1796,
+   "lng": 129.0756,
+   "country": "South Korea",
+   "cc": "KR",
+   "hint": "host of the 2002 Asian Games",
+   "clue": "port-city canal shark + city PR ambassador poll = South Korea",
+   "clue_strength": 3,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 3,
+   "theme": "animal",
+   "src": "https://www.dexerto.com/entertainment/shark-trapped-in-south-korean-canal-draws-600000-visitors-and-becomes-city-ambassador-3414109/",
+   "published": "2026-10-05",
    "banked": "2026-10-31",
    "rules": 2,
    "priority": true
