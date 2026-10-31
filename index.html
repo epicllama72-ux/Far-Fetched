@@ -3700,9 +3700,9 @@ async function openBoard(){
   $('curve').hidden=rows.length<3;
   drawCurve(rows, mine);
   const others=rows.filter(r=>r.id!==b.me);
-  if(S.mode!=='daily') $('rankLine').innerHTML=rows.length+' digger'+(rows.length===1?'':'s')+' so far today. '+(S.mode==='back'?'Back issues':'Practice runs')+' don\'t count.';
-  else if(!done) $('rankLine').innerHTML=(rows.length ? rows.length+' digger'+(rows.length===1?'':'s')+' so far today.' : 'Nobody has finished today\'s round yet.')+' Finish yours to see where you land.';
-  else if(!others.length) $('rankLine').innerHTML='You\'re the <b>first digger</b> today. Check back as others play.';
+  if(S.mode!=='daily') $('rankLine').innerHTML=rows.length+' reader'+(rows.length===1?'':'s')+' so far today. '+(S.mode==='back'?'Back issues':'Practice runs')+' don\'t count.';
+  else if(!done) $('rankLine').innerHTML=(rows.length ? rows.length+' reader'+(rows.length===1?'':'s')+' so far today.' : 'Nobody has finished today\'s round yet.')+' Finish yours to see where you land.';
+  else if(!others.length) $('rankLine').innerHTML='You\'re the <b>first reader</b> today. Check back as others play.';
   else {
     const below=others.filter(r=>r.m<mine).length, ties=others.filter(r=>r.m===mine).length;
     const pct=Math.round(100*(below+ties*0.5)/others.length);
