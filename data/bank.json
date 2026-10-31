@@ -273,6 +273,28 @@
    "banked": "2026-10-31",
    "rules": 2,
    "priority": true
+  },
+  {
+   "id": 48,
+   "h": "Bear breaks into mall, steals peach and defecates on floor in {}",
+   "place": "Anchorage, Alaska",
+   "geocode": "Joint Base Elmendorf-Richardson, Anchorage, Alaska, USA",
+   "lat": 61.25,
+   "lng": -149.8,
+   "country": "United States",
+   "cc": "US",
+   "hint": "where the Iditarod sled race starts",
+   "clue": "bear in a mall + a military base = Alaska",
+   "clue_strength": 3,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 3,
+   "theme": "animal",
+   "src": "https://funnytimes.com/news-of-the-weird-october-2026/",
+   "published": "2026-10-01",
+   "banked": "2026-10-31",
+   "rules": 2,
+   "priority": true
   }
  ],
  "fake": [
