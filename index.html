@@ -3632,11 +3632,11 @@ function drawCurve(rows, mine, cvEl){
   g.imageSmoothingEnabled=false;
   g.fillStyle='#0b0e14'; g.fillRect(0,0,W,H);
   const xs=rows.map(r=>r.m); if(typeof mine==='number') xs.push(mine);
-  // x axis: whole-number marks every 1, 2, 5, 10 ... m, framed tightly around the scores (but starting at 0 when the dig is shallow)
-  const lo0=Math.max(0,Math.min(...xs,99)-0.5), hi0=Math.max(...xs,1)+0.5;
-  const step=[1,2,5,10,20,50].find(st=>Math.ceil(hi0/st)-Math.floor(lo0/st)<=6)||100;
-  let lo=lo0<1.5*step?0:Math.floor(lo0/step)*step, hi=Math.ceil(hi0/step)*step;
-  if(hi-lo<2*step) hi=lo+2*step;
+  // x axis: always 0 m up to the depth the top score reaches (the same range every day), with whole-number marks every 1, 2, 5, 10 ... m
+  const Lay=Scene.layout(), topM=(S && S.maxScore ? S.maxScore*Lay.K*Lay.M : 0);
+  const hi0=Math.max(topM, ...xs, 2);
+  const step=[1,2,5,10,20,50].find(st=>Math.ceil(hi0/st)<=7)||100;
+  const lo=0, hi=Math.max(2*step, Math.ceil(hi0/step)*step);
   const L=24, R=W-24, X=m=>Math.round(L+(R-L)*(m-lo)/(hi-lo)), base=H-24;
   // grid, ticks and labels
   g.fillStyle='#1c2230'; for(let m=lo;m<=hi;m+=step){ g.fillRect(X(m),12,1,base-12); }
