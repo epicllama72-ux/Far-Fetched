@@ -272,7 +272,8 @@
    "obvious": 3,
    "theme": "metal-theft",
    "banked": "2026-10-31",
-   "rules": 2
+   "rules": 2,
+   "hint": "home of The Full Monty"
   },
   {
    "h": "Auto-rickshaw driver in {} takes a 37-rupee fare to the wrong city, 874 km away, after a map update",
@@ -280,7 +281,8 @@
    "obvious": 3,
    "theme": "taxi",
    "banked": "2026-10-31",
-   "rules": 2
+   "rules": 2,
+   "hint": "the home of Bollywood"
   },
   {
    "h": "Surf lifesavers at a beach in {} reach a man who drifted 2.4 km out on an inflatable pizza slice",
@@ -288,7 +290,8 @@
    "obvious": 2,
    "theme": "lifesaving",
    "banked": "2026-10-31",
-   "rules": 2
+   "rules": 2,
+   "hint": "host of the 2018 Commonwealth Games"
   },
   {
    "h": "Pub in {} runs out of pints on a Tuesday after 312 regulars turn up for a quiz about the pub's own history",
@@ -296,7 +299,8 @@
    "obvious": 3,
    "theme": "pub",
    "banked": "2026-10-31",
-   "rules": 2
+   "rules": 2,
+   "hint": "the home of Guinness"
   },
   {
    "h": "Ski resort in {} reopens lift after a marmot chewed through its control cable in January",
@@ -304,7 +308,8 @@
    "obvious": 3,
    "theme": "ski",
    "banked": "2026-10-31",
-   "rules": 2
+   "rules": 2,
+   "hint": "host of the first Winter Olympics"
   },
   {
    "h": "Burglar in {} tunnels 16 metres under a bakery to reach a till holding only 9 euros",
@@ -312,7 +317,8 @@
    "obvious": 2,
    "theme": "burglary",
    "banked": "2026-10-29",
-   "rules": 2
+   "rules": 2,
+   "hint": "the city of the Carnation Revolution"
   },
   {
    "h": "Reindeer block the main road into {} for three hours, delaying 52 school buses",
@@ -320,7 +326,8 @@
    "obvious": 3,
    "theme": "reindeer",
    "banked": "2026-10-29",
-   "rules": 2
+   "rules": 2,
+   "hint": "home of the famous Icehotel"
   },
   {
    "h": "Ferry crossing a fjord near {} turns back as captain leaves lunch ashore, delaying 63 passengers",
@@ -328,7 +335,8 @@
    "obvious": 3,
    "theme": "ferry",
    "banked": "2026-10-29",
-   "rules": 2
+   "rules": 2,
+   "hint": "birthplace of composer Edvard Grieg"
   },
   {
    "h": "Outdoor pool in {} freezes over for the first time since 1974, trapping a pedalo",
@@ -336,7 +344,8 @@
    "obvious": 2,
    "theme": "pool",
    "banked": "2026-10-29",
-   "rules": 2
+   "rules": 2,
+   "hint": "home of singer Björk"
   },
   {
    "h": "Moose wanders into a junior hockey rink in {}, play resumes after 19 minutes",
@@ -344,7 +353,8 @@
    "obvious": 2,
    "theme": "wildlife",
    "banked": "2026-10-28",
-   "rules": 2
+   "rules": 2,
+   "hint": "home of hockey's Hall of Fame"
   },
   {
    "h": "Taxi driver in {} returns a bag holding 14,800 rand to a passenger, then learns it was his own",
@@ -352,7 +362,8 @@
    "obvious": 3,
    "theme": "taxi",
    "banked": "2026-10-28",
-   "rules": 2
+   "rules": 2,
+   "hint": "where Nelson Mandela practised law"
   },
   {
    "h": "Cheese warehouse in {} loses 29 wheels of Gouda; thieves abandon the van after it runs out of diesel",
@@ -360,7 +371,8 @@
    "obvious": 2,
    "theme": "cheese",
    "banked": "2026-10-28",
-   "rules": 2
+   "rules": 2,
+   "hint": "home of Rembrandt's Night Watch"
   },
   {
    "h": "Shire in {} bans backyard cricket after 17 balls land in neighbours' pools; fine set at A$220",
@@ -368,7 +380,8 @@
    "obvious": 3,
    "theme": "sport",
    "banked": "2026-10-28",
-   "rules": 2
+   "rules": 2,
+   "hint": "host of the Boxing Day Test"
   },
   {
    "h": "Vending machine in {} serves only hot canned drinks for 12 days in August; owner refunds 3,900 yen",
@@ -376,7 +389,8 @@
    "obvious": 3,
    "theme": "vending",
    "banked": "2026-10-28",
-   "rules": 2
+   "rules": 2,
+   "hint": "host of the 1964 Olympics"
   },
   {
    "h": "Bus driver in {} halts route for 40 minutes to let 53 turkeys cross, passengers applaud",
@@ -384,35 +398,40 @@
    "obvious": 2,
    "theme": "transport",
    "banked": "2026-10-28",
-   "rules": 2
+   "rules": 2,
+   "hint": "where the Pilgrims landed in 1620"
   },
   {
    "h": "Reindeer herd strolls through beach resort in {} as temperatures hit 38C; lifeguards hand out carrots",
    "tell": "Reindeer are Arctic animals and wouldn't be wandering a hot beach resort.",
    "obvious": 3,
    "banked": "2026-10-27",
-   "rules": 2
+   "rules": 2,
+   "hint": "where Pearl Harbor was attacked"
   },
   {
    "h": "Burglar arrested by same constable who caught his father 22 years ago, on same street with same stolen bicycle in {}",
    "tell": "The coincidence stacks too many matching details to be believable.",
    "obvious": 3,
    "banked": "2026-10-27",
-   "rules": 2
+   "rules": 2,
+   "hint": "the setting of Sherlock Holmes stories"
   },
   {
    "h": "Thief steals 63 garden gnomes from allotments in {}, leaves note saying 'they looked lonely' and €20",
    "tell": "A thief leaving a sentimental note and paying money is a movie-style flourish.",
    "obvious": 2,
    "banked": "2026-10-27",
-   "rules": 2
+   "rules": 2,
+   "hint": "birthplace of the garden gnome"
   },
   {
    "h": "Monsoon floods in {} carry 41 plastic chairs from a wedding hall to a temple; priest accepts them as a donation",
    "tell": "Floodwater delivering exactly the thing a priest can gracefully accept is too tidy.",
    "obvious": 3,
    "banked": "2026-10-27",
-   "rules": 2
+   "rules": 2,
+   "hint": "birthplace of Nobel poet Tagore"
   }
  ],
  "pol": [

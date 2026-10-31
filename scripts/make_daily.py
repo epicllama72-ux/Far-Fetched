@@ -485,6 +485,39 @@ Stories:
 """
 
 
+FAKE_HINT_PROMPT = """You add clues to INVENTED headlines for "Far-Fetched", a daily news game. Real stories carry a short trivia clue after the hidden place ("... in {}, home of the Royal Pavilion"), so fakes must carry one too or they stand out.
+For each fake headline, pick a REAL place where that story would be plausible (it may fit many; choose one) and give a "hint": a TRUE trivia clue about that place, at most 6 words, starting with "a", "an", "the", "home of", "birthplace of", "where" or "host of". It must never name the place, its region or country, or a nationality. Draw it from media (a film, show, book, music), politics, history, sport or food/culture, not bare geography or a landmark description. Vary the types across the batch. The headline stays invented: only the clue about the place is true.
+Reply with ONE JSON object only: {"fake":[{"id":0,"hint":"..."}]}
+
+Headlines:
+"""
+
+
+def fake_hint_ok(hint):
+    hint = (hint or "").strip()
+    return bool(hint) and len(hint) <= 48 and len(hint.split()) <= 6 and "{}" not in hint and bool(re.match(r"(an?|the|home|birthplace|where|host)\b", hint, re.I))
+
+
+def clue_fakes(fakes, model):
+    """Give every fake that lacks one a trivia clue, so banked and stock fakes look like the real stories."""
+    todo = [f for f in fakes if not fake_hint_ok(f.get("hint"))]
+    if not todo:
+        return
+    items = [{"id": i, "h": f.get("h", "")} for i, f in enumerate(todo)]
+    res = call_claude(FAKE_HINT_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=2000, fatal=False, keys=["fake"])
+    if not res or "fake" not in res:
+        print("  fake clue pass unavailable; those fakes go out without a clue", file=sys.stderr)
+        return
+    for x in res["fake"]:
+        try:
+            f = todo[int(x["id"])]
+        except Exception:
+            continue
+        if fake_hint_ok(x.get("hint")):
+            f["hint"] = x["hint"].strip().rstrip(".,")
+    print(f"  clued {sum(1 for f in todo if f.get('hint'))}/{len(todo)} fakes that had none", file=sys.stderr)
+
+
 def hint_ok(hint, place):
     """A hint is shown after the call, so it must be short, must not name the hidden place or its country, and must not carry the {} token."""
     hint = (hint or "").strip()
@@ -956,6 +989,8 @@ def main():
         reals = reals + extra
     if len(fakes) < N_CALL_FAKE:
         fakes = fakes + [f for f in bank.get("fake", []) if f.get("rules", 1) >= RULES and f.get("banked") != day and valid_fake(f) and f not in fakes]
+    if not args.picks:
+        clue_fakes(fakes, model)
     if len(reals) < N_CALL_REAL or len(fakes) < N_CALL_FAKE:
         # fail loudly: the run goes red (GitHub emails the owner) and the next scheduled attempt tries again
         print(f"ERROR: only {len(reals)} usable real / {len(fakes)} fake headlines even with the bank and stock; no new paper printed.", file=sys.stderr)
