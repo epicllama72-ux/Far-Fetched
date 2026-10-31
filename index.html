@@ -4280,7 +4280,7 @@ const Intro=(function(){
   function drawDamage(tier,R,ex,ey,tt,age,dt){
     const grow=clamp01(age/1.2);
     const home=proj(tgt[0],tgt[1],R,ex,ey), s=Math.max(1,Math.round(R/45)), sb=Math.max(1,Math.round(R/26));
-    if(tier>=1){ if(!cracks) makeCracks(tier<=2?5:11, tier<=2?5:13); drawCracks(R,ex,ey,grow,tier>=3,tt); }
+    if(tier>=0.5){ if(!cracks) makeCracks(tier<1?2:tier<=2?5:11, tier<1?2:tier<=2?5:13); drawCracks(R,ex,ey,grow,tier>=3,tt); }   // dirt only: just a hairline pair
     if(tier===2 && cracks){              // magma: the same crack as bedrock, with lava welling up and running out of it
       const flow=clamp01((age-0.5)/2.2), s2=Math.max(1,Math.round(R/60));
       cracks.forEach((pts,ci)=>{
@@ -4456,7 +4456,7 @@ const Intro=(function(){
     return t;
   }
   // the planet only burns once the jaw has detonated the core; reaching the core layer without that is a volcano
-  const tierOf=(zone,blown)=>({'BEDROCK':1,'MAGMA':2,'THE CORE':blown?3:2,'AUSTRALIA':4}[zone]||0);
+  const tierOf=(zone,blown)=>({'THE DIRT':0.5,'BEDROCK':1,'MAGMA':2,'THE CORE':blown?3:2,'AUSTRALIA':4}[zone]||0);
   function outro(zone,blown){
     if(reduce) return;
     tier=tierOf(zone,blown);
