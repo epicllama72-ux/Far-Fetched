@@ -241,6 +241,28 @@
    "banked": "2026-10-31",
    "rules": 2,
    "priority": true
+  },
+  {
+   "id": 46,
+   "h": "Batman chases down thief in {}",
+   "place": "Norwich, England",
+   "geocode": "Norwich, Norfolk, England",
+   "lat": 52.6309,
+   "lng": 1.2974,
+   "country": "United Kingdom",
+   "cc": "GB",
+   "hint": "where Alan Partridge broadcasts",
+   "clue": "nightclub queue + police + cathedral city = England",
+   "clue_strength": 3,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 3,
+   "theme": "crime",
+   "src": "https://www.lbc.co.uk/news/uk/batman-chases-bag-thief-norwich/",
+   "published": "2026-09-20",
+   "banked": "2026-10-31",
+   "rules": 2,
+   "priority": true
   }
  ],
  "fake": [
