@@ -219,6 +219,28 @@
    "hint": "a huge port city with Haeundae beach, across a strait from Kyushu",
    "banked": "2026-10-31",
    "id": 44
+  },
+  {
+   "id": 45,
+   "h": "Hitler Mussolini wins local election in {}",
+   "place": "Queropalca, Huánuco, Peru",
+   "geocode": "Queropalca, Lauricocha, Huánuco, Peru",
+   "lat": -10.1792,
+   "lng": -76.8028,
+   "country": "Peru",
+   "cc": "PE",
+   "hint": "home country of Paddington Bear",
+   "clue": "Spanish-speaking Andean district: a mountain mayoral race = Peru",
+   "clue_strength": 3,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 3,
+   "theme": "election",
+   "src": "https://www.politico.eu/article/hitler-mussolini-wins-local-election-peru/",
+   "published": "2026-10-10",
+   "banked": "2026-10-31",
+   "rules": 2,
+   "priority": true
   }
  ],
  "fake": [
