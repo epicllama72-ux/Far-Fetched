@@ -3633,7 +3633,7 @@ function drawCurve(rows, mine, cvEl){
   g.fillStyle='#0b0e14'; g.fillRect(0,0,W,H);
   const xs=rows.map(r=>r.m); if(typeof mine==='number') xs.push(mine);
   // x axis: always 0 m up to the depth that breaks through to Australia (the same range every day), marks every 1, 2, 5, 10 ... m
-  const Lay=Scene.layout(), ausM=Math.round((Lay.EXIT-22)*Lay.M*10)/10;     // the chin leaves the crust when 13+drop+9 reaches EXIT
+  const Lay=Scene.layout(), ausM=Math.ceil((Lay.EXIT-22)*Lay.M);     // the chin leaves the crust when 13+drop+9 reaches EXIT
   const hi=Math.max(ausM, ...xs, 2), lo=0;
   const step=[1,2,5,10,20,50].find(st=>Math.ceil(hi/st)<=7)||100;
   const L=24, R=W-24, X=m=>Math.round(L+(R-L)*(m-lo)/(hi-lo)), base=H-24;
