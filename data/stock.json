@@ -144,8 +144,7 @@
    "lat": 40.4552,
    "lng": -4.4652,
    "banked": "2026-10-28",
-   "rules": 2,
-   "alt": []
+   "rules": 2
   },
   {
    "h": "Customer test-driving electric car crashes through showroom window into a newsstand cafe in {}",
@@ -171,8 +170,56 @@
    "lat": -34.6037,
    "lng": -58.3816,
    "banked": "2026-10-28",
+   "rules": 2
+  },
+  {
+   "h": "Barber, 61, and wife arrested in the act over one cannabis plant on their home terrace in {}",
+   "h2": "[], 61, and wife arrested over single cannabis plant on home terrace in Aira, Kagoshima, Japan",
+   "ans": [
+    "barber",
+    "barbers",
+    "hairdresser",
+    "stylist",
+    "haircutter",
+    "hairstylist"
+   ],
+   "place": "Aira, Kagoshima, Japan",
+   "src": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE10T0xybTIxZU5TX0wwckR6eUFWWV9OS0tMc1czTlV3RjFkYmdUcWp2Mk5FTG1MTDJVcEg1SUZyS0tnRU9yQ1gwR2RNdzNsS2Y1ZnpHWFh3TQ?oc=5",
+   "published": "2026-10-26",
+   "country": "Japan",
+   "cc": "JP",
+   "clue_strength": 0,
+   "unbelievable": 2,
+   "theme": "cannabis",
+   "lat": 31.7283,
+   "lng": 130.6277,
+   "banked": "2026-10-28",
    "rules": 2,
-   "alt": []
+   "vec": "gRfh9fUKh+/M5OQ/nt0j3N0RA8j6KcgKEcTr5TqtPvgQOkctEEA7RQI/5/b1IAe16yM="
+  },
+  {
+   "h": "Family's new wooden back door and iron security gate both fitted to open outwards; TikTok blames blacksmith in {}",
+   "h2": "Córdoba, Argentina: TikToker shows new wooden [] and iron gate both opening outwards, blames blacksmith",
+   "ans": [
+    "door",
+    "doors",
+    "entrance",
+    "doorway"
+   ],
+   "place": "Córdoba, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMivgFBVV95cUxORjlLbS1wMnBRYjdQUDB2cjNKYThGMlRmMEZScEMwZzFmMHdseTFMQWMzV2doZ2dGY0ZFTWoxSEJxQ1NHLURpUlZ6Y1hrQjA2MzdOT1VXVmdNTU8wYVB1QXVweWVPZEZJN0hKSkJrSng3Y2VKQ2t2TDNGLW1IZkpHX3hsTjBvRlE1NFFPLXBSV3RPRV9VU3U5ajRCNDhLT05kN2ZfNHlHYXlSSHpiVWhfNUFwbDZGcVhCM3lQT0ZB?oc=5",
+   "published": "2026-10-22",
+   "clue": "Spanish-language viral post from a homeowner with a patio",
+   "country": "Argentina",
+   "cc": "AR",
+   "clue_strength": 0,
+   "unbelievable": 3,
+   "theme": "construction",
+   "lat": -31.4167,
+   "lng": -64.1834,
+   "banked": "2026-10-28",
+   "rules": 2,
+   "vec": "FhMW7Sj15wME4tX61zsOHecDI7sgGdsV/60JPhTVf/vcBQgVI/UI7QEA7gsSAhjMC+A="
   }
  ]
 }

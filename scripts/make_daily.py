@@ -188,7 +188,7 @@ PROMPT = """You are the editor of "Far-Fetched", a daily guessing game built on 
 
 Below are candidate news stories from the past month (JSON). Some include "text", the opening of the article: use it for the facts and the punchline. Some are not in English: write everything you output in English. Do two jobs and reply with ONE JSON object only, no prose.
 
-1) "real": pick 20 of the best stories for the game, best first. You MUST return at least 14; if clue-rich stories run short, fill the rest with the most surprising remaining ones (low clue_strength is fine), never return fewer than 14 (rank by clue_strength plus unbelievable). Rank by how HARD TO BELIEVE the story is: favour the ones a reader would assume are made up (absurd specifics, improbable coincidences, odd rules, unlikely animals or objects) but that really happened. Strongly prefer stories where the event is linked to the place it happened, so a player can DEDUCE the location from the headline instead of guessing: local wildlife or climate (a kangaroo, a moose, monsoon flooding, snow in summer), regional industry, food, sport or customs, a local law or institution type, driving side, currency, units or typical local jobs. Stories that could have happened anywhere rank lower but are still acceptable fillers. The game should be FUNNY, EDUCATIONAL and reward broad general knowledge: favour stories that make a reader laugh out loud or are so ridiculous they feel like something out of the movie Idiocracy (absurd decisions, baffling rules, dumbfounding mix-ups, spectacularly dumb but harmless events), and whose clues connect to things a well-read person could know about the place (geography, climate, wildlife, languages, currencies, laws, food, history, sport, industries), so that general knowledge lets them reason to the right region, not luck. Good picks are surprising, funny or delightful, happened in ONE specific identifiable town/city/county, and are light-hearted. Every pick must make sense on its own: a reader must understand exactly what happened from the headline alone (no missing context, no confusing or contradictory details), and the hidden place must be where it actually happened. Skip BORING stories: a rare animal spotted, a nice rescue, a big vegetable, a quiet record, a mild oddity with no real twist. Every pick needs a real punchline, an absurd mistake or a jaw-dropping detail. STRANGE, FUNNY CRIME stories are welcome and wanted (dumb criminals, bizarre thefts, absurd arrests, getaway fails, odd things stolen or smuggled, ridiculous excuses) as long as they are non-violent and nobody is seriously hurt. Never pick stories about death, serious injury, violent crimes against people, abuse, sexual content, children in danger, war, politics, disasters or tragedy. That includes floods, storms, wildfires, quakes, heatwaves and outbreaks, even when the story itself is light-hearted (a man swimming down a flooded street is out), because they are often tied to real tragedies. Write headlines in plain words a general reader knows: no local weather jargon or acronyms (never 'DANA', 'derecho', 'haboob' and the like). Avoid near-duplicates (e.g. several lottery wins) - at most one lottery story. Spread your picks around the WORLD: at most 3 from any one country, and at least half from outside the US, UK, Canada, Australia, New Zealand and Ireland whenever the candidates allow it (Latin America, Europe, Asia, Africa and the Middle East are all welcome). Include at least one story from Africa, one from South America and one from Oceania or the Pacific whenever the candidates have a usable one, and never more than two stories about the same kind of thing (dogs, goats, cheese and so on). For each pick give:
+1) "real": pick 16 of the best stories for the game, best first. You MUST return at least 12; if clue-rich stories run short, fill the rest with the most surprising remaining ones (low clue_strength is fine), never return fewer than 12 (rank by clue_strength plus unbelievable). Rank by how HARD TO BELIEVE the story is: favour the ones a reader would assume are made up (absurd specifics, improbable coincidences, odd rules, unlikely animals or objects) but that really happened. Strongly prefer stories where the event is linked to the place it happened, so a player can DEDUCE the location from the headline instead of guessing: local wildlife or climate (a kangaroo, a moose, monsoon flooding, snow in summer), regional industry, food, sport or customs, a local law or institution type, driving side, currency, units or typical local jobs. Stories that could have happened anywhere rank lower but are still acceptable fillers. The game should be FUNNY, EDUCATIONAL and reward broad general knowledge: favour stories that make a reader laugh out loud or are so ridiculous they feel like something out of the movie Idiocracy (absurd decisions, baffling rules, dumbfounding mix-ups, spectacularly dumb but harmless events), and whose clues connect to things a well-read person could know about the place (geography, climate, wildlife, languages, currencies, laws, food, history, sport, industries), so that general knowledge lets them reason to the right region, not luck. Good picks are surprising, funny or delightful, happened in ONE specific identifiable town/city/county, and are light-hearted. Every pick must make sense on its own: a reader must understand exactly what happened from the headline alone (no missing context, no confusing or contradictory details), and the hidden place must be where it actually happened. Skip BORING stories: a rare animal spotted, a nice rescue, a big vegetable, a quiet record, a mild oddity with no real twist. Every pick needs a real punchline, an absurd mistake or a jaw-dropping detail. STRANGE, FUNNY CRIME stories are welcome and wanted (dumb criminals, bizarre thefts, absurd arrests, getaway fails, odd things stolen or smuggled, ridiculous excuses) as long as they are non-violent and nobody is seriously hurt. Never pick stories about death, serious injury, violent crimes against people, abuse, sexual content, children in danger, war, politics, disasters or tragedy. That includes floods, storms, wildfires, quakes, heatwaves and outbreaks, even when the story itself is light-hearted (a man swimming down a flooded street is out), because they are often tied to real tragedies. Write headlines in plain words a general reader knows: no local weather jargon or acronyms (never 'DANA', 'derecho', 'haboob' and the like). Avoid near-duplicates (e.g. several lottery wins) - at most one lottery story. Spread your picks around the WORLD: at most 3 from any one country, and at least half from outside the US, UK, Canada, Australia, New Zealand and Ireland whenever the candidates allow it (Latin America, Europe, Asia, Africa and the Middle East are all welcome). Include at least one story from Africa, one from South America and one from Oceania or the Pacific whenever the candidates have a usable one, and never more than two stories about the same kind of thing (dogs, goats, cheese and so on). For each pick give:
    - "id": the candidate id.
    - "h": a punchy wire-style headline, max 110 characters, keeping every fact of the story exactly as reported (never change what happened, who or what was involved, numbers or outcome). You MAY reword and add short descriptive wording that makes the region easier to deduce, as long as it is generically true of that place and does not alter or add to the story: e.g. local terms and institutions ("the county sheriff", "council", "constabulary", "a roo", "monsoon rains", "rupees", "kilometres", "on the ski slopes"), local climate, wildlife or customs, or spelling and units typical of the country. Replace the place with the literal token {} exactly once (e.g. "... in {}"). Remove every EXPLICIT location clue: no state/country/city names, demonyms, local team, landmark, university or company names that reveal the place (landmarks and nearby cities belong in "hint", not here), no "Florida man". But KEEP the implicit, deducible clues that are part of the story (the animal, the weather, the local custom, currency or units, the type of institution), so a sharp player can reason their way to the right region. Keep the oddity intact. The clues do NOT have to come from the original headline: the article text ("text") often holds the best ones (a currency, a unit, a local institution, an animal, the weather, a local custom or law, a sport, a typical job). If a great story's clues sit in the body, WRITE them into "h" in your own words, as long as they are facts the text states or are generically true of that place, so the game headline can differ a lot from the source headline. A story whose body gives a fair regional clue is better than one with a punchier headline and nothing to deduce from.
    - "h2": the same story as a headline that DOES name the place (city + state/country), with the main subject noun of the story (the animal, object or kind of person it is about, e.g. "kangaroo", "pelicans", "kitten") replaced by the literal token [] exactly once. The hidden word must be an ordinary common noun that is written in lowercase in normal text: never a name, brand, product, model, company, team, place or nationality (not "Maserati" or "Vegemite" - use "car" or "spread" instead, or pick another noun). The rest of h2 must NOT contain the hidden word, a synonym or a close variant of it (if the hidden word is "toilets", h2 must not say "potties" or "loo"), and give each pick a different hidden word than the other picks (not both "burglar" and "thief").
@@ -245,7 +245,7 @@ def ask_claude(cands, model, prompt=None, avoid=None):
     if avoid:
         extra = ("\n\nALREADY USED in earlier games. Never pick any of these stories again, even if a candidate tells it "
                  "with different words or comes from a different outlet:\n" + "\n".join("- " + a for a in avoid) + "\n")
-    return call_claude((prompt or PROMPT) + json.dumps(payload, ensure_ascii=False) + extra, model, max_tokens=16000, keys=["real", "fake"])
+    return call_claude((prompt or PROMPT) + json.dumps(payload, ensure_ascii=False) + extra, model, max_tokens=24000, keys=["real", "fake"])
 
 
 PRICES = {"haiku": (0.10, 0.50), "sonnet": (2.0, 10.0), "opus": (5.0, 25.0)}   # USD per million tokens (in, out)
@@ -289,11 +289,15 @@ def call_claude(content, model, max_tokens=12000, fatal=True, keys=None):
             headers={"x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
         )
         try:
-            with urllib.request.urlopen(req, timeout=180) as r:
+            with urllib.request.urlopen(req, timeout=max(180, 90 + body['max_tokens'] // 40)) as r:
                 res = json.loads(r.read())
             note_cost(model, res.get("usage") or {})
             if res.get("stop_reason") == "max_tokens":
-                print("  Claude hit the output limit; the answer may be cut short", file=sys.stderr)
+                print("  Claude hit the output limit; the answer is cut short", file=sys.stderr)
+                if body["max_tokens"] < 32000:             # repeating the same request would cut off at the same place: allow a longer answer
+                    body["max_tokens"] = min(32000, int(body["max_tokens"] * 1.6))
+                    print(f"  retrying with a {body['max_tokens']}-token limit", file=sys.stderr)
+                    continue
             for b in res.get("content", []):
                 if b.get("type") == "tool_use" and isinstance(b.get("input"), dict):
                     out = b["input"]
@@ -1015,10 +1019,11 @@ def main():
         reals = fit
     else:
         print(f"  only {len(fit)} easily mapped stories; Real or Fake keeps the weaker ones as fillers", file=sys.stderr)
+    pool_all = list(reals)       # everything that fits the map: Fill the Blank and the bank draw on this, not just on the theme-spread list below
     seen_theme, uniq = set(), []
-    for r in sorted(reals, key=merit, reverse=True):
+    for r in sorted(reals, key=lambda r: (not r.get("priority"), -merit(r))):
         th = (r.get("theme") or "").strip().lower()
-        if th and th in seen_theme:
+        if th and th in seen_theme and not r.get("priority"):      # hand-picked stories keep their place whatever their theme
             continue
         seen_theme.add(th)
         uniq.append(r)
@@ -1076,7 +1081,7 @@ def main():
 
     # Fill the Blank: real stories whose answer has a word vector
     # Fill the Blank isn't tied to the news cycle: older banked stories (up to a year) are fair game too.
-    blank_src = sorted(reals + stock["blank"], key=merit, reverse=True) + sorted(bank_old, key=merit, reverse=True)
+    blank_src = sorted(pool_all + stock["blank"], key=merit, reverse=True) + sorted(bank_old, key=merit, reverse=True)
     blank_src = [r for i, r in enumerate(blank_src) if not any(r is q for q in blank_src[:i])]   # a topped-up story can sit in two lists
     h2words = {w for r in blank_src for w in re.findall(r"[a-z]+", (r.get("h2") or "").lower())}
     vecs = load_vectors(os.environ.get("GLOVE"), [a for r in blank_src for a in (r.get("ans") or [])] + sorted(h2words))
@@ -1112,7 +1117,7 @@ def main():
     def with_hint(h, hint):
         """The knowledge clue rides in the headline itself: 'in {}, a capital on an extinct volcano'. Skipped if it would make the headline too long."""
         hint = (hint or "").strip().rstrip(".,")
-        if not hint or h.count("{}") != 1 or len(h) + len(hint) + 2 > 135:
+        if not hint or h.count("{}") != 1 or len(h) + len(hint) + 2 > 150:
             return h
         rest = h[h.index("{}") + 2:]
         return h.replace("{}", "{}, " + hint + ("," if rest.startswith(" ") else ""), 1)       # mid-sentence: the clue sits between commas
@@ -1232,7 +1237,7 @@ def main():
             json.dump(stock_all, f, ensure_ascii=False, indent=1)
     history[day] = sorted(used_today)
     keep_real, seen_src = [], set()
-    for r in sorted(reals + dropped_unfit + bank_old, key=lambda r: r.get("banked", ""), reverse=True):
+    for r in sorted(pool_all + [r for r in reals if r not in pool_all] + dropped_unfit + bank_old, key=lambda r: r.get("banked", ""), reverse=True):
         if r["src"] in used_today or r["src"] in seen_src:
             continue
         seen_src.add(r["src"])
