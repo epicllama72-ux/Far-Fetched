@@ -2737,7 +2737,9 @@ function startGame(mode, kind){
   let pending=null;
   if(daily){
     const saved = load(saveKey(KIND));
-    if(saved && saved.date === dayKey() && (saved.sig === S.sig || saved.sig === S.sigOld || (DAILY && Array.isArray(DAILY.legacySigs) && DAILY.legacySigs.includes(saved.sig))) && Array.isArray(saved.results) && saved.results.length<=rounds.length){
+    // a paper reworded after it went live is still the same paper: its saved answers line up with the stories (same order, same real/fake/blank kind)
+    const sameShape = saved && Array.isArray(saved.results) && saved.results.length<=rounds.length && saved.results.every((x,i)=>!!x.blank===blank && (blank || !!x.real===!!rounds[i].real));
+    if(saved && saved.date === dayKey() && sameShape){
       S.results = saved.results;
       S.score = sumPts(S.results);
       S.i = S.results.length;
@@ -2758,6 +2760,16 @@ function startGame(mode, kind){
   Scene.reset(); $('depth').textContent='0.0';
   if(S.results.length) Scene.restore(jawPoints()*S.jawK);
   $('final').hidden = true; setBar('none');
+  if(daily && !pending && !S.results.length){            // finished today (the history says so) but the saved answers can't be matched: never offer the same paper twice
+    const hh=(load('ff_hist')||{})[dayKey()+':'+KIND];
+    if(hh){
+      Scene.setPaper(false,true); $('card').hidden=false; $('speed').hidden=true; $('feedback').hidden=true; $('mapWrap').hidden=true; $('blankUI').hidden=true;
+      $('kicker').textContent='Already played today'; $('kicker').classList.remove('bad');
+      $('headline').innerHTML='You finished today\'s '+modeName(KIND)+': <span class="clue">'+(+hh.m).toFixed(1)+' m · '+fmtPts(hh.score)+'</span>. The next paper arrives at midnight. Practice has plenty more.';
+      $('storyLink').hidden=true; setBar('none'); renderDots(); aim();
+      return;
+    }
+  }
   if(S.i >= S.rounds.length){ finish(true); return; }
   if(blank){ showBlankRound(pending && pending.live && pending.live.i===S.i ? pending.live : null); return; }
   // a call made before a reload is kept: no second guesses
