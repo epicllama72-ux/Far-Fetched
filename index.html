@@ -2712,8 +2712,8 @@ function startGame(mode, kind){
   $('mPol').classList.toggle('on',pol && daily);
   $('mPractice').classList.toggle('on',!daily);
   $('howText').innerHTML = blank
-    ? 'Guess the hidden word in each true headline. The exact word scores up to <b>500</b>, more the faster you get it. Near misses pay a little, and every guess after your third costs 5%.'
-    : 'Right call on a true story: up to <b>+100</b>, more for answering quickly. Catching a fake: <b>+150</b>. Fooled by a fake: <b>−75</b>. Then pin where the true story happened for up to <b>+350</b>, plus <b>+50</b> if your pin is in the right country: you have 20 seconds, and taking your time doesn\'t cost pin points. A fast, fairly close pin earns up to <b>+60</b> more. Every point drops his jaw the same distance, and losing points pulls it back up.';
+    ? 'Guess the hidden word in each true headline. The exact word scores up to <b>'+BLANK_MAX+'</b>, more the faster you get it. Near misses pay a little, and every guess after your third costs 5%.'
+    : 'Right call on a true story: up to <b>+'+Math.round(PK*CALL_PTS)+'</b>, more the quicker you answer. Catching a fake: <b>+'+FAKE_PTS+'</b>. Fooled by a fake: <b>−'+Math.abs(FOOLED_PTS)+'</b>. Then pin where the true story happened for up to <b>+'+Math.round(PK*PIN_PTS)+'</b>, plus <b>+'+Math.round(PK*COUNTRY_PTS)+'</b> if your pin is in the right country (you still get 75% of both after a wrong call). You have 20 seconds, and taking your time doesn\'t cost pin points. A fast, fairly close pin earns up to <b>+'+Math.round(PK*PIN_BONUS)+'</b> more. Every point drops his jaw the same distance, and losing points pulls it back up.';
   renderStats();
   closeMenu();
   Scene.configure(JAW_SCALE);
