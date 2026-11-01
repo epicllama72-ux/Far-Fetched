@@ -191,7 +191,7 @@ Below are candidate news stories from the past month (JSON). Some include "text"
 1) "real": pick 16 of the best stories for the game, best first. You MUST return at least 12; if clue-rich stories run short, fill the rest with the most surprising remaining ones (low clue_strength is fine), never return fewer than 12 (rank by clue_strength plus unbelievable). Rank by how HARD TO BELIEVE the story is: favour the ones a reader would assume are made up (absurd specifics, improbable coincidences, odd rules, unlikely animals or objects) but that really happened. Strongly prefer stories where the event is linked to the place it happened, so a player can DEDUCE the location from the headline instead of guessing: local wildlife or climate (a kangaroo, a moose, monsoon flooding, snow in summer), regional industry, food, sport or customs, a local law or institution type, driving side, currency, units or typical local jobs. Stories that could have happened anywhere rank lower but are still acceptable fillers. The game should be FUNNY, EDUCATIONAL and reward broad general knowledge: favour stories that make a reader laugh out loud or are so ridiculous they feel like something out of the movie Idiocracy (absurd decisions, baffling rules, dumbfounding mix-ups, spectacularly dumb but harmless events), and whose clues connect to things a well-read person could know about the place (geography, climate, wildlife, languages, currencies, laws, food, history, sport, industries), so that general knowledge lets them reason to the right region, not luck. Good picks are surprising, funny or delightful, happened in ONE specific identifiable town/city/county, and are light-hearted. Every pick must make sense on its own: a reader must understand exactly what happened from the headline alone (no missing context, no confusing or contradictory details), and the hidden place must be where it actually happened. Skip BORING stories: a rare animal spotted, a nice rescue, a big vegetable, a quiet record, a mild oddity with no real twist. Every pick needs a real punchline, an absurd mistake or a jaw-dropping detail. STRANGE, FUNNY CRIME stories are welcome and wanted (dumb criminals, bizarre thefts, absurd arrests, getaway fails, odd things stolen or smuggled, ridiculous excuses) as long as they are non-violent and nobody is seriously hurt. Never pick stories about death, serious injury, violent crimes against people, abuse, sexual content, children in danger, war, politics, disasters or tragedy. That includes floods, storms, wildfires, quakes, heatwaves and outbreaks, even when the story itself is light-hearted (a man swimming down a flooded street is out), because they are often tied to real tragedies. Write headlines in plain words a general reader knows: no local weather jargon or acronyms (never 'DANA', 'derecho', 'haboob' and the like). Avoid near-duplicates (e.g. several lottery wins) - at most one lottery story. Spread your picks around the WORLD: at most 3 from any one country, and at least half from outside the US, UK, Canada, Australia, New Zealand and Ireland whenever the candidates allow it (Latin America, Europe, Asia, Africa and the Middle East are all welcome). Include at least one story from Africa, one from South America and one from Oceania or the Pacific whenever the candidates have a usable one, and never more than two stories about the same kind of thing (dogs, goats, cheese and so on). For each pick give:
    - "id": the candidate id.
    - "h": a punchy wire-style headline, max 110 characters, keeping every fact of the story exactly as reported (never change what happened, who or what was involved, numbers or outcome). You MAY reword and add short descriptive wording that makes the region easier to deduce, as long as it is generically true of that place and does not alter or add to the story: e.g. local terms and institutions ("the county sheriff", "council", "constabulary", "a roo", "monsoon rains", "rupees", "kilometres", "on the ski slopes"), local climate, wildlife or customs, or spelling and units typical of the country. Replace the place with the literal token {} exactly once (e.g. "... in {}"). Remove every EXPLICIT location clue: no state/country/city names, demonyms, local team, landmark, university or company names that reveal the place (landmarks and nearby cities belong in "hint", not here), no "Florida man". But KEEP the implicit, deducible clues that are part of the story (the animal, the weather, the local custom, currency or units, the type of institution), so a sharp player can reason their way to the right region. Keep the oddity intact. The clues do NOT have to come from the original headline: the article text ("text") often holds the best ones (a currency, a unit, a local institution, an animal, the weather, a local custom or law, a sport, a typical job). If a great story's clues sit in the body, WRITE them into "h" in your own words, as long as they are facts the text states or are generically true of that place, so the game headline can differ a lot from the source headline. A story whose body gives a fair regional clue is better than one with a punchier headline and nothing to deduce from.
-   - "h2": the same story as a headline that DOES name the place (city + state/country), with the main subject noun of the story (the animal, object or kind of person it is about, e.g. "kangaroo", "pelicans", "kitten") replaced by the literal token [] exactly once. The hidden word must be an ordinary common noun that is written in lowercase in normal text: never a name, brand, product, model, company, team, place or nationality (not "Maserati" or "Vegemite" - use "car" or "spread" instead, or pick another noun). The rest of h2 must NOT contain the hidden word, a synonym or a close variant of it (if the hidden word is "toilets", h2 must not say "potties" or "loo"), and give each pick a different hidden word than the other picks (not both "burglar" and "thief").
+   - "h2": the same story as a headline that DOES name the place (city + state/country), with the main subject noun of the story (the animal, object or kind of person it is about, e.g. "kangaroo", "pelicans", "kitten") replaced by the literal token [] exactly once. The hidden word must be an ordinary common noun that is written in lowercase in normal text: never a name, brand, product, model, company, team, place or nationality (not "Maserati" or "Vegemite" - use "car" or "spread" instead, or pick another noun). The rest of h2 must NOT contain the hidden word, a synonym or a close variant of it (if the hidden word is "toilets", h2 must not say "potties" or "loo"), and give each pick a different hidden word than the other picks (not both "burglar" and "thief"). IMPORTANT: the hidden word must be GUESSABLE from the rest of the headline by a well-read person: choose the word that the surrounding details point to most strongly, a common everyday word (not a rare animal, a technical term or an odd detail that could be anything), so that a player reading the headline would think of it within a few tries. If the story's most surprising noun could be a dozen different things from the context, hide a different, more implied noun instead.
    - "ans": 1-8 lowercase single-word answers that count as an EXACT match for []: the hidden word first, then its singular/plural, then ONLY words a player has no way to tell apart from it given the headline. Exactness matters: a synonym is NOT exact ("car" is not "vehicle", "cops" is not "police"). The one exception is a specific type of something when nothing in the headline says which type: if the hidden word is a particular species, breed, variety or model, the general category and its sibling types are exact too (e.g. "boa" -> ["boa","boas","snake","snakes","python","pythons","cobra","cobras"] because nothing says which snake; "poodle" -> ["poodle","poodles","dog","dogs"]). Letters only.
    - "alt": up to 8 lowercase single words that are close but NOT exact: synonyms, informal words, regional variants, a broader or narrower word the headline does rule out (e.g. for "police": "officers","cops","constables"; for "car": "vehicle","auto","automobile"). They earn big partial credit, never full. Never a word that means something clearly different. Letters only.
    - "place": display name like "Appleton, Wisconsin" or "Mykolaiv, Ukraine".
@@ -520,6 +520,43 @@ def clue_fakes(fakes, model):
         if fake_hint_ok(x.get("hint")):
             f["hint"] = x["hint"].strip().rstrip(".,")
     print(f"  clued {sum(1 for f in todo if f.get('hint'))}/{len(todo)} fakes that had none", file=sys.stderr)
+
+
+GUESS_PROMPT = """Fill-in-the-blank test for a word game. Each headline hides one word as []. Without any other information, give your 5 best guesses for the hidden word for each headline, best first (single lowercase words only).
+Reply with ONE JSON object only: {"g":[{"id":0,"guesses":["...","...","...","...","..."]}]}
+
+Headlines:
+"""
+
+
+def guess_test(cands, model):
+    """Blind test: can the hidden word be guessed from the headline? Returns {index: best position 1-5} for those that can."""
+    items = [{"id": i, "h2": r.get("h2", "")} for i, r in enumerate(cands)]
+    res = call_claude(GUESS_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=3000, fatal=False, keys=["g"])
+    if not res or "g" not in res:
+        print("  guessability test unavailable; Fill the Blank keeps its usual order", file=sys.stderr)
+        return None
+    found = {}
+    for x in res["g"]:
+        try:
+            r = cands[int(x["id"])]
+        except Exception:
+            continue
+        exact = {a.lower() for a in (r.get("ans") or [])}
+        near = {a.lower() for a in (r.get("alt") or [])}
+        for pos, g in enumerate([str(w).lower().strip() for w in (x.get("guesses") or [])][:5], 1):
+            if g in exact or stem_word(g) in {stem_word(a) for a in exact}:
+                found[int(x["id"])] = pos
+                break
+    return found
+
+
+def stem_word(w):
+    if w.endswith("ies") and len(w) > 4:
+        return w[:-3] + "y"
+    if w.endswith("s") and not w.endswith("ss"):
+        return w[:-1]
+    return w
 
 
 def hint_ok(hint, place):
@@ -1110,6 +1147,16 @@ def main():
         if a:
             r["vec"] = pack_vec(vecs[a])
         blank_pool.append(r)
+
+    # Blind guessability test: a word that can't be guessed from its headline isn't fun. Easier ones go first.
+    if not args.picks and len(blank_pool) > 1:
+        cands = [r for r in blank_pool if r not in call_pick][:24]
+        found = guess_test(cands, model)
+        if found is not None:
+            ok = sorted([c for i, c in enumerate(cands) if i in found], key=lambda c: found[cands.index(c)])
+            rest = [c for i, c in enumerate(cands) if i not in found]
+            print(f"  guessability: {len(ok)} of {len(cands)} hidden words can be guessed from their headline; {len(rest)} are too hard", file=sys.stderr)
+            blank_pool = ok + [r for r in blank_pool if r not in cands] + rest      # the too-hard ones only fill if nothing else will
 
     rng = random.Random("far-fetched-" + day)
     # Fill the Blank only takes what Real or Fake doesn't use, so a story never appears in two modes
