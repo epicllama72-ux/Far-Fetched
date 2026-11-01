@@ -91,6 +91,8 @@ jobs:
         if: steps.check.outputs.build == 'true'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # only the last two attempts of the night may print a paper from the bank alone when the editor fails
+          FF_ALLOW_BANK_ONLY: ${{ (github.event.schedule == '37 4 * * *' || github.event.schedule == '29 5 * * *') && '1' || '0' }}
         run: GLOVE=~/glove/g50.gz python scripts/make_daily.py --date "${{ steps.check.outputs.day }}"
 
       - name: Check the paper is complete

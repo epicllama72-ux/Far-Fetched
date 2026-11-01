@@ -921,7 +921,12 @@ def main():
             try:
                 picks = ask_claude(cands, model, avoid=recent_headlines(day)) or {}
             except SystemExit as e:
-                print(f"  editor call failed ({e}); relying on the bank", file=sys.stderr)
+                if os.environ.get("FF_ALLOW_BANK_ONLY") != "1":
+                    # fail loudly: the run goes red (GitHub emails the owner) and the next scheduled attempt tries again.
+                    # Only the last attempts of the night may print a paper from the bank alone.
+                    print(f"ERROR: the editor call failed ({e}); not printing a bank-only paper yet. A later attempt will retry.", file=sys.stderr)
+                    sys.exit(1)
+                print(f"  editor call failed ({e}); relying on the bank (last attempt of the night)", file=sys.stderr)
                 picks = {}
         else:
             print("  too few fresh stories to ask the editor; relying on the bank", file=sys.stderr)
