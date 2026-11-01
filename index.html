@@ -2838,9 +2838,9 @@ function jawPoints(){
   list.forEach(x=>{ p+=(x.callPts||0)+(x.pinPts||0); });   // every point moves the jaw the same amount; lost points pull it up
   return Math.max(0,p);
 }
-/* Time to read first (2 s + 0.5 s per word), then −10 points a second, floor 60. */
+/* Time to read first (2 s + 0.5 s per word), then −5 points a second, floor 60. */
 function readGrace(st){ return 2+0.5*(st.h||'').split(/\s+/).length; }
-function speedPts(sec,st){ return Math.round(PK*CALL_PTS*Math.max(0.6,Math.min(1,1-(sec-readGrace(st))/10))); }
+function speedPts(sec,st){ return Math.round(PK*CALL_PTS*Math.max(0.6,Math.min(1,1-(sec-readGrace(st))/20))); }
 let SPEED_RAF=0;
 function runSpeed(){
   cancelAnimationFrame(SPEED_RAF);
