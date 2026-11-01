@@ -1177,7 +1177,7 @@ body.recap #bar{display:none}
     <button id="btnReal">REAL</button>
     <button id="btnFake">FAKE</button>
   </div>
-  <button class="primary" id="btnStart" hidden>Start · 20 seconds</button>
+  <button class="primary" id="btnStart" hidden>Start · 25 seconds</button>
   <button class="primary" id="btnNext" hidden>Next</button>
   <div id="blankBar" hidden>
     <form id="guessForm" autocomplete="off">
@@ -2658,7 +2658,7 @@ const POL_ON = false;   // Politics mode is on hold: greyed out in the menu as "
 let KIND = (function(){ try{ const k=localStorage.getItem('ff_kind'); return (k==='blank'||(POL_ON&&k==='pol'))?k:'call'; }catch(e){ return 'call'; } })();
 function saveKey(kind){ return kind==='blank'?'ff_blank':kind==='pol'?'ff_pol':'ff_daily'; }
 function modeName(kind){ return kind==='blank'?'Fill the Blank':kind==='pol'?'Politics':'Daily Dig'; }
-let BLANK_MAX = 500; const BLANK_SECS = 20;
+let BLANK_MAX = 500; const BLANK_SECS = 25;
 const FAKE_PTS = 150, JAW_SCALE = 4500;   // caught fake; every mode's jaw is scaled to the same 3000-point world
 
 function startGame(mode, kind){
@@ -3910,13 +3910,13 @@ function closeness(word, st){
   if(gi===undefined) return null;
   const r=rankOf(gi,st);
   if(r===null) return 0;
-  return Math.max(0,Math.min(0.88,0.9-0.2*Math.log10(r+1)));
+  return Math.max(0,Math.min(0.88,0.92-0.18*Math.log10(r+1)));
 }
 function fmtDate(iso){ try{ const p=iso.split('-').map(Number); return new Date(p[0],p[1]-1,p[2]).toLocaleDateString(undefined,{month:'short',day:'numeric'}); }catch(e){ return iso; } }
 /* Exact answers carry the round; near misses pay little so spamming related words doesn't. */
 function blankPts(c,tl,n){
   const pace=0.6+0.4*tl/BLANK_SECS, spam=Math.max(0.5,1-0.05*Math.max(0,n-3));
-  return Math.round((c>=1 ? BLANK_MAX*pace : 300*(BLANK_MAX/500)*c*c*pace)*spam);
+  return Math.round((c>=1 ? BLANK_MAX*pace : 340*(BLANK_MAX/500)*c*c*pace)*spam);
 }
 function heat(c){ return c>=1?'EXACT':c>=0.72?'ON FIRE':c>=0.55?'HOT':c>=0.38?'WARM':c>=0.2?'COOL':'COLD'; }
 
@@ -3935,7 +3935,7 @@ function showBlankRound(live){
   $('feedback').hidden=true; $('mapWrap').hidden=true;
   $('blankUI').hidden=false; $('blankLive').hidden=true;
   $('kicker').textContent='Fill the blank'+(S.mode==='practice'?' · practice':''); $('kicker').classList.remove('bad');
-  $('headline').innerHTML='<span class="fakeplace">'+(S.results.length ? 'Ready for the next one? One word is hidden. 20 seconds.' : 'One word is hidden. You get 20 seconds and as many guesses as you like. The exact word scores most, and faster is better.')+'</span>';
+  $('headline').innerHTML='<span class="fakeplace">'+(S.results.length ? 'Ready for the next one? One word is hidden. 25 seconds.' : 'One word is hidden. You get 25 seconds and as many guesses as you like. The exact word scores most, and faster is better.')+'</span>';
   setBar('start');
   if(!S.results.length && !live) Scene.setPaper(false,true);
   const b=$('btnStart'); b.disabled=true; b.textContent='Loading word list…';
@@ -3943,7 +3943,7 @@ function showBlankRound(live){
   aim();
   loadVectors().then(()=>{
     if(S.phase!=='ready' || S.kind!=='blank') return;
-    b.disabled=false; b.textContent='Start · 20 seconds';
+    b.disabled=false; b.textContent='Start · 25 seconds';
     if(live) startBlankRound(live.wall);     // a round started before a reload keeps running on the same clock
   }).catch(()=>{
     b.disabled=true;
@@ -4422,7 +4422,7 @@ const Intro=(function(){
     const blank=S.kind==='blank', n=S.rounds.length, r=S.rounds.filter(x=>x.real).length, f=n-r;
     $('introLine').textContent = blank ? n+' true headlines, one word missing. Fill in the blank.' : n+' offbeat stories, '+r+' true, '+f+' false. Map the true ones.';
     $('introHowText').innerHTML = (blank
-      ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how close it is: <b>cold, cool, warm, hot, on fire</b>, or exact. Spelling slips are fixed for you.</li><li>You have <b>20 seconds</b> per headline. The exact word, found fast, scores the most.</li><li>Every point drops his jaw a little further.</li></ol>'
+      ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how close it is: <b>cold, cool, warm, hot, on fire</b>, or exact. Spelling slips are fixed for you.</li><li>You have <b>25 seconds</b> per headline. The exact word, found fast, scores the most.</li><li>Every point drops his jaw a little further.</li></ol>'
       : '<ol><li>Read the headline. The place is <b>blacked out</b>.</li><li>Call it <b>REAL</b> or <b>FAKE</b>. Quick answers score more.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin where you think it happened, then <b>LOCK IN</b>. You get 20 seconds: closer and faster scores more.</li><li>Every point drops his jaw.</li></ol>')
       + '<p class="sc">'+$('howText').innerHTML+'</p>';
   }
