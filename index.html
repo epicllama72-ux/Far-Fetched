@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Far-Fetched</title>
+<title>Far-Fetched: the daily dig</title>
 <meta name="description" content="A free daily news game. Seven weird headlines: spot the two that are made up, then pin the real ones on the map. Plus Fill the Blank and Politics. New puzzles every day.">
 <link rel="canonical" href="https://farfetchedgame.com/">
 <meta name="robots" content="index,follow,max-image-preview:large">
@@ -19,14 +19,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Far-Fetched">
-<meta property="og:title" content="Far-Fetched">
+<meta property="og:title" content="Far-Fetched: the daily dig">
 <meta property="og:description" content="7 offbeat stories, 5 true, 2 false. Map the true ones. Every point drops his jaw deeper.">
 <meta property="og:url" content="https://farfetchedgame.com/">
 <meta property="og:image" content="https://farfetchedgame.com/og.png?v=4">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Far-Fetched">
+<meta name="twitter:title" content="Far-Fetched: the daily dig">
 <meta name="twitter:description" content="7 offbeat stories, 5 true, 2 false. Map the true ones.">
 <meta name="twitter:image" content="https://farfetchedgame.com/og.png?v=4">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Far-Fetched","url":"https://farfetchedgame.com/","description":"A free daily browser game. Spot which weird news headlines are real and which are made up, then pin the real ones on a map. New stories every day.","genre":["Puzzle","Trivia","Geography"],"applicationCategory":"Game","operatingSystem":"Any (web browser)","gamePlatform":"Web browser","inLanguage":"en","image":"https://farfetchedgame.com/og.png?v=4","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
@@ -1447,7 +1447,7 @@ function shiftFC(g,dx){   // shift any GeoJSON (collection, feature or bare geom
   if(g.type==='Feature') return {type:'Feature',properties:g.properties,geometry:geom(g.geometry)};
   return geom(g);
 }
-function pinPoints(d){return Math.round(PK*PIN_PTS*Math.exp(-Math.max(0,d-75)/1500));}  // ≤75 km 350 · 300 km 301 · 500 km 264 · 1000 km 189 · 2000 km 97 · 5000 km 13
+function pinPoints(d){return Math.round(PK*PIN_PTS*Math.exp(-Math.max(0,d-75)/1800));}  // ≤75 km 350 · 300 km 309 · 500 km 276 · 1000 km 209 · 2000 km 120 · 5000 km 23
 /* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
 const PIN_SECS=20;                 // the pin has a 20 s limit, but taking longer no longer costs distance points
 function pinMult(){ return 1; }
