@@ -3187,7 +3187,7 @@ const TIERS=[
   {f:0,    icon:'🥱', name:'Unfazed',          line:'Tough edition. The jaw is still warming up.'},
   {f:0.35, icon:'🤨', name:'Eyebrow Raised',   line:'A few of those got you.'},
   {f:0.55, icon:'☕', name:'Spat Out My Coffee', line:'That one\'s going in the group chat.'},
-  {f:0.70, icon:'😱', name:'Gobsmacked',       line:'Through the floorboards and still going.'},
+  {f:0.70, icon:'😱', name:'Gobsmacked',       line:'That actually happened?'},
   {f:0.85, icon:'🌋', name:'Earth-Shattering', line:'Legendary reading. Geologists are on the phone.'}];
 function tierOf(total,max){ let k=0; TIERS.forEach((t,i)=>{ if(total>=Math.round(t.f*max/50)*50) k=i; }); return k; }
 function renderSummary(total,max,mineM){
