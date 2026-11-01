@@ -2730,11 +2730,14 @@ function startGame(mode, kind){
        maxJaw: blank ? rounds.length*BLANK_MAX : Math.round(reals*PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS))};
   S.jawK = 1;                                        // one point = the same jaw drop in every mode
   if(mode==='back' && BACK) S.backDate=BACK.date;
-  S.sig = hash(rounds.map(x=>x.h||x.h2||'').join('|'));
+  // The save is tied to the paper, not to its exact wording: rewording a headline must not wipe anyone's day.
+  // sig is built from the stories' places and sources; older saves used the headline text (sigOld), and a paper that was edited after it went live lists the earlier headline sets in legacySigs.
+  S.sig = hash(rounds.map(x=>(x.real?'R':'F')+(x.src||x.place||x.ans&&x.ans[0]||'')).join('|'));
+  S.sigOld = hash(rounds.map(x=>x.h||x.h2||'').join('|'));
   let pending=null;
   if(daily){
     const saved = load(saveKey(KIND));
-    if(saved && saved.date === dayKey() && saved.sig === S.sig && Array.isArray(saved.results) && saved.results.length<=rounds.length){
+    if(saved && saved.date === dayKey() && (saved.sig === S.sig || saved.sig === S.sigOld || (DAILY && Array.isArray(DAILY.legacySigs) && DAILY.legacySigs.includes(saved.sig))) && Array.isArray(saved.results) && saved.results.length<=rounds.length){
       S.results = saved.results;
       S.score = sumPts(S.results);
       S.i = S.results.length;
