@@ -1508,18 +1508,24 @@ function noBlank(h){
   let t=h.replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+(where\s)/i,' $2')                      // "born in {}, where X" -> "born where X"
          .replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+((?:famed|known|noted|famous|namechecked)\s)/i,' $1 a city $2')
          .replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+host of\s/i,' $1 the host city of ')
-         .replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+((?:home|setting|site|birthplace|scene|location)\sof\s)/i,' $1 the $2')
+         .replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+((?:home|setting|site|birthplace|scene|location)\s(?:\w+\s)?of\s)/i,' $1 the $2')
          .replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+((?:an?|the)\s)/i,' $1 $2')
          .replace(/\s+(?:in|near|outside|at|of|from|around|across)\s+\{\}/i,'')
          .replace(/\{\}/,'');
   return t.replace(/\s+([,.;])/g,'$1').replace(/\s{2,}/g,' ').trim();
 }
-function headlineHTML(story, reveal){
-  const w = 70 + (hash(story.h) % 60);
-  const bar = '<span class="redact" role="img" aria-label="place hidden" style="width:'+w+'px"></span>';
-  if(!reveal) return noBlank(story.h);
-  if(story.real) return story.h.replace('{}', '<span class="reveal">'+story.place+'</span>');
-  return story.h.replace('{}', '<span class="fakeplace">[invented]</span>');
+// The clue (story.hint) is added to the headline only once the player has made the call: "in {}, a capital on a volcano".
+function foldHint(h,hint){
+  hint=String(hint||'').trim().replace(/[.,]+$/,'');
+  if(!hint || (h.match(/\{\}/g)||[]).length!==1) return h;
+  const rest=h.slice(h.indexOf('{}')+2);
+  return h.replace('{}','{}, '+hint+(rest.startsWith(' ')?',':''));
+}
+function headlineHTML(story, reveal, clue){
+  const h=(reveal||clue) ? foldHint(story.h,story.hint) : story.h;
+  if(!reveal) return noBlank(h);
+  if(story.real) return h.replace('{}', '<span class="reveal">'+story.place+'</span>');
+  return h.replace('{}', '<span class="fakeplace">[invented]</span>');
 }
 
 /* ---------- Background: the newspaper reader ----------
@@ -2920,7 +2926,7 @@ function revealCall(st){
     if(c.callOk){ Sound.play('real'); Sound.play('jawDown'); } else Sound.play('twist');
     $('kicker').textContent = c.callOk ? 'Real ✓ +'+c.callPts+' · where did it happen?' : 'Plot twist: it\'s real · pin it for 75% credit';
     fb.hidden=true;
-    showHint(st);
+    $('headline').innerHTML = headlineHTML(st,false,true);       // the clue joins the headline now that the call is made
     openMap();
     if(!c.callOk) $('btnGuess').textContent='75% CREDIT · TAP A REGION';
   } else {
@@ -4423,7 +4429,7 @@ const Intro=(function(){
     $('introLine').textContent = blank ? n+' true headlines, one word missing. Fill in the blank.' : n+' offbeat stories, '+r+' true, '+f+' false. Map the true ones.';
     $('introHowText').innerHTML = (blank
       ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how close it is: <b>cold, cool, warm, hot, on fire</b>, or exact. Spelling slips are fixed for you.</li><li>You have <b>25 seconds</b> per headline. The exact word, found fast, scores the most.</li><li>Every point drops his jaw a little further.</li></ol>'
-      : '<ol><li>Read the headline. The place is <b>left out</b>, but a <b>clue</b> in it hints at where it happened.</li><li>Call it <b>REAL</b> or <b>FAKE</b>. Quick answers score more.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin where you think it happened, then <b>LOCK IN</b>. You get 20 seconds: closer and faster scores more.</li><li>Every point drops his jaw.</li></ol>')
+      : '<ol><li>Read the headline. The place is <b>left out</b>.</li><li>Call it <b>REAL</b> or <b>FAKE</b>. Quick answers score more. Once you have called it, a <b>clue</b> about where it happened is added to the headline.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin where you think it happened, then <b>LOCK IN</b>. You get 20 seconds: closer and faster scores more.</li><li>Every point drops his jaw.</li></ol>')
       + '<p class="sc">'+$('howText').innerHTML+'</p>';
   }
   function titleOn(){                   // the game's name, the day's line and "how to play" above the turning planet

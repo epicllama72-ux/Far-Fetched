@@ -4,63 +4,70 @@
  "call": [
   {
    "real": true,
-   "h": "Batman chases down thief in {}, where Alan Partridge broadcasts",
+   "h": "Batman chases down thief in {}",
    "lat": 52.6309,
    "lng": 1.2974,
    "place": "Norwich, England",
    "src": "https://www.lbc.co.uk/news/uk/batman-chases-bag-thief-norwich/",
    "published": "2026-09-20",
-   "clue": "nightclub queue + police + cathedral city = England"
+   "clue": "nightclub queue + police + cathedral city = England",
+   "hint": "where Alan Partridge broadcasts"
   },
   {
    "real": true,
-   "h": "Shark made city ambassador in {}, host of the 2002 Asian Games",
+   "h": "Shark made city ambassador in {}",
    "lat": 35.1796,
    "lng": 129.0756,
    "place": "Busan, South Korea",
    "src": "https://www.dexerto.com/entertainment/shark-trapped-in-south-korean-canal-draws-600000-visitors-and-becomes-city-ambassador-3414109/",
    "published": "2026-10-05",
-   "clue": "port-city canal shark + city PR ambassador poll = South Korea"
+   "clue": "port-city canal shark + city PR ambassador poll = South Korea",
+   "hint": "host of the 2002 Asian Games"
   },
   {
    "real": true,
-   "h": "Hitler Mussolini wins local election in {}, home country of Paddington Bear",
+   "h": "Hitler Mussolini wins local election in {}",
    "lat": -10.1792,
    "lng": -76.8028,
    "place": "Queropalca, Huánuco, Peru",
    "src": "https://www.politico.eu/article/hitler-mussolini-wins-local-election-peru/",
    "published": "2026-10-10",
-   "clue": "Spanish-speaking Andean district: a mountain mayoral race = Peru"
+   "clue": "Spanish-speaking Andean district: a mountain mayoral race = Peru",
+   "hint": "home country of Paddington Bear"
   },
   {
    "real": false,
-   "h": "Library in {}, home of the Grand Ole Opry, finds 412 overdue books inside a freezer bought at a car-boot sale",
-   "tell": "'Car-boot sale' is British; locals there say garage sale."
+   "h": "Library in {} finds 412 overdue books inside a freezer bought at a car-boot sale",
+   "tell": "'Car-boot sale' is British; locals there say garage sale.",
+   "hint": "home of the Grand Ole Opry"
   },
   {
    "real": true,
-   "h": "Electric car meant to pull a boat out of the water launches itself instead in {}, where Schindler's List was set",
+   "h": "Electric car meant to pull a boat out of the water launches itself instead in {}",
    "lat": 50.0469,
    "lng": 19.9972,
    "place": "Kraków, Poland",
    "src": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOMFBDUTloYTZNZEUyakFfRHZwVWIxVktlMnc5VmhNVjJpcWZnWjNpZE4zM3hiLXpndlZuUlhiMjNpU2NteDRreXdOSURLLWd3SmxTSkFsYndicXBGSjlwVW5KV1RfN1J0eC1QLXRTVFE1WURqRWhkbzJUWHhfbW93Zi0zLWRrZnp4LUFjNGttYUZSTlR0NFAyZFBiNkxYVnVEV3piUlBMNkpqMEVmVmVNbTdyS3c4OEdPd2ZseGd6Z2dxcHMzWEQxS0dTWERXUFdFWTlFUEVR?oc=5",
    "published": "2026-10-03",
-   "clue": "Polish-language local news; a slipway mishap"
+   "clue": "Polish-language local news; a slipway mishap",
+   "hint": "where Schindler's List was set"
   },
   {
    "real": true,
-   "h": "Bear breaks into mall, steals peach and defecates on floor in {}, where the Iditarod sled race starts",
+   "h": "Bear breaks into mall, steals peach and defecates on floor in {}",
    "lat": 61.25,
    "lng": -149.8,
    "place": "Anchorage, Alaska",
    "src": "https://funnytimes.com/news-of-the-weird-october-2026/",
    "published": "2026-10-01",
-   "clue": "bear in a mall + a military base = Alaska"
+   "clue": "bear in a mall + a military base = Alaska",
+   "hint": "where the Iditarod sled race starts"
   },
   {
    "real": false,
-   "h": "Two constables in {}, birthplace of footballer Roy Keane, spend 4 hours chasing a loose ostrich around a retail park",
-   "tell": "Irish police are called gardaí, not constables."
+   "h": "Two constables in {} spend 4 hours chasing a loose ostrich around a retail park",
+   "tell": "Irish police are called gardaí, not constables.",
+   "hint": "birthplace of footballer Roy Keane"
   }
  ],
  "blank": [
