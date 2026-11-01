@@ -808,6 +808,7 @@ body.pinning #headline{font-size:23px}
   body.answered #feedback small{font-size:16px;margin-top:3px}
 }
 body.pinning #card{padding:8px 12px}
+.clue{color:#ffd23f}
 .redact{display:inline-block;height:.8em;background:#000;vertical-align:-.05em;box-shadow:inset 0 0 0 2px #2b2f3a}
 .reveal{color:var(--accent)}
 .fakeplace{color:var(--dim)}
@@ -1522,10 +1523,17 @@ function foldHint(h,hint){
   return h.replace('{}','{}, '+hint+(rest.startsWith(' ')?',':''));
 }
 function headlineHTML(story, reveal, clue){
-  const h=(reveal||clue) ? foldHint(story.h,story.hint) : story.h;
-  if(!reveal) return noBlank(h);
-  if(story.real) return h.replace('{}', '<span class="reveal">'+story.place+'</span>');
-  return h.replace('{}', '<span class="fakeplace">[invented]</span>');
+  const showClue=(reveal||clue) && story.hint;
+  const h=showClue ? foldHint(story.h,story.hint) : story.h;
+  let out;
+  if(!reveal) out=noBlank(h);
+  else if(story.real) out=h.replace('{}', '<span class="reveal">'+story.place+'</span>');
+  else out=h.replace('{}', '<span class="fakeplace">[invented]</span>');
+  if(showClue){                                   // the clue is picked out in yellow
+    const t=String(story.hint).trim().replace(/[.,]+$/,''), i=out.indexOf(t);
+    if(t && i>=0) out=out.slice(0,i)+'<span class="clue">'+t+'</span>'+out.slice(i+t.length);
+  }
+  return out;
 }
 
 /* ---------- Background: the newspaper reader ----------
