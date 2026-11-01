@@ -1175,7 +1175,7 @@ def main():
         return h.replace("{}", "{}, " + hint + ("," if rest.startswith(" ") else ""), 1)       # mid-sentence: the clue sits between commas
 
     def real_call(r):
-        return {"real": True, "h": with_hint(r["h"], r.get("hint")), "lat": round(float(r["lat"]), 4), "lng": round(float(r["lng"]), 4),
+        return {"real": True, "h": r["h"], "hint": (r.get("hint") or "")[:70], "lat": round(float(r["lat"]), 4), "lng": round(float(r["lng"]), 4),
                 "place": r["place"], "src": r["src"], "published": r["published"], "clue": (r.get("clue") or "")[:80]}
 
     def real_blank(r):
@@ -1196,7 +1196,7 @@ def main():
         sys.exit(0)
     fakes = chosen_fakes + [f for f in fakes if f not in chosen_fakes]       # the rest go back to the bank
     fake_hint = lambda f: f.get("hint") if (f.get("hint") and "{}" not in f["hint"] and len(f["hint"]) <= 48 and len(f["hint"].split()) <= 6) else ""
-    call = [real_call(r) for r in call_real] + [{"real": False, "h": with_hint(f["h"], fake_hint(f)), "tell": (f.get("tell") or "")[:160]} for f in fakes[:N_CALL_FAKE]]
+    call = [real_call(r) for r in call_real] + [{"real": False, "h": f["h"], "hint": fake_hint(f), "tell": (f.get("tell") or "")[:160]} for f in fakes[:N_CALL_FAKE]]
     rng.shuffle(call)
     rng.shuffle(blank)
     result = {"date": day, "generated": now.isoformat(timespec="seconds"),
@@ -1314,7 +1314,7 @@ def main():
             return
         have.add(key)
         x = {"real": True, "day": d}
-        for k in ("h", "h2", "ans", "alt", "vec", "place", "src", "published", "clue"):
+        for k in ("h", "h2", "ans", "alt", "vec", "place", "src", "published", "clue", "hint"):
             if r.get(k):
                 x[k] = r[k]
         try:

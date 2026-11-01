@@ -4,63 +4,70 @@
  "call": [
   {
    "real": false,
-   "h": "Reindeer herders in {}, the official hometown of Santa Claus, switch to e-bikes for the winter round-up after snowmobile fuel runs short",
-   "tell": "E-bikes would be useless in deep Arctic snow, so the detail is wrong for the region."
+   "h": "Reindeer herders in {} switch to e-bikes for the winter round-up after snowmobile fuel runs short",
+   "tell": "E-bikes would be useless in deep Arctic snow, so the detail is wrong for the region.",
+   "hint": "the official hometown of Santa Claus"
   },
   {
-   "h": "New Costco could be built on historical site over 3,000 years old in {}, namechecked in The Chainsmokers' 'Closer'",
+   "h": "New Costco could be built on historical site over 3,000 years old in {}",
    "lat": 32.233,
    "lng": -111.04,
    "place": "Northwest Tucson, Arizona",
    "src": "https://www.azpm.org/indigenous/2026-10-21/new-costco-could-be-built-on-historical-site-thats-over-3-000-years-old",
    "published": "2026-10-21",
    "clue": "Pima County land sale near I-10 in the Sonoran desert, Tucson",
-   "real": true
+   "real": true,
+   "hint": "namechecked in The Chainsmokers' 'Closer'"
   },
   {
    "real": true,
-   "h": "Army officer suspended for leaving post 64 times 'to feed his lizard', court upholds ban in {}, host of the largest Asian film festival",
+   "h": "Army officer suspended for leaving post 64 times 'to feed his lizard', court upholds ban in {}",
    "lat": 35.18,
    "lng": 129.0752,
    "place": "Busan, South Korea",
    "src": "https://www.koreaherald.com/article/10904113",
    "published": "2026-10-29",
-   "clue": "District court, Army, Korea Herald-style story = South Korea"
+   "clue": "District court, Army, Korea Herald-style story = South Korea",
+   "hint": "host of the largest Asian film festival"
   },
   {
    "real": true,
-   "h": "Man lies in front of a car, then jumps up and drives it off when the driver gets out in {}, famed for its spicy minced-meat kebab",
+   "h": "Man lies in front of a car, then jumps up and drives it off when the driver gets out in {}",
    "lat": 36.9864,
    "lng": 35.3253,
    "place": "Adana, Turkey",
    "src": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNd0EyTWV2WTZGYTZIV2hoSjZaOFlNVTdDaU1vWFFVa1pkN1h0VURpS3YyMFFBY3lMMjFRUU94cWRGYnItQ21xbldrMTNlbWRRQ0h6aE9iOUphZHgyUE9MVVB3VGpVMEpuQmItUjBDUG9ZVkZObnRrRU5tbjlaWFNxUXp5MlhobnpTYXdkYndXSXd4UmFaS0ROVDlUWnVYMGhSaEdSSVNZdXNMb0E?oc=5",
    "published": "2026-10-26",
-   "clue": "police 'asayis' patrols and Turkish plates; hard to place"
+   "clue": "police 'asayis' patrols and Turkish plates; hard to place",
+   "hint": "famed for its spicy minced-meat kebab"
   },
   {
    "real": true,
-   "h": "Man on the run from provincial authorities takes his pet raccoon in for a rabies shot in {}, host of the 1976 Summer Olympics",
+   "h": "Man on the run from provincial authorities takes his pet raccoon in for a rabies shot in {}",
    "lat": 45.5017,
    "lng": -73.5673,
    "place": "Montreal, Quebec, Canada",
    "src": "https://www.ctvnews.ca/montreal/article/montreal-man-on-the-run-from-authorities-takes-pet-raccoon-for-rabies-vaccination/",
    "published": "2026-10-26",
-   "clue": "provincial authorities + raccoon rabies outbreak = Canada (Quebec)"
+   "clue": "provincial authorities + raccoon rabies outbreak = Canada (Quebec)",
+   "hint": "host of the 1976 Summer Olympics"
   },
   {
    "real": false,
-   "h": "Pensioner in {}, home of Wallace and Gromit, sells 1,860 jars of homemade chutney through an unattended honesty box at a bus shelter",
-   "tell": "The sales total is suspiciously tidy and an unattended box would not clear that many jars."
+   "h": "Pensioner in {} sells 1,860 jars of homemade chutney through an unattended honesty box at a bus shelter",
+   "tell": "The sales total is suspiciously tidy and an unattended box would not clear that many jars.",
+   "hint": "home of Wallace and Gromit"
   },
   {
    "real": true,
-   "h": "Zoo's viral pool photo of two capybaras was dad with the pregnant mum's sister; triplets born in {}, where J.K. Rowling wrote Harry Potter",
+   "h": "Zoo's viral pool photo of two capybaras was dad with the pregnant mum's sister; triplets born in {}",
    "lat": 55.9424,
    "lng": -3.267,
    "place": "Edinburgh, Scotland",
    "src": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxONVBPUGVUX1J6b2I3TEFLVjFFVWV1UTNIMFZKT0dScWdGQVV6LTVySnVUbEU0WWlDd3lxUS1NSzVtOWRKZTRjdTNhOEpnQjBQMGZBdzRhdWNoUkpJR1JCOWVQaTJEZVh3VGE2SVJXWjFBZEF1LXluNFRJbC0yaE1ZQmkxTEVUcTU3eXhaVlQ1V1laVGlKa2w1RHFpSTlCYkNtSVpQVElDemVsVXdFSVBUMS0zSVFySUlla0pFSTZvaUc1R1pRcGhORmc3aGU1WDV6b3BsQ2YyYXU2Zw?oc=5",
    "published": "2026-10-29",
-   "clue": "Royal Zoological Society zoo; hard to place"
+   "clue": "Royal Zoological Society zoo; hard to place",
+   "hint": "where J.K. Rowling wrote Harry Potter"
   }
  ],
  "blank": [
