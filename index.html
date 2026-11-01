@@ -1522,16 +1522,36 @@ function foldHint(h,hint){
   const rest=h.slice(h.indexOf('{}')+2);
   return h.replace('{}','{}, '+hint+(rest.startsWith(' ')?',':''));
 }
+// Before the pin the place stays out of the headline, so the clue takes its spot: "in {}, host of the Games" reads "in the host city of the Games".
+function clueClause(prep,hint){
+  const t=hint.trim();
+  if(/^where\s/i.test(t)) return t;
+  if(/^host of\s/i.test(t)) return prep+' the host city of '+t.slice(8);
+  if(/^(?:home|setting|site|birthplace|scene|location)\s(?:\w+\s)?of\s/i.test(t)) return prep+' the '+t;
+  if(/^(?:famed|known|noted|famous|namechecked)\s/i.test(t)) return prep+' a city '+t;
+  if(/^(?:an?|the)\s/i.test(t)) return prep+' '+t;
+  return prep+' '+t;
+}
 function headlineHTML(story, reveal, clue){
-  const showClue=(reveal||clue) && story.hint;
-  const h=showClue ? foldHint(story.h,story.hint) : story.h;
+  const hint=String(story.hint||'').trim().replace(/[.,]+$/,'');
+  const showClue=(reveal||clue) && hint;
+  if(!reveal && showClue){                        // clue added after the call, place still hidden
+    const m=story.h.match(/\s+(in|near|outside|at|of|from|around|across)\s+\{\}/i);
+    if(m && (story.h.match(/\{\}/g)||[]).length===1){
+      const i=m.index, rest=story.h.slice(i+m[0].length);
+      const clause=clueClause(m[1],hint);
+      const mid=rest.startsWith(' ');
+      return (story.h.slice(0,i)+' <span class="clue">'+clause+'</span>'+(mid?',':'')+rest).replace(/\s+([,.;])/g,'$1').trim();
+    }
+  }
+  const h=showClue ? foldHint(story.h,hint) : story.h;
   let out;
   if(!reveal) out=noBlank(h);
   else if(story.real) out=h.replace('{}', '<span class="reveal">'+story.place+'</span>');
   else out=h.replace('{}', '<span class="fakeplace">[invented]</span>');
   if(showClue){                                   // the clue is picked out in yellow
-    const t=String(story.hint).trim().replace(/[.,]+$/,''), i=out.indexOf(t);
-    if(t && i>=0) out=out.slice(0,i)+'<span class="clue">'+t+'</span>'+out.slice(i+t.length);
+    const i=out.indexOf(hint);
+    if(i>=0) out=out.slice(0,i)+'<span class="clue">'+hint+'</span>'+out.slice(i+hint.length);
   }
   return out;
 }
