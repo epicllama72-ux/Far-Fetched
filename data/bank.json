@@ -1,35 +1,6 @@
 {
  "real": [
   {
-   "id": 43,
-   "h": "Pilot makes passengers vote by show of hands: wait for cleaning after dog urine, or leave on time with the smell in {}",
-   "h2": "Delta [] makes passengers vote on cleaning dog urine from the plane or leaving on time at LaGuardia, New York",
-   "ans": [
-    "pilot",
-    "pilots",
-    "captain",
-    "aviator",
-    "flyer"
-   ],
-   "place": "New York, New York",
-   "geocode": "LaGuardia Airport, New York, USA",
-   "lat": 40.7757145,
-   "lng": -73.873364,
-   "country": "United States",
-   "cc": "US",
-   "hint": "an airport a short ride from Manhattan's skyscrapers",
-   "clue": "US airline and a big-city airport",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 3,
-   "theme": "airline",
-   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNaUotQm9EU2FzNUdvNDZTVVR5dllrUXd5OFV5TlN6RVYzalljRkw0eXJoUFE5d0JNajh5UUkwY3RyaHV3MmJxWGJpdm1pcER4VkhQTnM2Y084MHZHQlFiQVRVX2ZqYTVJUWQxd2VSVF9kd3hncFRydXluaVF5aTJOUjI5QjM4RlpycE5QU01kc2xRT09vUG1qX2JGX3ZtLVdhZmRlOGUydjFMdHBvYWVMdFVMMDlGeWFpX25jU1RsdVA?oc=5",
-   "published": "2026-10-30",
-   "banked": "2026-10-31",
-   "rules": 2
-  },
-  {
    "banked": "2026-10-30",
    "rules": 2,
    "theme": "odd news",
@@ -47,71 +18,7 @@
    "mappable": 3,
    "src": "https://newschannel9.com/news/nation-world/accused-killer-offers-plea-deal-for-cheesesteak-fries-pepsi-murder-trial-defendant-request-robert-kessler-stephanie-crone-overholt",
    "published": "",
-   "hint": "a Gulf coast bay city, home of the Buccaneers and the Lightning"
-  },
-  {
-   "h": "Lawmaker in {} urges president to play new Call of Duty to understand the threat from the North",
-   "place": "Seoul, South Korea",
-   "geocode": "Seoul, South Korea",
-   "lat": 37.5665,
-   "lng": 126.978,
-   "country": "South Korea",
-   "cc": "KR",
-   "clue": "South Korean lawmaker; North Korea invasion; Korean president",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 2,
-   "unbelievable": 2,
-   "theme": "politics",
-   "src": "https://mbiz.heraldcorp.com/article/10912196",
-   "published": "2026-10-23",
-   "banked": "2026-10-30",
-   "rules": 2
-  },
-  {
-   "h": "Female auctioneer goes viral with unusual test using cattle's drinking water in {}",
-   "h2": "Goiás, Brazil: [] goes viral with unusual test using cattle's drinking water",
-   "ans": [
-    "auctioneer",
-    "auctioneers",
-    "seller",
-    "saleswoman",
-    "host",
-    "presenter"
-   ],
-   "place": "Goiás, Brazil",
-   "src": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOMUlOVmo0OHo1cmJicDZ0dmd4RnVIWnczSDlMWHRKMmZRZXEtNlBjUzZSMUR5d3p3dmpWSzFSLWFxRWUwZk9sdlVWU1I3SkIwNkFrOXFaZUF3c0gyTnAwS1BWQmxwc2hOWEZoc1pJa3NGMDRUTEhZcTFHYUFub3BfMENpS1RMV3hPRGdCbDIyNDBmLVZtV2Z3UzJjZTRjR1NrRGNxdlVqdUR5WWFWNTRB?oc=5",
-   "published": "2026-10-16",
-   "clue": "cattle auctions = Brazil's ranching heartland",
-   "country": "Brazil",
-   "cc": "BR",
-   "clue_strength": 1,
-   "unbelievable": 2,
-   "theme": "auction",
-   "lat": -15.9324,
-   "lng": -50.1393,
-   "banked": "2026-10-28",
-   "rules": 2,
-   "jargon_only": false
-  },
-  {
-   "banked": "2026-10-30",
-   "rules": 2,
-   "theme": "odd news",
-   "unbelievable": 3,
-   "jargon_only": false,
-   "h": "Pastor in {} tells church he has had two wives for three years and says God approves",
-   "place": "Cleveland, Ohio",
-   "geocode": "Cleveland, Ohio",
-   "lat": 41.4993,
-   "lng": -81.6944,
-   "country": "United States",
-   "cc": "US",
-   "clue": "US city with a state bigamy law; the church is a local megachurch",
-   "clue_strength": 1,
-   "mappable": 2,
-   "src": "https://www.christianpost.com/news/ohio-pastor-reveals-hes-had-2-wives-for-3-years.html",
-   "published": ""
+   "hint": ""
   },
   {
    "banked": "2026-10-30",
@@ -127,10 +34,11 @@
    "country": "United States",
    "cc": "US",
    "clue": "US beach resort town; police arrest warrant released by the state law enforcement agency",
-   "clue_strength": 1,
+   "clue_strength": 0,
    "mappable": 2,
    "src": "https://www.vice.com/en/article/everything-we-know-about-the-cop-who-allegedly-pulled-a-gun-because-someone-microwaved-fish-at-work/",
-   "published": ""
+   "published": "",
+   "hint": ""
   },
   {
    "banked": "2026-10-30",
@@ -150,172 +58,9 @@
    "mappable": 1,
    "src": "https://novayagazeta.eu/en/articles/2026/10/29/russia-moves-to-allow-registration-of-cars-stolen-in-western-countries-en-news",
    "published": "2026-10-29"
-  },
-  {
-   "banked": "2026-10-30",
-   "rules": 2,
-   "theme": "odd news",
-   "unbelievable": 3,
-   "jargon_only": false,
-   "h": "Space mirror startup tests sunlight as a service over {} without telling astronomers",
-   "place": "Lone Pine, California",
-   "geocode": "Lone Pine, California",
-   "lat": 36.606,
-   "lng": -118.0627,
-   "country": "United States",
-   "cc": "US",
-   "clue": "desert town beneath the Sierra Nevada, near the Mount Whitney dark-sky area",
-   "clue_strength": 1,
-   "mappable": 2,
-   "src": "https://skyandtelescope.org/astronomy-news/astronomy-and-society/a-satellite-company-tested-sunlight-as-a-service-without-astronomers-knowledge/",
-   "published": ""
-  },
-  {
-   "h": "Labour board says federal officer shouldn't be disciplined for waving middle finger at federal building in {}",
-   "place": "Rigaud, Quebec, Canada",
-   "geocode": "Rigaud, Quebec, Canada",
-   "lat": 45.4797,
-   "lng": -74.2956,
-   "country": "Canada",
-   "cc": "CA",
-   "clue": "Canada Border Services Agency training college in Quebec; federal labour board = Canada",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 2,
-   "unbelievable": 3,
-   "theme": "odd news",
-   "src": "https://www.ctvnews.ca/ottawa/article/buildings-do-not-have-opinions-labour-board-rules-officer-should-not-be-disciplined-for-giving-building-middle-finger/",
-   "published": "",
-   "banked": "2026-10-30",
-   "rules": 2
-  },
-  {
-   "h": "Colouring book handed out at a show in {} shows Bluey held at knifepoint",
-   "place": "Mount Gambier, South Australia",
-   "geocode": "Mount Gambier, South Australia",
-   "lat": -37.8284,
-   "lng": 140.7806,
-   "country": "Australia",
-   "cc": "AU",
-   "clue": "South Australian country town; Bluey is an Australian cartoon; ABC complaint",
-   "clue_strength": 1,
-   "jargon_only": false,
-   "mappable": 2,
-   "unbelievable": 2,
-   "theme": "odd news",
-   "src": "https://www.abc.net.au/news/2026-10-28/one-nation-colouring-book-generates-controversy/107313670",
-   "published": "2026-10-28",
-   "banked": "2026-10-30",
-   "rules": 2
-  },
-  {
-   "id": 45,
-   "h": "Hitler Mussolini wins local election in {}",
-   "place": "Queropalca, Huánuco, Peru",
-   "geocode": "Queropalca, Lauricocha, Huánuco, Peru",
-   "lat": -10.1792,
-   "lng": -76.8028,
-   "country": "Peru",
-   "cc": "PE",
-   "hint": "home country of Paddington Bear",
-   "clue": "Spanish-speaking Andean district: a mountain mayoral race = Peru",
-   "clue_strength": 3,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 3,
-   "theme": "election",
-   "src": "https://www.politico.eu/article/hitler-mussolini-wins-local-election-peru/",
-   "published": "2026-10-10",
-   "banked": "2026-10-31",
-   "rules": 2,
-   "priority": true
-  },
-  {
-   "id": 46,
-   "h": "Batman chases down thief in {}",
-   "place": "Norwich, England",
-   "geocode": "Norwich, Norfolk, England",
-   "lat": 52.6309,
-   "lng": 1.2974,
-   "country": "United Kingdom",
-   "cc": "GB",
-   "hint": "where Alan Partridge broadcasts",
-   "clue": "nightclub queue + police + cathedral city = England",
-   "clue_strength": 3,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 3,
-   "theme": "crime",
-   "src": "https://www.lbc.co.uk/news/uk/batman-chases-bag-thief-norwich/",
-   "published": "2026-09-20",
-   "banked": "2026-10-31",
-   "rules": 2,
-   "priority": true
-  },
-  {
-   "id": 47,
-   "h": "Shark made city ambassador in {}",
-   "place": "Busan, South Korea",
-   "geocode": "Busan, South Korea",
-   "lat": 35.1796,
-   "lng": 129.0756,
-   "country": "South Korea",
-   "cc": "KR",
-   "hint": "host of the 2002 Asian Games",
-   "clue": "port-city canal shark + city PR ambassador poll = South Korea",
-   "clue_strength": 3,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 3,
-   "theme": "animal",
-   "src": "https://www.dexerto.com/entertainment/shark-trapped-in-south-korean-canal-draws-600000-visitors-and-becomes-city-ambassador-3414109/",
-   "published": "2026-10-05",
-   "banked": "2026-10-31",
-   "rules": 2,
-   "priority": true
-  },
-  {
-   "id": 48,
-   "h": "Bear breaks into mall, steals peach and defecates on floor in {}",
-   "place": "Anchorage, Alaska",
-   "geocode": "Joint Base Elmendorf-Richardson, Anchorage, Alaska, USA",
-   "lat": 61.25,
-   "lng": -149.8,
-   "country": "United States",
-   "cc": "US",
-   "hint": "where the Iditarod sled race starts",
-   "clue": "bear in a mall + a military base = Alaska",
-   "clue_strength": 3,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 3,
-   "theme": "animal",
-   "src": "https://funnytimes.com/news-of-the-weird-october-2026/",
-   "published": "2026-10-01",
-   "banked": "2026-10-31",
-   "rules": 2,
-   "priority": true
   }
  ],
  "fake": [
-  {
-   "h": "Thief in {} steals 29 manhole covers in one night, caught when his van's rear axle snaps",
-   "tell": "The cause and effect is too neat: the loot itself conveniently catches him.",
-   "obvious": 3,
-   "theme": "metal-theft",
-   "banked": "2026-10-31",
-   "rules": 2,
-   "hint": "birthplace of Mozart"
-  },
-  {
-   "h": "Auto-rickshaw driver in {} takes a 37-rupee fare to the wrong city, 874 km away, after a map update",
-   "tell": "Auto-rickshaws do local hops and would not cover such a distance by mistake.",
-   "obvious": 3,
-   "theme": "taxi",
-   "banked": "2026-10-31",
-   "rules": 2,
-   "hint": "starting point for Everest expeditions"
-  },
   {
    "h": "Surf lifesavers at a beach in {} reach a man who drifted 2.4 km out on an inflatable pizza slice",
    "tell": "The oddly specific float and distance read like a scripted story rather than a news report.",
@@ -368,7 +113,7 @@
    "theme": "ferry",
    "banked": "2026-10-29",
    "rules": 2,
-   "hint": "setting of the sitcom Frasier"
+   "hint": "host of the 1952 Summer Olympics"
   },
   {
    "h": "Outdoor pool in {} freezes over for the first time since 1974, trapping a pedalo",
@@ -395,7 +140,7 @@
    "theme": "taxi",
    "banked": "2026-10-28",
    "rules": 2,
-   "hint": "setting of Ladies' Detective Agency"
+   "hint": "where Sam Nujoma became first president"
   },
   {
    "h": "Cheese warehouse in {} loses 29 wheels of Gouda; thieves abandon the van after it runs out of diesel",
@@ -466,33 +211,24 @@
    "hint": "the home of street-food pad thai"
   }
  ],
- "pol": [
+ "pol": [],
+ "polfake": [
   {
-   "id": 30,
-   "h": "Burger poll at {} restaurant ties two rival political leaders as customer votes climb",
-   "place": "New Westminster, British Columbia, Canada",
-   "geocode": "New Westminster, British Columbia, Canada",
-   "lat": 49.2067726,
-   "lng": -122.9108818,
-   "clue": "Restaurant burger poll on provincial leaders = a Canadian province, BC",
-   "src": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQUkZ0dHAtellvRUY3WmEtLTQ0VzFDSWM2eTdMQnZrd2FUU2EyOFktUGtmdHFXTlNwdUJpTW9QejFsQTg3MmVFRjlRVjRCOUlUU0twc2JKenBYRlJXU2VVazhyVlo5VVcxenpCdWppaVhXNVRqZm1teEhic0pZZTFVTTlNajVhZlRMYm1IRzl3VlBfQ0lsaGc4Qmd3Y1ZERk9DNlIyUmk5cw?oc=5",
-   "published": "2026-10-20",
-   "banked": "2026-10-31"
+   "h": "Voters in {} approve a new bridge toll after the same council cut bridge repair funding the week before",
+   "banked": "2026-11-01"
   },
   {
-   "id": 53,
-   "h": "City council to sit as a court in unusual apartment complex appeal in {}",
-   "place": "Knoxville, Tennessee, USA",
-   "geocode": "Knoxville, Tennessee, USA",
-   "lat": 35.9603948,
-   "lng": -83.9210261,
-   "clue": "City council hearing zoning appeal like a court = US city, Tennessee",
-   "src": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQaDJWOVhQS2NVelB1aGRxOXVJX2lDSWQ2Z2V5WnZfMnhvbmFnNmJscnMwSmFtbVRibTF0bHAyTzJ1S05VQzFrRU05blFfaTU2SnE0SzFPLTdIcEtEUHNpWlVRZG5Vb0xFd254S0YzOFB0YzFQQTh5TVZkRDZLcGs3eFVERjdFZW5BeGYxSlRfRXltNkk5My15d2lqSl96c0ZENEFPcVlRUEdmVnRzQnFjbmlLRjlma0hfV3piMERDaWp2MkJaVUhEVzlMRzRpTkZiWjJfWlNNaERkOEFkenc1djREWnF0TUpmcTJxSFFB?oc=5",
-   "published": "2026-10-13",
-   "banked": "2026-10-31"
-  }
- ],
- "polfake": [
+   "h": "Mayor of {} introduces a ban on snow shovelling before 6 a.m., citing a rise in noise complaints",
+   "banked": "2026-11-01"
+  },
+  {
+   "h": "Ward councillors in {} approve a 47-page ordinance on pigeon feeding by a single vote",
+   "banked": "2026-11-01"
+  },
+  {
+   "h": "{} replaces its county sheriff election with an appointment after turnout rose to 81 percent",
+   "banked": "2026-11-01"
+  },
   {
    "h": "Voters in {} approve a new bike lane levy after the mayor's commute was shortened by it",
    "banked": "2026-10-31"
@@ -556,22 +292,6 @@
   {
    "h": "Town of {} votes to rename its council a senate, citing the 41 percent rise in agenda length",
    "banked": "2026-10-29"
-  },
-  {
-   "h": "Lawmakers in {} extend summer recess by nine days after a heatwave changes the canteen menu",
-   "banked": "2026-10-28"
-  },
-  {
-   "h": "Election officials in {} count 4,213 ballots in a district with 3,980 registered voters, certify result",
-   "banked": "2026-10-28"
-  },
-  {
-   "h": "Residents of {} elect a mayor on a Sunday and swear in the winner the following Tuesday at midnight",
-   "banked": "2026-10-28"
-  },
-  {
-   "h": "Town hall in {} cuts its tax rate by 2.7 percent and credits the move for a rise in library visits",
-   "banked": "2026-10-28"
   }
  ]
 }

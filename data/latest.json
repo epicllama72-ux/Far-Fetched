@@ -1,177 +1,156 @@
 {
- "date": "2026-10-31",
- "generated": "2026-10-30T16:15:16+00:00",
+ "date": "2026-11-01",
+ "generated": "2026-11-01T01:55:06+00:00",
  "call": [
   {
-   "real": false,
-   "h": "Reindeer herders in {}, the official hometown of Santa Claus, switch to e-bikes for the winter round-up after snowmobile fuel runs short",
-   "tell": "E-bikes would be useless in deep Arctic snow, so the detail is wrong for the region."
-  },
-  {
-   "h": "New Costco could be built on historical site over 3,000 years old in {}, namechecked in The Chainsmokers' 'Closer'",
-   "lat": 32.233,
-   "lng": -111.04,
-   "place": "Northwest Tucson, Arizona",
-   "src": "https://www.azpm.org/indigenous/2026-10-21/new-costco-could-be-built-on-historical-site-thats-over-3-000-years-old",
-   "published": "2026-10-21",
-   "clue": "Pima County land sale near I-10 in the Sonoran desert, Tucson",
-   "real": true
+   "real": true,
+   "h": "Batman chases down thief in {}, where Alan Partridge broadcasts",
+   "lat": 52.6309,
+   "lng": 1.2974,
+   "place": "Norwich, England",
+   "src": "https://www.lbc.co.uk/news/uk/batman-chases-bag-thief-norwich/",
+   "published": "2026-09-20",
+   "clue": "nightclub queue + police + cathedral city = England"
   },
   {
    "real": true,
-   "h": "Army officer suspended for leaving post 64 times 'to feed his lizard', court upholds ban in {}, host of the largest Asian film festival",
-   "lat": 35.18,
-   "lng": 129.0752,
+   "h": "Shark made city ambassador in {}, host of the 2002 Asian Games",
+   "lat": 35.1796,
+   "lng": 129.0756,
    "place": "Busan, South Korea",
-   "src": "https://www.koreaherald.com/article/10904113",
-   "published": "2026-10-29",
-   "clue": "District court, Army, Korea Herald-style story = South Korea"
+   "src": "https://www.dexerto.com/entertainment/shark-trapped-in-south-korean-canal-draws-600000-visitors-and-becomes-city-ambassador-3414109/",
+   "published": "2026-10-05",
+   "clue": "port-city canal shark + city PR ambassador poll = South Korea"
   },
   {
    "real": true,
-   "h": "Man lies in front of a car, then jumps up and drives it off when the driver gets out in {}, famed for its spicy minced-meat kebab",
-   "lat": 36.9864,
-   "lng": 35.3253,
-   "place": "Adana, Turkey",
-   "src": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNd0EyTWV2WTZGYTZIV2hoSjZaOFlNVTdDaU1vWFFVa1pkN1h0VURpS3YyMFFBY3lMMjFRUU94cWRGYnItQ21xbldrMTNlbWRRQ0h6aE9iOUphZHgyUE9MVVB3VGpVMEpuQmItUjBDUG9ZVkZObnRrRU5tbjlaWFNxUXp5MlhobnpTYXdkYndXSXd4UmFaS0ROVDlUWnVYMGhSaEdSSVNZdXNMb0E?oc=5",
-   "published": "2026-10-26",
-   "clue": "police 'asayis' patrols and Turkish plates; hard to place"
-  },
-  {
-   "real": true,
-   "h": "Man on the run from provincial authorities takes his pet raccoon in for a rabies shot in {}, host of the 1976 Summer Olympics",
-   "lat": 45.5017,
-   "lng": -73.5673,
-   "place": "Montreal, Quebec, Canada",
-   "src": "https://www.ctvnews.ca/montreal/article/montreal-man-on-the-run-from-authorities-takes-pet-raccoon-for-rabies-vaccination/",
-   "published": "2026-10-26",
-   "clue": "provincial authorities + raccoon rabies outbreak = Canada (Quebec)"
+   "h": "Hitler Mussolini wins local election in {}, where Paddington Bear came from",
+   "lat": -10.1792,
+   "lng": -76.8028,
+   "place": "Queropalca, Huánuco, Peru",
+   "src": "https://www.politico.eu/article/hitler-mussolini-wins-local-election-peru/",
+   "published": "2026-10-10",
+   "clue": "Spanish-speaking Andean district: a mountain mayoral race = Peru"
   },
   {
    "real": false,
-   "h": "Pensioner in {}, home of Wallace and Gromit, sells 1,860 jars of homemade chutney through an unattended honesty box at a bus shelter",
-   "tell": "The sales total is suspiciously tidy and an unattended box would not clear that many jars."
+   "h": "Auto-rickshaw driver in {} takes a 37-rupee fare to the wrong city, 874 km away, after a map update",
+   "tell": "Auto-rickshaws do local hops and would not cover such a distance by mistake."
   },
   {
    "real": true,
-   "h": "Zoo's viral pool photo of two capybaras was dad with the pregnant mum's sister; triplets born in {}, where J.K. Rowling wrote Harry Potter",
-   "lat": 55.9424,
-   "lng": -3.267,
-   "place": "Edinburgh, Scotland",
-   "src": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxONVBPUGVUX1J6b2I3TEFLVjFFVWV1UTNIMFZKT0dScWdGQVV6LTVySnVUbEU0WWlDd3lxUS1NSzVtOWRKZTRjdTNhOEpnQjBQMGZBdzRhdWNoUkpJR1JCOWVQaTJEZVh3VGE2SVJXWjFBZEF1LXluNFRJbC0yaE1ZQmkxTEVUcTU3eXhaVlQ1V1laVGlKa2w1RHFpSTlCYkNtSVpQVElDemVsVXdFSVBUMS0zSVFySUlla0pFSTZvaUc1R1pRcGhORmc3aGU1WDV6b3BsQ2YyYXU2Zw?oc=5",
-   "published": "2026-10-29",
-   "clue": "Royal Zoological Society zoo; hard to place"
+   "h": "Lawmaker in {}, the setting of the film Parasite, urges president to play new Call of Duty to understand the threat from the North",
+   "lat": 37.5665,
+   "lng": 126.978,
+   "place": "Seoul, South Korea",
+   "src": "https://mbiz.heraldcorp.com/article/10912196",
+   "published": "2026-10-23",
+   "clue": "South Korean lawmaker; North Korea invasion; Korean president"
+  },
+  {
+   "real": true,
+   "h": "Pilot makes passengers vote by show of hands: wait for cleaning after dog urine, or leave on time with the smell in {}",
+   "lat": 40.7757,
+   "lng": -73.8734,
+   "place": "New York, New York",
+   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNaUotQm9EU2FzNUdvNDZTVVR5dllrUXd5OFV5TlN6RVYzalljRkw0eXJoUFE5d0JNajh5UUkwY3RyaHV3MmJxWGJpdm1pcER4VkhQTnM2Y084MHZHQlFiQVRVX2ZqYTVJUWQxd2VSVF9kd3hncFRydXluaVF5aTJOUjI5QjM4RlpycE5QU01kc2xRT09vUG1qX2JGX3ZtLVdhZmRlOGUydjFMdHBvYWVMdFVMMDlGeWFpX25jU1RsdVA?oc=5",
+   "published": "2026-10-30",
+   "clue": "US airline and a big-city airport"
+  },
+  {
+   "real": false,
+   "h": "Thief in {}, birthplace of Mozart, steals 29 manhole covers in one night, caught when his van's rear axle snaps",
+   "tell": "The cause and effect is too neat: the loot itself conveniently catches him."
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "Goiás, Brazil: [] goes viral with unusual test using cattle's drinking water",
+   "h2": "Córdoba, Argentina: TikToker shows new wooden [] and iron gate both opening outwards, blames blacksmith",
    "ans": [
-    "auctioneer",
-    "auctioneers",
-    "seller",
-    "saleswoman",
-    "host",
-    "presenter"
+    "door",
+    "doors",
+    "entrance",
+    "doorway"
    ],
-   "place": "Goiás, Brazil",
-   "src": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOMUlOVmo0OHo1cmJicDZ0dmd4RnVIWnczSDlMWHRKMmZRZXEtNlBjUzZSMUR5d3p3dmpWSzFSLWFxRWUwZk9sdlVWU1I3SkIwNkFrOXFaZUF3c0gyTnAwS1BWQmxwc2hOWEZoc1pJa3NGMDRUTEhZcTFHYUFub3BfMENpS1RMV3hPRGdCbDIyNDBmLVZtV2Z3UzJjZTRjR1NrRGNxdlVqdUR5WWFWNTRB?oc=5",
-   "published": "2026-10-16",
-   "vec": "7cbxISTUk+kYO/EIDv1Z9Aj46sF/A64qE+f3584A0c8HOtfK6DEX9HIq1Ucaze0bNQw="
+   "alt": [],
+   "place": "Córdoba, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMivgFBVV95cUxORjlLbS1wMnBRYjdQUDB2cjNKYThGMlRmMEZScEMwZzFmMHdseTFMQWMzV2doZ2dGY0ZFTWoxSEJxQ1NHLURpUlZ6Y1hrQjA2MzdOT1VXVmdNTU8wYVB1QXVweWVPZEZJN0hKSkJrSng3Y2VKQ2t2TDNGLW1IZkpHX3hsTjBvRlE1NFFPLXBSV3RPRV9VU3U5ajRCNDhLT05kN2ZfNHlHYXlSSHpiVWhfNUFwbDZGcVhCM3lQT0ZB?oc=5",
+   "published": "2026-10-22",
+   "vec": "FhMW7Sj15wME4tX61zsOHecDI7sgGdsV/60JPhTVf/vcBQgVI/UI7QEA7gsSAhjMC+A="
   },
   {
    "real": true,
-   "h2": "Bugatti boss's Chiron stolen from open campus near Zagreb, Croatia after he left the [] inside",
+   "h2": "[], 61, and wife arrested over single cannabis plant on home terrace in Aira, Kagoshima, Japan",
    "ans": [
-    "keys",
-    "key",
-    "fob",
-    "keyfob",
-    "keycard"
+    "barber",
+    "barbers",
+    "hairdresser",
+    "stylist",
+    "haircutter",
+    "hairstylist"
    ],
-   "place": "Sveta Nedelja, Croatia",
-   "src": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQSUdoa2ZEYm8zbGxTTXhUWERncUJ4Sk9pMmZvYzdkUmQ4a29pS25VV0FFczBONnRGelFoMkpBVUdhUWZOVXdLS05UcE1CMjJfVGs3SnhxOU1QLV9yV2Nqa3N6UlN6cThQOHpKVHNYR1pYYnIzbThZU2NIYnljeVZHU1hpTkRCNzFmQ1VpNWdNRzhFU2pET1J0ck82MHZPeUd1RjVoQkdfdFZ5d3QxZW9CUEdBZWdSZmNWR2FzQUd2SDNiVW9CTnJGQnJiVjc5NHFxTjZYSnhvOGluSDFBQUEyOV9ZcVpGZ9IB6wFBVV95cUxNb3JuR2lUQlpyR3hBOXBGQ3ViRk1IQ2l3TS1tQ0dMVWRuajMtckdqMTJzZ21RRk1DTTk5WlUwVjJsZ0dHa1p3T2NVbHJ4dEdhZDZoU0ZzOWVMbWlDYzJkZ0VrRUhOV0pIcGRvZHg3UXpOc3ItYVJtMFpzOGJzZFZJcTNyVXVxNWFTMHRycVhpSlpZdGJqNDFGS0dlaWJiMm5rX0xYQldLcWc1Z3NLb1BlWmhwbG1RNXltcERpS2lnWlhRczZrOEVTajMxQjdHT2lQOVV1d3luaFNCQ1dOdUhLblN0LWlQUWdTOG53?oc=5",
-   "published": "2026-10-30",
-   "vec": "/govHxv09xYgBAAqFiLnB+vKJrv5/vYRFfLh7hG5f+wD+T4lJ9UC+QkX/v/nByK5/OY="
+   "alt": [],
+   "place": "Aira, Kagoshima, Japan",
+   "src": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE10T0xybTIxZU5TX0wwckR6eUFWWV9OS0tMc1czTlV3RjFkYmdUcWp2Mk5FTG1MTDJVcEg1SUZyS0tnRU9yQ1gwR2RNdzNsS2Y1ZnpHWFh3TQ?oc=5",
+   "published": "2026-10-26",
+   "vec": "gRfh9fUKh+/M5OQ/nt0j3N0RA8j6KcgKEcTr5TqtPvgQOkctEEA7RQI/5/b1IAe16yM="
+  }
+ ],
+ "politics": [
+  {
+   "real": true,
+   "h": "City council to sit as a court in unusual apartment complex appeal in {}",
+   "lat": 35.9604,
+   "lng": -83.921,
+   "place": "Knoxville, Tennessee, USA",
+   "src": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQaDJWOVhQS2NVelB1aGRxOXVJX2lDSWQ2Z2V5WnZfMnhvbmFnNmJscnMwSmFtbVRibTF0bHAyTzJ1S05VQzFrRU05blFfaTU2SnE0SzFPLTdIcEtEUHNpWlVRZG5Vb0xFd254S0YzOFB0YzFQQTh5TVZkRDZLcGs3eFVERjdFZW5BeGYxSlRfRXltNkk5My15d2lqSl96c0ZENEFPcVlRUEdmVnRzQnFjbmlLRjlma0hfV3piMERDaWp2MkJaVUhEVzlMRzRpTkZiWjJfWlNNaERkOEFkenc1djREWnF0TUpmcTJxSFFB?oc=5",
+   "published": "2026-10-13",
+   "clue": "City council hearing zoning appeal like a court = US city, Tennessee",
+   "cat": "pol"
   },
   {
    "real": true,
-   "h2": "Administrative [] visits lane in Gilching, Bavaria after a neighbour reported a man parked on public ground for 38 years",
-   "ans": [
-    "judge",
-    "judges",
-    "magistrate",
-    "justice",
-    "court"
-   ],
-   "place": "Gilching, Germany",
-   "src": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNMnFKY2d1Nkl0LUk1MkliRnU4M3dMV2F0QU9KejVMRW4tQThWSER1aUQtUmpITTRTQVRMOTB0aWdtR1h4azFOcGpnMWMydzd0RFpTc0JlS0VkMjdrTTJqOW1fbmpqQjQxeWN0VFJKTTFQbXlpbDJONlIxVEduZkFkb0VRV1IyN1NkTDJNTVdNWGJtRnQ5UWRQT2hZNnJLVC1ZU3piUE5hWFhHZVpSMU0xMGEwSjF4RkxQTjBMTHlzQjNsRmR6QjBrN3JDX2ZRVmxyVGstN21rbE9mQXJDcWVv?oc=5",
-   "published": "2026-10-29",
-   "vec": "69rZBTQHGjMD9eoY5/Q/+vm9CtUcIf4K54EK+MjjSrDjxxfSNvgY+fZREQHfAOXiDTA="
+   "h": "Honorary dog mayor election opens in {}, with organisers saying four legs are not required to run",
+   "lat": 40.6782,
+   "lng": -73.9442,
+   "place": "Brooklyn, New York City, USA",
+   "src": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPMV9HMEs1VzJ1dlVjY3RIYWNESUl5NkRNYjdMMW1Cc3BPWUEzUmFVQUJWclYxeTRsbmVfRXRxdlk5Tmphem41SVpyN2hkaFloVFoxdzA4TTY3cjBRbUtSMUlGeE8yM0V2ZU5DM0thYXU5UzlYT2YxQzJHX3lvQXVWbFZrR2E0VF9Gcl81MFZfSzBwaEhic2c?oc=5",
+   "published": "2026-10-31",
+   "clue": "honorary dog mayor contest, big-city borough = New York City",
+   "cat": "pol"
   },
   {
    "real": true,
-   "h2": "Tunja, Colombia: Boyacá Chicó allegedly charges visiting [] for press boxes at empty-stadium match",
-   "ans": [
-    "journalists",
-    "journalist",
-    "reporters",
-    "reporter",
-    "media",
-    "writers"
-   ],
-   "place": "Tunja, Colombia",
-   "src": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPOENOM3ctYkVMaWJ6MjgtWDNTdVdNclFMVXlSaG4yQzQ4LXZHLV9WU3BWejBEd09PMlZKRnlybVVQS1NZUmhsR2FEVnh1UDdxNHY2alUxd3g1a2trOWo1aldpcDZNY1MzWDIxWUF1MXRaZTBIZlhPQ2ZLV0hUZThieUZGVnFwQTk3VFR6QU91X01SbGNDNTY2dUdmZDBEUTR2cDdMZjcwVkNONXpkTW5tYkUtSTPSAbQBQVVfeXFMUDVULS00S29keVJsb080czBGRnk4MTY4MVJWSVB5dnI2SE9KRUlKVjRUajgxdVhFYThyUEF2dnJaMWxGUXBRYkhXX3gtRDNndEpWcG9LbDNmbHhYV2c4V2pncVl6SDl2bmhodktnZHAxVE1rODk1T0FUalUwbU9vcE40bVNvTktDQXdncnNINTN6cGpGTjMwdVVOY2RZYVk1bGRpVW5iNHh1TUtpU3VnS0VHRG9z?oc=5",
-   "published": "2026-10-24",
-   "vec": "+QIb9/7L5Br34fLX/Ck62QXuD9ggZCMtDazz5cUQfwvsx9IIB9fSKRE0QQ8b0a0tAdo="
+   "h": "Burger poll at {} restaurant ties two rival political leaders as customer votes climb",
+   "lat": 49.2068,
+   "lng": -122.9109,
+   "place": "New Westminster, British Columbia, Canada",
+   "src": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQUkZ0dHAtellvRUY3WmEtLTQ0VzFDSWM2eTdMQnZrd2FUU2EyOFktUGtmdHFXTlNwdUJpTW9QejFsQTg3MmVFRjlRVjRCOUlUU0twc2JKenBYRlJXU2VVazhyVlo5VVcxenpCdWppaVhXNVRqZm1teEhic0pZZTFVTTlNajVhZlRMYm1IRzl3VlBfQ0lsaGc4Qmd3Y1ZERk9DNlIyUmk5cw?oc=5",
+   "published": "2026-10-20",
+   "clue": "Restaurant burger poll on provincial leaders = a Canadian province, BC",
+   "cat": "pol"
+  },
+  {
+   "real": false,
+   "h": "Parliament of {} votes to move its summer recess to February after members complained of heat",
+   "cat": "pol"
+  },
+  {
+   "real": false,
+   "h": "Three candidates in {} mayoral race all share a birthday, the town clerk confirms",
+   "cat": "pol"
   },
   {
    "real": true,
-   "h2": "Thief takes man's [] and car key at a supermarket, then returns to steal his new Peugeot in Plottier, Argentina",
-   "ans": [
-    "backpack",
-    "backpacks",
-    "bag",
-    "rucksack",
-    "knapsack",
-    "satchel"
-   ],
-   "place": "Plottier, Argentina",
-   "src": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOQ2FHWGo2RGZLaFBaRW9aSndjMjFJZXVfOE5JOVhPak1uZ3dxbDVrcUtCUUhfaWo2bFUxX0t1NzNMY2o2Qkl1Zm5aTXpDMGItZlc5emN5NXVuWUM3TGJmcE9icG1RcnFHUHlMODJlTlp1bGhSRzN0cW5lRXUtTVZsbDhjRmdONUxuUmZLQ2tIVHBteEh4VExaV0ZfZGZ4dmlKZi1OdEY0Ynl3M0xHdDZSemI2NkhjOE4yaXRWSHUtWklpNkcyM0IzdW8yU3JzNk52WThqMU5VWmFiRlBn0gHiAUFVX3lxTE4wcnFnZ1BqbXd3V0pSNUZvLUhDb08ySXJIOWh5bFdFdkR6QnZTZ3JpLXhIVU9BMXhrMjA1VzVBYzBra0NxemF2RlVhN19xQjNzWHpuenNWTjNYNHpyRHlsQngzNGZGSl9nb2oxMFdtczktZERJMXlJR01FSG90b2w0RkU3ZUQ3Y0RaV0NDcTlMM2FBY3hpR2FNbmpLa2lsbW9CZEdId0V5RHNlbXBVZXUwOXFuWFhXM2JuZlRBWVR0M2tZRzhTbURiUjh1ZjcteEFBM0RhR2hRVGowa18weF9FcUE?oc=5",
-   "published": "2026-10-29",
-   "vec": "Eg8/vy8P5MZX4OntACYWB6RX998HKgP+8azlbVO/CSbWLEN/JR8BCTsH/B4vyDf9KMU="
-  },
-  {
-   "real": true,
-   "h2": "Officers caught up in bizarre chase with an [] in California",
-   "ans": [
-    "emu",
-    "emus",
-    "bird",
-    "birds"
-   ],
-   "place": "California, USA",
-   "src": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNREVVYU5Kb1JmQkdONG5EQ2psb0lwM25WNDVTUU1LLXZ5VmM1aFNlZnYwMklIQTQ5VTRyOWJaV2ZiOG5UX0ljeHhqSzYtU2xzQS1uWGljTFdhbWJRdVJ5QlI2WllhUEdoUFh5UFZuVWJvSnlzSFBlbDZvb2IxbTZDTFZtRkhKdnJLcXc?oc=5",
-   "published": "2026-10-19",
-   "vec": "EgnfybI19eT1wUQRDz/3WFAn1ewDgdJZ7+8qGe0RNj/dOP6rHMb769WlKgYPGDtMAhI="
-  },
-  {
-   "real": true,
-   "h2": "Sign [] strikes in Petkum district of Emden, Germany: 'Reformation City of Europe' lettering stolen",
-   "ans": [
-    "thief",
-    "thieves",
-    "robber",
-    "burglar",
-    "crook",
-    "stealer",
-    "vandal"
-   ],
-   "place": "Emden, Germany",
-   "src": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNTlhlb1ktYS1iY2otM1ZnSUt2VF8zZnpkRzhmV05EMnhNZFA2aG5VRzhrZnc4akQ0YXpUcUU0OF83ckVCby1sLUR5aEhPYWdlZ1B0alpVZ1B2TE5MeThSbi1Ld3JTQ3RULTBjTTJmaVBfVzEzZ2dkTmdhS0J6ZmdXT0phX0todXhhWFJZclAzUlc?oc=5",
-   "published": "2026-10-29",
-   "vec": "+fH+4UMO+xwZOQFP8Q9AtiNBv/cK8OdJBYHD8krSEcvfHiE09s4d0x8u/xIouBKzYNw="
+   "h": "Governor signs rule to settle tied races by drawing, despite objections, in {}",
+   "lat": 21.3099,
+   "lng": -157.8581,
+   "place": "Honolulu, Hawaii, USA",
+   "src": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNMUYzSmNpa1Q5b0VVT1E0OGE0YVp1cW5hN00zdXYwRFlxV2RBWHVpNkJ1WWloUm1IQ0pxY2d3emotRFZnUlc0T0c4THVPaGstUmtxWFFJN3N0RWthSjBxN1l0NklxUHBEMVJPSTkwdzR5Y05laEZIaW5iTjlSd2NQaGI4S3V5MXJjdk9vWDYyM01vZEdoZTJCbF9KQUE1c1pkcFJ6RXFNLS10NzdTSWNUatIBxAFBVV95cUxNUFkxMnVmdDYtN2E5ejJLdmQ0Q2hISU5jaGZSa0sxaXBDWUFJcklHMGluREYwbnhQMU5pdTRuT0wxMmd2Ny1UdUZNaGpkNF9sSVAzRW80ZGpsbThxSVJxbExkTFhtTEk0OEhRQ1o1NmJsUTRxZGx0T1h3d1Q4TWdXRXpkV29RcktlLTFXWmJXVXUzb1RmVlQ4WlRYQV95UFBPdXR3V1NkT0gyNktrVDJWM3BCWTRaenEyQ0VOY29GclBGd0hO?oc=5",
+   "published": "2026-10-31",
+   "clue": "governor + elections office drawing rule + island state = Hawaii",
+   "cat": "pol"
   }
  ]
 }
