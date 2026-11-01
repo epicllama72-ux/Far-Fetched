@@ -1447,7 +1447,7 @@ function shiftFC(g,dx){   // shift any GeoJSON (collection, feature or bare geom
   if(g.type==='Feature') return {type:'Feature',properties:g.properties,geometry:geom(g.geometry)};
   return geom(g);
 }
-function pinPoints(d){return Math.round(PK*PIN_PTS*Math.exp(-Math.max(0,d-75)/1800));}  // ≤75 km 350 · 300 km 309 · 500 km 276 · 1000 km 209 · 2000 km 120 · 5000 km 23
+function pinPoints(d){return Math.round(PK*PIN_PTS*Math.exp(-Math.max(0,d-75)/2000));}  // ≤75 km 350 · 300 km 313 · 500 km 283 · 1000 km 220 · 2000 km 134 · 5000 km 30
 /* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
 const PIN_SECS=20;                 // the pin has a 20 s limit, but taking longer no longer costs distance points
 function pinMult(){ return 1; }
