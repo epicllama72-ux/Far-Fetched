@@ -403,6 +403,28 @@
    "banked": "2026-11-02",
    "rules": 2,
    "daily_only": true
+  },
+  {
+   "id": 52,
+   "h": "Toddler cuts out the middleman, crawls into a claw machine to grab the prizes himself and gets stuck in {}",
+   "place": "Capalaba, Queensland, Australia",
+   "geocode": "Capalaba, Brisbane, Queensland, Australia",
+   "lat": -27.5333,
+   "lng": 153.1833,
+   "country": "Australia",
+   "cc": "AU",
+   "hint": "where Bluey and Bingo live",
+   "clue": "police rescue at a shopping centre, 'police' + Hello Kitty machine",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 3,
+   "theme": "kids",
+   "src": "https://www.wionews.com/world/australian-police-rescue-3-year-old-stuck-inside-hello-kitty-claw-machine-686049",
+   "published": "2024-01-29",
+   "banked": "2026-11-02",
+   "rules": 2,
+   "daily_only": true
   }
  ],
  "fake": [
