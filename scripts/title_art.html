@@ -1,0 +1,55 @@
+<!-- Draws the opening-screen title art (icons/title.png). Open in a browser, or run the export in the repo notes. -->
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#07080d;color:#c9ced8;font:14px monospace;padding:20px}canvas{display:block;margin:6px 0 26px;image-rendering:pixelated}h3{font:12px 'Press Start 2P';color:#8a91a3;margin:0}</style></head><body>
+<div id="out"></div>
+<script>
+const S=+(new URLSearchParams(location.search).get('s')||1);                                   // screen pixels per art pixel
+function mask(txt,size){                     // the text as a hard-edged pixel mask
+  const c=document.createElement('canvas'), g=c.getContext('2d');
+  g.font=size+'px "Press Start 2P"'; const w=Math.ceil(g.measureText(txt).width)+2;
+  c.width=w; c.height=size+2; g.font=size+'px "Press Start 2P"'; g.textBaseline='top'; g.fillStyle='#fff'; g.fillText(txt,1,1);
+  const d=g.getImageData(0,0,c.width,c.height).data, m=[];
+  for(let y=0;y<c.height;y++){ m.push([]); for(let x=0;x<c.width;x++) m[y].push(d[(y*c.width+x)*4+3]>110?1:0); }
+  return m;
+}
+const hex=h=>[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];
+const pick=(pal,t)=>pal[Math.max(0,Math.min(pal.length-1,Math.floor(t*pal.length)))];   // banded, not smooth: keeps the pixel look
+function render(parts,opt){
+  const size=24, pad=6, depth=opt.depth||7;
+  const ms=parts.map(p=>({m:mask(p.t,size),...p}));
+  const W=ms.reduce((a,p)=>a+p.m[0].length,0)+pad*2, H=size+2+pad*2+depth;
+  const grid=Array.from({length:H},()=>Array(W).fill(null));
+  // build the combined mask with a face palette per part
+  const face=Array.from({length:H},()=>Array(W).fill(null));
+  let ox=pad; ms.forEach(p=>{ p.m.forEach((row,y)=>row.forEach((v,x)=>{ if(v) face[y+pad][x+ox]=p; })); ox+=p.m[0].length; });
+  const inF=(x,y)=>y>=0&&y<H&&x>=0&&x<W&&face[y][x];
+  const ring=(x,y,r)=>{ for(let dy=-r;dy<=r;dy++)for(let dx=-r;dx<=r;dx++) if(Math.abs(dx)+Math.abs(dy)<=r+ (r>1?1:0) && inF(x+dx,y+dy)) return inF(x+dx,y+dy); return null; };
+  const set=(x,y,c)=>{ if(y>=0&&y<H&&x>=0&&x<W) grid[y][x]=c; };
+  // 1. 3D extrusion, deepest first, banded gold
+  for(let k=depth;k>=1;k--) for(let y=0;y<H;y++) for(let x=0;x<W;x++){ const p=ring(x,y-k,1); if(p){ const pal=p.ext; set(x,y, pick(pal,(k-1)/depth)); } }
+  // 2. dark rim, then the bright outline (white / silver)
+  for(let y=0;y<H;y++) for(let x=0;x<W;x++){ if(!inF(x,y)){ const p2=ring(x,y,2), p1=ring(x,y,1);
+      if(p1) set(x,y, p1.rim[0]); else if(p2 && !grid[y][x]) set(x,y,'#140a0a'); } }
+  // 3. the face: banded vertical gradient with a highlight band near the top
+  for(let y=0;y<H;y++) for(let x=0;x<W;x++){ const p=inF(x,y); if(!p) continue;
+    const t=(y-pad)/size; let c=pick(p.face,t);
+    if(t>0.12&&t<0.22) c=p.shine;
+    if(!inF(x,y-1)) c=p.top;
+    set(x,y,c); }
+  // 4. sparkles
+  (opt.sparkles||[]).forEach(([sx,sy])=>{ const x=Math.round(sx*W), y=Math.round(sy*H); set(x,y,'#ffffff'); set(x-1,y,'#fff6c8'); set(x+1,y,'#fff6c8'); set(x,y-1,'#fff6c8'); set(x,y+1,'#fff6c8'); set(x-2,y,'#ffd23f80'); set(x+2,y,'#ffd23f80'); });
+  const c=document.createElement('canvas'); c.width=W*S; c.height=H*S; const g=c.getContext('2d');
+  if(opt.bg){ g.fillStyle=opt.bg; g.fillRect(0,0,c.width,c.height); }
+  grid.forEach((row,y)=>row.forEach((col,x)=>{ if(col){ g.fillStyle=col; g.fillRect(x*S,y*S,S,S); } }));
+  return c;
+}
+const GOLD=['#fff1a8','#ffd23f','#f0a92a','#c97a12','#8a4d08','#4d2a05'];
+const RED={face:['#ff5a4a','#e4261c','#c2140f','#97090a','#6e0507'],top:'#ff9a8a',shine:'#ff7a6a',rim:['#ffffff','#d8dce6'],ext:GOLD};
+const SILVER={face:['#f2f4fa','#d7dce8','#b9c0d2','#949cb2','#717a92'],top:'#ffffff',shine:'#ffffff',rim:['#3a4566','#2a3350'],ext:['#c9d2e6','#8f9bb8','#66718f','#47506b','#2f3549','#1c2030']};
+const YELLOW={face:['#fff3a0','#ffe04a','#ffcc1f','#f2a81a','#d88a12'],top:'#fffbe0',shine:'#fff6c0',rim:['#ffffff','#e9dcc0'],ext:['#ff9a2a','#e0701a','#b44f10','#86360b','#5a2207','#331203']};
+document.fonts.load('24px "Press Start 2P"').then(()=>{
+  const c=render([{t:'FAR-',...SILVER,ext:GOLD,rim:['#ffffff','#d8dce6']},{t:'FETCHED',...YELLOW}], {sparkles:[[.2,.12],[.7,.1],[.96,.62]]});
+  document.getElementById('out').append(c); window.ART=c.toDataURL('image/png'); document.body.dataset.ready=1;
+});
+</script></body></html>
