@@ -1393,15 +1393,28 @@ function practicePool(filter,min){
   const arch=STORIES.filter(s=>s._arch && ok(s));
   return arch.length>=min ? arch : STORIES.filter(ok);
 }
+/* Practice mixes its pool: at most 2 stories from any one day's paper per round, so a round is never just
+   yesterday's Daily Dig over again (yesterday's stories are the newest unseen ones, so "unseen first" alone would do that). */
+function takeMixed(list,n,perDay,count){
+  const out=[], rest=[];
+  for(const s of list){
+    if(out.length>=n) break;
+    const d=s.day||'?';
+    if((count[d]||0)>=perDay){ rest.push(s); continue; }
+    count[d]=(count[d]||0)+1; out.push(s);
+  }
+  for(const s of rest){ if(out.length>=n) break; out.push(s); }          // a thin pool still fills the round
+  return out;
+}
 function pickBlankRounds(r){
-  return freshFirst(practicePool(s=>s.real&&s.h2&&s.ans&&s.cat!=='pol', 30),r).slice(0,ROUND_LEN);
+  return takeMixed(freshFirst(practicePool(s=>s.real&&s.h2&&s.ans&&s.cat!=='pol', 30),r),ROUND_LEN,2,{});
 }
 function pickRounds(r,pol,allowDaily){
   const want=s=>s.h && (s.cat==='pol')===!!pol;
   const pool=allowDaily ? STORIES.filter(want) : practicePool(want, pol?12:30);
   const reals=freshFirst(pool.filter(s=>s.real),r), fakes=freshFirst(pool.filter(s=>!s.real),r);
-  const nr=Math.min(ROUNDS_REAL,reals.length);
-  return shuffle(reals.slice(0,nr).concat(fakes.slice(0,ROUNDS_FAKE)),r);
+  const nr=Math.min(ROUNDS_REAL,reals.length), count={};
+  return shuffle(takeMixed(reals,nr,2,count).concat(takeMixed(fakes,ROUNDS_FAKE,2,count)),r);
 }
 let PRACTICE_P=null;
 function loadPractice(){
