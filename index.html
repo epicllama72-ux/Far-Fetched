@@ -1505,13 +1505,14 @@ function showHint(st){
   drawHint(); requestAnimationFrame(drawHint);
 }
 // Before the call there is no redaction bar: "in {}, a capital on a volcano" reads "in a capital on a volcano"; a bare "in {}" is dropped.
+const PREP_RE = '(?:(?:just |far |well |a bit )?(?:north|south|east|west|north-?east|north-?west|south-?east|south-?west) of|in|near|outside|at|of|from|around|across|to|into|inside|within|toward|towards|beyond|off|over|through|by)';
 function noBlank(h){
   let t=h.replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+(where\s)/i,' $2')                      // "born in {}, where X" -> "born where X"
          .replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+((?:famed|known|noted|famous|namechecked)\s)/i,' $1 a city $2')
          .replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+host of\s/i,' $1 the host city of ')
          .replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+((?:home|setting|site|birthplace|scene|location)\s(?:\w+\s)?of\s)/i,' $1 the $2')
          .replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+((?:an?|the)\s)/i,' $1 $2')
-         .replace(/\s+(?:in|near|outside|at|of|from|around|across)\s+\{\}/i,'')
+         .replace(new RegExp('\\s+'+PREP_RE+'\\s+\\{\\}','i'),'')
          .replace(/\{\}/,'');
   return t.replace(/\s+([,.;])/g,'$1').replace(/\s{2,}/g,' ').trim();
 }
@@ -1525,7 +1526,7 @@ function foldHint(h,hint){
 // Before the pin the place stays out of the headline, so the clue takes its spot: "in {}, host of the Games" reads "in the host city of the Games".
 function clueClause(prep,hint){
   const t=hint.trim();
-  if(/^where\s/i.test(t)) return t;
+  if(/^where\s/i.test(t)) return prep+' a place '+t;
   if(/^host of\s/i.test(t)) return prep+' the host city of '+t.slice(8);
   if(/^(?:home|setting|site|birthplace|scene|location)\s(?:\w+\s)?of\s/i.test(t)) return prep+' the '+t;
   if(/^(?:famed|known|noted|famous|namechecked)\s/i.test(t)) return prep+' a city '+t;
@@ -1536,7 +1537,7 @@ function headlineHTML(story, reveal, clue){
   const hint=String(story.hint||'').trim().replace(/[.,]+$/,'');
   const showClue=(reveal||clue) && hint;
   if(!reveal && showClue){                        // clue added after the call, place still hidden
-    const m=story.h.match(/\s+(in|near|outside|at|of|from|around|across)\s+\{\}/i);
+    const m=story.h.match(new RegExp('\\s+('+PREP_RE+')\\s+\\{\\}','i'));
     if(m && (story.h.match(/\{\}/g)||[]).length===1){
       const i=m.index, rest=story.h.slice(i+m[0].length);
       const clause=clueClause(m[1],hint);
