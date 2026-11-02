@@ -4,14 +4,14 @@
  "call": [
   {
    "real": true,
-   "h": "Live carp flop across an expressway after a lorry tyre blowout bursts its water tank near {}",
-   "hint": "site of a 1956 workers' uprising",
-   "lat": 52.4007,
-   "lng": 16.9197,
-   "place": "Poznań, Poland",
-   "src": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQSklFN0MyX2EzdzJxWXcwSm5KRWhoZTVDWndYS2J5elJLcHZEdFRNaUd6Yk1YSFFuaDUwTFZCdVMxLUhoQmZkR0tlUjRSMnJWM0JJNEh5UFlFQTNibmdUeklPRFpiMWtzN2U0bDFXcC01WlNOaWlYQ3NwWG5nVFBXZ2puQWpMREJldzVDcDJIS0hBbnh2VkJ0YWFzZWQzemhYM3VoLWZOaXhXNHFLY1lvZFRyVnhMenVqQS0zZDNmUHFVZw?oc=5",
-   "published": "2026-10-28",
-   "clue": "live carp trucked around = Central European Christmas dish"
+   "h": "Toddler cuts out the middleman, crawls into a claw machine to grab the prizes himself and gets stuck in {}",
+   "hint": "where Bluey and Bingo live",
+   "lat": -27.5333,
+   "lng": 153.1833,
+   "place": "Capalaba, Queensland, Australia",
+   "src": "https://www.wionews.com/world/australian-police-rescue-3-year-old-stuck-inside-hello-kitty-claw-machine-686049",
+   "published": "2024-01-29",
+   "clue": "police rescue at a shopping centre, 'police' + Hello Kitty machine"
   },
   {
    "real": true,
@@ -32,14 +32,14 @@
   },
   {
    "real": true,
-   "h": "Qing-dynasty bowl topples off display shelf, smashing a small porcelain box below at a national museum in {}",
-   "hint": "the setting of Sherlock Holmes stories",
-   "lat": 51.5193,
-   "lng": -0.1267,
-   "place": "London, England",
-   "src": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9jWG1WUUlzbDJCWWNuN05xU1g2M2lKMEtuQ3Q1eV9pT3hGMi1yVXRvQk13TndodDRKdHZqVnVGZEJnZjZVSGY5dnNPUmdQek5PdUFPOWhnanRmcTRKMGZXcUZn0gFnQVVfeXFMTzMxcDdzSGJnR2FocjE1bHpRMmFXc0dhZ0F2MXBaNlhIejBZMktjejFIWGx4ZkRiTmZOSlc4QTJmU3pJZmh2bThpNjI1bEVJY3dqYnA4UmtXUzFnbEc3TzFJUU8xaVJhWQ?oc=5",
-   "published": "2026-10-12",
-   "clue": "national museum with Chinese porcelain collection = London"
+   "h": "Space mirror startup tests sunlight as a service over {} without telling astronomers",
+   "hint": "where countless Westerns were filmed",
+   "lat": 36.606,
+   "lng": -118.0627,
+   "place": "Lone Pine, California",
+   "src": "https://skyandtelescope.org/astronomy-news/astronomy-and-society/a-satellite-company-tested-sunlight-as-a-service-without-astronomers-knowledge/",
+   "published": "",
+   "clue": "desert town beneath the Sierra Nevada, near the Mount Whitney dark-sky area"
   },
   {
    "real": true,
@@ -60,14 +60,14 @@
   },
   {
    "real": true,
-   "h": "Man steals the ice-cream umbrella from outside a market during a downpour, CCTV shows, in {}",
-   "hint": "host of a famous paragliding festival",
-   "lat": 36.6221,
-   "lng": 29.1153,
-   "place": "Fethiye, Muğla",
-   "src": "https://news.google.com/rss/articles/CBMitgFBVV95cUxObFJmZ2tjOFhBUVd4STNLMENuNGhrVTFjem9fRXhERGFMd2laVFZpTUhmR2hGbVMxOTBmdmxyZjcwSk9UNmVkV3N1UlNtZHdEbGRkWXB3bXNVSzgwWF9IcWw3WVZReGVQdTRrMDJGZlFhdG5mUUJqUndDZUJiNXdrSVVVZkJqQkRSaGxNRXVUdjhWY0pDaGRwX080bUF6NlRkSFJwYzJscEs1XzBCZzU4dXJNNEpPQQ?oc=5",
-   "published": "2026-10-29",
-   "clue": "market ice-cream parasol and heavy autumn rain = Mediterranean coast"
+   "h": "'Ungovernable beavers' chew through warning sign placed by forest workers in {}",
+   "hint": "home of the Silesian Uprisings",
+   "lat": 50.6667,
+   "lng": 18.6833,
+   "place": "Lubliniec, Silesia, Poland",
+   "src": "https://www.ibtimes.co.uk/poland-beavers-destroy-warning-sign-1828518",
+   "published": "2026-10-08",
+   "clue": "forestry district + beavers = Central Europe"
   }
  ],
  "blank": [
