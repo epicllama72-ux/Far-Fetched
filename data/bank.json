@@ -1,6 +1,39 @@
 {
  "real": [
   {
+   "id": 29,
+   "h": "Man posing as blind with a white cane drove, gardened and piloted a boat while claiming 571,000 francs in {}",
+   "h2": "Man posing as [] with a white cane drove and piloted a boat while claiming 571,000 francs in St. Gallen, Switzerland",
+   "ans": [
+    "blind",
+    "blindness"
+   ],
+   "alt": [
+    "disabled",
+    "handicapped",
+    "paralysed",
+    "impaired",
+    "deaf"
+   ],
+   "place": "St. Gallen, Switzerland",
+   "geocode": "St. Gallen, Switzerland",
+   "lat": 47.425618,
+   "lng": 9.3762397,
+   "country": "Switzerland",
+   "cc": "CH",
+   "hint": "",
+   "clue": "francs and a canton's social insurance office = Switzerland",
+   "clue_strength": 3,
+   "jargon_only": false,
+   "mappable": 1,
+   "unbelievable": 4,
+   "theme": "fraud",
+   "src": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPNEI3U2FNREFhRUVMQzdzdkVPOEM4d3hPZjExWTh5ZDZEay03S2ZWbkdWMjI2SHRhYzl6NDFINzd6aVNScFdTY0pZclpmSnlHOGxibk1uMlE3em5lMnRERkE5NWV5Q0czSGE5N2VvcDRSd3lsUm92b2cxLUFqQ0JGd2tILWozNkJCc3pZOExURlE1bmc1b1JIWGY2S21oMFJqcjNXblh4UjlvYVFwXzlCV1dVSQ?oc=5",
+   "published": "2026-10-24",
+   "banked": "2026-11-02",
+   "rules": 2
+  },
+  {
    "id": 43,
    "h": "Pilot makes passengers vote by show of hands: wait for cleaning after dog urine, or leave on time with the smell in {}",
    "h2": "Delta [] makes passengers vote on cleaning dog urine from the plane or leaving on time at LaGuardia, New York",
@@ -162,7 +195,7 @@
    "country": "United States",
    "cc": "US",
    "clue": "US beach resort town; police arrest warrant released by the state law enforcement agency",
-   "clue_strength": 1,
+   "clue_strength": 2,
    "mappable": 2,
    "src": "https://www.vice.com/en/article/everything-we-know-about-the-cop-who-allegedly-pulled-a-gun-because-someone-microwaved-fish-at-work/",
    "published": "",
@@ -186,82 +219,51 @@
    "mappable": 1,
    "src": "https://novayagazeta.eu/en/articles/2026/10/29/russia-moves-to-allow-registration-of-cars-stolen-in-western-countries-en-news",
    "published": "2026-10-29"
-  },
-  {
-   "id": 44,
-   "h": "Ambulance driver abandons patient, said he was 'done driving for the day' and called an Uber home in {}",
-   "place": "Cleveland, Ohio",
-   "geocode": "Cleveland Clinic, Cleveland, Ohio, USA",
-   "lat": 41.5026,
-   "lng": -81.6209,
-   "country": "United States",
-   "cc": "US",
-   "hint": "where A Christmas Story was filmed",
-   "clue": "private ambulance firm + Uber + a big-city hospital = US",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 3,
-   "theme": "transport",
-   "src": "https://www.kwtx.com/2026/10/31/ambulance-driver-accused-abandoning-patient-said-he-was-done-driving-day-called-an-uber-home/",
-   "published": "2026-10-31",
-   "banked": "2026-11-01",
-   "rules": 2,
-   "priority": true
   }
  ],
  "fake": [
   {
-   "h": "Courier in {} clocked at 61 mph in a 30 zone while eating soup from a flask",
-   "hint": "home of Oktoberfest",
-   "tell": "German speed limits and radar readings are in km/h, never mph.",
-   "obvious": 2,
-   "theme": "speeding",
-   "banked": "2026-11-02",
-   "rules": 2
-  },
-  {
-   "h": "Commuters in {} delayed 52 minutes after a swarm of bees settles on a tram",
-   "hint": "host of a 1986 superpower summit",
-   "tell": "The Icelandic capital has no tram network, and bees rarely swarm that far north.",
+   "h": "Baker in {} burns 214 loaves when a pigeon steps on the oven timer, so 63 pensioners eat free",
+   "hint": "home of the Sachertorte",
+   "tell": "A pigeon neatly causing a disaster that then helps pensioners is too tidy a chain.",
    "obvious": 3,
-   "theme": "swarm",
+   "theme": "bakery",
    "banked": "2026-11-02",
    "rules": 2
   },
   {
-   "h": "Carabinieri arrest man in {} who lifted a 2.7-tonne church bell, leaving the crane receipt behind",
-   "hint": "the birthplace of paella",
-   "tell": "Spain has the Guardia Civil and local police; carabinieri are Italian, and the receipt is too convenient.",
-   "obvious": 3,
-   "theme": "church-bell",
-   "banked": "2026-11-02",
-   "rules": 2
-  },
-  {
-   "h": "Beachgoers in {} watch a sea lion nap on a lifeguard tower for 9 hours",
-   "hint": "where Dexter Morgan stalks his prey",
-   "tell": "Southern African beaches have fur seals and penguins, not sea lions.",
+   "h": "Ferry across the fjord leaves {} with one passenger and 14 crates of lingonberry jam",
+   "hint": "where the Nobel banquet is held",
+   "tell": "This capital sits on an archipelago and Baltic inlets, not a fjord.",
    "obvious": 2,
-   "theme": "seal",
+   "theme": "ferry",
    "banked": "2026-11-02",
    "rules": 2
   },
   {
-   "h": "Scarecrow contest in {} draws 39 entries as autumn leaves cover the vineyards in October",
-   "hint": "host of Formula One until 1995",
-   "tell": "October is spring in the southern hemisphere, so no autumn leaves.",
-   "obvious": 2,
-   "theme": "scarecrow",
-   "banked": "2026-11-02",
-   "rules": 2
-  },
-  {
-   "h": "Brothers metal-detecting in {} each dig up the same 1957 one-krone coin 40 minutes apart",
-   "hint": "home of the Nobel banquet",
-   "tell": "Sweden uses kronor, not krone, and finding the identical coin twice is too tidy.",
+   "h": "Thieves in {} steal 23 bronze manhole covers and leave a note offering 340 kuna",
+   "hint": "where Daenerys's Meereen was filmed",
+   "tell": "Kuna was replaced by the euro, so a thief would not offer it now.",
    "obvious": 3,
-   "theme": "coin",
+   "theme": "metal-theft",
+   "banked": "2026-11-02",
+   "rules": 2
+  },
+  {
+   "h": "37 marathon runners follow a lead bike 3 miles off course into a cinema car park in {}",
+   "hint": "birthplace of Oscar Wilde",
+   "tell": "Races here are measured in kilometres, and a lead bike rarely misleads a whole pack.",
+   "obvious": 2,
+   "theme": "marathon",
+   "banked": "2026-11-02",
+   "rules": 2
+  },
+  {
+   "h": "Diner in {} handed 42-page bill after printer jam repeats his 11-euro lunch 127 times",
+   "hint": "the capital Ceaușescu once ruled",
+   "tell": "This country pays in lei, not euros, and printer jams rarely repeat one order that neatly.",
+   "obvious": 3,
+   "theme": "restaurant",
    "banked": "2026-11-02",
    "rules": 2
   },
@@ -481,13 +483,13 @@
  ],
  "pol": [
   {
-   "id": 11,
+   "id": 30,
    "h": "Governor approves rule to break tied races by drawing despite objections in {}",
    "place": "Honolulu, Hawaii, USA",
    "geocode": "Honolulu, Hawaii, USA",
    "lat": 21.304547,
    "lng": -157.855676,
-   "clue": "Governor signing an election rule = US state; Pacific island setting hints at Hawaii",
+   "clue": "Governor + Office of Elections + island ballots = a US state like Hawaii",
    "src": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNMUYzSmNpa1Q5b0VVT1E0OGE0YVp1cW5hN00zdXYwRFlxV2RBWHVpNkJ1WWloUm1IQ0pxY2d3emotRFZnUlc0T0c4THVPaGstUmtxWFFJN3N0RWthSjBxN1l0NklxUHBEMVJPSTkwdzR5Y05laEZIaW5iTjlSd2NQaGI4S3V5MXJjdk9vWDYyM01vZEdoZTJCbF9KQUE1c1pkcFJ6RXFNLS10NzdTSWNUatIBxAFBVV95cUxNUFkxMnVmdDYtN2E5ejJLdmQ0Q2hISU5jaGZSa0sxaXBDWUFJcklHMGluREYwbnhQMU5pdTRuT0wxMmd2Ny1UdUZNaGpkNF9sSVAzRW80ZGpsbThxSVJxbExkTFhtTEk0OEhRQ1o1NmJsUTRxZGx0T1h3d1Q4TWdXRXpkV29RcktlLTFXWmJXVXUzb1RmVlQ4WlRYQV95UFBPdXR3V1NkT0gyNktrVDJWM3BCWTRaenEyQ0VOY29GclBGd0hO?oc=5",
    "published": "2026-10-31",
    "banked": "2026-11-02"
@@ -507,27 +509,27 @@
  ],
  "polfake": [
   {
-   "h": "Election in {} rerun after ballot boxes arrive a day early, officials say",
+   "h": "Voters in {} approve new bridge after ballot lists it as both a tax and a refund",
    "banked": "2026-11-02"
   },
   {
-   "h": "Mayor of {} resigns after town hall clock stops during third budget vote of the year",
+   "h": "Mayor of {} resigns after the town clock is found to be running seven minutes fast",
    "banked": "2026-11-02"
   },
   {
-   "h": "Voters in {} approve ban on evening council meetings after turnout rises at daytime sessions",
+   "h": "Parliament in {} passes bill banning umbrellas in the chamber after a rainy week of sessions",
    "banked": "2026-11-02"
   },
   {
-   "h": "Parliament in {} passes bill requiring members to declare lunch orders, 41 votes to 38",
+   "h": "Election in {} postponed because the only polling station was booked for a wedding",
    "banked": "2026-11-02"
   },
   {
-   "h": "Candidate in {} wins ward seat with 213 votes, one more than his twin brother",
+   "h": "Ward councillors in {} vote 9-2 to rename a park after discovering it has two names",
    "banked": "2026-11-02"
   },
   {
-   "h": "Councillors in {} vote to rename the town's only roundabout after the previous mayor's cat",
+   "h": "New law in {} requires all sheep to carry reflective vests on roads after a drop in mutton sales",
    "banked": "2026-11-02"
   },
   {

@@ -1,260 +1,150 @@
 {
- "date": "2026-11-01",
- "generated": "2026-11-01T02:17:55+00:00",
+ "date": "2026-11-02",
+ "generated": "2026-11-02T02:32:40+00:00",
  "call": [
   {
    "real": true,
-   "h": "Batman chases down bag thief with Poison Ivy and Mr Fantastic in {}",
-   "lat": 52.6309,
-   "lng": 1.2974,
-   "place": "Norwich, England",
-   "src": "https://www.lbc.co.uk/news/uk/batman-chases-bag-thief-norwich/",
-   "published": "2026-09-20",
-   "clue": "nightclub queue + police + cathedral city = England",
-   "hint": "where Alan Partridge broadcasts"
+   "h": "Live carp flop across an expressway after a lorry tyre blowout bursts its water tank near {}",
+   "hint": "site of a 1956 workers' uprising",
+   "lat": 52.4007,
+   "lng": 16.9197,
+   "place": "Poznań, Poland",
+   "src": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQSklFN0MyX2EzdzJxWXcwSm5KRWhoZTVDWndYS2J5elJLcHZEdFRNaUd6Yk1YSFFuaDUwTFZCdVMxLUhoQmZkR0tlUjRSMnJWM0JJNEh5UFlFQTNibmdUeklPRFpiMWtzN2U0bDFXcC01WlNOaWlYQ3NwWG5nVFBXZ2puQWpMREJldzVDcDJIS0hBbnh2VkJ0YWFzZWQzemhYM3VoLWZOaXhXNHFLY1lvZFRyVnhMenVqQS0zZDNmUHFVZw?oc=5",
+   "published": "2026-10-28",
+   "clue": "live carp trucked around = Central European Christmas dish"
   },
   {
    "real": true,
-   "h": "Shark trapped in canal becomes city ambassador in {}",
-   "lat": 35.1796,
-   "lng": 129.0756,
-   "place": "Busan, South Korea",
-   "src": "https://www.dexerto.com/entertainment/shark-trapped-in-south-korean-canal-draws-600000-visitors-and-becomes-city-ambassador-3414109/",
-   "published": "2026-10-05",
-   "clue": "port-city canal shark + city PR ambassador poll = South Korea",
-   "hint": "host of the 2002 Asian Games"
-  },
-  {
-   "real": true,
-   "h": "Hitler Mussolini wins local election in {}",
-   "lat": -10.1792,
-   "lng": -76.8028,
-   "place": "Queropalca, Huánuco, Peru",
-   "src": "https://www.politico.eu/article/hitler-mussolini-wins-local-election-peru/",
-   "published": "2026-10-10",
-   "clue": "Spanish-speaking Andean district: a mountain mayoral race = Peru",
-   "hint": "home country of Paddington Bear"
+   "h": "Ambulance driver abandons patient, said he was 'done driving for the day' and called an Uber home in {}",
+   "hint": "where A Christmas Story was filmed",
+   "lat": 41.5026,
+   "lng": -81.6209,
+   "place": "Cleveland, Ohio",
+   "src": "https://www.kwtx.com/2026/10/31/ambulance-driver-accused-abandoning-patient-said-he-was-done-driving-day-called-an-uber-home/",
+   "published": "2026-10-31",
+   "clue": "private ambulance firm + Uber + a big-city hospital = US"
   },
   {
    "real": false,
-   "h": "Library in {} finds 412 overdue books inside a freezer bought at a car-boot sale",
-   "tell": "'Car-boot sale' is British; locals there say garage sale.",
-   "hint": "home of the Grand Ole Opry"
+   "h": "Squirrels stash 1,260 acorns in the engine bay of a parked ute in {}",
+   "hint": "host of the 2021 America's Cup",
+   "tell": "Squirrels hoarding acorns is a northern-hemisphere habit, not typical of this country's cities."
   },
   {
    "real": true,
-   "h": "Electric car meant to pull a boat out of the water launches itself in {} instead",
-   "lat": 50.0469,
-   "lng": 19.9972,
-   "place": "Kraków, Poland",
-   "src": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOMFBDUTloYTZNZEUyakFfRHZwVWIxVktlMnc5VmhNVjJpcWZnWjNpZE4zM3hiLXpndlZuUlhiMjNpU2NteDRreXdOSURLLWd3SmxTSkFsYndicXBGSjlwVW5KV1RfN1J0eC1QLXRTVFE1WURqRWhkbzJUWHhfbW93Zi0zLWRrZnp4LUFjNGttYUZSTlR0NFAyZFBiNkxYVnVEV3piUlBMNkpqMEVmVmVNbTdyS3c4OEdPd2ZseGd6Z2dxcHMzWEQxS0dTWERXUFdFWTlFUEVR?oc=5",
-   "published": "2026-10-03",
-   "clue": "Polish-language local news; a slipway mishap",
-   "hint": "where Schindler's List was set"
+   "h": "Qing-dynasty bowl topples off display shelf, smashing a small porcelain box below at a national museum in {}",
+   "hint": "the setting of Sherlock Holmes stories",
+   "lat": 51.5193,
+   "lng": -0.1267,
+   "place": "London, England",
+   "src": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9jWG1WUUlzbDJCWWNuN05xU1g2M2lKMEtuQ3Q1eV9pT3hGMi1yVXRvQk13TndodDRKdHZqVnVGZEJnZjZVSGY5dnNPUmdQek5PdUFPOWhnanRmcTRKMGZXcUZn0gFnQVVfeXFMTzMxcDdzSGJnR2FocjE1bHpRMmFXc0dhZ0F2MXBaNlhIejBZMktjejFIWGx4ZkRiTmZOSlc4QTJmU3pJZmh2bThpNjI1bEVJY3dqYnA4UmtXUzFnbEc3TzFJUU8xaVJhWQ?oc=5",
+   "published": "2026-10-12",
+   "clue": "national museum with Chinese porcelain collection = London"
   },
   {
    "real": true,
-   "h": "Bear breaks into mall, steals peach and defecates on floor in {}",
-   "lat": 61.25,
-   "lng": -149.8,
-   "place": "Anchorage, Alaska",
-   "src": "https://funnytimes.com/news-of-the-weird-october-2026/",
-   "published": "2026-10-01",
-   "clue": "bear in a mall + a military base = Alaska",
-   "hint": "where the Iditarod sled race starts"
+   "h": "Man torches neighbour's car, Rs 3.5 lakh damage, irritated by its parking sensor beeps, then films it in {}",
+   "hint": "a major ceramic-tile exporting hub",
+   "lat": 22.8004,
+   "lng": 70.8862,
+   "place": "Morbi, Gujarat",
+   "src": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNQk91S190c19iQnBSYktNNzdBVnFxZUcwTk1xVTRIRDVySUxVUGtKSHN3cmNZdEFRRDhlYUdTc1RaZGZFTTdNWDBqR2pKYVJtaU9KQ0RSNVRzaUZSbGdFcmdsODBQOHFqVEU3UkZ3eW5laV9vWU5kWmY0QVYtcXNfT29KN2pZUkY4UmRlZU1xTVJuU0RYa2hYa3lTVW42ZmRLYmwwVkFQM0VzbmNyX1hxNDdCWWd6V2p2N3djNFNhbnphSDZjbFVYa3hrdTJBb2tzS00wblBGY0U3c1JwYU9kMElaWTJSNWRNTmJmeDU1aS02Z9IB9wFBVV95cUxNSXFGTXVUeXNEbDV4S2pJOHpmRXEyZ0w4MGJwck1RRFd6RTZ6WE5QQWd2M2dmZksxOFhCWFJ1a2d4VlV2bVVlZ2hBQV85N0ktdXVYY1c0eFM0TDk3aDZHSUVab0hGeDQ0QVRWMUZiN2NsZWdIVnNIX3RyVkc3SUJRX2ZVLUNvLW00WTZ4TDkxUUZWYWhZTkdqTVIxeVdGMzQxV3d6U3hkR0tVbGFnSFVPdVFnM2k5YmppcndNSERHVW50c3c2M1YyS2FMSzBrb1ZVMWFibkNBTGRBY3dYdmlqWF9KUnhaeko1dGJrd3Y2X0lZaEFLdUVN?oc=5",
+   "published": "2026-10-29",
+   "clue": "damage counted in rupees and lakh = India"
   },
   {
    "real": false,
-   "h": "Two constables in {} spend 4 hours chasing a loose ostrich around a retail park",
-   "tell": "Irish police are called gardaí, not constables.",
-   "hint": "birthplace of footballer Roy Keane"
+   "h": "Unicyclist fined 85 pounds for riding along a motorway hard shoulder in {}",
+   "hint": "where Ulysses is set",
+   "tell": "The fine is in pounds, but this country uses euros."
+  },
+  {
+   "real": true,
+   "h": "Man steals the ice-cream umbrella from outside a market during a downpour, CCTV shows, in {}",
+   "hint": "host of a famous paragliding festival",
+   "lat": 36.6221,
+   "lng": 29.1153,
+   "place": "Fethiye, Muğla",
+   "src": "https://news.google.com/rss/articles/CBMitgFBVV95cUxObFJmZ2tjOFhBUVd4STNLMENuNGhrVTFjem9fRXhERGFMd2laVFZpTUhmR2hGbVMxOTBmdmxyZjcwSk9UNmVkV3N1UlNtZHdEbGRkWXB3bXNVSzgwWF9IcWw3WVZReGVQdTRrMDJGZlFhdG5mUUJqUndDZUJiNXdrSVVVZkJqQkRSaGxNRXVUdjhWY0pDaGRwX080bUF6NlRkSFJwYzJscEs1XzBCZzU4dXJNNEpPQQ?oc=5",
+   "published": "2026-10-29",
+   "clue": "market ice-cream parasol and heavy autumn rain = Mediterranean coast"
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "[], 61, and wife arrested over single cannabis plant on home terrace in Aira, Kagoshima, Japan",
+   "h2": "Police find 4 tonnes of hashish, trapdoor stash hidden under a pile of [] at a farm in Ayamonte, Spain",
    "ans": [
-    "barber",
-    "barbers",
-    "hairdresser",
-    "stylist",
-    "haircutter",
-    "hairstylist"
+    "bread",
+    "loaves",
+    "loaf",
+    "breads"
    ],
-   "alt": [],
-   "place": "Aira, Kagoshima, Japan",
-   "src": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE10T0xybTIxZU5TX0wwckR6eUFWWV9OS0tMc1czTlV3RjFkYmdUcWp2Mk5FTG1MTDJVcEg1SUZyS0tnRU9yQ1gwR2RNdzNsS2Y1ZnpHWFh3TQ?oc=5",
+   "alt": [
+    "baguettes",
+    "buns",
+    "rolls",
+    "baguette"
+   ],
+   "place": "Ayamonte, Huelva",
+   "src": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQc2F6NVd6cU1vMFJfdmlKbWFHQUJMN1gxUzVSSW9MR2UydGZKcWhMTXFmMm12VnByZlF5RmhndHpUOGxzWldVM0xyM2szZkoxaHpDYWYtSFl6Q3UxcHJvN194NzBJWEFmZzA5RnFONFY0VXJUREZDanotUTk0eTlyWjFId2RJOHN5Y3BhOHBoejFuZW4tX1FBNWttTFpmY05HOTRTVXlLbWQzXzlBZUYwRkNhb2hMTDg?oc=5",
    "published": "2026-10-26",
-   "vec": "gRfh9fUKh+/M5OQ/nt0j3N0RA8j6KcgKEcTr5TqtPvgQOkctEEA7RQI/5/b1IAe16yM="
+   "vec": "7PrQw0Ua4wPz+enxPv8a+wgOJdMw0zgr8fraJGIHfQbnf+UVzz48EjcN1vYyNfP65PY="
   },
   {
    "real": true,
-   "h2": "[] bikes, swims across the Thames and runs from police in a chaotic 'triathlon' chase in Windsor, England",
+   "h2": "[] crosses highway between Buenos Aires and La Plata, causing four-car pile-up at kilometre 48",
    "ans": [
-    "thief",
-    "thieves"
+    "pig",
+    "pigs",
+    "hog",
+    "hogs"
    ],
    "alt": [
-    "burglar",
-    "robber",
-    "crook",
-    "suspect",
-    "criminal",
-    "fugitive"
+    "boar",
+    "swine",
+    "piglet",
+    "porker"
    ],
-   "place": "Windsor, England",
-   "src": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPZmdvaUxwaWRyQUJUZkdNaHVqRzVyZnZWdG5FczlHZndTSmtwY0MtYXpxd0Z2RVh6OWVjcUVsY0EwTzc3QjgtbnhxbS0yaWd3OWIxekpndEtkeW0xV3VNR3ZXQkFzdFAtU2tWREJGRWZrRjNvaWFiT2Zkc1ltbmVRSlhhMGoyTXE2TVhz?oc=5",
-   "published": "2026-10-30",
-   "vec": "+fH+4UMO+xwZOQFP8Q9AtiNBv/cK8OdJBYHD8krSEcvfHiE09s4d0x8u/xIouBKzYNw="
+   "place": "La Plata, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQb09sa2xiU3hWSXFBSVVjTVpZT3VEQUVrdzJFWWhLMmRuWHdFYkNzaVVTUWVfTklERHZsd2RobUdzSk1meVdGRTZ4YV81dzdwWHNwY2QwMWxaOXlDUVJRQ0FZU2xQN3dUNk9DdVdhVUFjWEw5WTNyR3dYYndOczg5a2NLNWh6SU9ucVlNNnF4bkIwajBLYWNJTVVqRW8zc1hQZmZOc18yRE5YV3RuNkhpWGJ4Qm9iZVFpWTZZMDBBRVZZUE52bnZPdVF2SE9fZVZsT094N3o1Y2dCN0pQbjMwNWx30gH2AUFVX3lxTE9jeW5mYWhvMTlkbGtCZU9OSU9FTUEwQ1BqVnhER0w4QjFCU2xEakQ5a2hXOFRsVV9fQXg0Z285M2FERkgzalNTb1pURGhLZlJKTDBOMzhycWtIZWEzR3dLVnpRRG1heFVxc3I3UW5rNk4xSTkwNFNNWlF5X0wwQ3lhR2JOUFFxM2N5MlVIZ1REQllVOUpPbkV1U3BZTFl4LUwzMDRXMm9UMlZjMTJvcVBFTnpYbHZJRUNrTkdMLUw1SVV0ZEhDeGV2MDRlQV8yWUxyTUwyLUcxRjlwRjFMckZaQnlVcDZlMGE2Y2EtVTc4ejM4bWRwUQ?oc=5",
+   "published": "2026-11-01",
+   "vec": "B73ZySdU+71dDAsAZRkeBic/1BoBxjgOLaPVIQ7FUgX8UMMlJQ0P7d0OzQN/COzIDvU="
   },
   {
    "real": true,
-   "h2": "Woman picks [] drying on a window ledge like she's shopping at a market in Bursa, Turkey",
+   "h2": "Stranger in Biden mask eats a [] on doorstep in Watauga, Texas, police warn pranksters",
    "ans": [
-    "clothes",
-    "clothing",
-    "garments",
-    "garment"
+    "banana",
+    "bananas"
    ],
    "alt": [
-    "laundry",
-    "outfits",
-    "dresses",
-    "shirts",
-    "washing"
+    "fruit",
+    "snack",
+    "plantain"
    ],
-   "place": "Bursa, Turkey",
-   "src": "https://news.google.com/rss/articles/CBMingFBVV95cUxQZkpyNU9mWXZ3WDEyVk5yUWpkVURTbllJeFBpVS1FNzcxdkNfV2xlamdwaUNqXzBRelpLcXhfRVRLYVppODhwQ0VHQjNETkY4ODhlS29ZY1R6WUp6Z1NTd19zazE3MmV6YVhJTVZrZDlKRDVfUkNscjU4MW5QYXhFdnNFNGhoRlNCaHZUOTlrcUV6VWd0ZzVsWDV3VEtRUQ?oc=5",
-   "published": "2026-10-28",
-   "vec": "+PnbyjP51Mv68wr3A/A4KccMN6AaVPn929CtQ1rOf0P+FB9m+Df//RMmKAk73fS8Duo="
-  },
-  {
-   "real": true,
-   "h2": "Córdoba, Argentina: TikToker shows new wooden [] and iron gate both opening outwards, blames blacksmith",
-   "ans": [
-    "door",
-    "doors",
-    "entrance",
-    "doorway"
-   ],
-   "alt": [],
-   "place": "Córdoba, Argentina",
-   "src": "https://news.google.com/rss/articles/CBMivgFBVV95cUxORjlLbS1wMnBRYjdQUDB2cjNKYThGMlRmMEZScEMwZzFmMHdseTFMQWMzV2doZ2dGY0ZFTWoxSEJxQ1NHLURpUlZ6Y1hrQjA2MzdOT1VXVmdNTU8wYVB1QXVweWVPZEZJN0hKSkJrSng3Y2VKQ2t2TDNGLW1IZkpHX3hsTjBvRlE1NFFPLXBSV3RPRV9VU3U5ajRCNDhLT05kN2ZfNHlHYXlSSHpiVWhfNUFwbDZGcVhCM3lQT0ZB?oc=5",
-   "published": "2026-10-22",
-   "vec": "FhMW7Sj15wME4tX61zsOHecDI7sgGdsV/60JPhTVf/vcBQgVI/UI7QEA7gsSAhjMC+A="
-  },
-  {
-   "real": true,
-   "h2": "Hackers hit Corinthians' [] in São Paulo, Brazil, announcing Lionel Messi for 2027",
-   "ans": [
-    "website",
-    "site",
-    "websites",
-    "sites"
-   ],
-   "alt": [
-    "webpage",
-    "homepage",
-    "page",
-    "server",
-    "account"
-   ],
-   "place": "São Paulo, Brazil",
-   "src": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQcUVPYlZFeWFVLW5vX3ZpY2NMSC0xbEdXdFlZSlRteHl0TTFGNXBLcnBLX0tFV3ZWbC1KNmI4WFR3c0wzWDA0UU1uM3dPU1kwaVpaMVVHQ0hnTTNiOHoyR19FaFRaa05GWHZRTWkxazRsdHhRVkFkeEpCcWNqd010TFhndTZLeGFvOGY3VXZnSTVaOHV2QmZOUGRfZC04SHhQTHBxWnd4Q0t3a1h2U1VzZUg3U1ZGY0V5NEROMkhkWE52Y25uaEJRak05RlVYaXplQ3lJVWZ2YVhIYmM5T2NxNjJVWHFTZ9IB-gFBVV95cUxQbjhJS2Y5UGVFTGtSdzlCR2tLUUU3MXotWFJRVkhOOE11UVRURHBjV0JXRVhBTXFPSmY5OVpDVmVKYWlBMDExSjF2aXltaWl2TEZBQjNzZVZVVlhRZjR5TElJbDR3UzRwX1VhakVPbjZBeHEwWnVrdFladmwwWTNrRWRlbHpta2FVdzZJaDV5OXhYUV92UkN4ejh6Tm9xYlNNLTIxd2hqazk1ZkRKX196aVU0SnZ6NmplZlZCSy1VNkZLQWFYRFE1VWp1X2tzcElucktUbEs2VWhYWVBjajRzQ0hFdDZtRWxFcEFMZ000UjVza0NwRTc1NDZR?oc=5",
-   "published": "2026-10-31",
-   "vec": "/RIgJPjiuN8tBAj0//kc7Or9DRocBA00AODp/9D1f9v/1M0TKeLg4EzY0/kL6+EqLvY="
-  },
-  {
-   "real": true,
-   "h2": "Delivery [] runs a red light in Tallinn, Estonia, bus hits it and 9 passengers fall hurt",
-   "ans": [
-    "robot",
-    "robots"
-   ],
-   "alt": [
-    "bot",
-    "droid",
-    "machine",
-    "vehicle",
-    "rover"
-   ],
-   "place": "Tallinn, Estonia",
-   "src": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBTbE5xVmg2Y0VSV0JqWXppOW5ZUUtLcjlPOGVmSXJydjQ1QmdMT0lIai1HeVdrbEI3bTN5eXVFT2dMaElKaEQxbFlLS0phSGs5eVZnZHMtdk9DN2M?oc=5",
-   "published": "2026-10-29",
-   "vec": "S8glHB8PB8EY5zM78nz49/N/wuf7C9P/PszP2AbdYO3JC+1SBf/rxAPj+QUz9k7D+A0="
-  }
- ],
- "politics": [
-  {
-   "real": true,
-   "h": "Bizarre council plan to split a street in half halted in {}",
-   "lat": 50.7241,
-   "lng": -3.6608,
-   "place": "Devon, England",
-   "src": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPek82aVc1VUhXekp3cjZUOWg2NDRVU2g4ZkFNZG9hX0V2azFnVUdmYTJaMlc2OTItVDl5ejNFMExPS0hEeDViV3NnZG1wSHZUNWRxem9aUDU4OVNhVmRNdGkxT09tT1U1X1NQTkpUSjFMWlIzMVdkT0NKczV2MDVPeEFjdDRtcmZxMDk4?oc=5",
-   "published": "2026-10-30",
-   "clue": "Council plan over a street, local county paper = England",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "After exact tie in Ward 4 race, candidate says chance shouldn't decide election in {}",
-   "lat": 42.7972,
-   "lng": -80.4538,
-   "place": "Norfolk County, Ontario, Canada",
-   "src": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1EN2h3dk9lbWxDOUJBaTA1RFpBVmVXVTRUanZiN1VoOGtSVFRmQlV3c2NZZE41X1hGTnpyREVQMEFwdWkxV3BEc3FUNDBFVEpLTkl5SkdkZ0xGZw?oc=5",
-   "published": "2026-10-30",
-   "clue": "Wards + municipal tie settled by chance = Ontario, Canada",
-   "cat": "pol"
-  },
-  {
-   "real": false,
-   "h": "Voters in {} approve a new library levy after turnout rises on a day of heavy rain",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "Mayor disqualified over unusual error, ending his re-election bid in {}",
-   "lat": 25.8901,
-   "lng": -80.1867,
-   "place": "North Miami, Florida, USA",
-   "src": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9KTDBfeUV3M3U3SnFDWklxUzZJYXoySmlEN2NzcG5od0I1cEhPdFVEeFltZjhhMXRqXzhtNWxRckktSmZFRjBBdXJOLVAwNHhxTmZaNVZxeFY?oc=5",
-   "published": "2026-10-22",
-   "clue": "Mayor-council city with a municipal qualifying process = US, Florida",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "Four legs not required as honorary dog mayor election gets underway in {}",
-   "lat": 40.7127,
-   "lng": -74.006,
-   "place": "New York City, New York, USA",
-   "src": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPMV9HMEs1VzJ1dlVjY3RIYWNESUl5NkRNYjdMMW1Cc3BPWUEzUmFVQUJWclYxeTRsbmVfRXRxdlk5Tmphem41SVpyN2hkaFloVFoxdzA4TTY3cjBRbUtSMUlGeE8yM0V2ZU5DM0thYXU5UzlYT2YxQzJHX3lvQXVWbFZrR2E0VF9Gcl81MFZfSzBwaEhic2c?oc=5",
-   "published": "2026-10-31",
-   "clue": "Honorary dog mayor vote, borough-style local news = big US city",
-   "cat": "pol"
-  },
-  {
-   "real": false,
-   "h": "Parliament in {} votes 63 to 61 to move its summer recess back by a fortnight",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "Burger poll at {} restaurant ties two rival political leaders as customer votes climb",
-   "lat": 49.2068,
-   "lng": -122.9109,
-   "place": "New Westminster, British Columbia, Canada",
-   "src": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQUkZ0dHAtellvRUY3WmEtLTQ0VzFDSWM2eTdMQnZrd2FUU2EyOFktUGtmdHFXTlNwdUJpTW9QejFsQTg3MmVFRjlRVjRCOUlUU0twc2JKenBYRlJXU2VVazhyVlo5VVcxenpCdWppaVhXNVRqZm1teEhic0pZZTFVTTlNajVhZlRMYm1IRzl3VlBfQ0lsaGc4Qmd3Y1ZERk9DNlIyUmk5cw?oc=5",
+   "place": "Watauga, Texas",
+   "src": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOdUFGQTRRM2Z0Z3Y3dUdjZGZ2R3VmdXZWZWhFRkZPTWNLZU94ZUhSSW55ZzRJaXROZ2dkUlU2X2pfdGkwUVB5cU05WWhMMDRGNW1sU1FIb3VUbWtOU3lnYkQteTZFeUZYNDcxbC14bEJQYllDM2l6Y2NBVVl4ZmgwbThJMHhiZ0h0Tm9SMVlxX09qQTNQYnZwWEZaMzJVYUpQQ0RTYtIBqgFBVV95cUxNXzZiWHhzMnN0SlpPTlVORFVweksxMEVZQk9QWmlnQVh5UWd1SXBJczRwQVBrcEc5a2dzQTdrQlNhdHp1emhEc0NCaU5Kd2d5RHNpY0lDSGpLMzFCVGp4RlVjS2xYazNOY0h2NHQxNVRwUl80OUtSakwxeTlCMW03UlBBS3ljbjAzdFJ1QTBPOTVkVU9aOEZoTFNST0V0enRqQmFDRldDT2cxUQ?oc=5",
    "published": "2026-10-20",
-   "clue": "Restaurant burger poll on provincial leaders = a Canadian province, BC",
-   "cat": "pol"
+   "vec": "7svDTwlI2OYf9wUPRPsk/PAQSsr0sxIO494IJk/yaNvIf+j2kwEI6tkcEcQnOtDJ/sU="
+  },
+  {
+   "real": true,
+   "h2": "Local [] in Ciutadella, Menorca, leave town unpatrolled with station shut all night",
+   "ans": [
+    "police"
+   ],
+   "alt": [
+    "cops",
+    "officers",
+    "constabulary",
+    "patrol",
+    "guards"
+   ],
+   "place": "Ciutadella, Menorca",
+   "src": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPOWZrRWF1T1hHWUdfQ1lJTlBHd3dOVWxGeVhPejZMT1ZmUXpYZFdmY3VPYi1vY3ZEYWZJb2k5VUVwUUJzak9Jb2phMk4tNHVZcGdjNnJoWWxITDJYMjM2NU9vbm1adS0xZXhIY1hhYW11NWtDNXBaM2xQV3JIdU9ZYXlUNmUxSHBVS2Z0aThhSHc4V0NxYUZoaWd5SzVOaURIbWVDbExqV2tsVEpaVmlpSy16N196RktDZ1owUG1GWWNwTGpnckE?oc=5",
+   "published": "2026-10-29",
+   "vec": "F8kR/CDg9BsDu/3S3u0U6u8O4+0NNvYd2Y4HA+7if/PrwRsvH8oRN/M5G/Yq19kGJ+I="
   }
- ],
- "legacySigs": [
-  837768624,
-  1717856866,
-  3700142818
  ]
 }
