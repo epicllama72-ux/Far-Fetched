@@ -282,6 +282,27 @@
    "theme": "animal",
    "src": "https://www.ibtimes.co.uk/poland-beavers-destroy-warning-sign-1828518",
    "published": "2026-10-08"
+  },
+  {
+   "id": 47,
+   "h": "DUI suspect drinks urine-tainted toilet water to sabotage breath test in {}",
+   "place": "Charlottesville, Virginia",
+   "geocode": "Charlottesville, Virginia, USA",
+   "lat": 38.0293,
+   "lng": -78.4767,
+   "country": "United States",
+   "cc": "US",
+   "hint": "where Thomas Jefferson built Monticello",
+   "clue": "US DUI arrest + breath-test observation rule",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 3,
+   "theme": "crime",
+   "src": "https://www.officer.com/investigations/drug-alcohol-enforcement/news/55406632/virginia-dui-suspect-allegedly-drank-toilet-water-before-breath-test-police-say",
+   "published": "2026-10-29",
+   "banked": "2026-11-02",
+   "rules": 2
   }
  ],
  "fake": [
