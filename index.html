@@ -1531,7 +1531,7 @@ function clueClause(prep,hint){
   if(/^(?:home|setting|site|birthplace|scene|location)\s(?:\w+\s)?of\s/i.test(t)) return prep+' the '+t;
   if(/^(?:famed|known|noted|famous|namechecked)\s/i.test(t)) return prep+' a city '+t;
   if(/^(?:an?|the)\s/i.test(t)) return prep+' '+t;
-  return prep+' '+t;
+  return ', '+t;                                  // any other clue (a detail like "Rs 3.5 lakh damage") simply follows the sentence
 }
 function headlineHTML(story, reveal, clue){
   const hint=String(story.hint||'').trim().replace(/[.,]+$/,'');
@@ -1542,7 +1542,7 @@ function headlineHTML(story, reveal, clue){
       const i=m.index, rest=story.h.slice(i+m[0].length);
       const clause=clueClause(m[1],hint);
       const mid=rest.startsWith(' ');
-      return (story.h.slice(0,i)+' <span class="clue">'+clause+'</span>'+(mid?',':'')+rest).replace(/\s+([,.;])/g,'$1').trim();
+      return (story.h.slice(0,i)+(clause[0]===','?'':' ')+'<span class="clue">'+clause+'</span>'+(mid?',':'')+rest).replace(/\s+([,.;])/g,'$1').trim();
     }
   }
   const h=showClue ? foldHint(story.h,hint) : story.h;
