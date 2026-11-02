@@ -17,9 +17,13 @@ language sql
 stable
 as $$
 with s as (
-  select player, name, m, score, answers::jsonb as answers
-  from public.scores
-  where day = p_day and kind = p_kind
+  -- every comparison goes through ::text and the answers are read from the row as JSON, so this works whatever
+  -- types your scores table uses (text or date for day, text or uuid for player, answers jsonb/json/text, or no answers column yet)
+  select t.player::text as player, t.name, t.m, t.score,
+         case when jsonb_typeof(to_jsonb(t) -> 'answers') = 'string' then (to_jsonb(t) ->> 'answers')::jsonb
+              else to_jsonb(t) -> 'answers' end as answers
+  from public.scores t
+  where t.day::text = p_day and t.kind::text = p_kind
 ),
 hist as (
   select coalesce(jsonb_agg(jsonb_build_array(m, c) order by m), '[]'::jsonb) as h
@@ -49,7 +53,7 @@ crowd as (
   select coalesce(jsonb_agg(jsonb_build_object('i', i, 'n', n, 'ok', ok, 'med', med) order by i), '[]'::jsonb) as c
   from (
     select i, count(*) as n, sum(ok) as ok,
-           (array_agg(dist order by dist) filter (where dist is not null))[(count(dist) / 2) + 1] as med
+           (array_agg(dist order by dist) filter (where dist is not null))[(count(dist) / 2)::int + 1] as med
     from ans group by i
   ) q
 )
