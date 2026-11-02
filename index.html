@@ -1547,7 +1547,7 @@ function headlineHTML(story, reveal, clue){
   }
   const h=showClue ? foldHint(story.h,hint) : story.h;
   let out;
-  if(!reveal) out=noBlank(h);
+  if(!reveal) out=noBlank(h).replace(/[,;]\s*$/,'');
   else if(story.real) out=h.replace('{}', '<span class="reveal">'+story.place+'</span>');
   else out=h.replace('{}', '<span class="fakeplace">[invented]</span>');
   if(showClue){                                   // the clue is picked out in yellow
