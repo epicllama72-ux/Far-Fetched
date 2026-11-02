@@ -186,6 +186,28 @@
    "mappable": 1,
    "src": "https://novayagazeta.eu/en/articles/2026/10/29/russia-moves-to-allow-registration-of-cars-stolen-in-western-countries-en-news",
    "published": "2026-10-29"
+  },
+  {
+   "id": 44,
+   "h": "Ambulance driver abandons patient, said he was 'done driving for the day' and called an Uber home in {}",
+   "place": "Cleveland, Ohio",
+   "geocode": "Cleveland Clinic, Cleveland, Ohio, USA",
+   "lat": 41.5026,
+   "lng": -81.6209,
+   "country": "United States",
+   "cc": "US",
+   "hint": "where A Christmas Story was filmed",
+   "clue": "private ambulance firm + Uber + a big-city hospital = US",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 3,
+   "theme": "transport",
+   "src": "https://www.kwtx.com/2026/10/31/ambulance-driver-accused-abandoning-patient-said-he-was-done-driving-day-called-an-uber-home/",
+   "published": "2026-10-31",
+   "banked": "2026-11-01",
+   "rules": 2,
+   "priority": true
   }
  ],
  "fake": [
