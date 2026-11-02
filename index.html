@@ -3211,7 +3211,7 @@ function renderSummary(total,max,mineM){
     if(!b || !b.rows) return;
     const rows=b.rows.slice();
     if(b.me && !rows.some(r=>r.id===b.me)) rows.push({id:b.me,m:mineM,score:total,ans:answersOf(S.results)});
-    renderCrowd(rows);
+    renderCrowd(rows,b.crowd);
     if(rows.length<3) return;
     const others=rows.filter(r=>r.id!==b.me);
     const below=others.filter(r=>r.m<mineM).length, ties=others.filter(r=>r.m===mineM).length;
@@ -3536,29 +3536,38 @@ async function openBackIssue(date){
 }
 
 /* ---------- Crowd stats: how everyone else did on each story today ---------- */
-function crowdFor(rows,i,st){
-  const a=rows.map(r=>r.ans&&r.ans[i]).filter(Boolean);
-  if(a.length<3) return '';
-  if(st.real===false){ const f=a.filter(x=>!x[0]).length; return Math.round(100*f/a.length)+'% were fooled'; }
-  const right=a.filter(x=>x[0]).length, d=a.map(x=>x[1]).filter(x=>typeof x==='number').sort((p,q)=>p-q);
-  const med=d.length ? d[Math.floor(d.length/2)] : null;
-  return Math.round(100*right/a.length)+'% called it real'+(med!=null?' · median pin '+med.toLocaleString()+' km':'');
+/* per headline: how many answered (n), how many called it right (ok) and the median pin distance; from the server's
+   summary when there is one, otherwise worked out from the downloaded rows */
+function crowdStats(rows,agg){
+  const o={};
+  if(agg){ agg.forEach(x=>{ o[+x.i]={n:+x.n, ok:+x.ok, med:x.med==null?null:Math.round(+x.med)}; }); return o; }
+  (S.rounds||[]).forEach((st,i)=>{
+    const a=rows.map(r=>r.ans&&r.ans[i]).filter(Boolean); if(!a.length) return;
+    const d=a.map(x=>x[1]).filter(x=>typeof x==='number').sort((p,q)=>p-q);
+    o[i]={n:a.length, ok:a.filter(x=>x[0]).length, med:d.length?d[Math.floor(d.length/2)]:null};
+  });
+  return o;
 }
-function renderCrowd(rows){
+function crowdFor(c,st){
+  if(!c || c.n<3) return '';
+  if(st.real===false) return Math.round(100*(c.n-c.ok)/c.n)+'% were fooled';
+  return Math.round(100*c.ok/c.n)+'% called it real'+(c.med!=null?' · median pin '+c.med.toLocaleString()+' km':'');
+}
+function renderCrowd(rows,agg){
   $('crowdTop').hidden=true;
   if(S.kind==='blank') return;
-  const have=rows.filter(r=>Array.isArray(r.ans)).length;
-  if(have<3) return;
+  const cs=crowdStats(rows,agg);
+  if(Math.max(0,...Object.values(cs).map(c=>c.n))<3) return;
   document.querySelectorAll('#recapList li').forEach((li,i)=>{
     const st=S.rounds[i]; if(!st) return;
-    const t=crowdFor(rows,i,st); if(!t) return;
+    const t=crowdFor(cs[i],st); if(!t) return;
     let c=li.querySelector('.crowd'); if(!c){ c=document.createElement('span'); c.className='crowd'; li.querySelector('div').append(c); }
     c.textContent='Crowd: '+t;
   });
   // the story that fooled or stumped the most people today
   let worst=null;
-  S.rounds.forEach((st,i)=>{ const a=rows.map(r=>r.ans&&r.ans[i]).filter(Boolean); if(a.length<3) return;
-    const miss=a.filter(x=>!x[0]).length/a.length; if(!worst||miss>worst.miss) worst={i,miss,st}; });
+  S.rounds.forEach((st,i)=>{ const c=cs[i]; if(!c || c.n<3) return;
+    const miss=(c.n-c.ok)/c.n; if(!worst||miss>worst.miss) worst={i,miss,st}; });
   if(worst && worst.miss>0){
     $('crowdTop').hidden=false;
     const hl=(worst.st.h||'').replace('{}',worst.st.real===false?'…':(worst.st.place||'…').replace(/\s*\(\d{4}\)$/,'')), short=hl.length>80?hl.slice(0,77)+'…':hl;
@@ -3634,7 +3643,25 @@ async function sbRename(name){
     return true;
   }catch(e){ return false; }
 }
+/* The leaderboard summary (scripts/supabase_board.sql): one small response instead of every score row.
+   Depths are stored to 0.1 m, so the per-depth counts rebuild the curve and your ranking exactly. */
+async function sbBoardSummary(kind){
+  const me=playerId();
+  const r=await fetch(SUPABASE_URL+'/rest/v1/rpc/board',{method:'POST',headers:sbHeaders(),
+    body:JSON.stringify({p_day:dayKey(),p_kind:kind,p_player:me})});
+  if(!r.ok) return null;                                    // not set up yet: use the full download
+  const j=await r.json(); if(!j || !Array.isArray(j.hist)) return null;
+  const left=new Map(j.hist.map(([m,c])=>[Math.round(+m*10)/10,+c])), rows=[], names={};
+  const take=x=>{ const m=Math.round(+x.m*10)/10; rows.push({id:x.player,m,score:+x.score,zone:''}); left.set(m,(left.get(m)||0)-1);
+                  names[x.player]=x.player===me?'You':x.name; };
+  (j.top||[]).forEach(take);
+  if(j.me && !(j.top||[]).some(x=>x.player===j.me.player)) take(j.me);
+  let k=0; left.forEach((c,m)=>{ for(let i=0;i<c;i++) rows.push({id:'~'+(k++),m,score:-1e9,zone:''}); });   // everyone else: only their depth is needed
+  rows.sort((a,b)=>b.m-a.m || b.score-a.score);
+  return {rows, me, names, sb:true, rank:j.me?+j.me.rank:null, crowd:Array.isArray(j.crowd)?j.crowd:null};
+}
 async function sbBoard(kind){
+  try{ const b=await sbBoardSummary(kind); if(b) return b; }catch(e){}
   const q='&day=eq.'+encodeURIComponent(dayKey())+'&kind=eq.'+encodeURIComponent(kind)+'&order=m.desc,score.desc&limit=2000';
   let r=await fetch(SUPABASE_URL+'/rest/v1/scores?select=player,name,m,score,zone,answers'+q,{headers:sbHeaders()});
   if(!r.ok) r=await fetch(SUPABASE_URL+'/rest/v1/scores?select=player,name,m,score,zone'+q,{headers:sbHeaders()});
@@ -3773,7 +3800,7 @@ async function openBoard(){
   list.forEach(r=>{
     const li=document.createElement('li'); if(r.id===b.me) li.className='me';
     const nm=document.createElement('span'); nm.className='nm';
-    nm.textContent=(rows.indexOf(r)+1)+'. '+(r.id===b.me?'You':(b.names[r.id]||'Someone'));
+    nm.textContent=((r.id===b.me && b.rank) ? b.rank : rows.indexOf(r)+1)+'. '+(r.id===b.me?'You':(b.names[r.id]||'Someone'));
     const v=document.createElement('span'); v.textContent=r.m.toFixed(1)+' m · '+fmtPts(r.score);
     li.append(nm,v); ol.append(li);
   });
