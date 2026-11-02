@@ -718,6 +718,12 @@ body.planetview #final,body.planetview #bar,body.planetview #comeBack,body.plane
 #introTop.on{opacity:1}
 #introTop .it{font:clamp(20px,7vw,44px)/1 var(--px);color:#c9ced8;letter-spacing:2px;text-shadow:3px 3px 0 #1a1220;white-space:nowrap}
 #introTop .it b{font-weight:400;color:var(--accent)}
+/* a soft glow that breathes slowly */
+#introTop .it{animation:titleGlow 3.4s ease-in-out infinite alternate}
+#introTop .it b{animation:titleGlowB 3.4s ease-in-out infinite alternate}
+@keyframes titleGlow{from{text-shadow:3px 3px 0 #1a1220,0 0 6px rgba(201,206,216,.25),0 0 14px rgba(150,180,255,.15)}to{text-shadow:3px 3px 0 #1a1220,0 0 10px rgba(201,206,216,.5),0 0 24px rgba(150,180,255,.3)}}
+@keyframes titleGlowB{from{text-shadow:3px 3px 0 #1a1220,0 0 8px rgba(255,210,63,.35),0 0 18px rgba(255,138,31,.2)}to{text-shadow:3px 3px 0 #1a1220,0 0 14px rgba(255,210,63,.7),0 0 30px rgba(255,138,31,.4)}}
+@media (prefers-reduced-motion:reduce){#introTop .it,#introTop .it b{animation:none}}
 @media (min-width:1100px){#introTop{width:min(440px,calc(100vw - 32px))} #introTop .it{font-size:34px}}
 /* desktop only: the opening Start button sits in the right column level with the middle of the planet, clear of the title and text above it */
 @media (min-width:1100px) and (min-height:600px){ body.introIdle .rcol #bar{margin:calc(50vh - 120px) 0 0 auto;width:min(340px,100%)} }
