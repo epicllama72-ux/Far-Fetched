@@ -1,38 +1,6 @@
 {
  "real": [
   {
-   "id": 46,
-   "h": "2.8 million basketwork eels cram onto one deep-sea mountain for most of the year to mate, scientists count, south of {}",
-   "h2": "2.8 million [] cram onto Patience Seamount south of Tasmania, Australia, to mate",
-   "ans": [
-    "eels",
-    "eel"
-   ],
-   "alt": [
-    "fish",
-    "snakes",
-    "conger",
-    "moray"
-   ],
-   "place": "Tasmania, Australia",
-   "geocode": "Huon Marine Park, Tasmania, Australia",
-   "lat": -44.2,
-   "lng": 147.3,
-   "country": "Australia",
-   "cc": "AU",
-   "hint": "home of a famous cartoon devil",
-   "clue": "national science agency surveys, southern waters = Australia",
-   "clue_strength": 1,
-   "jargon_only": false,
-   "mappable": 1,
-   "unbelievable": 3,
-   "theme": "marine",
-   "src": "https://metro.co.uk/2026/10/28/a-giant-ball-2-800-000-eels-orgy-off-coast-australia-29745511/",
-   "published": "2026-10-28",
-   "banked": "2026-11-01",
-   "rules": 2
-  },
-  {
    "id": 43,
    "h": "Pilot makes passengers vote by show of hands: wait for cleaning after dog urine, or leave on time with the smell in {}",
    "h2": "Delta [] makes passengers vote on cleaning dog urine from the plane or leaving on time at LaGuardia, New York",
@@ -194,7 +162,7 @@
    "country": "United States",
    "cc": "US",
    "clue": "US beach resort town; police arrest warrant released by the state law enforcement agency",
-   "clue_strength": 0,
+   "clue_strength": 1,
    "mappable": 2,
    "src": "https://www.vice.com/en/article/everything-we-know-about-the-cop-who-allegedly-pulled-a-gun-because-someone-microwaved-fish-at-work/",
    "published": "",
@@ -221,6 +189,60 @@
   }
  ],
  "fake": [
+  {
+   "h": "Courier in {} clocked at 61 mph in a 30 zone while eating soup from a flask",
+   "hint": "home of Oktoberfest",
+   "tell": "German speed limits and radar readings are in km/h, never mph.",
+   "obvious": 2,
+   "theme": "speeding",
+   "banked": "2026-11-02",
+   "rules": 2
+  },
+  {
+   "h": "Commuters in {} delayed 52 minutes after a swarm of bees settles on a tram",
+   "hint": "host of a 1986 superpower summit",
+   "tell": "The Icelandic capital has no tram network, and bees rarely swarm that far north.",
+   "obvious": 3,
+   "theme": "swarm",
+   "banked": "2026-11-02",
+   "rules": 2
+  },
+  {
+   "h": "Carabinieri arrest man in {} who lifted a 2.7-tonne church bell, leaving the crane receipt behind",
+   "hint": "the birthplace of paella",
+   "tell": "Spain has the Guardia Civil and local police; carabinieri are Italian, and the receipt is too convenient.",
+   "obvious": 3,
+   "theme": "church-bell",
+   "banked": "2026-11-02",
+   "rules": 2
+  },
+  {
+   "h": "Beachgoers in {} watch a sea lion nap on a lifeguard tower for 9 hours",
+   "hint": "where Dexter Morgan stalks his prey",
+   "tell": "Southern African beaches have fur seals and penguins, not sea lions.",
+   "obvious": 2,
+   "theme": "seal",
+   "banked": "2026-11-02",
+   "rules": 2
+  },
+  {
+   "h": "Scarecrow contest in {} draws 39 entries as autumn leaves cover the vineyards in October",
+   "hint": "host of Formula One until 1995",
+   "tell": "October is spring in the southern hemisphere, so no autumn leaves.",
+   "obvious": 2,
+   "theme": "scarecrow",
+   "banked": "2026-11-02",
+   "rules": 2
+  },
+  {
+   "h": "Brothers metal-detecting in {} each dig up the same 1957 one-krone coin 40 minutes apart",
+   "hint": "home of the Nobel banquet",
+   "tell": "Sweden uses kronor, not krone, and finding the identical coin twice is too tidy.",
+   "obvious": 3,
+   "theme": "coin",
+   "banked": "2026-11-02",
+   "rules": 2
+  },
   {
    "h": "Tram halts for 52 minutes in {} as bees settle on the wire; 212 riders get 3-pound refunds",
    "hint": "home of the Dada art movement",
@@ -433,17 +455,21 @@
    "banked": "2026-10-27",
    "rules": 2,
    "hint": "home of Einstein's patent office"
-  },
-  {
-   "h": "Monsoon floods in {} carry 41 plastic chairs from a wedding hall to a temple; priest accepts them as a donation",
-   "tell": "Floodwater delivering exactly the thing a priest can gracefully accept is too tidy.",
-   "obvious": 3,
-   "banked": "2026-10-27",
-   "rules": 2,
-   "hint": "the home of street-food pad thai"
   }
  ],
  "pol": [
+  {
+   "id": 11,
+   "h": "Governor approves rule to break tied races by drawing despite objections in {}",
+   "place": "Honolulu, Hawaii, USA",
+   "geocode": "Honolulu, Hawaii, USA",
+   "lat": 21.304547,
+   "lng": -157.855676,
+   "clue": "Governor signing an election rule = US state; Pacific island setting hints at Hawaii",
+   "src": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNMUYzSmNpa1Q5b0VVT1E0OGE0YVp1cW5hN00zdXYwRFlxV2RBWHVpNkJ1WWloUm1IQ0pxY2d3emotRFZnUlc0T0c4THVPaGstUmtxWFFJN3N0RWthSjBxN1l0NklxUHBEMVJPSTkwdzR5Y05laEZIaW5iTjlSd2NQaGI4S3V5MXJjdk9vWDYyM01vZEdoZTJCbF9KQUE1c1pkcFJ6RXFNLS10NzdTSWNUatIBxAFBVV95cUxNUFkxMnVmdDYtN2E5ejJLdmQ0Q2hISU5jaGZSa0sxaXBDWUFJcklHMGluREYwbnhQMU5pdTRuT0wxMmd2Ny1UdUZNaGpkNF9sSVAzRW80ZGpsbThxSVJxbExkTFhtTEk0OEhRQ1o1NmJsUTRxZGx0T1h3d1Q4TWdXRXpkV29RcktlLTFXWmJXVXUzb1RmVlQ4WlRYQV95UFBPdXR3V1NkT0gyNktrVDJWM3BCWTRaenEyQ0VOY29GclBGd0hO?oc=5",
+   "published": "2026-10-31",
+   "banked": "2026-11-02"
+  },
   {
    "id": 53,
    "h": "City council to sit as a court in unusual apartment complex appeal in {}",
@@ -458,6 +484,30 @@
   }
  ],
  "polfake": [
+  {
+   "h": "Election in {} rerun after ballot boxes arrive a day early, officials say",
+   "banked": "2026-11-02"
+  },
+  {
+   "h": "Mayor of {} resigns after town hall clock stops during third budget vote of the year",
+   "banked": "2026-11-02"
+  },
+  {
+   "h": "Voters in {} approve ban on evening council meetings after turnout rises at daytime sessions",
+   "banked": "2026-11-02"
+  },
+  {
+   "h": "Parliament in {} passes bill requiring members to declare lunch orders, 41 votes to 38",
+   "banked": "2026-11-02"
+  },
+  {
+   "h": "Candidate in {} wins ward seat with 213 votes, one more than his twin brother",
+   "banked": "2026-11-02"
+  },
+  {
+   "h": "Councillors in {} vote to rename the town's only roundabout after the previous mayor's cat",
+   "banked": "2026-11-02"
+  },
   {
    "h": "Mayor of {} appoints brother-in-law's bakery as official caterer after winning with 51 votes",
    "banked": "2026-11-01"
@@ -513,30 +563,6 @@
   {
    "h": "Councillors in {} pass a motion on parking permits in under four minutes, then adjourn for a fire drill",
    "banked": "2026-10-30"
-  },
-  {
-   "h": "Mayor of {} delays budget vote after the council chamber clock is found running four minutes fast",
-   "banked": "2026-10-29"
-  },
-  {
-   "h": "Voters in {} approve a ban on lawn signs, then fill the town with banners urging a repeal",
-   "banked": "2026-10-29"
-  },
-  {
-   "h": "Parliament in {} passes a bill to move election day to a Sunday after a record rainfall on three straight Tuesdays",
-   "banked": "2026-10-29"
-  },
-  {
-   "h": "Candidate for mayor of {} wins after listing his occupation as lighthouse keeper in a town with no coast",
-   "banked": "2026-10-29"
-  },
-  {
-   "h": "Ward councillor in {} resigns after being elected to the same seat in two neighbouring districts",
-   "banked": "2026-10-29"
-  },
-  {
-   "h": "Town of {} votes to rename its council a senate, citing the 41 percent rise in agenda length",
-   "banked": "2026-10-29"
   }
  ]
 }

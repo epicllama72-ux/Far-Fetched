@@ -1,0 +1,191 @@
+{
+ "date": "2026-11-02",
+ "generated": "2026-11-02T02:17:31+00:00",
+ "call": [
+  {
+   "real": true,
+   "h": "Scientists count 2.8 million eels weighing 3.5 million kilograms massed on an undersea mountain south of {}",
+   "hint": "setting of the film The Nightingale",
+   "lat": -42.0351,
+   "lng": 146.6367,
+   "place": "Tasmania, Australia",
+   "src": "https://metro.co.uk/2026/10/28/a-giant-ball-2-800-000-eels-orgy-off-coast-australia-29745511/",
+   "published": "2026-10-28",
+   "clue": "Kilograms and a deep seamount in the Southern Ocean"
+  },
+  {
+   "real": true,
+   "h": "Live carp flop across the expressway after a truck's tyre blows out and the fish tank bursts open near {}",
+   "hint": "home of St Martin's croissants",
+   "lat": 52.4007,
+   "lng": 16.9197,
+   "place": "Poznań, Poland",
+   "src": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQSklFN0MyX2EzdzJxWXcwSm5KRWhoZTVDWndYS2J5elJLcHZEdFRNaUd6Yk1YSFFuaDUwTFZCdVMxLUhoQmZkR0tlUjRSMnJWM0JJNEh5UFlFQTNibmdUeklPRFpiMWtzN2U0bDFXcC01WlNOaWlYQ3NwWG5nVFBXZ2puQWpMREJldzVDcDJIS0hBbnh2VkJ0YWFzZWQzemhYM3VoLWZOaXhXNHFLY1lvZFRyVnhMenVqQS0zZDNmUHFVZw?oc=5",
+   "published": "2026-10-28",
+   "clue": "Carp are the Polish Christmas fish, hauled by truck on an expressway"
+  },
+  {
+   "real": false,
+   "h": "Tram cleaner in {} finds a bag holding 2,350 zloty in coins under a seat",
+   "hint": "where a velvet revolution unfolded",
+   "tell": "Zloty are Polish money; the Czech currency is the koruna."
+  },
+  {
+   "real": true,
+   "h": "Sheep climbs onto the roof of a one-storey house to graze on the grass growing there in {}",
+   "hint": "where Kırkpınar oil wrestling is held",
+   "lat": 41.839,
+   "lng": 26.7361,
+   "place": "Lalapaşa, Edirne, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMid0FVX3lxTE90Q2dQSjJSRDVrN1dYd0RpU0s1eGRmVlpzSmI1V0J2QW1sSHVrN0NlRVVsd004WmFGZ2Y5V0FyQkJNc2JCVHZpeEU0MEdnbWtWdWhULUpWcTJSNHNhODk2VlV0RTZhWC1DaVZlZ2NuakttTWZHbkd3?oc=5",
+   "published": "2026-10-28",
+   "clue": "Village livestock grazing on a rooftop"
+  },
+  {
+   "real": true,
+   "h": "Ten-hour transatlantic flight with 275 passengers diverts to {} after six of eight toilets fail: 'only two potties'",
+   "hint": "setting of Seinfeld and Friends",
+   "lat": 40.6429,
+   "lng": -73.7794,
+   "place": "New York, New York",
+   "src": "https://www.nbcnewyork.com/news/local/american-airlines-plane-bathrooms-not-working/6557100/",
+   "published": "2026-10-12",
+   "clue": "Atlantic crossing, diverted to the nearest big East Coast hub"
+  },
+  {
+   "real": false,
+   "h": "Constable finds 14 stolen garden gnomes in a minibus stopped for a broken tail light in {}",
+   "hint": "where Ulysses is set",
+   "tell": "Irish police officers are called gardaí, not constables, and the gnome haul is oddly tidy."
+  },
+  {
+   "real": true,
+   "h": "Beer keg dropped from a helicopter into a crevasse in the 1970s resurfaces at 3,000 metres, still drinkable in {}",
+   "hint": "where Ötzi the Iceman was found",
+   "lat": 46.9883,
+   "lng": 11.9436,
+   "place": "Ahrntal, South Tyrol, Italy",
+   "src": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQU29TcGIxUUFuXzgyYlMyMjVyWTZiTnZZc1dPclFTQVMxajk5ZmUyalNWazZpdElyWlQ2MGpLS3NOQXZ0NEtQMy1nUnN0cHVmUldqdmRCbjU1NC1acnFMMUJvbTludW9oT1piZUhxWUoxTXBiLXVSb2lWbl9ONXh5dE9MYUUzTElUTTRySTE4eFgzZXZqanUxdWczRVVoVEEyNDAwdVZ3UnlScEl2dVJjbXo3X3lsUjFwckZ3NldINnd5ZlZQdWNqeWNtc3NjN3dLTFpUWXVFMFVDTGdtTXZ2ZE9BckVUT0hWcldab3Vn?oc=5",
+   "published": "2026-10-26",
+   "clue": "Helicopter delivery to a hut at 3,000 metres on a glacier = the Alps"
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Man takes an ice-cream [] from outside a market during a downpour in Fethiye, Turkey",
+   "ans": [
+    "umbrella",
+    "umbrellas",
+    "parasol",
+    "parasols"
+   ],
+   "alt": [
+    "canopy",
+    "awning",
+    "sunshade",
+    "brolly"
+   ],
+   "place": "Fethiye, Muğla, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMitgFBVV95cUxObFJmZ2tjOFhBUVd4STNLMENuNGhrVTFjem9fRXhERGFMd2laVFZpTUhmR2hGbVMxOTBmdmxyZjcwSk9UNmVkV3N1UlNtZHdEbGRkWXB3bXNVSzgwWF9IcWw3WVZReGVQdTRrMDJGZlFhdG5mUUJqUndDZUJiNXdrSVVVZkJqQkRSaGxNRXVUdjhWY0pDaGRwX080bUF6NlRkSFJwYzJscEs1XzBCZzU4dXJNNEpPQQ?oc=5",
+   "published": "2026-10-29",
+   "vec": "8wDsDBwP/b0t5RLs90vF9SMrJuv2EfoRpOTvCeAGf/vFG7IC8b72/QjU7Q8e/bz84d4="
+  },
+  {
+   "real": true,
+   "h2": "Woman caught on CCTV putting a table [] in her handbag at a Matlock, Derbyshire bar while sipping wine",
+   "ans": [
+    "lamp",
+    "lamps"
+   ],
+   "alt": [
+    "light",
+    "lantern",
+    "candle",
+    "bulb"
+   ],
+   "place": "Matlock, Derbyshire, England",
+   "src": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1Lb1l2YWV0VDk1Y1htUkNvSFlLVURtdE1oY2Rtd3pWdFphQU9RS01lQ1JlVnRldHhZMy1fUjBQWk9OVmdXYTZmN1JjbnF5YW1SNzluRTFZZjQyUE9ZUDh4bkVIRy04bFk0Q2FmaTRPQXk1N3E3NEZ3?oc=5",
+   "published": "2026-10-26",
+   "vec": "4j448TbpJ8oNMBYyKjXMMLIp4oEs4/ysFOnZRisUM/fi5xYdN/82MB4YshT0LgeMGbI="
+  },
+  {
+   "real": true,
+   "h2": "Workers on a Sunday commute in Salta, Argentina share a [] with witches, devils and ghosts",
+   "ans": [
+    "bus",
+    "buses",
+    "colectivo",
+    "colectivos"
+   ],
+   "alt": [
+    "coach",
+    "minibus",
+    "tram",
+    "train",
+    "metro"
+   ],
+   "place": "Salta, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPOU1BcFNjck1rMW54dDlJWXNDWDJXcFdhRkpESjdfUmRjUllNYS1jVUpERUt1TV8yMUhpdGtZZUZTUGxocGJYWjc4NlluRWVwOFVVa0pJNC1yXzlEbFZEeC02azdzdkRWZl9HczRzaGo1eUp4WkVQT1Q4amFzMldrcncxLUp0ZHRuQTdzVzUyTmtVNXJFZFBkS180REpRNjl0dm9oZWNYZXVRYmpTVVpxVExfZ2V0NXFFc2dDT1RQV2pkSjRJOThEcC1yd19IQzJXY1JMMm5mdHktYlFmbkxGb3gzeDdycFV2ZkY5OFVJb0xyY3oyQTRtbXJqUG5pWjlKZDA40gGIAkFVX3lxTFBiLUlXNWdrVDltUFVNMjRfeHdFOEoyVTJ3VC1YcEhncl9idExyREhOT1pWbk9XeFJoUi1SdkJ4ejBuS2dsTGEzZUkzcnJLVkVYQ0xHWUdwV2llOW5mdEhGSGk2dmRxMjBrcUZOSkQycDRBc3plVEo3T0dtTlhwOG53WDZOTDhDVC1COWJaUWtIWlh6M1IwUE93V2h1SFlmZDkxd3VJUFpaZWVsRjQ4NGxMSWEyaGZWWDNqbXRHMXd0dzlrTDdGQnB0eVlxNmR6MkRWbHUwVDJ2MUhmZUoyYUZLSlFTa1ZzRHBjcFVxeDViSjNxNGNyeUNWbWhFZGhzWXZaRWNaSjBBaw?oc=5",
+   "published": "2026-11-01",
+   "vec": "LQQz8uwRuwUg0P3U4BDq9M5A3eIoG9FQFrwYIyrefyH+FDUNOdb3TvMB/+n5AebiP+s="
+  },
+  {
+   "real": true,
+   "h2": "Stadium announcer asks fan who kept the [] in the stand to return it during a Copa del Rey tie in Tudela, Spain",
+   "ans": [
+    "ball",
+    "balls",
+    "football"
+   ],
+   "alt": [
+    "soccer",
+    "sphere",
+    "ballon"
+   ],
+   "place": "Tudela, Navarre, Spain",
+   "src": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPRHFTTkktSmJ6RmEwQmdLQjVhaUl1dTN1LW5PaUc5Yk56Zk01YndaZ0w0MnE2bE1UZGV2akRmLUN1VmN4ZFczOXNnT2hQaUVTRlg5X0JNd0Z2NHJPdy1KbGdUdVZ4ZzVsVEJsX0h4WEZsVU1uT3pCLUlGUjBUR0piY1Z0M1pIV0JwUEkyQTdCYmd2RzN5Q2J4bFRzOW52UXZoZFNhLUY1Yzhkb0ZxUUJvbG1oanhnem9BT1AwVjE2RFYxbzA1UU9paF9jS1BaRHdLVWZpSFRoQnExaFBSaXhEY2lfWXRqMWZjaHZrcFJhZ9IB9AFBVV95cUxQRlM2TnZISEdnNmRDMS1va1NLeUF6b3ZwOFlRRUFVeXk1WkFOM2taYnptalpaU2k3dkpKU0twQ3g2SVdSQm0ySzZrcUN1S0ZBWUxSREotbU14OXRMdzhyQWpNTkZPUzNuWDQ3alROVC11ZF9ndXgtLWs4d0Vld2tlN1dTYmc5dlVsTTF0WUJhOU8ydzA2aER4RjF5UEZkdGtZdzROREphWk4zeXBtNjRUM0tfU0IzR19yVEhiSE5BeVctNHJYb0hEa2UyMFM0TWt2SEhXMmctcnBpZnAzQktGZXA1YXUxYTdRZGtoR3M2SHNaeXE5?oc=5",
+   "published": "2026-10-28",
+   "vec": "zt777iH02wUMDP4lvhz+8infsNLhDRP1IqwjLSGyfxEIHAgiE0AL/hYt5RroASXYFt4="
+  },
+  {
+   "real": true,
+   "h2": "Thief hides £1,850 bronze sculpture of two [] under his coat and walks out of a Stamford, Lincolnshire gallery",
+   "ans": [
+    "turtles",
+    "turtle"
+   ],
+   "alt": [
+    "tortoises",
+    "terrapins",
+    "tortoise",
+    "terrapin"
+   ],
+   "place": "Stamford, Lincolnshire, England",
+   "src": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNcmpxYXp2a2c5UGE2MXdDTk9hd1llREJ4bFlLa0Jna2tLQnRNV1NKdV9IMDdzRWp6dVd6dHVNOXp1bF9qWUpQMlRDSjZCSVRYWDZwLV84ODkwR1BtRGl6ajV4ZWdTUGM2bG54clNDTG4wMDBjVFQ2eUdWemdLdDVKeXpiaUZGZ1ppdVpGclNlaWcycFp6STBvLVVxZjFzQ2M?oc=5",
+   "published": "2026-10-30",
+   "vec": "ReoOFBoQoME58QhNfzwQByj6mxSy/2bRFij+ADfHMw7l8vpA36jpvrbQJypK/+zD/9Q="
+  },
+  {
+   "real": true,
+   "h2": "Ford drives down [] of a cemetery alley in Elbląg, Poland, and police hunt the driver",
+   "ans": [
+    "steps",
+    "stairs",
+    "staircase",
+    "step",
+    "stair"
+   ],
+   "alt": [
+    "flight",
+    "path",
+    "slope",
+    "ramp"
+   ],
+   "place": "Elbląg, Poland",
+   "src": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPcmRLcm54MFIwaHVPMnEycE5UM0s0OE5icTBQaUt3U3ZkcWxyc0ZiSXBpTzBjWmI0U3ZGMFI2cVhudGM3UGZyQ3o0S3FqNlFIYWZ1RXdoQkF1ZHV4aVphYlllVk13eDlGZ1kwd0pkT3I2QkdCUDNEc3FoaV92OXJ4dVFpV2p6LUFBaWdUZ0d4YkRxeFg4d3FRaVVtRk1kTjUxSnd3dUgwcm1FY0hfQ2RKNXg3OHdlU1FicDVlTDQxZUp2eVhDX0U0Z0F1aFllZHQ4SHc?oc=5",
+   "published": "2026-11-01",
+   "vec": "Jgn94wf3Ef4DAeQG5Aj4FRfeJN4Y/+bjDdAXCAL1fw7b8wL8FQDtAdvxB/ITAw8IAv4="
+  }
+ ]
+}
