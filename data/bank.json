@@ -359,6 +359,28 @@
    "banked": "2026-11-02",
    "rules": 2,
    "daily_only": true
+  },
+  {
+   "id": 50,
+   "h": "Man uses stolen excavator to rob bank directly next to a police station in {}",
+   "place": "DeFuniak Springs, Florida",
+   "geocode": "DeFuniak Springs, Walton County, Florida, USA",
+   "lat": 30.7213,
+   "lng": -86.115,
+   "country": "United States",
+   "cc": "US",
+   "hint": "home of Walt Disney World",
+   "clue": "US bank + police station next door + a stolen excavator",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 3,
+   "theme": "crime",
+   "src": "https://www.weartv.com/news/local/man-attempts-atm-heist-with-excavator-stolen-near-police-station-in-defuniak-springs",
+   "published": "2025-04-30",
+   "banked": "2026-11-02",
+   "rules": 2,
+   "daily_only": true
   }
  ],
  "fake": [
