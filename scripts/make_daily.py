@@ -872,9 +872,21 @@ def map_score(r):
 
 def merit(r):
     try:
-        return 2 * eff_strength(r) + 2 * map_score(r) + int(r.get("unbelievable", 1)) + r.get("_fresh", 0)
+        return 2 * eff_strength(r) + 2 * map_score(r) + 3 * int(r.get("unbelievable", 1)) + r.get("_fresh", 0)
     except Exception:
         return 1
+
+
+GENERIC_THEMES = {"", "odd news", "odd", "weird", "weird news", "news", "strange", "misc", "other", "general", "oddity"}
+ANIMAL_RE = re.compile(r"\b(?:fish|carp|eels?|sharks?|whales?|dolphins?|seals?|otters?|sheep|lambs?|goats?|cows?|cattle|bulls?|calves|horses?|ponies|pony|donkeys?|pigs?|dogs?|cats?|kittens?|puppy|puppies|birds?|ducks?|geese|goose|pigeons?|owls?|eagles?|swans?|chickens?|roosters?|hens?|turkeys?|snakes?|pythons?|crocodiles?|alligators?|lizards?|frogs?|toads?|bears?|wolf|wolves|foxes|fox|deer|moose|elk|reindeer|kangaroos?|emus?|koalas?|wallab(?:y|ies)|raccoons?|squirrels?|rabbits?|hares?|mouse|mice|rats?|monkeys?|apes?|elephants?|lions?|tigers?|camels?|llamas?|alpacas?|penguins?|seagulls?|gulls?|bats?|bees?|spiders?|insects?|beetles?|moths?|animals?|wildlife|livestock|pets?|tortoises?|turtles?|crabs?|lobsters?|octopus|squid|hippos?|rhinos?|giraffes?|zebras?)\b", re.I)
+
+
+def theme_key(r):
+    """What the one-story-per-theme spread compares: animal stories all count as 'animal'; vague labels like 'odd news' don't count as a theme at all."""
+    th = (r.get("theme") or "").strip().lower()
+    if ANIMAL_RE.search(th) or ANIMAL_RE.search(r.get("h") or ""):
+        return "animal"
+    return "" if th in GENERIC_THEMES else th
 
 
 def fit_to_map(r):
@@ -1064,7 +1076,7 @@ def main():
     pool_all = list(reals)       # everything that fits the map: Fill the Blank and the bank draw on this, not just on the theme-spread list below
     seen_theme, uniq = set(), []
     for r in sorted(reals, key=lambda r: (not r.get("priority"), -merit(r))):
-        th = (r.get("theme") or "").strip().lower()
+        th = theme_key(r)
         if th and th in seen_theme and not r.get("priority"):      # hand-picked stories keep their place whatever their theme
             continue
         seen_theme.add(th)
