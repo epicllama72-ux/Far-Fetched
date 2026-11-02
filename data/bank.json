@@ -81,7 +81,8 @@
    "mappable": 3,
    "src": "https://newschannel9.com/news/nation-world/accused-killer-offers-plea-deal-for-cheesesteak-fries-pepsi-murder-trial-defendant-request-robert-kessler-stephanie-crone-overholt",
    "published": "",
-   "hint": ""
+   "hint": "",
+   "daily_only": true
   },
   {
    "h": "Lawmaker in {} urges president to play new Call of Duty to understand the threat from the North",
@@ -100,7 +101,8 @@
    "src": "https://mbiz.heraldcorp.com/article/10912196",
    "published": "2026-10-23",
    "banked": "2026-10-30",
-   "rules": 2
+   "rules": 2,
+   "daily_only": true
   },
   {
    "banked": "2026-10-30",
@@ -120,7 +122,8 @@
    "mappable": 3,
    "src": "https://www.christianpost.com/news/ohio-pastor-reveals-hes-had-2-wives-for-3-years.html",
    "published": "",
-   "hint": "host of the 2016 Republican convention"
+   "hint": "host of the 2016 Republican convention",
+   "daily_only": true
   },
   {
    "banked": "2026-10-30",
@@ -140,7 +143,8 @@
    "mappable": 3,
    "src": "https://skyandtelescope.org/astronomy-news/astronomy-and-society/a-satellite-company-tested-sunlight-as-a-service-without-astronomers-knowledge/",
    "published": "",
-   "hint": "where countless Westerns were filmed"
+   "hint": "where countless Westerns were filmed",
+   "daily_only": true
   },
   {
    "h": "Labour board says federal officer shouldn't be disciplined for waving middle finger at federal building in {}",
@@ -159,7 +163,8 @@
    "src": "https://www.ctvnews.ca/ottawa/article/buildings-do-not-have-opinions-labour-board-rules-officer-should-not-be-disciplined-for-giving-building-middle-finger/",
    "published": "",
    "banked": "2026-10-30",
-   "rules": 2
+   "rules": 2,
+   "daily_only": true
   },
   {
    "h": "Colouring book handed out at a show in {} shows Bluey held at knifepoint",
@@ -179,7 +184,8 @@
    "published": "2026-10-28",
    "banked": "2026-10-30",
    "rules": 2,
-   "hint": ""
+   "hint": "",
+   "daily_only": true
   },
   {
    "banked": "2026-10-30",
@@ -199,7 +205,8 @@
    "mappable": 2,
    "src": "https://www.vice.com/en/article/everything-we-know-about-the-cop-who-allegedly-pulled-a-gun-because-someone-microwaved-fish-at-work/",
    "published": "",
-   "hint": ""
+   "hint": "",
+   "daily_only": true
   },
   {
    "banked": "2026-10-30",
@@ -218,7 +225,8 @@
    "clue_strength": 1,
    "mappable": 1,
    "src": "https://novayagazeta.eu/en/articles/2026/10/29/russia-moves-to-allow-registration-of-cars-stolen-in-western-countries-en-news",
-   "published": "2026-10-29"
+   "published": "2026-10-29",
+   "daily_only": true
   },
   {
    "id": 44,
@@ -239,7 +247,8 @@
    "clue": "US doctors + a GLP-1 drug case report",
    "theme": "medical",
    "src": "https://www.newsnationnow.com/health/diet-coke-dissolve-stomach-mass-glp-1-patient/",
-   "published": "2026-07-08"
+   "published": "2026-07-08",
+   "daily_only": true
   },
   {
    "id": 45,
@@ -260,7 +269,8 @@
    "clue": "US high school + felony complaint = US",
    "theme": "crime",
    "src": "https://www.yahoo.com/news/us/articles/woman-says-she-hates-kids-092016114.html",
-   "published": "2026-10-05"
+   "published": "2026-10-05",
+   "daily_only": true
   },
   {
    "id": 46,
@@ -281,7 +291,8 @@
    "clue": "forestry district + beavers = Central Europe",
    "theme": "animal",
    "src": "https://www.ibtimes.co.uk/poland-beavers-destroy-warning-sign-1828518",
-   "published": "2026-10-08"
+   "published": "2026-10-08",
+   "daily_only": true
   },
   {
    "id": 47,
@@ -302,7 +313,8 @@
    "src": "https://www.officer.com/investigations/drug-alcohol-enforcement/news/55406632/virginia-dui-suspect-allegedly-drank-toilet-water-before-breath-test-police-say",
    "published": "2026-10-29",
    "banked": "2026-11-02",
-   "rules": 2
+   "rules": 2,
+   "daily_only": true
   },
   {
    "id": 48,
@@ -323,7 +335,8 @@
    "src": "https://www.yahoo.com/news/us/articles/man-pretends-cop-pulls-over-150705003.html",
    "published": "2026-09-18",
    "banked": "2026-11-02",
-   "rules": 2
+   "rules": 2,
+   "daily_only": true
   }
  ],
  "fake": [

@@ -912,6 +912,8 @@ def load_stock(day, used, prior):
 
 
 def valid_blank(r):
+    if r.get("daily_only"):                 # stories banked by hand are for the Daily Dig alone (never Fill the Blank or Politics)
+        return False
     h2, ans = r.get("h2", ""), r.get("ans") or []
     if h2.count("[]") != 1 or not ans or not all(re.fullmatch(r"[a-z]+", a) for a in ans):
         return False
