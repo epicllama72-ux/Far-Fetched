@@ -303,6 +303,27 @@
    "published": "2026-10-29",
    "banked": "2026-11-02",
    "rules": 2
+  },
+  {
+   "id": 48,
+   "h": "Man pretends to be a cop, pulls over a Tesla, then calls 911 on himself in {}",
+   "place": "Phoenix, Arizona",
+   "geocode": "I-17 near Dove Valley Road, Phoenix, Arizona, USA",
+   "lat": 33.803,
+   "lng": -112.114,
+   "country": "United States",
+   "cc": "US",
+   "hint": "where the film Psycho begins",
+   "clue": "US highway patrol (DPS) + a Tesla traffic stop",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 3,
+   "theme": "crime",
+   "src": "https://www.yahoo.com/news/us/articles/man-pretends-cop-pulls-over-150705003.html",
+   "published": "2026-09-18",
+   "banked": "2026-11-02",
+   "rules": 2
   }
  ],
  "fake": [
