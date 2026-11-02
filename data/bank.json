@@ -381,6 +381,28 @@
    "banked": "2026-11-02",
    "rules": 2,
    "daily_only": true
+  },
+  {
+   "id": 51,
+   "h": "Defendant files fake Supreme Court order dismissing his own case in {}",
+   "place": "Marion, Indiana",
+   "geocode": "Grant County Superior Court, Marion, Indiana, USA",
+   "lat": 40.5584,
+   "lng": -85.6592,
+   "country": "United States",
+   "cc": "US",
+   "hint": "birthplace of the actor James Dean",
+   "clue": "US county court + a forged Chief Justice signature",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 3,
+   "theme": "law",
+   "src": "https://www.newser.com/story/395381/john-roberts-signed-order-dismissing-guys-case-except-he-didnt.html",
+   "published": "2026-02-01",
+   "banked": "2026-11-02",
+   "rules": 2,
+   "daily_only": true
   }
  ],
  "fake": [
