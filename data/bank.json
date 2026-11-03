@@ -566,8 +566,7 @@
    "published": "2026-10-30",
    "banked": "2026-11-03",
    "rules": 2,
-   "daily_only": true,
-   "hold": true
+   "daily_only": true
   },
   {
    "id": 61,
@@ -589,8 +588,7 @@
    "published": "2026-10-29",
    "banked": "2026-11-03",
    "rules": 2,
-   "daily_only": true,
-   "hold": true
+   "daily_only": true
   },
   {
    "id": 62,
@@ -656,8 +654,7 @@
    "published": "2026-11-01",
    "banked": "2026-11-03",
    "rules": 2,
-   "daily_only": true,
-   "hold": true
+   "daily_only": true
   }
  ],
  "fake": [
