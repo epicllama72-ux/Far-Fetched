@@ -1638,7 +1638,7 @@ const Scene = (function(){
   const FLOOR = 110, L0 = FLOOR+8;
   const PTS_M = 10;            // metres of depth per point: 1 point = 10 m, a perfect day (1,000 points) = 10 km
   // The jaw falls at one constant speed (KPX world px per point) in every zone; zones are simply longer or shorter in points:
-  // the room above ground ends at 50 points, then basement, dirt, bedrock, magma, core, and Australia at 900 points (9 km).
+  // the room above ground ends at 50 points, then basement 500 m, dirt 1.25 km, bedrock 2.25 km, magma 4.25 km, core 7 km, Australia 9 km.
   const KPX = 1.92;
   const p2px=p=>Math.max(0,p)*KPX, px2p=px=>Math.max(0,px)/KPX;
   const AUS_M = 9000;          // a top score (900 points) pokes out the other side of the earth, into Australia
@@ -1727,7 +1727,7 @@ const Scene = (function(){
     deskView = window.innerWidth>=1100 && window.innerHeight>=600;     // big screens have a lot of empty room to furnish
     // the underground has a fixed length; the point scale above decides how far each point drops the jaw in it
     U=EXIT-L0;
-    B=[0].concat([125,225,350,525].map(p=>Math.round(22+KPX*p-L0)),[U]);   // magma and the core are within reach of a great run
+    B=[0].concat([125,225,425,700].map(p=>Math.round(22+KPX*p-L0)),[U]);   // magma and the core are within reach of a great run
     worldEnd=Math.max(L0+U+Math.round(H*0.25),EXIT+110);
     dropMax=p2px(maxPts);
     camMin=-56-Math.max(0,Math.round(H*0.5)-60);
