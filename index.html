@@ -931,8 +931,10 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 .slbl span{color:#5d6577}
 .slbl::after{content:'';flex:1;border-top:1px dashed #2d3444}
 #tiers{list-style:none;margin:0;padding:0}
-#tiers li{display:grid;grid-template-columns:24px auto 1fr;column-gap:10px;align-items:center;padding:7px 6px;border-bottom:1px solid #222938;color:#7d8597;font:18px/1.1 var(--vt)}
+#tiers li{display:grid;grid-template-columns:30px auto 1fr;column-gap:10px;align-items:center;padding:7px 6px;border-bottom:1px solid #222938;color:#7d8597;font:18px/1.1 var(--vt)}
 #tiers li .ti{font-size:18px;text-align:center}
+#tiers li .ti img{width:30px;height:30px;image-rendering:pixelated;display:block;opacity:.55}
+#tiers li.me .ti img{opacity:1}
 #tiers li .tr{font-size:17px;color:#8a93a6;white-space:nowrap;min-width:5.6em}
 #tiers li .tn{display:block}
 #tiers li .tl{display:block;font-size:16px;color:#69718a}
@@ -3310,18 +3312,18 @@ function runCountdown(){
 }
 
 /* ---------- Run summary: tiers, dig log, today's curve ---------- */
-const TIERS=[
-  {f:0,    icon:'🥱', name:'Unfazed',          line:'Old news. Yawn.'},
-  {f:0.35, icon:'🤨', name:'Eyebrow Raised',   line:'A few of those got you.'},
-  {f:0.55, icon:'☕', name:'Spat Out My Coffee', line:'I don\'t believe you.'},
-  {f:0.70, icon:'😱', name:'Gobsmacked',       line:'That wasn\'t The Onion?'},
-  {f:0.85, icon:'🌋', name:'Earth-Shattering', line:'Legendary reading. Geologists are on the phone.'}];
+const TIERS=[   // the same ranks as the pin popups, lowest to highest
+  {f:0,    icon:'rock',    color:'#ffffff', name:'Rock-Dweller', line:'Come out from under there. It\'s a big world.'},
+  {f:0.35, icon:'news',    color:'#4da6ff', name:'Skimmer',      line:'You read the headline. Mostly.'},
+  {f:0.55, icon:'tv',      color:'#ff4d5e', name:'Pundit',       line:'You\'d do great on cable news.'},
+  {f:0.70, icon:'capitol', color:'#b56bff', name:'Statesman',    line:'A short trip from correct.'},
+  {f:0.85, icon:'globe',   color:'#ffd23f', name:'Globalist',    line:'Were you there? Be honest.'}];
 function tierOf(total,max){ let k=0; TIERS.forEach((t,i)=>{ if(total>=Math.round(t.f*max/50)*50) k=i; }); return k; }
 function renderSummary(total,max,mineM){
   const k=tierOf(total,max), cut=TIERS.map(t=>Math.round(t.f*max/50)*50);
   $('tiers').innerHTML=TIERS.map((t,i)=>{
     const lo=cut[i], hi=i<TIERS.length-1?cut[i+1]-1:max;
-    return '<li'+(i===k?' class="me"':'')+'><span class="ti">'+t.icon+'</span><span class="tr">'+(i===TIERS.length-1?lo+'+':lo+'–'+hi)+'</span><span><b class="tn">'+t.name+'</b><span class="tl">'+t.line+'</span></span></li>';
+    return '<li'+(i===k?' class="me"':'')+'><span class="ti"><img alt="" src="'+iconURL(t.icon,t.color)+'"></span><span class="tr">'+(i===TIERS.length-1?lo+'+':lo+'–'+hi)+'</span><span><b class="tn">'+t.name+'</b><span class="tl">'+t.line+'</span></span></li>';
   }).join('');
   drawDigLog();
   $('sumBoard').hidden=true;
