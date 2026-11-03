@@ -1158,6 +1158,15 @@ def main():
             print(f"  WARNING: only {strong_n(call_pick)} of {len(call_pick)} true stories have a fair regional clue and a sensible pin (wanted {MIN_STRONG})", file=sys.stderr)
     if not args.picks:
         sharpen(call_pick, model, src_text)
+        for attempt in range(2):                      # every true story needs a hint: ask again for any that came back without one
+            missing = [r for r in call_pick if not (r.get("hint") or "").strip()]
+            if not missing:
+                break
+            print(f"  {len(missing)} true stories have no hint; asking again (try {attempt + 1})", file=sys.stderr)
+            sharpen(missing, model, src_text)
+        still = [r.get("h", "")[:60] for r in call_pick if not (r.get("hint") or "").strip()]
+        if still:
+            print(f"  WARNING: still no hint for: {still}", file=sys.stderr)
     strong = strong_n(call_pick)
     print(f"  Real or Fake: {strong}/{len(call_pick)} stories with a usable regional clue; countries {per_country}", file=sys.stderr)
 
