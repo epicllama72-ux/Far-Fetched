@@ -984,6 +984,16 @@ body.recap #bar{display:none}
 .app::before{content:'';position:fixed;left:0;right:0;top:0;height:112px;background:linear-gradient(var(--bg) 62%,rgba(15,17,21,0));z-index:-1;pointer-events:none}
 .tick.narrow{font-size:13px;padding:0 2px}
 .dot.warm,.sq.warm{background:#e07a3a}
+/* pin tiers: gold Globalist, purple Statesman, red Pundit, blue Skimmer, white Rock-Dweller; no pin is dark */
+.dot.gl,.mkd.gl,#recapList li.gl i,#logList li.gl i{background:#ffd23f}
+.dot.st,.mkd.st,#recapList li.st i,#logList li.st i{background:#b56bff}
+.dot.pu,.mkd.pu,#recapList li.pu i,#logList li.pu i{background:#ff4d5e}
+.dot.sk,.mkd.sk,#recapList li.sk i,#logList li.sk i{background:#4da6ff}
+.dot.rk,.mkd.rk,#recapList li.rk i,#logList li.rk i{background:#eef0f4}
+.dot.no,.mkd.no,.sq.no,#recapList li.no i,#logList li.no i{background:#2a2f3c;box-shadow:0 0 0 1px #6a7184}
+.sq.gl,.sq.st,.sq.pu,.sq.sk,.sq.rk,.sq.fake,.sq.fooled{background:#14161c!important;padding:1px}
+.sq.gl{box-shadow:0 0 0 2px #ffd23f}.sq.st{box-shadow:0 0 0 2px #b56bff}.sq.pu{box-shadow:0 0 0 2px #ff4d5e}.sq.sk{box-shadow:0 0 0 2px #4da6ff}.sq.rk{box-shadow:0 0 0 2px #eef0f4}.sq.fake{box-shadow:0 0 0 2px #4da6ff}.sq.fooled{box-shadow:0 0 0 2px #d6dbe8}
+.sq img{width:100%;height:100%;image-rendering:pixelated;display:block}
 .dot.fake,.sq.fake{background:#4a8fe0}
 .dot.fooled,.sq.fooled{background:#14161c;box-shadow:0 0 0 1px #ff5d73}
 #map{position:relative}
@@ -1023,7 +1033,7 @@ body.intro #ausBar{display:none}
 #final{padding:10px 14px}
 #finalLine{font-size:26px!important;margin:0 0 4px}
 #finalScoreLine{margin:0 0 10px!important}
-.sq{width:24px;height:24px}
+.sq{width:32px;height:32px}
 #grid{gap:4px;flex-wrap:wrap}
 #nextEd{margin:10px 0 0;font:9px/1 var(--px);letter-spacing:.16em;color:var(--cyan)}
 #comeBack{margin:8px 0 0}
@@ -1371,19 +1381,30 @@ async function loadDaily(){
     }catch(e){}
   }
 }
-const RARITY=[[50,'GLOBALIST','#ffd23f','Were you there? Be honest.','globe'],[400,'STATESMAN','#b56bff','A short trip from correct.','capitol'],[1000,'PUNDIT','#ff4d5e','You\'d do great on cable news.','tv'],[2500,'SKIMMER','#4da6ff','You read the headline. Mostly.','news'],[Infinity,'ROCK-DWELLER','#ffffff','Come out from under there. It\'s a big world.','rock']];   // pin distance in km -> name, colour and quip
+const RARITY=[[50,'GLOBALIST','#ffd23f','Were you there? Be honest.','globe','gl','🌍'],[400,'STATESMAN','#b56bff','A short trip from correct.','capitol','st','🏛️'],[1000,'PUNDIT','#ff4d5e','You\'d do great on cable news.','tv','pu','📺'],[2500,'SKIMMER','#4da6ff','You read the headline. Mostly.','news','sk','📰'],[Infinity,'ROCK-DWELLER','#ffffff','Come out from under there. It\'s a big world.','rock','rk','🪨']];   // pin distance in km -> name, colour and quip
 function hideRarity(){ const el=$('rarity'); el.hidden=true; el.classList.remove('go'); }
 const RICONS={globe:["....oooddooo....","...occcddccco...","..oclllddcccco..","..oddddddddddo..",".ocllllddccccco.",".ocllllddccccco.",".oddddddddddddo.",".oddddddddddddo.",".occcccddccccco.",".occcccddccccco.","..oddddddddddo..","...occcddccco...","....occddcco....","......oooo......","....oooooooo....","................"],capitol:["................","......oooo......","....ooccccoo....","..ooccllllccoo..","ooccccccccccccoo","oooooooooooooooo",".occcccccccccco.",".oooooooooooooo.",".ocdcdcdcdcdcdo.",".ocdcdcdcdcdcdo.",".ocdcdcdcdcdcdo.",".ocdcdcdcdcdcdo.",".ocdcdcdcdcdcdo.",".occcccccccccco.","ooccccccccccccoo","oooooooooooooooo"],tv:["...o........o...","....o......o....",".....o....o.....","......o..o......",".oooooooooooooo.",".occcccccccccco.",".ocolllllllloco.",".ocowwlllllloco.",".ocolllllllloco.",".ocolllllllloco.",".ocolllllllloco.",".ocooooooooooco.",".occcccccccccco.",".oooooooooooooo.","..oo........oo..","................"],news:["................","..oooooooooooo..","..owwwwwwwwwwo..","..owccccccccwo..","..owccccccccwo..","..owwwwwwwwwwo..","..owccccccwwwo..","..owwwwwwwwwwo..","..owccccccccwo..","..owwwwwwwwwwo..","..owccccwwwwwo..","..owwwwwwwwwwo..","..owccccccwwwo..","..owwwwwwwwwwo..","..oooooooooooo..","................"],rock:["................","................",".....oooooo.....","...ooollllcoo...","..oollllllcccoo.",".ollllllllcccco.",".olllllllcccccco","ollllllcccccccdo","ollllcccccccccdo","occccccccccccddo","occcccccccccdddo","oddccccccccddddo",".ooddddddddddoo.","..oooooooooooo..","................","................"],magnifier:["................","...oooooooo.....","..ooccccccoo....",".ooccwllccco....",".occwllllccoo...",".ocwwlllllcco...",".oclllllllcco...",".oclllllllcco...",".occllllllcco...",".occcllllccoo...",".oocccccccddoo..","..oooccccodddoo.","....ooooooodddoo","..........oodddo","...........ooddd","............oodo"],nose:["................","................",".....oooooo.....","...oooccccooo...","...occcccccco...","..oocwwcccccoo..","..oclwllccccdo..","oooccllccccddooo","wwwcccccccccdwww","ooocccccccccdooo","..occcccccccdo..","..ooccccccccoo..","...occcccccdo...","...oooccccooo...",".....oooooo.....","................"]};
 /* a 16x16 pixel sprite in the tier's colour: o outline, c main, l light, d dark, w paper */
-function drawRIcon(name,color){
-  const cv=$('rIcon'), rows=RICONS[name];
-  cv.hidden=!rows; if(!rows) return;
+function paintIcon(g,name,color){
+  const rows=RICONS[name]; if(!rows) return false;
   const mixc=(h,t,a)=>{ const n=parseInt(h.slice(1),16), c=[n>>16&255,n>>8&255,n&255]; return 'rgb('+c.map((v,i)=>Math.round(v+(t-v)*a)).join(',')+')'; };
   const pal={o:'#0d0f14',c:color,l:mixc(color,255,.5),d:mixc(color,0,.45),w:'#f3f0e6'};
   if(name==='rock') Object.assign(pal,{c:'#a8aab5',l:'#d6d8e0',d:'#6a6c78'});
   if(name==='nose') Object.assign(pal,{c:'#e8404a',l:'#ff9aa0',d:'#a82030'});   // a clown nose is red whatever the popup colour
-  const g=cv.getContext('2d'); g.clearRect(0,0,16,16);
+  g.clearRect(0,0,16,16);
   rows.forEach((r,y)=>{ for(let x=0;x<16;x++){ const ch=r[x]; if(pal[ch]){ g.fillStyle=pal[ch]; g.fillRect(x,y,1,1); } } });
+  return true;
+}
+function drawRIcon(name,color){
+  const cv=$('rIcon'); cv.hidden=!RICONS[name]; if(!RICONS[name]) return;
+  paintIcon(cv.getContext('2d'),name,color);
+}
+const ICON_URL={};
+function iconURL(name,color){
+  const k=name+color; if(ICON_URL[k]) return ICON_URL[k];
+  const cv=document.createElement('canvas'); cv.width=cv.height=16;
+  paintIcon(cv.getContext('2d'),name,color);
+  return ICON_URL[k]=cv.toDataURL();
 }
 function showPopup(color,title,line,quip,icon){
   const el=$('rarity');
@@ -2903,18 +2924,18 @@ function saveProgress(extra){
 function resultClass(x){
   if(x.blank) return x.c>=0.999?'ok':x.c>=0.55?'meh':x.c>=0.38?'warm':'no';
   if(!x.real) return x.callOk?'fake':'fooled';
-  if(!x.callOk) return 'no';
-  const f=Math.min(1,(x.pinPts||0)/(PK*(PIN_PTS+COUNTRY_PTS)));
-  return f>=0.75?'ok':f>=0.25?'meh':'warm';
+  if(x.dist==null) return 'no';
+  return RARITY.find(r=>x.dist<=r[0])[5];          // the pin's tier: gl, st, pu, sk or rk
 }
 const CLASS_EMOJI={ok:'🟩',meh:'🟨',warm:'🟧',no:'🟥',fake:'🟦',fooled:'⬛'};
-const CLASS_TITLE={ok:'Great',meh:'Good',warm:'Far off',no:'Missed',fake:'Caught the fake',fooled:'Fooled'};
-/* share grid: one square per headline. Pins by distance: 🎯 <75 km · 🟩 <500 · 🟨 <1,500 · 🟧 further · ⬛ no pin; · fakes: 🟧 caught, 🟨 not caught */
+const CLASS_TITLE={ok:'Great',meh:'Good',warm:'Far off',no:'No pin',gl:'Globalist',st:'Statesman',pu:'Pundit',sk:'Skimmer',rk:'Rock-Dweller',fake:'Caught the fake',fooled:'Fooled'};
+const CLASS_ICON={gl:['globe','#ffd23f'],st:['capitol','#b56bff'],pu:['tv','#ff4d5e'],sk:['news','#4da6ff'],rk:['rock','#ffffff'],fake:['magnifier','#4da6ff'],fooled:['nose','#d6dbe8']};
+/* share grid: one icon per headline, the tier of the pin: 🌍 Globalist · 🏛️ Statesman · 📺 Pundit · 📰 Skimmer · 🪨 Rock-Dweller · ⬛ no pin; fakes: 🔍 caught, 🤡 fooled */
 function shareEmoji(x){
   if(x.blank) return CLASS_EMOJI[resultClass(x)];
-  if(!x.real) return x.callOk?'🟧':'🟨';
+  if(!x.real) return x.callOk?'🔍':'🤡';
   if(x.dist==null) return '⬛';
-  return x.dist<75?'🎯':x.dist<500?'🟩':x.dist<1500?'🟨':'🟧';
+  return RARITY.find(r=>x.dist<=r[0])[6];
 }
 
 function renderDots(){
@@ -3355,7 +3376,8 @@ function finish(restored){
   S.total=total; S.max=max;
   const cls=S.results.map(resultClass);
   S.shareLines=[S.results.map(shareEmoji).join('')];
-  $('grid').innerHTML = cls.map(c=>'<span class="sq '+c+'" title="'+CLASS_TITLE[c]+'"></span>').join('');
+  $('grid').innerHTML = cls.map((c,i)=>{ const ic=CLASS_ICON[c], x=S.results[i], t=CLASS_TITLE[c]+(c!=='fake'&&c!=='fooled'&&x&&x.dist!=null?' · '+Math.round(x.dist).toLocaleString()+' km':'');
+    return '<span class="sq '+c+'" title="'+t+'">'+(ic?'<img alt="'+CLASS_TITLE[c]+'" src="'+iconURL(ic[0],ic[1])+'">':'')+'</span>'; }).join('');
   $('recapSum').textContent='▸ All '+S.results.length+' stories + sources';
   $('recapList').innerHTML = S.results.map((x,i)=>{
     const st=S.rounds[i]; if(!st) return '';
