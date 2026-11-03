@@ -190,7 +190,7 @@ Below are candidate news stories from the past month (JSON). Some include "text"
 
 1) "real": pick 16 of the best stories for the game, best first. You MUST return at least 12, never fewer. Rank by how HARD TO BELIEVE and how ENTERTAINING the story is, most unbelievable first: this matters far more than anything else, because every headline also gets a trivia clue about the place, so the story itself does not need to carry regional clues. favour the ones a reader would assume are made up (absurd specifics, improbable coincidences, odd rules, unlikely animals or objects) but that really happened. A story whose details also point to the region (local wildlife, customs, currency, institutions) is a small bonus, never a reason to pick a duller story over a funnier one: a hilarious story that could have happened anywhere beats a mild one full of regional clues. The game should be FUNNY, EDUCATIONAL and reward broad general knowledge: favour stories that make a reader laugh out loud or are so ridiculous they feel like something out of the movie Idiocracy (absurd decisions, baffling rules, dumbfounding mix-ups, spectacularly dumb but harmless events), and whose clues connect to things a well-read person could know about the place (geography, climate, wildlife, languages, currencies, laws, food, history, sport, industries), so that general knowledge lets them reason to the right region, not luck. Good picks are surprising, funny or delightful, happened in ONE specific identifiable town/city/county, and are light-hearted. Every pick must make sense on its own: a reader must understand exactly what happened from the headline alone (no missing context, no confusing or contradictory details), and the hidden place must be where it actually happened. Skip BORING stories: a rare animal spotted, a nice rescue, a big vegetable, a quiet record, an object that fell over or broke (a bowl falls off a museum shelf), cargo or animals spilled on a road (fish flop across a highway), an animal wandering somewhere it should not be with nothing else happening, a mild oddity with no real twist. Ask: would a friend reading this out loud make the whole table say "no way"? If not, leave it out. Every pick needs a real punchline, an absurd mistake or a jaw-dropping detail. STRANGE, FUNNY CRIME stories are welcome and wanted (dumb criminals, bizarre thefts, absurd arrests, getaway fails, odd things stolen or smuggled, ridiculous excuses) as long as they are non-violent and nobody is seriously hurt. Never pick stories about death, serious injury, violent crimes against people, abuse, sexual content, children in danger, war, politics, disasters or tragedy. That includes floods, storms, wildfires, quakes, heatwaves and outbreaks, even when the story itself is light-hearted (a man swimming down a flooded street is out), because they are often tied to real tragedies. Write headlines in plain words a general reader knows: no local weather jargon or acronyms (never 'DANA', 'derecho', 'haboob' and the like). Avoid near-duplicates (e.g. several lottery wins) - at most one lottery story. Spread your picks around the WORLD: at most 3 from any one country, and at least half from outside the US, UK, Canada, Australia, New Zealand and Ireland whenever the candidates allow it (Latin America, Europe, Asia, Africa and the Middle East are all welcome). Include at least one story from Africa, one from South America and one from Oceania or the Pacific whenever the candidates have a usable one, and never more than two stories about the same kind of thing (dogs, goats, cheese and so on). For each pick give:
    - "id": the candidate id.
-   - "h": a punchy wire-style headline, max 110 characters, keeping every fact of the story exactly as reported (never change what happened, who or what was involved, numbers or outcome). You MAY reword and add short descriptive wording that makes the region easier to deduce, as long as it is generically true of that place and does not alter or add to the story: e.g. local terms and institutions ("the county sheriff", "council", "constabulary", "a roo", "monsoon rains", "rupees", "kilometres", "on the ski slopes"), local climate, wildlife or customs, or spelling and units typical of the country. Replace the place with the literal token {} exactly once (e.g. "... in {}"). Remove every EXPLICIT location clue: no state/country/city names, demonyms, local team, landmark, university or company names that reveal the place (landmarks and nearby cities belong in "hint", not here), no "Florida man". But KEEP the implicit, deducible clues that are part of the story (the animal, the weather, the local custom, currency or units, the type of institution), so a sharp player can reason their way to the right region. Keep the oddity intact. The clues do NOT have to come from the original headline: the article text ("text") often holds the best ones (a currency, a unit, a local institution, an animal, the weather, a local custom or law, a sport, a typical job). If a great story's clues sit in the body, WRITE them into "h" in your own words, as long as they are facts the text states or are generically true of that place, so the game headline can differ a lot from the source headline. A story whose body gives a fair regional clue is better than one with a punchier headline and nothing to deduce from.
+   - "h": a punchy wire-style headline, max 110 characters, keeping every fact of the story exactly as reported (never change what happened, who or what was involved, numbers or outcome). You MAY reword and add short descriptive wording that makes the region easier to deduce, as long as it is generically true of that place and does not alter or add to the story: e.g. local terms and institutions ("the county sheriff", "council", "constabulary", "a roo", "monsoon rains", "rupees", "kilometres", "on the ski slopes"), local climate, wildlife or customs, or spelling and units typical of the country. Replace the place with the literal token {} exactly once (e.g. "... in {}"). Remove every EXPLICIT location clue: no state/country/city names, demonyms, local team, landmark, university or company names that reveal the place (landmarks and nearby cities belong in "hint", not here), no "Florida man". But KEEP the implicit, deducible clues that are part of the story (the animal, the weather, the local custom, currency or units, the type of institution), so a sharp player can reason their way to the right region. Keep the oddity intact. Write for an INTERNATIONAL reader: plain everyday English, no regional slang, brand names or abbreviations a reader abroad would not know (write "pickup" not "ute", "rupees" not "Rs"), and nothing that could be read two ways (if a cafe fines the whole table, say "pay a fine", not "pay the bill"); the funny part must land on the first read. Put {} straight after a preposition ("in {}", "at {}", "near {}") so a clue can be attached after it. The clues do NOT have to come from the original headline: the article text ("text") often holds the best ones (a currency, a unit, a local institution, an animal, the weather, a local custom or law, a sport, a typical job). If a great story's clues sit in the body, WRITE them into "h" in your own words, as long as they are facts the text states or are generically true of that place, so the game headline can differ a lot from the source headline. A story whose body gives a fair regional clue is better than one with a punchier headline and nothing to deduce from.
    - "h2": the same story as a headline that DOES name the place (city + state/country), with the main subject noun of the story (the animal, object or kind of person it is about, e.g. "kangaroo", "pelicans", "kitten") replaced by the literal token [] exactly once. The hidden word must be an ordinary common noun that is written in lowercase in normal text: never a name, brand, product, model, company, team, place or nationality (not "Maserati" or "Vegemite" - use "car" or "spread" instead, or pick another noun). The rest of h2 must NOT contain the hidden word, a synonym or a close variant of it (if the hidden word is "toilets", h2 must not say "potties" or "loo"), and give each pick a different hidden word than the other picks (not both "burglar" and "thief"). IMPORTANT: the hidden word must be GUESSABLE from the rest of the headline by a well-read person: choose the word that the surrounding details point to most strongly, a common everyday word (not a rare animal, a technical term or an odd detail that could be anything), so that a player reading the headline would think of it within a few tries. If the story's most surprising noun could be a dozen different things from the context, hide a different, more implied noun instead.
    - "ans": 1-8 lowercase single-word answers that count as an EXACT match for []: the hidden word first, then its singular/plural, then ONLY words a player has no way to tell apart from it given the headline. Exactness matters: a synonym is NOT exact ("car" is not "vehicle", "cops" is not "police"). The one exception is a specific type of something when nothing in the headline says which type: if the hidden word is a particular species, breed, variety or model, the general category and its sibling types are exact too (e.g. "boa" -> ["boa","boas","snake","snakes","python","pythons","cobra","cobras"] because nothing says which snake; "poodle" -> ["poodle","poodles","dog","dogs"]). Letters only.
    - "alt": up to 8 lowercase single words that are close but NOT exact: synonyms, informal words, regional variants, a broader or narrower word the headline does rule out (e.g. for "police": "officers","cops","constables"; for "car": "vehicle","auto","automobile"). They earn big partial credit, never full. Never a word that means something clearly different. Letters only.
@@ -199,7 +199,7 @@ Below are candidate news stories from the past month (JSON). Some include "text"
    - "lat", "lng": your best coordinates for the place (decimal degrees).
    - "country": the country name.
    - "cc": the ISO 3166-1 alpha-2 country code ("US", "GB" for anywhere in the UK, "JP", ...).
-   - "hint": a SHORT noun phrase of AT MOST 6 WORDS, starting with "a", "an", "the", "home of", "where" or "host of" that will be attached to the headline right after "in {}" as an appositive (for example "in {}, a castle-topped capital"), to help the player place it. It is a general-TRIVIA clue that a well-read person might know, tied to the geography of the place: a clue of ONE of these types: MEDIA (a film, show, book or game set or filmed there, or an author or musician from there), POLITICS (a famous leader, treaty, election or institution tied to it), HISTORY (a famous event, battle, invention or person's birthplace), SPORT (a famous team, race or Olympics), or FOOD/CULTURE (a famous dish, festival or export). Bare geography or a landmark description ("a desert city ringed by mountains", "on the coast") is NOT acceptable as a hint: if no true trivia clue of those types exists for the place, return "". Vary the types: across the stories in one round, MEDIA (films, shows, books, games, music) is a broad type and may be used for up to 3 stories, but every other type (politics, history, sport, food/culture) at most once, so give a good mix. Give one even when the source never mentions it, as long as it is TRUE of that place; it describes the PLACE, never the event. It must be a hint, not an answer: never write the hidden place itself. For a well-known place never name its state/region/country or a nationality either, though a famous landmark or a different, nearby big city is fine. For an OBSCURE place (a small town or village with few famous hooks) a trivia clue alone is unfair, so the hint may point to the REGION or COUNTRY instead (naming it, or its nationality, is allowed), e.g. \"a Bavarian moated-castle village\" or \"a town in the Spessart woods\". Good examples (6 words or fewer): "where Harry Potter was written" (media), "host of the 1976 Olympics" (sport), "setting of a famous mafia film" (media), "site of a famous 1815 battle" (history), "home of a famous fish market festival" (food/culture), "seat of a famous treaty signing" (politics). Keep it SHORT: the headline box must not grow. Use "" if you are not sure of a true one.
+   - "hint": a SHORT noun phrase of AT MOST 6 WORDS, starting with "a", "an", "the", "home of", "where" or "host of" that will be attached to the headline right after "in {}" as an appositive (for example "in {}, a castle-topped capital"), to help the player place it. It is a general-TRIVIA clue that a well-read person might know, tied to the geography of the place: a clue of ONE of these types: MEDIA (a film, show, book or game set or filmed there, or an author or musician from there), POLITICS (a famous leader, treaty, election or institution tied to it), HISTORY (a famous event, battle, invention or person's birthplace), SPORT (a famous team, race or Olympics), or FOOD/CULTURE (a famous dish, festival or export). Bare geography or a landmark description ("a desert city ringed by mountains", "on the coast") is NOT acceptable as a hint: if no true trivia clue of those types exists for the place, return "". Vary the types: across the stories in one round, MEDIA (films, shows, books, games, music) is a broad type and may be used for up to 3 stories, but every other type (politics, history, sport, food/culture) at most once, so give a good mix. Give one even when the source never mentions it, as long as it is TRUE of that place; it describes the PLACE, never the event. It must be a hint, not an answer: never write the hidden place itself. For a well-known place never name its state/region/country or a nationality either, though a famous landmark or a different, nearby big city is fine. For an OBSCURE place (a small town or village with few famous hooks) a trivia clue alone is unfair, so the hint may point to the REGION or COUNTRY instead (naming it, or its nationality, is allowed), e.g. \"a Bavarian moated-castle village\" or \"a town in the Spessart woods\". Good examples (6 words or fewer): "where Harry Potter was written" (media), "host of the 1976 Olympics" (sport), "setting of a famous mafia film" (media), "site of a famous 1815 battle" (history), "home of a famous fish market festival" (food/culture), "seat of a famous treaty signing" (politics). Aim for RECOGNISABLE BUT NOT OBVIOUS: a well-read player should be able to use it, but it must not hand over the answer, so never name something that contains the place or its state in its name ("home of the University of Virginia", "home of the Tampa Bay Buccaneers" give it away). Think of three candidates and keep the one that best fits this. Read it attached to the headline ("... in {}, <hint>"): it must be grammatical and must not repeat a word of the headline. Keep it SHORT: the headline box must not grow. Use "" if you are not sure of a true one.
    - "clue": at most 80 characters, written for the PLAYER after the reveal: the regional hints that point to the place, e.g. "moose + wire fencing = northern US/Canada", "monsoon flooding = South Asia", "metres and rupees". It may draw on details from the story itself, not only words in the headline. Use "" if there is none.
    - "clue_strength": 0-3. 3 = the headline strongly points to a region; 2 = a fair hint that a well-read general player could use; 1 = a weak hint; 0 = could be anywhere, OR the hint is misleading (an animal or object that is out of place, such as a kangaroo in Tennessee, is a surprise, not a clue: give it 0). JARGON-ONLY CLUES DO NOT COUNT: if the only regional hint is a local term, acronym or specialist word that a general player would not know (e.g. "cold-drop DANA", a regional dish or agency name nobody outside the country has heard of), set "jargon_only" to true and give clue_strength 0 or 1. A clue must work by general knowledge: currency, units, driving side, climate, wildlife, institution types, sport, language of well-known words.
    - "mappable": 0-3, how sensibly a player can drop a pin for this story. 3 = it happened at ONE specific town, city or county and the headline's clues point to that region; 2 = one specific place but the clues are thin; 1 = the place is only approximate (a region, a journey, or the HQ or court that reported it rather than where it happened); 0 = a pin makes no sense (online, nationwide, several places, a place unrelated to the event). Be strict: when in doubt, score lower.
@@ -474,7 +474,7 @@ Items:
 
 SHARPEN_PROMPT = """You edit hints for "Far-Fetched", a daily KNOWLEDGE game. Players read a TRUE weird-news headline with the place hidden as {}, call it real or fake, and then see a short HINT before they pin where it happened on a world map. They see ONLY the headline and the hint: the "clue" and "text" below are for you, not them.
 
-For each story give a "hint": a SHORT noun phrase of AT MOST 6 WORDS, starting with "a", "an", "the", "home of", "where" or "host of" that will be attached to the headline right after "in {}" as an appositive (for example "in {}, a castle-topped capital"), to help the player place it. It is a general-TRIVIA clue that a well-read person might know, tied to the geography of the place: a clue of ONE of these types: MEDIA (a film, show, book or game set or filmed there, or an author or musician from there), POLITICS (a famous leader, treaty, election or institution tied to it), HISTORY (a famous event, battle, invention or person's birthplace), SPORT (a famous team, race or Olympics), or FOOD/CULTURE (a famous dish, festival or export). Bare geography or a landmark description ("a desert city ringed by mountains", "on the coast") is NOT acceptable as a hint: if no true trivia clue of those types exists for the place, return "". Vary the types: across the stories in one round, MEDIA (films, shows, books, games, music) is a broad type and may be used for up to 3 stories, but every other type (politics, history, sport, food/culture) at most once, so give a good mix. Give one even when the source never mentions it, as long as it is TRUE of that place; it describes the PLACE, never the event. It must be a hint, not an answer: never write the hidden place itself. For a well-known place never name its state/region/country or a nationality either, though a famous landmark or a different, nearby big city is fine. For an OBSCURE place (a small town or village with few famous hooks) a trivia clue alone is unfair, so the hint may point to the REGION or COUNTRY instead (naming it, or its nationality, is allowed), e.g. \"a Bavarian moated-castle village\" or \"a town in the Spessart woods\". Good examples (6 words or fewer): "where Harry Potter was written" (media), "host of the 1976 Olympics" (sport), "setting of a famous mafia film" (media), "site of a famous 1815 battle" (history), "home of a famous fish market festival" (food/culture), "seat of a famous treaty signing" (politics). Keep it SHORT: the headline box must not grow. Use "" if you are not sure of a true one.
+For each story give a "hint": a SHORT noun phrase of AT MOST 6 WORDS, starting with "a", "an", "the", "home of", "where" or "host of" that will be attached to the headline right after "in {}" as an appositive (for example "in {}, a castle-topped capital"), to help the player place it. It is a general-TRIVIA clue that a well-read person might know, tied to the geography of the place: a clue of ONE of these types: MEDIA (a film, show, book or game set or filmed there, or an author or musician from there), POLITICS (a famous leader, treaty, election or institution tied to it), HISTORY (a famous event, battle, invention or person's birthplace), SPORT (a famous team, race or Olympics), or FOOD/CULTURE (a famous dish, festival or export). Bare geography or a landmark description ("a desert city ringed by mountains", "on the coast") is NOT acceptable as a hint: if no true trivia clue of those types exists for the place, return "". Vary the types: across the stories in one round, MEDIA (films, shows, books, games, music) is a broad type and may be used for up to 3 stories, but every other type (politics, history, sport, food/culture) at most once, so give a good mix. Give one even when the source never mentions it, as long as it is TRUE of that place; it describes the PLACE, never the event. It must be a hint, not an answer: never write the hidden place itself. For a well-known place never name its state/region/country or a nationality either, though a famous landmark or a different, nearby big city is fine. For an OBSCURE place (a small town or village with few famous hooks) a trivia clue alone is unfair, so the hint may point to the REGION or COUNTRY instead (naming it, or its nationality, is allowed), e.g. \"a Bavarian moated-castle village\" or \"a town in the Spessart woods\". Good examples (6 words or fewer): "where Harry Potter was written" (media), "host of the 1976 Olympics" (sport), "setting of a famous mafia film" (media), "site of a famous 1815 battle" (history), "home of a famous fish market festival" (food/culture), "seat of a famous treaty signing" (politics). Aim for RECOGNISABLE BUT NOT OBVIOUS: a well-read player should be able to use it, but it must not hand over the answer, so never name something that contains the place or its state in its name ("home of the University of Virginia", "home of the Tampa Bay Buccaneers" give it away). Think of three candidates and keep the one that best fits this. Read it attached to the headline ("... in {}, <hint>"): it must be grammatical and must not repeat a word of the headline. Keep it SHORT: the headline box must not grow. Use "" if you are not sure of a true one.
 
 If the story already has a "hint" that is true, short, fits those rules and is a trivia clue (media, politics, history, sport or food/culture, not bare geography or a landmark description), keep it unchanged. Replace geography hints with a trivia type, and make the hints in this batch a mix of types: media for up to 3 stories, every other type at most once. If it is false, doubtful, names the place itself (or names the region or country of a well-known place), or is about the event, replace it. The headline itself stays as it is.
 
@@ -593,6 +593,131 @@ def sharpen(stories, model, texts):
             if hint and cs >= 2 and map_score(r) == 2:
                 r["mappable"] = 3                      # one specific place, and the headline plus hint point to its region
             r["clue_strength"], r["jargon_only"] = cs, bool(x.get("jargon_only"))
+
+
+DESK_PROMPT = """You are the final desk editor of "Far-Fetched", a daily game: players read 7 weird headlines with the place hidden as {}, call each REAL or FAKE, then pin the real ones on a world map. After the call a real headline gains its "hint" ("... in {}, <hint>"). Fakes are invented and never get a hint. Today's paper is below; the "source" is the original article (it may be in another language). Check every item against this list, fix what you can, and reject only what cannot be fixed.
+
+REAL headline ("h"):
+- Every fact matches the source: who, what, numbers, outcome. Nothing added or changed. If it can't be made accurate, reject.
+- Plain English for an international reader: no regional slang, brand names or abbreviations an outsider wouldn't know ("ute" -> "pickup"), nothing that can be read two ways ("pay the bill" when it was a fine), no clumsy grammar. The funny part must land on the first read. Keep the source's units and currency (they are clues), spelled out if abbreviated.
+- Exactly one {} and it follows a preposition ("in {}", "at {}"). It must not name the place, its region or country, a demonym, a local team or a landmark that gives it away.
+- At most 110 characters. Don't make it duller: keep the punchline and any wordplay that works.
+REAL hint ("hint"):
+- TRUE of that place, at most 6 words, describes the place not the event, starts with "a", "an", "the", "home of", "where", "host of", "setting of" or "site of".
+- Recognisable but not obvious: a well-read player can use it, but it doesn't give the answer away. Never the place's own name, and never something that contains the place or its state in its name ("home of the University of Virginia"). For a well-known place don't name its region or country either. For an obscure small town, pointing to the region or country plus a hook is good ("a Bavarian moated-castle village").
+- Read the full headline with the hint attached: grammatical, no repeated words.
+FAKE ("h"): reads exactly like the real ones (same style and length), passes at first glance, no hint; fix wording that gives it away; reject if it copies a real story's idea.
+If an item has no source text, judge its wording only and don't reject it for accuracy.
+Also pick "best": the id of the REAL story that should open the paper: the most surprising, funny and clear.
+
+Reply with ONE JSON object only: {"items":[{"id":0,"verdict":"keep","h":"...","hint":"...","why":"..."}],"best":0}
+verdict is "keep" (no change), "fix" (give the corrected "h" and/or "hint"; give both fields, unchanged if fine) or "reject" (unfixable: inaccurate, unsafe, dull or confusing; say why). Fakes have no "hint" field.
+
+Paper:
+"""
+
+
+def final_desk(reals, fakes, model, texts, can_reject=True):
+    """A last edit of the printed paper: fix headline wording and hints, reject unfixable stories. Fails open (keeps everything) if the call fails."""
+    items = [{"id": i, "kind": "real", "h": r.get("h", ""), "hint": r.get("hint", ""), "place": r.get("place", ""),
+              "source": (texts.get(r.get("src")) or r.get("_text") or "")[:1500]} for i, r in enumerate(reals)]
+    items += [{"id": len(reals) + j, "kind": "fake", "h": f.get("h", "")} for j, f in enumerate(fakes)]
+    res = call_claude(DESK_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["items"])
+    if not res or "items" not in res:
+        print("  desk pass unavailable; printing the paper as it is", file=sys.stderr)
+        return [], [], None
+    bad_real, bad_fake = [], []
+    for x in res["items"]:
+        try:
+            i = int(x["id"])
+        except Exception:
+            continue
+        verdict = str(x.get("verdict", "keep")).lower()
+        why = (x.get("why") or "")[:120]
+        if i < len(reals):
+            r = reals[i]
+            if verdict == "reject" and can_reject and not (r.get("priority") or r.get("daily_only")):
+                print(f"  desk rejects: {r.get('h')}  ({why})", file=sys.stderr)
+                r["_desk_reject"] = why
+                bad_real.append(r)
+                continue
+            h = (x.get("h") or "").strip()
+            if h and h != r.get("h"):
+                if h.count("{}") == 1 and len(h) <= 130 and not leaks(h.replace("{}", ""), r.get("place", "")):
+                    print(f"  desk headline: {r.get('h')}  ->  {h}", file=sys.stderr)
+                    r["h"] = h
+                else:
+                    print(f"  desk headline refused (malformed or names the place): {h}", file=sys.stderr)
+            hint = (x.get("hint") or "").strip().rstrip(".,")
+            if hint and hint != r.get("hint"):
+                if hint_ok(hint, r.get("place", "")):
+                    print(f"  desk hint: {r.get('hint') or '(none)'}  ->  {hint}", file=sys.stderr)
+                    r["hint"] = hint
+                else:
+                    print(f"  desk hint refused (too long or names the place): {hint}", file=sys.stderr)
+        elif i - len(reals) < len(fakes):
+            f = fakes[i - len(reals)]
+            if verdict == "reject" and can_reject:
+                print(f"  desk rejects fake: {f.get('h')}  ({why})", file=sys.stderr)
+                f["_desk_reject"] = why
+                bad_fake.append(f)
+                continue
+            h = (x.get("h") or "").strip()
+            if h and h != f.get("h"):
+                if valid_fake(dict(f, h=h)):
+                    print(f"  desk fake: {f.get('h')}  ->  {h}", file=sys.stderr)
+                    f["h"] = h
+                else:
+                    print(f"  desk fake refused: {h}", file=sys.stderr)
+    try:
+        best = int(res.get("best"))
+        best = reals[best] if 0 <= best < len(reals) and reals[best] not in bad_real else None
+    except Exception:
+        best = None
+    return bad_real, bad_fake, best
+
+
+def run_desk(call_real, fakes, pool, blank, model, texts):
+    """Run the final desk on today's Daily Dig and swap in stand-ins for anything it rejects (in place). Returns the story to open with."""
+    bad_real, bad_fake, best = final_desk(call_real, fakes[:N_CALL_FAKE], model, texts)
+    if bad_real:
+        keep = [r for r in call_real if r not in bad_real]
+        cities = {(r.get("place") or "").split(",")[0].strip().lower() for r in keep}
+        per = {}
+        for r in keep:
+            per[ccode(r)] = per.get(ccode(r), 0) + 1
+        subs = []
+        for r in sorted(pool, key=merit, reverse=True):
+            if len(subs) == len(bad_real):
+                break
+            if r in call_real or r in blank or r in subs or not r.get("hint") or r.get("_desk_reject"):
+                continue
+            city, cc = (r.get("place") or "").split(",")[0].strip().lower(), ccode(r)
+            if city in cities or (cc != "?" and per.get(cc, 0) >= 2):
+                continue
+            cities.add(city)
+            per[cc] = per.get(cc, 0) + 1
+            subs.append(r)
+        if subs:
+            final_desk(subs, [], model, texts, can_reject=False)      # stand-ins get the same edit, without a second rejection round
+        for r in bad_real[len(subs):]:                               # no stand-in left: the story runs after all
+            print(f"  no stand-in for: {r.get('h')}; it runs as edited", file=sys.stderr)
+            r.pop("_desk_reject", None)
+        for old, new in zip(bad_real, subs):
+            call_real[call_real.index(old)] = new
+            print(f"  desk stand-in: {new.get('h')}", file=sys.stderr)
+    if bad_fake:
+        spare = [f for f in fakes[N_CALL_FAKE:] if not f.get("_desk_reject")]
+        for old in bad_fake:
+            if not spare:
+                print(f"  no stand-in for fake: {old.get('h')}; it runs", file=sys.stderr)
+                old.pop("_desk_reject", None)
+                continue
+            new = spare.pop(0)
+            i, j = fakes.index(old), fakes.index(new)
+            fakes[i], fakes[j] = new, old
+            print(f"  desk fake stand-in: {new.get('h')}", file=sys.stderr)
+    return best if best in call_real else None
 
 
 def fact_check(reals, model):
@@ -1247,11 +1372,15 @@ def main():
         sys.exit(0)
     fakes = chosen_fakes + [f for f in fakes if f not in chosen_fakes]       # the rest go back to the bank
     fake_hint = lambda f: f.get("hint") if (f.get("hint") and "{}" not in f["hint"] and len(f["hint"]) <= 48 and len(f["hint"].split()) <= 6) else ""
+    # Final desk: one more editor reads the whole paper with the sources, fixes wording and hints, and rejects what can't be fixed.
+    best_story = None
+    if not args.picks:
+        best_story = run_desk(call_real, fakes, reals + [q for q in pool_all if q not in reals], blank, model, src_text)
     call = [real_call(r) for r in call_real] + [{"real": False, "h": f["h"], "tell": (f.get("tell") or "")[:160]} for f in fakes[:N_CALL_FAKE]]
     rng.shuffle(call)
     # the best true story opens the paper, so a fake is never #1 (the rest stay shuffled)
     if call_real:
-        best_h = max(call_real, key=merit)["h"]
+        best_h = (best_story if best_story in call_real else max(call_real, key=merit))["h"]
         for i, x in enumerate(call):
             if x.get("h") == best_h:
                 call.insert(0, call.pop(i))
@@ -1353,7 +1482,7 @@ def main():
         except Exception:
             return True
     for r in sorted(pool_all + [r for r in reals if r not in pool_all] + dropped_unfit + bank_old + bank_blank + held, key=lambda r: r.get("banked", ""), reverse=True):
-        if r["src"] in used_today or r["src"] in seen_src:
+        if r["src"] in used_today or r["src"] in seen_src or r.get("_desk_reject"):
             continue
         item = {k: v for k, v in r.items() if k not in ("_fresh", "vec")}
         if r.get("hold"):
@@ -1367,7 +1496,7 @@ def main():
         seen_src.add(r["src"])
         keep_real.append(item)
     used_fake = {f["h"] for f in fakes[:N_CALL_FAKE]}
-    keep_fake = [f for f in fakes if f["h"] not in used_fake]
+    keep_fake = [f for f in fakes if f["h"] not in used_fake and not f.get("_desk_reject")]
     with open(bank_path, "w") as f:
         json.dump({"real": keep_real[:BANK_MAX], "fake": keep_fake[:30],
                    "pol": [r for r in keep_pol if r.get("src") not in pol_src][:60], "polfake": keep_polfake[:20]},
