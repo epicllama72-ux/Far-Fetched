@@ -2855,7 +2855,7 @@ function startGame(mode, kind){
   $('mPractice').classList.toggle('on',!daily);
   $('howText').innerHTML = blank
     ? 'Guess the hidden word in each true headline. The exact word scores up to <b>'+Math.round(BLANK_MAX)+'</b>, more the faster you get it. Near misses pay a little, and every guess after your third costs 5%.'
-    : 'Right call on a true story: up to <b>+'+Math.round(PK*CALL_PTS)+'</b>, more the quicker you answer. Catching a fake: <b>+'+FAKE_PTS+'</b>. Fooled by a fake: <b>−'+Math.abs(FOOLED_PTS)+'</b>. Then pin where the true story happened for up to <b>+'+Math.round(PK*PIN_PTS)+'</b>, plus <b>+'+Math.round(PK*COUNTRY_PTS)+'</b> if your pin is in the right country (you still get 75% of both after a wrong call). You have 20 seconds, and taking your time doesn\'t cost pin points. A fast, fairly close pin earns up to <b>+'+Math.round(PK*PIN_BONUS)+'</b> more. Every point drops his jaw the same distance, and losing points pulls it back up.';
+    : 'Right call on a true story: up to <b>+'+Math.round(PK*CALL_PTS)+'</b>, more the quicker you answer. Catching a fake: <b>+'+FAKE_PTS+'</b>. Fooled by a fake: <b>−'+Math.abs(FOOLED_PTS)+'</b>. Then pin where the true story happened for up to <b>+'+Math.round(PK*PIN_PTS)+'</b>, plus <b>+'+Math.round(PK*COUNTRY_PTS)+'</b> if your pin is in the right country (you still get 75% of each after a wrong call). You have 20 seconds, and taking your time doesn\'t cost pin points. A fast, fairly close pin earns up to <b>+'+Math.round(PK*PIN_BONUS)+'</b> more, even after a wrong call. Every point drops his jaw the same distance, and losing points pulls it back up.';
   renderStats();
   closeMenu();
   Scene.configure(JAW_SCALE);
@@ -3201,7 +3201,7 @@ function submitGuess(timedOut){
   let pts = guessLL ? Math.round(pinPoints(d)*mult) : 0;
   if(!S.cur.callOk) pts = Math.round(pts*0.75);
   const distPts = pts;                                  // distance points alone, for the breakdown
-  const bonus = guessLL && S.cur.callOk ? pinBonus(d,sec) : 0;
+  const bonus = guessLL ? Math.round(pinBonus(d,sec)*(S.cur.callOk?1:0.75)) : 0;   // a wrong call still earns it, at the same 75% credit as the pin
   pts += bonus; S.cur.pinBonus = bonus;
   const cTrue = guessLL ? countryAt(st.lat,st.lng,60) : -1, cOk = cTrue>=0 && countryAt(guessLL.lat,guessLL.lng,0)===cTrue;
   const cPts = cOk ? Math.round(PK*COUNTRY_PTS*(S.cur.callOk?1:0.75)) : 0;   // a flat bonus for the right country (75% credit after a wrong call, like the pin)
