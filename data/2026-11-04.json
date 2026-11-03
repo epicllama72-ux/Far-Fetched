@@ -1,0 +1,150 @@
+{
+ "date": "2026-11-04",
+ "generated": "2026-11-03T07:11:54+00:00",
+ "call": [
+  {
+   "real": true,
+   "h": "Coffeehouse bans swearing and makes the whole table pay the bill in {}",
+   "hint": "home of a famed chefs' festival",
+   "lat": 40.6212,
+   "lng": 31.646,
+   "place": "Bolu, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMingFBVV95cUxPWlNBWUgybl9FRnNEMVBScElzYzJ4Z3NLSjk5eV9nbHdwelpEQUduQXhzWW1UWUJsajJfUUxmLTMyMUJXQ3FHTE01Q0FIMVNoVWdGbURGU19mYkxCVURSbjIwRzRZdmlQWVFFX3prSW1RVW1VcTZWOXVhZWdocEE2Vmp5VnA2Z2FreUMxeW85UW9MdHNUYkNTNG42NEo0UQ?oc=5",
+   "published": "2026-11-02",
+   "clue": "kahvehane (traditional coffeehouse) culture = Turkey"
+  },
+  {
+   "real": true,
+   "h": "Colouring book handed out at a show in {} shows Bluey held at knifepoint",
+   "hint": "",
+   "lat": -37.8284,
+   "lng": 140.7806,
+   "place": "Mount Gambier, South Australia",
+   "src": "https://www.abc.net.au/news/2026-10-28/one-nation-colouring-book-generates-controversy/107313670",
+   "published": "2026-10-28",
+   "clue": "South Australian country town; Bluey is an Australian cartoon; ABC complaint"
+  },
+  {
+   "real": false,
+   "h": "Ferry in {} delayed 47 minutes after a moose swims into its path and will not leave the channel",
+   "tell": "Moose swim, but one blocking a ferry for most of an hour is an over-tidy cause for a delay."
+  },
+  {
+   "real": true,
+   "h": "DUI suspect drinks urine-tainted toilet water to sabotage breath test in {}",
+   "hint": "where Thomas Jefferson built Monticello",
+   "lat": 38.0293,
+   "lng": -78.4767,
+   "place": "Charlottesville, Virginia",
+   "src": "https://www.officer.com/investigations/drug-alcohol-enforcement/news/55406632/virginia-dui-suspect-allegedly-drank-toilet-water-before-breath-test-police-say",
+   "published": "2026-10-29",
+   "clue": "US DUI arrest + breath-test observation rule"
+  },
+  {
+   "real": true,
+   "h": "Man jailed six months for attacking ex-colleague from town hall over a cake served without butter 10 years ago in {}",
+   "hint": "the setting of Maigret's \"Yellow Dog\"",
+   "lat": 47.8757,
+   "lng": -3.9224,
+   "place": "Concarneau, Finistère, France",
+   "src": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOM3J1QmFDWUxhcVp2OWg2Q0s1dWZNQlFzcDR0VVpWSDFmS0dXUHRVQU5RLTBKV2pvZktfRWhKSF81TXNqakNSQUxYZGEzZUV1NS1peHIta1FZWjR4X1RmSzBXY3d1Tm1xUm12MmI3M1hSX3FRVFBoX3pyOUE3SXdIM05IWFNoY2RKV3VqemRfdzJ6cnZuTS0xUmRKeUR3eldLT252SU1PVWJlR240VlZkRGwwYi1oZ1N5b01kaGdn?oc=5",
+   "published": "2026-11-02",
+   "clue": "butter pride in a regional cake and 'mairie' = France"
+  },
+  {
+   "real": true,
+   "h": "50 sheep go on baa-zarre adventure through supermarket before ewe-turning and leaving in {}",
+   "hint": "",
+   "lat": 50.1303,
+   "lng": 9.6406,
+   "place": "Burgsinn, Bavaria, Germany",
+   "src": "https://www.straitstimes.com/world/europe/50-sheep-go-on-baa-zarre-adventure-through-german-supermarket-before-ewe-turning-and-leaving",
+   "published": "2026-01-07",
+   "clue": "flock + a Penny discount supermarket"
+  },
+  {
+   "real": false,
+   "h": "Burglars in {} steal a 3-tonne church bell and leave the clapper and a pizza box behind",
+   "tell": "Nobody carries off a 3-tonne bell unnoticed, and the pizza box is a too-neat flourish."
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Two unrelated thieves use homemade wire tools on the same temple donation [] at the same time in Bengbu, China",
+   "ans": [
+    "box",
+    "boxes"
+   ],
+   "alt": [
+    "chest",
+    "tin",
+    "bin",
+    "jar",
+    "collection"
+   ],
+   "place": "Bengbu, Anhui, China",
+   "src": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5rQnpOamZvcG5wbXRuNnVNXzlGbC0xY05RSVluSWprZllfU3lDeXRKbUx1MEJoZ3o4UXc4azlVLVBFeHVIUFVVa2dzNk85VFoyTmZJeUV6bVU2UjFuQi10YtIBZkFVX3lxTE5UVXJIamh4ai1yb1F0NlZoTThFVTNTNWNhZGhJeDRKTEp6aDRHdU5yamFyRkdhWjFlbzc4czBqa3pBVFFCQ2dyV1I3RXJvYm9CaE45UVN1dUt6V2YyTW1zeWVsSVZvUQ?oc=5",
+   "published": "2026-11-03",
+   "vec": "+Q4rDR7kzOwmENYQ/C4X7+3q2NYU4AsG78bSLiLIf/ETF/UlKxAW2DMV4xPaOgHjDu8="
+  },
+  {
+   "real": true,
+   "h2": "Haifa, Israel: man sues Chief Rabbinate for 8.6 million shekels over rights to all the [] God created",
+   "ans": [
+    "land",
+    "lands",
+    "earth"
+   ],
+   "alt": [
+    "world",
+    "ground",
+    "soil",
+    "planet",
+    "territory"
+   ],
+   "place": "Haifa, Israel",
+   "src": "https://news.google.com/rss/articles/CBMickFVX3lxTE44dDgzdmlHWWJ5RmltVHItUGg0bEVmSlVORHdoSktUUWx2WEZXbkl5Wm5qYlVCLURGN1lhY2h4eUxvVV81LVY2T2NmT3VOOU91RUZISUtFSFFCV0l0TzJhemNyYy10czlqdjNDYUNXYTEzUdIBekFVX3lxTFBxMFZESU1JOXJZQThNYlo3RU8zV080d2w1VERoTHhneXZWcGNHUC13bENYekNXR1E3SzBuaFh6UmZkbTd0OUtsYlE1QlZJSTNIZWg1elV3RFVZSjZ4NWZ3WklKZEVSTXV4MUNCbzVIYkEzVS1iMmVKbUtB?oc=5",
+   "published": "2026-11-01",
+   "vec": "HP8DCxIE2OsC3f0IIdH9IC4G5gQM9+zrC9r/+jIKf+DrBf0E5vL7Ce73FQ/b6uDgCOQ="
+  },
+  {
+   "real": true,
+   "h2": "Forest Green Rovers fill their dressing room with over 60 indoor [] in Nailsworth, England",
+   "ans": [
+    "plants",
+    "plant",
+    "houseplants",
+    "houseplant"
+   ],
+   "alt": [
+    "flowers",
+    "trees",
+    "shrubs",
+    "ferns"
+   ],
+   "place": "Nailsworth, Gloucestershire, England",
+   "src": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOZWRudXAtblczaERINHd0bW83QzJQZURGSWFjQnNhTzFocHhJZEVhVWNJQWVYYTZHVF9Kd1lGcVU2S0JZWE40SUFxTlR5VDFfZGdsRWFsbW5SbG9kZ1ZMV2pfZWlMQXZzWGdoRkxGRDdRbUdVWlVtVzJVNlNoeG9YdEV6eDdITDdmZGQzSllSaGlPWlRXRW0ybXBCV1I5eE4ydU9vMEdUWkswYjF6VzZzNGN6ZXZsR2ctbHdhYndBWWZaei1SXzlwWXduVkxRdkdOSmhj?oc=5",
+   "published": "2026-11-02",
+   "vec": "Ng4OHecb2+URAxQBPuQXGxJBArgArwznAfMWDjMAf+Py5gMD5yQSEd/GLAFILePn1gA="
+  },
+  {
+   "real": true,
+   "h2": "Motorbike thieves who took a family's golden retriever say it looked like their own [] in Dörtyol, Turkey",
+   "ans": [
+    "dog",
+    "dogs",
+    "puppy"
+   ],
+   "alt": [
+    "pet",
+    "hound",
+    "pooch"
+   ],
+   "place": "Dörtyol, Hatay, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQLVBjUWlEeTFJclNfTTRiYU5Zd0lRS0c3bm5EQV9iNk5SNV9ma2VIY21IMWMxZjltd3VZaEUtRG05dTRsQ1VFcXZNYW15VnI5Z0RTMHE2Snh2Qk01VjM4a1pJT29vdEFTUWlIczhKZ1ZGcHY5Z2REd05qUUxlZzFlNUdkNEctTlBPVi03SkFoN3VYM3B2ajhjaktZeXlPUnRWYUZNSDNhUTdBVFNrQnhsWW9GZzNaV2Y2djllVzVrVFUxNVE?oc=5",
+   "published": "2026-11-01",
+   "vec": "COTX7DMnsuNT1wAmLiIj8w1CqtblGDc2IYG1Hx7PcRTULvobCeASy/oR0Txa2wPBMxw="
+  }
+ ]
+}
