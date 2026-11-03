@@ -1564,7 +1564,7 @@ function clueClause(prep,hint){
 }
 function headlineHTML(story, reveal, clue){
   const hint=String(story.hint||'').trim().replace(/[.,]+$/,'');
-  const showClue=(reveal||clue) && hint;
+  const showClue=(reveal||clue) && hint && story.real!==false;       // fakes aren't mapped, so they get no clue
   if(!reveal && showClue){                        // clue added after the call, place still hidden
     const m=story.h.match(new RegExp('\\s+('+PREP_RE+')\\s+\\{\\}','i'));
     if(m && (story.h.match(/\{\}/g)||[]).length===1){
