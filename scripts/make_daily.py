@@ -1024,12 +1024,13 @@ def main():
     bank = json.load(open(bank_path)) if os.path.exists(bank_path) else {}
     oldest = (dt.date.fromisoformat(day) - dt.timedelta(days=BANK_DAYS)).isoformat()
     fresh_src = {r["src"] for r in fresh}
-    bank_real = [r for r in bank.get("real", []) if not r.get("blank_only") and r.get("rules", 1) >= RULES and r.get("banked", "") >= oldest and r.get("banked") != day
+    held = [r for r in bank.get("real", []) if r.get("hold")]     # banked on request but not for automatic use (injury / violence): kept, never picked
+    bank_real = [r for r in bank.get("real", []) if not r.get("hold") and not r.get("blank_only") and r.get("rules", 1) >= RULES and r.get("banked", "") >= oldest and r.get("banked") != day
                  and r.get("src") not in used and r.get("src") not in fresh_src and not valid_real(r)]
     keep_from = (dt.date.fromisoformat(day) - dt.timedelta(days=BANK_KEEP)).isoformat()
     bank_blank = [r for r in bank.get("real", []) if r.get("blank_only") and r.get("h2") and r.get("rules", 1) >= RULES and r.get("banked", "") >= keep_from
                   and r.get("src") not in used]
-    bank_old = [r for r in bank.get("real", []) if not r.get("blank_only") and r.get("rules", 1) >= RULES and keep_from <= r.get("banked", "") < oldest
+    bank_old = [r for r in bank.get("real", []) if not r.get("hold") and not r.get("blank_only") and r.get("rules", 1) >= RULES and keep_from <= r.get("banked", "") < oldest
                 and r.get("src") not in used and r.get("src") not in fresh_src and r.get("h2")]
     bank_fake = [f for f in bank.get("fake", []) if f.get("rules", 1) >= RULES and f.get("banked", "") >= oldest and f.get("banked") != day and valid_fake(f)]
     prior = prior_stories(day)
@@ -1337,10 +1338,12 @@ def main():
             return int(r.get("unbelievable", 3) or 3) >= 3 or bool(r.get("daily_only") or r.get("priority"))
         except Exception:
             return True
-    for r in sorted(pool_all + [r for r in reals if r not in pool_all] + dropped_unfit + bank_old + bank_blank, key=lambda r: r.get("banked", ""), reverse=True):
+    for r in sorted(pool_all + [r for r in reals if r not in pool_all] + dropped_unfit + bank_old + bank_blank + held, key=lambda r: r.get("banked", ""), reverse=True):
         if r["src"] in used_today or r["src"] in seen_src:
             continue
         item = {k: v for k, v in r.items() if k not in ("_fresh", "vec")}
+        if r.get("hold"):
+            seen_src.add(r["src"]); keep_real.append(item); continue
         if not bankable(r):
             if not (r.get("h2") and r.get("ans")):
                 continue                                   # mild and no blank version: not worth keeping
