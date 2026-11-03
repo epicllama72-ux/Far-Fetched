@@ -3792,9 +3792,9 @@ function drawCurve(rows, mine, cvEl){
   rows=rows.map(r=>Object.assign({},r,{m:r.m/1000}));             // depths are in metres; the chart is drawn in kilometres
   if(typeof mine==='number') mine=mine/1000;
   const xs=rows.map(r=>r.m); if(typeof mine==='number') xs.push(mine);
-  // x axis: always 0 km up to the depth that breaks through to Australia (the same range every day), a mark every 1, 2 or 5 km
+  // x axis: always 0 to 10 km, a perfect day (the same range every day), a mark every 1, 2 or 5 km
   const ausM=Scene.layout().AUSM/1000;
-  const hi=Math.max(ausM, ...xs, 2), lo=0;
+  const hi=Math.max(10, ausM, ...xs), lo=0;
   const step=[1,2,5,10].find(st=>Math.ceil(hi/st)<=10)||20;
   const L=24, R=W-24, X=m=>Math.round(L+(R-L)*(m-lo)/(hi-lo)), base=H-24;
   // grid, ticks and labels
