@@ -4,14 +4,14 @@
  "call": [
   {
    "real": true,
-   "h": "Coffeehouse bans swearing and makes the whole table pay the bill in {}",
-   "hint": "home of a famed chefs' festival",
-   "lat": 40.6212,
-   "lng": 31.646,
-   "place": "Bolu, Turkey",
-   "src": "https://news.google.com/rss/articles/CBMingFBVV95cUxPWlNBWUgybl9FRnNEMVBScElzYzJ4Z3NLSjk5eV9nbHdwelpEQUduQXhzWW1UWUJsajJfUUxmLTMyMUJXQ3FHTE01Q0FIMVNoVWdGbURGU19mYkxCVURSbjIwRzRZdmlQWVFFX3prSW1RVW1VcTZWOXVhZWdocEE2Vmp5VnA2Z2FreUMxeW85UW9MdHNUYkNTNG42NEo0UQ?oc=5",
+   "h": "Man jailed six months for attacking ex-colleague from town hall over a cake served without butter 10 years ago in {}",
+   "hint": "the setting of Maigret's \"Yellow Dog\"",
+   "lat": 47.8757,
+   "lng": -3.9224,
+   "place": "Concarneau, Finistère, France",
+   "src": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOM3J1QmFDWUxhcVp2OWg2Q0s1dWZNQlFzcDR0VVpWSDFmS0dXUHRVQU5RLTBKV2pvZktfRWhKSF81TXNqakNSQUxYZGEzZUV1NS1peHIta1FZWjR4X1RmSzBXY3d1Tm1xUm12MmI3M1hSX3FRVFBoX3pyOUE3SXdIM05IWFNoY2RKV3VqemRfdzJ6cnZuTS0xUmRKeUR3eldLT252SU1PVWJlR240VlZkRGwwYi1oZ1N5b01kaGdn?oc=5",
    "published": "2026-11-02",
-   "clue": "kahvehane (traditional coffeehouse) culture = Turkey"
+   "clue": "butter pride in a regional cake and 'mairie' = France"
   },
   {
    "real": true,
@@ -42,14 +42,14 @@
   },
   {
    "real": true,
-   "h": "Man jailed six months for attacking ex-colleague from town hall over a cake served without butter 10 years ago in {}",
-   "hint": "the setting of Maigret's \"Yellow Dog\"",
-   "lat": 47.8757,
-   "lng": -3.9224,
-   "place": "Concarneau, Finistère, France",
-   "src": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOM3J1QmFDWUxhcVp2OWg2Q0s1dWZNQlFzcDR0VVpWSDFmS0dXUHRVQU5RLTBKV2pvZktfRWhKSF81TXNqakNSQUxYZGEzZUV1NS1peHIta1FZWjR4X1RmSzBXY3d1Tm1xUm12MmI3M1hSX3FRVFBoX3pyOUE3SXdIM05IWFNoY2RKV3VqemRfdzJ6cnZuTS0xUmRKeUR3eldLT252SU1PVWJlR240VlZkRGwwYi1oZ1N5b01kaGdn?oc=5",
+   "h": "Coffeehouse bans swearing and makes the whole table pay a fine in {}",
+   "hint": "home of a famed chefs' festival",
+   "lat": 40.6212,
+   "lng": 31.646,
+   "place": "Bolu, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMingFBVV95cUxPWlNBWUgybl9FRnNEMVBScElzYzJ4Z3NLSjk5eV9nbHdwelpEQUduQXhzWW1UWUJsajJfUUxmLTMyMUJXQ3FHTE01Q0FIMVNoVWdGbURGU19mYkxCVURSbjIwRzRZdmlQWVFFX3prSW1RVW1VcTZWOXVhZWdocEE2Vmp5VnA2Z2FreUMxeW85UW9MdHNUYkNTNG42NEo0UQ?oc=5",
    "published": "2026-11-02",
-   "clue": "butter pride in a regional cake and 'mairie' = France"
+   "clue": "kahvehane (traditional coffeehouse) culture = Turkey"
   },
   {
    "real": true,
