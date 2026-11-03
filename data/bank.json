@@ -57,7 +57,7 @@
    "lng": 36.1956148,
    "country": "Turkey",
    "cc": "TR",
-   "hint": "",
+   "hint": "where Alexander the Great beat Darius",
    "clue": "a Turkish-style family thanking the police; motorbike thieves",
    "clue_strength": 0,
    "jargon_only": false,
@@ -200,7 +200,7 @@
    "lng": 9.3762397,
    "country": "Switzerland",
    "cc": "CH",
-   "hint": "",
+   "hint": "home of an ancient abbey library",
    "clue": "francs and a canton's social insurance office = Switzerland",
    "clue_strength": 3,
    "jargon_only": false,
@@ -249,7 +249,7 @@
    "lng": -87.9046,
    "country": "United States",
    "cc": "US",
-   "hint": "",
+   "hint": "setting of Happy Days",
    "clue": "US high school + felony complaint = US",
    "theme": "crime",
    "src": "https://www.yahoo.com/news/us/articles/woman-says-she-hates-kids-092016114.html",
@@ -273,7 +273,7 @@
    "lng": -73.873364,
    "country": "United States",
    "cc": "US",
-   "hint": "",
+   "hint": "home of the United Nations",
    "clue": "US airline and a big-city airport",
    "clue_strength": 2,
    "jargon_only": false,
@@ -325,7 +325,7 @@
    "published": "2026-10-28",
    "banked": "2026-10-30",
    "rules": 2,
-   "hint": "",
+   "hint": "home of the Blue Lake",
    "daily_only": true
   },
   {
@@ -346,7 +346,7 @@
    "mappable": 2,
    "src": "https://www.vice.com/en/article/everything-we-know-about-the-cop-who-allegedly-pulled-a-gun-because-someone-microwaved-fish-at-work/",
    "published": "",
-   "hint": "",
+   "hint": "home of the Grand Strand boardwalk",
    "daily_only": true
   },
   {
@@ -367,7 +367,8 @@
    "mappable": 1,
    "src": "https://novayagazeta.eu/en/articles/2026/10/29/russia-moves-to-allow-registration-of-cars-stolen-in-western-countries-en-news",
    "published": "2026-10-29",
-   "daily_only": true
+   "daily_only": true,
+   "hint": "where Napoleon's retreat began"
   },
   {
    "id": 52,

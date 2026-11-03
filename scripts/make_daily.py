@@ -1024,10 +1024,12 @@ def main():
     bank = json.load(open(bank_path)) if os.path.exists(bank_path) else {}
     oldest = (dt.date.fromisoformat(day) - dt.timedelta(days=BANK_DAYS)).isoformat()
     fresh_src = {r["src"] for r in fresh}
-    bank_real = [r for r in bank.get("real", []) if r.get("rules", 1) >= RULES and r.get("banked", "") >= oldest and r.get("banked") != day
+    bank_real = [r for r in bank.get("real", []) if not r.get("blank_only") and r.get("rules", 1) >= RULES and r.get("banked", "") >= oldest and r.get("banked") != day
                  and r.get("src") not in used and r.get("src") not in fresh_src and not valid_real(r)]
     keep_from = (dt.date.fromisoformat(day) - dt.timedelta(days=BANK_KEEP)).isoformat()
-    bank_old = [r for r in bank.get("real", []) if r.get("rules", 1) >= RULES and keep_from <= r.get("banked", "") < oldest
+    bank_blank = [r for r in bank.get("real", []) if r.get("blank_only") and r.get("h2") and r.get("rules", 1) >= RULES and r.get("banked", "") >= keep_from
+                  and r.get("src") not in used]
+    bank_old = [r for r in bank.get("real", []) if not r.get("blank_only") and r.get("rules", 1) >= RULES and keep_from <= r.get("banked", "") < oldest
                 and r.get("src") not in used and r.get("src") not in fresh_src and r.get("h2")]
     bank_fake = [f for f in bank.get("fake", []) if f.get("rules", 1) >= RULES and f.get("banked", "") >= oldest and f.get("banked") != day and valid_fake(f)]
     prior = prior_stories(day)
@@ -1070,6 +1072,12 @@ def main():
             sharpen(weak, model, src_text)
             after = sum(1 for r in reals if eff_strength(r) >= 2 and map_score(r) >= 2)
             print(f"  sharpening pass: {len(weak)} weak-clue stories reviewed; strong, pinnable stories {before} -> {after}", file=sys.stderr)
+    # Every story needs its trivia clue (hint): write one for any that lacks it, best stories first
+    if not args.picks:
+        need = sorted([r for r in reals if not r.get("hint")], key=merit, reverse=True)[:24]
+        if need:
+            sharpen(need, model, src_text)
+            print(f"  clue pass: {sum(1 for r in need if r.get('hint'))}/{len(need)} stories without a clue now have one", file=sys.stderr)
     fit = [r for r in reals if fit_to_map(r)]
     dropped_unfit = [r for r in reals if r not in fit]   # not good enough for today's map, but still worth keeping in the bank
     if len(fit) >= N_CALL_REAL + 3:
@@ -1080,8 +1088,12 @@ def main():
     # The Daily Dig runs only stories that entertain: anything the editor rated mundane (1-2 on "unbelievable") is left
     # to Fill the Blank and the bank, unless the owner banked it by hand or the pool would run too thin without it.
     # Aim as high as the pool allows: only 4-5s when there are enough of them, else 3 and up.
-    for floor in (4, 3):
-        lively = [r for r in reals if int(r.get("unbelievable", 2) or 2) >= floor or r.get("daily_only") or r.get("priority")]
+    for need_clue in (True, False):               # clued stories only, unless there aren't enough of them
+        for floor in (4, 3):
+            lively = [r for r in reals if (int(r.get("unbelievable", 2) or 2) >= floor or r.get("daily_only") or r.get("priority"))
+                      and (r.get("hint") or not need_clue)]
+            if len(lively) >= N_CALL_REAL + 2:
+                break
         if len(lively) >= N_CALL_REAL + 2:
             break
     pool_all = list(reals)       # everything that fits the map: Fill the Blank and the bank draw on this, not just on the theme-spread list below
@@ -1152,7 +1164,7 @@ def main():
 
     # Fill the Blank: real stories whose answer has a word vector
     # Fill the Blank isn't tied to the news cycle: older banked stories (up to a year) are fair game too.
-    blank_src = sorted(pool_all + stock["blank"], key=merit, reverse=True) + sorted(bank_old, key=merit, reverse=True)
+    blank_src = sorted(pool_all + stock["blank"], key=merit, reverse=True) + sorted(bank_old + bank_blank, key=merit, reverse=True)
     blank_src = [r for i, r in enumerate(blank_src) if not any(r is q for q in blank_src[:i])]   # a topped-up story can sit in two lists
     h2words = {w for r in blank_src for w in re.findall(r"[a-z]+", (r.get("h2") or "").lower())}
     vecs = load_vectors(os.environ.get("GLOVE"), [a for r in blank_src for a in (r.get("ans") or [])] + sorted(h2words))
@@ -1320,11 +1332,23 @@ def main():
             json.dump(stock_all, f, ensure_ascii=False, indent=1)
     history[day] = sorted(used_today)
     keep_real, seen_src = [], set()
-    for r in sorted(pool_all + [r for r in reals if r not in pool_all] + dropped_unfit + bank_old, key=lambda r: r.get("banked", ""), reverse=True):
+    def bankable(r):          # rated 3-5 (or hand-picked): good enough for a future Daily Dig
+        try:
+            return int(r.get("unbelievable", 3) or 3) >= 3 or bool(r.get("daily_only") or r.get("priority"))
+        except Exception:
+            return True
+    for r in sorted(pool_all + [r for r in reals if r not in pool_all] + dropped_unfit + bank_old + bank_blank, key=lambda r: r.get("banked", ""), reverse=True):
         if r["src"] in used_today or r["src"] in seen_src:
             continue
+        item = {k: v for k, v in r.items() if k not in ("_fresh", "vec")}
+        if not bankable(r):
+            if not (r.get("h2") and r.get("ans")):
+                continue                                   # mild and no blank version: not worth keeping
+            item["blank_only"] = True                      # mild stories wait only as Fill the Blank candidates, never in the Daily Dig
+        else:
+            item.pop("blank_only", None)
         seen_src.add(r["src"])
-        keep_real.append({k: v for k, v in r.items() if k not in ("_fresh", "vec")})
+        keep_real.append(item)
     used_fake = {f["h"] for f in fakes[:N_CALL_FAKE]}
     keep_fake = [f for f in fakes if f["h"] not in used_fake]
     with open(bank_path, "w") as f:
