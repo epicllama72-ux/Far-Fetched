@@ -995,6 +995,13 @@ body.recap #bar{display:none}
 #ausBar{position:fixed;left:5px;top:50%;transform:translateY(-50%);width:8px;height:44vh;background:#0d0f14;border:2px solid var(--line);z-index:4;pointer-events:none}
 #ausBar i{display:block;width:100%;height:0;background:linear-gradient(#ffd23f,#ff8a1f);transition:height .5s ease-out}
 #ausBar.full{border-color:#ffd23f;box-shadow:0 0 8px #ff8a1f}
+/* how close the pin was: a rarity banner, gold (rarest) > purple > red > blue > white */
+#rarity{position:fixed;left:50%;bottom:34vh;transform:translateX(-50%);z-index:8;text-align:center;pointer-events:none;white-space:nowrap}
+#rarity b{display:block;font:clamp(16px,5.2vw,26px)/1 var(--px);letter-spacing:.14em;color:var(--c);text-shadow:3px 3px 0 #0d0f14,0 0 14px var(--c),0 0 30px var(--c)}
+#rarity small{display:block;margin-top:8px;font:20px/1 var(--vt);color:#e8ecf5;text-shadow:2px 2px 0 #0d0f14}
+#rarity.go{animation:rarityPop 2.8s steps(8) forwards}
+@keyframes rarityPop{0%{opacity:0;transform:translateX(-50%) scale(.5)}12%{opacity:1;transform:translateX(-50%) scale(1.15)}22%{transform:translateX(-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translateX(-50%) scale(1)}}
+@media (prefers-reduced-motion:reduce){#rarity.go{animation:rarityFade 2.8s forwards}@keyframes rarityFade{0%,80%{opacity:1}100%{opacity:0}}}
 #ausBar b{position:absolute;left:-4px;top:100%;margin-top:4px;font:14px/1 var(--vt);font-weight:400;color:#ffd23f;white-space:nowrap;text-shadow:1px 1px 0 #000}
 body.intro #ausBar{display:none}
 @keyframes toast{0%{opacity:0;transform:translate(-50%,6px)}6%{opacity:1;transform:translate(-50%,0)}88%{opacity:1}100%{opacity:0}}
@@ -1172,7 +1179,7 @@ body.intro #ausBar{display:none}
   </div>
   <div class="lcol">
   <div class="hud">
-    <div class="panel"><span class="lbl">JAW DROP</span><span class="val"><span id="depth">0.0</span><small>m</small></span></div>
+    <div class="panel"><span class="lbl">JAW DROP</span><span class="val"><span id="depth">0</span><small id="depthU">m</small></span></div>
     <div class="mid"><div id="dots"></div><p id="roundLbl">HEADLINE 1/10</p></div>
     <div class="panel r"><span class="lbl">SCORE</span><span class="val" id="score">0</span><span id="delta"></span></div>
   </div>
@@ -1246,6 +1253,7 @@ body.intro #ausBar{display:none}
   </div>
 
   <div id="toast" hidden></div>
+  <div id="rarity" aria-live="polite" hidden><b></b><small></small></div>
   <div id="ausBar" aria-hidden="true"><i></i><b>0%</b></div>
   <button class="ghost" id="skipRecap">Skip ▸</button>
   <section id="about" hidden aria-label="About Far-Fetched">
@@ -1321,7 +1329,7 @@ const $ = id => document.getElementById(id);
 const START = Date.UTC(2026, 9, 27);
 const ROUNDS_REAL = 5, ROUNDS_FAKE = 2, ROUND_LEN = 7;    // every mode: 7 stories (Real or Fake / Politics: 5 true + 2 fake)
 const DIG_REAL = ROUNDS_REAL, OLD_REAL = 8, OLD_BLANK = 10;   // the old 8 true / 10 blank rounds set the top score
-const CALL_PTS = 100, FOOLED_PTS = -75, PIN_PTS = 350, COUNTRY_PTS = 50;   // a perfect pin is still 400: 350 for distance + 50 for the right country
+let CALL_PTS = 30, FOOLED_PTS = -25, PIN_PTS = 110, COUNTRY_PTS = 20;   // a true story is worth 180: call 30 + pin 110 + country 20 + fast-pin bonus 20; a fake 50 (fooled -25). A day of 5 true + 2 fakes is exactly 1,000
 let PK = 1;   // per-true-story points multiplier: keeps a Daily Dig's top score the same however many true stories it has (8 true = x1; now 5 true = x1.6)
 
 function pad(n){return String(n).padStart(2,'0');}
@@ -1361,6 +1369,19 @@ async function loadDaily(){
     }catch(e){}
   }
 }
+const RARITY=[[150,'GLOBALIST','#ffd23f'],[400,'STATESMAN','#b56bff'],[1000,'PUNDIT','#ff4d5e'],[2500,'SKIMMER','#4da6ff'],[Infinity,'ROCK-DWELLER','#ffffff']];   // pin distance in km -> name and colour
+let RARITY_T=0;
+function showRarity(d){
+  if(d==null) return;
+  const r=RARITY.find(x=>d<=x[0]), el=$('rarity');
+  el.style.setProperty('--c',r[2]);
+  el.firstChild.textContent=r[1];
+  el.lastChild.textContent=Math.round(d).toLocaleString()+' km away';
+  el.hidden=false; el.classList.remove('go'); void el.offsetWidth; el.classList.add('go');
+  clearTimeout(RARITY_T); RARITY_T=setTimeout(()=>{ el.hidden=true; el.classList.remove('go'); },2900);
+}
+function fmtM(m){ m=Math.round(+m||0); return m>=1000 ? (m/1000).toFixed(1)+' km' : m+' m'; }
+function setDepthHud(m){ m=Math.round(+m||0); $('depth').textContent = m>=1000 ? (m/1000).toFixed(2) : String(m); $('depthU').textContent = m>=1000 ? 'km' : 'm'; }
 function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
 function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 function shuffle(a,r){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
@@ -1480,8 +1501,8 @@ function pinPoints(d){return Math.round(PK*PIN_PTS*Math.exp(-Math.max(0,d-75)/24
 /* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
 const PIN_SECS=20;                 // the pin has a 20 s limit, but taking longer no longer costs distance points
 function pinMult(){ return 1; }
-/* Bonus for a fast, fairly accurate pin (true call only): up to +60. Full if within 150 km in 6 s or less; fades to nothing at 800 km or 11 s. */
-const PIN_BONUS=60;
+/* Bonus for a fast, fairly accurate pin (true call only): up to +20. Full if within 150 km in 6 s or less; fades to nothing at 800 km or 11 s. */
+const PIN_BONUS=20;
 function pinBonus(d,sec){ return Math.round(PK*PIN_BONUS*Math.max(0,Math.min(1,(11-sec)/5))*Math.max(0,Math.min(1,(800-d)/650))); }
 let PIN_RAF=0;
 function runPinTimer(){
@@ -1505,6 +1526,25 @@ function runPinTimer(){
 }
 function store(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
 function load(k){try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;}}
+/* One-time conversion of this device's saved results from the old point scale (a perfect day = 4,780; Fill the Blank 5,000) to the new one
+   (1,000, 1 point = 10 m). Finished days, personal bests, back issues and half-played games all carry over in proportion. */
+(function migrateScale(){
+  try{
+    if(localStorage.getItem('ff_scale')==='1000') return;
+    const fOf=kind=>kind==='blank'?1000/5000:1000/4780;
+    const pts=(o,f,keys)=>{ if(o) keys.forEach(k=>{ if(typeof o[k]==='number') o[k]=Math.round(o[k]*f); }); };
+    const rec=(o,kind)=>{ if(!o||typeof o.score!=='number') return o; const f=fOf(kind); o.score=Math.round(o.score*f); o.m=o.score*10; return o; };
+    const h=load('ff_hist'); if(h){ Object.keys(h).forEach(k=>rec(h[k],k.split(':')[1])); store('ff_hist',h); }
+    Object.keys(localStorage).filter(k=>k.indexOf('ff_back:')===0).forEach(k=>{ const o=load(k); if(o){ rec(o,k.split(':')[2]); store(k,o); } });
+    const b=load('ff_best'); if(b && typeof b.m==='number'){ b.m=Math.round(b.m*10000/(4780*0.0026)); store('ff_best',b); }
+    [['ff_daily','call'],['ff_pol','pol'],['ff_blank','blank']].forEach(([k,kind])=>{
+      const sv=load(k); if(!sv) return; const f=fOf(kind), P=['callPts','pinPts','countryPts'];
+      (sv.results||[]).forEach(r=>pts(r,f,P)); pts(sv.cur,f,P);
+      store(k,sv);
+    });
+    localStorage.setItem('ff_scale','1000');
+  }catch(e){}
+})();
 function sumPts(rs){return rs.reduce((a,x)=>a+x.callPts+x.pinPts,0);}
 
 /* the hint is held back until the player has made their call, then pops in at the bottom right of the headline box */
@@ -1595,10 +1635,14 @@ function headlineHTML(story, reveal, clue){
 const Scene = (function(){
   const cv = $('bg'), g = cv.getContext('2d'), rulerEl = $('ruler');
   const reduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
-  const FLOOR = 110, L0 = FLOOR+8, M_PER_PX = 0.02;
-  const AUS_PTS = 4200;        // a top score (about 87% of a perfect day) pokes out the other side of the earth, into Australia
-  const JAW_K = 0.13;          // world pixels of jaw drop per point (max 500 per story -> 65 px, still behind the paper)
-  const EXIT = Math.round(13+AUS_PTS*JAW_K+9)-6;   // world y where the earth's crust ends and the sky above an Australian beach begins
+  const FLOOR = 110, L0 = FLOOR+8;
+  const PTS_M = 10;            // metres of depth per point: 1 point = 10 m, a perfect day (1,000 points) = 10 km
+  // The jaw falls at one constant speed (KPX world px per point) in every zone; zones are simply longer or shorter in points:
+  // the room above ground ends at 50 points, then basement, dirt, bedrock, magma, core, and Australia at 900 points (9 km).
+  const KPX = 1.92;
+  const p2px=p=>Math.max(0,p)*KPX, px2p=px=>Math.max(0,px)/KPX;
+  const AUS_M = 9000;          // a top score (900 points) pokes out the other side of the earth, into Australia
+  const EXIT = Math.round(22+KPX*900);            // world y where the earth's crust ends and the sky above an Australian beach begins (chin at 13+540+9)
   const PT0 = 24, PB0 = 88;    // one folded page held below his chin, its bottom edge resting over the desk
   const C = {
     wall:'#3d3148', wallStripe:'#41354f', rail:'#7a5238', wain:'#5a3b2b', base:'#2b1a12', ol:'#1a1220',
@@ -1658,7 +1702,7 @@ const Scene = (function(){
   let shake=0,lastZone=-1,emitAcc=0,bestJd=0,panT=-99,zoneCb=null,breakCb=null,rumbleCb=null,sparks=[],kit={},drillV=0;
   let props=[],lmCb=null,deskView=false,coreT=-99;   // coreT: -99 intact, -98 already collapsed, otherwise the time the core blew
   let peb=[],gems=[],bubbles=[],worms=[],beetles=[],tunnels=[],cracks=[],parts=[],drips=[],embers=[];
-  let labels=[],zoneLabels=[],zones=[],depthCb=null,lastM='',running=false,resizeTimer=0;
+  let tickPx=[],labels=[],zoneLabels=[],zones=[],depthCb=null,lastM='',running=false,resizeTimer=0;
 
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   function mix(a,b,k){
@@ -1668,7 +1712,7 @@ const Scene = (function(){
     const bb=Math.round((pa&255)+((pb&255)-(pa&255))*k);
     return '#'+((1<<24)+(r<<16)+(gg<<8)+bb).toString(16).slice(1);
   }
-  const target=()=>Math.min(dropMax, tp*JAW_K);
+  const target=()=>Math.min(dropMax, p2px(tp));
   const chinY=()=>13+jd+9;
   const coreY=()=>Math.round((L0+B[4]+EXIT)/2);   // the glowing core sits in the middle of the core layer
   const camFor=()=>clamp(chinY()-focus*H,camMin,camMax);
@@ -1681,12 +1725,11 @@ const Scene = (function(){
     cv.style.width=(W*PX)+'px'; cv.style.height=(H*PX)+'px';
     cx=Math.floor(W/2);
     deskView = window.innerWidth>=1100 && window.innerHeight>=600;     // big screens have a lot of empty room to furnish
-    // the underground is sized so a perfect day just reaches the core
-    const maxChin=13+maxPts*JAW_K+9;
-    U=Math.max(170, Math.round(maxChin+26-L0));
-    B=[0,Math.round(U*0.16),Math.round(U*0.34),Math.round(U*0.52),Math.round(U*0.68),U];   // magma and the core are within reach of a great run
+    // the underground has a fixed length; the point scale above decides how far each point drops the jaw in it
+    U=EXIT-L0;
+    B=[0].concat([125,225,350,525].map(p=>Math.round(22+KPX*p-L0)),[U]);   // magma and the core are within reach of a great run
     worldEnd=Math.max(L0+U+Math.round(H*0.25),EXIT+110);
-    dropMax=maxPts*JAW_K;
+    dropMax=p2px(maxPts);
     camMin=-56-Math.max(0,Math.round(H*0.5)-60);
     camMax=Math.max(camMin,worldEnd-H);
     jd=Math.min(jd,dropMax);
@@ -1738,8 +1781,10 @@ const Scene = (function(){
 
     zones=[[76,'THE DESK'],[L0,'THE FLOOR'],[L0+B[1],'THE BASEMENT'],[L0+B[2],'THE DIRT'],[L0+B[3],'BEDROCK'],[L0+B[4],'MAGMA'],[EXIT,'THE CORE'],[1e9,'AUSTRALIA']];
     rulerEl.innerHTML=''; labels=[]; zoneLabels=[];
-    for(let k=0;k*50+13<=worldEnd;k++){
-      const sp=document.createElement('span'); sp.className='tick'; sp.textContent=k+' m';
+    tickPx=[];
+    for(let k=0;k*500<=11000;k++){ const px=p2px(k*500/PTS_M); if(13+px>worldEnd) break; tickPx.push(px); }
+    for(let k=0;k<tickPx.length;k++){
+      const sp=document.createElement('span'); sp.className='tick'; sp.textContent=fmtM(k*500);
       if(W<80){ sp.style.right='2px'; sp.classList.add('narrow'); } else sp.style.right=((W-axisX+7)*PX)+'px';
       rulerEl.appendChild(sp); labels.push(sp);
     }
@@ -1890,7 +1935,7 @@ const Scene = (function(){
     emitDepth();
   }
   function emitDepth(){
-    const m=(jd*M_PER_PX).toFixed(1);
+    const m=String(Math.round(px2p(jd)*PTS_M));
     if(m!==lastM){ lastM=m; if(depthCb) depthCb(m); }
   }
 
@@ -2471,7 +2516,7 @@ const Scene = (function(){
     }
     g.globalAlpha=1;
     labels.forEach((sp,k)=>{
-      const sy=13+k*50-camI, py=(sy+0.5)*PX;
+      const sy=13+tickPx[k]-camI, py=(sy+0.5)*PX;
       if(recap||sy<0||sy>=H||py<safeTop){ sp.style.display='none'; }
       else { sp.style.display='block'; sp.style.top=py+'px'; }
     });
@@ -2518,11 +2563,11 @@ const Scene = (function(){
     requestAnimationFrame(frame);
   }
   function settle(){ jd=target(); focus=focusT; camY=camFor(); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); props.forEach(p=>{ if(chinY()>p.y) p.hit=true; }); coreT=chinY()>coreY()?-98:-99; emitDepth(); draw(); }
-  /* points earned on true stories; the jaw moves JAW_K world px per point */
+  /* points earned: the jaw drops to the depth p2px(points) */
   function setJaw(points){
     const before=tp; tp=Math.max(0,points);
     // the newspaper dips while the jaw drops, so you see it move even when it's still behind the paper
-    const hidden = 13+Math.min(dropMax,tp*JAW_K)+9 < PB0+14;
+    const hidden = 13+Math.min(dropMax,p2px(tp))+9 < PB0+14;
     if(tp>before && !reduce && hidden){
       if(dipping){ dipUntil=Math.max(dipUntil,t+1.3); paperGoal=0; }
       else if(paperGoal===1 && paperT>0.95){ dipUntil=t+1.7; dipping=true; paperGoal=0; }
@@ -2539,7 +2584,7 @@ const Scene = (function(){
     let zone='NOWHERE';
     if(d>=1){ for(const [y,n] of zones){ if(chin<y){ zone=n; break; } } }
     if(d>=1 && chin<PB0) zone='BEHIND THE PAPER';
-    return {m:(d*M_PER_PX).toFixed(1), zone};
+    return {m:String(Math.round(px2p(d)*PTS_M)), zone};
   }
   function restore(points){ tp=Math.max(0,points); jd=target(); emitAcc=0; camY=camFor(); lastZone=zoneIndex(chinY()); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); props.forEach(p=>{ p.hit=chinY()>p.y; }); coreT=chinY()>coreY()?-98:-99; emitDepth(); }
   function reset(){
@@ -2553,11 +2598,12 @@ const Scene = (function(){
     if(!reduce && !running){ running=true; requestAnimationFrame(frame); }
   }
   function setPaper(up,instant){ dipUntil=0; dipping=false; paperGoal=up?1:0; if(instant||reduce){ paperT=paperGoal; if(reduce) draw(); } }
-  function layout(){ return {EXIT,CY:coreY(),FLOOR,L0,B:B.slice(),U,K:JAW_K,M:M_PER_PX,PB0,jd:target(),worldEnd}; }
+  function layout(){ return {EXIT,CY:coreY(),FLOOR,L0,B:B.slice(),U,AUSM:AUS_M,PB0,jd:target(),worldEnd}; }
   function camDepth(){ return camY+H*0.5; }        // world y at the middle of the screen
-  function setBest(m){ bestJd=Math.min(dropMax+30,(m||0)/M_PER_PX); }
+  function setBest(m){ bestJd=Math.min(dropMax+30,p2px((m||0)/PTS_M)); }
+  const mToPx=m=>p2px((m||0)/PTS_M);
   function panDown(){ if(reduce) return; camY=camMin; panT=t; }
-  function chinAt(p){ return 13+Math.min(dropMax,Math.max(0,p)*JAW_K)+9; }
+  function chinAt(p){ return 13+Math.min(dropMax,p2px(Math.max(0,p)))+9; }
   /* a finished day: start at the top with his jaw dropped, then let the player scroll the whole dig by hand */
   function browseStart(){ browse=true; browseY=camMin; camY=camMin; if(reduce) draw(); }
   function browseBy(dy){ if(!browse) return; browseY=clamp(browseY+dy/PX,camMin,camMax); if(reduce){ camY=browseY; draw(); } }
@@ -2597,7 +2643,7 @@ const Scene = (function(){
     document.body.appendChild(el); pops.push({el,t0:t+pops.length*0.25});     // a second pop right after the first waits its turn
     el.style.opacity=0;
   }
-  return {coreBlown:()=>13+target()+9>coreY(), setKit,chinAt,playRecap,endRecap,onMark,popPts,setPaper,start,setJaw,configure,restore,gasp,fooled:fooledReact,setFocus,setSafeTop,info,reset,setBest,panDown,layout,camDepth,browseStart,browseBy,browseEnd,
+  return {coreBlown:()=>13+target()+9>coreY(), mToPx, setKit,chinAt,playRecap,endRecap,onMark,popPts,setPaper,start,setJaw,configure,restore,gasp,fooled:fooledReact,setFocus,setSafeTop,info,reset,setBest,panDown,layout,camDepth,browseStart,browseBy,browseEnd,
           onDepth:cb=>{depthCb=cb;}, onZone:cb=>{zoneCb=cb;}, onBreak:cb=>{breakCb=cb;}, onRumble:cb=>{rumbleCb=cb;}, onLandmark:cb=>{lmCb=cb;}};
 })();
 
@@ -2722,8 +2768,9 @@ const POL_ON = false;   // Politics mode is on hold: greyed out in the menu as "
 let KIND = (function(){ try{ const k=localStorage.getItem('ff_kind'); return (k==='blank'||(POL_ON&&k==='pol'))?k:'call'; }catch(e){ return 'call'; } })();
 function saveKey(kind){ return kind==='blank'?'ff_blank':kind==='pol'?'ff_pol':'ff_daily'; }
 function modeName(kind){ return kind==='blank'?'Fill the Blank':kind==='pol'?'Politics':'Daily Dig'; }
-let BLANK_MAX = 500; const BLANK_SECS = 25;
-const FAKE_PTS = 150, JAW_SCALE = 4500;   // caught fake; every mode's jaw is scaled to the same 3000-point world
+let BLANK_MAX = 143; const BLANK_SECS = 25;
+const FAKE_BASE = 50, FOOLED_BASE = 25, TRUE_BASE = 180, JAW_SCALE = 1000;   // every mode tops out at 1,000 points
+let FAKE_PTS = 50;
 
 function startGame(mode, kind){
   if(typeof Intro!=='undefined' && Intro.planetOn()) Intro.hide(true);
@@ -2753,11 +2800,13 @@ function startGame(mode, kind){
     if(fresh.length>=5) rounds=fresh;
   }
   const reals=rounds.filter(x=>x.real).length;
-  PK = (!blank && reals>0) ? Math.max(1, OLD_REAL/reals) : 1;
-  BLANK_MAX = blank ? Math.round(OLD_BLANK*500/Math.max(1,rounds.length)) : 500;   // top score for 7 words = the old 10
+  // every mode tops out at 1,000 points: PK scales the point values to the mix of stories (5 true + 2 fakes gives exactly 1)
+  PK = (!blank && rounds.length) ? 1000/Math.max(1, reals*TRUE_BASE+(rounds.length-reals)*FAKE_BASE) : 1;
+  FAKE_PTS = Math.round(FAKE_BASE*PK); FOOLED_PTS = -Math.round(FOOLED_BASE*PK);
+  BLANK_MAX = blank ? 1000/Math.max(1,rounds.length) : 500;   // 7 words: 143 each at most
   S = {mode, kind:KIND, rounds, i:0, results:[], phase:'call', score:0,
-       maxScore: blank ? rounds.length*BLANK_MAX : Math.round(reals*PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS))+(rounds.length-reals)*FAKE_PTS,
-       maxJaw: blank ? rounds.length*BLANK_MAX : Math.round(reals*PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS))};
+       maxScore: blank ? 1000 : Math.round(reals*PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS))+(rounds.length-reals)*FAKE_PTS,
+       maxJaw: blank ? 1000 : Math.round(reals*PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS))};
   S.jawK = 1;                                        // one point = the same jaw drop in every mode
   if(mode==='back' && BACK) S.backDate=BACK.date;
   // The save is tied to the paper, not to its exact wording: rewording a headline must not wipe anyone's day.
@@ -2781,13 +2830,13 @@ function startGame(mode, kind){
   $('mPol').classList.toggle('on',pol && daily);
   $('mPractice').classList.toggle('on',!daily);
   $('howText').innerHTML = blank
-    ? 'Guess the hidden word in each true headline. The exact word scores up to <b>'+BLANK_MAX+'</b>, more the faster you get it. Near misses pay a little, and every guess after your third costs 5%.'
+    ? 'Guess the hidden word in each true headline. The exact word scores up to <b>'+Math.round(BLANK_MAX)+'</b>, more the faster you get it. Near misses pay a little, and every guess after your third costs 5%.'
     : 'Right call on a true story: up to <b>+'+Math.round(PK*CALL_PTS)+'</b>, more the quicker you answer. Catching a fake: <b>+'+FAKE_PTS+'</b>. Fooled by a fake: <b>−'+Math.abs(FOOLED_PTS)+'</b>. Then pin where the true story happened for up to <b>+'+Math.round(PK*PIN_PTS)+'</b>, plus <b>+'+Math.round(PK*COUNTRY_PTS)+'</b> if your pin is in the right country (you still get 75% of both after a wrong call). You have 20 seconds, and taking your time doesn\'t cost pin points. A fast, fairly close pin earns up to <b>+'+Math.round(PK*PIN_BONUS)+'</b> more. Every point drops his jaw the same distance, and losing points pulls it back up.';
   renderStats();
   closeMenu();
   Scene.configure(JAW_SCALE);
   Scene.setBest(bestM());
-  Scene.reset(); $('depth').textContent='0.0'; setAusBar(0);
+  Scene.reset(); setDepthHud(0); setAusBar(0);
   if(S.results.length) Scene.restore(jawPoints()*S.jawK);
   $('final').hidden = true; setBar('none');
   if(daily && !pending && !S.results.length){            // finished today (the history says so) but the saved answers can't be matched: never offer the same paper twice
@@ -2795,7 +2844,7 @@ function startGame(mode, kind){
     if(hh){
       Scene.setPaper(false,true); $('card').hidden=false; $('speed').hidden=true; $('feedback').hidden=true; $('mapWrap').hidden=true; $('blankUI').hidden=true;
       $('kicker').textContent='Already played today'; $('kicker').classList.remove('bad');
-      $('headline').innerHTML='You finished today\'s '+modeName(KIND)+': <span class="clue">'+(+hh.m).toFixed(1)+' m · '+fmtPts(hh.score)+'</span>. The next paper arrives at midnight. Practice has plenty more.';
+      $('headline').innerHTML='You finished today\'s '+modeName(KIND)+': <span class="clue">'+fmtM(hh.m)+' · '+fmtPts(hh.score)+'</span>. The next paper arrives at midnight. Practice has plenty more.';
       $('storyLink').hidden=true; setBar('none'); renderDots(); aim();
       return;
     }
@@ -2949,7 +2998,7 @@ function showRound(shown,quiet,gate){
   if(gate){
     // nothing is shown, and no clock runs, until the player says they are ready
     $('headline').innerHTML='<span class="fakeplace" style="font-size:.78em;line-height:1.05;display:block">'
-      + (vsLive() && !S.results.length ? '<b class="challenge">'+VS.name+' dropped his jaw '+VS.m.toFixed(1)+' m today. Beat it.</b>' : '')
+      + (vsLive() && !S.results.length ? '<b class="challenge">'+VS.name+' dropped his jaw '+fmtM(VS.m)+' today. Beat it.</b>' : '')
       + (S.mode==='back' && !S.results.length ? '<b class="challenge">Back issue #'+dayNumber()+' · '+fmtDate(S.backDate)+'</b>' : '')
       + 'Guess what\'s real, then deduce where it happened. The clock starts when the headline appears.'
       + (firstGame() ? '<b class="challenge" style="margin-top:8px">First time? 5 are true, 2 are made up. Tap the map once to zoom, tap again to pin, then LOCK IN.</b>' : '')
@@ -3134,6 +3183,7 @@ function submitGuess(timedOut){
   pts += cPts; S.cur.countryPts = cPts;
   S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
   Sound.play('lock',Math.min(1,pts/(PK*(PIN_PTS+COUNTRY_PTS)))); if(pts>0) Sound.play('jawDown');
+  showRarity(d);
   let actual = L.latLng(st.lat,st.lng);
   if(guessLL) actual = L.latLng(st.lat, st.lng + 360*Math.round((guessLL.lng-st.lng)/360));   // the copy of the world nearest the pin, so the line never wraps the long way round
   if(guessLL){
@@ -3195,7 +3245,7 @@ function renderStats(){
   const el=$('menuStats'); renderWardSub();
   if(!vals.length){ el.textContent='Finish a daily to start your record.'; return; }
   const avg=vals.reduce((a,x)=>a+x.m,0)/vals.length, best=Math.max(...vals.map(x=>x.m));
-  el.innerHTML='Best <b>'+best.toFixed(1)+' m</b> · avg <b>'+avg.toFixed(1)+' m</b> · <b>'+vals.length+'</b> played'+(n?' · <b>'+n+'</b>-day streak':'')+(fz?' · ❄ '+fz+' freeze'+(fz>1?'s':''):'');
+  el.innerHTML='Best <b>'+fmtM(best)+'</b> · avg <b>'+fmtM(avg)+'</b> · <b>'+vals.length+'</b> played'+(n?' · <b>'+n+'</b>-day streak':'')+(fz?' · ❄ '+fz+' freeze'+(fz>1?'s':''):'');
 }
 let CD_T=0;
 function runCountdown(){
@@ -3247,10 +3297,10 @@ function renderSummary(total,max,mineM){
 function drawDigLog(){
   const cv=$('digLog'), g=cv.getContext('2d'), W=cv.width, H=cv.height, n=S.results.length;
   g.imageSmoothingEnabled=false; g.fillStyle='#0b0e14'; g.fillRect(0,0,W,H);
-  const top=14, bot=H-20, left=30, right=W-10, maxP=Math.max(500,...S.results.map(x=>x.callPts+(x.pinPts||0)));
+  const top=14, bot=H-20, left=30, right=W-10, maxP=Math.max(200,...S.results.map(x=>x.callPts+(x.pinPts||0)));
   const Y=p=>Math.round(top+(bot-top)*Math.max(0,p)/maxP);
   g.font='10px monospace'; g.textAlign='right';
-  for(let p=0;p<=maxP;p+=100){ g.fillStyle='#1b2130'; for(let x=left;x<right;x+=4) g.fillRect(x,Y(p),2,1); g.fillStyle='#5d6577'; g.fillText(p?'+'+p:'0',left-4,Y(p)+3); }
+  for(let p=0;p<=maxP;p+=50){ g.fillStyle='#1b2130'; for(let x=left;x<right;x+=4) g.fillRect(x,Y(p),2,1); g.fillStyle='#5d6577'; g.fillText(p?'+'+p:'0',left-4,Y(p)+3); }
   const COL={ok:'#4fbf6a',meh:'#d9a441',warm:'#e07a3a',no:'#ff5d73',fake:'#4a8fe0',fooled:'#ff5d73'};
   g.textAlign='center';
   S.results.forEach((x,i)=>{
@@ -3274,7 +3324,7 @@ function finish(restored){
   S.score = total; renderDots();
   const inf = Scene.info();
   $('finalKicker').textContent = (S.mode==='daily' ? 'Daily #'+dayNumber()+' complete' : S.mode==='back' ? 'Back issue #'+dayNumber()+' complete' : 'Practice complete')+' · '+modeName(S.kind);
-  $('finalLine').innerHTML = inf.zone==='NOWHERE' ? 'His jaw stayed <b>shut</b>.' : inf.zone==='BEHIND THE PAPER' ? 'Jaw dropped <b>'+inf.m+'&nbsp;m</b>, still behind the paper.' : 'Jaw dropped <b>'+inf.m+'&nbsp;m</b> to <b>'+inf.zone.replace(/ /g,'&nbsp;')+'</b>.';
+  $('finalLine').innerHTML = inf.zone==='NOWHERE' ? 'His jaw stayed <b>shut</b>.' : inf.zone==='BEHIND THE PAPER' ? 'Jaw dropped <b>'+fmtM(inf.m).replace(' ','&nbsp;')+'</b>, still behind the paper.' : 'Jaw dropped <b>'+fmtM(inf.m).replace(' ','&nbsp;')+'</b> to <b>'+inf.zone.replace(/ /g,'&nbsp;')+'</b>.';
   $('finalScoreLine').innerHTML = 'Score <b>'+fmtPts(total)+'</b> / '+max;
   S.total=total; S.max=max;
   const cls=S.results.map(resultClass);
@@ -3328,7 +3378,7 @@ function finish(restored){
     Scene.browseStart();                                             // view back up on the guy; the player can scroll the dig
     Intro.planet(inf.zone, Scene.coreBlown());                                          // and the planet, zoomed out, damaged as this dig left it
     S.returned=true; document.body.classList.add('returned');
-    setTimeout(()=>{ $('depth').textContent=inf.m; setAusBar(inf.m); },60);
+    setTimeout(()=>{ setDepthHud(inf.m); setAusBar(inf.m); },60);
   } else setTimeout(renderDigCard,2600);
   updateStreak(); renderStats();
 }
@@ -3513,7 +3563,7 @@ $('wardrobe').addEventListener('click',e=>{ if(e.target===$('wardrobe')) closeWa
 function siteUrl(){ return window.claude ? location.href.split('#')[0] : location.origin+location.pathname; }
 function shareUrl(){
   if(S.mode!=='daily' || window.claude) return siteUrl();
-  const v=[playerName(), (S.finalM||0).toFixed(1), Math.round(S.total), dayKey(), S.kind].map(x=>String(x).replace(/~/g,'-')).join('~');
+  const v=[playerName(), Math.round(S.finalM||0), Math.round(S.total), dayKey(), S.kind].map(x=>String(x).replace(/~/g,'-')).join('~');
   return siteUrl()+'?vs='+encodeURIComponent(v);
 }
 const VS=(()=>{ try{
@@ -3530,8 +3580,8 @@ function renderVs(){
   const verdict = me>them ? 'You win. Send it back.' : me<them ? VS.name+' wins this one.' : 'Dead heat.';
   el.hidden=false;
   el.innerHTML='<span class="vsH">CHALLENGE · '+verdict+'</span>'
-    +'<span class="vsRow"><span>You</span><i style="width:'+Math.round(100*me/w)+'%"></i><b>'+me.toFixed(1)+' m</b></span>'
-    +'<span class="vsRow them"><span>'+VS.name+'</span><i style="width:'+Math.round(100*them/w)+'%"></i><b>'+them.toFixed(1)+' m</b></span>';
+    +'<span class="vsRow"><span>You</span><i style="width:'+Math.round(100*me/w)+'%"></i><b>'+fmtM(me)+'</b></span>'
+    +'<span class="vsRow them"><span>'+VS.name+'</span><i style="width:'+Math.round(100*them/w)+'%"></i><b>'+fmtM(them)+'</b></span>';
 }
 
 /* ---------- Back issues: earlier editions, playable any time (no streak, no leaderboard) ---------- */
@@ -3544,7 +3594,7 @@ function renderIssues(){
   $('mBack').hidden=!past.length;
   $('backList').innerHTML=past.map(x=>{
     const done=load('ff_back:'+x.date+':call');
-    return '<button data-d="'+x.date+'">#'+issueNumber(x.date)+' · '+fmtDate(x.date)+(done?' <small>✓ '+done.m.toFixed(1)+' m</small>':'')+'</button>';
+    return '<button data-d="'+x.date+'">#'+issueNumber(x.date)+' · '+fmtDate(x.date)+(done?' <small>✓ '+fmtM(done.m)+'</small>':'')+'</button>';
   }).join('');
   $('backList').querySelectorAll('button').forEach(b=>b.onclick=()=>openBackIssue(b.dataset.d));
 }
@@ -3603,7 +3653,7 @@ function answersOf(results){ return results.map(x=>[x.callOk?1:0, x.dist==null?n
 function shareZone(z){ return z==='NOWHERE' ? 'jaw shut' : String(z||'').toLowerCase().replace(/^the /,''); }
 async function share(){
   const label = (S.mode==='daily' ? 'Far-Fetched #'+dayNumber() : S.mode==='back' ? 'Far-Fetched #'+dayNumber()+' (back issue)' : 'Far-Fetched (practice)')+(S.kind!=='call'?' · '+modeName(S.kind):'');
-  const text = label+' · 🌎 '+(S.finalM!=null?S.finalM.toFixed(1):'0.0')+' m\n'
+  const text = label+' · 🌎 '+fmtM(S.finalM!=null?S.finalM:0)+'\n'
     + S.shareLines.join('\n')+'  '+shareZone(S.finalZone)+'\n'
     + shareUrl();                      // the link also carries the friend challenge
   const btn=$('btnShare');
@@ -3626,6 +3676,7 @@ async function share(){
    Paste your Supabase project's URL and its anon (public) key here. Both are meant to be public.
    Leave them empty and the public site shows each player's own digs instead. */
 const SUPABASE_URL = 'https://vztrvqjondvwvwommeur.supabase.co';   // e.g. 'https://abcdefgh.supabase.co'
+//   // e.g. 'https://abcdefgh.supabase.co'
 const SUPABASE_KEY = 'sb_publishable_JeMK09EA2GVvjowwCwlF9g_vrS4kiZo';   // the long "anon" / "publishable" key
 const sbOn=()=>!!(SUPABASE_URL && SUPABASE_KEY);
 function sbHeaders(extra){   // new-style publishable keys go only in the apikey header (they are not JWTs)
@@ -3738,28 +3789,30 @@ function drawCurve(rows, mine, cvEl){
   const cv=cvEl||$('curve'), g=cv.getContext('2d'), W=cv.width, H=cv.height;
   g.imageSmoothingEnabled=false;
   g.fillStyle='#0b0e14'; g.fillRect(0,0,W,H);
+  rows=rows.map(r=>Object.assign({},r,{m:r.m/1000}));             // depths are in metres; the chart is drawn in kilometres
+  if(typeof mine==='number') mine=mine/1000;
   const xs=rows.map(r=>r.m); if(typeof mine==='number') xs.push(mine);
-  // x axis: always 0 m up to the depth that breaks through to Australia (the same range every day), marks every 1, 2, 5, 10 ... m
-  const Lay=Scene.layout(), ausM=Math.ceil((Lay.EXIT-22)*Lay.M);     // the chin leaves the crust when 13+drop+9 reaches EXIT
+  // x axis: always 0 km up to the depth that breaks through to Australia (the same range every day), a mark every 1, 2 or 5 km
+  const ausM=Scene.layout().AUSM/1000;
   const hi=Math.max(ausM, ...xs, 2), lo=0;
-  const step=[1,2,5,10,20,50].find(st=>Math.ceil(hi/st)<=7)||100;
+  const step=[1,2,5,10].find(st=>Math.ceil(hi/st)<=10)||20;
   const L=24, R=W-24, X=m=>Math.round(L+(R-L)*(m-lo)/(hi-lo)), base=H-24;
   // grid, ticks and labels
   g.fillStyle='#1c2230'; for(let m=lo;m<=hi;m+=step){ g.fillRect(X(m),12,1,base-12); }
   g.fillStyle='#3a4050'; g.fillRect(L-8,base,R-L+16,2);
   g.fillStyle='#8a91a3'; g.font='15px VT323, monospace'; g.textAlign='center'; g.textBaseline='alphabetic';
   const lastTick=Math.floor(hi/step)*step;
-  for(let m=lo;m<=lastTick;m+=step){ g.fillRect(X(m),base+2,1,3); if(hi-m>=step*0.6 || m===lastTick && hi===lastTick) g.fillText(String(m)+(m===hi?' m':''),X(m),H-6); }
-  if(hi>lastTick){ g.fillRect(X(hi),base+2,1,3); g.fillText(hi.toFixed(1).replace(/\.0$/,'')+' m',X(hi),H-6); }
-  // histogram of players (0.5 m bins, 1 m bins on a wide axis)
-  const bw=step>=5?1:0.5, bins={}; rows.forEach(r=>{ const b=Math.floor(r.m/bw)*bw; bins[b]=(bins[b]||0)+1; });
+  for(let m=lo;m<=lastTick;m+=step){ g.fillRect(X(m),base+2,1,3); if(hi-m>=step*0.6 || m===lastTick && hi===lastTick) g.fillText(String(m)+(m===hi?' km':''),X(m),H-6); }
+  if(hi>lastTick){ g.fillRect(X(hi),base+2,1,3); g.fillText(hi.toFixed(1).replace(/\.0$/,'')+' km',X(hi),H-6); }
+  // histogram of players (250 m bins)
+  const bw=0.25, bins={}; rows.forEach(r=>{ const b=Math.floor(r.m/bw)*bw; bins[b]=(bins[b]||0)+1; });
   const top=Math.max(1,...Object.values(bins));
   Object.keys(bins).forEach(b=>{ const h=Math.round((base-24)*bins[b]/top*0.7); const x0=X(+b), x1=X(+b+bw);
     g.fillStyle='#2f3a55'; g.fillRect(x0+1,base-h,Math.max(2,x1-x0-2),h); });
   // fitted normal curve
   if(rows.length>=2){
     const mean=rows.reduce((a,r)=>a+r.m,0)/rows.length;
-    const sd=Math.max(0.35,Math.sqrt(rows.reduce((a,r)=>a+(r.m-mean)**2,0)/rows.length));
+    const sd=Math.max(0.3,Math.sqrt(rows.reduce((a,r)=>a+(r.m-mean)**2,0)/rows.length));
     g.fillStyle='#ffcc4d';
     for(let px=L;px<=R;px+=2){
       const m=lo+(px-L)/(R-L)*(hi-lo), y=Math.exp(-0.5*((m-mean)/sd)**2);
@@ -3797,7 +3850,7 @@ async function openBoard(){
     $('curve').hidden=true;
     $('rankLine').innerHTML = mine.length ? 'Your recent digs on this device.' : 'Finish a daily round to start your dig history.';
     const ol=$('topList'); ol.innerHTML='';
-    mine.forEach(k=>{ const li=document.createElement('li'); const nm=document.createElement('span'); nm.className='nm'; nm.textContent=k.split(':')[0]; const v=document.createElement('span'); v.textContent=h[k].m.toFixed(1)+' m · '+fmtPts(h[k].score); li.append(nm,v); ol.append(li); });
+    mine.forEach(k=>{ const li=document.createElement('li'); const nm=document.createElement('span'); nm.className='nm'; nm.textContent=k.split(':')[0]; const v=document.createElement('span'); v.textContent=fmtM(h[k].m)+' · '+fmtPts(h[k].score); li.append(nm,v); ol.append(li); });
     return;
   }
   $('nameRow').hidden=!b.sb;
@@ -3823,22 +3876,22 @@ async function openBoard(){
     const li=document.createElement('li'); if(r.id===b.me) li.className='me';
     const nm=document.createElement('span'); nm.className='nm';
     nm.textContent=((r.id===b.me && b.rank) ? b.rank : rows.indexOf(r)+1)+'. '+(r.id===b.me?'You':(b.names[r.id]||'Someone'));
-    const v=document.createElement('span'); v.textContent=r.m.toFixed(1)+' m · '+fmtPts(r.score);
+    const v=document.createElement('span'); v.textContent=fmtM(r.m)+' · '+fmtPts(r.score);
     li.append(nm,v); ol.append(li);
   });
 }
 
 /* ---------- The dig, as a picture and as emoji ---------- */
 function digZones(){
-  const L=Scene.layout(), chin=13+(S.finalM!=null ? S.finalM/L.M : L.jd)+9;   // the saved result, so a reload (which resets the man) still draws the real dig
+  const L=Scene.layout(), chin=13+(S.finalM!=null ? Scene.mToPx(S.finalM) : L.jd)+9;   // the saved result, so a reload (which resets the man) still draws the real dig
   const z=[['🪑','desk',76],['🧱','basement',L.L0],['🟫','dirt',L.L0+L.B[1]],['🪨','bedrock',L.L0+L.B[2]],['🌋','magma',L.L0+L.B[3]],['💎','core',L.L0+L.B[4]],['🦘','australia',L.EXIT]];
   return {L, chin, passed:z.filter(r=>chin>r[2])};
 }
-function digInfo(){ const i=Scene.info(); return S.finalM!=null ? {m:S.finalM.toFixed(1), zone:S.finalZone||i.zone} : i; }
+function digInfo(){ const i=Scene.info(); return S.finalM!=null ? {m:String(Math.round(S.finalM)), zone:S.finalZone||i.zone} : i; }
 function digEmoji(){
   const inf=digInfo(), d=digZones();
-  if(!d.passed.length) return ['📰😮 🦷 '+inf.m+' m'+(inf.zone==='BEHIND THE PAPER'?' (behind the paper)':'')];
-  return ['📰'+d.passed.map(r=>r[0]).join('')+'🦷 '+inf.m+' m · '+inf.zone];
+  if(!d.passed.length) return ['📰😮 🦷 '+fmtM(inf.m)+(inf.zone==='BEHIND THE PAPER'?' (behind the paper)':'')];
+  return ['📰'+d.passed.map(r=>r[0]).join('')+'🦷 '+fmtM(inf.m)+' · '+inf.zone];
 }
 function renderDigCard(){
   const d=digZones(), L=d.L, inf=digInfo();
@@ -3868,10 +3921,10 @@ function renderDigCard(){
   bg.fillStyle='#ffcc4d'; bg.font='bold 18px monospace'; bg.textAlign='center';
   bg.fillText((S.mode==='daily'?'FAR-FETCHED #'+dayNumber():'FAR-FETCHED'),big.width/2,big.height-26);
   bg.fillStyle='#eef0f4'; bg.font='16px monospace';
-  bg.fillText(inf.m+' m · '+(inf.zone==='NOWHERE'?'jaw shut':inf.zone.toLowerCase()),big.width/2,big.height-8);
+  bg.fillText(fmtM(inf.m)+' · '+(inf.zone==='NOWHERE'?'jaw shut':inf.zone.toLowerCase()),big.width/2,big.height-8);
   S.digPng=big.toDataURL('image/png');
   $('digImg').src=S.digPng;
-  $('digCap').textContent='Your dig: '+inf.m+' m'+(inf.zone==='NOWHERE'?'':' to '+inf.zone.toLowerCase())+'. Score '+fmtPts(S.total)+'.';
+  $('digCap').textContent='Your dig: '+fmtM(inf.m)+(inf.zone==='NOWHERE'?'':' to '+inf.zone.toLowerCase())+'. Score '+fmtPts(S.total)+'.';
 }
 function dataUrlBlob(u){ const b=atob(u.split(',')[1]), a=new Uint8Array(b.length); for(let i=0;i<b.length;i++) a[i]=b.charCodeAt(i); return new Blob([a],{type:'image/png'}); }
 async function saveDigImage(){
@@ -4615,10 +4668,10 @@ const Intro=(function(){
 })();
 
 function setAusBar(m){                                  // share of the way to the Australia breakthrough
-  const L=Scene.layout(), aus=(L.EXIT-22)*L.M, f=Math.max(0,Math.min(1,(+m||0)/aus));
+  const f=Math.max(0,Math.min(1,(+m||0)/Scene.layout().AUSM));
   $('ausBar').firstChild.style.height=(f*100).toFixed(1)+'%'; $('ausBar').lastChild.textContent=Math.floor(f*100)+'%'; $('ausBar').classList.toggle('full',f>=1);
 }
-Scene.onDepth(m=>{ $('depth').textContent=m; setAusBar(m); });
+Scene.onDepth(m=>{ setDepthHud(m); setAusBar(m); });
 Scene.onZone(name=>showToast(name));
 Scene.onBreak(z=>{ Sound.play('crunch'); if(z>=5) Sound.play('core'); });
 Scene.onRumble(l=>Sound.rumble(l));
