@@ -999,6 +999,7 @@ body.recap #bar{display:none}
 #rarity{position:fixed;left:50%;bottom:34vh;transform:translateX(-50%);z-index:8;text-align:center;pointer-events:none;white-space:nowrap}
 #rarity b{display:block;font:clamp(16px,5.2vw,26px)/1 var(--px);letter-spacing:.14em;color:var(--c);text-shadow:3px 3px 0 #0d0f14,0 0 14px var(--c),0 0 30px var(--c)}
 #rarity small{display:block;margin-top:8px;font:20px/1 var(--vt);color:#e8ecf5;text-shadow:2px 2px 0 #0d0f14}
+#rarity em{display:block;margin-top:6px;font:italic 18px/1.1 var(--vt);color:var(--c);text-shadow:2px 2px 0 #0d0f14,0 0 8px #0d0f14}
 #rarity.go{animation:rarityPop 2.8s steps(8) forwards}
 @keyframes rarityPop{0%{opacity:0;transform:translateX(-50%) scale(.5)}12%{opacity:1;transform:translateX(-50%) scale(1.15)}22%{transform:translateX(-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translateX(-50%) scale(1)}}
 @media (prefers-reduced-motion:reduce){#rarity.go{animation:rarityFade 2.8s forwards}@keyframes rarityFade{0%,80%{opacity:1}100%{opacity:0}}}
@@ -1253,7 +1254,7 @@ body.intro #ausBar{display:none}
   </div>
 
   <div id="toast" hidden></div>
-  <div id="rarity" aria-live="polite" hidden><b></b><small></small></div>
+  <div id="rarity" aria-live="polite" hidden><b></b><small></small><em></em></div>
   <div id="ausBar" aria-hidden="true"><i></i><b>0%</b></div>
   <button class="ghost" id="skipRecap">Skip ▸</button>
   <section id="about" hidden aria-label="About Far-Fetched">
@@ -1369,14 +1370,15 @@ async function loadDaily(){
     }catch(e){}
   }
 }
-const RARITY=[[100,'GLOBALIST','#ffd23f'],[400,'STATESMAN','#b56bff'],[1000,'PUNDIT','#ff4d5e'],[2500,'SKIMMER','#4da6ff'],[Infinity,'ROCK-DWELLER','#ffffff']];   // pin distance in km -> name and colour
+const RARITY=[[100,'GLOBALIST','#ffd23f','Were you there? Be honest.'],[400,'STATESMAN','#b56bff','A short trip from correct.'],[1000,'PUNDIT','#ff4d5e','You\'d do great on cable news.'],[2500,'SKIMMER','#4da6ff','You read the headline. Mostly.'],[Infinity,'ROCK-DWELLER','#ffffff','Come out from under there. It\'s a big world.']];   // pin distance in km -> name, colour and quip
 let RARITY_T=0;
 function showRarity(d){
   if(d==null) return;
   const r=RARITY.find(x=>d<=x[0]), el=$('rarity');
   el.style.setProperty('--c',r[2]);
   el.firstChild.textContent=r[1];
-  el.lastChild.textContent=Math.round(d).toLocaleString()+' km away';
+  el.querySelector('small').textContent=Math.round(d).toLocaleString()+' km away';
+  el.querySelector('em').textContent=r[3];
   el.hidden=false; el.classList.remove('go'); void el.offsetWidth; el.classList.add('go');
   clearTimeout(RARITY_T); RARITY_T=setTimeout(()=>{ el.hidden=true; el.classList.remove('go'); },2900);
 }
