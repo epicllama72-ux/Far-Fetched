@@ -1372,14 +1372,23 @@ async function loadDaily(){
 }
 const RARITY=[[100,'GLOBALIST','#ffd23f','Were you there? Be honest.'],[400,'STATESMAN','#b56bff','A short trip from correct.'],[1000,'PUNDIT','#ff4d5e','You\'d do great on cable news.'],[2500,'SKIMMER','#4da6ff','You read the headline. Mostly.'],[Infinity,'ROCK-DWELLER','#ffffff','Come out from under there. It\'s a big world.']];   // pin distance in km -> name, colour and quip
 function hideRarity(){ const el=$('rarity'); el.hidden=true; el.classList.remove('go'); }
+function showPopup(color,title,line,quip){
+  const el=$('rarity');
+  el.style.setProperty('--c',color);
+  el.firstChild.textContent=title;
+  el.querySelector('small').textContent=line;
+  el.querySelector('em').textContent=quip;
+  el.hidden=false; el.classList.remove('go'); void el.offsetWidth; el.classList.add('go');
+}
 function showRarity(d,got,max){
   if(d==null) return;
-  const r=RARITY.find(x=>d<=x[0]), el=$('rarity');
-  el.style.setProperty('--c',r[2]);
-  el.firstChild.textContent=r[1];
-  el.querySelector('small').textContent=Math.round(d).toLocaleString()+' km away  •  '+got+' / '+max+' points';
-  el.querySelector('em').textContent=r[3];
-  el.hidden=false; el.classList.remove('go'); void el.offsetWidth; el.classList.add('go');
+  const r=RARITY.find(x=>d<=x[0]);
+  showPopup(r[2],r[1],Math.round(d).toLocaleString()+' km away  •  '+got+' / '+max+' pts',r[3]);
+}
+/* a fake: caught or fooled, with the points won or lost out of the 50 on offer */
+function showFakePopup(callOk,pts,max){
+  if(callOk) showPopup('#4da6ff','CAUGHT',pts+' / '+max+' pts','Fake News!');
+  else showPopup('#d6dbe8','FOOLED','\u2212'+Math.abs(pts)+' / '+max+' pts',"That didn't happen. Yet");
 }
 function fmtM(m){ m=Math.round(+m||0); return m>=1000 ? (m/1000).toFixed(1)+' km' : m+' m'; }
 function setDepthHud(m){ m=Math.round(+m||0); $('depth').textContent = m>=1000 ? (m/1000).toFixed(2) : String(m); $('depthU').textContent = m>=1000 ? 'km' : 'm'; }
@@ -3067,6 +3076,7 @@ function revealCall(st){
     }
     $('headline').innerHTML = headlineHTML(st,true);
     wireWhy(fb);
+    showFakePopup(c.callOk,c.callPts,FAKE_PTS);      // stays up until the next headline
     finishRound();
   }
   renderDots();
