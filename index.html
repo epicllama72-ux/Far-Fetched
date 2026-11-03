@@ -997,6 +997,7 @@ body.recap #bar{display:none}
 #ausBar.full{border-color:#ffd23f;box-shadow:0 0 8px #ff8a1f}
 /* how close the pin was: a rarity banner, gold (rarest) > purple > red > blue > white */
 #rarity{position:fixed;left:50%;bottom:34vh;transform:translateX(-50%);z-index:8;text-align:center;pointer-events:none;white-space:nowrap}
+#rarity canvas{display:block;width:48px;height:48px;margin:0 auto 8px;image-rendering:pixelated;filter:drop-shadow(0 0 6px var(--c))}
 #rarity b{display:block;font:clamp(16px,5.2vw,26px)/1 var(--px);letter-spacing:.14em;color:var(--c);text-shadow:3px 3px 0 #0d0f14,0 0 14px var(--c),0 0 30px var(--c)}
 #rarity small{display:block;margin-top:8px;font:20px/1 var(--vt);color:#e8ecf5;text-shadow:2px 2px 0 #0d0f14}
 #rarity em{display:block;margin-top:6px;font:italic 18px/1.1 var(--vt);color:var(--c);text-shadow:2px 2px 0 #0d0f14,0 0 8px #0d0f14}
@@ -1254,7 +1255,7 @@ body.intro #ausBar{display:none}
   </div>
 
   <div id="toast" hidden></div>
-  <div id="rarity" aria-live="polite" hidden><b></b><small></small><em></em></div>
+  <div id="rarity" aria-live="polite" hidden><canvas id="rIcon" width="16" height="16" hidden></canvas><b></b><small></small><em></em></div>
   <div id="ausBar" aria-hidden="true"><i></i><b>0%</b></div>
   <button class="ghost" id="skipRecap">Skip ▸</button>
   <section id="about" hidden aria-label="About Far-Fetched">
@@ -1370,12 +1371,24 @@ async function loadDaily(){
     }catch(e){}
   }
 }
-const RARITY=[[100,'GLOBALIST','#ffd23f','Were you there? Be honest.'],[400,'STATESMAN','#b56bff','A short trip from correct.'],[1000,'PUNDIT','#ff4d5e','You\'d do great on cable news.'],[2500,'SKIMMER','#4da6ff','You read the headline. Mostly.'],[Infinity,'ROCK-DWELLER','#ffffff','Come out from under there. It\'s a big world.']];   // pin distance in km -> name, colour and quip
+const RARITY=[[100,'GLOBALIST','#ffd23f','Were you there? Be honest.','globe'],[400,'STATESMAN','#b56bff','A short trip from correct.','capitol'],[1000,'PUNDIT','#ff4d5e','You\'d do great on cable news.','tv'],[2500,'SKIMMER','#4da6ff','You read the headline. Mostly.','news'],[Infinity,'ROCK-DWELLER','#ffffff','Come out from under there. It\'s a big world.','rock']];   // pin distance in km -> name, colour and quip
 function hideRarity(){ const el=$('rarity'); el.hidden=true; el.classList.remove('go'); }
-function showPopup(color,title,line,quip){
+const RICONS={globe:["....oooddooo....","...occcddccco...","..oclllddcccco..","..oddddddddddo..",".ocllllddccccco.",".ocllllddccccco.",".oddddddddddddo.",".oddddddddddddo.",".occcccddccccco.",".occcccddccccco.","..oddddddddddo..","...occcddccco...","....occddcco....","......oooo......","....oooooooo....","................"],capitol:["................",".......oo.......",".......oco......","......occco.....",".....occllco....",".....occcccco...","..oooooooooooo..","..occcccccccco..","..ocdcdcdcdcco..","..ocdcdcdcdcco..","..ocdcdcdcdcco..","..ocdcdcdcdcco..","..occcccccccco..",".oooooooooooooo.","ooccccccccccccoo","oooooooooooooooo"],tv:["...o........o...","....o......o....",".....o....o.....","......o..o......",".oooooooooooooo.",".occcccccccccco.",".ocolllllllloco.",".ocowwlllllloco.",".ocolllllllloco.",".ocolllllllloco.",".ocolllllllloco.",".ocooooooooooco.",".occcccccccccco.",".oooooooooooooo.","..oo........oo..","................"],news:["................","..oooooooooooo..","..owwwwwwwwwwo..","..owccccccccwo..","..owccccccccwo..","..owwwwwwwwwwo..","..owccccccwwwo..","..owwwwwwwwwwo..","..owccccccccwo..","..owwwwwwwwwwo..","..owccccwwwwwo..","..owwwwwwwwwwo..","..owccccccwwwo..","..owwwwwwwwwwo..","..oooooooooooo..","................"],rock:["................","................",".....oooooo.....","...ooollllcoo...","..oollllllcccoo.",".ollllllllcccco.",".olllllllcccccco","ollllllcccccccdo","ollllcccccccccdo","occccccccccccddo","occcccccccccdddo","oddccccccccddddo",".ooddddddddddoo.","..oooooooooooo..","................","................"]};
+/* a 16x16 pixel sprite in the tier's colour: o outline, c main, l light, d dark, w paper */
+function drawRIcon(name,color){
+  const cv=$('rIcon'), rows=RICONS[name];
+  cv.hidden=!rows; if(!rows) return;
+  const mixc=(h,t,a)=>{ const n=parseInt(h.slice(1),16), c=[n>>16&255,n>>8&255,n&255]; return 'rgb('+c.map((v,i)=>Math.round(v+(t-v)*a)).join(',')+')'; };
+  const pal={o:'#0d0f14',c:color,l:mixc(color,255,.5),d:mixc(color,0,.45),w:'#f3f0e6'};
+  if(name==='rock') Object.assign(pal,{c:'#a8aab5',l:'#d6d8e0',d:'#6a6c78'});
+  const g=cv.getContext('2d'); g.clearRect(0,0,16,16);
+  rows.forEach((r,y)=>{ for(let x=0;x<16;x++){ const ch=r[x]; if(pal[ch]){ g.fillStyle=pal[ch]; g.fillRect(x,y,1,1); } } });
+}
+function showPopup(color,title,line,quip,icon){
   const el=$('rarity');
   el.style.setProperty('--c',color);
-  el.firstChild.textContent=title;
+  drawRIcon(icon,color);
+  el.querySelector('b').textContent=title;
   el.querySelector('small').textContent=line;
   el.querySelector('em').textContent=quip;
   el.hidden=false; el.classList.remove('go'); void el.offsetWidth; el.classList.add('go');
@@ -1383,7 +1396,7 @@ function showPopup(color,title,line,quip){
 function showRarity(d,got,max){
   if(d==null) return;
   const r=RARITY.find(x=>d<=x[0]);
-  showPopup(r[2],r[1],Math.round(d).toLocaleString()+' km away  •  '+got+' / '+max+' pts',r[3]);
+  showPopup(r[2],r[1],Math.round(d).toLocaleString()+' km away  •  '+got+' / '+max+' pts',r[3],r[4]);
 }
 /* a fake: caught or fooled, with the points won or lost out of the 50 on offer */
 function showFakePopup(callOk,pts,max){
