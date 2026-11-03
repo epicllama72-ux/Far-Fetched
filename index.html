@@ -1000,9 +1000,10 @@ body.recap #bar{display:none}
 #rarity b{display:block;font:clamp(16px,5.2vw,26px)/1 var(--px);letter-spacing:.14em;color:var(--c);text-shadow:3px 3px 0 #0d0f14,0 0 14px var(--c),0 0 30px var(--c)}
 #rarity small{display:block;margin-top:8px;font:20px/1 var(--vt);color:#e8ecf5;text-shadow:2px 2px 0 #0d0f14}
 #rarity em{display:block;margin-top:6px;font:italic 18px/1.1 var(--vt);color:var(--c);text-shadow:2px 2px 0 #0d0f14,0 0 8px #0d0f14}
-#rarity.go{animation:rarityPop 2.8s steps(8) forwards}
-@keyframes rarityPop{0%{opacity:0;transform:translateX(-50%) scale(.5)}12%{opacity:1;transform:translateX(-50%) scale(1.15)}22%{transform:translateX(-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translateX(-50%) scale(1)}}
-@media (prefers-reduced-motion:reduce){#rarity.go{animation:rarityFade 2.8s forwards}@keyframes rarityFade{0%,80%{opacity:1}100%{opacity:0}}}
+#rarity span{display:block;margin-top:8px;font:16px/1 var(--px);color:#e8ecf5;text-shadow:2px 2px 0 #0d0f14,0 0 8px #0d0f14}
+#rarity.go{animation:rarityPop .9s steps(8) forwards}
+@keyframes rarityPop{0%{opacity:0;transform:translateX(-50%) scale(.5)}12%{opacity:1;transform:translateX(-50%) scale(1.15)}22%,100%{opacity:1;transform:translateX(-50%) scale(1)}}
+@media (prefers-reduced-motion:reduce){#rarity.go{animation:none;opacity:1}}
 #ausBar b{position:absolute;left:-4px;top:100%;margin-top:4px;font:14px/1 var(--vt);font-weight:400;color:#ffd23f;white-space:nowrap;text-shadow:1px 1px 0 #000}
 body.intro #ausBar{display:none}
 @keyframes toast{0%{opacity:0;transform:translate(-50%,6px)}6%{opacity:1;transform:translate(-50%,0)}88%{opacity:1}100%{opacity:0}}
@@ -1254,7 +1255,7 @@ body.intro #ausBar{display:none}
   </div>
 
   <div id="toast" hidden></div>
-  <div id="rarity" aria-live="polite" hidden><b></b><small></small><em></em></div>
+  <div id="rarity" aria-live="polite" hidden><b></b><small></small><em></em><span></span></div>
   <div id="ausBar" aria-hidden="true"><i></i><b>0%</b></div>
   <button class="ghost" id="skipRecap">Skip ▸</button>
   <section id="about" hidden aria-label="About Far-Fetched">
@@ -1371,16 +1372,16 @@ async function loadDaily(){
   }
 }
 const RARITY=[[100,'GLOBALIST','#ffd23f','Were you there? Be honest.'],[400,'STATESMAN','#b56bff','A short trip from correct.'],[1000,'PUNDIT','#ff4d5e','You\'d do great on cable news.'],[2500,'SKIMMER','#4da6ff','You read the headline. Mostly.'],[Infinity,'ROCK-DWELLER','#ffffff','Come out from under there. It\'s a big world.']];   // pin distance in km -> name, colour and quip
-let RARITY_T=0;
-function showRarity(d){
+function hideRarity(){ const el=$('rarity'); el.hidden=true; el.classList.remove('go'); }
+function showRarity(d,got,max){
   if(d==null) return;
   const r=RARITY.find(x=>d<=x[0]), el=$('rarity');
   el.style.setProperty('--c',r[2]);
   el.firstChild.textContent=r[1];
   el.querySelector('small').textContent=Math.round(d).toLocaleString()+' km away';
   el.querySelector('em').textContent=r[3];
+  el.querySelector('span').textContent=got+' / '+max+' points';
   el.hidden=false; el.classList.remove('go'); void el.offsetWidth; el.classList.add('go');
-  clearTimeout(RARITY_T); RARITY_T=setTimeout(()=>{ el.hidden=true; el.classList.remove('go'); },2900);
 }
 function fmtM(m){ m=Math.round(+m||0); return m>=1000 ? (m/1000).toFixed(1)+' km' : m+' m'; }
 function setDepthHud(m){ m=Math.round(+m||0); $('depth').textContent = m>=1000 ? (m/1000).toFixed(2) : String(m); $('depthU').textContent = m>=1000 ? 'km' : 'm'; }
@@ -3185,7 +3186,7 @@ function submitGuess(timedOut){
   pts += cPts; S.cur.countryPts = cPts;
   S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
   Sound.play('lock',Math.min(1,pts/(PK*(PIN_PTS+COUNTRY_PTS)))); if(pts>0) Sound.play('jawDown');
-  showRarity(d);
+  showRarity(d, S.cur.callPts+pts, Math.round(PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS)));   // stays up until the next headline
   let actual = L.latLng(st.lat,st.lng);
   if(guessLL) actual = L.latLng(st.lat, st.lng + 360*Math.round((guessLL.lng-st.lng)/360));   // the copy of the world nearest the pin, so the line never wraps the long way round
   if(guessLL){
@@ -3233,6 +3234,7 @@ function finishRound(){
 }
 
 function next(){
+  hideRarity();
   S.i++;
   if(S.i<S.rounds.length) Sound.play('flip');
   window.scrollTo({top:0});
