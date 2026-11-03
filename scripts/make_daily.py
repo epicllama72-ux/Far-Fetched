@@ -1240,6 +1240,13 @@ def main():
     fake_hint = lambda f: f.get("hint") if (f.get("hint") and "{}" not in f["hint"] and len(f["hint"]) <= 48 and len(f["hint"].split()) <= 6) else ""
     call = [real_call(r) for r in call_real] + [{"real": False, "h": f["h"], "tell": (f.get("tell") or "")[:160]} for f in fakes[:N_CALL_FAKE]]
     rng.shuffle(call)
+    # the best true story opens the paper, so a fake is never #1 (the rest stay shuffled)
+    if call_real:
+        best_h = max(call_real, key=merit)["h"]
+        for i, x in enumerate(call):
+            if x.get("h") == best_h:
+                call.insert(0, call.pop(i))
+                break
     rng.shuffle(blank)
     result = {"date": day, "generated": now.isoformat(timespec="seconds"),
               "call": call, "blank": [real_blank(r) for r in blank]}
