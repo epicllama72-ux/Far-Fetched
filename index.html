@@ -930,6 +930,9 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #summary canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rendering:crisp-edges;background:#0b0e14;border:1px solid #232a38}
 #sumRank{margin:8px 0 2px;font:9px/1.4 var(--px);letter-spacing:.16em;color:var(--cyan);text-transform:uppercase}
 #sumRank b{font-weight:400;color:var(--accent)}
+#btnChallenge{display:block;margin:14px auto 0;padding:9px 16px;background:transparent;border:2px solid var(--accent);color:var(--accent);font:9px/1 var(--px);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 #000}
+#btnChallenge:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
+#btnChallenge[hidden]{display:none}
 .slbl{margin:16px 0 6px;font:8px/1 var(--px);letter-spacing:.18em;color:#9aa3b5;display:flex;gap:10px;align-items:center}
 .slbl span{color:#5d6577}
 .slbl::after{content:'';flex:1;border-top:1px dashed #2d3444}
@@ -1257,6 +1260,7 @@ body.intro #ausBar{display:none}
       <p id="vsLine" hidden></p>
       <p id="crowdTop" hidden></p>
       <div id="sumBoard" hidden><canvas id="sumCurve" width="320" height="110" aria-label="Today's scores"></canvas><p id="sumRank"></p></div>
+      <button id="btnChallenge" class="challenge" type="button" hidden>Challenge a friend</button>
       <p class="slbl">YOUR DIG <span>deeper = more points</span></p>
       <canvas id="digLog" width="320" height="150" aria-label="Points per headline"></canvas>
       <p class="slbl">THE SCALE</p>
@@ -3325,6 +3329,7 @@ const TIERS=[   // the same ranks as the pin popups, lowest to highest
   {f:0.85, icon:'globe',   color:'#ffd23f', name:'Globalist',    line:'Were you there? Be honest.'}];
 function tierOf(total,max){ let k=0; TIERS.forEach((t,i)=>{ if(total>=Math.round(t.f*max/50)*50) k=i; }); return k; }
 function renderSummary(total,max,mineM){
+  $('btnChallenge').hidden = S.mode!=='daily';      // a challenge only makes sense on the shared daily paper
   const k=tierOf(total,max), cut=TIERS.map(t=>Math.round(t.f*max/50)*50);
   $('tiers').innerHTML=TIERS.map((t,i)=>{
     const lo=cut[i], hi=i<TIERS.length-1?cut[i+1]-1:max;
@@ -3617,6 +3622,21 @@ $('wardrobe').addEventListener('click',e=>{ if(e.target===$('wardrobe')) closeWa
 
 /* ---------- Friend challenge: the share link carries your dig; a friend who opens it is told to beat it ---------- */
 function siteUrl(){ return window.claude ? location.href.split('#')[0] : location.origin+location.pathname; }
+/* "Beat my score": a challenge message with your depth and rank, and the link that carries the friend challenge */
+async function challenge(){
+  const btn=$('btnChallenge'), rank=TIERS[tierOf(S.total||0,S.max||1000)].name;
+  const text='Beat my score: '+fmtM(S.finalM!=null?S.finalM:0)+', '+rank+'\nFar-Fetched #'+dayNumber()+(S.kind!=='call'?' · '+modeName(S.kind):'')+'\n'+shareUrl();
+  try{
+    if(navigator.share){
+      try{ await navigator.share({text}); return; }
+      catch(e){ if(e && e.name==='AbortError') return; }
+    }
+    await navigator.clipboard.writeText(text);
+    btn.textContent='Copied!';
+  }catch(e){ btn.textContent='Copy failed'; }
+  setTimeout(()=>btn.textContent='Challenge a friend',1500);
+}
+$('btnChallenge').onclick=challenge;
 function shareUrl(){
   if(S.mode!=='daily' || window.claude) return siteUrl();
   const v=[playerName(), Math.round(S.finalM||0), Math.round(S.total), dayKey(), S.kind].map(x=>String(x).replace(/~/g,'-')).join('~');
