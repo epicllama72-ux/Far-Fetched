@@ -1,6 +1,108 @@
 {
  "real": [
   {
+   "id": 11,
+   "h": "Officers shout 'fart police, fart the wood' in botched Spanish before police dog bites tourist in {}",
+   "h2": "Aurora, Colorado officers shout 'fart police, fart the wood' in botched Spanish before police [] bites tourist",
+   "ans": [
+    "dog",
+    "dogs",
+    "k9"
+   ],
+   "alt": [
+    "canine",
+    "hound",
+    "shepherd",
+    "puppy"
+   ],
+   "place": "Aurora, Colorado",
+   "geocode": "Aurora, Colorado, USA",
+   "lat": 39.7401441,
+   "lng": -104.8733376,
+   "country": "United States",
+   "cc": "US",
+   "hint": "home of Buckley Space Force Base",
+   "clue": "SWAT team and a police K-9 in a US suburb",
+   "clue_strength": 1,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 4,
+   "theme": "language",
+   "src": "https://www.denverpost.com/2026/10/19/aurora-police-excessive-force-lawsuit-dog-bite/",
+   "published": "2026-10-23",
+   "banked": "2026-11-05",
+   "rules": 2
+  },
+  {
+   "id": 15,
+   "h": "Sheep climbs onto roof of single-storey house to graze on the grass growing there in {}",
+   "h2": "[] climbs onto roof of single-storey house to graze on grass in Lalapaşa, Edirne, Turkey",
+   "ans": [
+    "sheep",
+    "ram",
+    "ewe",
+    "lamb"
+   ],
+   "alt": [
+    "goat",
+    "cow",
+    "animal",
+    "lambs"
+   ],
+   "place": "Lalapaşa, Edirne, Turkey",
+   "geocode": "Lalapaşa, Edirne, Turkey",
+   "lat": 41.8390388,
+   "lng": 26.7361017,
+   "country": "Turkey",
+   "cc": "TR",
+   "hint": "a Thracian border district",
+   "clue": "village grazing livestock near the Balkan border",
+   "clue_strength": 1,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 2,
+   "theme": "roof",
+   "src": "https://news.google.com/rss/articles/CBMid0FVX3lxTE90Q2dQSjJSRDVrN1dYd0RpU0s1eGRmVlpzSmI1V0J2QW1sSHVrN0NlRVVsd004WmFGZ2Y5V0FyQkJNc2JCVHZpeEU0MEdnbWtWdWhULUpWcTJSNHNhODk2VlV0RTZhWC1DaVZlZ2NuakttTWZHbkd3?oc=5",
+   "published": "2026-10-28",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "blank_only": true
+  },
+  {
+   "id": 43,
+   "h": "Man has breakfast, changes shirt and takes toilet cistern lids from two bars minutes apart in {}",
+   "h2": "Man takes toilet cistern [] from two bars minutes apart after changing shirt in Sierra de Cádiz, Spain",
+   "ans": [
+    "lids",
+    "lid",
+    "covers",
+    "cover"
+   ],
+   "alt": [
+    "tops",
+    "caps",
+    "tanks",
+    "seats"
+   ],
+   "place": "Sierra de Cádiz, Spain",
+   "geocode": "Sierra de Cádiz, Andalusia, Spain",
+   "lat": 36.8332379,
+   "lng": -5.6138257,
+   "country": "Spain",
+   "cc": "ES",
+   "hint": "home of Payoyo goat cheese",
+   "clue": "breakfast and a coffee at village bars, as in southern Spain",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 1,
+   "unbelievable": 4,
+   "theme": "bar-theft",
+   "src": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOcEVvRndDQjZfelN3bWlwTkQ3dDQ4Q1NoVVJxV2MyQ3d0TkN3c2dKYW5hZ2kwRmdlSnZfc1RRNmRQWUxBOFRqdjdKZ0RFQjBJbmZhYmdJeHlBajJIQy05R0pkUGNSaGpSVTk0bTl0RkVwLXdDdlJrWGVvSEhZLUpLYmtfT2hjNjhvdkNvVzVqMXgxVk1YNmI2S1hrX2ZoeWNfdWdkZFNvM1BFelN1MTh0R19wOXVPbkZxYVhxbDhvMGVtcm5YYWNjT041Y3RqZzIwTC1DeTc2Z2Z5Y0p6Rm5xY2lDOWNTLVJROU9rMzF5eXVYb3RlMFRaU1lvYnhRdEpIX2tNY0hEZ0NzUVlTaVd2Zw?oc=5",
+   "published": "2026-11-02",
+   "banked": "2026-11-05",
+   "rules": 2
+  },
+  {
    "id": 20,
    "h": "Couple who divorced over cheating remarry, then divorce again over cheating; first ruling set 125,000 lira in {}",
    "h2": "Woman in Ankara, Turkey marries same [] twice and divorces him twice over cheating",
@@ -29,40 +131,6 @@
    "unbelievable": 3,
    "theme": "marriage",
    "src": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQYVJVRk1aUjRMbkk0WENOaEpaS2lrVHZxRVlOZFNGQzA4RVMtWVY5clNQSDJsMVZWZkhXQ0lqRUR0Z1RoaGVPRUMxdm0xYktCdVpnb3lBRmc4TXg3aGNxaXhrZGc2VzNPN2t0bHZLM09EQThXYTBCeUJTQVRTSVNmc2RmN2x3VHZDbzZ6YnRzaERrSGMxUDFUb2RLR01rOEExUDJGNVJlQnFMUmpQczRFTGpFM1VGcXlRM0JocFluMk1EOHdSWHdOZzBfc2pXTDV1?oc=5",
-   "published": "2026-11-02",
-   "banked": "2026-11-04",
-   "rules": 2
-  },
-  {
-   "id": 29,
-   "h": "Man has breakfast, changes shirt, and steals toilet cistern lids from two bars 18 minutes apart in {}",
-   "h2": "Man steals toilet cistern [] from two bars within minutes, changing shirt in between, in Sierra de Cádiz, Spain",
-   "ans": [
-    "lids",
-    "lid",
-    "covers",
-    "cover"
-   ],
-   "alt": [
-    "tops",
-    "caps",
-    "tapas",
-    "seats"
-   ],
-   "place": "Sierra de Cádiz, Spain",
-   "geocode": "Sierra de Cádiz, Andalusia, Spain",
-   "lat": 36.8332379,
-   "lng": -5.6138257,
-   "country": "Spain",
-   "cc": "ES",
-   "hint": "",
-   "clue": "tapas-bar culture and local Spanish bar group",
-   "clue_strength": 1,
-   "jargon_only": false,
-   "mappable": 1,
-   "unbelievable": 4,
-   "theme": "toilet",
-   "src": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOcEVvRndDQjZfelN3bWlwTkQ3dDQ4Q1NoVVJxV2MyQ3d0TkN3c2dKYW5hZ2kwRmdlSnZfc1RRNmRQWUxBOFRqdjdKZ0RFQjBJbmZhYmdJeHlBajJIQy05R0pkUGNSaGpSVTk0bTl0RkVwLXdDdlJrWGVvSEhZLUpLYmtfT2hjNjhvdkNvVzVqMXgxVk1YNmI2S1hrX2ZoeWNfdWdkZFNvM1BFelN1MTh0R19wOXVPbkZxYVhxbDhvMGVtcm5YYWNjT041Y3RqZzIwTC1DeTc2Z2Z5Y0p6Rm5xY2lDOWNTLVJROU9rMzF5eXVYb3RlMFRaU1lvYnhRdEpIX2tNY0hEZ0NzUVlTaVd2Zw?oc=5",
    "published": "2026-11-02",
    "banked": "2026-11-04",
    "rules": 2
@@ -103,50 +171,6 @@
    "rules": 2
   },
   {
-   "id": 52,
-   "h": "First-of-its-kind houseplant hospital opens in {}, where sick plants are put on drips",
-   "place": "Edinburgh, Scotland",
-   "geocode": "Leith, Edinburgh, Scotland, UK",
-   "lat": 55.976,
-   "lng": -3.167,
-   "country": "United Kingdom",
-   "cc": "GB",
-   "hint": "home of the Fringe festival",
-   "clue": "plant 'hospital' + drips + a UK high street",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 2,
-   "unbelievable": 4,
-   "theme": "plants",
-   "src": "https://discover.swns.com/2026/07/britains-first-houseplant-hospital-has-opened-where-plants-are-put-on-drips/",
-   "published": "2026-07-15",
-   "banked": "2026-11-03",
-   "rules": 2,
-   "daily_only": true
-  },
-  {
-   "id": 54,
-   "h": "Millions of bees get loose after truck carrying 400 hives crashes in {}: 'Please remain indoors'",
-   "place": "Mauriceville, Texas",
-   "geocode": "Mauriceville, Orange County, Texas, USA",
-   "lat": 30.2149,
-   "lng": -93.8863,
-   "country": "United States",
-   "cc": "US",
-   "hint": "",
-   "clue": "US sheriff 'remain indoors' alert + a semitrailer",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 4,
-   "theme": "animal",
-   "src": "https://www.cbsnews.com/news/bees-escape-truck-hives-crashes-texas/",
-   "published": "2026-06-22",
-   "banked": "2026-11-03",
-   "rules": 2,
-   "daily_only": true
-  },
-  {
    "id": 55,
    "h": "Big rats take over apartment complex in {}",
    "place": "New Haven, Connecticut",
@@ -164,28 +188,6 @@
    "theme": "animal",
    "src": "https://patch.com/connecticut/newhaven/big-rats-take-over-apartment-complex-new-haven-report",
    "published": "2026-10-20",
-   "banked": "2026-11-03",
-   "rules": 2,
-   "daily_only": true
-  },
-  {
-   "id": 56,
-   "h": "Hundreds gather in {} for an annual event celebrating spring by burning winter socks",
-   "place": "Annapolis, Maryland",
-   "geocode": "Annapolis, Maryland, USA",
-   "lat": 38.9784,
-   "lng": -76.4922,
-   "country": "United States",
-   "cc": "US",
-   "hint": "home of the Naval Academy",
-   "clue": "sailing-season sock bonfire + oysters",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 4,
-   "theme": "festival",
-   "src": "https://www.newsbreak.com/weku-1588671/4559408213896-decades-ago-a-maryland-sailor-burned-his-winter-socks-now-it-s-a-spring-tradition",
-   "published": "2026-03-25",
    "banked": "2026-11-03",
    "rules": 2,
    "daily_only": true
@@ -235,50 +237,6 @@
    "daily_only": true
   },
   {
-   "id": 59,
-   "h": "Former professor accused of damaging student's backpack with his urine in {}",
-   "place": "Saint Paul, Minnesota",
-   "geocode": "Macalester College, Saint Paul, Minnesota, USA",
-   "lat": 44.9378,
-   "lng": -93.1686,
-   "country": "United States",
-   "cc": "US",
-   "hint": "birthplace of F. Scott Fitzgerald",
-   "clue": "US college campus + a criminal complaint",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 4,
-   "theme": "crime",
-   "src": "https://www.cbsnews.com/minnesota/news/former-macalester-college-professor-urine-charges/",
-   "published": "2026-03-13",
-   "banked": "2026-11-03",
-   "rules": 2,
-   "daily_only": true
-  },
-  {
-   "id": 60,
-   "h": "Customers suffer chemical burns after Chili's margaritas are mistakenly made with degreaser instead of sugar in {}",
-   "place": "Forest City, North Carolina",
-   "geocode": "Chili's, Forest City, North Carolina, USA",
-   "lat": 35.334,
-   "lng": -81.8651,
-   "country": "United States",
-   "cc": "US",
-   "hint": "",
-   "clue": "US chain restaurant + a county health district",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 3,
-   "theme": "food",
-   "src": "https://www.nbcnews.com/news/us-news/chilis-customers-north-carolina-suffer-burns-margaritas-mistakenly-mad-rcna607037",
-   "published": "2026-10-30",
-   "banked": "2026-11-03",
-   "rules": 2,
-   "daily_only": true
-  },
-  {
    "id": 62,
    "h": "County official reminds voters that there is no presidential election in 2026 after receiving repeated questions in {}",
    "place": "Phoenix, Arizona",
@@ -311,7 +269,7 @@
    "cc": "AU",
    "hint": "",
    "clue": "'college' + a fundraising walkathon + an apology",
-   "clue_strength": 2,
+   "clue_strength": 1,
    "jargon_only": false,
    "mappable": 2,
    "unbelievable": 3,
@@ -345,6 +303,50 @@
    "daily_only": true
   },
   {
+   "id": 54,
+   "h": "Millions of bees get loose after truck carrying 400 hives crashes in {}: 'Please remain indoors'",
+   "place": "Mauriceville, Texas",
+   "geocode": "Mauriceville, Orange County, Texas, USA",
+   "lat": 30.2149,
+   "lng": -93.8863,
+   "country": "United States",
+   "cc": "US",
+   "hint": "",
+   "clue": "US sheriff 'remain indoors' alert + a semitrailer",
+   "clue_strength": 0,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 4,
+   "theme": "animal",
+   "src": "https://www.cbsnews.com/news/bees-escape-truck-hives-crashes-texas/",
+   "published": "2026-06-22",
+   "banked": "2026-11-03",
+   "rules": 2,
+   "daily_only": true
+  },
+  {
+   "id": 60,
+   "h": "Customers suffer chemical burns after Chili's margaritas are mistakenly made with degreaser instead of sugar in {}",
+   "place": "Forest City, North Carolina",
+   "geocode": "Chili's, Forest City, North Carolina, USA",
+   "lat": 35.334,
+   "lng": -81.8651,
+   "country": "United States",
+   "cc": "US",
+   "hint": "",
+   "clue": "US chain restaurant + a county health district",
+   "clue_strength": 0,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 3,
+   "theme": "food",
+   "src": "https://www.nbcnews.com/news/us-news/chilis-customers-north-carolina-suffer-burns-margaritas-mistakenly-mad-rcna607037",
+   "published": "2026-10-30",
+   "banked": "2026-11-03",
+   "rules": 2,
+   "daily_only": true
+  },
+  {
    "id": 48,
    "h": "Man pretends to be a cop, pulls over a Tesla, then calls 911 on himself in {}",
    "place": "Phoenix, Arizona",
@@ -367,28 +369,6 @@
    "daily_only": true
   },
   {
-   "id": 49,
-   "h": "Man impersonating police officer charged after calling 911 to report zombies, ghosts and a UFO in {}",
-   "place": "Elkins, West Virginia",
-   "geocode": "Kerens, Randolph County, West Virginia, USA",
-   "lat": 38.9262,
-   "lng": -79.8462,
-   "country": "United States",
-   "cc": "US",
-   "hint": "",
-   "clue": "US sheriff's office + 911 misuse charge",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 4,
-   "theme": "crime",
-   "src": "https://www.wboy.com/news/crime/man-charged-after-calling-911-to-report-zombies-ghosts-and-a-ufo/",
-   "published": "2026-05-19",
-   "banked": "2026-11-02",
-   "rules": 2,
-   "daily_only": true
-  },
-  {
    "id": 50,
    "h": "Man uses stolen excavator to rob bank directly next to a police station in {}",
    "place": "DeFuniak Springs, Florida",
@@ -397,9 +377,9 @@
    "lng": -86.115,
    "country": "United States",
    "cc": "US",
-   "hint": "",
+   "hint": "home of a historic Chautauqua assembly",
    "clue": "US bank + police station next door + a stolen excavator",
-   "clue_strength": 2,
+   "clue_strength": 1,
    "jargon_only": false,
    "mappable": 3,
    "unbelievable": 4,
@@ -428,6 +408,28 @@
    "theme": "law",
    "src": "https://www.newser.com/story/395381/john-roberts-signed-order-dismissing-guys-case-except-he-didnt.html",
    "published": "2026-02-01",
+   "banked": "2026-11-02",
+   "rules": 2,
+   "daily_only": true
+  },
+  {
+   "id": 49,
+   "h": "Man impersonating police officer charged after calling 911 to report zombies, ghosts and a UFO in {}",
+   "place": "Elkins, West Virginia",
+   "geocode": "Kerens, Randolph County, West Virginia, USA",
+   "lat": 38.9262,
+   "lng": -79.8462,
+   "country": "United States",
+   "cc": "US",
+   "hint": "",
+   "clue": "US sheriff's office + 911 misuse charge",
+   "clue_strength": 0,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 4,
+   "theme": "crime",
+   "src": "https://www.wboy.com/news/crime/man-charged-after-calling-911-to-report-zombies-ghosts-and-a-ufo/",
+   "published": "2026-05-19",
    "banked": "2026-11-02",
    "rules": 2,
    "daily_only": true
@@ -605,6 +607,69 @@
  ],
  "fake": [
   {
+   "h": "Reindeer wander into a petrol station near {} and queue for 3 hours outside the heated toilets",
+   "tell": "Reindeer queueing patiently for a specific facility is too tidy and human to be true.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "reindeer",
+   "banked": "2026-11-05",
+   "rules": 2
+  },
+  {
+   "h": "Burglar in {} steals 29 sets of false teeth from a dental lab and leaves the cash untouched",
+   "tell": "Burglars rarely ignore cash; the odd selectivity is an over-tidy detail.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "teeth",
+   "banked": "2026-11-05",
+   "rules": 2
+  },
+  {
+   "h": "Scrap dealer in {} buys a village's three church bells at a clearance auction for 880 euros",
+   "tell": "Church bells are protected heritage and are not sold at clearance auctions.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "bells",
+   "banked": "2026-11-05",
+   "rules": 2
+  },
+  {
+   "h": "Cricket match in {} halted for 52 minutes as a monitor lizard sits on the umpire's hat",
+   "tell": "A lizard choosing the umpire's hat is an unlikely coincidence, and no one would wait 52 minutes.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "lizard",
+   "banked": "2026-11-05",
+   "rules": 2
+  },
+  {
+   "h": "Fishing boat off {} lands a refrigerator holding 63 frozen pizzas, all still in date",
+   "tell": "Pizzas still within date inside a sea-found fridge is too neat to be true.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "pizza",
+   "banked": "2026-11-05",
+   "rules": 2
+  },
+  {
+   "h": "Skier at {} rides a chairlift for three hours in a full snowman costume before staff notice",
+   "tell": "Lift staff watch every chair; three unnoticed hours in a costume is implausible.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "skiing",
+   "banked": "2026-11-05",
+   "rules": 2
+  },
+  {
+   "h": "Tram services in {} halted for 47 minutes while 63 ducks cross the tracks in single file",
+   "tell": "Ducks crossing in single file for nearly an hour is too orderly to be real.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "duck",
+   "banked": "2026-11-05",
+   "rules": 2
+  },
+  {
    "h": "Bus driver in {} halts route for 22 minutes so a flock of 63 geese can finish crossing",
    "tell": "Oddly precise timing and a patient driver; real delays are rarely logged so neatly.",
    "obvious": 2,
@@ -719,15 +784,6 @@
    "rules": 2
   },
   {
-   "h": "Baker in {} burns 214 loaves when a pigeon steps on the oven timer, so 63 pensioners eat free",
-   "hint": "home of the Sachertorte",
-   "tell": "A pigeon neatly causing a disaster that then helps pensioners is too tidy a chain.",
-   "obvious": 3,
-   "theme": "bakery",
-   "banked": "2026-11-02",
-   "rules": 2
-  },
-  {
    "h": "Ferry across the fjord leaves {} with one passenger and 14 crates of lingonberry jam",
    "hint": "where the Nobel banquet is held",
    "tell": "This capital sits on an archipelago and Baltic inlets, not a fjord.",
@@ -825,60 +881,6 @@
    "banked": "2026-10-31",
    "rules": 2,
    "hint": "birthplace of Mozart"
-  },
-  {
-   "h": "Auto-rickshaw driver in {} takes a 37-rupee fare to the wrong city, 874 km away, after a map update",
-   "tell": "Auto-rickshaws do local hops and would not cover such a distance by mistake.",
-   "obvious": 3,
-   "theme": "taxi",
-   "banked": "2026-10-31",
-   "rules": 2,
-   "hint": "home of the living goddess Kumari"
-  },
-  {
-   "h": "Surf lifesavers at a beach in {} reach a man who drifted 2.4 km out on an inflatable pizza slice",
-   "tell": "The oddly specific float and distance read like a scripted story rather than a news report.",
-   "obvious": 2,
-   "theme": "lifesaving",
-   "banked": "2026-10-31",
-   "rules": 2,
-   "hint": "birthplace of deep-dish pizza"
-  },
-  {
-   "h": "Pub in {} runs out of pints on a Tuesday after 312 regulars turn up for a quiz about the pub's own history",
-   "tell": "An unlikely coincidence: hundreds arriving for a niche quiz on a quiet weeknight.",
-   "obvious": 3,
-   "theme": "pub",
-   "banked": "2026-10-31",
-   "rules": 2,
-   "hint": "home of the Prado Museum"
-  },
-  {
-   "h": "Ski resort in {} reopens lift after a marmot chewed through its control cable in January",
-   "tell": "Marmots hibernate in January, so the animal would not be gnawing cables then.",
-   "obvious": 3,
-   "theme": "ski",
-   "banked": "2026-10-31",
-   "rules": 2,
-   "hint": "where the bungee jump began"
-  },
-  {
-   "h": "Burglar in {} tunnels 16 metres under a bakery to reach a till holding only 9 euros",
-   "tell": "Digging a long tunnel for a nearly empty till is too much effort to be believable.",
-   "obvious": 2,
-   "theme": "burglary",
-   "banked": "2026-10-29",
-   "rules": 2,
-   "hint": "birthplace of the Dada movement"
-  },
-  {
-   "h": "Reindeer block the main road into {} for three hours, delaying 52 school buses",
-   "tell": "A herd crossing happening to hit exactly the school-bus run is a suspicious coincidence.",
-   "obvious": 3,
-   "theme": "reindeer",
-   "banked": "2026-10-29",
-   "rules": 2,
-   "hint": "home of the Loch Ness Monster"
   }
  ],
  "pol": [
@@ -920,6 +922,30 @@
   }
  ],
  "polfake": [
+  {
+   "h": "Mayor of {} signs ordinance banning leaf blowers after hearing complaints at three consecutive meetings",
+   "banked": "2026-11-05"
+  },
+  {
+   "h": "Voters in {} approve 14-member parliament expansion after turnout rises to 212 percent in one district",
+   "banked": "2026-11-05"
+  },
+  {
+   "h": "Budget vote in {} delayed 37 days because the only copy of the agenda was filed under the wrong ward",
+   "banked": "2026-11-05"
+  },
+  {
+   "h": "Town of {} elects new sheriff by popular vote, county commissioners confirm him as prime minister's envoy",
+   "banked": "2026-11-05"
+  },
+  {
+   "h": "Newly elected councillor in {} resigns after 41 minutes, saying the swearing-in oath was too long",
+   "banked": "2026-11-05"
+  },
+  {
+   "h": "Lawmakers in {} pass bill requiring all streetlights be repainted green, citing a rise in birdwatching",
+   "banked": "2026-11-05"
+  },
   {
    "h": "Mayor of {} signs bylaw moving local elections to spring after turnout rose at the last vote",
    "banked": "2026-11-04"
@@ -975,30 +1001,6 @@
   {
    "h": "Mayor of {} resigns after the town clock is found to be running seven minutes fast",
    "banked": "2026-11-02"
-  },
-  {
-   "h": "Parliament in {} passes bill banning umbrellas in the chamber after a rainy week of sessions",
-   "banked": "2026-11-02"
-  },
-  {
-   "h": "Election in {} postponed because the only polling station was booked for a wedding",
-   "banked": "2026-11-02"
-  },
-  {
-   "h": "Ward councillors in {} vote 9-2 to rename a park after discovering it has two names",
-   "banked": "2026-11-02"
-  },
-  {
-   "h": "New law in {} requires all sheep to carry reflective vests on roads after a drop in mutton sales",
-   "banked": "2026-11-02"
-  },
-  {
-   "h": "Mayor of {} appoints brother-in-law's bakery as official caterer after winning with 51 votes",
-   "banked": "2026-11-01"
-  },
-  {
-   "h": "Ward boundaries redrawn in {} so all 7 councillors now represent the same street",
-   "banked": "2026-11-01"
   }
  ]
 }

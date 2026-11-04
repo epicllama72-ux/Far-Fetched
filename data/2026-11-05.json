@@ -1,0 +1,111 @@
+{
+ "date": "2026-11-05",
+ "generated": "2026-11-04T06:56:47+00:00",
+ "call": [
+  {
+   "real": true,
+   "h": "Man caught with £14,000 of drugs as lamb named Pablo eats chips on back seat of car stopped near {}",
+   "hint": "where Taggart was set",
+   "lat": 55.8612,
+   "lng": -4.2502,
+   "place": "Glasgow, Scotland",
+   "src": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNQ2lURGpSZjRXd2tPMUstVW9xTGdkZzRqLVZVcVFadm5zTDIya2JQaWRhWGc1Y1lVbzdXOWwzSkxLZ2lxd2ZpelJ2ZFZwYlpFUjB6LXdsSzFGeWs1MG1QTXpDYTNHdFhrV0k5Ui1PUmRVQkl6RkFGZzJHUXFyMVdVWXpreUlOWV9iX2txN2NvM2x1YjVPLUhiMkM4WHE0ZDJRbWVF0gGoAUFVX3lxTE9ITWJYRHRvMHZ6M1JOUXdhUENzRlF6MkFrMFdSTmFWd2lvWWxOcTl0TDBIVHA0U1hzZVBoeks4OGhwUm9abDlQYUdhS2lMbDdVNjJxc3dQV3FYSEtWb0RyRWQzcWtaZjczM2JMQmpXQXlpR2hlbmxPcE94WG5qOXhaUXlZODNuTXdjLWZpV0tJLUE4cWIxVndTbE11OFZEUlhCN3dLOGIySg?oc=5",
+   "published": "2026-11-02",
+   "clue": "pounds sterling + police dog on a motorway = UK"
+  },
+  {
+   "real": true,
+   "h": "Hundreds gather in {} for an annual event celebrating spring by burning winter socks",
+   "hint": "where Congress ratified the Revolution's treaty",
+   "lat": 38.9784,
+   "lng": -76.4922,
+   "place": "Annapolis, Maryland",
+   "src": "https://www.newsbreak.com/weku-1588671/4559408213896-decades-ago-a-maryland-sailor-burned-his-winter-socks-now-it-s-a-spring-tradition",
+   "published": "2026-03-25",
+   "clue": "sailing-season sock bonfire + oysters"
+  },
+  {
+   "real": false,
+   "h": "Thief in {} steals an ice-cream van, then drives its jingle route for 5 hours selling cones at full price",
+   "tell": "A thief following the van's route and selling cones is an over-tidy, cartoonish crime."
+  },
+  {
+   "real": true,
+   "h": "Former professor accused of damaging student's backpack with his urine in {}",
+   "hint": "birthplace of F. Scott Fitzgerald",
+   "lat": 44.9378,
+   "lng": -93.1686,
+   "place": "Saint Paul, Minnesota",
+   "src": "https://www.cbsnews.com/minnesota/news/former-macalester-college-professor-urine-charges/",
+   "published": "2026-03-13",
+   "clue": "US college campus + a criminal complaint"
+  },
+  {
+   "real": true,
+   "h": "Man, 77, drives right up to police station door to report stolen bike, is breathalysed and loses licence in {}",
+   "hint": "where Emmy Noether was born",
+   "lat": 49.5892,
+   "lng": 10.9812,
+   "place": "Erlangen, Germany",
+   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPd1RsdlpGb0dhRlNibzMtQTN3RFNUOXVnWWJFamRCOGt5Q3haNk9zdTZVRnpKVHh1aHI5T0txNHBRSXU2Y0VHQ3RrT3o5bmt2dWtiRTVacVlFenlMbWRaVjZUSXhfcDNDamkzRTZQQWNPUG9ZN0RBSHRya0wwd3V4eUVtQ0c4emZheVdUb0xOUGJtdVRmVDJKalUxdDJVMksxQ2dfc3h1UHFsNjhKejVQN3ViZjkzU1p4Mi1DakVJeUo?oc=5",
+   "published": "2026-11-03",
+   "clue": "blood alcohol in permille = German-speaking Europe"
+  },
+  {
+   "real": true,
+   "h": "First-of-its-kind houseplant hospital opens in {}, where sick plants are put on drips",
+   "hint": "home of the Fringe festival",
+   "lat": 55.976,
+   "lng": -3.167,
+   "place": "Edinburgh, Scotland",
+   "src": "https://discover.swns.com/2026/07/britains-first-houseplant-hospital-has-opened-where-plants-are-put-on-drips/",
+   "published": "2026-07-15",
+   "clue": "plant 'hospital' + drips + a UK high street"
+  },
+  {
+   "real": false,
+   "h": "Baker in {} burns 214 loaves when a pigeon steps on the oven timer, so 63 pensioners eat free",
+   "tell": "A pigeon neatly causing a disaster that then helps pensioners is too tidy a chain."
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Referee keeps [] after VAR review though striker pulled defender in league match in Chapecó, Brazil",
+   "ans": [
+    "penalty",
+    "penalties"
+   ],
+   "alt": [
+    "foul",
+    "kick",
+    "card"
+   ],
+   "place": "Chapecó, Brazil",
+   "src": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxOVFluUDJBZC14bEtxc3EyVV8zc0h2THZMSmdJQmFzV05hSW1RSDZqUEZUTFJlZ0ptSHR2QlR5eDRkdTluTlZvM0pDdlQ4S1F5X3ZWVzhFeHZEaVJ0Sk1PQ01wUzVaNGJHamY5RWtWV1RSVVMxOERMSUVVWkJsSTZjcE4zbVg1OEE1NkIzam5mSENPakxROGs5RnU1cEd6cUpxSng3Q2hiWFV6MTFUdGc0cEQyOEp4VjNqang2LVE5bDFNVWVPZlJHY0ttU1p0MkpIdzNLVzZLWDhwaGZiSU5uclc3NVYzRUNXYjlScTFwMU1tYXJUblE?oc=5",
+   "published": "2026-11-04",
+   "vec": "6s/x0yYeLh0bNuLxyeossUGHrfjX5OL15YFf5vbKfhrf/BEOUB0E7xtHGCq//xkPNeo="
+  },
+  {
+   "real": true,
+   "h2": "Striker heads ball, loses his [] and plays final minutes of local league match holding it in Imbituba, Brazil",
+   "ans": [
+    "wig",
+    "wigs",
+    "toupee",
+    "hairpiece"
+   ],
+   "alt": [
+    "hair",
+    "hat",
+    "cap",
+    "rug",
+    "weave"
+   ],
+   "place": "Imbituba, Brazil",
+   "src": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQQ1dpREdydlpRVHZjYk1ranI3WENtYm5uVlk0RUtUTHI5bWFXMlE3TE1wMm9BdFFCUWFOQ3E4RmJfSTBVR3BtV0JuMW1EU1dpV3NHMUdCVS1fdHVyUFloaF9UeERSWW9mLTVqOUdjWlVpejRxeEVLWjRPZzl4enNWRER4X0VpbmpwWjBIU0pPbmZONG0yZlljc21pV1dOczdWRFBXc1c3bTNuSGE0NEUxVFBlOGhGSTFwR1Vla1FScjNKcmlWbng2bFBVSXBtVXhkWnZ6RktQQ05UQ1NUeHJ1X0ZMQk0xYTg3a3BVUDlDM1ZiOF9QOEE?oc=5",
+   "published": "2026-11-03",
+   "vec": "oASvzDQpBsfMIUQLFysnM8MO8dsSGPbVvsTBfxG6BhEHLQwiBQY6wwsbBegdxjz0G9g="
+  }
+ ]
+}

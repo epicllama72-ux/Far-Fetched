@@ -1,150 +1,111 @@
 {
- "date": "2026-11-04",
- "generated": "2026-11-03T07:11:54+00:00",
+ "date": "2026-11-05",
+ "generated": "2026-11-04T06:56:47+00:00",
  "call": [
   {
    "real": true,
-   "h": "Man jailed six months for attacking ex-colleague over a cake served without butter 10 years ago in {}",
-   "hint": "home of Brittany's Blue Nets festival",
-   "lat": 47.8757,
-   "lng": -3.9224,
-   "place": "Concarneau, Finistère, France",
-   "src": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOM3J1QmFDWUxhcVp2OWg2Q0s1dWZNQlFzcDR0VVpWSDFmS0dXUHRVQU5RLTBKV2pvZktfRWhKSF81TXNqakNSQUxYZGEzZUV1NS1peHIta1FZWjR4X1RmSzBXY3d1Tm1xUm12MmI3M1hSX3FRVFBoX3pyOUE3SXdIM05IWFNoY2RKV3VqemRfdzJ6cnZuTS0xUmRKeUR3eldLT252SU1PVWJlR240VlZkRGwwYi1oZ1N5b01kaGdn?oc=5",
+   "h": "Man caught with £14,000 of drugs as lamb named Pablo eats chips on back seat of car stopped near {}",
+   "hint": "where Taggart was set",
+   "lat": 55.8612,
+   "lng": -4.2502,
+   "place": "Glasgow, Scotland",
+   "src": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNQ2lURGpSZjRXd2tPMUstVW9xTGdkZzRqLVZVcVFadm5zTDIya2JQaWRhWGc1Y1lVbzdXOWwzSkxLZ2lxd2ZpelJ2ZFZwYlpFUjB6LXdsSzFGeWs1MG1QTXpDYTNHdFhrV0k5Ui1PUmRVQkl6RkFGZzJHUXFyMVdVWXpreUlOWV9iX2txN2NvM2x1YjVPLUhiMkM4WHE0ZDJRbWVF0gGoAUFVX3lxTE9ITWJYRHRvMHZ6M1JOUXdhUENzRlF6MkFrMFdSTmFWd2lvWWxOcTl0TDBIVHA0U1hzZVBoeks4OGhwUm9abDlQYUdhS2lMbDdVNjJxc3dQV3FYSEtWb0RyRWQzcWtaZjczM2JMQmpXQXlpR2hlbmxPcE94WG5qOXhaUXlZODNuTXdjLWZpV0tJLUE4cWIxVndTbE11OFZEUlhCN3dLOGIySg?oc=5",
    "published": "2026-11-02",
-   "clue": "butter pride in a regional cake and 'mairie' = France"
+   "clue": "pounds sterling + police dog on a motorway = UK"
   },
   {
    "real": true,
-   "h": "Colouring book handed out at an event in {} shows Bluey held at knifepoint",
-   "hint": "where a crater lake turns blue",
-   "lat": -37.8284,
-   "lng": 140.7806,
-   "place": "Mount Gambier, South Australia",
-   "src": "https://www.abc.net.au/news/2026-10-28/one-nation-colouring-book-generates-controversy/107313670",
-   "published": "2026-10-28",
-   "clue": "South Australian country town; Bluey is an Australian cartoon; ABC complaint"
+   "h": "Hundreds gather in {} for an annual event celebrating spring by burning winter socks",
+   "hint": "where Congress ratified the Revolution's treaty",
+   "lat": 38.9784,
+   "lng": -76.4922,
+   "place": "Annapolis, Maryland",
+   "src": "https://www.newsbreak.com/weku-1588671/4559408213896-decades-ago-a-maryland-sailor-burned-his-winter-socks-now-it-s-a-spring-tradition",
+   "published": "2026-03-25",
+   "clue": "sailing-season sock bonfire + oysters"
   },
   {
    "real": false,
-   "h": "Ferry in {} delayed 47 minutes after a moose swims into its path and will not leave the channel",
-   "tell": "Moose swim, but one blocking a ferry for most of an hour is an over-tidy cause for a delay."
+   "h": "Thief in {} steals an ice-cream van, then drives its jingle route for 5 hours selling cones at full price",
+   "tell": "A thief following the van's route and selling cones is an over-tidy, cartoonish crime."
   },
   {
    "real": true,
-   "h": "DUI suspect drinks urine-tainted toilet water to sabotage breath test in {}",
-   "hint": "where Thomas Jefferson built Monticello",
-   "lat": 38.0293,
-   "lng": -78.4767,
-   "place": "Charlottesville, Virginia",
-   "src": "https://www.officer.com/investigations/drug-alcohol-enforcement/news/55406632/virginia-dui-suspect-allegedly-drank-toilet-water-before-breath-test-police-say",
-   "published": "2026-10-29",
-   "clue": "US DUI arrest + breath-test observation rule"
+   "h": "Former professor accused of damaging student's backpack with his urine in {}",
+   "hint": "birthplace of F. Scott Fitzgerald",
+   "lat": 44.9378,
+   "lng": -93.1686,
+   "place": "Saint Paul, Minnesota",
+   "src": "https://www.cbsnews.com/minnesota/news/former-macalester-college-professor-urine-charges/",
+   "published": "2026-03-13",
+   "clue": "US college campus + a criminal complaint"
   },
   {
    "real": true,
-   "h": "Coffeehouse bans swearing in {}: one curse and the whole table pays a fine",
-   "hint": "home of Abant Lake's autumn forests",
-   "lat": 40.6212,
-   "lng": 31.646,
-   "place": "Bolu, Turkey",
-   "src": "https://news.google.com/rss/articles/CBMingFBVV95cUxPWlNBWUgybl9FRnNEMVBScElzYzJ4Z3NLSjk5eV9nbHdwelpEQUduQXhzWW1UWUJsajJfUUxmLTMyMUJXQ3FHTE01Q0FIMVNoVWdGbURGU19mYkxCVURSbjIwRzRZdmlQWVFFX3prSW1RVW1VcTZWOXVhZWdocEE2Vmp5VnA2Z2FreUMxeW85UW9MdHNUYkNTNG42NEo0UQ?oc=5",
-   "published": "2026-11-02",
-   "clue": "kahvehane (traditional coffeehouse) culture = Turkey"
+   "h": "Man, 77, drives right up to police station door to report stolen bike, is breathalysed and loses licence in {}",
+   "hint": "where Emmy Noether was born",
+   "lat": 49.5892,
+   "lng": 10.9812,
+   "place": "Erlangen, Germany",
+   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPd1RsdlpGb0dhRlNibzMtQTN3RFNUOXVnWWJFamRCOGt5Q3haNk9zdTZVRnpKVHh1aHI5T0txNHBRSXU2Y0VHQ3RrT3o5bmt2dWtiRTVacVlFenlMbWRaVjZUSXhfcDNDamkzRTZQQWNPUG9ZN0RBSHRya0wwd3V4eUVtQ0c4emZheVdUb0xOUGJtdVRmVDJKalUxdDJVMksxQ2dfc3h1UHFsNjhKejVQN3ViZjkzU1p4Mi1DakVJeUo?oc=5",
+   "published": "2026-11-03",
+   "clue": "blood alcohol in permille = German-speaking Europe"
   },
   {
    "real": true,
-   "h": "50 sheep go on baa-zarre adventure through supermarket before ewe-turning and leaving in {}",
-   "hint": "a Bavarian moated-castle village",
-   "lat": 50.1303,
-   "lng": 9.6406,
-   "place": "Burgsinn, Bavaria, Germany",
-   "src": "https://www.straitstimes.com/world/europe/50-sheep-go-on-baa-zarre-adventure-through-german-supermarket-before-ewe-turning-and-leaving",
-   "published": "2026-01-07",
-   "clue": "flock + a Penny discount supermarket"
+   "h": "First-of-its-kind houseplant hospital opens in {}, where sick plants are put on drips",
+   "hint": "home of the Fringe festival",
+   "lat": 55.976,
+   "lng": -3.167,
+   "place": "Edinburgh, Scotland",
+   "src": "https://discover.swns.com/2026/07/britains-first-houseplant-hospital-has-opened-where-plants-are-put-on-drips/",
+   "published": "2026-07-15",
+   "clue": "plant 'hospital' + drips + a UK high street"
   },
   {
    "real": false,
-   "h": "Burglars in {} steal a 3-tonne church bell and leave the clapper and a pizza box behind",
-   "tell": "Nobody carries off a 3-tonne bell unnoticed, and the pizza box is a too-neat flourish."
+   "h": "Baker in {} burns 214 loaves when a pigeon steps on the oven timer, so 63 pensioners eat free",
+   "tell": "A pigeon neatly causing a disaster that then helps pensioners is too tidy a chain."
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "Two unrelated thieves use homemade wire tools on the same temple donation [] at the same time in Bengbu, China",
+   "h2": "Referee keeps [] after VAR review though striker pulled defender in league match in Chapecó, Brazil",
    "ans": [
-    "box",
-    "boxes"
+    "penalty",
+    "penalties"
    ],
    "alt": [
-    "chest",
-    "tin",
-    "bin",
-    "jar",
-    "collection"
+    "foul",
+    "kick",
+    "card"
    ],
-   "place": "Bengbu, Anhui, China",
-   "src": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5rQnpOamZvcG5wbXRuNnVNXzlGbC0xY05RSVluSWprZllfU3lDeXRKbUx1MEJoZ3o4UXc4azlVLVBFeHVIUFVVa2dzNk85VFoyTmZJeUV6bVU2UjFuQi10YtIBZkFVX3lxTE5UVXJIamh4ai1yb1F0NlZoTThFVTNTNWNhZGhJeDRKTEp6aDRHdU5yamFyRkdhWjFlbzc4czBqa3pBVFFCQ2dyV1I3RXJvYm9CaE45UVN1dUt6V2YyTW1zeWVsSVZvUQ?oc=5",
+   "place": "Chapecó, Brazil",
+   "src": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxOVFluUDJBZC14bEtxc3EyVV8zc0h2THZMSmdJQmFzV05hSW1RSDZqUEZUTFJlZ0ptSHR2QlR5eDRkdTluTlZvM0pDdlQ4S1F5X3ZWVzhFeHZEaVJ0Sk1PQ01wUzVaNGJHamY5RWtWV1RSVVMxOERMSUVVWkJsSTZjcE4zbVg1OEE1NkIzam5mSENPakxROGs5RnU1cEd6cUpxSng3Q2hiWFV6MTFUdGc0cEQyOEp4VjNqang2LVE5bDFNVWVPZlJHY0ttU1p0MkpIdzNLVzZLWDhwaGZiSU5uclc3NVYzRUNXYjlScTFwMU1tYXJUblE?oc=5",
+   "published": "2026-11-04",
+   "vec": "6s/x0yYeLh0bNuLxyeossUGHrfjX5OL15YFf5vbKfhrf/BEOUB0E7xtHGCq//xkPNeo="
+  },
+  {
+   "real": true,
+   "h2": "Striker heads ball, loses his [] and plays final minutes of local league match holding it in Imbituba, Brazil",
+   "ans": [
+    "wig",
+    "wigs",
+    "toupee",
+    "hairpiece"
+   ],
+   "alt": [
+    "hair",
+    "hat",
+    "cap",
+    "rug",
+    "weave"
+   ],
+   "place": "Imbituba, Brazil",
+   "src": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQQ1dpREdydlpRVHZjYk1ranI3WENtYm5uVlk0RUtUTHI5bWFXMlE3TE1wMm9BdFFCUWFOQ3E4RmJfSTBVR3BtV0JuMW1EU1dpV3NHMUdCVS1fdHVyUFloaF9UeERSWW9mLTVqOUdjWlVpejRxeEVLWjRPZzl4enNWRER4X0VpbmpwWjBIU0pPbmZONG0yZlljc21pV1dOczdWRFBXc1c3bTNuSGE0NEUxVFBlOGhGSTFwR1Vla1FScjNKcmlWbng2bFBVSXBtVXhkWnZ6RktQQ05UQ1NUeHJ1X0ZMQk0xYTg3a3BVUDlDM1ZiOF9QOEE?oc=5",
    "published": "2026-11-03",
-   "vec": "+Q4rDR7kzOwmENYQ/C4X7+3q2NYU4AsG78bSLiLIf/ETF/UlKxAW2DMV4xPaOgHjDu8="
-  },
-  {
-   "real": true,
-   "h2": "Haifa, Israel: man sues Chief Rabbinate for 8.6 million shekels over rights to all the [] God created",
-   "ans": [
-    "land",
-    "lands",
-    "earth"
-   ],
-   "alt": [
-    "world",
-    "ground",
-    "soil",
-    "planet",
-    "territory"
-   ],
-   "place": "Haifa, Israel",
-   "src": "https://news.google.com/rss/articles/CBMickFVX3lxTE44dDgzdmlHWWJ5RmltVHItUGg0bEVmSlVORHdoSktUUWx2WEZXbkl5Wm5qYlVCLURGN1lhY2h4eUxvVV81LVY2T2NmT3VOOU91RUZISUtFSFFCV0l0TzJhemNyYy10czlqdjNDYUNXYTEzUdIBekFVX3lxTFBxMFZESU1JOXJZQThNYlo3RU8zV080d2w1VERoTHhneXZWcGNHUC13bENYekNXR1E3SzBuaFh6UmZkbTd0OUtsYlE1QlZJSTNIZWg1elV3RFVZSjZ4NWZ3WklKZEVSTXV4MUNCbzVIYkEzVS1iMmVKbUtB?oc=5",
-   "published": "2026-11-01",
-   "vec": "HP8DCxIE2OsC3f0IIdH9IC4G5gQM9+zrC9r/+jIKf+DrBf0E5vL7Ce73FQ/b6uDgCOQ="
-  },
-  {
-   "real": true,
-   "h2": "Forest Green Rovers fill their dressing room with over 60 indoor [] in Nailsworth, England",
-   "ans": [
-    "plants",
-    "plant",
-    "houseplants",
-    "houseplant"
-   ],
-   "alt": [
-    "flowers",
-    "trees",
-    "shrubs",
-    "ferns"
-   ],
-   "place": "Nailsworth, Gloucestershire, England",
-   "src": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOZWRudXAtblczaERINHd0bW83QzJQZURGSWFjQnNhTzFocHhJZEVhVWNJQWVYYTZHVF9Kd1lGcVU2S0JZWE40SUFxTlR5VDFfZGdsRWFsbW5SbG9kZ1ZMV2pfZWlMQXZzWGdoRkxGRDdRbUdVWlVtVzJVNlNoeG9YdEV6eDdITDdmZGQzSllSaGlPWlRXRW0ybXBCV1I5eE4ydU9vMEdUWkswYjF6VzZzNGN6ZXZsR2ctbHdhYndBWWZaei1SXzlwWXduVkxRdkdOSmhj?oc=5",
-   "published": "2026-11-02",
-   "vec": "Ng4OHecb2+URAxQBPuQXGxJBArgArwznAfMWDjMAf+Py5gMD5yQSEd/GLAFILePn1gA="
-  },
-  {
-   "real": true,
-   "h2": "Motorbike thieves who took a family's golden retriever say it looked like their own [] in Dörtyol, Turkey",
-   "ans": [
-    "dog",
-    "dogs",
-    "puppy"
-   ],
-   "alt": [
-    "pet",
-    "hound",
-    "pooch"
-   ],
-   "place": "Dörtyol, Hatay, Turkey",
-   "src": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQLVBjUWlEeTFJclNfTTRiYU5Zd0lRS0c3bm5EQV9iNk5SNV9ma2VIY21IMWMxZjltd3VZaEUtRG05dTRsQ1VFcXZNYW15VnI5Z0RTMHE2Snh2Qk01VjM4a1pJT29vdEFTUWlIczhKZ1ZGcHY5Z2REd05qUUxlZzFlNUdkNEctTlBPVi03SkFoN3VYM3B2ajhjaktZeXlPUnRWYUZNSDNhUTdBVFNrQnhsWW9GZzNaV2Y2djllVzVrVFUxNVE?oc=5",
-   "published": "2026-11-01",
-   "vec": "COTX7DMnsuNT1wAmLiIj8w1CqtblGDc2IYG1Hx7PcRTULvobCeASy/oR0Txa2wPBMxw="
+   "vec": "oASvzDQpBsfMIUQLFysnM8MO8dsSGPbVvsTBfxG6BhEHLQwiBQY6wwsbBegdxjz0G9g="
   }
  ]
 }
