@@ -3708,7 +3708,7 @@ function shareZone(z){ return z==='NOWHERE' ? 'jaw shut' : String(z||'').toLower
 async function share(){
   const label = (S.mode==='daily' ? 'Far-Fetched #'+dayNumber() : S.mode==='back' ? 'Far-Fetched #'+dayNumber()+' (back issue)' : 'Far-Fetched (practice)')+(S.kind!=='call'?' · '+modeName(S.kind):'');
   const text = label+' · 🌎 '+fmtM(S.finalM!=null?S.finalM:0)+'\n'
-    + S.shareLines.join('\n')+'  '+shareZone(S.finalZone)+'\n'
+    + S.shareLines.join('\n')+'  '+TIERS[tierOf(S.total||0,S.max||1000)].name+'\n'      // your rank on the scale (Globalist, Statesman...), not the zone
     + shareUrl();                      // the link also carries the friend challenge
   const btn=$('btnShare');
   try{
