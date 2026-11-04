@@ -1547,7 +1547,8 @@ function shiftFC(g,dx){   // shift any GeoJSON (collection, feature or bare geom
   if(g.type==='Feature') return {type:'Feature',properties:g.properties,geometry:geom(g.geometry)};
   return geom(g);
 }
-function pinPoints(d){return Math.round(PK*PIN_PTS*Math.exp(-Math.max(0,d-100)/2000));}  // ≤100 km 110 · 400 km 95 · 1000 km 70 · 2500 km 33 · 5000 km 9 (of 110)
+const PIN_MIN = 10;   // any pin that is placed earns at least this many distance points, however far off
+function pinPoints(d){return Math.max(Math.round(PK*PIN_MIN), Math.round(PK*PIN_PTS*Math.exp(-Math.max(0,d-100)/2000)));}  // ≤100 km 110 · 400 km 95 · 1000 km 70 · 2500 km 33 · 5000 km 9 (of 110)
 /* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
 const PIN_SECS=20;                 // the pin has a 20 s limit, but taking longer no longer costs distance points
 function pinMult(){ return 1; }
@@ -3226,6 +3227,7 @@ function submitGuess(timedOut){
   const d = guessLL ? km(guessLL.lat,guessLL.lng,st.lat,st.lng) : null;
   let pts = guessLL ? Math.round(pinPoints(d)*mult) : 0;
   if(!S.cur.callOk) pts = Math.round(pts*0.75);
+  if(guessLL) pts = Math.max(Math.round(PK*PIN_MIN), pts);      // the minimum holds after a wrong call too
   const distPts = pts;                                  // distance points alone, for the breakdown
   const bonus = guessLL ? Math.round(pinBonus(d,sec)*(S.cur.callOk?1:0.75)) : 0;   // a wrong call still earns it, at the same 75% credit as the pin
   pts += bonus; S.cur.pinBonus = bonus;
