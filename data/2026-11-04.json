@@ -42,7 +42,7 @@
   },
   {
    "real": true,
-   "h": "Coffeehouse bans swearing and makes the whole table pay a fine in {}",
+   "h": "Coffeehouse bans swearing in {}: one curse and the whole table pays a fine",
    "hint": "home of Abant Lake's autumn forests",
    "lat": 40.6212,
    "lng": 31.646,
