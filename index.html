@@ -1736,7 +1736,7 @@ const Scene = (function(){
   let RK_C=null, RK_T=0;
   function roomKind(){            // today's dive scene, as stored with the day's landing spot (town until it is chosen)
     const now=Date.now(); if(RK_C && now-RK_T<1000) return RK_C; RK_T=now;
-    try{ const v=JSON.parse(localStorage.getItem('ff_spot')||'null'); RK_C=(v && v.k && v.d===dayKey()) ? v.k : 'town'; }catch(e){ RK_C='town'; }
+    try{ const v=JSON.parse(localStorage.getItem(spotKey())||'null'); RK_C=(v && v.k && v.d===dayKey()) ? v.k : 'town'; }catch(e){ RK_C='town'; }
     return RK_C;
   }
   const C = {
@@ -2954,6 +2954,7 @@ function startGame(mode, kind){
        maxScore: blank ? 1000 : Math.round(reals*PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS))+(rounds.length-reals)*FAKE_PTS,
        maxJaw: blank ? 1000 : Math.round(reals*PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS))};
   S.jawK = 1;                                        // one point = the same jaw drop in every mode
+  if(mode!=='daily'){ try{ localStorage.removeItem(spotKey()); }catch(e){} }   // practice and back issues: a new place each game
   if(mode==='back' && BACK) S.backDate=BACK.date;
   // The save is tied to the paper, not to its exact wording: rewording a headline must not wipe anyone's day.
   // sig is built from the stories' places and sources; older saves used the headline text (sigOld), and a paper that was edited after it went live lists the earlier headline sets in legacySigs.
@@ -3736,6 +3737,15 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape' && !$('about').hidd
 $('wardrobe').addEventListener('click',e=>{ if(e.target===$('wardrobe')) closeWardrobe(); });
 
 /* ---------- Friend challenge: the share link carries your dig; a friend who opens it is told to beat it ---------- */
+/* Where today's dive lands (and so which room he sits in) is kept per game: the Daily Dig and the daily Fill the Blank each keep
+   theirs for the day, so the zoom back out matches; practice and back issues roll a new place every time a game starts. */
+function spotKey(){
+  try{
+    if(!S) return 'ff_spot';
+    if(S.mode==='daily') return S.kind==='call' ? 'ff_spot' : 'ff_spot:'+S.kind;
+    return 'ff_spot:'+S.mode;
+  }catch(e){ return 'ff_spot'; }       // before the game state exists
+}
 function siteUrl(){ return window.claude ? location.href.split('#')[0] : location.origin+location.pathname; }
 /* "Beat my score": a challenge message with your depth and rank, and the link that carries the friend challenge */
 async function challenge(){
@@ -4957,8 +4967,8 @@ const Intro=(function(){
   }
   function summaryLater(ms){ clearTimeout(sumT); sumT=setTimeout(summaryBack,ms); }
   function spot(){                        // one spot per edition, so the damage sits where today's dive landed
-    try{ const v=JSON.parse(localStorage.getItem('ff_spot')||'null'); if(v && v.d===dayKey() && v.k){ sceneK=v.k; return [v.la,v.lo]; } }catch(e){}
-    sceneK=pickScene(); const t=placeFor(sceneK); try{ localStorage.setItem('ff_spot',JSON.stringify({d:dayKey(),la:t[0],lo:t[1],k:sceneK})); }catch(e){}
+    try{ const v=JSON.parse(localStorage.getItem(spotKey())||'null'); if(v && v.d===dayKey() && v.k){ sceneK=v.k; return [v.la,v.lo]; } }catch(e){}
+    sceneK=pickScene(); const t=placeFor(sceneK); try{ localStorage.setItem(spotKey(),JSON.stringify({d:dayKey(),la:t[0],lo:t[1],k:sceneK})); }catch(e){}
     return t;
   }
   // the planet only burns once the jaw has detonated the core; reaching the core layer without that is a volcano
@@ -5006,7 +5016,7 @@ const Intro=(function(){
     const fresh=S && !$('btnStart').hidden && S.i===0 && !S.results.length;
     if(fresh){
       if(on && mode!=='idle') hide(true);
-      if(!on) show(); else titleOn();
+      if(!on) show(); else { tgt=spot(); titleOn(); }
     } else if(on && mode==='idle') hide();
   }
   return {show,hide,go,outro,planet,planetOn:()=>on&&(mode==='end'||mode==='out'),active:()=>on,diving:()=>mode==='dive',check, hold:()=>{ if(!reduce) document.body.classList.add('planetview'); }};
