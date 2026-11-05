@@ -3686,7 +3686,7 @@ function siteUrl(){ return window.claude ? location.href.split('#')[0] : locatio
 /* "Beat my score": a challenge message with your depth and rank, and the link that carries the friend challenge */
 async function challenge(){
   const btn=$('btnChallenge'), rank=TIERS[tierOf(S.total||0,S.max||1000)].name;
-  const text='Beat my score: '+fmtM(S.finalM!=null?S.finalM:0)+', '+rank+'\nFar-Fetched #'+dayNumber()+(S.kind!=='call'?' · '+modeName(S.kind):'')+'\n'+shareUrl();
+  const text='Beat my score: '+fmtM(S.finalM!=null?S.finalM:0)+', '+rank+'\nFar-Fetched #'+dayNumber()+(S.kind!=='call'?' · '+modeName(S.kind):'')+'\n'+shareUrl('challenge');
   try{
     if(navigator.share){
       try{ await navigator.share({text}); return; }
@@ -3698,10 +3698,11 @@ async function challenge(){
   setTimeout(()=>btn.textContent='Challenge a friend',1500);
 }
 $('btnChallenge').onclick=challenge;
-function shareUrl(){
-  if(S.mode!=='daily' || window.claude) return siteUrl();
+function shareUrl(tag){        // tag labels where the visit came from (GoatCounter reads ?ref=): friend shares otherwise show up as "unknown"
+  tag=tag||'share';
+  if(S.mode!=='daily' || window.claude) return siteUrl()+(window.claude?'':'?ref='+tag);
   const v=[playerName(), Math.round(S.finalM||0), Math.round(S.total), dayKey(), S.kind].map(x=>String(x).replace(/~/g,'-')).join('~');
-  return siteUrl()+'?vs='+encodeURIComponent(v)+'&r='+refCode();
+  return siteUrl()+'?vs='+encodeURIComponent(v)+'&r='+refCode()+'&ref='+tag;
 }
 /* Referrals. A challenge link carries a short code made from the sender's player id (never the id itself). A brand-new player who
    arrives through it keeps the code, and their finished Daily Dig scores carry it, so the sender's game can count real friends who joined. */
