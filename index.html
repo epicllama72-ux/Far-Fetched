@@ -1283,25 +1283,26 @@ body.intro #ausBar{display:none}
       <canvas id="digLog" width="320" height="150" aria-label="Points per headline"></canvas>
       <p class="slbl">THE SCALE</p>
       <ol id="tiers"></ol>
-      <section id="letters" hidden aria-label="Letters to the editor">
-        <div class="ltMast">LETTERS TO THE EDITOR</div>
-        <div class="ltSub">THE DAILY ODD &middot; how was today's paper?</div>
-        <div class="ltTicks">
-          <label><input type="checkbox" value="loved"><i></i>I loved it</label>
-          <label><input type="checkbox" value="okay"><i></i>It was okay</label>
-          <label><input type="checkbox" value="too_easy"><i></i>Too easy</label>
-          <label><input type="checkbox" value="too_hard"><i></i>Too hard</label>
-          <label><input type="checkbox" value="again"><i></i>I'd play again</label>
-        </div>
-        <textarea id="ltMsg" maxlength="1000" rows="3" placeholder="Dear Editor, ..."></textarea>
-        <div class="ltFoot"><small>Anonymous &middot; only the editor reads these</small><button id="ltSend" type="button" disabled>SEND TO PRESS</button></div>
-        <p id="ltThanks" hidden>Thanks! Your letter reached the editor's desk.</p>
-      </section>
     </div>
     <details id="recap"><summary id="recapSum">▸ All stories + sources</summary><ol id="recapList"></ol></details>
     <p id="nextEd" hidden></p>
     <p id="comeBack"></p>
     <p id="replayWrap"><button class="linkish" id="replayDig">▶ Replay the dig</button></p>
+    <section id="letters" hidden aria-label="Letters to the editor">
+      <div class="ltMast">LETTERS TO THE EDITOR</div>
+      <div class="ltSub">THE DAILY ODD &middot; how was today's paper?</div>
+      <div class="ltTicks">
+        <label><input type="checkbox" value="loved"><i></i>I loved it</label>
+        <label><input type="checkbox" value="okay"><i></i>It was okay</label>
+        <label><input type="checkbox" value="too_easy"><i></i>Too easy</label>
+        <label><input type="checkbox" value="too_hard"><i></i>Too hard</label>
+        <label><input type="checkbox" value="again"><i></i>I'd play again</label>
+        <label><input type="checkbox" value="not_for_me"><i></i>Not for me</label>
+      </div>
+      <textarea id="ltMsg" maxlength="1000" rows="3" placeholder="Dear Editor, ..."></textarea>
+      <div class="ltFoot"><small>Anonymous &middot; only the editor reads these</small><button id="ltSend" type="button" disabled>SEND</button></div>
+      <p id="ltThanks" hidden>Thanks! Your letter reached the editor's desk.</p>
+    </section>
   </section>
   </div>
 
@@ -3426,9 +3427,9 @@ function renderLetters(){
   const ticks=[...box.querySelectorAll('input[type=checkbox]')], msg=$('ltMsg'), btn=$('ltSend');
   const ready=()=>{ btn.disabled = sent || !(ticks.some(c=>c.checked) || msg.value.trim()); };
   ticks.forEach(c=>{ c.checked=false; c.disabled=sent; c.onchange=ready; }); msg.value=''; msg.disabled=sent; msg.oninput=ready;
-  $('ltThanks').hidden=!sent; btn.textContent=sent?'SENT':'SEND TO PRESS'; ready();
+  $('ltThanks').hidden=!sent; btn.textContent=sent?'SENT':'SEND'; ready();
   btn.onclick=async()=>{
-    btn.disabled=true; btn.textContent='SENDING...';
+    btn.disabled=true; btn.textContent='SENDING';
     const body={player:playerId(), day:dayKey(), kind:S.kind, score:Math.round(S.total||0), tags:ticks.filter(c=>c.checked).map(c=>c.value), message:msg.value.trim().slice(0,1000)||null};
     let ok=false;
     try{

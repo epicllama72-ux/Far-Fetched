@@ -8,7 +8,7 @@ create table if not exists feedback (
   day text not null check (day ~ '^\d{4}-\d{2}-\d{2}$'),
   kind text not null check (kind in ('call','blank','pol')),
   score int check (score between -2000 and 6000),
-  tags text[] not null default '{}' check (tags <@ array['loved','too_easy','too_hard','again','okay']::text[] and cardinality(tags) <= 5),
+  tags text[] not null default '{}' check (tags <@ array['loved','too_easy','too_hard','again','okay','not_for_me']::text[] and cardinality(tags) <= 6),
   message text check (message is null or char_length(message) <= 1000),
   unique (player, day, kind)
 );
