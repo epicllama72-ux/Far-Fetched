@@ -1745,6 +1745,10 @@ const Scene = (function(){
   const KANG_P={K:'#c98a4b',D:'#9a6430',S:'#111111',W:'#fff6c8'};
   const CAT=[".K.K........","KKKKK.......","KAKAKKKKKK..","KKKKKKKKKKKK",".KKKKKKKKKKK"];
   const CAT_P={K:'#4a4458',A:'#1a1220'};
+  // the carrier pigeon (unlocked when a friend joins from your challenge): perches on the desk cat's back, bobbing its head
+  const PIGEON=["......KKK.","....KKGGEK","....KNNGBW","..KKKNNK..",".KLLLGGGK.","KLLLLGGGK.","KGGGGGGK..",".KKKKKK...","...P..P..."];
+  const PIGEON_UP=["K.....KKK.","KK..KKGGEK","KLKKKNNGBW",".KLLKNNK..",".KLLLGGGK.","KGLLLGGGK.","KGGGGGGK..",".KKKKKK...","...P..P..."];
+  const PIGEON_P={K:'#1d1c26',G:'#8d93a3',L:'#c3c8d4',N:'#5aa58a',E:'#ff8a3a',B:'#3a3440',W:'#f0f0f4',P:'#e07a8a'};
   const BOOT=["...BBB..","...BBB..","...BBB..","BBBBBBB.","BBBBBBBB","SSSSSSSS"];
   const BOOT_P={B:'#3a2416',S:'#1e120a'};
   const FISH=["...W......W.","..WWW.W.W.WW","WWWWWWWWWWW.","..WWW.W.W.WW","...W......W."];
@@ -2219,6 +2223,10 @@ const Scene = (function(){
       const tw=Math.round(Math.sin(t*2.2)*1.5); R(-37,73,2,1,CAT_P.K); R(-35,72+tw,1,2,CAT_P.K);
       for(let k=0;k<3;k++){ const ph=((t*0.5+k/3)%1); g.globalAlpha=1-ph; const zx=-50+Math.round(ph*-4)+k, zy=Math.round(66-ph*14);
         R(zx,zy,3,1,'#cfd6de'); R(zx+1,zy+1,1,1,'#cfd6de'); R(zx,zy+2,3,1,'#cfd6de'); } g.globalAlpha=1; }
+    if(kit.pigeon){       // the carrier pigeon perches on the sleeping cat's back, bobbing its head and flapping now and then
+      const br=Math.round(Math.sin(t*1.6)), flap=(t%5)<0.45, bob=Math.floor(t*2.5)%4===0?1:0;
+      spr(flap?PIGEON_UP:PIGEON,PIGEON_P,-45+bob,62-br);
+    }
     // desk lamp and its pool of light, or the core trophy standing in its place
     if(kit.trophy){
       const G='#ffd23f', GS='#c99a1c', GL='#fff6c8';
@@ -3507,10 +3515,11 @@ const KIT=[
   {id:'trophy',  slot:'trophy', name:'Core trophy',        icon:'🏆', need:'reach THE CORE', ok:L=>L.zmax>=5},
   {id:'globe',   slot:'globe',  name:'Desk globe',         icon:'🌍', need:'pin 50 stories', ok:L=>L.pins>=50},
   {id:'shades',  slot:'glasses',name:'Aussie sunglasses',  icon:'🕶️', need:'dig through to Australia', ok:L=>L.zmax>=6},
-  {id:'monocle',slot:'monocle',name:'Detective monocle',   icon:'🧐', need:'catch 20 fake stories', ok:L=>L.catches>=20}];
+  {id:'monocle',slot:'monocle',name:'Detective monocle',   icon:'🧐', need:'catch 20 fake stories', ok:L=>L.catches>=20},
+  {id:'pigeon', slot:'pigeon', name:'Carrier pigeon',      icon:'🕊️', need:'a friend joins from your challenge', ok:L=>L.invites>=1}];
 function lifeNow(){
   const l=load('ff_life')||{}, h=load('ff_hist')||{};
-  return {best:l.best||0, pins:l.pins||0, catches:l.catches||0, zmax:l.zmax||0, papers:new Set(Object.keys(h).filter(k=>k.endsWith(':call')).map(k=>k.split(':')[0])).size};
+  return {best:l.best||0, pins:l.pins||0, catches:l.catches||0, zmax:l.zmax||0, invites:+load('ff_invites')||0, papers:new Set(Object.keys(h).filter(k=>k.endsWith(':call')).map(k=>k.split(':')[0])).size};
 }
 function kitState(){ const k=load('ff_kit'); return {eq:(k&&k.eq)||{}, seen:(k&&k.seen)||[]}; }
 function unlockedIds(){ const L=lifeNow(); return KIT.filter(it=>it.ok(L)).map(it=>it.id); }
@@ -3522,7 +3531,7 @@ function currentKit(){
   if(get('monocle')) o.monocle=true;
   if(get('pocket')) o.badge=true;
   const te=get('teeth'); if(te) o.teeth=te.id;
-  if(get('mug')) o.mug=true; if(get('trophy')) o.trophy=true; if(get('globe')) o.globe=true;
+  if(get('mug')) o.mug=true; if(get('trophy')) o.trophy=true; if(get('globe')) o.globe=true; if(get('pigeon')) o.pigeon=true;
   return o;
 }
 function applyKit(){ Scene.setKit(currentKit()); }
@@ -3570,10 +3579,11 @@ function openWardrobe(){
 function closeWardrobe(){ $('wardrobe').hidden=true; if($('menu').hidden && $('sheet').hidden) document.body.classList.remove('hideq'); }
 function renderWardrobe(){
   const k=kitState(), have=new Set(unlockedIds()), st=load('ff_streak')||{}, fz=st.freezes||0;
-  $('wardNote').innerHTML='Streak freezes: <b>'+fz+'</b> of 2. You earn one every 7 days of streak, and it covers one missed day.<br>Only the Daily Dig earns cosmetics.';
-  const secs=[['HEAD',['head']],['EYES',['glasses','monocle']],['POCKET',['pocket']],['TEETH',['teeth']],['DESK AND SHELF',['mug','trophy','globe']]];
+  $('wardNote').innerHTML='Streak freezes: <b>'+fz+'</b> of 2. You earn one every 7 days of streak, and it covers one missed day.<br>Only the Daily Dig earns cosmetics.<br>Friends who joined from your challenges: <b>'+(+load('ff_invites')||0)+'</b>.';
+  checkInvites();
+  const secs=[['DESK AND SHELF',['pigeon','mug','trophy','globe']],['HEAD',['head']],['EYES',['glasses','monocle']],['POCKET',['pocket']],['TEETH',['teeth']]];
   $('wardBody').innerHTML=secs.map(([name,slots])=>'<p class="wsec">'+name+'</p><div class="wgrid">'
-    + KIT.filter(it=>slots.includes(it.slot)).map(it=>{
+    + KIT.filter(it=>slots.includes(it.slot)).sort((a,b)=>slots.indexOf(a.slot)-slots.indexOf(b.slot)).map(it=>{
         const own=have.has(it.id), on=own && k.eq[it.slot]===it.id;
         const ic='<span class="wi">'+it.icon+'</span>';
         return '<button data-id="'+it.id+'" class="'+(on?'on':'')+(own?'':' lock')+'">'+ic+'<span>'+it.name+'</span><small>'+(own?(on?'wearing':'tap to wear'):'🔒 '+it.need)+'</small></button>';
@@ -3640,7 +3650,32 @@ $('btnChallenge').onclick=challenge;
 function shareUrl(){
   if(S.mode!=='daily' || window.claude) return siteUrl();
   const v=[playerName(), Math.round(S.finalM||0), Math.round(S.total), dayKey(), S.kind].map(x=>String(x).replace(/~/g,'-')).join('~');
-  return siteUrl()+'?vs='+encodeURIComponent(v);
+  return siteUrl()+'?vs='+encodeURIComponent(v)+'&r='+refCode();
+}
+/* Referrals. A challenge link carries a short code made from the sender's player id (never the id itself). A brand-new player who
+   arrives through it keeps the code, and their finished Daily Dig scores carry it, so the sender's game can count real friends who joined. */
+function refCode(){ return hash('ref:'+playerId()).toString(36); }
+(function(){ try{
+  const r=new URLSearchParams(location.search).get('r');
+  const fresh=!Object.keys(load('ff_hist')||{}).length && !load('ff_ref');
+  if(r && /^[a-z0-9]{1,12}$/.test(r) && fresh && r!==refCode()) store('ff_ref',r);
+}catch(e){} })();
+let INV_T=0;
+async function checkInvites(){
+  if(!sbOn() || Date.now()-INV_T<60000) return; INV_T=Date.now();
+  try{
+    const r=await fetch(SUPABASE_URL+'/rest/v1/scores?select=player&ref=eq.'+refCode()+'&limit=1000',{headers:sbHeaders()});
+    if(!r.ok) return;
+    const n=new Set((await r.json()).map(x=>x.player)).size, before=+load('ff_invites')||0;
+    if(n<=before) return;
+    store('ff_invites',n);
+    const k=kitState(), had=k.seen.includes('pigeon');
+    if(!had && unlockedIds().includes('pigeon')){
+      k.eq.pigeon='pigeon'; k.seen=k.seen.concat('pigeon'); store('ff_kit',k); applyKit(); renderWardSub();
+      showToast('A friend joined from your challenge! 🕊️ Carrier pigeon unlocked');
+    }
+    if(!$('wardrobe').hidden) renderWardrobe();
+  }catch(e){}
 }
 const VS=(()=>{ try{
   const v=new URLSearchParams(location.search).get('vs'); if(!v) return null;
@@ -3777,7 +3812,9 @@ async function sbPost(entry){
   const send=body=>fetch(SUPABASE_URL+'/rest/v1/scores?on_conflict=player,day,kind',{method:'POST',
       headers:sbHeaders({Prefer:'resolution=ignore-duplicates,return=minimal'}), body:JSON.stringify(body)});
   try{
-    let r=await send(entry.ans ? Object.assign({answers:entry.ans},row) : row);
+    const ref=load('ff_ref');
+    let r=await send(Object.assign({}, row, entry.ans?{answers:entry.ans}:{}, ref?{ref}:{}));
+    if(!r.ok && ref) r=await send(Object.assign({}, row, entry.ans?{answers:entry.ans}:{}));   // the ref column isn't set up yet
     if(!r.ok && entry.ans) r=await send(row);          // the answers column isn't set up yet: still save the score
     return r.ok;
   }catch(e){ return false; }
@@ -4758,6 +4795,7 @@ renderMute();
 Scene.start(); applyKit(); renderWardSub();
 Intro.show();                                   // the earth from space until you say you're ready
 updateStreak();
+setTimeout(checkInvites,4000);
 Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS&&(POL_ON||VS.kind!=='pol')?VS.kind:KIND); loadIssues(); setTimeout(Intro.check,60); });
 window.addEventListener('resize',()=>{ clearTimeout(window._aimT); window._aimT=setTimeout(()=>aim(),200); });
 </script>
