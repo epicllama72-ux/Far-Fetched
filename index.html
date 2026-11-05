@@ -949,6 +949,23 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #tiers li.me{background:#171c27;color:#eef0f4;box-shadow:inset 3px 0 0 var(--accent)}
 #tiers li.me b{color:var(--accent)}
 #tiers li.me .tr{color:var(--accent)}
+/* the feedback box: a newspaper clipping */
+#letters{margin:20px 4px 6px;padding:12px 14px 12px;background:#efe8d6;background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.035) 0 1px,transparent 1px 3px);color:#1f1b16;border-top:4px double #1f1b16;border-bottom:4px double #1f1b16;box-shadow:4px 5px 0 rgba(0,0,0,.45);transform:rotate(-.4deg)}
+#letters .ltMast{font:10px/1.2 var(--px);letter-spacing:.14em;text-align:center;padding-bottom:6px;border-bottom:2px solid #1f1b16}
+#letters .ltSub{font:16px/1.2 var(--vt);text-align:center;margin:5px 0 9px;color:#5a5144;letter-spacing:.04em}
+#letters .ltTicks{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;margin-bottom:10px}
+#letters label{display:flex;align-items:center;gap:8px;font:19px/1.1 var(--vt);cursor:pointer;user-select:none}
+#letters label input{position:absolute;opacity:0;pointer-events:none}
+#letters label i{flex:0 0 14px;height:14px;border:2px solid #1f1b16;background:#fbf8ef;position:relative}
+#letters label input:checked + i::after{content:'X';position:absolute;inset:0;display:grid;place-items:center;font:10px/1 var(--px);color:#a8231a}
+#letters label input:focus-visible + i{outline:2px solid #a8231a;outline-offset:2px}
+#letters textarea{width:100%;box-sizing:border-box;resize:vertical;min-height:62px;font:19px/20px var(--vt);color:#1f1b16;background:#fbf8ef;background-image:repeating-linear-gradient(0deg,transparent 0 19px,rgba(31,27,22,.18) 19px 20px);background-position:0 4px;border:2px solid #1f1b16;padding:4px 8px}
+#letters textarea::placeholder{color:#8a8070}
+#letters .ltFoot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
+#letters .ltFoot small{font:15px/1.1 var(--vt);color:#5a5144}
+#letters #ltSend{font:9px/1 var(--px);letter-spacing:.08em;background:#1f1b16;color:#efe8d6;border:0;padding:10px 12px;box-shadow:3px 3px 0 #a8231a;cursor:pointer}
+#letters #ltSend:disabled{opacity:.4;cursor:default;box-shadow:none}
+#letters #ltThanks{font:19px/1.2 var(--vt);text-align:center;margin:10px 0 2px;color:#2f6b3a}
 #grid{display:flex;gap:6px;margin:0 0 10px}
 .sq{width:34px;height:34px;display:grid;place-items:center;font:24px/1 var(--vt);color:#0a0c10;border:2px solid var(--ink);box-shadow:0 0 0 1px #3a4050}
 .sq.ok{background:var(--good)}.sq.no{background:var(--bad)}.sq.meh{background:#d9a441}.sq.fake{background:#5a6070;color:#eef0f4}
@@ -1266,6 +1283,20 @@ body.intro #ausBar{display:none}
       <canvas id="digLog" width="320" height="150" aria-label="Points per headline"></canvas>
       <p class="slbl">THE SCALE</p>
       <ol id="tiers"></ol>
+      <section id="letters" hidden aria-label="Letters to the editor">
+        <div class="ltMast">LETTERS TO THE EDITOR</div>
+        <div class="ltSub">THE DAILY ODD &middot; how was today's paper?</div>
+        <div class="ltTicks">
+          <label><input type="checkbox" value="loved"><i></i>I loved it</label>
+          <label><input type="checkbox" value="okay"><i></i>It was okay</label>
+          <label><input type="checkbox" value="too_easy"><i></i>Too easy</label>
+          <label><input type="checkbox" value="too_hard"><i></i>Too hard</label>
+          <label><input type="checkbox" value="again"><i></i>I'd play again</label>
+        </div>
+        <textarea id="ltMsg" maxlength="1000" rows="3" placeholder="Dear Editor, ..."></textarea>
+        <div class="ltFoot"><small>Anonymous &middot; only the editor reads these</small><button id="ltSend" type="button" disabled>SEND TO PRESS</button></div>
+        <p id="ltThanks" hidden>Thanks! Your letter reached the editor's desk.</p>
+      </section>
     </div>
     <details id="recap"><summary id="recapSum">▸ All stories + sources</summary><ol id="recapList"></ol></details>
     <p id="nextEd" hidden></p>
@@ -3387,7 +3418,29 @@ const TIERS=[   // the same ranks as the pin popups, lowest to highest
   {f:0.70, icon:'capitol', color:'#b56bff', name:'Statesman',    line:'A short trip from correct.'},
   {f:0.85, icon:'globe',   color:'#ffd23f', name:'Globalist',    line:'Were you there? Be honest.'}];
 function tierOf(total,max){ let k=0; TIERS.forEach((t,i)=>{ if(total>=Math.round(t.f*max/50)*50) k=i; }); return k; }
+/* Letters to the editor: feedback after a Daily Dig, saved in the Supabase "feedback" table (scripts/supabase_feedback.sql) */
+function renderLetters(){
+  const box=$('letters'), key='ff_fb:'+dayKey()+':'+S.kind, sent=!!load(key);
+  box.hidden = S.mode!=='daily' || !sbOn();
+  if(box.hidden) return;
+  const ticks=[...box.querySelectorAll('input[type=checkbox]')], msg=$('ltMsg'), btn=$('ltSend');
+  const ready=()=>{ btn.disabled = sent || !(ticks.some(c=>c.checked) || msg.value.trim()); };
+  ticks.forEach(c=>{ c.checked=false; c.disabled=sent; c.onchange=ready; }); msg.value=''; msg.disabled=sent; msg.oninput=ready;
+  $('ltThanks').hidden=!sent; btn.textContent=sent?'SENT':'SEND TO PRESS'; ready();
+  btn.onclick=async()=>{
+    btn.disabled=true; btn.textContent='SENDING...';
+    const body={player:playerId(), day:dayKey(), kind:S.kind, score:Math.round(S.total||0), tags:ticks.filter(c=>c.checked).map(c=>c.value), message:msg.value.trim().slice(0,1000)||null};
+    let ok=false;
+    try{
+      const r=await fetch(SUPABASE_URL+'/rest/v1/feedback',{method:'POST',headers:sbHeaders({Prefer:'return=minimal'}),body:JSON.stringify(body)});
+      ok = r.ok || r.status===409;          // 409: this player already sent a letter about this paper
+    }catch(e){}
+    if(ok){ store(key,1); ticks.forEach(c=>c.disabled=true); msg.disabled=true; btn.textContent='SENT'; $('ltThanks').hidden=false; Sound.play('menu'); }
+    else { btn.textContent='TRY AGAIN'; btn.disabled=false; }
+  };
+}
 function renderSummary(total,max,mineM){
+  renderLetters();
   $('btnChallenge').hidden = S.mode!=='daily';      // a challenge only makes sense on the shared daily paper
   const k=tierOf(total,max), cut=TIERS.map(t=>Math.round(t.f*max/50)*50);
   $('tiers').innerHTML=TIERS.map((t,i)=>{
