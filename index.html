@@ -4610,39 +4610,56 @@ const Intro=(function(){
     g.fillStyle='#6a432b'; g.fillRect(hx+0.6*s,hy+0.6*s,0.9*s,0.9*s);
     g.fillStyle='#8a8f99'; g.fillRect(hx+0.75*s,hy+0.75*s,0.6*s,0.6*s);
   }
-  function drawCity(s,ex,ey){           // downtown: asphalt grid, rooftops of all heights with their shadows, the odd park
-    g.fillStyle='#43474f'; g.fillRect(0,0,w,h);
+  function drawCity(s,ex,ey){           // downtown at night: skyscrapers seen from above in perspective, lit windows down their sides, street lights and traffic
+    const now=performance.now()/1000;
+    g.fillStyle='#0a0d16'; g.fillRect(0,0,w,h);
     const B=14, x0=Math.floor((-ex)/s/B)-1, x1=Math.ceil((w-ex)/s/B)+1, y0=Math.floor((-ey)/s/B)-1, y1=Math.ceil((h-ey)/s/B)+1;
     if((x1-x0)*(y1-y0)>4000) return;
-    const ROOF=['#9aa0ab','#b8b2a2','#7f8794','#c4c8cf','#8c7b6b','#a9a39a'];
+    const cxs=w/2, cys=h/2, LIT=['#ffd27a','#ffe9a8','#9fd8ff','#ffb35c'], blds=[];
     for(let by=y0;by<=y1;by++) for(let bx=x0;bx<=x1;bx++){
       const X=ex+bx*B*s, Y=ey+by*B*s, centre=bx===0&&by===0;
-      g.fillStyle='#8b8f98'; g.fillRect(X+2*s,Y+2*s,(B-2)*s,(B-2)*s);                  // sidewalk
-      if(s*B>6){ g.fillStyle='#e8d36a'; for(let k=3;k<B;k+=3){ g.fillRect(X+k*s,Y+0.9*s,Math.max(1,s),Math.max(1,0.2*s)); g.fillRect(X+0.9*s,Y+k*s,Math.max(1,0.2*s),Math.max(1,s)); } }
+      g.fillStyle='#161b28'; g.fillRect(X+2*s,Y+2*s,(B-2)*s,(B-2)*s);                     // pavement
+      if(s>0.9){                                                                           // street lights along the roads
+        g.fillStyle='#ffb35c'; for(let k=1;k<B;k+=3.5){ g.fillRect(X+k*s,Y+1.9*s,1,1); g.fillRect(X+1.9*s,Y+k*s,1,1); } }
+      { const ph=((now*0.25+hash(bx,by))%1);                                               // traffic: headlights one way, tail lights the other
+        g.fillStyle='#fff6d8'; g.fillRect(X+ph*B*s,Y+0.6*s,Math.max(1,0.5*s),Math.max(1,0.3*s));
+        g.fillStyle='#ff4d5e'; g.fillRect(X+(1-ph)*B*s,Y+1.2*s,Math.max(1,0.5*s),Math.max(1,0.3*s));
+        g.fillStyle='#fff6d8'; g.fillRect(X+0.6*s,Y+((ph+0.5)%1)*B*s,Math.max(1,0.3*s),Math.max(1,0.5*s)); }
       const r=hash(bx,by);
-      if(!centre && r<0.12){                                                             // a pocket park
-        g.fillStyle='#4f9d57'; g.fillRect(X+2.6*s,Y+2.6*s,(B-3.2)*s,(B-3.2)*s);
-        for(let k=0;k<6;k++){ const tx=X+(3.6+hash(bx*7+k,by)*7.5)*s, ty=Y+(3.6+hash(bx,by*7+k)*7.5)*s; g.fillStyle='#2f6b3a'; g.fillRect(tx,ty,1.4*s,1.4*s); g.fillStyle='#3d8a46'; g.fillRect(tx,ty,0.8*s,0.8*s); }
-        continue;
-      }
-      if(!centre && r>0.82){                                                             // one tall tower fills the block
-        const sh=(1.6+hash(bx+3,by)*1.6)*s;
-        g.fillStyle='rgba(0,0,0,.35)'; g.fillRect(X+2.6*s+sh,Y+2.6*s+sh,(B-3.2)*s,(B-3.2)*s);
-        g.fillStyle='#1d2430'; g.fillRect(X+2.4*s,Y+2.4*s,(B-2.8)*s,(B-2.8)*s);
-        g.fillStyle='#5f7fa8'; g.fillRect(X+2.6*s,Y+2.6*s,(B-3.2)*s,(B-3.2)*s);
-        g.fillStyle='#86a6cc'; g.fillRect(X+2.6*s,Y+2.6*s,(B-3.2)*s,1*s);
-        g.fillStyle='#d0dbe8'; g.fillRect(X+6.4*s,Y+6.4*s,2*s,2*s);                    // rooftop plant
-        continue;
-      }
-      for(let k=0;k<4;k++){                                                              // four buildings to a block
+      if(!centre && r<0.1){                                                                 // a dark park with lamps
+        g.fillStyle='#10261a'; g.fillRect(X+2.6*s,Y+2.6*s,(B-3.2)*s,(B-3.2)*s);
+        g.fillStyle='#ffe9a8'; for(let k=0;k<4;k++) g.fillRect(X+(4+hash(bx*7+k,by)*6)*s,Y+(4+hash(bx,by*7+k)*6)*s,1,1);
+        continue; }
+      if(!centre && r>0.55){ blds.push({u:X+2.6*s,v:Y+2.6*s,L:(B-3.2)*s,ht:26+hash(bx+3,by)*30,id:bx*131+by}); continue; }   // one tall tower to the block
+      for(let k=0;k<4;k++){                                                                 // or four smaller towers
         if(centre&&k===0) continue;
-        const lx=X+(k%2?7.6:2.6)*s, ly=Y+(k<2?2.6:7.6)*s, L=4.6*s, ht=hash(bx*4+k,by+9), sh=(0.4+ht*1.4)*s;
-        g.fillStyle='rgba(0,0,0,.35)'; g.fillRect(lx+sh,ly+sh,L,L);
-        g.fillStyle='#2b2e36'; g.fillRect(lx-0.2*s,ly-0.2*s,L+0.4*s,L+0.4*s);
-        g.fillStyle=ROOF[Math.floor(hash(bx*4+k,by)*ROOF.length)]; g.fillRect(lx,ly,L,L);
-        g.fillStyle='rgba(0,0,0,.18)'; g.fillRect(lx+L*0.55,ly,L*0.45,L);
-        if(ht>0.45){ g.fillStyle='#5c6068'; g.fillRect(lx+1*s,ly+1*s,1.1*s,0.8*s); g.fillRect(lx+2.6*s,ly+2.8*s,0.8*s,0.8*s); }   // air-con units
+        blds.push({u:X+(k%2?7.6:2.6)*s,v:Y+(k<2?2.6:7.6)*s,L:4.6*s,ht:8+hash(bx*4+k,by+9)*20,id:bx*977+by*31+k});
       }
+    }
+    // nearest the middle first, so the towers leaning out at the edges are drawn over what lies beyond them
+    blds.sort((a,b)=>Math.hypot(a.u+a.L/2-cxs,a.v+a.L/2-cys)-Math.hypot(b.u+b.L/2-cxs,b.v+b.L/2-cys));
+    for(const t of blds){
+      const L=t.L, mx=t.u+L/2-cxs, my=t.v+L/2-cys, lf=Math.min(0.6,t.ht*s*0.011), dx=mx*lf, dy=my*lf;
+      const a=[t.u,t.v], b=[t.u+L,t.v], c=[t.u+L,t.v+L], d=[t.u,t.v+L], A=[a[0]+dx,a[1]+dy], Bp=[b[0]+dx,b[1]+dy], Cp=[c[0]+dx,c[1]+dy], D=[d[0]+dx,d[1]+dy];
+      if(L<2.2){ if(hash(t.id,7)<0.7){ g.fillStyle=LIT[Math.floor(hash(t.id,3)*4)]; g.fillRect(Math.round(A[0]),Math.round(A[1]),1,1); } continue; }   // far off: one point of light
+      const faces=[];                                                                        // the sides that face the camera
+      if(dx<0) faces.push([b,c,Cp,Bp]); else if(dx>0) faces.push([d,a,A,D]);
+      if(dy<0) faces.push([d,c,Cp,D]); else if(dy>0) faces.push([a,b,Bp,A]);
+      for(const f of faces){
+        g.fillStyle='#121725'; g.beginPath(); g.moveTo(f[0][0],f[0][1]); for(let i=1;i<4;i++) g.lineTo(f[i][0],f[i][1]); g.closePath(); g.fill();
+        const floors=Math.max(2,Math.min(40,Math.round(Math.hypot(f[3][0]-f[0][0],f[3][1]-f[0][1])/1.6))), cols=Math.max(1,Math.min(14,Math.round(Math.hypot(f[1][0]-f[0][0],f[1][1]-f[0][1])/1.8)));
+        for(let j=1;j<floors;j++) for(let i=0;i<cols;i++){
+          const lit=hash(t.id*13+i,j)<0.55; if(!lit) continue;
+          const pu=(i+0.5)/cols, pv=j/floors, bx0=f[0][0]+(f[1][0]-f[0][0])*pu, by0=f[0][1]+(f[1][1]-f[0][1])*pu, tx0=f[3][0]+(f[2][0]-f[3][0])*pu, ty0=f[3][1]+(f[2][1]-f[3][1])*pu;
+          g.fillStyle=LIT[Math.floor(hash(t.id,i*7+j)*4)];
+          g.fillRect(Math.round(bx0+(tx0-bx0)*pv),Math.round(by0+(ty0-by0)*pv),1,1);
+        }
+      }
+      g.fillStyle='#05070c'; g.fillRect(A[0]-0.5,A[1]-0.5,L+1,L+1);                         // the roof, on top
+      g.fillStyle=hash(t.id,5)<0.3?'#2a3550':'#232838'; g.fillRect(A[0],A[1],L,L);
+      if(L>6){ g.fillStyle='#39425c'; g.fillRect(A[0],A[1],L,Math.max(1,L*0.08)); }
+      if(t.ht>30 && Math.floor(now*1.2+hash(t.id,9)*3)%2===0){ g.fillStyle='#ff3b3b'; g.fillRect(Math.round(A[0]+L/2),Math.round(A[1]+L/2),Math.max(1,L*0.08),Math.max(1,L*0.08)); }   // aircraft warning light
+      if(L>10 && hash(t.id,11)<0.25){ g.strokeStyle='#ffd27a'; g.lineWidth=Math.max(1,L*0.04); g.strokeRect(A[0]+L*0.25,A[1]+L*0.25,L*0.5,L*0.5); }    // helipad ring
     }
     myRoof(s,ex,ey,'#b5473a','#8e352b','#d0604f');
   }
