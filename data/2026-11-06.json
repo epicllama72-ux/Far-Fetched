@@ -1,0 +1,229 @@
+{
+ "date": "2026-11-06",
+ "generated": "2026-11-05T07:19:06+00:00",
+ "call": [
+  {
+   "real": true,
+   "h": "Islamic preacher at a boarding school in {} gives a 90-minute sermon from inside a grave, wrapped in a shroud",
+   "hint": "a district on Sulawesi's southeast peninsula",
+   "lat": -4.03,
+   "lng": 122.45,
+   "place": "Konda, South Konawe, Indonesia",
+   "src": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQdUpSRWlvUDNQOFdOajlWVmdydjU4cVp2eTlXVjRJTk1RT1NabllES1g1d3FCRnFwbWZMeDVqaVl3WTRPdndTYy1EUUJJRFA4clFhSklJNld1M1VOaWhvQkxBald6ZGhOS0prRUF6XzItOUp0OTQ1UnhFQnZvbmRtMUFBV3pRbmx2aWtDbVFpVWM2WHdLVU9hVGY5SnRsbGxDUTl5amhrMFdGRzFqbDd2T0xBVdIBuAFBVV95cUxOd3NnOXVPcTZxbnBVOEIzblBjakpkOTF2WHZGOVhqUWdESTlZdzc4S1A3OHlMME1WTnl4SEc0OVJ1amRDNnV5NjRzeHoyYklWMnpoeERraWRDbi12VGJWZ2lzSU41NlNkVGRuQlFuQ3N1a0VuMGk5UEtoTVlnY3pKOW5oNkktbThQdjVDdTh6MHdBbHd1cHVNdllGbnFSaHhudjRWUVo4SzFSWGM2UjJzYnNxNGo3VW82?oc=5",
+   "published": "2026-11-03",
+   "clue": "Islamic boarding school (pesantren) = Indonesia"
+  },
+  {
+   "real": false,
+   "h": "Student in {} racks up 14 parking fines on a bullock cart left outside college, totalling 2,870 rupees",
+   "tell": "Parking fines are issued to registered vehicles; a bullock cart would not be ticketed repeatedly."
+  },
+  {
+   "real": true,
+   "h": "Embassy calls artillery shell at wharf in {} a 'wine bottle' that 'poses no danger'; police say it is live",
+   "hint": "host of the 2018 APEC summit",
+   "lat": -9.4438,
+   "lng": 147.1803,
+   "place": "Port Moresby, Papua New Guinea",
+   "src": "https://www.abc.net.au/news/2026-11-03/papua-new-guinea-artillery-shell-wine-bottle/107342264",
+   "published": "2026-11-03",
+   "clue": "embassy statement + wharf + police report = a Pacific port capital"
+  },
+  {
+   "real": true,
+   "h": "Big rats take over apartment complex in {}",
+   "hint": "home of Yale University",
+   "lat": 41.3083,
+   "lng": -72.9279,
+   "place": "New Haven, Connecticut",
+   "src": "https://patch.com/connecticut/newhaven/big-rats-take-over-apartment-complex-new-haven-report",
+   "published": "2026-10-20",
+   "clue": "US apartment complex + rats"
+  },
+  {
+   "real": true,
+   "h": "Striker booked for using the referee's dropped spray to mark the line himself in a match in {}",
+   "hint": "where Columbus stopped before sailing west",
+   "lat": 28.1289,
+   "lng": -15.4349,
+   "place": "Las Palmas de Gran Canaria, Spain",
+   "src": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQUWxvdlk5NFJjLUZMS3hlV1JHUnAyT3E1T2pUSW0wWGRtOXY2M0k5N3pqTGdZTzNVUnN0SEN0cGN1WDdJQW9mRmt2VXpXRUNNQUpnY0J4NTlCVlBSN0QydS0tNlVrNnFpRnh6cVJkd2tLTHM5ejliQmp0MzFxTTJhYjVNZzRzUk5aSS1PWmx2c0xXMzZxSUxNYnRhYTZyTHdXUVRSSXlnN3pLQl9IZFhBSEZKZGFYcldMUEc1V2Q2UWUzckxlQnpzNkhZRE9hazUtWmxkYWRqVdIB5AFBVV95cUxQMTFyLWJCS0hIdmZ1eGxWRTRoT0F1MDlOcnNub2NYN3dROE9Sd2VLbFJWVzBjYnpuaFhOS2NweXJ1V1NXR0FOSGtvSWRRWEVLMWJ6cldtV1V2eTlNekdubUNBVFhiNDZGMkVwU3h4cmNyY3FlSVNyMWtrcXRuS0REenFHR3FPN2xlYzl3OXpWNUxyQTk2aDdCa1J2bkp1ODZuOUNxcVZFQ3VTN19EM0ZYUWZnVUZQMjY1ekVVQjgzN1B4RFJUb0g4NXI5TjZtcEd5OVJSdWJleUtfaHNvU0RtNXRraE8?oc=5",
+   "published": "2026-11-01",
+   "clue": "referee's vanishing spray at a fourth-tier football match"
+  },
+  {
+   "real": false,
+   "h": "Baboons in {} open 9 parked cars at a supermarket and take only the bread",
+   "tell": "Baboons pick vehicles' contents, but choosing only bread from nine unlocked cars is too tidy."
+  },
+  {
+   "real": true,
+   "h": "First-of-its-kind houseplant hospital opens in {}, where sick plants are put on drips",
+   "hint": "setting of the film Trainspotting",
+   "lat": 55.976,
+   "lng": -3.167,
+   "place": "Edinburgh, Scotland",
+   "src": "https://discover.swns.com/2026/07/britains-first-houseplant-hospital-has-opened-where-plants-are-put-on-drips/",
+   "published": "2026-07-15",
+   "clue": "plant 'hospital' + drips + a UK high street"
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Small [] with four Dutch people lands by mistake in a field in Saint-Généroux, France, stuck two months, leaves by road",
+   "ans": [
+    "plane",
+    "planes",
+    "airplane",
+    "airplanes"
+   ],
+   "alt": [
+    "aircraft",
+    "aeroplane",
+    "jet",
+    "cessna",
+    "aeroplanes"
+   ],
+   "place": "Saint-Généroux, Deux-Sèvres, France",
+   "src": "https://news.google.com/rss/articles/CBMiowJBVV95cUxPZ0tWdm41T2pjMWV0a19tZmJ6OEcwTkx6bVlzUXNWemsyMEQwYTNWNUgyZ0g1VVdrUjhXcnBxVm9fWF9sSlpYdHlrZGpBY00tSEJzZm51WlpBM3p5UkJkTmQwelY3TDBTaHNzLUZ5ZHRVV2pqNHkydHpNYWkwbURlQ2VIejVKSDFSSGtrdjVnNWJ2OTdhSkJxZnByeXdBczA5bTBzazVWYTZKbXMwazAyaTJLRHRWcTZaUkFlTTRJa0o0Z0oza2k1MHBVbDhDVTJvdS1zeExLaEZZRkdMdXFsZnk3OXZYb2VMQzZTaWtJS3IwMDdCdlR6cVhSUDRsYmxmX0liNU02OUJhalBCNWg1d0w4NzJmWDV3S1ZYWEZmdWFraFU?oc=5",
+   "published": "2026-10-28",
+   "vec": "f/o6ByL41wccvjH75FAB+LQinMfsOOT6LYn6PTMKewDNDSfoF+nwQgYmSO7SBgwECeM="
+  },
+  {
+   "real": true,
+   "h2": "Thief who walked off wearing a 46 million yen luxury [] mails it back with a handwritten apology in Nakano, Tokyo",
+   "ans": [
+    "watch",
+    "watches",
+    "wristwatch"
+   ],
+   "alt": [
+    "timepiece",
+    "clock",
+    "rolex",
+    "timepieces"
+   ],
+   "place": "Nakano, Tokyo, Japan",
+   "src": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE0wdmNxY1VndGVaWDFfeWpfbGpaaEFneW5jU25JV3VpRi1uclpfY2FPek9fN2Y1SjlZYS1RNkRwbl93RW9oalJ6anNKZXNDUQ?oc=5",
+   "published": "2026-11-03",
+   "vec": "AwANCxvE5/8d6vkG+CI4EwH94dIPIA0ZFbLZCRDTfyv6398LDubp7v0bCAwWAQDh7xU="
+  },
+  {
+   "real": true,
+   "h2": "Family clan runs drug self-service in the centre of Jumilla, Spain: customers grab doses and throw [] at the house",
+   "ans": [
+    "money",
+    "cash"
+   ],
+   "alt": [
+    "coins",
+    "euros",
+    "notes",
+    "payment"
+   ],
+   "place": "Jumilla, Murcia, Spain",
+   "src": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPM21QRDNhSnM1VFdkQzBqbWZRWERVUzk5MWlyQWpoZnlMYkVNWXd4NlFHQ0dTSUZoVVhFTE02ZlJHZXVxOTFNbUVWUjQ4SzhZYThpZzJXVUFic1NuUGV0a1p2S3lVMG5UVTdEV0Nkd0M3bUI3VU91bkZvYzhEMEtnVmdabHJWeUlOWTVPdmhqQmQ3UjQycGUtMUhBSEhGTXJndEtRcEJiaFk5WDV00gGyAUFVX3lxTFB1UVQxUnFtRjExeThtUUt0VzBmdTBjQ05SNHFicjFnMmJzRGhRQ2xnY2ptX3BjOWh2dFEyOW5taFlObzZNREN1d21DbW5uLWwzbHhNSThTWE9HcjdtQlNaRVIwdnN2WUFjZ1p1ZUJMenhIdDBvY3VGSE9pNHZmeHVYcTIteGhsSTNvcFY0U2MtTnAzTGp6MGhsSENhY1VZdWdlSjlwbE4wbDRUOTRCZWt6RWc?oc=5",
+   "published": "2026-11-04",
+   "vec": "F/4l6g4B5v0NEuUh+uon+B8JFPMt7wj26av68RDmfyb/Bu4N4gwZ2PkIChvu3OIIBgk="
+  },
+  {
+   "real": true,
+   "h2": "Groom in Yiliang, China hoping 20 guests would answer his online invite is mobbed by 10,000 [] with gifts",
+   "ans": [
+    "strangers",
+    "stranger"
+   ],
+   "alt": [
+    "people",
+    "visitors",
+    "fans",
+    "netizens"
+   ],
+   "place": "Yiliang County, Zhaotong, China",
+   "src": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9UUXFydkYyeXNOUmV2UnlGLVo2UFhmOHRwTkpQU3ZnYWZ4eHIzU0YzbndpTlBFb3kwS2QzeVFVbmtNOS1RekNjd0pBV19NYU9yXzlSdDlkdEVBc1VNblppS1ZuUDVUZ1E?oc=5",
+   "published": "2026-10-30",
+   "vec": "TS35v2QS5zDjEMMWHhcv4+oSFcMmfy5aS/DmBFa3Y2MO3OEH5qfZ8RLwEEca3+u+++w="
+  },
+  {
+   "real": true,
+   "h2": "Nursery teacher in Mansoura, Egypt opens a boy's schoolbag and finds a [] instead of books",
+   "ans": [
+    "duck",
+    "ducks",
+    "duckling",
+    "ducklings"
+   ],
+   "alt": [
+    "bird",
+    "goose",
+    "chick",
+    "hen"
+   ],
+   "place": "Mansoura, Egypt",
+   "src": "https://news.google.com/rss/articles/CBMi-wRBVV95cUxOeWpfN3BqZ3FHVm9OWmhFbkRreDIyTWZXeDh1eEN3TEI5YVVFMHM3aTlvQ1dEYlh6dmRMLUVPVU9TMVBjUG1aMUJnTWZ5ZXdIOVJhaWdaVERMeV8xX0lIYjhsVDUtSjdWN2FWOUFBSVUwNU1NMzA3aFpLMlBTQmxnYi1UNHpXMFd1d0QzMlBzN3lHMjJGdHE2OUo2c3VFVnBMb0RJOHJzSnprSEoteEllMTZvOGlCN1BIRW1Cb2E1VXN2M2prV3VUSmdSdG12MUxmc1ZLQmp4WW9yM3RtWVVLbDc3WThUSjVmUEN2NzZzSjJMVDFZNGxHb1VOejdZUFdCV2lEUEpsbkhrQ2xVZXBiWk5pYVY5WlV1cWtVRUN1ZGtzUjg5aXF4MFBwaEFTRkM5QnpfWWFKenpFMFNCaW15VlUxMGRabWdOaUpoX0ZLNVVWazVDRnBjaWw1VzhOUDluUGdrYzNXa0EweHBzek5ac1ozdGxCd2ZPaGVNS3dTelRMMHdXZlRlNzRVTnpDZGd0NmV0WV9LbVQ1dGlENUtjUm5VREdCaHhqOWpDV0FMcnhOdTlOcV84Tk1XUE5FUjlueldHZEd5XzlpYnNocEk4WFkzcmczUVU1aHc5NmQ5OFZyTnBXMUcyLTFWUnNVdFdPY1RVdXRyQks5UXJ2X09DQW43eTEtek5iSG9aVkNnY3VhNktkYi10dzA3OTIzRFpuNTJBVmt0ZmRMbGRxS01FX3V3SjlnTFdYaHByUFUtbTBMUmJpTlB6d1VXa3k4ZFIzaFR5TEZ5SzJCS3hqMTJzODFJTVNDTkV1cGpyZFhkSTNjZG9pd1I4d1ZWUdIBgAVBVV95cUxOemJleUJLR3JLZTNtVnIxYW5sS3RFMVA3VG1XY01UMDEzY3U0NlowVzFZeUMxZi1walVYcEFQYjNkZUJrQ0hNSEk4ckRrM1ZxS3JrQlhMWG1COF83czlxMjFpSEoxT0Y0ang4WkVoejNvaUR6NnVOWV9hY2l6VUVpZmZwNGo1a3BocnY0YzJKanN0dFZZZUdfNWZQMzF1ZW5vd1BEQzdnVW9aUHFOX2REWVAwNU1faXpYSmZOc1lOa3Bza2tpZnZObUtvS2hvdGVVWUx3VHYwcDRqT2JLN2NMTjBobkdBTUo1T1RjVGd1UTAzRUszdXdJZUhJQ2pHS3I2N2c1YXA3OGFEM1VPN2ZZNU5nYWJaRTlWQlhmNklfRGZqRXlFZ3FmQXdERVAxdC1qM0drakpvUVVDNnItbGJMN3ZIOFptRC0wVkllZW04eThQeEh0VzVUTDNHTzl1SExnNmk0a3JfOVdYZGhxMEFKV3pHREptTXVtazAyVUhsRkZ1T1lSQW5DSk1GVW4xVmlPN1ZxY2FKM1hZYnZTWVVpZ3pkVW81U1VOUUVYc3BiOGdMUE93eGZja24tYWU3Rk1kU0QwSkE2eWxhWXdwSGFDZ1diajJlZnM3NGZiTmxhV0dFLWItRVJxYkZmalNuR3huSmZDSUE4VW1rYkZZMmxjaU9JXzhfb1VfdEtzLUtLaTdtVlp2ME5QbWtDdkZ5NW9YOHZEM3lwV2VvM3JiTU9Ka1Fpd3AtZGRaUnBCTXZPd0tpbjA1dDNGT0FuMWZuWUFnS3BpWUNBbVJyZF9yZWZSUUNJLVhabElrUU1SajYyNklBWXBlYmljaUpIbk9UWVZN?oc=5",
+   "published": "2026-11-04",
+   "vec": "Db2B9x5Hy9gXybBgYGz+8Bf/rRn/vWT8NJf/QQakdw/mf/EPFCLf368rxRVDMf/FQxo="
+  }
+ ],
+ "politics": [
+  {
+   "real": false,
+   "h": "Mayor of {} wins re-election by 17 votes after ballot boxes arrive late due to a flooded road",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "Election in {} decided by coin toss",
+   "hint": "",
+   "lat": 37.4173,
+   "lng": -87.4808,
+   "place": "Hanson, Kentucky, USA",
+   "src": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNbG5sRVEzS25yZVNlTW8yNTF3aml5Zk4zNzREbENSMktJUV9MR3pTSG1oOWZxUG9nSldWTUhLN3hQUTdpcE9CX1Q0NTd4NnJ0UmhGdVdKTGQ0NGQtdFB4dTFGTE1rVjQ4R0Rfbnp2SExjZnVLZmc4WmlHUGpOUHJraExlQWg4REdlMW9NTnlORE1ra00zRlVMRTZ1c1FkRkHSAaQBQVVfeXFMT3dZRnkzNHdzWFFobjRiTWtGamxwb1hneU1xOFlnQlg2dXdqb3ZxWDJrRnJzNVdmRS1SMmVJYWdiamFBSTQ2WHAwemtFQWFEeFluWXRoMHRGaVI0WFhROExidHNyTUNnNTlGRW45MVhiU29QSUxodlJ6RnJYTmRMZVoxRTBQcGhOYkwzbUNERE9tS1NVWTZXWWZiWHpFY3R5VFJsZUQ?oc=5",
+   "published": "2026-11-04",
+   "clue": "a small Western Coalfield community where a coin flip settles a dead heat",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "Governor approves rule to break tied races by drawing, despite objections, in {}",
+   "hint": "",
+   "lat": 21.3069,
+   "lng": -157.8583,
+   "place": "Honolulu, Hawaii, USA",
+   "src": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNMUYzSmNpa1Q5b0VVT1E0OGE0YVp1cW5hN00zdXYwRFlxV2RBWHVpNkJ1WWloUm1IQ0pxY2d3emotRFZnUlc0T0c4THVPaGstUmtxWFFJN3N0RWthSjBxN1l0NklxUHBEMVJPSTkwdzR5Y05laEZIaW5iTjlSd2NQaGI4S3V5MXJjdk9vWDYyM01vZEdoZTJCbF9KQUE1c1pkcFJ6RXFNLS10NzdTSWNUatIBxAFBVV95cUxNUFkxMnVmdDYtN2E5ejJLdmQ0Q2hISU5jaGZSa0sxaXBDWUFJcklHMGluREYwbnhQMU5pdTRuT0wxMmd2Ny1UdUZNaGpkNF9sSVAzRW80ZGpsbThxSVJxbExkTFhtTEk0OEhRQ1o1NmJsUTRxZGx0T1h3d1Q4TWdXRXpkV29RcktlLTFXWmJXVXUzb1RmVlQ4WlRYQV95UFBPdXR3V1NkT0gyNktrVDJWM3BCWTRaenEyQ0VOY29GclBGd0hO?oc=5",
+   "published": "2026-10-31",
+   "clue": "Governor + tied races settled by drawing + island state = Hawaii",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "City council to sit as a court in unusual apartment complex appeal in {}",
+   "hint": "",
+   "lat": 35.9604,
+   "lng": -83.921,
+   "place": "Knoxville, Tennessee, USA",
+   "src": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQaDJWOVhQS2NVelB1aGRxOXVJX2lDSWQ2Z2V5WnZfMnhvbmFnNmJscnMwSmFtbVRibTF0bHAyTzJ1S05VQzFrRU05blFfaTU2SnE0SzFPLTdIcEtEUHNpWlVRZG5Vb0xFd254S0YzOFB0YzFQQTh5TVZkRDZLcGs3eFVERjdFZW5BeGYxSlRfRXltNkk5My15d2lqSl96c0ZENEFPcVlRUEdmVnRzQnFjbmlLRjlma0hfV3piMERDaWp2MkJaVUhEVzlMRzRpTkZiWjJfWlNNaERkOEFkenc1djREWnF0TUpmcTJxSFFB?oc=5",
+   "published": "2026-10-13",
+   "clue": "City council hearing zoning appeal like a court = US city, Tennessee",
+   "cat": "pol"
+  },
+  {
+   "real": false,
+   "h": "Voters in {} approve ban on lawn gnomes taller than 43 centimetres in front gardens",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "Two candidates with the same name land on one U.S. Senate ballot under an unusual voting system in {}",
+   "hint": "",
+   "lat": 58.3019,
+   "lng": -134.4197,
+   "place": "Juneau, Alaska, USA",
+   "src": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPcl81ZS1pa0l2VFFXOUsxTEZvTG42ZEhzS3diMWtRQmFpbmtINUl5aUxBWWc5LTRNdVRzaVc3WmxZeFo2dlVxU3huWXQxMEJzaHpvWkxqMGhySnZ6NXhjSk81dVJCWXZnTDZJMFBiUXJ4MEpndHV6UW1ncUJtRnJucWNUQVFNVEsxZDREMHZCeHVyVEx6dHc?oc=5",
+   "published": "2026-10-29",
+   "clue": "Ranked-choice voting + state Senate race + 'Last Frontier' ballot = Alaska",
+   "cat": "pol"
+  }
+ ]
+}

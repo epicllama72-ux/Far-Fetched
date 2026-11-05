@@ -1,6 +1,38 @@
 {
  "real": [
   {
+   "id": 8,
+   "h": "Grandmother, 76, and granddaughter, 29, steal perfume from shops of one chain in {}, worth 1,015 zloty",
+   "h2": "Grandmother, 76, and her 29-year-old [] steal perfume from shops of one chain in Kościan, Poland, worth 1,015 zloty",
+   "ans": [
+    "granddaughter",
+    "granddaughters"
+   ],
+   "alt": [
+    "daughter",
+    "niece",
+    "girl",
+    "grandchild"
+   ],
+   "place": "Kościan, Poland",
+   "geocode": "Kościan, Greater Poland, Poland",
+   "lat": 52.086325,
+   "lng": 16.6449995,
+   "country": "Poland",
+   "cc": "PL",
+   "hint": "a Wielkopolska town",
+   "clue": "zloty = Poland",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 3,
+   "theme": "shoplifting",
+   "src": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNc1h1clZadzJhT2cwNWlPVnVFWkFxQVNvSnhHR01DMWlDZ3JMSk9qenVqQmdxYldSbUY2UUVfUlNwRG1MT29LNjNXWGVDVVdmYmpIdnhETHAwUWFmQWx6dE1BcFNSeXNLeTJkcWUtNUFPdG1qaTdVcTBQSUU2bHJjVncwenFiWDFzU2x0Y2FrZnBzRTlwMkVuMXpBclZCV19FbUtIaDhwLUpFSmtRYjVuSGFEZ0hMM1JPN2xoRE5nS2Z1c3VIWHhGY2JHeTVLdnF2RWc?oc=5",
+   "published": "2026-11-03",
+   "banked": "2026-11-06",
+   "rules": 2
+  },
+  {
    "id": 11,
    "h": "Officers shout 'fart police, fart the wood' in botched Spanish before police dog bites tourist in {}",
    "h2": "Aurora, Colorado officers shout 'fart police, fart the wood' in botched Spanish before police [] bites tourist",
@@ -23,13 +55,80 @@
    "cc": "US",
    "hint": "home of Buckley Space Force Base",
    "clue": "SWAT team and a police K-9 in a US suburb",
-   "clue_strength": 1,
+   "clue_strength": 2,
    "jargon_only": false,
    "mappable": 3,
    "unbelievable": 4,
    "theme": "language",
    "src": "https://www.denverpost.com/2026/10/19/aurora-police-excessive-force-lawsuit-dog-bite/",
    "published": "2026-10-23",
+   "banked": "2026-11-05",
+   "rules": 2
+  },
+  {
+   "h": "Federal judge orders state to let Satanic Temple hold one-day holiday event in the Capitol rotunda in {}",
+   "h2": "Federal judge orders state to let Satanic Temple hold one-day holiday [] in the Capitol rotunda in Des Moines, Iowa",
+   "ans": [
+    "event",
+    "events"
+   ],
+   "alt": [
+    "party",
+    "festival",
+    "display",
+    "gathering",
+    "celebration"
+   ],
+   "place": "Des Moines, Iowa",
+   "geocode": "Des Moines, Iowa, USA",
+   "lat": 41.5868,
+   "lng": -93.625,
+   "country": "United States",
+   "cc": "US",
+   "hint": "host of the first-in-the-nation caucuses",
+   "clue": "a state Capitol rotunda, a federal judge, a US state capital",
+   "clue_strength": 3,
+   "mappable": 3,
+   "unbelievable": 3,
+   "theme": "religion",
+   "src": "https://apnews.com/article/satanic-temple-iowa-holiday-event-order-1a2ff9e67b79b249ebabc5b8aca4700d",
+   "published": "2026-11-03",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "daily_only": true,
+   "jargon_only": false
+  },
+  {
+   "id": 43,
+   "h": "Man has breakfast, changes shirt and takes toilet cistern lids from two bars minutes apart in {}",
+   "h2": "Man takes toilet cistern [] from two bars minutes apart after changing shirt in Sierra de Cádiz, Spain",
+   "ans": [
+    "lids",
+    "lid",
+    "covers",
+    "cover"
+   ],
+   "alt": [
+    "tops",
+    "caps",
+    "tanks",
+    "seats"
+   ],
+   "place": "Sierra de Cádiz, Spain",
+   "geocode": "Sierra de Cádiz, Andalusia, Spain",
+   "lat": 36.8332379,
+   "lng": -5.6138257,
+   "country": "Spain",
+   "cc": "ES",
+   "hint": "home of Payoyo goat cheese",
+   "clue": "breakfast and a coffee at village bars, as in southern Spain",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 1,
+   "unbelievable": 4,
+   "theme": "bar-theft",
+   "src": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOcEVvRndDQjZfelN3bWlwTkQ3dDQ4Q1NoVVJxV2MyQ3d0TkN3c2dKYW5hZ2kwRmdlSnZfc1RRNmRQWUxBOFRqdjdKZ0RFQjBJbmZhYmdJeHlBajJIQy05R0pkUGNSaGpSVTk0bTl0RkVwLXdDdlJrWGVvSEhZLUpLYmtfT2hjNjhvdkNvVzVqMXgxVk1YNmI2S1hrX2ZoeWNfdWdkZFNvM1BFelN1MTh0R19wOXVPbkZxYVhxbDhvMGVtcm5YYWNjT041Y3RqZzIwTC1DeTc2Z2Z5Y0p6Rm5xY2lDOWNTLVJROU9rMzF5eXVYb3RlMFRaU1lvYnhRdEpIX2tNY0hEZ0NzUVlTaVd2Zw?oc=5",
+   "published": "2026-11-02",
    "banked": "2026-11-05",
    "rules": 2
   },
@@ -67,40 +166,6 @@
    "banked": "2026-11-05",
    "rules": 2,
    "blank_only": true
-  },
-  {
-   "id": 43,
-   "h": "Man has breakfast, changes shirt and takes toilet cistern lids from two bars minutes apart in {}",
-   "h2": "Man takes toilet cistern [] from two bars minutes apart after changing shirt in Sierra de Cádiz, Spain",
-   "ans": [
-    "lids",
-    "lid",
-    "covers",
-    "cover"
-   ],
-   "alt": [
-    "tops",
-    "caps",
-    "tanks",
-    "seats"
-   ],
-   "place": "Sierra de Cádiz, Spain",
-   "geocode": "Sierra de Cádiz, Andalusia, Spain",
-   "lat": 36.8332379,
-   "lng": -5.6138257,
-   "country": "Spain",
-   "cc": "ES",
-   "hint": "home of Payoyo goat cheese",
-   "clue": "breakfast and a coffee at village bars, as in southern Spain",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 1,
-   "unbelievable": 4,
-   "theme": "bar-theft",
-   "src": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOcEVvRndDQjZfelN3bWlwTkQ3dDQ4Q1NoVVJxV2MyQ3d0TkN3c2dKYW5hZ2kwRmdlSnZfc1RRNmRQWUxBOFRqdjdKZ0RFQjBJbmZhYmdJeHlBajJIQy05R0pkUGNSaGpSVTk0bTl0RkVwLXdDdlJrWGVvSEhZLUpLYmtfT2hjNjhvdkNvVzVqMXgxVk1YNmI2S1hrX2ZoeWNfdWdkZFNvM1BFelN1MTh0R19wOXVPbkZxYVhxbDhvMGVtcm5YYWNjT041Y3RqZzIwTC1DeTc2Z2Z5Y0p6Rm5xY2lDOWNTLVJROU9rMzF5eXVYb3RlMFRaU1lvYnhRdEpIX2tNY0hEZ0NzUVlTaVd2Zw?oc=5",
-   "published": "2026-11-02",
-   "banked": "2026-11-05",
-   "rules": 2
   },
   {
    "id": 20,
@@ -169,28 +234,6 @@
    "published": "2026-10-08",
    "banked": "2026-11-03",
    "rules": 2
-  },
-  {
-   "id": 55,
-   "h": "Big rats take over apartment complex in {}",
-   "place": "New Haven, Connecticut",
-   "geocode": "New Haven, Connecticut, USA",
-   "lat": 41.3083,
-   "lng": -72.9279,
-   "country": "United States",
-   "cc": "US",
-   "hint": "claimed birthplace of the hamburger",
-   "clue": "US apartment complex + rats",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 4,
-   "theme": "animal",
-   "src": "https://patch.com/connecticut/newhaven/big-rats-take-over-apartment-complex-new-haven-report",
-   "published": "2026-10-20",
-   "banked": "2026-11-03",
-   "rules": 2,
-   "daily_only": true
   },
   {
    "id": 57,
@@ -269,7 +312,7 @@
    "cc": "AU",
    "hint": "",
    "clue": "'college' + a fundraising walkathon + an apology",
-   "clue_strength": 1,
+   "clue_strength": 2,
    "jargon_only": false,
    "mappable": 2,
    "unbelievable": 3,
@@ -313,7 +356,7 @@
    "cc": "US",
    "hint": "",
    "clue": "US sheriff 'remain indoors' alert + a semitrailer",
-   "clue_strength": 0,
+   "clue_strength": 1,
    "jargon_only": false,
    "mappable": 3,
    "unbelievable": 4,
@@ -333,9 +376,9 @@
    "lng": -81.8651,
    "country": "United States",
    "cc": "US",
-   "hint": "",
+   "hint": "an Appalachian foothills textile town",
    "clue": "US chain restaurant + a county health district",
-   "clue_strength": 0,
+   "clue_strength": 1,
    "jargon_only": false,
    "mappable": 3,
    "unbelievable": 3,
@@ -377,7 +420,7 @@
    "lng": -86.115,
    "country": "United States",
    "cc": "US",
-   "hint": "home of a historic Chautauqua assembly",
+   "hint": "a Panhandle lakeside town",
    "clue": "US bank + police station next door + a stolen excavator",
    "clue_strength": 1,
    "jargon_only": false,
@@ -423,7 +466,7 @@
    "cc": "US",
    "hint": "",
    "clue": "US sheriff's office + 911 misuse charge",
-   "clue_strength": 0,
+   "clue_strength": 2,
    "jargon_only": false,
    "mappable": 3,
    "unbelievable": 4,
@@ -570,95 +613,63 @@
    "published": "2026-10-29",
    "daily_only": true,
    "hint": "where Napoleon's retreat began"
-  },
-  {
-   "h": "First-of-its-kind houseplant hospital opens in {}, where sick plants are put on drips",
-   "hint": "home of the Fringe festival",
-   "lat": 55.976,
-   "lng": -3.167,
-   "place": "Edinburgh, Scotland",
-   "src": "https://discover.swns.com/2026/07/britains-first-houseplant-hospital-has-opened-where-plants-are-put-on-drips/",
-   "published": "2026-07-15",
-   "clue": "plant 'hospital' + drips + a UK high street",
-   "banked": "2026-11-04",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "plants",
-   "cc": "GB",
-   "country": "United Kingdom",
-   "geocode": "Edinburgh, Scotland, UK",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 3
-  },
-  {
-   "h": "Embassy calls artillery shell found at wharf a 'wine bottle' that 'poses no danger'; police say it is live in {}",
-   "h2": "Embassy calls artillery shell found at Port Moresby wharf a shell-shaped wine [] that 'poses no danger'",
-   "ans": [
-    "bottle",
-    "bottles"
-   ],
-   "alt": [
-    "jar",
-    "flask",
-    "vessel",
-    "decanter",
-    "container"
-   ],
-   "place": "Port Moresby, Papua New Guinea",
-   "geocode": "Port Moresby, Papua New Guinea",
-   "lat": -9.4438,
-   "lng": 147.1803,
-   "country": "Papua New Guinea",
-   "cc": "PG",
-   "hint": "host of the 2018 APEC summit",
-   "clue": "embassy statement + wharf + police report = a Pacific port capital",
-   "clue_strength": 2,
-   "mappable": 3,
-   "unbelievable": 4,
-   "theme": "weapon",
-   "src": "https://www.abc.net.au/news/2026-11-03/papua-new-guinea-artillery-shell-wine-bottle/107342264",
-   "published": "2026-11-03",
-   "banked": "2026-11-05",
-   "rules": 2,
-   "daily_only": true,
-   "jargon_only": false
-  },
-  {
-   "h": "Federal judge orders state to let Satanic Temple hold one-day holiday event in the Capitol rotunda in {}",
-   "h2": "Federal judge orders state to let Satanic Temple hold one-day holiday [] in the Capitol rotunda in Des Moines, Iowa",
-   "ans": [
-    "event",
-    "events"
-   ],
-   "alt": [
-    "party",
-    "festival",
-    "display",
-    "gathering",
-    "celebration"
-   ],
-   "place": "Des Moines, Iowa",
-   "geocode": "Des Moines, Iowa, USA",
-   "lat": 41.5868,
-   "lng": -93.625,
-   "country": "United States",
-   "cc": "US",
-   "hint": "home of a state-fair butter cow",
-   "clue": "a state Capitol rotunda, a federal judge, a US state capital",
-   "clue_strength": 1,
-   "mappable": 3,
-   "unbelievable": 3,
-   "theme": "religion",
-   "src": "https://apnews.com/article/satanic-temple-iowa-holiday-event-order-1a2ff9e67b79b249ebabc5b8aca4700d",
-   "published": "2026-11-03",
-   "banked": "2026-11-05",
-   "rules": 2,
-   "daily_only": true,
-   "jargon_only": false
   }
  ],
  "fake": [
+  {
+   "h": "Thief steals 23 wheelie bins in one night in {}, returns them filled with sorted recycling",
+   "tell": "Thieves rarely return loot, and rarely sort recycling as a courtesy.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "bins",
+   "banked": "2026-11-06",
+   "rules": 2
+  },
+  {
+   "h": "Baker finds a 1962 love letter in a flour sack in {}; the writer, 84, lives two streets away",
+   "tell": "Too neat a coincidence: the sender just happens to live around the corner.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "letter",
+   "banked": "2026-11-06",
+   "rules": 2
+  },
+  {
+   "h": "Brushtail possum moves into a bowls club trophy cabinet in {} and sleeps through 19 matches",
+   "tell": "A nocturnal possum sleeping peacefully through nineteen matches in a glass cabinet is implausibly convenient.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "marsupial",
+   "banked": "2026-11-06",
+   "rules": 2
+  },
+  {
+   "h": "Ferry turns back mid-fjord in {} after a passenger's parrot copies the foghorn and a second ferry answers",
+   "tell": "A parrot's imitation answered by another ship's horn is an unlikely coincidence.",
+   "unbelievable": 5,
+   "obvious": 3,
+   "theme": "parrot",
+   "banked": "2026-11-06",
+   "rules": 2
+  },
+  {
+   "h": "Cows in {} refuse to leave the high pasture for 3 days until the farmer's brass band plays",
+   "tell": "Alpine herds come down by habit and weather, not in response to a brass band.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "cattle",
+   "banked": "2026-11-06",
+   "rules": 2
+  },
+  {
+   "h": "Deputies in {} spend 6 hours hunting a stolen chainsaw-carved bear that was in their own evidence room",
+   "tell": "Over-tidy irony: police searching everywhere except their own evidence room.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "statue",
+   "banked": "2026-11-06",
+   "rules": 2
+  },
   {
    "h": "Reindeer wander into a petrol station near {} and queue for 3 hours outside the heated toilets",
    "tell": "Reindeer queueing patiently for a specific facility is too tidy and human to be true.",
@@ -880,101 +891,26 @@
    "theme": "transport",
    "banked": "2026-11-01",
    "rules": 2
-  },
-  {
-   "h": "Taxi driver in {} hands back 18,400 euros left in his cab, then gets a parking ticket",
-   "hint": "home of the Fringe festival",
-   "tell": "Cab fares there use kroner; the euro isn't the currency, and the ticket is too neat.",
-   "obvious": 3,
-   "theme": "taxi",
-   "banked": "2026-11-01",
-   "rules": 2
-  },
-  {
-   "h": "Village fair in {} ends with 63 goats swapped for one second-hand tractor",
-   "hint": "birthplace of The Beatles",
-   "tell": "Barter at a fair is tidy and unlikely in a modern capital's region.",
-   "obvious": 3,
-   "theme": "barter",
-   "banked": "2026-11-01",
-   "rules": 2
-  },
-  {
-   "h": "Runner in {} finishes 26 miles in a gorilla suit and raises 3,100 euros for a local hospice",
-   "hint": "where RMS Titanic was built",
-   "tell": "Charity runs there raise dollars, not euros.",
-   "obvious": 3,
-   "theme": "marathon",
-   "banked": "2026-11-01",
-   "rules": 2
-  },
-  {
-   "h": "Nurses in {} find 29 hand-knitted woollen scarves stuffed into a ward's air vents",
-   "hint": "the birthplace of Afrobeat",
-   "tell": "Woollen scarves in a year-round tropical hospital are an unlikely coincidence.",
-   "obvious": 2,
-   "theme": "hospital",
-   "banked": "2026-11-01",
-   "rules": 2
-  },
-  {
-   "h": "Pigeon fanciers in {} blame a new wind farm as 74 of 88 racing birds land at the wrong loft",
-   "hint": "host of the 2000 Olympics",
-   "tell": "Blaming a neat single cause for a mass mix-up is too tidy.",
-   "obvious": 2,
-   "theme": "birds",
-   "banked": "2026-11-01",
-   "rules": 2
-  },
-  {
-   "h": "Thief in {} steals 29 manhole covers in one night, caught when his van's rear axle snaps",
-   "tell": "The cause and effect is too neat: the loot itself conveniently catches him.",
-   "obvious": 3,
-   "theme": "metal-theft",
-   "banked": "2026-10-31",
-   "rules": 2,
-   "hint": "birthplace of Mozart"
   }
  ],
- "pol": [
-  {
-   "id": 59,
-   "h": "Two candidates with the same name land on one U.S. Senate ballot under an unusual voting system in {}",
-   "place": "Juneau, Alaska, USA",
-   "geocode": "US",
-   "lat": 58.3019,
-   "lng": -134.4197,
-   "clue": "Ranked-choice voting + state Senate race + 'Last Frontier' ballot = Alaska",
-   "src": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPcl81ZS1pa0l2VFFXOUsxTEZvTG42ZEhzS3diMWtRQmFpbmtINUl5aUxBWWc5LTRNdVRzaVc3WmxZeFo2dlVxU3huWXQxMEJzaHpvWkxqMGhySnZ6NXhjSk81dVJCWXZnTDZJMFBiUXJ4MEpndHV6UW1ncUJtRnJucWNUQVFNVEsxZDREMHZCeHVyVEx6dHc?oc=5",
-   "published": "2026-10-29",
-   "banked": "2026-11-04"
-  },
-  {
-   "id": 29,
-   "h": "Governor approves rule to break tied races by drawing, despite objections, in {}",
-   "place": "Honolulu, Hawaii, USA",
-   "geocode": "US",
-   "lat": 21.3069,
-   "lng": -157.8583,
-   "clue": "Governor + tied races settled by drawing + island state = Hawaii",
-   "src": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNMUYzSmNpa1Q5b0VVT1E0OGE0YVp1cW5hN00zdXYwRFlxV2RBWHVpNkJ1WWloUm1IQ0pxY2d3emotRFZnUlc0T0c4THVPaGstUmtxWFFJN3N0RWthSjBxN1l0NklxUHBEMVJPSTkwdzR5Y05laEZIaW5iTjlSd2NQaGI4S3V5MXJjdk9vWDYyM01vZEdoZTJCbF9KQUE1c1pkcFJ6RXFNLS10NzdTSWNUatIBxAFBVV95cUxNUFkxMnVmdDYtN2E5ejJLdmQ0Q2hISU5jaGZSa0sxaXBDWUFJcklHMGluREYwbnhQMU5pdTRuT0wxMmd2Ny1UdUZNaGpkNF9sSVAzRW80ZGpsbThxSVJxbExkTFhtTEk0OEhRQ1o1NmJsUTRxZGx0T1h3d1Q4TWdXRXpkV29RcktlLTFXWmJXVXUzb1RmVlQ4WlRYQV95UFBPdXR3V1NkT0gyNktrVDJWM3BCWTRaenEyQ0VOY29GclBGd0hO?oc=5",
-   "published": "2026-10-31",
-   "banked": "2026-11-04"
-  },
-  {
-   "id": 53,
-   "h": "City council to sit as a court in unusual apartment complex appeal in {}",
-   "place": "Knoxville, Tennessee, USA",
-   "geocode": "Knoxville, Tennessee, USA",
-   "lat": 35.9603948,
-   "lng": -83.9210261,
-   "clue": "City council hearing zoning appeal like a court = US city, Tennessee",
-   "src": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQaDJWOVhQS2NVelB1aGRxOXVJX2lDSWQ2Z2V5WnZfMnhvbmFnNmJscnMwSmFtbVRibTF0bHAyTzJ1S05VQzFrRU05blFfaTU2SnE0SzFPLTdIcEtEUHNpWlVRZG5Vb0xFd254S0YzOFB0YzFQQTh5TVZkRDZLcGs3eFVERjdFZW5BeGYxSlRfRXltNkk5My15d2lqSl96c0ZENEFPcVlRUEdmVnRzQnFjbmlLRjlma0hfV3piMERDaWp2MkJaVUhEVzlMRzRpTkZiWjJfWlNNaERkOEFkenc1djREWnF0TUpmcTJxSFFB?oc=5",
-   "published": "2026-10-13",
-   "banked": "2026-10-31"
-  }
- ],
+ "pol": [],
  "polfake": [
+  {
+   "h": "Parliament in {} votes 61 to 3 to move its summer recess to February, citing heating bills",
+   "banked": "2026-11-06"
+  },
+  {
+   "h": "Town clerk in {} finds 212 uncounted ballots in a parish hall freezer, result unchanged",
+   "banked": "2026-11-06"
+  },
+  {
+   "h": "Newly elected councillor in {} resigns after learning the ward she won was merged last year",
+   "banked": "2026-11-06"
+  },
+  {
+   "h": "Mayor of {} signs bylaw requiring all taxis to be painted green, effective the same afternoon",
+   "banked": "2026-11-06"
+  },
   {
    "h": "Mayor of {} signs ordinance banning leaf blowers after hearing complaints at three consecutive meetings",
    "banked": "2026-11-05"
@@ -1038,22 +974,6 @@
   {
    "h": "Candidate in {} withdraws from mayoral race after discovering he lives one street outside the ward",
    "banked": "2026-11-03"
-  },
-  {
-   "h": "Town of {} elects councillor who was on holiday abroad during the entire campaign",
-   "banked": "2026-11-03"
-  },
-  {
-   "h": "Lawmakers in {} vote to rename the legislature's cafeteria after a cheese supplier, citing budget savings",
-   "banked": "2026-11-03"
-  },
-  {
-   "h": "Voters in {} approve new bridge after ballot lists it as both a tax and a refund",
-   "banked": "2026-11-02"
-  },
-  {
-   "h": "Mayor of {} resigns after the town clock is found to be running seven minutes fast",
-   "banked": "2026-11-02"
   }
  ]
 }
