@@ -4,7 +4,7 @@
  "call": [
   {
    "real": true,
-   "h": "Man caught with £14,000 of drugs as lamb named Pablo eats chips on back seat of car near {}",
+   "h": "Man caught with £14,000 of drugs as lamb named Pablo scoffs chips on back seat of car near {}",
    "hint": "where Taggart was set",
    "lat": 55.8612,
    "lng": -4.2502,
@@ -16,7 +16,7 @@
   {
    "real": true,
    "h": "Hundreds gather in {} for an annual event celebrating spring by burning winter socks",
-   "hint": "where Congress ratified the Revolution's treaty",
+   "hint": "home of the Naval Academy",
    "lat": 38.9784,
    "lng": -76.4922,
    "place": "Annapolis, Maryland",
@@ -31,7 +31,7 @@
   },
   {
    "real": true,
-   "h": "Professor linked to year-long series of bizarre incidents involving urine at university in {}",
+   "h": "Professor linked to year-long series of bizarre incidents involving urine at college in {}",
    "hint": "birthplace of F. Scott Fitzgerald",
    "lat": 44.9378,
    "lng": -93.1686,
@@ -43,7 +43,7 @@
   {
    "real": true,
    "h": "Man, 77, drives right up to police station door to report stolen bike, is breathalysed and loses licence in {}",
-   "hint": "where Emmy Noether was born",
+   "hint": "a Franconian university town",
    "lat": 49.5892,
    "lng": 10.9812,
    "place": "Erlangen, Germany",
@@ -53,8 +53,8 @@
   },
   {
    "real": true,
-   "h": "Man in {} who posed as blind, drove, gardened and piloted a boat while claiming 571,000 francs",
-   "hint": "home of an ancient abbey library",
+   "h": "Man in {} who posed as blind, drove, gardened and piloted a boat while claiming 571,000 francs in disability benefits",
+   "hint": "a canton in the Alpine foothills",
    "lat": 47.4256,
    "lng": 9.3762,
    "place": "St. Gallen, Switzerland",
