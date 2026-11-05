@@ -1,0 +1,121 @@
+{
+ "about": "The owner's editing taste, learned from the changes they make by hand. The nightly editor, hint writer and final desk read this file on every build (scripts/make_daily.py: house_style). Add a new before/after pair to 'edits' whenever the owner changes a headline or clue; the newest ones are shown to the editor first.",
+ "rules": [
+  "HEADLINES: cut words that add nothing and keep the funny detail. Concrete and punchy beats complete: drop side details that clutter the sentence.",
+  "HEADLINES: never ambiguous. If a cafe fines the table, say 'pay a fine', not 'pay the bill'.",
+  "HEADLINES: prefer an intriguing, slightly mysterious framing over graphic specifics ('linked to a year-long series of bizarre incidents involving urine' rather than the gory detail).",
+  "HEADLINES: use plain, broad words ('an event' not 'a show').",
+  "HEADLINES: use the place's own lingo and spellings when a general reader can still follow them: 'scoffs chips', 'licence', 'breathalysed', 'at college' (US usage). Replace words only locals know ('ute' becomes 'pickup').",
+  "HEADLINES: when it reads cleaner, put the {} straight after the subject with a who-clause and commas ('Man in {} who posed as blind, drove, gardened and piloted a boat while claiming 571,000 francs in disability benefits').",
+  "HEADLINES: add concrete regional detail the source supports (the kind of benefit, an institution, a currency) because it helps players deduce the place. Never invent it.",
+  "CLUES: never name a country, state or province, a country's adjective ('Turkish', 'German') or a neighbouring place. A region adjective ('Bavarian', 'Franconian') or a region inside a famous thing's name ('Brittany's Blue Nets festival') is fine.",
+  "CLUES: never vague. 'a famed chefs' festival' and 'a village with a moated castle' were rejected; a name, number or region adjective makes a clue specific.",
+  "CLUES: the owner likes simple, recognisable clues. For an obscure place a region-level clue ('a Franconian university town', 'a canton in the Alpine foothills') beats deep trivia ('where Emmy Noether was born'). 'home of the Naval Academy' beat 'where Congress ratified the Revolution's treaty'.",
+  "PAPER: the best true story goes first and a fake is never first. Avoid two stories from the same country when there is a choice; the owner swapped a second Scotland story out for a Swiss one. Aim for variety of countries and settings."
+ ],
+ "edits": [
+  {
+   "kind": "headline",
+   "before": "Man caught with £14,000 of drugs as lamb named Pablo eats chips on back seat of car stopped near {}",
+   "after": "Man caught with £14,000 of drugs as lamb named Pablo scoffs chips on back seat of car near {}",
+   "why": "cut 'stopped'; British 'scoffs' as a regional clue"
+  },
+  {
+   "kind": "headline",
+   "before": "Professor linked to year-long series of bizarre incidents involving urine at university in {}",
+   "after": "Professor linked to year-long series of bizarre incidents involving urine at college in {}",
+   "why": "'college' is how Americans say it, a regional clue"
+  },
+  {
+   "kind": "headline",
+   "before": "Former professor accused of damaging student's backpack with his urine in {}",
+   "after": "Professor linked to year-long series of bizarre incidents involving urine at university in {}",
+   "why": "intriguing and less graphic; broader than one backpack"
+  },
+  {
+   "kind": "headline",
+   "before": "Man posing as blind with a white cane drove, gardened and piloted a boat while claiming 571,000 francs in {}",
+   "after": "Man in {} who posed as blind, drove, gardened and piloted a boat while claiming 571,000 francs in disability benefits",
+   "why": "place after the subject, cleaner grammar, a concrete benefit detail"
+  },
+  {
+   "kind": "headline",
+   "before": "Coffeehouse bans swearing and makes the whole table pay the bill in {}",
+   "after": "Coffeehouse bans swearing in {}: one curse and the whole table pays a fine",
+   "why": "unambiguous 'fine', punchier colon structure"
+  },
+  {
+   "kind": "headline",
+   "before": "Man jailed six months for attacking ex-colleague from town hall over a cake served without butter 10 years ago in {}",
+   "after": "Man jailed six months for attacking ex-colleague over a cake served without butter 10 years ago in {}",
+   "why": "dropped a clutter detail"
+  },
+  {
+   "kind": "headline",
+   "before": "Colouring book handed out at a show in {} shows Bluey held at knifepoint",
+   "after": "Colouring book handed out at an event in {} shows Bluey held at knifepoint",
+   "why": "plainer, broader word"
+  },
+  {
+   "kind": "headline",
+   "before": "a parked Ute",
+   "after": "a parked pickup",
+   "why": "drop a word only locals know"
+  },
+  {
+   "kind": "clue",
+   "place": "Bolu",
+   "before": "home of a famed chefs' festival",
+   "after": "home of Abant Lake's autumn forests",
+   "why": "'famed chefs festival' was too vague (and 'a Turkish town...' names the country)"
+  },
+  {
+   "kind": "clue",
+   "place": "Burgsinn",
+   "before": "a village with a moated castle",
+   "after": "a Bavarian moated-castle village",
+   "why": "too vague without the region adjective"
+  },
+  {
+   "kind": "clue",
+   "place": "Concarneau",
+   "before": "home of the Blue Nets festival",
+   "after": "home of Brittany's Blue Nets festival",
+   "why": "a region name inside a famous thing's name is fine"
+  },
+  {
+   "kind": "clue",
+   "place": "St. Gallen",
+   "before": "home of an ancient abbey library",
+   "after": "a canton in the Alpine foothills",
+   "why": "a regional word ('canton') and a region adjective beat generic trivia"
+  },
+  {
+   "kind": "clue",
+   "place": "Annapolis",
+   "before": "where Congress ratified the Revolution's treaty",
+   "after": "home of the Naval Academy",
+   "why": "simpler and more recognisable"
+  },
+  {
+   "kind": "clue",
+   "place": "Erlangen",
+   "before": "where Emmy Noether was born",
+   "after": "a Franconian university town",
+   "why": "a region adjective for an obscure town beats deep trivia"
+  },
+  {
+   "kind": "clue",
+   "place": "Mauriceville",
+   "before": "an East Texas town near Louisiana",
+   "after": "(rejected: names the state and a neighbouring state)",
+   "why": "never name where a place is; use a trivia fact or a region adjective"
+  },
+  {
+   "kind": "selection",
+   "before": "two Scotland stories (Glasgow and Edinburgh) in one paper",
+   "after": "Edinburgh swapped out for a Swiss story",
+   "why": "variety of countries"
+  }
+ ]
+}

@@ -234,6 +234,36 @@ Candidates:
 COUNTRY_NAMES = set(['afghanistan', 'albania', 'algeria', 'andorra', 'angola', 'argentina', 'armenia', 'australia', 'austria', 'azerbaijan', 'bahamas', 'bahrain', 'bangladesh', 'barbados', 'belarus', 'belgium', 'belize', 'benin', 'bhutan', 'bolivia', 'bosnia', 'botswana', 'brazil', 'brunei', 'bulgaria', 'burundi', 'cambodia', 'cameroon', 'canada', 'chad', 'chile', 'china', 'colombia', 'congo', 'croatia', 'cuba', 'cyprus', 'czechia', 'denmark', 'djibouti', 'ecuador', 'egypt', 'eritrea', 'estonia', 'eswatini', 'ethiopia', 'fiji', 'finland', 'france', 'gabon', 'gambia', 'germany', 'ghana', 'greece', 'guatemala', 'guyana', 'haiti', 'honduras', 'hungary', 'iceland', 'india', 'indonesia', 'iran', 'iraq', 'ireland', 'israel', 'italy', 'jamaica', 'japan', 'jordan', 'kazakhstan', 'kenya', 'kosovo', 'kuwait', 'kyrgyzstan', 'laos', 'latvia', 'lebanon', 'lesotho', 'liberia', 'libya', 'lithuania', 'luxembourg', 'madagascar', 'malawi', 'malaysia', 'maldives', 'mali', 'malta', 'mauritania', 'mauritius', 'mexico', 'moldova', 'monaco', 'mongolia', 'montenegro', 'morocco', 'mozambique', 'myanmar', 'namibia', 'nepal', 'netherlands', 'nicaragua', 'niger', 'nigeria', 'norway', 'oman', 'pakistan', 'panama', 'paraguay', 'peru', 'philippines', 'poland', 'portugal', 'qatar', 'romania', 'russia', 'rwanda', 'samoa', 'senegal', 'serbia', 'singapore', 'slovakia', 'slovenia', 'somalia', 'spain', 'suriname', 'sweden', 'switzerland', 'syria', 'taiwan', 'tajikistan', 'tanzania', 'thailand', 'togo', 'tonga', 'trinidad', 'tunisia', 'turkey', 'turkmenistan', 'uae', 'uganda', 'uk', 'ukraine', 'uruguay', 'usa', 'uzbekistan', 'vanuatu', 'venezuela', 'vietnam', 'yemen', 'zambia', 'zimbabwe']) | set(['burkina faso', 'costa rica', 'dominican republic', 'el salvador', 'new zealand', 'north korea', 'north macedonia', 'papua new guinea', 'saudi arabia', 'sierra leone', 'south africa', 'south korea', 'south sudan', 'sri lanka', 'united arab emirates', 'united kingdom', 'united states'])
 
 
+FEEDBACK_PATH = os.path.join(DATA, "editor_feedback.json")
+
+
+def house_style(max_edits=24):
+    """The owner's editing taste, learned from their hand edits (data/editor_feedback.json): standing rules plus the newest before/after
+    pairs. Shown to the editor, the hint writer and the final desk on every build. Returns "" if the file is missing or unreadable."""
+    try:
+        fb = json.load(open(FEEDBACK_PATH))
+    except Exception:
+        return ""
+    lines = ["THE OWNER'S HOUSE STYLE (learned from the changes they make by hand: follow it above your own taste):"]
+    lines += ["- " + r for r in fb.get("rules", [])]
+    edits = [e for e in fb.get("edits", []) if e.get("before") and e.get("after")][-max_edits:]
+    if edits:
+        lines.append("Recent edits by the owner (before -> after, with why):")
+        for e in reversed(edits):
+            tag = ("[" + e["kind"] + (" " + e["place"] if e.get("place") else "") + "] ") if e.get("kind") else ""
+            lines.append(f'- {tag}"{e["before"]}" -> "{e["after"]}"' + (f' ({e["why"]})' if e.get("why") else ""))
+    return "\n".join(lines) + "\n"
+
+
+def styled(prompt, marker):
+    """Put the house style just before the marker (the line where the data starts); unchanged if there is no style or no marker."""
+    block = house_style()
+    i = prompt.rfind(marker)
+    if not block or i < 0:
+        return prompt
+    return prompt[:i] + block + "\n" + prompt[i:]
+
+
 def ask_claude(cands, model, prompt=None, avoid=None):
     payload = []
     for i, c in enumerate(cands):
@@ -245,7 +275,7 @@ def ask_claude(cands, model, prompt=None, avoid=None):
     if avoid:
         extra = ("\n\nALREADY USED in earlier games. Never pick any of these stories again, even if a candidate tells it "
                  "with different words or comes from a different outlet:\n" + "\n".join("- " + a for a in avoid) + "\n")
-    return call_claude((prompt or PROMPT) + json.dumps(payload, ensure_ascii=False) + extra, model, max_tokens=24000, keys=["real", "fake"])
+    return call_claude(styled(prompt or PROMPT, "Candidates:") + json.dumps(payload, ensure_ascii=False) + extra, model, max_tokens=24000, keys=["real", "fake"])
 
 
 PRICES = {"haiku": (0.10, 0.50), "sonnet": (2.0, 10.0), "opus": (5.0, 25.0)}   # USD per million tokens (in, out)
@@ -621,7 +651,7 @@ def sharpen(stories, model, texts):
     """Give every Daily Dig story a true knowledge hint (shown after the real-or-fake call) and rate how well headline plus hint point to a region."""
     items = [{"id": i, "h": r.get("h", ""), "hint": r.get("hint", ""), "place": r.get("place", ""), "clue": r.get("clue", ""),
               "text": texts.get(r.get("src"), "")} for i, r in enumerate(stories)]
-    res = call_claude(SHARPEN_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=3000, fatal=False, keys=["real"])
+    res = call_claude(styled(SHARPEN_PROMPT, "Reply with ONE JSON object only") + json.dumps(items, ensure_ascii=False), model, max_tokens=3000, fatal=False, keys=["real"])
     if not res or "real" not in res:
         print("  hint pass unavailable; keeping the stories as they are", file=sys.stderr)
         return
@@ -675,7 +705,7 @@ def final_desk(reals, fakes, model, texts, can_reject=True):
     items = [{"id": i, "kind": "real", "h": r.get("h", ""), "hint": r.get("hint", ""), "place": r.get("place", ""),
               "source": (texts.get(r.get("src")) or r.get("_text") or "")[:1500]} for i, r in enumerate(reals)]
     items += [{"id": len(reals) + j, "kind": "fake", "h": f.get("h", "")} for j, f in enumerate(fakes)]
-    res = call_claude(DESK_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["items"])
+    res = call_claude(styled(DESK_PROMPT, "Reply with ONE JSON object only") + json.dumps(items, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["items"])
     if not res or "items" not in res:
         print("  desk pass unavailable; printing the paper as it is", file=sys.stderr)
         return [], [], None
