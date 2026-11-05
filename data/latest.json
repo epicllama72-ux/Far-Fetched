@@ -4,7 +4,7 @@
  "call": [
   {
    "real": true,
-   "h": "Man caught with £14,000 of drugs as lamb named Pablo eats chips on back seat of car stopped near {}",
+   "h": "Man caught with £14,000 of drugs as lamb named Pablo eats chips on back seat of car near {}",
    "hint": "where Taggart was set",
    "lat": 55.8612,
    "lng": -4.2502,
@@ -53,14 +53,14 @@
   },
   {
    "real": true,
-   "h": "First-of-its-kind houseplant hospital opens in {}, where sick plants are put on drips",
-   "hint": "home of the Fringe festival",
-   "lat": 55.976,
-   "lng": -3.167,
-   "place": "Edinburgh, Scotland",
-   "src": "https://discover.swns.com/2026/07/britains-first-houseplant-hospital-has-opened-where-plants-are-put-on-drips/",
-   "published": "2026-07-15",
-   "clue": "plant 'hospital' + drips + a UK high street"
+   "h": "Man posing as blind with a white cane drove, gardened and piloted a boat while claiming 571,000 francs in {}",
+   "hint": "home of an ancient abbey library",
+   "lat": 47.4256,
+   "lng": 9.3762,
+   "place": "St. Gallen, Switzerland",
+   "src": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPNEI3U2FNREFhRUVMQzdzdkVPOEM4d3hPZjExWTh5ZDZEay03S2ZWbkdWMjI2SHRhYzl6NDFINzd6aVNScFdTY0pZclpmSnlHOGxibk1uMlE3em5lMnRERkE5NWV5Q0czSGE5N2VvcDRSd3lsUm92b2cxLUFqQ0JGd2tILWozNkJCc3pZOExURlE1bmc1b1JIWGY2S21oMFJqcjNXblh4UjlvYVFwXzlCV1dVSQ?oc=5",
+   "published": "2026-10-24",
+   "clue": "francs and a canton's social insurance office = Switzerland"
   },
   {
    "real": false,
