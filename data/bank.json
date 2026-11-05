@@ -435,39 +435,6 @@
    "daily_only": true
   },
   {
-   "id": 29,
-   "h": "Man posing as blind with a white cane drove, gardened and piloted a boat while claiming 571,000 francs in {}",
-   "h2": "Man posing as [] with a white cane drove and piloted a boat while claiming 571,000 francs in St. Gallen, Switzerland",
-   "ans": [
-    "blind",
-    "blindness"
-   ],
-   "alt": [
-    "disabled",
-    "handicapped",
-    "paralysed",
-    "impaired",
-    "deaf"
-   ],
-   "place": "St. Gallen, Switzerland",
-   "geocode": "St. Gallen, Switzerland",
-   "lat": 47.425618,
-   "lng": 9.3762397,
-   "country": "Switzerland",
-   "cc": "CH",
-   "hint": "home of an ancient abbey library",
-   "clue": "francs and a canton's social insurance office = Switzerland",
-   "clue_strength": 3,
-   "jargon_only": false,
-   "mappable": 1,
-   "unbelievable": 4,
-   "theme": "fraud",
-   "src": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPNEI3U2FNREFhRUVMQzdzdkVPOEM4d3hPZjExWTh5ZDZEay03S2ZWbkdWMjI2SHRhYzl6NDFINzd6aVNScFdTY0pZclpmSnlHOGxibk1uMlE3em5lMnRERkE5NWV5Q0czSGE5N2VvcDRSd3lsUm92b2cxLUFqQ0JGd2tILWozNkJCc3pZOExURlE1bmc1b1JIWGY2S21oMFJqcjNXblh4UjlvYVFwXzlCV1dVSQ?oc=5",
-   "published": "2026-10-24",
-   "banked": "2026-11-02",
-   "rules": 2
-  },
-  {
    "id": 44,
    "clue_strength": 2,
    "jargon_only": false,
@@ -603,6 +570,26 @@
    "published": "2026-10-29",
    "daily_only": true,
    "hint": "where Napoleon's retreat began"
+  },
+  {
+   "h": "First-of-its-kind houseplant hospital opens in {}, where sick plants are put on drips",
+   "hint": "home of the Fringe festival",
+   "lat": 55.976,
+   "lng": -3.167,
+   "place": "Edinburgh, Scotland",
+   "src": "https://discover.swns.com/2026/07/britains-first-houseplant-hospital-has-opened-where-plants-are-put-on-drips/",
+   "published": "2026-07-15",
+   "clue": "plant 'hospital' + drips + a UK high street",
+   "banked": "2026-11-04",
+   "rules": 2,
+   "unbelievable": 4,
+   "theme": "plants",
+   "cc": "GB",
+   "country": "United Kingdom",
+   "geocode": "Edinburgh, Scotland, UK",
+   "daily_only": true,
+   "mappable": 3,
+   "clue_strength": 3
   }
  ],
  "fake": [
