@@ -2954,7 +2954,6 @@ function startGame(mode, kind){
        maxScore: blank ? 1000 : Math.round(reals*PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS))+(rounds.length-reals)*FAKE_PTS,
        maxJaw: blank ? 1000 : Math.round(reals*PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS))};
   S.jawK = 1;                                        // one point = the same jaw drop in every mode
-  if(mode!=='daily'){ try{ localStorage.removeItem(spotKey()); }catch(e){} }   // practice and back issues: a new place each game
   if(mode==='back' && BACK) S.backDate=BACK.date;
   // The save is tied to the paper, not to its exact wording: rewording a headline must not wipe anyone's day.
   // sig is built from the stories' places and sources; older saves used the headline text (sigOld), and a paper that was edited after it went live lists the earlier headline sets in legacySigs.
@@ -2972,6 +2971,8 @@ function startGame(mode, kind){
       pending = saved;
     }
   }
+  // every fresh game rolls a new place to dive into (and room to sit in); a game in progress or finished keeps the one it was played in
+  if(!S.results.length && !pending){ try{ localStorage.removeItem(spotKey()); }catch(e){} }
   $('mCall').classList.toggle('on',KIND==='call' && daily);
   $('mBlank').classList.toggle('on',blank && daily);
   $('mPol').classList.toggle('on',pol && daily);
@@ -3737,8 +3738,8 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape' && !$('about').hidd
 $('wardrobe').addEventListener('click',e=>{ if(e.target===$('wardrobe')) closeWardrobe(); });
 
 /* ---------- Friend challenge: the share link carries your dig; a friend who opens it is told to beat it ---------- */
-/* Where today's dive lands (and so which room he sits in) is kept per game: the Daily Dig and the daily Fill the Blank each keep
-   theirs for the day, so the zoom back out matches; practice and back issues roll a new place every time a game starts. */
+/* Where the dive lands (and so which room he sits in) is rolled fresh for every new game in every mode, and kept for that game
+   (through a reload, and for the zoom back out at the end). */
 function spotKey(){
   try{
     if(!S) return 'ff_spot';
