@@ -590,6 +590,72 @@
    "daily_only": true,
    "mappable": 3,
    "clue_strength": 3
+  },
+  {
+   "h": "Embassy calls artillery shell found at wharf a 'wine bottle' that 'poses no danger'; police say it is live in {}",
+   "h2": "Embassy calls artillery shell found at Port Moresby wharf a shell-shaped wine [] that 'poses no danger'",
+   "ans": [
+    "bottle",
+    "bottles"
+   ],
+   "alt": [
+    "jar",
+    "flask",
+    "vessel",
+    "decanter",
+    "container"
+   ],
+   "place": "Port Moresby, Papua New Guinea",
+   "geocode": "Port Moresby, Papua New Guinea",
+   "lat": -9.4438,
+   "lng": 147.1803,
+   "country": "Papua New Guinea",
+   "cc": "PG",
+   "hint": "host of the 2018 APEC summit",
+   "clue": "embassy statement + wharf + police report = a Pacific port capital",
+   "clue_strength": 2,
+   "mappable": 3,
+   "unbelievable": 4,
+   "theme": "weapon",
+   "src": "https://www.abc.net.au/news/2026-11-03/papua-new-guinea-artillery-shell-wine-bottle/107342264",
+   "published": "2026-11-03",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "daily_only": true,
+   "jargon_only": false
+  },
+  {
+   "h": "Federal judge orders state to let Satanic Temple hold one-day holiday event in the Capitol rotunda in {}",
+   "h2": "Federal judge orders state to let Satanic Temple hold one-day holiday [] in the Capitol rotunda in Des Moines, Iowa",
+   "ans": [
+    "event",
+    "events"
+   ],
+   "alt": [
+    "party",
+    "festival",
+    "display",
+    "gathering",
+    "celebration"
+   ],
+   "place": "Des Moines, Iowa",
+   "geocode": "Des Moines, Iowa, USA",
+   "lat": 41.5868,
+   "lng": -93.625,
+   "country": "United States",
+   "cc": "US",
+   "hint": "home of a state-fair butter cow",
+   "clue": "a state Capitol rotunda, a federal judge, a US state capital",
+   "clue_strength": 1,
+   "mappable": 3,
+   "unbelievable": 3,
+   "theme": "religion",
+   "src": "https://apnews.com/article/satanic-temple-iowa-holiday-event-order-1a2ff9e67b79b249ebabc5b8aca4700d",
+   "published": "2026-11-03",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "daily_only": true,
+   "jargon_only": false
   }
  ],
  "fake": [
