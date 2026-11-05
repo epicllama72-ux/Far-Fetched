@@ -4723,7 +4723,18 @@ const Intro=(function(){
   /* Where the dive lands, picked once per edition: the old neighbourhood, a big city, a cabin by a lake under the mountains, or a village among fields.
      Every scene keeps his roof at the same spot (2.8 to 7.2 units from the scene origin), so the last frame of the dive is framed the same. */
   let sceneK='town', oc=null, ocg=null, oimg=null;
-  function pickScene(){ return ['town','city','cabin','village'][Math.floor(Math.random()*4)]; }   // an equal chance of each
+  function pickScene(){                // a shuffled deck per device: every scene comes up once in each run of four, never twice in a row
+    const ALL=['town','city','cabin','village'];
+    let bag=null, last=null;
+    try{ const v=JSON.parse(localStorage.getItem('ff_scenebag')||'null'); if(v && Array.isArray(v.bag)) { bag=v.bag.filter(k=>ALL.includes(k)); last=v.last||null; } }catch(e){}
+    if(!bag || !bag.length){
+      bag=ALL.slice(); for(let i=bag.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [bag[i],bag[j]]=[bag[j],bag[i]]; }
+      if(bag[bag.length-1]===last){ [bag[0],bag[bag.length-1]]=[bag[bag.length-1],bag[0]]; }   // the next one drawn is never the last one shown
+    }
+    const k=bag.pop();
+    try{ localStorage.setItem('ff_scenebag',JSON.stringify({bag,last:k})); }catch(e){}
+    return k;
+  }
   function drawTown(s,ex,ey){ if(sceneK==='city') drawCity(s,ex,ey); else if(sceneK==='cabin') drawCabin(s,ex,ey); else if(sceneK==='village') drawVillage(s,ex,ey); else drawStreets(s,ex,ey); }
   function myRoof(s,ex,ey,c1,c2,c3){     // his roof, dead centre: the dive ends on it
     const hx=ex+2.8*s, hy=ey+2.8*s, S=4.4*s;
