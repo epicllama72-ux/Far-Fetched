@@ -4821,29 +4821,62 @@ const Intro=(function(){
     ocg.putImageData(im,0,0); g.drawImage(oc,0,0);
     myRoof(s,ex,ey,'#7a4a2a','#5e3820','#94603a');
     if(s>1.5){ g.fillStyle='#5e3820'; for(let k=1;k<5;k++) g.fillRect(ex+2.8*s,ey+(2.8+k*0.88)*s,4.4*s,Math.max(1,0.12*s)); }   // log lines
+    smoke(ex+3.85*s,ey+3.85*s,s,3);                         // a wood stove going
   }
-  function drawVillage(s,ex,ey){         // a village: a patchwork of fields and hedges, a crossroads, a handful of houses, a church and a pond
-    g.fillStyle='#5f9a4a'; g.fillRect(0,0,w,h);
-    const FW=11, FH=8, x0=Math.floor((-ex)/s/FW)-1, x1=Math.ceil((w-ex)/s/FW)+1, y0=Math.floor((-ey)/s/FH)-1, y1=Math.ceil((h-ey)/s/FH)+1;
-    if((x1-x0)*(y1-y0)>5000) return;
-    const CROP=['#c9b458','#9bbf5a','#7aa64a','#b98a52','#d8c870','#8fb35a'];
-    for(let fy=y0;fy<=y1;fy++) for(let fx=x0;fx<=x1;fx++){
-      const X=ex+(fx*FW-4)*s, Y=ey+(fy*FH-2)*s, cxw=fx*FW+FW/2-4, cyw=fy*FH+FH/2-2;
-      if(Math.hypot(cxw-5,cyw-6)<15) continue;                                             // the village green in the middle
-      g.fillStyle='#3f6a34'; g.fillRect(X,Y,FW*s,FH*s);                                     // hedge
-      const c=CROP[Math.floor(hash(fx,fy)*CROP.length)]; g.fillStyle=c; g.fillRect(X+0.5*s,Y+0.5*s,(FW-1)*s,(FH-1)*s);
-      if(s*FH>10){ g.fillStyle='rgba(0,0,0,.10)'; const hz=hash(fx+5,fy)<0.5; for(let k=1;k<(hz?FH:FW)-1;k++) hz ? g.fillRect(X+0.5*s,Y+(0.5+k)*s,(FW-1)*s,Math.max(1,0.25*s)) : g.fillRect(X+(0.5+k)*s,Y+0.5*s,Math.max(1,0.25*s),(FH-1)*s); }
-      if(hash(fx,fy+3)<0.5){ g.fillStyle='#2f5a2a'; g.fillRect(X-0.4*s,Y-0.4*s,1.4*s,1.4*s); }   // a tree in the hedge corner
+  function smoke(x,y,s,seed){            // a thin curl of chimney smoke drifting off to the east
+    const now=performance.now()/1000;
+    for(let k=0;k<5;k++){ const ph=((now*0.35+k/5+seed*0.13)%1), r=Math.max(1,(0.5+ph*1.4)*s);
+      g.globalAlpha=(1-ph)*0.55; g.fillStyle='#e6e8ee'; g.fillRect(x+ph*3.2*s+Math.sin(ph*6+seed)*0.6*s-r/2, y-ph*5*s-r/2, r, r); }
+    g.globalAlpha=1;
+  }
+  function hut(x,y,r,s,seed){            // a round thatched hut from above: rings of straw to a peak
+    g.fillStyle='rgba(0,0,0,.28)'; g.beginPath(); g.arc(x+0.5*s,y+0.6*s,r,0,7); g.fill();
+    g.fillStyle='#3a2a16'; g.beginPath(); g.arc(x,y,r+Math.max(1,0.25*s),0,7); g.fill();
+    g.fillStyle='#c9a35a'; g.beginPath(); g.arc(x,y,r,0,7); g.fill();
+    g.fillStyle='#b08a44'; g.beginPath(); g.arc(x,y,r*0.66,0,7); g.fill();
+    g.fillStyle='#d8b56c'; g.beginPath(); g.arc(x-r*0.2,y-r*0.2,r*0.36,0,7); g.fill();
+    g.fillStyle='#7a5a2a'; g.fillRect(x-Math.max(1,0.2*s),y-Math.max(1,0.2*s),Math.max(1,0.4*s),Math.max(1,0.4*s));
+    if(seed%2===0) smoke(x,y,s,seed);
+  }
+  function drawVillage(s,ex,ey){         // an off-grid hamlet: meadow, dirt footpaths, a stream, round thatched huts with smoke, a well, plots and a sheep pen
+    const im=natureCanvas(), d=im.data, fl=Math.floor, put=(i,c)=>{ d[i]=c>>16; d[i+1]=(c>>8)&255; d[i+2]=c&255; d[i+3]=255; };
+    const CROPS=[0x9a8a4a,0x7f9a48,0xa88a5a,0x8aa452,0xb39a5c];
+    for(let y=0;y<h;y++) for(let x=0;x<w;x++){
+      const u=(x+0.5-ex)/s, v=(y+0.5-ey)/s, i=(y*w+x)*4;
+      const sx=-15+3.2*Math.sin(v*0.11)+1.4*Math.sin(v*0.37);                                   // the stream, wandering north to south
+      if(Math.abs(u-sx)<1.4){ put(i, hash(fl(u*2),fl(v*2))>0.94?0xcfe8f5 : Math.abs(u-sx)>1.0?0x4b86b8:0x3a72a6); continue; }
+      if(Math.abs(u-sx)<2.0){ put(i,0x8a7a52); continue; }                                       // muddy banks
+      const p1=Math.abs(u-(5+2.2*Math.sin(v*0.18)))<0.75 && v>7;                                  // footpaths: south from his door, west to the stream, east to the pen
+      const p2=Math.abs(v-(5+1.4*Math.sin(u*0.3)))<0.7 && u<3 && u>sx;
+      const p3=Math.abs(v-(11+1.2*Math.sin(u*0.25)))<0.65 && u>6 && u<22;
+      if(p1||p2||p3){ put(i, hash(fl(u*3),fl(v*3))<0.2?0x9a7a4c:0xb08e5e); continue; }
+      const far=Math.hypot(u-5,v-5);
+      if(far>30){                                                                                   // rough field patches beyond the huts
+        const cu=fl((u+hash(fl(v/7),3)*4)/9), cv=fl(v/7); if(hash(cu,cv)<0.55){ const c=CROPS[fl(hash(cu+5,cv)*CROPS.length)]; put(i, (fl(v*1.5)%2)?c:(c-0x080808)); continue; } }
+      const cu=fl(u/2.6), cv=fl(v/2.6), fx=u/2.6-cu-0.5, fy=v/2.6-cv-0.5;                         // scattered trees (none near the huts and paths)
+      if(far>9 && hash(cu,cv)<0.22 && fx*fx+fy*fy<0.12){ put(i, fx+fy<-0.1?0x4f9a58:0x2f6b3a); continue; }
+      const n=hash(fl(u*1.5),fl(v*1.5));
+      put(i, n<0.15?0x7aab4f : n>0.9?0x5f8c3c : 0x6f9e45);                                         // meadow
     }
-    g.fillStyle='#b59a6a'; g.fillRect(0,ey+10.6*s,w,1.8*s); g.fillRect(ex-1.6*s,0,1.8*s,h);   // the crossroads
-    g.fillStyle='#4f93d6'; g.fillRect(ex-13*s,ey-7*s,5*s,3*s); g.fillRect(ex-12*s,ey-8*s,3*s,5*s);   // the pond
-    const HS=[[-7,3,'#8a3b2f'],[-7,6.6,'#5a5f73'],[-4.6,13.2,'#7a5238'],[1,13.2,'#8a3b2f'],[6,13.2,'#9a6a3a'],[11,12.8,'#5a5f73'],[10.6,6,'#8a3b2f'],[10.6,1.6,'#7a5238'],[2.6,-4,'#5a5f73'],[7.4,-4,'#8a3b2f'],[-6.6,-3,'#9a6a3a']];
-    HS.forEach(([u,v,c])=>{ const X=ex+u*s, Y=ey+v*s, L=3.2*s; g.fillStyle='#2b1a12'; g.fillRect(X-0.2*s,Y-0.2*s,L+0.4*s,L+0.4*s); g.fillStyle=c; g.fillRect(X,Y,L,L); g.fillStyle='rgba(0,0,0,.25)'; g.fillRect(X+L/2,Y,L/2,L); });
-    { const X=ex+15.5*s, Y=ey+1*s;                                                         // the church and its tower
-      g.fillStyle='#2b1a12'; g.fillRect(X-0.2*s,Y-0.2*s,4.4*s,8.4*s); g.fillStyle='#8a8f99'; g.fillRect(X,Y,4*s,8*s); g.fillStyle='#6d727c'; g.fillRect(X+2*s,Y,2*s,8*s);
-      g.fillStyle='#2b1a12'; g.fillRect(X+0.6*s,Y-3.2*s,2.8*s,3.2*s); g.fillStyle='#b0a58f'; g.fillRect(X+0.8*s,Y-3*s,2.4*s,2.8*s);
-      g.fillStyle='#3a2a1a'; g.fillRect(X+1.8*s,Y-2.6*s,0.4*s,2*s); g.fillRect(X+1.3*s,Y-2.1*s,1.4*s,0.4*s); }
-    myRoof(s,ex,ey,'#c0392b','#93281e','#e05a48');
+    ocg.putImageData(im,0,0); g.drawImage(oc,0,0);
+    // vegetable plots with rows, and a fenced pen with sheep
+    [[9,-7,8,5],[-8,16,6,5]].forEach(([u,v,pw,ph])=>{ const X=ex+u*s, Y=ey+v*s; g.fillStyle='#6b4a2e'; g.fillRect(X,Y,pw*s,ph*s); g.fillStyle='#5a9a3c'; for(let k=0.5;k<ph;k+=1.2) g.fillRect(X+0.3*s,Y+k*s,(pw-0.6)*s,Math.max(1,0.45*s)); });
+    { const X=ex+15*s, Y=ey+14*s, W2=9*s, H2=6*s; g.fillStyle='#7cb05a'; g.fillRect(X,Y,W2,H2); g.strokeStyle='#5a3a1e'; g.lineWidth=Math.max(1,0.25*s); g.strokeRect(X,Y,W2,H2);
+      g.fillStyle='#3a2410'; for(let k=0;k<=9;k+=1.5){ g.fillRect(X+k*s-0.2*s,Y-0.2*s,Math.max(1,0.4*s),Math.max(1,0.4*s)); g.fillRect(X+k*s-0.2*s,Y+H2-0.2*s,Math.max(1,0.4*s),Math.max(1,0.4*s)); }
+      const now=performance.now()/1000;
+      for(let k=0;k<6;k++){ const sx=X+(1+hash(k,3)*7+Math.sin(now*0.4+k)*0.4)*s, sy=Y+(1+hash(3,k)*4)*s; g.fillStyle='#f2f0e8'; g.fillRect(sx,sy,Math.max(1,0.9*s),Math.max(1,0.7*s)); g.fillStyle='#2b2620'; g.fillRect(sx+0.8*s,sy+0.1*s,Math.max(1,0.3*s),Math.max(1,0.4*s)); } }
+    { const X=ex+9.5*s, Y=ey+2*s; g.fillStyle='#6d6a64'; g.beginPath(); g.arc(X,Y,1.2*s,0,7); g.fill(); g.fillStyle='#1d3a5a'; g.beginPath(); g.arc(X,Y,0.6*s,0,7); g.fill(); }   // the well
+    { const X=ex+1*s, Y=ey+0.6*s; g.fillStyle='#7a5032'; for(let k=0;k<3;k++) g.fillRect(X,Y+k*0.6*s,2.4*s,Math.max(1,0.45*s)); }                          // woodpile
+    [[-6,-2,2.6],[15,4,2.4],[13,24,2.2],[-4,13,2.5],[1,-10,2.3],[19,-4,2.1],[-9,6,2.0],[24,9,2.2],[-2,24,2.3]].forEach(([u,v,r],k)=>hut(ex+u*s,ey+v*s,r*s,s,k));
+    // his cottage: a thatched roof with a ridge and a stone chimney, smoke curling off it
+    { const hx=ex+2.8*s, hy=ey+2.8*s, S=4.4*s;
+      g.fillStyle='rgba(0,0,0,.28)'; g.fillRect(hx+0.6*s,hy+0.7*s,S,S);
+      g.fillStyle='#3a2a16'; g.fillRect(hx-0.3*s,hy-0.3*s,S+0.6*s,S+0.6*s);
+      g.fillStyle='#d4b062'; g.fillRect(hx,hy,S/2,S); g.fillStyle='#b8944a'; g.fillRect(hx+S/2,hy,S/2,S);
+      g.fillStyle='rgba(90,60,20,.35)'; for(let k=0.5;k<4.4;k+=0.55) g.fillRect(hx,hy+k*s,S,Math.max(1,0.1*s));      // rows of straw
+      g.fillStyle='#8a6a30'; g.fillRect(hx+S/2-Math.max(1,0.22*s),hy,Math.max(1,0.44*s),S);                               // the ridge
+      g.fillStyle='#6d6a64'; g.fillRect(hx+0.6*s,hy+0.7*s,0.9*s,0.9*s); g.fillStyle='#3a3732'; g.fillRect(hx+0.8*s,hy+0.9*s,0.5*s,0.5*s);
+      smoke(hx+1.05*s,hy+1.1*s,s,7); }
   }
   function drawStreets(s,ex,ey){          // top-down neighbourhood; s = screen pixels per metre-ish unit
     g.fillStyle='#4f9d57'; g.fillRect(0,0,w,h);
