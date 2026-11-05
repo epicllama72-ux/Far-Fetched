@@ -4661,7 +4661,18 @@ const Intro=(function(){
       if(t.ht>30 && Math.floor(now*1.2+hash(t.id,9)*3)%2===0){ g.fillStyle='#ff3b3b'; g.fillRect(Math.round(A[0]+L/2),Math.round(A[1]+L/2),Math.max(1,L*0.08),Math.max(1,L*0.08)); }   // aircraft warning light
       if(L>10 && hash(t.id,11)<0.25){ g.strokeStyle='#ffd27a'; g.lineWidth=Math.max(1,L*0.04); g.strokeRect(A[0]+L*0.25,A[1]+L*0.25,L*0.5,L*0.5); }    // helipad ring
     }
-    myRoof(s,ex,ey,'#b5473a','#8e352b','#d0604f');
+    // his skyscraper, dead centre: from straight above only its top shows, so the dive ends on a tower roof with a helipad
+    { const hx=ex+2.8*s, hy=ey+2.8*s, S=4.4*s, q=Math.max(1,0.3*s);
+      g.fillStyle='#05070c'; g.fillRect(hx-0.4*s,hy-0.4*s,S+0.8*s,S+0.8*s);
+      g.fillStyle='#262c3d'; g.fillRect(hx,hy,S,S);
+      g.fillStyle='#3a4360'; g.fillRect(hx,hy,S,Math.max(1,0.3*s)); g.fillRect(hx,hy,Math.max(1,0.3*s),S);     // lit parapet
+      g.fillStyle='#1b2030'; g.fillRect(hx+S*0.5,hy+0.3*s,S*0.5-0.3*s,S-0.3*s);                                  // shade on one half
+      const pc=Math.max(1,0.16*s); g.strokeStyle='#ffd27a'; g.lineWidth=pc;                                      // helipad: a ring and an H
+      g.beginPath(); g.arc(hx+S/2,hy+S/2,S*0.3,0,Math.PI*2); g.stroke();
+      if(s>2){ g.fillStyle='#ffd27a'; const cx=hx+S/2, cy=hy+S/2, u=S*0.09; g.fillRect(cx-u*1.6,cy-u*2,u*0.7,u*4); g.fillRect(cx+u*0.9,cy-u*2,u*0.7,u*4); g.fillRect(cx-u*1.6,cy-u*0.35,u*3.2,u*0.7); }
+      g.fillStyle='#6a7184'; g.fillRect(hx+0.6*s,hy+0.6*s,0.8*s,0.8*s); g.fillStyle='#cfd6de'; g.fillRect(hx+0.85*s,hy+0.85*s,0.3*s,0.3*s);   // antenna mast
+      if(Math.floor(now*1.5)%2===0){ g.fillStyle='#ff3b3b'; [[0.3,0.3],[4.1,0.3],[0.3,4.1],[4.1,4.1]].forEach(([u,v])=>g.fillRect(hx+u*s-q/2,hy+v*s-q/2,q,q)); }   // blinking corner lights
+    }
   }
   function natureCanvas(){ if(!oc || oc.width!==w || oc.height!==h){ oc=document.createElement('canvas'); oc.width=w; oc.height=h; ocg=oc.getContext('2d'); oimg=ocg.createImageData(w,h); } return oimg; }
   function drawCabin(s,ex,ey){          // a lone cabin in a clearing: pine forest, a lake with a jetty, snowy mountains to the north
