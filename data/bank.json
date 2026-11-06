@@ -303,7 +303,7 @@
   },
   {
    "id": 63,
-   "h": "Community College apologizes for asking students to dress disabled in {}",
+   "h": "Community college apologises for asking students to dress disabled in {}",
    "place": "Tyabb, Victoria, Australia",
    "geocode": "Flinders Christian Community College, Tyabb, Victoria, Australia",
    "lat": -38.2667,
@@ -613,12 +613,252 @@
    "published": "2026-10-29",
    "daily_only": true,
    "hint": "where Napoleon's retreat began"
+  },
+  {
+   "h": "Masked 'Batman' becomes a folk hero by paying parking fines and handing out petrol vouchers in {}",
+   "hint": "home of Big Ben",
+   "lat": 51.5072,
+   "lng": -0.1276,
+   "place": "London, England",
+   "src": "https://www.lbc.co.uk/news/cost-living/london-batman-cost-of-living-random-acts-of-kindness/",
+   "published": "2026-10-24",
+   "clue": "masked vigilante paying parking fines at a hospital + fuel vouchers at a petrol station, a UK capital",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "unbelievable": 4,
+   "theme": "kindness",
+   "cc": "GB",
+   "country": "United Kingdom",
+   "geocode": "London, UK",
+   "daily_only": true,
+   "mappable": 3,
+   "clue_strength": 4
+  },
+  {
+   "h": "Police disguise themselves as lion dancers at a temple fair to catch a burglar in {}",
+   "hint": "famed durian-growing river province",
+   "lat": 13.8621,
+   "lng": 100.5144,
+   "place": "Nonthaburi, Thailand",
+   "src": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/02/21/thai-police-go-undercover-as-lion-dancers-to-nab-burglar",
+   "published": "2026-02-20",
+   "clue": "Lunar New Year lion-dance costume, a temple fair, Buddhist artefact thefts, Southeast Asia",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "unbelievable": 4,
+   "theme": "crime",
+   "cc": "TH",
+   "country": "Thailand",
+   "geocode": "Nonthaburi, Thailand",
+   "daily_only": true,
+   "mappable": 2,
+   "clue_strength": 2
+  },
+  {
+   "h": "'Are You Dead?' app for people living alone goes viral in {}",
+   "hint": "land of the Great Wall",
+   "lat": 35.8617,
+   "lng": 104.1954,
+   "place": "China",
+   "src": "https://en.wikipedia.org/wiki/Are_You_Dead%3F",
+   "published": "2026-01-12",
+   "clue": "check-in app that alerts emergency contacts if you miss two check-ins; no developer city confirmed so pinned country-level",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "unbelievable": 3,
+   "theme": "tech",
+   "cc": "CN",
+   "country": "China",
+   "geocode": "China",
+   "daily_only": true,
+   "mappable": 1,
+   "clue_strength": 2
+  },
+  {
+   "h": "Marathon runners stage the first-ever backwards mile race at {}",
+   "hint": "runners' camp on the frozen southern continent",
+   "lat": -79.7667,
+   "lng": -83.3833,
+   "place": "Union Glacier, Antarctica",
+   "src": "https://www.yahoo.com/news/videos/marathon-runners-stage-backwards-mile-145638289.html",
+   "published": "2025-12-15",
+   "clue": "runners waiting for a flight out after the Antarctic Ice Marathon; a one-mile race run in reverse",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "unbelievable": 3,
+   "theme": "sport",
+   "cc": "AQ",
+   "country": "Antarctica",
+   "geocode": "Union Glacier, Antarctica",
+   "daily_only": true,
+   "mappable": 2,
+   "clue_strength": 3
+  },
+  {
+   "h": "Family checks into a vacation rental in {} and finds a giant photo of themselves hanging on the wall",
+   "hint": "home of a surf museum and a record-long wooden pier",
+   "lat": 33.1959,
+   "lng": -117.3795,
+   "place": "Oceanside, California",
+   "src": "https://www.foxnews.com/travel/sisters-viral-video-reveal-truth-eerie-family-photo-discovered-rental-home",
+   "published": "2026-07-14",
+   "clue": "sisters at a beach-town rental recognise their own family in an aerial beach photo; host's decorator sells enlarged beach shots",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "unbelievable": 4,
+   "theme": "coincidence",
+   "cc": "US",
+   "country": "United States",
+   "geocode": "Oceanside, California, USA",
+   "daily_only": true,
+   "mappable": 3,
+   "clue_strength": 2
+  },
+  {
+   "h": "Man dressed as the Grim Reaper climbs hospital roof and stares at patients in {}",
+   "hint": "cathedral city with fewer people than most villages",
+   "lat": 53.2578,
+   "lng": -3.4426,
+   "place": "St Asaph, Denbighshire, Wales",
+   "src": "https://www.independent.co.uk/news/uk/home-news/grim-reaper-wales-hospital-denbighshire-b3027735.html",
+   "published": "2026-08-06",
+   "clue": "hooded man with a scythe on Ysbyty Glan Clwyd's roof for about 50 minutes; arrested then fined",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "unbelievable": 4,
+   "theme": "crime",
+   "cc": "GB",
+   "country": "United Kingdom",
+   "geocode": "St Asaph, Denbighshire, Wales, UK",
+   "daily_only": true,
+   "mappable": 2,
+   "clue_strength": 3
+  },
+  {
+   "h": "Mayor holds 'non-wedding' ceremonies where couples celebrate not getting married in {}",
+   "hint": "home of a white-domed hilltop basilica",
+   "lat": 48.8867,
+   "lng": 2.3431,
+   "place": "Montmartre, Paris, France",
+   "src": "https://parisjetaime.com/eng/activity/ceremonie-de-non-mariage-p2643",
+   "published": "2026-11-04",
+   "clue": "annual Montmartre 'non-marriage' ceremony before the arrondissement mayor; dogs in the blurb unverified, left out",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "unbelievable": 3,
+   "theme": "ceremony",
+   "cc": "FR",
+   "country": "France",
+   "geocode": "Montmartre, Paris, France",
+   "daily_only": true,
+   "mappable": 3,
+   "clue_strength": 4
+  },
+  {
+   "h": "Prime minister says AI minister is 'pregnant' with 83 digital assistants, one for each lawmaker, in {}",
+   "hint": "capital famed for rainbow-painted apartment blocks",
+   "lat": 41.3275,
+   "lng": 19.8187,
+   "place": "Tirana, Albania",
+   "src": "https://metro.co.uk/2025/10/26/albanias-ai-minister-pregnant-83-children-says-prime-minister-24531602/",
+   "published": "2025-10-26",
+   "clue": "AI-generated 'minister' Diella, 83 virtual aides for MPs, a Balkan capital",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "unbelievable": 4,
+   "theme": "government",
+   "cc": "AL",
+   "country": "Albania",
+   "geocode": "Tirana, Albania",
+   "daily_only": true,
+   "mappable": 3,
+   "clue_strength": 3
+  },
+  {
+   "h": "Mayor marries a caiman in a centuries-old ritual to bring abundance to {}",
+   "hint": "land of mezcal and seven moles",
+   "lat": 15.9667,
+   "lng": -95.6667,
+   "place": "San Pedro Huamelula, Oaxaca, Mexico",
+   "src": "https://www.gamereactor.eu/?p=126096",
+   "published": "2026-07-03",
+   "clue": "mayor weds a bride-dressed caiman each year in a Chontal-Huave peace ritual, a Pacific-coast town",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "unbelievable": 4,
+   "theme": "ceremony",
+   "cc": "MX",
+   "country": "Mexico",
+   "geocode": "San Pedro Huamelula, Oaxaca, Mexico",
+   "daily_only": true,
+   "mappable": 2,
+   "clue_strength": 2
+  },
+  {
+   "h": "Man spends 8 hours stuck in a porta-potty tank after climbing in to retrieve a dropped Mountain Dew in {}",
+   "hint": "city of fountains and burnt ends",
+   "lat": 39.0997,
+   "lng": -94.5786,
+   "place": "Kansas City, Missouri",
+   "src": "https://abc45.com/news/nation-world/kansas-city-porta-potty-mountain-dew-bottle-firefighter-rescue-trapped-man-portable-toilet-bizarre-rescue-kansas-city-fire-department",
+   "published": "2026-07-15",
+   "clue": "firefighters cut open a portable toilet after a World Cup watch party at 18th & Vine; about 8 hours inside the tank",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "unbelievable": 4,
+   "theme": "accident",
+   "cc": "US",
+   "country": "United States",
+   "geocode": "Kansas City, Missouri, USA",
+   "daily_only": true,
+   "mappable": 3,
+   "clue_strength": 3
+  },
+  {
+   "h": "Plaintiff hides tiny white text in court filings telling AI to agree with him; judge strips his e-filing rights in {}",
+   "hint": "home of Yale and Mark Twain's house",
+   "lat": 41.6032,
+   "lng": -72.7,
+   "place": "Connecticut",
+   "src": "https://www.jdsupra.com/legalnews/connecticut-court-issues-first-prompt-1389493/",
+   "published": "2026-08-06",
+   "clue": "self-represented plaintiff's hidden prompt injection in motions; judge ordered paper filing; he called later hidden messages jokes; state-level pin",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "unbelievable": 4,
+   "theme": "law",
+   "cc": "US",
+   "country": "United States",
+   "geocode": "Connecticut, USA",
+   "daily_only": true,
+   "mappable": 2,
+   "clue_strength": 3
+  },
+  {
+   "h": "Inmate sues himself for violating his own civil rights, asking the state to pay $5 million, in {}",
+   "hint": "edge of a great dismal swamp",
+   "lat": 36.7682,
+   "lng": -76.2875,
+   "place": "Chesapeake, Virginia",
+   "src": "https://www.deseret.com/1995/4/9/19168705/inmate-sues-himself-for-5-million",
+   "published": "1995-04-08",
+   "clue": "inmate at Indian Creek Correctional Center blamed his own drinking for breaching his rights; judge called it ludicrous and dismissed it; 1995 classic",
+   "banked": "2026-11-05",
+   "rules": 2,
+   "unbelievable": 4,
+   "theme": "law",
+   "cc": "US",
+   "country": "United States",
+   "geocode": "Chesapeake, Virginia, USA",
+   "daily_only": true,
+   "mappable": 3,
+   "clue_strength": 3
   }
  ],
  "fake": [
   {
-   "h": "Thief steals 23 wheelie bins in one night in {}, returns them filled with sorted recycling",
-   "tell": "Thieves rarely return loot, and rarely sort recycling as a courtesy.",
+   "h": "Thief takes 23 wheelie bins from one street in {} on bin day, returns them full of sorted recycling",
+   "tell": "On bin day the bins sit emptied at the kerb, so there was nothing to return full of sorted recycling.",
    "unbelievable": 4,
    "obvious": 2,
    "theme": "bins",
@@ -627,7 +867,7 @@
   },
   {
    "h": "Baker finds a 1962 love letter in a flour sack in {}; the writer, 84, lives two streets away",
-   "tell": "Too neat a coincidence: the sender just happens to live around the corner.",
+   "tell": "A flour sack is used within weeks; none sits 64 years waiting for someone to find a letter in it.",
    "unbelievable": 4,
    "obvious": 3,
    "theme": "letter",
@@ -635,8 +875,8 @@
    "rules": 2
   },
   {
-   "h": "Brushtail possum moves into a bowls club trophy cabinet in {} and sleeps through 19 matches",
-   "tell": "A nocturnal possum sleeping peacefully through nineteen matches in a glass cabinet is implausibly convenient.",
+   "h": "Brushtail possum moves into a bowls club trophy cabinet in {} and sleeps through 19 night matches",
+   "tell": "Brushtail possums are nocturnal; one would be awake and out of the cabinet during night matches.",
    "unbelievable": 4,
    "obvious": 3,
    "theme": "marsupial",
@@ -645,7 +885,7 @@
   },
   {
    "h": "Ferry turns back mid-fjord in {} after a passenger's parrot copies the foghorn and a second ferry answers",
-   "tell": "A parrot's imitation answered by another ship's horn is an unlikely coincidence.",
+   "tell": "Ships answer horns by set signals; neither ferry would turn back over a parrot's imitation.",
    "unbelievable": 5,
    "obvious": 3,
    "theme": "parrot",
@@ -653,8 +893,8 @@
    "rules": 2
   },
   {
-   "h": "Cows in {} refuse to leave the high pasture for 3 days until the farmer's brass band plays",
-   "tell": "Alpine herds come down by habit and weather, not in response to a brass band.",
+   "h": "Cows in {} refuse to come down from the high pasture for 3 days in July until the farmer's brass band plays",
+   "tell": "In July alpine cows belong on the high pasture; they only come down in autumn.",
    "unbelievable": 4,
    "obvious": 2,
    "theme": "cattle",
@@ -663,7 +903,7 @@
   },
   {
    "h": "Deputies in {} spend 6 hours hunting a stolen chainsaw-carved bear that was in their own evidence room",
-   "tell": "Over-tidy irony: police searching everywhere except their own evidence room.",
+   "tell": "The bear was already in their evidence log; deputies would have checked the log before searching.",
    "unbelievable": 4,
    "obvious": 3,
    "theme": "statue",
@@ -672,7 +912,7 @@
   },
   {
    "h": "Reindeer wander into a petrol station near {} and queue for 3 hours outside the heated toilets",
-   "tell": "Reindeer queueing patiently for a specific facility is too tidy and human to be true.",
+   "tell": "Reindeer move in loose herds and do not queue, least of all for a toilet block.",
    "unbelievable": 4,
    "obvious": 3,
    "theme": "reindeer",
@@ -708,7 +948,7 @@
   },
   {
    "h": "Fishing boat off {} lands a refrigerator holding 63 frozen pizzas, all still in date",
-   "tell": "Pizzas still within date inside a sea-found fridge is too neat to be true.",
+   "tell": "A fridge lost at sea cannot keep pizzas frozen, let alone in date.",
    "unbelievable": 4,
    "obvious": 2,
    "theme": "pizza",
@@ -726,7 +966,7 @@
   },
   {
    "h": "Tram services in {} halted for 47 minutes while 63 ducks cross the tracks in single file",
-   "tell": "Ducks crossing in single file for nearly an hour is too orderly to be real.",
+   "tell": "Ducks scatter and waddle in clumps; 47 minutes of orderly single file does not happen.",
    "unbelievable": 4,
    "obvious": 3,
    "theme": "duck",
@@ -735,7 +975,7 @@
   },
   {
    "h": "Bus driver in {} halts route for 22 minutes so a flock of 63 geese can finish crossing",
-   "tell": "Oddly precise timing and a patient driver; real delays are rarely logged so neatly.",
+   "tell": "A 22-minute wait for one flock is long; a driver would sound the horn or edge forward.",
    "obvious": 2,
    "unbelievable": 3,
    "theme": "bus",
@@ -897,83 +1137,103 @@
  "polfake": [
   {
    "h": "Parliament in {} votes 61 to 3 to move its summer recess to February, citing heating bills",
-   "banked": "2026-11-06"
+   "banked": "2026-11-06",
+   "tell": "A summer recess moved to February makes no sense, and heating bills do not shift a recess."
   },
   {
    "h": "Town clerk in {} finds 212 uncounted ballots in a parish hall freezer, result unchanged",
-   "banked": "2026-11-06"
+   "banked": "2026-11-06",
+   "tell": "Ballots found uncounted in a freezer would trigger a recount, not leave the result unchanged."
   },
   {
    "h": "Newly elected councillor in {} resigns after learning the ward she won was merged last year",
-   "banked": "2026-11-06"
+   "banked": "2026-11-06",
+   "tell": "A ward merged last year could not have elected her this year."
   },
   {
    "h": "Mayor of {} signs bylaw requiring all taxis to be painted green, effective the same afternoon",
-   "banked": "2026-11-06"
+   "banked": "2026-11-06",
+   "tell": "A bylaw cannot take effect the same afternoon it is signed; taxis cannot be repainted that fast."
   },
   {
    "h": "Mayor of {} signs ordinance banning leaf blowers after hearing complaints at three consecutive meetings",
-   "banked": "2026-11-05"
+   "banked": "2026-11-05",
+   "tell": "Three complaints at consecutive meetings rarely become a ban signed on the spot."
   },
   {
    "h": "Voters in {} approve 14-member parliament expansion after turnout rises to 212 percent in one district",
-   "banked": "2026-11-05"
+   "banked": "2026-11-05",
+   "tell": "Turnout of 212 percent in a district is impossible."
   },
   {
    "h": "Budget vote in {} delayed 37 days because the only copy of the agenda was filed under the wrong ward",
-   "banked": "2026-11-05"
+   "banked": "2026-11-05",
+   "tell": "An agenda filed under the wrong ward is found in days, not after 37."
   },
   {
    "h": "Town of {} elects new sheriff by popular vote, county commissioners confirm him as prime minister's envoy",
-   "banked": "2026-11-05"
+   "banked": "2026-11-05",
+   "tell": "A county commissioner confirms county posts, not a prime minister's envoy."
   },
   {
    "h": "Newly elected councillor in {} resigns after 41 minutes, saying the swearing-in oath was too long",
-   "banked": "2026-11-05"
+   "banked": "2026-11-05",
+   "tell": "An oath takes a minute or two; 41 minutes is not an oath."
   },
   {
    "h": "Lawmakers in {} pass bill requiring all streetlights be repainted green, citing a rise in birdwatching",
-   "banked": "2026-11-05"
+   "banked": "2026-11-05",
+   "tell": "Streetlight colour is a maintenance matter, not a bill, and birdwatching is no reason."
   },
   {
    "h": "Mayor of {} signs bylaw moving local elections to spring after turnout rose at the last vote",
-   "banked": "2026-11-04"
+   "banked": "2026-11-04",
+   "tell": "Moving the election date after a good turnout undoes the reason it was good."
   },
   {
    "h": "Voters in {} approve a ward boundary change that places the town hall in a neighbouring ward",
-   "banked": "2026-11-04"
+   "banked": "2026-11-04",
+   "tell": "A ward boundary change that moves the town hall out of its own ward would not be put to voters."
   },
   {
    "h": "Parliament in {} delays a vote for three days because the speaker's chair was away for repairs",
-   "banked": "2026-11-04"
+   "banked": "2026-11-04",
+   "tell": "A speaker's chair is replaced or borrowed; a vote is not delayed three days for it."
   },
   {
    "h": "Lawmakers in {} pass a law requiring all ballot papers be printed in a single font, citing a printer shortage",
-   "banked": "2026-11-04"
+   "banked": "2026-11-04",
+   "tell": "A printer shortage is no reason to legislate fonts."
   },
   {
    "h": "Candidate in {} wins a council seat by 14 votes after sharing a surname with 9 other candidates",
-   "banked": "2026-11-04"
+   "banked": "2026-11-04",
+   "tell": "Nine other candidates with one surname would be flagged long before the vote."
   },
   {
    "h": "Councillors in {} vote to rename a bridge after a long-closed bakery, then reopen the bridge a year early",
-   "banked": "2026-11-04"
+   "banked": "2026-11-04",
+   "tell": "A bridge closed for years cannot reopen a year early; the dates contradict."
   },
   {
    "h": "Mayor of {} wins re-election after ballots are counted twice and totals differ by one vote",
-   "banked": "2026-11-03"
+   "banked": "2026-11-03",
+   "tell": "A count repeated twice with totals one vote apart would trigger a recount, not a win."
   },
   {
    "h": "Voters in {} approve new bylaw requiring all council meetings to end before the evening news",
-   "banked": "2026-11-03"
+   "banked": "2026-11-03",
+   "tell": "Councils cannot tie meeting length to the evening news schedule."
   },
   {
    "h": "Parliament in {} passes law moving national election day to a Wednesday after a rainy Sunday vote",
-   "banked": "2026-11-03"
+   "banked": "2026-11-03",
+   "tell": "A national election day is fixed by law, not moved after one rainy Sunday."
   },
   {
    "h": "Candidate in {} withdraws from mayoral race after discovering he lives one street outside the ward",
-   "banked": "2026-11-03"
+   "banked": "2026-11-03",
+   "tell": "A candidate living one street outside the ward would be caught at nomination, not later."
   }
  ]
 }
