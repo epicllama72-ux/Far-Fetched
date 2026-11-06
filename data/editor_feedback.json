@@ -11,7 +11,8 @@
   "CLUES: never name a country, state or province, a country's adjective ('Turkish', 'German') or a neighbouring place. A region adjective ('Bavarian', 'Franconian') or a region inside a famous thing's name ('Brittany's Blue Nets festival') is fine.",
   "CLUES: never vague. 'a famed chefs' festival' and 'a village with a moated castle' were rejected; a name, number or region adjective makes a clue specific.",
   "CLUES: the owner likes simple, recognisable clues. For an obscure place a region-level clue ('a Franconian university town', 'a canton in the Alpine foothills') beats deep trivia ('where Emmy Noether was born'). 'home of the Naval Academy' beat 'where Congress ratified the Revolution's treaty'.",
-  "PAPER: the best true story goes first and a fake is never first. Avoid two stories from the same country when there is a choice; the owner swapped a second Scotland story out for a Swiss one. Aim for variety of countries and settings."
+  "PAPER: the best true story goes first and a fake is never first. Avoid two stories from the same country when there is a choice; the owner swapped a second Scotland story out for a Swiss one. Aim for variety of countries and settings.",
+  "PAPER: the Daily Dig has priority over Fill the Blank. Sport-rule trivia (a booking, a referee's spray) reads as lame; prefer a vivid, absurd human story with a twist, such as a thief who mails back a luxury watch with an apology."
  ],
  "edits": [
   {
@@ -116,6 +117,12 @@
    "before": "two Scotland stories (Glasgow and Edinburgh) in one paper",
    "after": "Edinburgh swapped out for a Swiss story",
    "why": "variety of countries"
+  },
+  {
+   "kind": "selection",
+   "before": "Striker booked for using the referee's dropped spray to mark the line himself (football rules trivia)",
+   "after": "Thief mails back a 46 million yen watch with a handwritten apology",
+   "why": "the owner called the striker story lame; crime-with-a-twist and absurd human behaviour beat sport-rule trivia, and the Daily Dig has priority over Fill the Blank when one story suits both"
   }
  ]
 }
