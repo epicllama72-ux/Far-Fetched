@@ -1,229 +1,210 @@
 {
- "date": "2026-11-06",
- "generated": "2026-11-05T07:19:06+00:00",
+ "date": "2026-11-07",
+ "generated": "2026-11-06T07:20:16+00:00",
  "call": [
   {
    "real": true,
-   "h": "Islamic preacher at a boarding school in {} gives a 90-minute sermon from inside a grave, wrapped in a shroud",
-   "hint": "a district on Sulawesi's southeast peninsula",
-   "lat": -4.03,
-   "lng": 122.45,
-   "place": "Konda, South Konawe, Indonesia",
-   "src": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQdUpSRWlvUDNQOFdOajlWVmdydjU4cVp2eTlXVjRJTk1RT1NabllES1g1d3FCRnFwbWZMeDVqaVl3WTRPdndTYy1EUUJJRFA4clFhSklJNld1M1VOaWhvQkxBald6ZGhOS0prRUF6XzItOUp0OTQ1UnhFQnZvbmRtMUFBV3pRbmx2aWtDbVFpVWM2WHdLVU9hVGY5SnRsbGxDUTl5amhrMFdGRzFqbDd2T0xBVdIBuAFBVV95cUxOd3NnOXVPcTZxbnBVOEIzblBjakpkOTF2WHZGOVhqUWdESTlZdzc4S1A3OHlMME1WTnl4SEc0OVJ1amRDNnV5NjRzeHoyYklWMnpoeERraWRDbi12VGJWZ2lzSU41NlNkVGRuQlFuQ3N1a0VuMGk5UEtoTVlnY3pKOW5oNkktbThQdjVDdTh6MHdBbHd1cHVNdllGbnFSaHhudjRWUVo4SzFSWGM2UjJzYnNxNGo3VW82?oc=5",
-   "published": "2026-11-03",
-   "clue": "Islamic boarding school (pesantren) = Indonesia"
+   "h": "Prime minister in {} says AI minister is 'pregnant' with 83 digital assistants, one for each lawmaker",
+   "hint": "the capital where Enver Hoxha ruled",
+   "lat": 41.3275,
+   "lng": 19.8187,
+   "place": "Tirana, Albania",
+   "src": "https://metro.co.uk/2025/10/26/albanias-ai-minister-pregnant-83-children-says-prime-minister-24531602/",
+   "published": "2025-10-26",
+   "clue": "AI-generated 'minister' Diella, 83 virtual aides for MPs, a Balkan capital"
+  },
+  {
+   "real": true,
+   "h": "Mayor marries a caiman in a centuries-old ritual to bring abundance to {}",
+   "hint": "an Oaxacan Pacific-coast town",
+   "lat": 15.9667,
+   "lng": -95.6667,
+   "place": "San Pedro Huamelula, Oaxaca, Mexico",
+   "src": "https://www.gamereactor.eu/?p=126096",
+   "published": "2026-07-03",
+   "clue": "mayor weds a bride-dressed caiman each year in a Chontal-Huave peace ritual, a P"
   },
   {
    "real": false,
-   "h": "Student in {} racks up 14 parking fines on a bullock cart left outside college, totalling 2,870 rupees",
-   "tell": "Parking fines are issued to registered vehicles; a bullock cart would not be ticketed repeatedly."
+   "h": "Postman in {} delivers village's pension cheques to a goat farm; 37 pensioners wait a fortnight",
+   "tell": "A whole village's cheques going to one goat farm is too neat a mix-up."
   },
   {
    "real": true,
-   "h": "Embassy calls artillery shell at wharf in {} a 'wine bottle' that 'poses no danger'; police say it is live",
-   "hint": "host of the 2018 APEC summit",
-   "lat": -9.4438,
-   "lng": 147.1803,
-   "place": "Port Moresby, Papua New Guinea",
-   "src": "https://www.abc.net.au/news/2026-11-03/papua-new-guinea-artillery-shell-wine-bottle/107342264",
-   "published": "2026-11-03",
-   "clue": "embassy statement + wharf + police report = a Pacific port capital"
-  },
-  {
-   "real": true,
-   "h": "18 inch rats take over apartment building in {}, evicting sick families",
-   "hint": "home of Yale University",
-   "lat": 41.3083,
-   "lng": -72.9279,
-   "place": "New Haven, Connecticut",
-   "src": "https://patch.com/connecticut/newhaven/big-rats-take-over-apartment-complex-new-haven-report",
-   "published": "2026-10-20",
-   "clue": "US apartment complex + rats"
-  },
-  {
-   "real": true,
-   "h": "Thief who walked off wearing a 46 million yen luxury watch mails it back with a handwritten apology in {}",
-   "hint": "home of a famed anime and collectibles mall",
-   "lat": 35.7078,
-   "lng": 139.6638,
-   "place": "Nakano, Tokyo, Japan",
-   "src": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE0wdmNxY1VndGVaWDFfeWpfbGpaaEFneW5jU25JV3VpRi1uclpfY2FPek9fN2Y1SjlZYS1RNkRwbl93RW9oalJ6anNKZXNDUQ?oc=5",
-   "published": "2026-11-03",
-   "clue": "mailed-back luxury watch + handwritten apology, a Tokyo ward"
+   "h": "Police warn drivers to avoid 'drunk' deer behaving erratically in {}",
+   "hint": "birthplace of the poet Lamartine",
+   "lat": 46.3069,
+   "lng": 4.8287,
+   "place": "Mâcon, Saône-et-Loire, France",
+   "src": "https://www.aol.com/articles/police-warn-drivers-avoid-drunk-131213000.html",
+   "published": "2026-05-14",
+   "clue": "gendarmerie-style warning + fermented fruit"
   },
   {
    "real": false,
-   "h": "Baboons in {} open 9 parked cars at a supermarket and take only the bread",
-   "tell": "Baboons pick vehicles' contents, but choosing only bread from nine unlocked cars is too tidy."
+   "h": "Hockey club in {} forfeits game after its ice resurfacer is found parked inside a church hall",
+   "tell": "Nobody parks a machine that size in a church hall unnoticed."
   },
   {
    "real": true,
-   "h": "Houseplant hospital opens in {}, where sick plants are put on drips, and operated on",
-   "hint": "setting of the film Trainspotting",
-   "lat": 55.976,
-   "lng": -3.167,
-   "place": "Edinburgh, Scotland",
-   "src": "https://discover.swns.com/2026/07/britains-first-houseplant-hospital-has-opened-where-plants-are-put-on-drips/",
+   "h": "Masked 'Batman' becomes a folk hero by paying parking fines and handing out petrol vouchers in {}",
+   "hint": "setting of Dickens's Oliver Twist",
+   "lat": 51.5072,
+   "lng": -0.1276,
+   "place": "London, England",
+   "src": "https://www.lbc.co.uk/news/cost-living/london-batman-cost-of-living-random-acts-of-kindness/",
+   "published": "2026-10-24",
+   "clue": "masked vigilante paying parking fines at a hospital + fuel vouchers at a petrol "
+  },
+  {
+   "real": true,
+   "h": "Man spends 8 hours stuck in a porta-potty tank after climbing in to retrieve a dropped Mountain Dew in {}",
+   "hint": "home of the Chiefs and Royals",
+   "lat": 39.0997,
+   "lng": -94.5786,
+   "place": "Kansas City, Missouri",
+   "src": "https://abc45.com/news/nation-world/kansas-city-porta-potty-mountain-dew-bottle-firefighter-rescue-trapped-man-portable-toilet-bizarre-rescue-kansas-city-fire-department",
    "published": "2026-07-15",
-   "clue": "plant 'hospital' + drips + a UK high street"
+   "clue": "firefighters cut open a portable toilet after a World Cup watch party at 18th & "
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "Small [] with four Dutch people lands by mistake in a field in Saint-Généroux, France, stuck two months, leaves by road",
+   "h2": "Diner in Ibagué, Colombia, keeps slipping a [] onto his empty plate to avoid paying at bakeries",
    "ans": [
-    "plane",
-    "planes",
-    "airplane",
-    "airplanes"
+    "cockroach",
+    "cockroaches",
+    "roach",
+    "roaches"
    ],
    "alt": [
-    "aircraft",
-    "aeroplane",
-    "jet",
-    "cessna",
-    "aeroplanes"
+    "bug",
+    "bugs",
+    "insect",
+    "fly",
+    "hair",
+    "beetle"
    ],
-   "place": "Saint-Généroux, Deux-Sèvres, France",
-   "src": "https://news.google.com/rss/articles/CBMiowJBVV95cUxPZ0tWdm41T2pjMWV0a19tZmJ6OEcwTkx6bVlzUXNWemsyMEQwYTNWNUgyZ0g1VVdrUjhXcnBxVm9fWF9sSlpYdHlrZGpBY00tSEJzZm51WlpBM3p5UkJkTmQwelY3TDBTaHNzLUZ5ZHRVV2pqNHkydHpNYWkwbURlQ2VIejVKSDFSSGtrdjVnNWJ2OTdhSkJxZnByeXdBczA5bTBzazVWYTZKbXMwazAyaTJLRHRWcTZaUkFlTTRJa0o0Z0oza2k1MHBVbDhDVTJvdS1zeExLaEZZRkdMdXFsZnk3OXZYb2VMQzZTaWtJS3IwMDdCdlR6cVhSUDRsYmxmX0liNU02OUJhalBCNWg1d0w4NzJmWDV3S1ZYWEZmdWFraFU?oc=5",
-   "published": "2026-10-28",
-   "vec": "f/o6ByL41wccvjH75FAB+LQinMfsOOT6LYn6PTMKewDNDSfoF+nwQgYmSO7SBgwECeM="
-  },
-  {
-   "real": true,
-   "h2": "Thief who walked off wearing a 46 million yen luxury [] mails it back with a handwritten apology in Nakano, Tokyo",
-   "ans": [
-    "watch",
-    "watches",
-    "wristwatch"
-   ],
-   "alt": [
-    "timepiece",
-    "clock",
-    "rolex",
-    "timepieces"
-   ],
-   "place": "Nakano, Tokyo, Japan",
-   "src": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE0wdmNxY1VndGVaWDFfeWpfbGpaaEFneW5jU25JV3VpRi1uclpfY2FPek9fN2Y1SjlZYS1RNkRwbl93RW9oalJ6anNKZXNDUQ?oc=5",
-   "published": "2026-11-03",
-   "vec": "AwANCxvE5/8d6vkG+CI4EwH94dIPIA0ZFbLZCRDTfyv6398LDubp7v0bCAwWAQDh7xU="
-  },
-  {
-   "real": true,
-   "h2": "Family clan runs drug self-service in the centre of Jumilla, Spain: customers grab doses and throw [] at the house",
-   "ans": [
-    "money",
-    "cash"
-   ],
-   "alt": [
-    "coins",
-    "euros",
-    "notes",
-    "payment"
-   ],
-   "place": "Jumilla, Murcia, Spain",
-   "src": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPM21QRDNhSnM1VFdkQzBqbWZRWERVUzk5MWlyQWpoZnlMYkVNWXd4NlFHQ0dTSUZoVVhFTE02ZlJHZXVxOTFNbUVWUjQ4SzhZYThpZzJXVUFic1NuUGV0a1p2S3lVMG5UVTdEV0Nkd0M3bUI3VU91bkZvYzhEMEtnVmdabHJWeUlOWTVPdmhqQmQ3UjQycGUtMUhBSEhGTXJndEtRcEJiaFk5WDV00gGyAUFVX3lxTFB1UVQxUnFtRjExeThtUUt0VzBmdTBjQ05SNHFicjFnMmJzRGhRQ2xnY2ptX3BjOWh2dFEyOW5taFlObzZNREN1d21DbW5uLWwzbHhNSThTWE9HcjdtQlNaRVIwdnN2WUFjZ1p1ZUJMenhIdDBvY3VGSE9pNHZmeHVYcTIteGhsSTNvcFY0U2MtTnAzTGp6MGhsSENhY1VZdWdlSjlwbE4wbDRUOTRCZWt6RWc?oc=5",
+   "place": "Ibagué, Colombia",
+   "src": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQM1J4Q3dFLWl0YTExVnViOTJHXzh5RHV4Mzl0VUhBMk9hWXpFRFJqbE9QbWhEV0VFMmVCUWNBXzdNSkFWbmo1UGNORW5yV2VaRTVEa0pHMmdiT0JMNWF2Y1lTU1o3YWpRZ3RQZ2JmLVhIWEV1QzMxVE5QWTVYcVVOTjN2VHBNQjRLVE1iSVFEZXVJbC1objhrSG14TldLV05oMTJ4eHJkSDBEWlM5STllbzJnVTRfdTFOcFpYNEszRXY0M1BJ0gHKAUFVX3lxTE9iemQyMHlTRGlqOTBya2xDT25WMHJSS0tNMjZSeHdCRjY1NEIyWnFKRXVNMkloTDdBUzFud2NPS00zdElMZzVpUUZ6aGhoWUZpUy1YakR5Nkw5S1R2SWtBdFBBa2Jnb2d2VXpJYlVKNW1KSndiOHYwYXdvOG1SMW4tem9IUzNlTEEwd2czRXNULXJMODRaSjZPSENnQnA0ejd5dE56QlZDLUZsTWRHakg4NUJCaVFxVHV4cGk1UDNEZXBnempFUTlOd0E?oc=5",
    "published": "2026-11-04",
-   "vec": "F/4l6g4B5v0NEuUh+uon+B8JFPMt7wj26av68RDmfyb/Bu4N4gwZ2PkIChvu3OIIBgk="
+   "vec": "Vp+0Ah/7IqsAGCsKf3slByxzsN6R9A82WfObSeMIt9nOHZ0JrtBjBewx/VxoF2rsGuI="
   },
   {
    "real": true,
-   "h2": "Groom in Yiliang, China hoping 20 guests would answer his online invite is mobbed by 10,000 [] with gifts",
+   "h2": "Mayor of San Giorgio su Legnano, Italy, asks owners of 850 [] for 20 euros a year to help families with 280 children",
    "ans": [
-    "strangers",
-    "stranger"
+    "dogs",
+    "dog"
    ],
    "alt": [
-    "people",
-    "visitors",
-    "fans",
-    "netizens"
+    "pets",
+    "canines",
+    "puppies",
+    "hounds"
    ],
-   "place": "Yiliang County, Zhaotong, China",
-   "src": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9UUXFydkYyeXNOUmV2UnlGLVo2UFhmOHRwTkpQU3ZnYWZ4eHIzU0YzbndpTlBFb3kwS2QzeVFVbmtNOS1RekNjd0pBV19NYU9yXzlSdDlkdEVBc1VNblppS1ZuUDVUZ1E?oc=5",
-   "published": "2026-10-30",
-   "vec": "TS35v2QS5zDjEMMWHhcv4+oSFcMmfy5aS/DmBFa3Y2MO3OEH5qfZ8RLwEEca3+u+++w="
+   "place": "San Giorgio su Legnano, Italy",
+   "src": "https://news.google.com/rss/articles/CBMinwNBVV95cUxQTjlWRUEtcWJROHN6MGt5VVAtMzJRNVdZbkxXZWtzYmd1cFE0eXdtTzdXYmFlY2lDNWpXcHpFajR4bkRNNWxkUEZlNlg5QjdnMXFEODNpN2ZqVnZCbm5zOXV4eG9MNGt2SGRqQ2ZySXg3SzRuaUkzRlpTZ3NMamFicVRQM19lM0tPSXh5alJra0RHS1ItUjNKcUdid2E0Rmp3cEhFd2UyX3JlZDA5MjNLU0pRSWp2NmZ3TEUwd2NFb1E2U3J5YW4ya2tGME9LR0lzdGRTUE9sQy1rMGZsRVBUU1Vuc3FiZHJCMWpfVGhPMHNha2ZZUTU4VHRhVndJNnBpNUFtcXVtRUUxd3BXVm9rZnMyN0NmbFcyWVp2T2I2LU5SMHI0MjlWbEZSV1hZaXZjVTZFLVlwRExGeGlQNTdKdGRjVnFjOHBReF9oOTFSSlJ1RmJ1VjhhNGJMaXZfVVdQS3BHMVZzd0FoeXZGT3RSZkw0MHA3MXZuQ2w4dkkySjRmekF1bDY0RFZTVWNGeW94MFRtZENHNVNSWjBxdWNZ0gGaA0FVX3lxTE9PRE5FaVZGcVE1bm1XYVFDRDY0MDcwOGFZSzFOQW1BU2ZWMDFYdjgtOEVjSGdmR0R6SDY4UW9FTGdGMlY1NFVlV0gySW5sSTRJdGV1ZFJkbG9Kd21BUjRkbC0ybFZVbUVYUXE2WEk3b1hkaDk1OFg3eU5kUWphWHJIZlFVSjRfMmFBTzdVSXJsejE2T29pVGRvM2tZMk5yaUpDYV9aWTVhM2MxbVU3SXNCcUlvMmhCYXE2VzBCQTVkaFJnbWhLNHJiMkt0bWxUVUZ0UEJicnBaQWhibFlMOHV6aTNHdEItbHhqd2VqSFpMS253am4tUF82VnFSNzlDZzhjM0pOTE5hRHdCVEQyZktab0JrMmIzXy05TXZ4bjdxeTgxNjZyaUdoc2tzZm53N3pMQWtzTnN3QnJMclJQcWtpVWJSdnRBVVBxejZzN2xZSzVhOUxXMFplOV8yWFN4MWxLd1ROYUc0NnJvVzBZd0JXRFJPR3o0SmxoTXdDSGQ5WmkwdW1ROWhtMmthVG84ZjFMTzMxV0RIa0tR?oc=5",
+   "published": "2026-10-15",
+   "vec": "M7b1xhMRuONDzgMFUg0V/hszi8bfJlQoEK3IBDqsezXi7wc6GekK8vT2I1Z/3/PMFgQ="
   },
   {
    "real": true,
-   "h2": "Nursery teacher in Mansoura, Egypt opens a boy's schoolbag and finds a [] instead of books",
+   "h2": "Dozens of [] climb more than 3,000 steps up Mount Tai in Tai'an, China, carrying eggs and watermelons",
    "ans": [
-    "duck",
-    "ducks",
-    "duckling",
-    "ducklings"
+    "robots",
+    "robot"
    ],
    "alt": [
-    "bird",
-    "goose",
-    "chick",
-    "hen"
+    "androids",
+    "machines",
+    "dogs",
+    "humanoids",
+    "bots"
    ],
-   "place": "Mansoura, Egypt",
-   "src": "https://news.google.com/rss/articles/CBMi-wRBVV95cUxOeWpfN3BqZ3FHVm9OWmhFbkRreDIyTWZXeDh1eEN3TEI5YVVFMHM3aTlvQ1dEYlh6dmRMLUVPVU9TMVBjUG1aMUJnTWZ5ZXdIOVJhaWdaVERMeV8xX0lIYjhsVDUtSjdWN2FWOUFBSVUwNU1NMzA3aFpLMlBTQmxnYi1UNHpXMFd1d0QzMlBzN3lHMjJGdHE2OUo2c3VFVnBMb0RJOHJzSnprSEoteEllMTZvOGlCN1BIRW1Cb2E1VXN2M2prV3VUSmdSdG12MUxmc1ZLQmp4WW9yM3RtWVVLbDc3WThUSjVmUEN2NzZzSjJMVDFZNGxHb1VOejdZUFdCV2lEUEpsbkhrQ2xVZXBiWk5pYVY5WlV1cWtVRUN1ZGtzUjg5aXF4MFBwaEFTRkM5QnpfWWFKenpFMFNCaW15VlUxMGRabWdOaUpoX0ZLNVVWazVDRnBjaWw1VzhOUDluUGdrYzNXa0EweHBzek5ac1ozdGxCd2ZPaGVNS3dTelRMMHdXZlRlNzRVTnpDZGd0NmV0WV9LbVQ1dGlENUtjUm5VREdCaHhqOWpDV0FMcnhOdTlOcV84Tk1XUE5FUjlueldHZEd5XzlpYnNocEk4WFkzcmczUVU1aHc5NmQ5OFZyTnBXMUcyLTFWUnNVdFdPY1RVdXRyQks5UXJ2X09DQW43eTEtek5iSG9aVkNnY3VhNktkYi10dzA3OTIzRFpuNTJBVmt0ZmRMbGRxS01FX3V3SjlnTFdYaHByUFUtbTBMUmJpTlB6d1VXa3k4ZFIzaFR5TEZ5SzJCS3hqMTJzODFJTVNDTkV1cGpyZFhkSTNjZG9pd1I4d1ZWUdIBgAVBVV95cUxOemJleUJLR3JLZTNtVnIxYW5sS3RFMVA3VG1XY01UMDEzY3U0NlowVzFZeUMxZi1walVYcEFQYjNkZUJrQ0hNSEk4ckRrM1ZxS3JrQlhMWG1COF83czlxMjFpSEoxT0Y0ang4WkVoejNvaUR6NnVOWV9hY2l6VUVpZmZwNGo1a3BocnY0YzJKanN0dFZZZUdfNWZQMzF1ZW5vd1BEQzdnVW9aUHFOX2REWVAwNU1faXpYSmZOc1lOa3Bza2tpZnZObUtvS2hvdGVVWUx3VHYwcDRqT2JLN2NMTjBobkdBTUo1T1RjVGd1UTAzRUszdXdJZUhJQ2pHS3I2N2c1YXA3OGFEM1VPN2ZZNU5nYWJaRTlWQlhmNklfRGZqRXlFZ3FmQXdERVAxdC1qM0drakpvUVVDNnItbGJMN3ZIOFptRC0wVkllZW04eThQeEh0VzVUTDNHTzl1SExnNmk0a3JfOVdYZGhxMEFKV3pHREptTXVtazAyVUhsRkZ1T1lSQW5DSk1GVW4xVmlPN1ZxY2FKM1hZYnZTWVVpZ3pkVW81U1VOUUVYc3BiOGdMUE93eGZja24tYWU3Rk1kU0QwSkE2eWxhWXdwSGFDZ1diajJlZnM3NGZiTmxhV0dFLWItRVJxYkZmalNuR3huSmZDSUE4VW1rYkZZMmxjaU9JXzhfb1VfdEtzLUtLaTdtVlp2ME5QbWtDdkZ5NW9YOHZEM3lwV2VvM3JiTU9Ka1Fpd3AtZGRaUnBCTXZPd0tpbjA1dDNGT0FuMWZuWUFnS3BpWUNBbVJyZF9yZWZSUUNJLVhabElrUU1SajYyNklBWXBlYmljaUpIbk9UWVZN?oc=5",
-   "published": "2026-11-04",
-   "vec": "Db2B9x5Hy9gXybBgYGz+8Bf/rRn/vWT8NJf/QQakdw/mf/EPFCLf368rxRVDMf/FQxo="
-  }
- ],
- "politics": [
-  {
-   "real": false,
-   "h": "Mayor of {} wins re-election by 17 votes after ballot boxes arrive late due to a flooded road",
-   "cat": "pol"
+   "place": "Tai'an, Shandong, China",
+   "src": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE15dy1BdDR0VkdTWFdQSWxpSzVZQ3o5NVVBV0lib1FpM29fbE1BTXRqUXhkeENEbnZQVVVIeTRDSDBnZzhLYm52MnBpd3lsWmtibFR6RlFfOUxYNjJRekE?oc=5",
+   "published": "2026-11-02",
+   "vec": "WY9JLA4RFZ3s9zEfBWv4FPt/zdIEA+HyQPSutTO9ZRfO3t9b5g7Z4t7RLjUsBD685AI="
   },
   {
    "real": true,
-   "h": "Election in {} decided by coin toss",
-   "hint": "",
-   "lat": 37.4173,
-   "lng": -87.4808,
-   "place": "Hanson, Kentucky, USA",
-   "src": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNbG5sRVEzS25yZVNlTW8yNTF3aml5Zk4zNzREbENSMktJUV9MR3pTSG1oOWZxUG9nSldWTUhLN3hQUTdpcE9CX1Q0NTd4NnJ0UmhGdVdKTGQ0NGQtdFB4dTFGTE1rVjQ4R0Rfbnp2SExjZnVLZmc4WmlHUGpOUHJraExlQWg4REdlMW9NTnlORE1ra00zRlVMRTZ1c1FkRkHSAaQBQVVfeXFMT3dZRnkzNHdzWFFobjRiTWtGamxwb1hneU1xOFlnQlg2dXdqb3ZxWDJrRnJzNVdmRS1SMmVJYWdiamFBSTQ2WHAwemtFQWFEeFluWXRoMHRGaVI0WFhROExidHNyTUNnNTlGRW45MVhiU29QSUxodlJ6RnJYTmRMZVoxRTBQcGhOYkwzbUNERE9tS1NVWTZXWWZiWHpFY3R5VFJsZUQ?oc=5",
-   "published": "2026-11-04",
-   "clue": "a small Western Coalfield community where a coin flip settles a dead heat",
-   "cat": "pol"
+   "h2": "Woman, 50, pulls several [] on over her own clothes in a changing room and walks out of a lingerie shop in Oberá, Argentina",
+   "ans": [
+    "thongs",
+    "thong",
+    "gstrings"
+   ],
+   "alt": [
+    "underwear",
+    "knickers",
+    "panties",
+    "briefs",
+    "undies"
+   ],
+   "place": "Oberá, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNMFFudUxNUG90bHQ1dmUyWW05SWQ0MEwxSmhneFM3ZGVsdmxHUEhMd2dDVFllcFFmR2NtUjZULWx5YW91T1ZNdFZ1clV0bGxKbURfRjNWbEEzVDFoYlNGSkNOcDFURmxnelpzQ3lueFZ2Y0tmUk5BQTdpLTVVa1ZhNURWUTk3bUhzNmd2eUxiVGhnTkp4SDAzNXdCNWo5OFA0VWdidFlTaVFOZWlIMG5VWG1IbFQtSkVrRmtvaFZPa19JbDcweXQwSTJqeXZMaXNYTmJV?oc=5",
+   "published": "2026-11-05",
+   "vec": "gZW4+e4tcJc8vOjaJgQGWwsIK4YKV0sP71GQNQO0vVgKe0lTKgWow/IrL05HyELHJdM="
   },
   {
    "real": true,
-   "h": "Governor approves rule to break tied races by drawing, despite objections, in {}",
-   "hint": "",
-   "lat": 21.3069,
-   "lng": -157.8583,
-   "place": "Honolulu, Hawaii, USA",
-   "src": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNMUYzSmNpa1Q5b0VVT1E0OGE0YVp1cW5hN00zdXYwRFlxV2RBWHVpNkJ1WWloUm1IQ0pxY2d3emotRFZnUlc0T0c4THVPaGstUmtxWFFJN3N0RWthSjBxN1l0NklxUHBEMVJPSTkwdzR5Y05laEZIaW5iTjlSd2NQaGI4S3V5MXJjdk9vWDYyM01vZEdoZTJCbF9KQUE1c1pkcFJ6RXFNLS10NzdTSWNUatIBxAFBVV95cUxNUFkxMnVmdDYtN2E5ejJLdmQ0Q2hISU5jaGZSa0sxaXBDWUFJcklHMGluREYwbnhQMU5pdTRuT0wxMmd2Ny1UdUZNaGpkNF9sSVAzRW80ZGpsbThxSVJxbExkTFhtTEk0OEhRQ1o1NmJsUTRxZGx0T1h3d1Q4TWdXRXpkV29RcktlLTFXWmJXVXUzb1RmVlQ4WlRYQV95UFBPdXR3V1NkT0gyNktrVDJWM3BCWTRaenEyQ0VOY29GclBGd0hO?oc=5",
-   "published": "2026-10-31",
-   "clue": "Governor + tied races settled by drawing + island state = Hawaii",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "City council to sit as a court in unusual apartment complex appeal in {}",
-   "hint": "",
-   "lat": 35.9604,
-   "lng": -83.921,
-   "place": "Knoxville, Tennessee, USA",
-   "src": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQaDJWOVhQS2NVelB1aGRxOXVJX2lDSWQ2Z2V5WnZfMnhvbmFnNmJscnMwSmFtbVRibTF0bHAyTzJ1S05VQzFrRU05blFfaTU2SnE0SzFPLTdIcEtEUHNpWlVRZG5Vb0xFd254S0YzOFB0YzFQQTh5TVZkRDZLcGs3eFVERjdFZW5BeGYxSlRfRXltNkk5My15d2lqSl96c0ZENEFPcVlRUEdmVnRzQnFjbmlLRjlma0hfV3piMERDaWp2MkJaVUhEVzlMRzRpTkZiWjJfWlNNaERkOEFkenc1djREWnF0TUpmcTJxSFFB?oc=5",
-   "published": "2026-10-13",
-   "clue": "City council hearing zoning appeal like a court = US city, Tennessee",
-   "cat": "pol"
-  },
-  {
-   "real": false,
-   "h": "Voters in {} approve ban on lawn gnomes taller than 43 centimetres in front gardens",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "Two candidates with the same name land on one U.S. Senate ballot under an unusual voting system in {}",
-   "hint": "",
-   "lat": 58.3019,
-   "lng": -134.4197,
-   "place": "Juneau, Alaska, USA",
-   "src": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPcl81ZS1pa0l2VFFXOUsxTEZvTG42ZEhzS3diMWtRQmFpbmtINUl5aUxBWWc5LTRNdVRzaVc3WmxZeFo2dlVxU3huWXQxMEJzaHpvWkxqMGhySnZ6NXhjSk81dVJCWXZnTDZJMFBiUXJ4MEpndHV6UW1ncUJtRnJucWNUQVFNVEsxZDREMHZCeHVyVEx6dHc?oc=5",
+   "h2": "Man who posed as a basketball star's agent and swallowed $770,000 diamond [] in Orlando, Florida, is found guilty",
+   "ans": [
+    "earrings",
+    "earring"
+   ],
+   "alt": [
+    "studs",
+    "diamonds",
+    "jewels",
+    "jewellery",
+    "gems"
+   ],
+   "place": "Orlando, Florida",
+   "src": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5aNndiS2hvMEkwZzBpOGYtU3V2ejZPem1OaVJYaTB1TGRxSDlESllCczd0aFpNX0M4d3FFVWtiU1JGTGpnZzZsNFFSN1dtOS1EaHVNcDQ1S3FBWldZcFo1blVkOTI?oc=5",
    "published": "2026-10-29",
-   "clue": "Ranked-choice voting + state Senate race + 'Last Frontier' ballot = Alaska",
-   "cat": "pol"
+   "vec": "/UTbIzsYJvENGxEZCQYnHO8G9MoO9/fR1+LYRBiB9SEqUh8OAhHi+AsYIBIpoCLVx9g="
+  },
+  {
+   "real": true,
+   "h2": "Man has breakfast, changes shirt, and walks off with toilet cistern [] from two bars in Prado del Rey, Spain",
+   "ans": [
+    "lids",
+    "lid"
+   ],
+   "alt": [
+    "covers",
+    "tops",
+    "caps",
+    "seats",
+    "cover"
+   ],
+   "place": "Prado del Rey, Cádiz, Spain",
+   "src": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxOc2E1R283ZXg1N0kwbUU0UmNISk1GMWZRaDVXTWFBYUV5Uk82VmdPXzZXMVd0dm5RNUtHYWpZTGVRZk5FZi1mWmx3Smd1Q2h6eE5qMnRJOGhqQkRkN2lNdXEyTkVqRTNodGFYdElrZUtQME9tXzVfZlZ6UlJ5eGY4UUxqdlNFS0U1ekZwSnh2TkNScVdRazRpNE5Md3hCZ1F2bTJyYm1NTXFvVUdpSkprSjh0aV9iVFVNYmd1T3YzRG5fbU5qMXhrYXM2alVOYTlIb1RyV2tvZnFvSlJkQUhvUTVSZU9PVkpva3RXWUZBUDFOM1dnV1E?oc=5",
+   "published": "2026-11-04",
+   "vec": "9QUS5BDkOiEG9xEnEmoPWQD5VLwjuUT/uxbhfy6+BS4ZYCR7Ny9BCwz9CDIMDgbrFYI="
+  },
+  {
+   "real": true,
+   "h2": "Former NRL player in only his [] jumps on moving cars in Brookvale, Sydney",
+   "ans": [
+    "underpants",
+    "underwear",
+    "undies"
+   ],
+   "alt": [
+    "pants",
+    "briefs",
+    "boxers",
+    "shorts",
+    "knickers"
+   ],
+   "place": "Brookvale, Sydney, Australia",
+   "src": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxONnF1MGdCdTlhNGNWcmRZa0hzN3VHX2VmSjEyclNXVThtM2N2WUw2NjhEOHBtT1Fuck5aNDd0V2VpNUxxNGpPYjllaVhGZTBHSnJvUzNqVWJVRWk4d0VnSWtMYWVMekdiclNhUjRvOFZlQ0tkcElqbDl3LWVIbG1QeWVfcUdnbzJtMWVfVFNCN3hCRS1CbUlxX1VwaHpTbmZVY292d0RfbVA?oc=5",
+   "published": "2026-10-30",
+   "vec": "2tHI0lgJIcUtwil/ogUnA6YTyrWqZzHV7eatOk7hokbAeE9zEgSq60AMFj0a9yvJGp0="
   }
  ]
 }
