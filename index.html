@@ -1178,6 +1178,62 @@ body.intro #ausBar{display:none}
 [hidden]{display:none!important}
 </style>
 <script data-goatcounter="https://farfetched.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<style>
+/* ---------- The summary as a front page ---------- */
+#final.news{--np:#efe8d6;--npInk:#1f1b16;--npDim:#5e5546;--npRule:#1f1b16;background:var(--np);background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.035) 0 1px,transparent 1px 3px);color:var(--npInk);border:0;clip-path:none;padding:14px 14px 16px;box-shadow:5px 6px 0 rgba(0,0,0,.5)}
+#final.news #finalKicker,#final.news #finalLine,#final.news #finalScoreLine{display:none}
+#np{display:block;margin:0 0 10px}
+#np .npMast{font:22px/1 var(--px);letter-spacing:.06em;text-align:center;padding:6px 0 0}
+#np .npDate{border-top:3px double var(--npRule);margin-top:6px}
+#np .npMotto{font:9px/1.4 var(--px);letter-spacing:.14em;text-transform:uppercase;text-align:center;color:#a8231a;padding:8px 0 0}
+#np .npDate{justify-content:center!important}
+#np .npDate{display:flex;justify-content:space-between;gap:8px;font:15px/1 var(--vt);letter-spacing:.04em;text-transform:uppercase;padding:5px 0;border-bottom:1px solid var(--npRule);margin-bottom:10px}
+#np h2{margin:2px 0 8px;font:26px/1.12 var(--px);letter-spacing:-.01em;text-transform:uppercase;text-align:center}
+#np h2 b{font-weight:400;color:#a8231a}
+#np .npDeck{margin:0 0 6px;font:21px/1.08 var(--vt);text-align:center}
+#np .npDeck q{font-style:italic}
+#np .npBy{margin:0;font:13px/1 var(--vt);letter-spacing:.12em;text-transform:uppercase;text-align:center;color:var(--npDim);padding-bottom:8px;border-bottom:1px solid var(--npRule)}
+#final.news #grid{justify-content:center;margin:12px 0 10px}
+#final.news .sq{width:26px;height:26px;box-shadow:0 0 0 1px var(--npInk)}
+#final.news #grid{gap:5px}
+#final.news .slbl{color:var(--npInk);font-size:8px;margin:14px 0 6px}
+#final.news .slbl span{color:var(--npDim)}
+#final.news .slbl::after{border-top:1px solid var(--npRule)}
+#final.news canvas{border:0;border-top:1px solid var(--npRule);border-bottom:1px solid var(--npRule);background:transparent;box-shadow:none}
+#final.news .npCap{margin:4px 0 0;font:15px/1.1 var(--vt);color:var(--npDim);font-style:italic}
+#final.news #sumRank{color:var(--npInk)}#final.news #sumRank b{color:#a8231a}
+#final.news #vsLine{background:transparent;border:1px solid var(--npInk)}#final.news #vsLine .vsH{color:var(--npInk)}#final.news #vsLine .vsRow{color:var(--npInk)}#final.news #vsLine .vsRow i{background:var(--npInk)}
+#final.news #crowdTop{color:var(--npInk)}#final.news #crowdTop b{color:#a8231a}
+#final.news #btnChallenge{margin:12px auto 4px;background:var(--npInk);color:var(--np);border:0;box-shadow:3px 3px 0 rgba(0,0,0,.3)}
+#final.news #tiers li{border-bottom:1px dotted #9c917c;color:var(--npDim)}
+#final.news #tiers li b,#final.news #tiers li .tn{color:var(--npInk)}
+#final.news #tiers li .tl{color:var(--npDim)}
+#final.news #tiers li .tr{color:var(--npDim)}
+#final.news #tiers li .ti img{opacity:.45;filter:grayscale(.3)}
+#final.news #tiers li.me{background:rgba(168,35,26,.08);box-shadow:inset 3px 0 0 #a8231a}
+#final.news #tiers li.me .tl,#final.news #tiers li.me .tr{color:var(--npInk)}
+#final.news #tiers li.me .ti img{opacity:1;filter:none}
+#final.news #recap{margin:14px 0 10px}
+#final.news #recap summary{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--np);color:var(--npInk);border:2px solid var(--npInk);box-shadow:3px 3px 0 var(--npInk);font:9px/1.4 var(--px);letter-spacing:.12em;text-transform:uppercase;padding:11px 12px;transition:transform .08s,box-shadow .08s}
+#final.news #recap summary::after{content:'\25BE';font:16px/1 var(--vt);transition:transform .15s}
+#final.news #recap[open] summary::after{transform:rotate(180deg)}
+#final.news #recap summary:hover{background:var(--npInk);color:var(--np)}
+#final.news #recap summary:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--npInk)}
+#final.news #recap summary:focus-visible{outline:2px solid #a8231a;outline-offset:3px}
+#npStats{display:flex;border-top:1px solid var(--npRule,#1f1b16);border-bottom:1px solid var(--npRule,#1f1b16);margin:0 0 10px}
+#npStats div{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:7px 4px;border-left:1px solid var(--npRule,#1f1b16)}
+#npStats div:first-child{border-left:0}
+#npStats span{font:7px/1.2 var(--px);letter-spacing:.12em;text-transform:uppercase;color:var(--npDim,#5e5546)}
+#npStats b{font:24px/1 var(--vt);font-weight:400;color:var(--npInk,#1f1b16)}
+#npStats div:first-child b{color:#a8231a}
+#final.news #recapList{margin-top:8px}
+#final.news #recapList .rh{color:var(--npInk)}#final.news #recapList .rm{color:var(--npDim)}#final.news #recapList .rm b,#final.news #recapList .rm a{color:#a8231a}
+#final.news #recapList li i{border-color:var(--npInk);box-shadow:none}
+#final.news #nextEd{color:var(--npInk);text-align:center;border-top:1px solid var(--npRule);padding-top:8px}
+#final.news #comeBack,#final.news #comeBack .linkish,#final.news #replayWrap .linkish{color:#a8231a;text-align:center}
+#final.news #comeBack,#final.news #replayWrap{text-align:center}
+#final.news #letters{transform:none;box-shadow:none;margin:14px 0 0;border-top:3px double #1f1b16}
+</style>
 </head>
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
@@ -1268,12 +1324,21 @@ body.intro #ausBar{display:none}
       <div id="guessList"></div>
     </div>
   </section>
-  <section id="final" hidden>
+  <section id="final" class="news" hidden>
+    <header id="np">
+      <div class="npMast">THE DAILY ODD</div>
+      <div class="npMotto" id="npNo"></div>
+      <div class="npDate"><span id="npDay"></span></div>
+      <h2 id="npHead"></h2>
+      <p class="npDeck" id="npDeck"></p>
+      <p class="npBy">By our dig correspondent</p>
+    </header>
     <p class="kicker" id="finalKicker"></p>
     <p id="finalLine"></p>
     <p id="finalScoreLine"></p>
     <div id="unlockBox" hidden></div>
     <div id="grid"></div>
+    <div id="npStats"></div>
     <div id="summary">
       <p id="vsLine" hidden></p>
       <p id="crowdTop" hidden></p>
@@ -1281,7 +1346,8 @@ body.intro #ausBar{display:none}
       <button id="btnChallenge" class="challenge" type="button" hidden>Challenge a friend</button>
       <p class="slbl">YOUR DIG <span>deeper = more points</span></p>
       <canvas id="digLog" width="320" height="150" aria-label="Points per headline"></canvas>
-      <p class="slbl">THE SCALE</p>
+      <p class="npCap">Each line is one headline, dropped as far as its points went.</p>
+      <p class="slbl">THE SCALE <span>where you rank</span></p>
       <ol id="tiers"></ol>
     </div>
     <details id="recap"><summary id="recapSum">▸ All stories + sources</summary><ol id="recapList"></ol></details>
@@ -3442,6 +3508,37 @@ function renderLetters(){
     else { btn.textContent='TRY AGAIN'; btn.disabled=false; }
   };
 }
+/* the summary's front page: masthead, dateline, a banner headline about the dig and a deck with the score */
+function renderFrontPage(inf,total,max){
+  const k=tierOf(total,max), t=TIERS[k]||{}, z=String(inf.zone||'');
+  const d=new Date(dayKey()+'T12:00:00Z');
+  $('npNo').textContent = S.mode==='daily' ? modeName(S.kind)+' #'+dayNumber() : S.mode==='back' ? 'Back issue #'+dayNumber()+' · '+modeName(S.kind) : 'Practice · '+modeName(S.kind);
+  $('npDay').textContent=d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+  const mm=Math.round(+inf.m||0), km=(mm>=1000 ? String(+(mm/1000).toFixed(2))+' km' : mm+' m').replace(' ','\u00a0');   // 2 decimals where they matter: 6.93 km, 7 km
+  $('npHead').innerHTML = z==='NOWHERE' ? 'Local jaw refuses to drop'
+    : z==='BEHIND THE PAPER' ? 'Jaw drops <b>'+km+'</b>, still behind the paper'
+    : z==='AUSTRALIA' ? 'Jaw breaks through to <b>Australia</b>'
+    : 'Jaw drops <b>'+km+'</b> to the <b>'+z.toLowerCase().replace(/^the /,'')+'</b>';
+  let reals=0,pinned=0,fakes=0,caught=0;
+  S.results.forEach((x,i)=>{ const st=S.rounds[i]; if(!st||x.blank) return; if(st.real===false){ fakes++; if(x.callOk) caught++; } else { reals++; if(x.callOk) pinned++; } });
+  $('npDeck').innerHTML='Reader scores <b>'+fmtPts(total)+'</b> of '+max.toLocaleString()+' points in today\'s '+modeName(S.kind)+'.';
+  const cell=(k,v)=>'<div><span>'+k+'</span><b>'+v+'</b></div>';
+  $('npStats').innerHTML = cell('Jaw drop', z==='NOWHERE'?'0 km':km)
+    + (reals ? cell('True stories', pinned+' of '+reals) : '')
+    + (fakes ? cell('Fakes caught', caught+' of '+fakes) : '');
+}
+/* on the front page the charts are printed in ink on newsprint: greys flip (dark ground -> paper, light lines -> ink), colours stay, bright ones darken a touch */
+function paperize(cv){
+  if(!cv || !cv.closest('#final.news')) return;
+  const g=cv.getContext('2d'), im=g.getImageData(0,0,cv.width,cv.height), d=im.data;
+  const P=[239,232,214], K=[31,27,22];
+  for(let i=0;i<d.length;i+=4){
+    const r=d[i],gg=d[i+1],b=d[i+2], mx=Math.max(r,gg,b), mn=Math.min(r,gg,b), l=(r*.3+gg*.59+b*.11)/255;
+    if(mx-mn<46){ const t=Math.min(1,Math.max(0,(l-0.05)/0.62)); for(let c=0;c<3;c++) d[i+c]=Math.round(P[c]+(K[c]-P[c])*t); }
+    else if(l>0.62){ for(let c=0;c<3;c++) d[i+c]=Math.round(d[i+c]*0.8); }
+  }
+  g.putImageData(im,0,0);
+}
 function renderSummary(total,max,mineM){
   renderLetters();
   $('btnChallenge').hidden = S.mode!=='daily';      // a challenge only makes sense on the shared daily paper
@@ -3450,7 +3547,7 @@ function renderSummary(total,max,mineM){
     const lo=cut[i], hi=i<TIERS.length-1?cut[i+1]-1:max;
     return '<li'+(i===k?' class="me"':'')+'><span class="ti"><img alt="" src="'+iconURL(t.icon,t.color)+'"></span><span class="tr">'+(i===TIERS.length-1?lo+'+':lo+'–'+hi)+'</span><span><b class="tn">'+t.name+'</b><span class="tl">'+t.line+'</span></span></li>';
   }).join('');
-  drawDigLog();
+  drawDigLog(); paperize($('digLog'));
   $('sumBoard').hidden=true;
   if(S.mode!=='daily') return;
   loadBoard(S.kind).then(b=>{
@@ -3463,7 +3560,7 @@ function renderSummary(total,max,mineM){
     const below=others.filter(r=>r.m<mineM).length, ties=others.filter(r=>r.m===mineM).length;
     const pct=Math.round(100*(below+ties*0.5)/Math.max(1,others.length));
     $('sumBoard').hidden=false;
-    drawCurve(rows, mineM, $('sumCurve'));
+    drawCurve(rows, mineM, $('sumCurve')); paperize($('sumCurve'));
     $('sumRank').innerHTML='Deeper than <b>'+pct+'%</b> of today\'s '+rows.length+' players';
   }).catch(()=>{});
 }
@@ -3506,7 +3603,7 @@ function finish(restored){
   S.shareLines=[S.results.map(shareEmoji).join('')];
   $('grid').innerHTML = cls.map((c,i)=>{ const ic=CLASS_ICON[c], x=S.results[i], t=CLASS_TITLE[c]+(c!=='fake'&&c!=='fooled'&&x&&x.dist!=null?' · '+Math.round(x.dist).toLocaleString()+' km':'');
     return '<span class="sq '+c+'" title="'+t+'">'+(ic?'<img alt="'+CLASS_TITLE[c]+'" src="'+iconURL(ic[0],ic[1])+'">':'')+'</span>'; }).join('');
-  $('recapSum').textContent='▸ All '+S.results.length+' stories + sources';
+  $('recapSum').textContent='All '+S.results.length+' stories + sources';
   $('recapList').innerHTML = S.results.map((x,i)=>{
     const st=S.rounds[i]; if(!st) return '';
     const cls=resultClass(x), pts=x.callPts+(x.pinPts||0);
@@ -3524,6 +3621,7 @@ function finish(restored){
   $('final').hidden=false;
   S.finalM=+inf.m; S.finalZone=inf.zone;
   renderSummary(total,max,+inf.m);
+  renderFrontPage(inf,total,max);
   renderVs();
   if(S.mode==='back' && S.backDate && !restored){ store('ff_back:'+S.backDate+':'+S.kind,{m:+inf.m,score:total}); }
   if(!restored) startRecap(true);
@@ -4056,7 +4154,7 @@ function drawCurve(rows, mine, cvEl){
     const x=clamp01(X(mine),L,R);
     g.fillStyle='#ff6b8b'; g.fillRect(x-1,10,3,base-10);
     const lx=Math.max(14,Math.min(W-14,x));
-    g.fillRect(lx-14,0,28,11); g.fillStyle='#0b0e14'; g.font='9px monospace'; g.fillText('YOU',lx,8);
+    g.fillRect(lx-14,0,28,11); g.fillStyle='#3a0010'; g.font='9px monospace'; g.fillText('YOU',lx,8);   // a dark maroon, not a grey, so the newsprint recolouring leaves it dark
   }
 }
 function clamp01(v,a,b){ return Math.max(a,Math.min(b,v)); }
