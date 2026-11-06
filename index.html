@@ -1178,6 +1178,48 @@ body.intro #ausBar{display:none}
 [hidden]{display:none!important}
 </style>
 <script data-goatcounter="https://farfetched.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<style>
+/* ---------- The summary as a front page ---------- */
+#final.news{--np:#efe8d6;--npInk:#1f1b16;--npDim:#5e5546;--npRule:#1f1b16;background:var(--np);background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.035) 0 1px,transparent 1px 3px);color:var(--npInk);border:0;clip-path:none;padding:14px 14px 16px;box-shadow:5px 6px 0 rgba(0,0,0,.5)}
+#final.news #finalKicker,#final.news #finalLine,#final.news #finalScoreLine{display:none}
+#np{display:block;margin:0 0 10px}
+#np .npMast{font:22px/1 var(--px);letter-spacing:.06em;text-align:center;padding:6px 0 0}
+#np .npDate{border-top:3px double var(--npRule);margin-top:6px}
+#np .npMotto{font:15px/1 var(--vt);text-align:center;color:var(--npDim);font-style:italic;padding:5px 0 0}
+#np .npDate{display:flex;justify-content:space-between;gap:8px;font:15px/1 var(--vt);letter-spacing:.04em;text-transform:uppercase;padding:5px 0;border-bottom:1px solid var(--npRule);margin-bottom:10px}
+#np h2{margin:2px 0 8px;font:26px/1.12 var(--px);letter-spacing:-.01em;text-transform:uppercase;text-align:center}
+#np h2 b{font-weight:400;color:#a8231a}
+#np .npDeck{margin:0 0 6px;font:21px/1.08 var(--vt);text-align:center}
+#np .npDeck q{font-style:italic}
+#np .npBy{margin:0;font:13px/1 var(--vt);letter-spacing:.12em;text-transform:uppercase;text-align:center;color:var(--npDim);padding-bottom:8px;border-bottom:1px solid var(--npRule)}
+#final.news #grid{justify-content:center;margin:12px 0 10px}
+#final.news .sq{box-shadow:0 0 0 1px var(--npInk)}
+#final.news .slbl{color:var(--npInk);font-size:8px;margin:14px 0 6px}
+#final.news .slbl span{color:var(--npDim)}
+#final.news .slbl::after{border-top:1px solid var(--npRule)}
+#final.news canvas{border:2px solid var(--npInk);box-shadow:3px 3px 0 rgba(0,0,0,.25)}
+#final.news .npCap{margin:4px 0 0;font:15px/1.1 var(--vt);color:var(--npDim);font-style:italic}
+#final.news #sumRank{color:var(--npInk)}#final.news #sumRank b{color:#a8231a}
+#final.news #vsLine{background:transparent;border:1px solid var(--npInk)}#final.news #vsLine .vsH{color:var(--npInk)}#final.news #vsLine .vsRow{color:var(--npInk)}#final.news #vsLine .vsRow i{background:var(--npInk)}
+#final.news #crowdTop{color:var(--npInk)}#final.news #crowdTop b{color:#a8231a}
+#final.news #btnChallenge{margin:12px auto 4px;background:var(--npInk);color:var(--np);border:0;box-shadow:3px 3px 0 rgba(0,0,0,.3)}
+#final.news #tiers li{border-bottom:1px dotted #9c917c;color:var(--npDim)}
+#final.news #tiers li b,#final.news #tiers li .tn{color:var(--npInk)}
+#final.news #tiers li .tl{color:var(--npDim)}
+#final.news #tiers li .tr{color:var(--npDim)}
+#final.news #tiers li .ti img{opacity:.45;filter:grayscale(.3)}
+#final.news #tiers li.me{background:rgba(168,35,26,.08);box-shadow:inset 3px 0 0 #a8231a}
+#final.news #tiers li.me .tl,#final.news #tiers li.me .tr{color:var(--npInk)}
+#final.news #tiers li.me .ti img{opacity:1;filter:none}
+#final.news #recap summary{background:transparent;color:var(--npInk);border:0;border-top:3px double var(--npRule);border-bottom:1px solid var(--npRule);font:9px/1.4 var(--px);letter-spacing:.14em;text-transform:uppercase;padding:8px 2px}
+#final.news #recapList{margin-top:8px}
+#final.news #recapList .rh{color:var(--npInk)}#final.news #recapList .rm{color:var(--npDim)}#final.news #recapList .rm b,#final.news #recapList .rm a{color:#a8231a}
+#final.news #recapList li i{border-color:var(--npInk);box-shadow:none}
+#final.news #nextEd{color:var(--npInk);text-align:center;border-top:1px solid var(--npRule);padding-top:8px}
+#final.news #comeBack,#final.news #comeBack .linkish,#final.news #replayWrap .linkish{color:#a8231a;text-align:center}
+#final.news #comeBack,#final.news #replayWrap{text-align:center}
+#final.news #letters{transform:none;box-shadow:none;margin:14px 0 0;border-top:3px double #1f1b16}
+</style>
 </head>
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
@@ -1268,7 +1310,15 @@ body.intro #ausBar{display:none}
       <div id="guessList"></div>
     </div>
   </section>
-  <section id="final" hidden>
+  <section id="final" class="news" hidden>
+    <header id="np">
+      <div class="npMast">THE DAILY ODD</div>
+      <div class="npMotto">"All the news that's far-fetched" &middot; Price: free</div>
+      <div class="npDate"><span id="npNo"></span><span id="npDay"></span><span id="npMode"></span></div>
+      <h2 id="npHead"></h2>
+      <p class="npDeck" id="npDeck"></p>
+      <p class="npBy">By our dig correspondent</p>
+    </header>
     <p class="kicker" id="finalKicker"></p>
     <p id="finalLine"></p>
     <p id="finalScoreLine"></p>
@@ -1279,9 +1329,10 @@ body.intro #ausBar{display:none}
       <p id="crowdTop" hidden></p>
       <div id="sumBoard" hidden><canvas id="sumCurve" width="320" height="110" aria-label="Today's scores"></canvas><p id="sumRank"></p></div>
       <button id="btnChallenge" class="challenge" type="button" hidden>Challenge a friend</button>
-      <p class="slbl">YOUR DIG <span>deeper = more points</span></p>
+      <p class="slbl">FIG. 1 · YOUR DIG <span>deeper = more points</span></p>
       <canvas id="digLog" width="320" height="150" aria-label="Points per headline"></canvas>
-      <p class="slbl">THE SCALE</p>
+      <p class="npCap">Each line is one headline, dropped as far as its points went.</p>
+      <p class="slbl">THE SCALE <span>where you rank</span></p>
       <ol id="tiers"></ol>
     </div>
     <details id="recap"><summary id="recapSum">▸ All stories + sources</summary><ol id="recapList"></ol></details>
@@ -3442,6 +3493,23 @@ function renderLetters(){
     else { btn.textContent='TRY AGAIN'; btn.disabled=false; }
   };
 }
+/* the summary's front page: masthead, dateline, a banner headline about the dig and a deck with the score */
+function renderFrontPage(inf,total,max){
+  const k=tierOf(total,max), t=TIERS[k]||{}, z=String(inf.zone||'');
+  const d=new Date(dayKey()+'T12:00:00Z');
+  $('npNo').textContent=(S.mode==='practice'?'Practice':'No. '+dayNumber());
+  $('npDay').textContent=d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+  $('npMode').textContent=modeName(S.kind);
+  const km=fmtM(inf.m).replace(' ',' ');
+  $('npHead').innerHTML = z==='NOWHERE' ? 'Local jaw refuses to drop'
+    : z==='BEHIND THE PAPER' ? 'Jaw drops <b>'+km+'</b>, still behind the paper'
+    : z==='AUSTRALIA' ? 'Jaw breaks through to <b>Australia</b>'
+    : 'Jaw drops <b>'+km+'</b> to the <b>'+z.toLowerCase()+'</b>';
+  let reals=0,pinned=0,fakes=0,caught=0;
+  S.results.forEach((x,i)=>{ const st=S.rounds[i]; if(!st||x.blank) return; if(st.real===false){ fakes++; if(x.callOk) caught++; } else { reals++; if(x.callOk) pinned++; } });
+  const facts = reals||fakes ? ' Called '+pinned+' of '+reals+' true stories and caught '+caught+' of '+fakes+' fake'+(fakes===1?'':'s')+'.' : '';
+  $('npDeck').innerHTML='Reader scores <b>'+fmtPts(total)+'</b> of '+max.toLocaleString()+' and is named <b>'+(t.name||'')+'</b>.'+facts+(t.line?' <q>'+t.line+'</q>':'');
+}
 function renderSummary(total,max,mineM){
   renderLetters();
   $('btnChallenge').hidden = S.mode!=='daily';      // a challenge only makes sense on the shared daily paper
@@ -3506,7 +3574,7 @@ function finish(restored){
   S.shareLines=[S.results.map(shareEmoji).join('')];
   $('grid').innerHTML = cls.map((c,i)=>{ const ic=CLASS_ICON[c], x=S.results[i], t=CLASS_TITLE[c]+(c!=='fake'&&c!=='fooled'&&x&&x.dist!=null?' · '+Math.round(x.dist).toLocaleString()+' km':'');
     return '<span class="sq '+c+'" title="'+t+'">'+(ic?'<img alt="'+CLASS_TITLE[c]+'" src="'+iconURL(ic[0],ic[1])+'">':'')+'</span>'; }).join('');
-  $('recapSum').textContent='▸ All '+S.results.length+' stories + sources';
+  $('recapSum').textContent='▸ In this edition: '+S.results.length+' stories + sources';
   $('recapList').innerHTML = S.results.map((x,i)=>{
     const st=S.rounds[i]; if(!st) return '';
     const cls=resultClass(x), pts=x.callPts+(x.pinPts||0);
@@ -3524,6 +3592,7 @@ function finish(restored){
   $('final').hidden=false;
   S.finalM=+inf.m; S.finalZone=inf.zone;
   renderSummary(total,max,+inf.m);
+  renderFrontPage(inf,total,max);
   renderVs();
   if(S.mode==='back' && S.backDate && !restored){ store('ff_back:'+S.backDate+':'+S.kind,{m:+inf.m,score:total}); }
   if(!restored) startRecap(true);
