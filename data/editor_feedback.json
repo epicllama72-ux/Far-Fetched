@@ -129,6 +129,12 @@
    "before": "First-of-its-kind houseplant hospital opens in {}, where sick plants are put on drips",
    "after": "Houseplant hospital opens in {}, where sick plants are put on drips and operated on",
    "why": "cut 'first-of-its-kind' filler; add the second absurd detail (operations) that makes the hospital image land"
+  },
+  {
+   "kind": "headline",
+   "before": "Big rats take over apartment complex in {}",
+   "after": "18 inch rats take over apartment building in {}, evicting sick families",
+   "why": "a vague word ('big') beats a number: use the concrete figure from the source, and add the human consequence that makes the story land"
   }
  ]
 }
