@@ -1185,7 +1185,8 @@ body.intro #ausBar{display:none}
 #np{display:block;margin:0 0 10px}
 #np .npMast{font:22px/1 var(--px);letter-spacing:.06em;text-align:center;padding:6px 0 0}
 #np .npDate{border-top:3px double var(--npRule);margin-top:6px}
-#np .npMotto{font:15px/1 var(--vt);text-align:center;color:var(--npDim);font-style:italic;padding:5px 0 0}
+#np .npMotto{font:9px/1.4 var(--px);letter-spacing:.14em;text-transform:uppercase;text-align:center;color:#a8231a;padding:8px 0 0}
+#np .npDate{justify-content:center!important}
 #np .npDate{display:flex;justify-content:space-between;gap:8px;font:15px/1 var(--vt);letter-spacing:.04em;text-transform:uppercase;padding:5px 0;border-bottom:1px solid var(--npRule);margin-bottom:10px}
 #np h2{margin:2px 0 8px;font:26px/1.12 var(--px);letter-spacing:-.01em;text-transform:uppercase;text-align:center}
 #np h2 b{font-weight:400;color:#a8231a}
@@ -1325,8 +1326,8 @@ body.intro #ausBar{display:none}
   <section id="final" class="news" hidden>
     <header id="np">
       <div class="npMast">THE DAILY ODD</div>
-      <div class="npMotto">"All the news that's far-fetched" &middot; Price: free</div>
-      <div class="npDate"><span id="npNo"></span><span id="npDay"></span><span id="npMode"></span></div>
+      <div class="npMotto" id="npNo"></div>
+      <div class="npDate"><span id="npDay"></span></div>
       <h2 id="npHead"></h2>
       <p class="npDeck" id="npDeck"></p>
       <p class="npBy">By our dig correspondent</p>
@@ -1342,7 +1343,7 @@ body.intro #ausBar{display:none}
       <p id="crowdTop" hidden></p>
       <div id="sumBoard" hidden><canvas id="sumCurve" width="320" height="110" aria-label="Today's scores"></canvas><p id="sumRank"></p></div>
       <button id="btnChallenge" class="challenge" type="button" hidden>Challenge a friend</button>
-      <p class="slbl">FIG. 1 · YOUR DIG <span>deeper = more points</span></p>
+      <p class="slbl">YOUR DIG <span>deeper = more points</span></p>
       <canvas id="digLog" width="320" height="150" aria-label="Points per headline"></canvas>
       <p class="npCap">Each line is one headline, dropped as far as its points went.</p>
       <p class="slbl">THE SCALE <span>where you rank</span></p>
@@ -3510,9 +3511,8 @@ function renderLetters(){
 function renderFrontPage(inf,total,max){
   const k=tierOf(total,max), t=TIERS[k]||{}, z=String(inf.zone||'');
   const d=new Date(dayKey()+'T12:00:00Z');
-  $('npNo').textContent=(S.mode==='practice'?'Practice':'No. '+dayNumber());
+  $('npNo').textContent = S.mode==='daily' ? modeName(S.kind)+' #'+dayNumber() : S.mode==='back' ? 'Back issue #'+dayNumber()+' · '+modeName(S.kind) : 'Practice · '+modeName(S.kind);
   $('npDay').textContent=d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
-  $('npMode').textContent=modeName(S.kind);
   const km=fmtM(inf.m).replace(' ',' ');
   $('npHead').innerHTML = z==='NOWHERE' ? 'Local jaw refuses to drop'
     : z==='BEHIND THE PAPER' ? 'Jaw drops <b>'+km+'</b>, still behind the paper'
