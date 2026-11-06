@@ -3514,11 +3514,11 @@ function renderFrontPage(inf,total,max){
   const d=new Date(dayKey()+'T12:00:00Z');
   $('npNo').textContent = S.mode==='daily' ? modeName(S.kind)+' #'+dayNumber() : S.mode==='back' ? 'Back issue #'+dayNumber()+' · '+modeName(S.kind) : 'Practice · '+modeName(S.kind);
   $('npDay').textContent=d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
-  const km=fmtM(inf.m).replace(' ',' ');
+  const mm=Math.round(+inf.m||0), km=(mm>=1000 ? String(+(mm/1000).toFixed(2))+' km' : mm+' m').replace(' ','\u00a0');   // 2 decimals where they matter: 6.93 km, 7 km
   $('npHead').innerHTML = z==='NOWHERE' ? 'Local jaw refuses to drop'
     : z==='BEHIND THE PAPER' ? 'Jaw drops <b>'+km+'</b>, still behind the paper'
     : z==='AUSTRALIA' ? 'Jaw breaks through to <b>Australia</b>'
-    : 'Jaw drops <b>'+km+'</b> to the <b>'+z.toLowerCase()+'</b>';
+    : 'Jaw drops <b>'+km+'</b> to the <b>'+z.toLowerCase().replace(/^the /,'')+'</b>';
   let reals=0,pinned=0,fakes=0,caught=0;
   S.results.forEach((x,i)=>{ const st=S.rounds[i]; if(!st||x.blank) return; if(st.real===false){ fakes++; if(x.callOk) caught++; } else { reals++; if(x.callOk) pinned++; } });
   $('npDeck').innerHTML='Reader scores <b>'+fmtPts(total)+'</b> of '+max.toLocaleString()+' points in today\'s '+modeName(S.kind)+'.';
@@ -4154,7 +4154,7 @@ function drawCurve(rows, mine, cvEl){
     const x=clamp01(X(mine),L,R);
     g.fillStyle='#ff6b8b'; g.fillRect(x-1,10,3,base-10);
     const lx=Math.max(14,Math.min(W-14,x));
-    g.fillRect(lx-14,0,28,11); g.fillStyle='#0b0e14'; g.font='9px monospace'; g.fillText('YOU',lx,8);
+    g.fillRect(lx-14,0,28,11); g.fillStyle='#3a0010'; g.font='9px monospace'; g.fillText('YOU',lx,8);   // a dark maroon, not a grey, so the newsprint recolouring leaves it dark
   }
 }
 function clamp01(v,a,b){ return Math.max(a,Math.min(b,v)); }
