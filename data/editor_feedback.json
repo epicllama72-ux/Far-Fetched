@@ -135,6 +135,12 @@
    "before": "Big rats take over apartment complex in {}",
    "after": "18 inch rats take over apartment building in {}, evicting sick families",
    "why": "a vague word ('big') beats a number: use the concrete figure from the source, and add the human consequence that makes the story land"
+  },
+  {
+   "kind": "selection",
+   "before": "Albania AI minister 'pregnant' story as the opener (a year old)",
+   "after": "Kansas City porta-potty story first, Albania last",
+   "why": "the owner moved the freshest, most visual story to the top; an old story should not open the paper"
   }
  ]
 }

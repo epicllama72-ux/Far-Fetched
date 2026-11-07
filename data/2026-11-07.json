@@ -4,14 +4,14 @@
  "call": [
   {
    "real": true,
-   "h": "Prime minister in {} says AI minister is 'pregnant' with 83 digital assistants, one for each lawmaker",
-   "hint": "the capital where Enver Hoxha ruled",
-   "lat": 41.3275,
-   "lng": 19.8187,
-   "place": "Tirana, Albania",
-   "src": "https://metro.co.uk/2025/10/26/albanias-ai-minister-pregnant-83-children-says-prime-minister-24531602/",
-   "published": "2025-10-26",
-   "clue": "AI-generated 'minister' Diella, 83 virtual aides for MPs, a Balkan capital"
+   "h": "Man spends 8 hours stuck in a porta-potty tank after climbing in to retrieve a dropped Mountain Dew in {}",
+   "hint": "home of the Chiefs and Royals",
+   "lat": 39.0997,
+   "lng": -94.5786,
+   "place": "Kansas City, Missouri",
+   "src": "https://abc45.com/news/nation-world/kansas-city-porta-potty-mountain-dew-bottle-firefighter-rescue-trapped-man-portable-toilet-bizarre-rescue-kansas-city-fire-department",
+   "published": "2026-07-15",
+   "clue": "firefighters cut open a portable toilet after a World Cup watch party at 18th & "
   },
   {
    "real": true,
@@ -58,14 +58,14 @@
   },
   {
    "real": true,
-   "h": "Man spends 8 hours stuck in a porta-potty tank after climbing in to retrieve a dropped Mountain Dew in {}",
-   "hint": "home of the Chiefs and Royals",
-   "lat": 39.0997,
-   "lng": -94.5786,
-   "place": "Kansas City, Missouri",
-   "src": "https://abc45.com/news/nation-world/kansas-city-porta-potty-mountain-dew-bottle-firefighter-rescue-trapped-man-portable-toilet-bizarre-rescue-kansas-city-fire-department",
-   "published": "2026-07-15",
-   "clue": "firefighters cut open a portable toilet after a World Cup watch party at 18th & "
+   "h": "Prime minister in {} says AI minister is 'pregnant' with 83 digital assistants, one for each lawmaker",
+   "hint": "the capital where Enver Hoxha ruled",
+   "lat": 41.3275,
+   "lng": 19.8187,
+   "place": "Tirana, Albania",
+   "src": "https://metro.co.uk/2025/10/26/albanias-ai-minister-pregnant-83-children-says-prime-minister-24531602/",
+   "published": "2025-10-26",
+   "clue": "AI-generated 'minister' Diella, 83 virtual aides for MPs, a Balkan capital"
   }
  ],
  "blank": [
