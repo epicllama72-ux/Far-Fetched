@@ -1,210 +1,168 @@
 {
- "date": "2026-11-07",
- "generated": "2026-11-06T07:20:16+00:00",
+ "date": "2026-11-08",
+ "generated": "2026-11-07T06:31:49+00:00",
  "call": [
   {
    "real": true,
-   "h": "Man spends 8 hours stuck in a porta-potty tank after climbing in to retrieve a dropped Mountain Dew in {}",
-   "hint": "home of the Chiefs and Royals",
-   "lat": 39.0997,
-   "lng": -94.5786,
-   "place": "Kansas City, Missouri",
-   "src": "https://abc45.com/news/nation-world/kansas-city-porta-potty-mountain-dew-bottle-firefighter-rescue-trapped-man-portable-toilet-bizarre-rescue-kansas-city-fire-department",
-   "published": "2026-07-15",
-   "clue": "firefighters cut open a portable toilet after a World Cup watch party at 18th & "
+   "h": "Burglar breaks into a bar in {}, drinks half a bottle of orujo and three beers, falls asleep and is arrested",
+   "hint": "home of the red-and-white Athletic Club",
+   "lat": 43.26,
+   "lng": -2.9226,
+   "place": "Bilbao, Spain",
+   "src": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOUGp0aUVzbi1LNDZ3Z3ZzaEJSSHRhSkxqNHJIWHNaT2tSYU83dlE4dlBuTk9yRGRDRFMzM2o5aTNUNVV4bUk4UEl1VU1wZHV2V3cwd05ZVUlFZDY2N2NESnN1aDhUT1ZZYXNJa0dZT2R5QWFOdXJrUmVvMjdyQjlISmpZV2JZOVF4eFAzSF9TelV3aXJXSlB5RDVDT0dlbUFMa21BSlNwM2tULTRGYjZkVU9xejQ0MkJ1NGtaWHhpaUpSdldMQzA1WmN4WWZUQ2hKLVRJdjVGZ1hwdElkTVBlRG5NcWVXZHZGRklBTA?oc=5",
+   "published": "2026-11-06",
+   "clue": "orujo is a Spanish pomace spirit"
   },
   {
    "real": true,
-   "h": "Mayor marries a caiman in a centuries-old ritual to bring abundance to {}",
-   "hint": "an Oaxacan Pacific-coast town",
-   "lat": 15.9667,
-   "lng": -95.6667,
-   "place": "San Pedro Huamelula, Oaxaca, Mexico",
-   "src": "https://www.gamereactor.eu/?p=126096",
-   "published": "2026-07-03",
-   "clue": "mayor weds a bride-dressed caiman each year in a Chontal-Huave peace ritual, a P"
+   "h": "Man dressed as the Grim Reaper climbs hospital roof and stares at patients in {}",
+   "hint": "a Vale of Clwyd cathedral city",
+   "lat": 53.2578,
+   "lng": -3.4426,
+   "place": "St Asaph, Denbighshire, Wales",
+   "src": "https://www.independent.co.uk/news/uk/home-news/grim-reaper-wales-hospital-denbighshire-b3027735.html",
+   "published": "2026-08-06",
+   "clue": "hooded man with a scythe on Ysbyty Glan Clwyd's roof for about 50 minutes; arres"
   },
   {
    "real": false,
-   "h": "Postman in {} delivers village's pension cheques to a goat farm; 37 pensioners wait a fortnight",
-   "tell": "A whole village's cheques going to one goat farm is too neat a mix-up."
+   "h": "Crows in {} steal 37 teaspoons from a seaside cafe and line a rooftop nest with them",
+   "tell": "Crows steal shiny things, but a tidy tally of teaspoons lining a whole nest is too neat."
   },
   {
    "real": true,
-   "h": "Police warn drivers to avoid 'drunk' deer behaving erratically in {}",
-   "hint": "birthplace of the poet Lamartine",
-   "lat": 46.3069,
-   "lng": 4.8287,
-   "place": "Mâcon, Saône-et-Loire, France",
-   "src": "https://www.aol.com/articles/police-warn-drivers-avoid-drunk-131213000.html",
-   "published": "2026-05-14",
-   "clue": "gendarmerie-style warning + fermented fruit"
+   "h": "Inmate in {} sues himself for violating his own civil rights, asking the state to pay $5 million",
+   "hint": "home of Dollar Tree's headquarters",
+   "lat": 36.7682,
+   "lng": -76.2875,
+   "place": "Chesapeake, Virginia",
+   "src": "https://www.deseret.com/1995/4/9/19168705/inmate-sues-himself-for-5-million",
+   "published": "1995-04-08",
+   "clue": "inmate at Indian Creek Correctional Center blamed his own drinking for breaching"
+  },
+  {
+   "real": true,
+   "h": "Marathon runners stage the first-ever backwards mile race at {}",
+   "hint": "site of a blue-ice runway camp",
+   "lat": -79.7667,
+   "lng": -83.3833,
+   "place": "Union Glacier, Antarctica",
+   "src": "https://www.yahoo.com/news/videos/marathon-runners-stage-backwards-mile-145638289.html",
+   "published": "2025-12-15",
+   "clue": "runners waiting for a flight out after the Antarctic Ice Marathon; a one-mile ra"
   },
   {
    "real": false,
-   "h": "Hockey club in {} forfeits game after its ice resurfacer is found parked inside a church hall",
-   "tell": "Nobody parks a machine that size in a church hall unnoticed."
+   "h": "Lorry driver delivers 1,260 garden gnomes to the wrong depot, 214 km from the right one, in {}",
+   "tell": "A driver covering 214 km before noticing the wrong depot is implausibly oblivious."
   },
   {
    "real": true,
-   "h": "Masked 'Batman' becomes a folk hero by paying parking fines and handing out petrol vouchers in {}",
-   "hint": "setting of Dickens's Oliver Twist",
-   "lat": 51.5072,
-   "lng": -0.1276,
-   "place": "London, England",
-   "src": "https://www.lbc.co.uk/news/cost-living/london-batman-cost-of-living-random-acts-of-kindness/",
-   "published": "2026-10-24",
-   "clue": "masked vigilante paying parking fines at a hospital + fuel vouchers at a petrol "
-  },
-  {
-   "real": true,
-   "h": "Prime minister in {} says AI minister is 'pregnant' with 83 digital assistants, one for each lawmaker",
-   "hint": "the capital where Enver Hoxha ruled",
-   "lat": 41.3275,
-   "lng": 19.8187,
-   "place": "Tirana, Albania",
-   "src": "https://metro.co.uk/2025/10/26/albanias-ai-minister-pregnant-83-children-says-prime-minister-24531602/",
-   "published": "2025-10-26",
-   "clue": "AI-generated 'minister' Diella, 83 virtual aides for MPs, a Balkan capital"
+   "h": "Mayor holds 'non-wedding' ceremonies where couples celebrate not getting married in {}",
+   "hint": "setting of the film Amélie",
+   "lat": 48.8867,
+   "lng": 2.3431,
+   "place": "Montmartre, Paris, France",
+   "src": "https://parisjetaime.com/eng/activity/ceremonie-de-non-mariage-p2643",
+   "published": "2026-11-04",
+   "clue": "annual Montmartre 'non-marriage' ceremony before the arrondissement mayor; dogs "
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "Diner in Ibagué, Colombia, keeps slipping a [] onto his empty plate to avoid paying at bakeries",
+   "h2": "Fire station [] in Mauranipur, India, filmed taking a bribe for a firecracker shop permit before Diwali, in a police inspector's uniform",
    "ans": [
-    "cockroach",
-    "cockroaches",
-    "roach",
-    "roaches"
+    "driver",
+    "drivers"
    ],
    "alt": [
-    "bug",
-    "bugs",
-    "insect",
-    "fly",
-    "hair",
-    "beetle"
+    "employee",
+    "firefighter",
+    "worker",
+    "man",
+    "officer",
+    "chauffeur"
    ],
-   "place": "Ibagué, Colombia",
-   "src": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQM1J4Q3dFLWl0YTExVnViOTJHXzh5RHV4Mzl0VUhBMk9hWXpFRFJqbE9QbWhEV0VFMmVCUWNBXzdNSkFWbmo1UGNORW5yV2VaRTVEa0pHMmdiT0JMNWF2Y1lTU1o3YWpRZ3RQZ2JmLVhIWEV1QzMxVE5QWTVYcVVOTjN2VHBNQjRLVE1iSVFEZXVJbC1objhrSG14TldLV05oMTJ4eHJkSDBEWlM5STllbzJnVTRfdTFOcFpYNEszRXY0M1BJ0gHKAUFVX3lxTE9iemQyMHlTRGlqOTBya2xDT25WMHJSS0tNMjZSeHdCRjY1NEIyWnFKRXVNMkloTDdBUzFud2NPS00zdElMZzVpUUZ6aGhoWUZpUy1YakR5Nkw5S1R2SWtBdFBBa2Jnb2d2VXpJYlVKNW1KSndiOHYwYXdvOG1SMW4tem9IUzNlTEEwd2czRXNULXJMODRaSjZPSENnQnA0ejd5dE56QlZDLUZsTWRHakg4NUJCaVFxVHV4cGk1UDNEZXBnempFUTlOd0E?oc=5",
+   "place": "Mauranipur, Uttar Pradesh, India",
+   "src": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOejhDRDdMWVFJMWs3YkdhVlBtV0ZUeUx2eVNGbzlBY0U5LUNXLTh5U01DaW9QWl9uYXVlRXYxMWRVVzhMaXZzMHJyS0h1a09BcGw5c181aER0cE1wcUtUNm01bENYbmJWYUlYQ1Z2Y0l6c0Mzd2JLcDVQU0FpZnRtMmozZUxxLV96SFZGN1VWTGFGM1VoaS1YLTFQRmlXY01mVEdwd0NFTlg1MklZcU9XblA2Zm05bm1FZVBzeDVmaVlBVkpHWDBTbEVRaHVtcHlTWkdmM3JR0gHbAUFVX3lxTE1oOE1oMlp5cFBsNWxNV2Q4ZnUtanlMRG1nV3R1R0FSVmx0V3FWYnpWZjR3WnpGZHdsMUVYWkl4dHJZaF9XX2dmd2JLdlBhTlFVLVQ1RTZTZTJYamF0ZWRfQkh2eEtLR045MjhVNDA4dFhSRzBCbElMWEkzNDhfNnh5X2hTUGNGZ2FTVmxKcXFyTEtQeFNSQXgtZF9rclFLUDI0UmFGazRVZnVMOVlvZ3hqSmlTeTRZRGtGU3hJNl9yN2dReDVUOVpOcXFRWGRYUjUwSFROcDUwc3ZJbw?oc=5",
    "published": "2026-11-04",
-   "vec": "Vp+0Ah/7IqsAGCsKf3slByxzsN6R9A82WfObSeMIt9nOHZ0JrtBjBewx/VxoF2rsGuI="
+   "vec": "5QJTDiQosCcg3kDukgou2N8o7pTcMLpNNZAG+igbf/XaD2YEKAwDHgkk8e4UsQzpcfc="
   },
   {
    "real": true,
-   "h2": "Mayor of San Giorgio su Legnano, Italy, asks owners of 850 [] for 20 euros a year to help families with 280 children",
+   "h2": "Thieves who stole two AI-branded trailers from a warehouse in Newark, California pry them open to find 40,000 pounds of []",
    "ans": [
-    "dogs",
-    "dog"
+    "sand"
    ],
    "alt": [
-    "pets",
-    "canines",
-    "puppies",
-    "hounds"
+    "gravel",
+    "dirt",
+    "soil",
+    "rocks",
+    "stones"
    ],
-   "place": "San Giorgio su Legnano, Italy",
-   "src": "https://news.google.com/rss/articles/CBMinwNBVV95cUxQTjlWRUEtcWJROHN6MGt5VVAtMzJRNVdZbkxXZWtzYmd1cFE0eXdtTzdXYmFlY2lDNWpXcHpFajR4bkRNNWxkUEZlNlg5QjdnMXFEODNpN2ZqVnZCbm5zOXV4eG9MNGt2SGRqQ2ZySXg3SzRuaUkzRlpTZ3NMamFicVRQM19lM0tPSXh5alJra0RHS1ItUjNKcUdid2E0Rmp3cEhFd2UyX3JlZDA5MjNLU0pRSWp2NmZ3TEUwd2NFb1E2U3J5YW4ya2tGME9LR0lzdGRTUE9sQy1rMGZsRVBUU1Vuc3FiZHJCMWpfVGhPMHNha2ZZUTU4VHRhVndJNnBpNUFtcXVtRUUxd3BXVm9rZnMyN0NmbFcyWVp2T2I2LU5SMHI0MjlWbEZSV1hZaXZjVTZFLVlwRExGeGlQNTdKdGRjVnFjOHBReF9oOTFSSlJ1RmJ1VjhhNGJMaXZfVVdQS3BHMVZzd0FoeXZGT3RSZkw0MHA3MXZuQ2w4dkkySjRmekF1bDY0RFZTVWNGeW94MFRtZENHNVNSWjBxdWNZ0gGaA0FVX3lxTE9PRE5FaVZGcVE1bm1XYVFDRDY0MDcwOGFZSzFOQW1BU2ZWMDFYdjgtOEVjSGdmR0R6SDY4UW9FTGdGMlY1NFVlV0gySW5sSTRJdGV1ZFJkbG9Kd21BUjRkbC0ybFZVbUVYUXE2WEk3b1hkaDk1OFg3eU5kUWphWHJIZlFVSjRfMmFBTzdVSXJsejE2T29pVGRvM2tZMk5yaUpDYV9aWTVhM2MxbVU3SXNCcUlvMmhCYXE2VzBCQTVkaFJnbWhLNHJiMkt0bWxUVUZ0UEJicnBaQWhibFlMOHV6aTNHdEItbHhqd2VqSFpMS253am4tUF82VnFSNzlDZzhjM0pOTE5hRHdCVEQyZktab0JrMmIzXy05TXZ4bjdxeTgxNjZyaUdoc2tzZm53N3pMQWtzTnN3QnJMclJQcWtpVWJSdnRBVVBxejZzN2xZSzVhOUxXMFplOV8yWFN4MWxLd1ROYUc0NnJvVzBZd0JXRFJPR3o0SmxoTXdDSGQ5WmkwdW1ROWhtMmthVG84ZjFMTzMxV0RIa0tR?oc=5",
-   "published": "2026-10-15",
-   "vec": "M7b1xhMRuONDzgMFUg0V/hszi8bfJlQoEK3IBDqsezXi7wc6GekK8vT2I1Z/3/PMFgQ="
-  },
-  {
-   "real": true,
-   "h2": "Dozens of [] climb more than 3,000 steps up Mount Tai in Tai'an, China, carrying eggs and watermelons",
-   "ans": [
-    "robots",
-    "robot"
-   ],
-   "alt": [
-    "androids",
-    "machines",
-    "dogs",
-    "humanoids",
-    "bots"
-   ],
-   "place": "Tai'an, Shandong, China",
-   "src": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE15dy1BdDR0VkdTWFdQSWxpSzVZQ3o5NVVBV0lib1FpM29fbE1BTXRqUXhkeENEbnZQVVVIeTRDSDBnZzhLYm52MnBpd3lsWmtibFR6RlFfOUxYNjJRekE?oc=5",
-   "published": "2026-11-02",
-   "vec": "WY9JLA4RFZ3s9zEfBWv4FPt/zdIEA+HyQPSutTO9ZRfO3t9b5g7Z4t7RLjUsBD685AI="
-  },
-  {
-   "real": true,
-   "h2": "Woman, 50, pulls several [] on over her own clothes in a changing room and walks out of a lingerie shop in Oberá, Argentina",
-   "ans": [
-    "thongs",
-    "thong",
-    "gstrings"
-   ],
-   "alt": [
-    "underwear",
-    "knickers",
-    "panties",
-    "briefs",
-    "undies"
-   ],
-   "place": "Oberá, Argentina",
-   "src": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNMFFudUxNUG90bHQ1dmUyWW05SWQ0MEwxSmhneFM3ZGVsdmxHUEhMd2dDVFllcFFmR2NtUjZULWx5YW91T1ZNdFZ1clV0bGxKbURfRjNWbEEzVDFoYlNGSkNOcDFURmxnelpzQ3lueFZ2Y0tmUk5BQTdpLTVVa1ZhNURWUTk3bUhzNmd2eUxiVGhnTkp4SDAzNXdCNWo5OFA0VWdidFlTaVFOZWlIMG5VWG1IbFQtSkVrRmtvaFZPa19JbDcweXQwSTJqeXZMaXNYTmJV?oc=5",
+   "place": "Newark, California",
+   "src": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOa1BITWtsQnN2dzRzSk4zbVhmOWlqeENpWmhNVW9WV2FqMWlyY2lZRllWZE10bVFtQ3BveFU2ZW5oZnRLZjhzR0EyUjNlMFNkb25TYmtzVnhNd2FHM2ptU2Q4aWFvaTVBbzV3WHQzNHJZTlc4bkthRVR4ellkZkV2Zi1mSExDMEFNc2d1WkNPZEh4UjJnYTRWd2UxTEozRFZOMHdUUlI5TnVEYy05Mk9vQkI2dFpsOUp6ckFlb0o4cHExaXIyWDA0cTJETmlYWTlEcnlZZ3k2UW9uUGU3VlJlMXE1ZktmcGVWeVhaSjZSUWJFcnVPSmExN3dVWmU1TkthNl8waUpmU0F2bVRJeHBhZ3dhUE5mcnYwRWxfbzVMX09hUkh5V09oQnFmYU4xX19xV0MtQjdKakxtY1NoZ0lTdkxpd0tkdXZsTEFBWklpYTEtcUh6VDJZVGNR?oc=5",
    "published": "2026-11-05",
-   "vec": "gZW4+e4tcJc8vOjaJgQGWwsIK4YKV0sP71GQNQO0vVgKe0lTKgWow/IrL05HyELHJdM="
+   "vec": "AA/v++T85wsU6OgHJw/wGXv6xrgAADDaDfr3Uzzcf7r7FfI18Q82AAAJMQ4F4QmtB7U="
   },
   {
    "real": true,
-   "h2": "Man who posed as a basketball star's agent and swallowed $770,000 diamond [] in Orlando, Florida, is found guilty",
+   "h2": "Two Germans and a Pole held at Lima airport with nearly 3,000 [] hidden in suitcases bound for Europe",
    "ans": [
-    "earrings",
-    "earring"
+    "tarantulas",
+    "tarantula",
+    "spiders",
+    "spider"
    ],
    "alt": [
-    "studs",
-    "diamonds",
-    "jewels",
-    "jewellery",
-    "gems"
+    "arachnids",
+    "scorpions",
+    "snakes",
+    "insects"
    ],
-   "place": "Orlando, Florida",
-   "src": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5aNndiS2hvMEkwZzBpOGYtU3V2ejZPem1OaVJYaTB1TGRxSDlESllCczd0aFpNX0M4d3FFVWtiU1JGTGpnZzZsNFFSN1dtOS1EaHVNcDQ1S3FBWldZcFo1blVkOTI?oc=5",
-   "published": "2026-10-29",
-   "vec": "/UTbIzsYJvENGxEZCQYnHO8G9MoO9/fR1+LYRBiB9SEqUh8OAhHi+AsYIBIpoCLVx9g="
+   "place": "Lima, Peru",
+   "src": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOdkpJQ2dJM2NBNk52X0ZLU3VTMmYtcDNPcXJhbmNnbzhJTV9OWDl2VTE3Y3RWOGJZNTV0SnhFR0JUVDhNUE5VcnVVR1o1NkJ2OXJ6eVdzdjI1VGVuQjk4V1J2YmJWanRKdTFpZC14YklNU05wSUFsWk9vYzYtemx6QXdmOUx2RktxUlFxc0tXWUROS0VtbFA4c2NHZzQ5Z21NUUkxU3J5cHE0NXppT21id2FoQW5OVGxjaEt2V2w0UVU0V3prLW9HeTYxMzJJLVZUcVc2MUNldmZYQQ?oc=5",
+   "published": "2026-11-06",
+   "vec": "W5zNJAn6KeAELv8iQyYe6vMr8ezG9lwn6UrtBvXNwAYwItPwxdzk2+XKLX87/++y2Oc="
   },
   {
    "real": true,
-   "h2": "Man has breakfast, changes shirt, and walks off with toilet cistern [] from two bars in Prado del Rey, Spain",
+   "h2": "Police [] circling low over Fleet, Hampshire draws a rude shape on tracking sites; force says it was accidental",
    "ans": [
-    "lids",
-    "lid"
+    "helicopter",
+    "helicopters",
+    "chopper"
    ],
    "alt": [
-    "covers",
-    "tops",
-    "caps",
-    "seats",
-    "cover"
+    "aircraft",
+    "plane",
+    "drone",
+    "copter"
    ],
-   "place": "Prado del Rey, Cádiz, Spain",
-   "src": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxOc2E1R283ZXg1N0kwbUU0UmNISk1GMWZRaDVXTWFBYUV5Uk82VmdPXzZXMVd0dm5RNUtHYWpZTGVRZk5FZi1mWmx3Smd1Q2h6eE5qMnRJOGhqQkRkN2lNdXEyTkVqRTNodGFYdElrZUtQME9tXzVfZlZ6UlJ5eGY4UUxqdlNFS0U1ekZwSnh2TkNScVdRazRpNE5Md3hCZ1F2bTJyYm1NTXFvVUdpSkprSjh0aV9iVFVNYmd1T3YzRG5fbU5qMXhrYXM2alVOYTlIb1RyV2tvZnFvSlJkQUhvUTVSZU9PVkpva3RXWUZBUDFOM1dnV1E?oc=5",
-   "published": "2026-11-04",
-   "vec": "9QUS5BDkOiEG9xEnEmoPWQD5VLwjuUT/uxbhfy6+BS4ZYCR7Ny9BCwz9CDIMDgbrFYI="
+   "place": "Fleet, Hampshire",
+   "src": "https://metro.co.uk/2026/11/05/police-helicopter-denies-making-penis-shaped-flight-path-purpose-29767323/",
+   "published": "2026-11-05",
+   "vec": "buFF9uP4ryIilhfpDi619rU8j+vrTN7MF6z4IiEGfwXTKUE1IMbpHAgdKcYW1wQX9Pc="
   },
   {
    "real": true,
-   "h2": "Former NRL player in only his [] jumps on moving cars in Brookvale, Sydney",
+   "h2": "Water workers terrified by creepy baby [] blocking a sewer before Halloween in Exmouth, England",
    "ans": [
-    "underpants",
-    "underwear",
-    "undies"
+    "doll",
+    "dolls"
    ],
    "alt": [
-    "pants",
-    "briefs",
-    "boxers",
-    "shorts",
-    "knickers"
+    "toy",
+    "puppet",
+    "figure",
+    "mannequin"
    ],
-   "place": "Brookvale, Sydney, Australia",
-   "src": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxONnF1MGdCdTlhNGNWcmRZa0hzN3VHX2VmSjEyclNXVThtM2N2WUw2NjhEOHBtT1Fuck5aNDd0V2VpNUxxNGpPYjllaVhGZTBHSnJvUzNqVWJVRWk4d0VnSWtMYWVMekdiclNhUjRvOFZlQ0tkcElqbDl3LWVIbG1QeWVfcUdnbzJtMWVfVFNCN3hCRS1CbUlxX1VwaHpTbmZVY292d0RfbVA?oc=5",
+   "place": "Exmouth, England",
+   "src": "https://metro.co.uk/2026/10/30/eerie-baby-doll-among-disturbing-sewer-discoveries-dredged-halloween-29748699/",
    "published": "2026-10-30",
-   "vec": "2tHI0lgJIcUtwil/ogUnA6YTyrWqZzHV7eatOk7hokbAeE9zEgSq60AMFj0a9yvJGp0="
+   "vec": "BePS71piwJjN9Q4eDERcC8g2CPEN66r2/cCBIQGHJgIHO+I+HwsimvP35dZdESSlDgc="
   }
  ]
 }

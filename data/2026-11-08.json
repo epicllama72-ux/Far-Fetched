@@ -1,0 +1,168 @@
+{
+ "date": "2026-11-08",
+ "generated": "2026-11-07T06:31:49+00:00",
+ "call": [
+  {
+   "real": true,
+   "h": "Burglar breaks into a bar in {}, drinks half a bottle of orujo and three beers, falls asleep and is arrested",
+   "hint": "home of the red-and-white Athletic Club",
+   "lat": 43.26,
+   "lng": -2.9226,
+   "place": "Bilbao, Spain",
+   "src": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOUGp0aUVzbi1LNDZ3Z3ZzaEJSSHRhSkxqNHJIWHNaT2tSYU83dlE4dlBuTk9yRGRDRFMzM2o5aTNUNVV4bUk4UEl1VU1wZHV2V3cwd05ZVUlFZDY2N2NESnN1aDhUT1ZZYXNJa0dZT2R5QWFOdXJrUmVvMjdyQjlISmpZV2JZOVF4eFAzSF9TelV3aXJXSlB5RDVDT0dlbUFMa21BSlNwM2tULTRGYjZkVU9xejQ0MkJ1NGtaWHhpaUpSdldMQzA1WmN4WWZUQ2hKLVRJdjVGZ1hwdElkTVBlRG5NcWVXZHZGRklBTA?oc=5",
+   "published": "2026-11-06",
+   "clue": "orujo is a Spanish pomace spirit"
+  },
+  {
+   "real": true,
+   "h": "Man dressed as the Grim Reaper climbs hospital roof and stares at patients in {}",
+   "hint": "a Vale of Clwyd cathedral city",
+   "lat": 53.2578,
+   "lng": -3.4426,
+   "place": "St Asaph, Denbighshire, Wales",
+   "src": "https://www.independent.co.uk/news/uk/home-news/grim-reaper-wales-hospital-denbighshire-b3027735.html",
+   "published": "2026-08-06",
+   "clue": "hooded man with a scythe on Ysbyty Glan Clwyd's roof for about 50 minutes; arres"
+  },
+  {
+   "real": false,
+   "h": "Crows in {} steal 37 teaspoons from a seaside cafe and line a rooftop nest with them",
+   "tell": "Crows steal shiny things, but a tidy tally of teaspoons lining a whole nest is too neat."
+  },
+  {
+   "real": true,
+   "h": "Inmate in {} sues himself for violating his own civil rights, asking the state to pay $5 million",
+   "hint": "home of Dollar Tree's headquarters",
+   "lat": 36.7682,
+   "lng": -76.2875,
+   "place": "Chesapeake, Virginia",
+   "src": "https://www.deseret.com/1995/4/9/19168705/inmate-sues-himself-for-5-million",
+   "published": "1995-04-08",
+   "clue": "inmate at Indian Creek Correctional Center blamed his own drinking for breaching"
+  },
+  {
+   "real": true,
+   "h": "Marathon runners stage the first-ever backwards mile race at {}",
+   "hint": "site of a blue-ice runway camp",
+   "lat": -79.7667,
+   "lng": -83.3833,
+   "place": "Union Glacier, Antarctica",
+   "src": "https://www.yahoo.com/news/videos/marathon-runners-stage-backwards-mile-145638289.html",
+   "published": "2025-12-15",
+   "clue": "runners waiting for a flight out after the Antarctic Ice Marathon; a one-mile ra"
+  },
+  {
+   "real": false,
+   "h": "Lorry driver delivers 1,260 garden gnomes to the wrong depot, 214 km from the right one, in {}",
+   "tell": "A driver covering 214 km before noticing the wrong depot is implausibly oblivious."
+  },
+  {
+   "real": true,
+   "h": "Mayor holds 'non-wedding' ceremonies where couples celebrate not getting married in {}",
+   "hint": "setting of the film Amélie",
+   "lat": 48.8867,
+   "lng": 2.3431,
+   "place": "Montmartre, Paris, France",
+   "src": "https://parisjetaime.com/eng/activity/ceremonie-de-non-mariage-p2643",
+   "published": "2026-11-04",
+   "clue": "annual Montmartre 'non-marriage' ceremony before the arrondissement mayor; dogs "
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Fire station [] in Mauranipur, India, filmed taking a bribe for a firecracker shop permit before Diwali, in a police inspector's uniform",
+   "ans": [
+    "driver",
+    "drivers"
+   ],
+   "alt": [
+    "employee",
+    "firefighter",
+    "worker",
+    "man",
+    "officer",
+    "chauffeur"
+   ],
+   "place": "Mauranipur, Uttar Pradesh, India",
+   "src": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOejhDRDdMWVFJMWs3YkdhVlBtV0ZUeUx2eVNGbzlBY0U5LUNXLTh5U01DaW9QWl9uYXVlRXYxMWRVVzhMaXZzMHJyS0h1a09BcGw5c181aER0cE1wcUtUNm01bENYbmJWYUlYQ1Z2Y0l6c0Mzd2JLcDVQU0FpZnRtMmozZUxxLV96SFZGN1VWTGFGM1VoaS1YLTFQRmlXY01mVEdwd0NFTlg1MklZcU9XblA2Zm05bm1FZVBzeDVmaVlBVkpHWDBTbEVRaHVtcHlTWkdmM3JR0gHbAUFVX3lxTE1oOE1oMlp5cFBsNWxNV2Q4ZnUtanlMRG1nV3R1R0FSVmx0V3FWYnpWZjR3WnpGZHdsMUVYWkl4dHJZaF9XX2dmd2JLdlBhTlFVLVQ1RTZTZTJYamF0ZWRfQkh2eEtLR045MjhVNDA4dFhSRzBCbElMWEkzNDhfNnh5X2hTUGNGZ2FTVmxKcXFyTEtQeFNSQXgtZF9rclFLUDI0UmFGazRVZnVMOVlvZ3hqSmlTeTRZRGtGU3hJNl9yN2dReDVUOVpOcXFRWGRYUjUwSFROcDUwc3ZJbw?oc=5",
+   "published": "2026-11-04",
+   "vec": "5QJTDiQosCcg3kDukgou2N8o7pTcMLpNNZAG+igbf/XaD2YEKAwDHgkk8e4UsQzpcfc="
+  },
+  {
+   "real": true,
+   "h2": "Thieves who stole two AI-branded trailers from a warehouse in Newark, California pry them open to find 40,000 pounds of []",
+   "ans": [
+    "sand"
+   ],
+   "alt": [
+    "gravel",
+    "dirt",
+    "soil",
+    "rocks",
+    "stones"
+   ],
+   "place": "Newark, California",
+   "src": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOa1BITWtsQnN2dzRzSk4zbVhmOWlqeENpWmhNVW9WV2FqMWlyY2lZRllWZE10bVFtQ3BveFU2ZW5oZnRLZjhzR0EyUjNlMFNkb25TYmtzVnhNd2FHM2ptU2Q4aWFvaTVBbzV3WHQzNHJZTlc4bkthRVR4ellkZkV2Zi1mSExDMEFNc2d1WkNPZEh4UjJnYTRWd2UxTEozRFZOMHdUUlI5TnVEYy05Mk9vQkI2dFpsOUp6ckFlb0o4cHExaXIyWDA0cTJETmlYWTlEcnlZZ3k2UW9uUGU3VlJlMXE1ZktmcGVWeVhaSjZSUWJFcnVPSmExN3dVWmU1TkthNl8waUpmU0F2bVRJeHBhZ3dhUE5mcnYwRWxfbzVMX09hUkh5V09oQnFmYU4xX19xV0MtQjdKakxtY1NoZ0lTdkxpd0tkdXZsTEFBWklpYTEtcUh6VDJZVGNR?oc=5",
+   "published": "2026-11-05",
+   "vec": "AA/v++T85wsU6OgHJw/wGXv6xrgAADDaDfr3Uzzcf7r7FfI18Q82AAAJMQ4F4QmtB7U="
+  },
+  {
+   "real": true,
+   "h2": "Two Germans and a Pole held at Lima airport with nearly 3,000 [] hidden in suitcases bound for Europe",
+   "ans": [
+    "tarantulas",
+    "tarantula",
+    "spiders",
+    "spider"
+   ],
+   "alt": [
+    "arachnids",
+    "scorpions",
+    "snakes",
+    "insects"
+   ],
+   "place": "Lima, Peru",
+   "src": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOdkpJQ2dJM2NBNk52X0ZLU3VTMmYtcDNPcXJhbmNnbzhJTV9OWDl2VTE3Y3RWOGJZNTV0SnhFR0JUVDhNUE5VcnVVR1o1NkJ2OXJ6eVdzdjI1VGVuQjk4V1J2YmJWanRKdTFpZC14YklNU05wSUFsWk9vYzYtemx6QXdmOUx2RktxUlFxc0tXWUROS0VtbFA4c2NHZzQ5Z21NUUkxU3J5cHE0NXppT21id2FoQW5OVGxjaEt2V2w0UVU0V3prLW9HeTYxMzJJLVZUcVc2MUNldmZYQQ?oc=5",
+   "published": "2026-11-06",
+   "vec": "W5zNJAn6KeAELv8iQyYe6vMr8ezG9lwn6UrtBvXNwAYwItPwxdzk2+XKLX87/++y2Oc="
+  },
+  {
+   "real": true,
+   "h2": "Police [] circling low over Fleet, Hampshire draws a rude shape on tracking sites; force says it was accidental",
+   "ans": [
+    "helicopter",
+    "helicopters",
+    "chopper"
+   ],
+   "alt": [
+    "aircraft",
+    "plane",
+    "drone",
+    "copter"
+   ],
+   "place": "Fleet, Hampshire",
+   "src": "https://metro.co.uk/2026/11/05/police-helicopter-denies-making-penis-shaped-flight-path-purpose-29767323/",
+   "published": "2026-11-05",
+   "vec": "buFF9uP4ryIilhfpDi619rU8j+vrTN7MF6z4IiEGfwXTKUE1IMbpHAgdKcYW1wQX9Pc="
+  },
+  {
+   "real": true,
+   "h2": "Water workers terrified by creepy baby [] blocking a sewer before Halloween in Exmouth, England",
+   "ans": [
+    "doll",
+    "dolls"
+   ],
+   "alt": [
+    "toy",
+    "puppet",
+    "figure",
+    "mannequin"
+   ],
+   "place": "Exmouth, England",
+   "src": "https://metro.co.uk/2026/10/30/eerie-baby-doll-among-disturbing-sewer-discoveries-dredged-halloween-29748699/",
+   "published": "2026-10-30",
+   "vec": "BePS71piwJjN9Q4eDERcC8g2CPEN66r2/cCBIQGHJgIHO+I+HwsimvP35dZdESSlDgc="
+  }
+ ]
+}

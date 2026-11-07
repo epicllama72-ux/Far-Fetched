@@ -1,37 +1,67 @@
 {
  "real": [
   {
-   "id": 38,
-   "h": "Fire station driver in {} filmed taking a bribe for a firecracker shop permit before Diwali, wearing a police inspector's uniform",
-   "h2": "Fire station [] in Mauranipur, India, filmed taking a bribe for a firecracker shop permit before Diwali, in a police inspector's uniform",
+   "id": 45,
+   "h": "Shop replaces its staff with six humanoid robots for 24 hours, and one walks off the job in {}",
+   "h2": "Shanghai shop replaces its staff with six humanoid [] for 24 hours, and one walks off the job",
    "ans": [
-    "driver",
-    "drivers"
+    "robots",
+    "robot",
+    "androids"
    ],
    "alt": [
-    "employee",
-    "firefighter",
-    "worker",
-    "man",
-    "officer",
-    "chauffeur"
+    "machines",
+    "bots",
+    "droids"
    ],
-   "place": "Mauranipur, Uttar Pradesh, India",
-   "geocode": "Mauranipur, Jhansi, Uttar Pradesh, India",
-   "lat": 25.2964858,
-   "lng": 79.1171152,
-   "country": "India",
-   "cc": "IN",
-   "hint": "a Bundelkhand town",
-   "clue": "Diwali firecracker markets = India",
+   "place": "Shanghai, China",
+   "geocode": "Shanghai, China",
+   "lat": 31.2312707,
+   "lng": 121.4700152,
+   "country": "China",
+   "cc": "CN",
+   "hint": "host of the 2010 World Expo",
+   "clue": "Humanoid robot retail stunts = Chinese tech hub",
    "clue_strength": 3,
    "jargon_only": false,
    "mappable": 3,
    "unbelievable": 3,
-   "theme": "bribery",
-   "src": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOejhDRDdMWVFJMWs3YkdhVlBtV0ZUeUx2eVNGbzlBY0U5LUNXLTh5U01DaW9QWl9uYXVlRXYxMWRVVzhMaXZzMHJyS0h1a09BcGw5c181aER0cE1wcUtUNm01bENYbmJWYUlYQ1Z2Y0l6c0Mzd2JLcDVQU0FpZnRtMmozZUxxLV96SFZGN1VWTGFGM1VoaS1YLTFQRmlXY01mVEdwd0NFTlg1MklZcU9XblA2Zm05bm1FZVBzeDVmaVlBVkpHWDBTbEVRaHVtcHlTWkdmM3JR0gHbAUFVX3lxTE1oOE1oMlp5cFBsNWxNV2Q4ZnUtanlMRG1nV3R1R0FSVmx0V3FWYnpWZjR3WnpGZHdsMUVYWkl4dHJZaF9XX2dmd2JLdlBhTlFVLVQ1RTZTZTJYamF0ZWRfQkh2eEtLR045MjhVNDA4dFhSRzBCbElMWEkzNDhfNnh5X2hTUGNGZ2FTVmxKcXFyTEtQeFNSQXgtZF9rclFLUDI0UmFGazRVZnVMOVlvZ3hqSmlTeTRZRGtGU3hJNl9yN2dReDVUOVpOcXFRWGRYUjUwSFROcDUwc3ZJbw?oc=5",
-   "published": "2026-11-04",
-   "banked": "2026-11-07",
+   "theme": "robots",
+   "src": "https://mezha.ua/en/news/humanoid-robots-work-24-hour-store-shift-316912/",
+   "published": "2026-11-06",
+   "banked": "2026-11-08",
+   "rules": 2
+  },
+  {
+   "id": 9,
+   "h": "Players mix cement and lay bricks to fill a hole in the pitch mid-match in a regional league in {}",
+   "h2": "Players mix cement and lay [] to fill a hole in the pitch mid-match in a regional league in Cebreros, Spain",
+   "ans": [
+    "bricks",
+    "brick"
+   ],
+   "alt": [
+    "stones",
+    "blocks",
+    "tiles",
+    "concrete"
+   ],
+   "place": "Cebreros, Spain",
+   "geocode": "Cebreros, Ávila, Spain",
+   "lat": 40.4551504,
+   "lng": -4.4651595,
+   "country": "Spain",
+   "cc": "ES",
+   "hint": "a Castilian village",
+   "clue": "Regional football division in Spain",
+   "clue_strength": 1,
+   "jargon_only": false,
+   "mappable": 1,
+   "unbelievable": 4,
+   "theme": "pitch",
+   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNWEh4aWVyTzd0cXBUY0xOcng4SkQzckxvRzZibmIzd1BEQmNzLXR1ZjdIWnVEOXREUlRNSXdPeHh1YzB3Tl9kUWNWRVpQcmlJQ1pyYWVnTF9iODFldmlwVk9UUEt5eXhwM0pmYm1EQ3JzMFZxRmdCdDBkZEdRQ3ZibTJoaUFVZzZ0Z3lnc1Z1TzNqdlFsMDY1TnBGT01ZLWJ6SUtlWjAyekswUV81U3IwM3JzR28wUXJKbkNlZUh6YXQ?oc=5",
+   "published": "2026-10-11",
+   "banked": "2026-11-08",
    "rules": 2
   },
   {
@@ -150,74 +180,12 @@
    "geocode": "Nonthaburi, Thailand",
    "daily_only": true,
    "mappable": 2,
-   "clue_strength": 1,
+   "clue_strength": 2,
    "jargon_only": false
-  },
-  {
-   "h": "Marathon runners stage the first-ever backwards mile race at {}",
-   "hint": "",
-   "lat": -79.7667,
-   "lng": -83.3833,
-   "place": "Union Glacier, Antarctica",
-   "src": "https://www.yahoo.com/news/videos/marathon-runners-stage-backwards-mile-145638289.html",
-   "published": "2025-12-15",
-   "clue": "runners waiting for a flight out after the Antarctic Ice Marathon; a one-mile race run in reverse",
-   "banked": "2026-11-05",
-   "rules": 2,
-   "unbelievable": 3,
-   "theme": "sport",
-   "cc": "AQ",
-   "country": "Antarctica",
-   "geocode": "Union Glacier, Antarctica",
-   "daily_only": true,
-   "mappable": 2,
-   "clue_strength": 3,
-   "jargon_only": false
-  },
-  {
-   "h": "Man dressed as the Grim Reaper climbs hospital roof and stares at patients in {}",
-   "hint": "",
-   "lat": 53.2578,
-   "lng": -3.4426,
-   "place": "St Asaph, Denbighshire, Wales",
-   "src": "https://www.independent.co.uk/news/uk/home-news/grim-reaper-wales-hospital-denbighshire-b3027735.html",
-   "published": "2026-08-06",
-   "clue": "hooded man with a scythe on Ysbyty Glan Clwyd's roof for about 50 minutes; arrested then fined",
-   "banked": "2026-11-05",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "crime",
-   "cc": "GB",
-   "country": "United Kingdom",
-   "geocode": "St Asaph, Denbighshire, Wales, UK",
-   "daily_only": true,
-   "mappable": 2,
-   "clue_strength": 1,
-   "jargon_only": false
-  },
-  {
-   "h": "Mayor holds 'non-wedding' ceremonies where couples celebrate not getting married in {}",
-   "hint": "home of a white-domed hilltop basilica",
-   "lat": 48.8867,
-   "lng": 2.3431,
-   "place": "Montmartre, Paris, France",
-   "src": "https://parisjetaime.com/eng/activity/ceremonie-de-non-mariage-p2643",
-   "published": "2026-11-04",
-   "clue": "annual Montmartre 'non-marriage' ceremony before the arrondissement mayor; dogs in the blurb unverified, left out",
-   "banked": "2026-11-05",
-   "rules": 2,
-   "unbelievable": 3,
-   "theme": "ceremony",
-   "cc": "FR",
-   "country": "France",
-   "geocode": "Montmartre, Paris, France",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 4
   },
   {
    "h": "Plaintiff hides tiny white text in court filings telling AI to agree with him; judge strips his e-filing rights in {}",
-   "hint": "",
+   "hint": "setting of Gilmore Girls' Stars Hollow",
    "lat": 41.6032,
    "lng": -72.7,
    "place": "Connecticut",
@@ -232,63 +200,30 @@
    "country": "United States",
    "geocode": "Connecticut, USA",
    "daily_only": true,
-   "mappable": 2,
+   "mappable": 3,
    "clue_strength": 2,
    "jargon_only": false
   },
   {
-   "h": "Inmate sues himself for violating his own civil rights, asking the state to pay $5 million, in {}",
-   "hint": "edge of a great dismal swamp",
-   "lat": 36.7682,
-   "lng": -76.2875,
-   "place": "Chesapeake, Virginia",
-   "src": "https://www.deseret.com/1995/4/9/19168705/inmate-sues-himself-for-5-million",
-   "published": "1995-04-08",
-   "clue": "inmate at Indian Creek Correctional Center blamed his own drinking for breaching his rights; judge called it ludicrous and dismissed it; 1995 classic",
+   "h": "Family checks into a vacation rental in {} and finds a giant photo of themselves hanging on the wall",
+   "hint": "",
+   "lat": 33.1959,
+   "lng": -117.3795,
+   "place": "Oceanside, California",
+   "src": "https://www.foxnews.com/travel/sisters-viral-video-reveal-truth-eerie-family-photo-discovered-rental-home",
+   "published": "2026-07-14",
+   "clue": "sisters at a beach-town rental recognise their own family in an aerial beach photo; host's decorator sells enlarged beach shots",
    "banked": "2026-11-05",
    "rules": 2,
    "unbelievable": 4,
-   "theme": "law",
+   "theme": "coincidence",
    "cc": "US",
    "country": "United States",
-   "geocode": "Chesapeake, Virginia, USA",
+   "geocode": "Oceanside, California, USA",
    "daily_only": true,
    "mappable": 3,
-   "clue_strength": 3
-  },
-  {
-   "id": 43,
-   "h": "Man has breakfast, changes shirt and takes toilet cistern lids from two bars minutes apart in {}",
-   "h2": "Man takes toilet cistern [] from two bars minutes apart after changing shirt in Sierra de Cádiz, Spain",
-   "ans": [
-    "lids",
-    "lid",
-    "covers",
-    "cover"
-   ],
-   "alt": [
-    "tops",
-    "caps",
-    "tanks",
-    "seats"
-   ],
-   "place": "Sierra de Cádiz, Spain",
-   "geocode": "Sierra de Cádiz, Andalusia, Spain",
-   "lat": 36.8332379,
-   "lng": -5.6138257,
-   "country": "Spain",
-   "cc": "ES",
-   "hint": "home of Payoyo goat cheese",
-   "clue": "breakfast and a coffee at village bars, as in southern Spain",
    "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 1,
-   "unbelievable": 4,
-   "theme": "bar-theft",
-   "src": "https://news.google.com/rss/articles/CBMikAJBVV95cUxOcEVvRndDQjZfelN3bWlwTkQ3dDQ4Q1NoVVJxV2MyQ3d0TkN3c2dKYW5hZ2kwRmdlSnZfc1RRNmRQWUxBOFRqdjdKZ0RFQjBJbmZhYmdJeHlBajJIQy05R0pkUGNSaGpSVTk0bTl0RkVwLXdDdlJrWGVvSEhZLUpLYmtfT2hjNjhvdkNvVzVqMXgxVk1YNmI2S1hrX2ZoeWNfdWdkZFNvM1BFelN1MTh0R19wOXVPbkZxYVhxbDhvMGVtcm5YYWNjT041Y3RqZzIwTC1DeTc2Z2Z5Y0p6Rm5xY2lDOWNTLVJROU9rMzF5eXVYb3RlMFRaU1lvYnhRdEpIX2tNY0hEZ0NzUVlTaVd2Zw?oc=5",
-   "published": "2026-11-02",
-   "banked": "2026-11-05",
-   "rules": 2
+   "jargon_only": false
   },
   {
    "h": "'Are You Dead?' app for people living alone goes viral in {}",
@@ -309,27 +244,6 @@
    "daily_only": true,
    "mappable": 1,
    "clue_strength": 2
-  },
-  {
-   "h": "Family checks into a vacation rental in {} and finds a giant photo of themselves hanging on the wall",
-   "hint": "",
-   "lat": 33.1959,
-   "lng": -117.3795,
-   "place": "Oceanside, California",
-   "src": "https://www.foxnews.com/travel/sisters-viral-video-reveal-truth-eerie-family-photo-discovered-rental-home",
-   "published": "2026-07-14",
-   "clue": "sisters at a beach-town rental recognise their own family in an aerial beach photo; host's decorator sells enlarged beach shots",
-   "banked": "2026-11-05",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "coincidence",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Oceanside, California, USA",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 0,
-   "jargon_only": false
   },
   {
    "id": 15,
@@ -531,9 +445,9 @@
    "lng": -93.8863,
    "country": "United States",
    "cc": "US",
-   "hint": "",
+   "hint": "a Piney Woods community",
    "clue": "US sheriff 'remain indoors' alert + a semitrailer",
-   "clue_strength": 0,
+   "clue_strength": 1,
    "jargon_only": false,
    "mappable": 3,
    "unbelievable": 4,
@@ -553,9 +467,9 @@
    "lng": -81.8651,
    "country": "United States",
    "cc": "US",
-   "hint": "",
+   "hint": "a Blue Ridge foothills town",
    "clue": "US chain restaurant + a county health district",
-   "clue_strength": 0,
+   "clue_strength": 1,
    "jargon_only": false,
    "mappable": 3,
    "unbelievable": 3,
@@ -794,6 +708,60 @@
  ],
  "fake": [
   {
+   "h": "Teenager sells his school's 41 lost-property umbrellas back to pupils for 3 euros each in {}",
+   "tell": "Selling back items to their owners at a fixed price is too neat a scheme for a teenager.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "umbrellas",
+   "banked": "2026-11-08",
+   "rules": 2
+  },
+  {
+   "h": "Postman in {} delivers mail by kayak for 11 days after the village's only bridge is repainted",
+   "tell": "Bridges are closed for wet paint rarely, and never for eleven days without a detour.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "mail",
+   "banked": "2026-11-08",
+   "rules": 2
+  },
+  {
+   "h": "Moose steps into a ski-rental shop in {} and sits on a display of 29 snowboards",
+   "tell": "Wandering animals rarely do something so specific as sit on a tidy display.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "moose",
+   "banked": "2026-11-08",
+   "rules": 2
+  },
+  {
+   "h": "Wedding in {} delayed 3 hours after the bride's 18 rented peacocks escape onto the ring road",
+   "tell": "Hiring exactly eighteen peacocks and losing every one is an unlikely coincidence.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "wedding",
+   "banked": "2026-11-08",
+   "rules": 2
+  },
+  {
+   "h": "Pensioners in {} play a 54-hour bingo marathon after the hall clock stops and nobody notices",
+   "tell": "Nobody in a room of pensioners would miss meals and sleep for two days.",
+   "unbelievable": 5,
+   "obvious": 2,
+   "theme": "bingo",
+   "banked": "2026-11-08",
+   "rules": 2
+  },
+  {
+   "h": "Burglar in {} leaves with a 63 kg safe but forgets his own bike, then returns by bus to collect it",
+   "tell": "A burglar carrying a 63 kg safe and then going back for a bike is over-tidy cause and effect.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "burglary",
+   "banked": "2026-11-08",
+   "rules": 2
+  },
+  {
    "h": "Pensioner in {} ties his buffalo to a traffic signal for three days, delaying 4,310 commuters",
    "tell": "A precise commuter count for an animal tied to a signal is invented-sounding.",
    "obvious": 3,
@@ -1008,85 +976,62 @@
    "theme": "traffic",
    "banked": "2026-11-04",
    "rules": 2
-  },
-  {
-   "h": "Taxi passenger in {} pays a 36-dirham fare with a live chicken; the driver accepts and drives on",
-   "tell": "Taxi drivers do not accept livestock as payment in a city fare dispute without a fuss.",
-   "obvious": 3,
-   "unbelievable": 4,
-   "theme": "taxi",
-   "banked": "2026-11-04",
-   "rules": 2
-  },
-  {
-   "h": "Gritting crew in {} spreads 14 tonnes of salt on dry streets during a 31-degree afternoon",
-   "hint": "where Finding Nemo ends",
-   "tell": "Gritting is for icy roads; a hot afternoon in this city would not trigger it.",
-   "unbelievable": 3,
-   "obvious": 3,
-   "theme": "roads",
-   "banked": "2026-11-03",
-   "rules": 2
-  },
-  {
-   "h": "Garda arrest man in {} who tried to settle an £87 parking fine with 1,460 postage stamps",
-   "hint": "where Harry Potter was written",
-   "tell": "Garda is the Irish police; this city's officers would be called police or constables.",
-   "unbelievable": 4,
-   "obvious": 2,
-   "theme": "payment",
-   "banked": "2026-11-03",
-   "rules": 2
-  },
-  {
-   "h": "Tram driver in {} finds the same umbrella on his seat nine days running; owner never traced",
-   "hint": "home of the Cavern Club",
-   "tell": "This capital has no tram network, so a tram driver is slightly off.",
-   "unbelievable": 3,
-   "obvious": 3,
-   "theme": "umbrella",
-   "banked": "2026-11-03",
-   "rules": 2
-  },
-  {
-   "h": "Burglar in {} leaves wallet at scene, phones constables to get it back and is arrested",
-   "hint": "host of the 1968 Olympics",
-   "tell": "Constables are not the term used here, and the burglar's blunder is too perfectly circular.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "burglar",
-   "banked": "2026-11-03",
-   "rules": 2
-  },
-  {
-   "h": "Thieves in {} haul off 37 carpet rolls but leave a safe holding 9,400 pesos",
-   "hint": "where Pizarro founded a capital",
-   "tell": "Pesos are not this country's currency, and the thieves skipping the safe is too convenient.",
-   "unbelievable": 3,
-   "obvious": 2,
-   "theme": "robbery",
-   "banked": "2026-11-03",
-   "rules": 2
   }
  ],
  "pol": [
   {
-   "id": 11,
-   "h": "In-laws tie with 38 votes each for a town commission seat in {}",
-   "place": "Parrottsville, Cocke County, Tennessee, USA",
-   "geocode": "Parrottsville, Cocke County, Tennessee, USA",
-   "lat": 36.0092654,
-   "lng": -83.0923775,
-   "clue": "a tiny Cocke County town in the foothills of the Great Smoky Mountains",
+   "id": 25,
+   "h": "Two in-laws tie with 38 votes each for a commission seat in {}",
+   "place": "Parrottsville, Tennessee, USA",
+   "geocode": "US",
+   "lat": 35.9715,
+   "lng": -83.0985,
+   "clue": "town commission seat + in-laws = a tiny US town in the Smoky Mountain foothills",
    "src": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNRTQ2dTZBZ2QxQnBUeDQ4cVhiRmJ3YVVVaUcwdzdMV0xyR0JNUnhYQmtNRm84aHZSb2RBZGdydnExMmJONlgyNkp3YklNdUU0dVVualp1Zl92TnAtMUZtTnlZZHF1Rm9LVU5HNTluVS1FWEdCVDlaR1JpZ05ZY1FIc0RSZFBLWTFYTzNyUE1kMjI3b0YzUXY1N285YVNhN1VaUnZyWFB6N3Y2M2FaME5NMmw5a09zTTZib193ZmoxSEJYMmlrSGlPSjFxT2RQMnZLQTVnazNqaWlSY3hJSzJVZ2s0MGQ5LVliTmNWcjlvcEhGWUFU?oc=5",
    "published": "2026-11-04",
-   "banked": "2026-11-07"
+   "banked": "2026-11-08"
+  },
+  {
+   "id": 12,
+   "h": "Final day of voting begins in {} as unusual law bans any talk of politics",
+   "place": "Wellington, New Zealand",
+   "geocode": "NZ",
+   "lat": -41.5000831,
+   "lng": 172.8344077,
+   "clue": "election-day gag law; capital city on Cook Strait in the Southern Hemisphere",
+   "src": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9TZG5FR3Y1aklXLVQ4dTIyZW1lZ0ZlbDJkaU51VlR4QlpRWTg3T3VndUFzSkpWanlFNl9jQk80NmJNN0Z5WjN2aTctd1h4bUZUbU1sM1VQY3JzZG5HQmZnWXNRd19OeER5RmJTNll3?oc=5",
+   "published": "2026-11-07",
+   "banked": "2026-11-08"
   }
  ],
  "polfake": [
   {
    "h": "Voters in {} elect a mayor born on the same day as the last three mayors",
    "banked": "2026-11-07"
+  },
+  {
+   "h": "Parliament in {} passes law forcing members to retire at 71 after finding their average age was 68",
+   "banked": "2026-11-08"
+  },
+  {
+   "h": "Voters in {} elect mayor by 3 votes after ballots are counted in the only bakery in town",
+   "banked": "2026-11-08"
+  },
+  {
+   "h": "Councillors in {} vote 7-2 to ban pigeons from the main square after a count shows a 4 percent rise",
+   "banked": "2026-11-08"
+  },
+  {
+   "h": "Three mayoral candidates in {} share a birthday and finish in alphabetical order",
+   "banked": "2026-11-08"
+  },
+  {
+   "h": "Mayor of {} swears in new county sheriff at the opening session of the regional senate",
+   "banked": "2026-11-08"
+  },
+  {
+   "h": "Lawmakers in {} approve a 14-page bill to move the capital after a single windy afternoon",
+   "banked": "2026-11-08"
   },
   {
    "h": "Cantonal parliament in {} votes to cap rents, then raises its own office allowance in euros",
@@ -1147,36 +1092,6 @@
    "h": "Town of {} elects new sheriff by popular vote, county commissioners confirm him as prime minister's envoy",
    "banked": "2026-11-05",
    "tell": "A county commissioner confirms county posts, not a prime minister's envoy."
-  },
-  {
-   "h": "Newly elected councillor in {} resigns after 41 minutes, saying the swearing-in oath was too long",
-   "banked": "2026-11-05",
-   "tell": "An oath takes a minute or two; 41 minutes is not an oath."
-  },
-  {
-   "h": "Lawmakers in {} pass bill requiring all streetlights be repainted green, citing a rise in birdwatching",
-   "banked": "2026-11-05",
-   "tell": "Streetlight colour is a maintenance matter, not a bill, and birdwatching is no reason."
-  },
-  {
-   "h": "Mayor of {} signs bylaw moving local elections to spring after turnout rose at the last vote",
-   "banked": "2026-11-04",
-   "tell": "Moving the election date after a good turnout undoes the reason it was good."
-  },
-  {
-   "h": "Voters in {} approve a ward boundary change that places the town hall in a neighbouring ward",
-   "banked": "2026-11-04",
-   "tell": "A ward boundary change that moves the town hall out of its own ward would not be put to voters."
-  },
-  {
-   "h": "Parliament in {} delays a vote for three days because the speaker's chair was away for repairs",
-   "banked": "2026-11-04",
-   "tell": "A speaker's chair is replaced or borrowed; a vote is not delayed three days for it."
-  },
-  {
-   "h": "Lawmakers in {} pass a law requiring all ballot papers be printed in a single font, citing a printer shortage",
-   "banked": "2026-11-04",
-   "tell": "A printer shortage is no reason to legislate fonts."
   }
  ]
 }
