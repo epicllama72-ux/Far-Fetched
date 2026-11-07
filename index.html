@@ -1298,7 +1298,7 @@ body.intro #ausBar{display:none}
     <button id="btnReal">REAL</button>
     <button id="btnFake">FAKE</button>
   </div>
-  <button class="primary" id="btnStart" hidden>Start · 25 seconds</button>
+  <button class="primary" id="btnStart" hidden>Start</button>
   <button class="primary" id="btnNext" hidden>Next</button>
   <div id="blankBar" hidden>
     <form id="guessForm" autocomplete="off">
@@ -1588,7 +1588,7 @@ function takeMixed(list,n,perDay,count){
   return out;
 }
 function pickBlankRounds(r){
-  return takeMixed(freshFirst(practicePool(s=>s.real&&s.h2&&s.ans&&s.cat!=='pol', 30),r),ROUND_LEN,2,{});
+  return takeMixed(freshFirst(practicePool(s=>s.real&&s.h2&&s.ans&&s.cat!=='pol', 30),r),BLANK_N,2,{});
 }
 function pickRounds(r,pol,allowDaily){
   const want=s=>s.h && (s.cat==='pol')===!!pol;
@@ -2984,7 +2984,7 @@ const POL_ON = false;   // Politics mode is on hold: greyed out in the menu as "
 let KIND = (function(){ try{ const k=localStorage.getItem('ff_kind'); return (k==='blank'||(POL_ON&&k==='pol'))?k:'call'; }catch(e){ return 'call'; } })();
 function saveKey(kind){ return kind==='blank'?'ff_blank':kind==='pol'?'ff_pol':'ff_daily'; }
 function modeName(kind){ return kind==='blank'?'Fill the Blank':kind==='pol'?'Politics':'Daily Dig'; }
-let BLANK_MAX = 143; const BLANK_SECS = 25;
+let BLANK_MAX = 200; const BLANK_SECS = 30, BLANK_N = 5, BLANK_NEAR = 1.35;   // 5 headlines, 30 seconds each; near misses pay 1.35x their old rate
 const FAKE_BASE = 50, FOOLED_BASE = 25, TRUE_BASE = 180, JAW_SCALE = 1000;   // every mode tops out at 1,000 points
 let FAKE_PTS = 50;
 
@@ -3007,7 +3007,7 @@ function startGame(mode, kind){
     const reals=shuffle(STORIES.filter(s=>s.real&&s.h&&s.cat!=='pol'&&!s._daily&&!s._arch),rng(hash(todayKey())));
     const fakes=shuffle(STORIES.filter(s=>!s.real&&s.cat!=='pol'&&!s._daily&&!s._arch),rng(hash(todayKey()+'f')));
     const spare=reals.slice(DIG_REAL).filter(s=>s.h2);
-    rounds = blank ? spare.slice(0,ROUND_LEN)
+    rounds = blank ? spare.slice(0,BLANK_N)
                    : shuffle(reals.slice(0,DIG_REAL).concat(fakes.slice(0,ROUNDS_FAKE)),rng(hash(todayKey()+'o')));
   } else { rounds = blank ? pickBlankRounds(r) : pickRounds(r,pol); markPractised(rounds); }   // practice never uses today's stories
   if(daily && DAILY && blank && rounds){                 // never show a Real or Fake story again in Fill the Blank
@@ -3019,7 +3019,8 @@ function startGame(mode, kind){
   // every mode tops out at 1,000 points: PK scales the point values to the mix of stories (5 true + 2 fakes gives exactly 1)
   PK = (!blank && rounds.length) ? 1000/Math.max(1, reals*TRUE_BASE+(rounds.length-reals)*FAKE_BASE) : 1;
   FAKE_PTS = Math.round(FAKE_BASE*PK); FOOLED_PTS = -Math.round(FOOLED_BASE*PK);
-  BLANK_MAX = blank ? 1000/Math.max(1,rounds.length) : 500;   // 7 words: 143 each at most
+  if(blank) rounds = rounds.slice(0,BLANK_N);                  // Fill the Blank is five headlines a day, whatever the paper holds
+  BLANK_MAX = blank ? 1000/Math.max(1,rounds.length) : 500;   // 5 words: 200 each at most
   S = {mode, kind:KIND, rounds, i:0, results:[], phase:'call', score:0,
        maxScore: blank ? 1000 : Math.round(reals*PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS))+(rounds.length-reals)*FAKE_PTS,
        maxJaw: blank ? 1000 : Math.round(reals*PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS))};
@@ -3048,7 +3049,7 @@ function startGame(mode, kind){
   $('mPol').classList.toggle('on',pol && daily);
   $('mPractice').classList.toggle('on',!daily);
   $('howText').innerHTML = blank
-    ? 'Guess the hidden word in each true headline. The exact word scores up to <b>'+Math.round(BLANK_MAX)+'</b>, more the faster you get it. Near misses pay a little, and every guess after your third costs 5%.'
+    ? 'Guess the hidden word in each true headline. The exact word scores <b>'+Math.round(BLANK_MAX)+'</b>, however fast you find it. Near misses pay part of that, the closer the more. Every guess after your third costs 5%.'
     : 'Right call on a true story: up to <b>+'+Math.round(PK*CALL_PTS)+'</b>, more the quicker you answer. Catching a fake: <b>+'+FAKE_PTS+'</b>. Fooled by a fake: <b>−'+Math.abs(FOOLED_PTS)+'</b>. Then pin where the true story happened for up to <b>+'+Math.round(PK*PIN_PTS)+'</b>, plus <b>+'+Math.round(PK*COUNTRY_PTS)+'</b> if your pin is in the right country. A fast, fairly close pin earns up to <b>+'+Math.round(PK*PIN_BONUS)+'</b> more. Every point drops his jaw the same distance, and losing points pulls it back up.';
   renderStats();
   closeMenu();
@@ -3618,7 +3619,7 @@ function finish(restored){
   const daily=S.mode==='daily';
   $('nextEd').hidden=!daily; if(daily) runCountdown();
   const others=['call','blank'].concat(POL_ON&&DAILY&&DAILY.politics&&DAILY.politics.length?['pol']:[]).filter(k=>k!==S.kind);
-  const need=k=>DAILY ? ((k==='blank'?DAILY.blank:k==='pol'?DAILY.politics:DAILY.call)||[]).length : ROUND_LEN;
+  const need=k=>DAILY ? (k==='blank'?Math.min(BLANK_N,(DAILY.blank||[]).length):((k==='pol'?DAILY.politics:DAILY.call)||[]).length) : (k==='blank'?BLANK_N:ROUND_LEN);
   const todo=others.find(k=>{ const s=load(saveKey(k)); return !(s && s.date===dayKey() && s.results && s.results.length>=need(k)); });
   $('comeBack').innerHTML = daily && todo ? '<button class="linkish" id="tryOther">'+modeName(todo)+' is waiting →</button>' : '';
   if(daily && todo) $('tryOther').onclick=()=>startGame('daily',todo);
@@ -4407,8 +4408,8 @@ function closeness(word, st){
 function fmtDate(iso){ try{ const p=iso.split('-').map(Number); return new Date(p[0],p[1]-1,p[2]).toLocaleDateString(undefined,{month:'short',day:'numeric'}); }catch(e){ return iso; } }
 /* Exact answers carry the round; near misses pay little so spamming related words doesn't. */
 function blankPts(c,tl,n){
-  const pace=0.6+0.4*tl/BLANK_SECS, spam=Math.max(0.5,1-0.05*Math.max(0,n-3));
-  return Math.round((c>=1 ? BLANK_MAX*pace : 340*(BLANK_MAX/500)*c*c*pace)*spam);
+  const spam=Math.max(0.5,1-0.05*Math.max(0,n-3));          // no speed bonus: the clock only limits the round
+  return Math.round((c>=1 ? BLANK_MAX : 340*(BLANK_MAX/500)*BLANK_NEAR*c*c)*spam);
 }
 function heat(c){ return c>=1?'EXACT':c>=0.72?'ON FIRE':c>=0.55?'HOT':c>=0.38?'WARM':c>=0.2?'COOL':'COLD'; }
 
@@ -4427,7 +4428,7 @@ function showBlankRound(live){
   $('feedback').hidden=true; $('mapWrap').hidden=true;
   $('blankUI').hidden=false; $('blankLive').hidden=true;
   $('kicker').textContent='Fill the blank'+(S.mode==='practice'?' · practice':''); $('kicker').classList.remove('bad');
-  $('headline').innerHTML='<span class="fakeplace">'+(S.results.length ? 'Ready for the next one? One word is hidden. 25 seconds.' : 'One word is hidden. You get 25 seconds and as many guesses as you like. The exact word scores most, and faster is better.')+'</span>';
+  $('headline').innerHTML='<span class="fakeplace">'+(S.results.length ? 'Ready for the next one? One word is hidden. 30 seconds.' : 'One word is hidden. You get 30 seconds and as many guesses as you like. The exact word scores most.')+'</span>';
   setBar('start');
   if(!S.results.length && !live) Scene.setPaper(false,true);
   const b=$('btnStart'); b.disabled=true; b.textContent='Loading word list…';
@@ -4435,7 +4436,7 @@ function showBlankRound(live){
   aim();
   loadVectors().then(()=>{
     if(S.phase!=='ready' || S.kind!=='blank') return;
-    b.disabled=false; b.textContent='Start · 25 seconds';
+    b.disabled=false; b.textContent='Start · '+BLANK_SECS+' seconds';
     if(live) startBlankRound(live.wall);     // a round started before a reload keeps running on the same clock
   }).catch(()=>{
     b.disabled=true;
@@ -5083,7 +5084,7 @@ const Intro=(function(){
     const blank=S.kind==='blank', n=S.rounds.length, r=S.rounds.filter(x=>x.real).length, f=n-r;
     $('introLine').textContent = blank ? n+' true headlines, one word missing. Fill in the blank.' : n+' offbeat news stories, '+r+' true, '+f+' false. Map the true ones.';
     $('introHowText').innerHTML = (blank
-      ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how close it is: <b>cold, cool, warm, hot, on fire</b>, or exact. Spelling slips are fixed for you.</li><li>You have <b>25 seconds</b> per headline. The exact word, found fast, scores the most.</li><li>Every point drops his jaw a little further.</li></ol>'
+      ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how close it is: <b>cold, cool, warm, hot, on fire</b>, or exact. Spelling slips are fixed for you.</li><li>You have <b>30 seconds</b> per headline. The exact word scores the most, however fast you find it.</li><li>Every point drops his jaw a little further.</li></ol>'
       : '<ol><li>Read the headline. The place is <b>left out</b>.</li><li>Call it <b>REAL</b> or <b>FAKE</b>. Quick answers score more. Once you have called it, a <b>clue</b> about where it happened is added to the headline.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin where you think it happened, then <b>LOCK IN</b>. You get 20 seconds: closer and faster scores more.</li><li>Every point drops his jaw.</li></ol>')
       + '<p class="sc">'+$('howText').innerHTML+'</p>';
   }
