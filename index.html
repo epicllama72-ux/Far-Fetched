@@ -731,6 +731,10 @@ body.planetview #final,body.planetview #bar,body.planetview #comeBack,body.plane
 /* desktop only: the opening Start button sits in the right column level with the middle of the planet, clear of the title and text above it */
 @media (min-width:1100px) and (min-height:600px){ body.introIdle .rcol #bar{margin:calc(50vh - 120px) 0 0 auto;width:min(340px,100%)} }
 #introLine{margin:14px 0 10px;font:23px/1.15 var(--vt);color:#eef0f4;text-shadow:2px 2px 0 #05060c}
+#introStamp{width:fit-content;margin:2px auto 4px;padding:7px 12px 6px;border:3px solid #ff4d5e;outline:2px solid #ff4d5e;outline-offset:2px;color:#ff4d5e;font:11px/1 var(--px);letter-spacing:.2em;text-transform:uppercase;text-align:center;background:rgba(255,77,94,.08);transform:rotate(-3deg);text-shadow:1px 1px 0 #05060c;display:flex;align-items:center;gap:9px;animation:stampIn .45s steps(4) both}
+#introStamp svg{width:18px;height:18px;shape-rendering:crispEdges;flex:none}
+@keyframes stampIn{from{transform:rotate(-3deg) scale(1.9);opacity:0}to{transform:rotate(-3deg) scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){#introStamp{animation:none}}
 #introNote{margin:0 0 12px;font:10px/1.5 var(--px);letter-spacing:.12em;text-transform:uppercase;color:#ffd23f;text-shadow:2px 2px 0 #05060c}
 #introHow summary{display:inline-block;cursor:pointer;list-style:none;font:10px/1 var(--px);color:var(--accent);padding:7px 10px;border:2px solid var(--line);background:rgba(13,15,20,.7)}
 #introHow summary::-webkit-details-marker{display:none}
@@ -1244,7 +1248,7 @@ body.intro #ausBar{display:none}
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
 <canvas id="intro" aria-hidden="true" hidden></canvas>
-<div id="introTop" hidden><h1 class="it"><img src="icons/title.png" alt="Far-Fetched" width="280" height="45"></h1><p id="introLine"></p><p id="introNote" hidden></p><details id="introHow"><summary>HOW TO PLAY</summary><div id="introHowText"></div></details></div>
+<div id="introTop" hidden><h1 class="it"><img src="icons/title.png" alt="Far-Fetched" width="280" height="45"></h1><div id="introStamp" hidden></div><p id="introLine"></p><p id="introNote" hidden></p><details id="introHow"><summary>HOW TO PLAY</summary><div id="introHowText"></div></details></div>
 <div id="browseHint" aria-hidden="true">↕ drag or scroll to explore your dig</div>
 <div id="ruler" aria-hidden="true"></div>
 <div class="app">
@@ -5089,6 +5093,9 @@ const Intro=(function(){
     $('introLine').textContent = blank ? n+' true headlines, one word missing. Fill in the blank.' : n+' offbeat news stories, '+r+' true, '+f+' false. Map the true ones.';
     const paper=(S.mode==='back'&&typeof BACK!=='undefined'&&BACK)?BACK:DAILY, note=(S.mode==='daily'||S.mode==='back')&&paper&&paper.dedication||'';   // an optional line the paper carries, e.g. a dedication
     $('introNote').textContent=note; $('introNote').hidden=!note;
+    const stamp=(S.mode==='daily'||S.mode==='back')&&paper&&paper.stamp||'', st=$('introStamp');   // an optional rubber stamp under the title
+    if(stamp){ const PAW='<svg viewBox="0 0 9 9" aria-hidden="true" fill="currentColor"><rect x="0" y="3" width="2" height="2"/><rect x="2" y="1" width="2" height="2"/><rect x="5" y="1" width="2" height="2"/><rect x="7" y="3" width="2" height="2"/><rect x="2" y="5" width="5" height="1"/><rect x="1" y="6" width="7" height="2"/><rect x="2" y="8" width="2" height="1"/><rect x="5" y="8" width="2" height="1"/></svg>'; st.innerHTML=PAW+'<span></span>'+PAW; st.querySelector('span').textContent=stamp; st.hidden=false; }
+    else{ st.hidden=true; st.textContent=''; }
     $('introHowText').innerHTML = (blank
       ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how close it is: <b>cold, cool, warm, hot, on fire</b>, or exact. Spelling slips are fixed for you.</li><li>You have <b>30 seconds</b> per headline. The exact word scores the most, however fast you find it.</li><li>Every point drops his jaw a little further.</li></ol>'
       : '<ol><li>Read the headline. The place is <b>left out</b>.</li><li>Call it <b>REAL</b> or <b>FAKE</b>. Quick answers score more. Once you have called it, a <b>clue</b> about where it happened is added to the headline.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin where you think it happened, then <b>LOCK IN</b>. You get 20 seconds: closer and faster scores more.</li><li>Every point drops his jaw.</li></ol>')

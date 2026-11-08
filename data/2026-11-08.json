@@ -1,7 +1,7 @@
 {
  "date": "2026-11-08",
  "generated": "2026-11-07T06:31:49+00:00",
- "dedication": "RIP Summer. The best dog.",
+ "dedication": "R.I.P. Summer. The best dog.",
  "call": [
   {
    "real": true,
@@ -205,5 +205,6 @@
    "lng": 78.0120117,
    "rules": 2
   }
- ]
+ ],
+ "stamp": "Summer Edition"
 }
