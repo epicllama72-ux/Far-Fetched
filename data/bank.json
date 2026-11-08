@@ -1076,6 +1076,24 @@
    "theme": "traffic",
    "banked": "2026-11-04",
    "rules": 2
+  },
+  {
+   "h": "Dachshund in {} orders 41 lamb chops through a smart speaker and pays with loyalty points",
+   "tell": "Loyalty points don't pay for a delivery ordered through a speaker.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "dogs",
+   "banked": "2026-11-08",
+   "rules": 2
+  },
+  {
+   "h": "Corgi in {} is expelled from 3 dog parks in one afternoon for herding toddlers into a sandpit",
+   "tell": "An expulsion needs written notice, so three parks can't all act in one afternoon.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "dogs",
+   "banked": "2026-11-08",
+   "rules": 2
   }
  ],
  "pol": [
