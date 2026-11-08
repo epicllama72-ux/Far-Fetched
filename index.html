@@ -1193,6 +1193,8 @@ body.intro #ausBar{display:none}
 #np .npMotto{font:9px/1.4 var(--px);letter-spacing:.14em;text-transform:uppercase;text-align:center;color:#a8231a;padding:8px 0 0}
 #np .npDate{justify-content:center!important}
 #np .npDate{display:flex;justify-content:space-between;gap:8px;font:15px/1 var(--vt);letter-spacing:.04em;text-transform:uppercase;padding:5px 0;border-bottom:1px solid var(--npRule);margin-bottom:10px}
+#npStamp{width:fit-content;margin:6px auto 0;padding:5px 10px 4px;border:2px solid #a8231a;outline:1px solid #a8231a;outline-offset:2px;color:#a8231a;font:8px/1 var(--px);letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:8px;transform:rotate(-2deg);background:rgba(168,35,26,.06)}
+#npStamp svg{width:14px;height:14px;shape-rendering:crispEdges;flex:none}
 #np .npNote{margin:0 0 8px;font:9px/1.5 var(--px);letter-spacing:.14em;text-transform:uppercase;text-align:center;color:#a8231a}
 #np h2{margin:2px 0 8px;font:26px/1.12 var(--px);letter-spacing:-.01em;text-transform:uppercase;text-align:center}
 #np h2 b{font-weight:400;color:#a8231a}
@@ -1337,6 +1339,7 @@ body.intro #ausBar{display:none}
   <section id="final" class="news" hidden>
     <header id="np">
       <div class="npMast">THE DAILY ODD</div>
+      <div id="npStamp" hidden></div>
       <div class="npMotto" id="npNo"></div>
       <div class="npDate"><span id="npDay"></span></div>
       <p class="npNote" id="npNote" hidden></p>
@@ -1546,6 +1549,7 @@ function showFakePopup(callOk,pts,max){
 }
 function fmtM(m){ m=Math.round(+m||0); return m>=1000 ? (m/1000).toFixed(1)+' km' : m+' m'; }
 function setDepthHud(m){ m=Math.round(+m||0); $('depth').textContent = m>=1000 ? (m/1000).toFixed(2) : String(m); $('depthU').textContent = m>=1000 ? 'km' : 'm'; }
+const PAW='<svg viewBox="0 0 9 9" aria-hidden="true" fill="currentColor"><rect x="0" y="3" width="2" height="2"/><rect x="2" y="1" width="2" height="2"/><rect x="5" y="1" width="2" height="2"/><rect x="7" y="3" width="2" height="2"/><rect x="2" y="5" width="5" height="1"/><rect x="1" y="6" width="7" height="2"/><rect x="2" y="8" width="2" height="1"/><rect x="5" y="8" width="2" height="1"/></svg>';   // a pixel paw print, for the paper's optional stamp
 function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
 function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
 function shuffle(a,r){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
@@ -3525,7 +3529,9 @@ function renderFrontPage(inf,total,max){
   const k=tierOf(total,max), t=TIERS[k]||{}, z=String(inf.zone||'');
   const d=new Date(dayKey()+'T12:00:00Z');
   $('npNo').textContent = S.mode==='daily' ? modeName(S.kind)+' #'+dayNumber() : S.mode==='back' ? 'Back issue #'+dayNumber()+' · '+modeName(S.kind) : 'Practice · '+modeName(S.kind);
-  { const paper=(S.mode==='back'&&typeof BACK!=='undefined'&&BACK)?BACK:DAILY, note=(S.mode==='daily'||S.mode==='back')&&paper&&paper.dedication||''; $('npNote').textContent=note; $('npNote').hidden=!note; }
+  { const paper=(S.mode==='back'&&typeof BACK!=='undefined'&&BACK)?BACK:DAILY, on=S.mode==='daily'||S.mode==='back', note=on&&paper&&paper.dedication||'', stamp=on&&paper&&paper.stamp||'', sp=$('npStamp');
+    $('npNote').textContent=note; $('npNote').hidden=!note;
+    if(stamp){ sp.innerHTML=PAW+'<span></span>'+PAW; sp.querySelector('span').textContent=stamp; sp.hidden=false; } else { sp.hidden=true; sp.textContent=''; } }
   $('npDay').textContent=d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
   const mm=Math.round(+inf.m||0), km=(mm>=1000 ? String(+(mm/1000).toFixed(2))+' km' : mm+' m').replace(' ','\u00a0');   // 2 decimals where they matter: 6.93 km, 7 km
   $('npHead').innerHTML = z==='NOWHERE' ? 'Local jaw refuses to drop'
@@ -5094,7 +5100,7 @@ const Intro=(function(){
     const paper=(S.mode==='back'&&typeof BACK!=='undefined'&&BACK)?BACK:DAILY, note=(S.mode==='daily'||S.mode==='back')&&paper&&paper.dedication||'';   // an optional line the paper carries, e.g. a dedication
     $('introNote').textContent=note; $('introNote').hidden=!note;
     const stamp=(S.mode==='daily'||S.mode==='back')&&paper&&paper.stamp||'', st=$('introStamp');   // an optional rubber stamp under the title
-    if(stamp){ const PAW='<svg viewBox="0 0 9 9" aria-hidden="true" fill="currentColor"><rect x="0" y="3" width="2" height="2"/><rect x="2" y="1" width="2" height="2"/><rect x="5" y="1" width="2" height="2"/><rect x="7" y="3" width="2" height="2"/><rect x="2" y="5" width="5" height="1"/><rect x="1" y="6" width="7" height="2"/><rect x="2" y="8" width="2" height="1"/><rect x="5" y="8" width="2" height="1"/></svg>'; st.innerHTML=PAW+'<span></span>'+PAW; st.querySelector('span').textContent=stamp; st.hidden=false; }
+    if(stamp){ st.innerHTML=PAW+'<span></span>'+PAW; st.querySelector('span').textContent=stamp; st.hidden=false; }
     else{ st.hidden=true; st.textContent=''; }
     $('introHowText').innerHTML = (blank
       ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how close it is: <b>cold, cool, warm, hot, on fire</b>, or exact. Spelling slips are fixed for you.</li><li>You have <b>30 seconds</b> per headline. The exact word scores the most, however fast you find it.</li><li>Every point drops his jaw a little further.</li></ol>'
