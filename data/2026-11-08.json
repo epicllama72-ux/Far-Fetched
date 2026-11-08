@@ -1,168 +1,209 @@
 {
  "date": "2026-11-08",
  "generated": "2026-11-07T06:31:49+00:00",
+ "dedication": "RIP Summer. The best dog.",
  "call": [
   {
    "real": true,
-   "h": "Burglar breaks into a bar in {}, drinks half a bottle of orujo and three beers, falls asleep and is arrested",
-   "hint": "home of the red-and-white Athletic Club",
-   "lat": 43.26,
-   "lng": -2.9226,
-   "place": "Bilbao, Spain",
-   "src": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOUGp0aUVzbi1LNDZ3Z3ZzaEJSSHRhSkxqNHJIWHNaT2tSYU83dlE4dlBuTk9yRGRDRFMzM2o5aTNUNVV4bUk4UEl1VU1wZHV2V3cwd05ZVUlFZDY2N2NESnN1aDhUT1ZZYXNJa0dZT2R5QWFOdXJrUmVvMjdyQjlISmpZV2JZOVF4eFAzSF9TelV3aXJXSlB5RDVDT0dlbUFMa21BSlNwM2tULTRGYjZkVU9xejQ0MkJ1NGtaWHhpaUpSdldMQzA1WmN4WWZUQ2hKLVRJdjVGZ1hwdElkTVBlRG5NcWVXZHZGRklBTA?oc=5",
-   "published": "2026-11-06",
-   "clue": "orujo is a Spanish pomace spirit"
+   "h": "Great Pyrenees is elected mayor of {} in a dollar-a-vote race, then re-elected twice",
+   "hint": "a northern lakes-country township",
+   "lat": 46.89,
+   "lng": -96.08,
+   "place": "Cormorant, Minnesota",
+   "src": "https://www.mprnews.org/story/2016/08/24/dog-wins-reelection-mayor-cormorant-township",
+   "published": "2016-08-24",
+   "clue": "a fluffy dog named Duke wins write-in votes at a township festival; paid in a year of kibble; a township, not a village"
   },
   {
    "real": true,
-   "h": "Man dressed as the Grim Reaper climbs hospital roof and stares at patients in {}",
-   "hint": "a Vale of Clwyd cathedral city",
-   "lat": 53.2578,
-   "lng": -3.4426,
-   "place": "St Asaph, Denbighshire, Wales",
-   "src": "https://www.independent.co.uk/news/uk/home-news/grim-reaper-wales-hospital-denbighshire-b3027735.html",
-   "published": "2026-08-06",
-   "clue": "hooded man with a scythe on Ysbyty Glan Clwyd's roof for about 50 minutes; arres"
+   "h": "Bloodhound slips out of her yard, joins a half marathon by accident and finishes seventh in {}",
+   "hint": "a Limestone County farm town",
+   "lat": 34.9234,
+   "lng": -86.9703,
+   "place": "Elkmont, Alabama",
+   "src": "https://www.foxnews.com/us/owner-of-alabama-bloodhound-that-finished-7th-in-half-marathon-speaks-out",
+   "published": "2016-01-26",
+   "clue": "two-year-old Ludivine ran the 13.1 miles in 1:32:56, seventh of 165, stopping to sniff a dead rabbit"
   },
   {
    "real": false,
-   "h": "Crows in {} steal 37 teaspoons from a seaside cafe and line a rooftop nest with them",
-   "tell": "Crows steal shiny things, but a tidy tally of teaspoons lining a whole nest is too neat."
+   "h": "Dachshund in {} orders 41 lamb chops through a smart speaker and pays with loyalty points",
+   "tell": "Loyalty points don't pay for a delivery ordered through a speaker."
   },
   {
    "real": true,
-   "h": "Inmate in {} sues himself for violating his own civil rights, asking the state to pay $5 million",
-   "hint": "home of Dollar Tree's headquarters",
-   "lat": 36.7682,
-   "lng": -76.2875,
-   "place": "Chesapeake, Virginia",
-   "src": "https://www.deseret.com/1995/4/9/19168705/inmate-sues-himself-for-5-million",
-   "published": "1995-04-08",
-   "clue": "inmate at Indian Creek Correctional Center blamed his own drinking for breaching"
+   "h": "Black Labrador rides the city bus by herself to the dog park in {}",
+   "hint": "home of the Space Needle",
+   "lat": 47.6062,
+   "lng": -122.3321,
+   "place": "Seattle, Washington",
+   "src": "https://www.foxnews.com/us/black-lab-in-seattle-likes-to-hop-on-bus-take-solo-ride-to-her-dog-park-stop",
+   "published": "2015-01-13",
+   "clue": "Eclipse boarded the D-Line alone, three to four stops, and always knew where to get off"
   },
   {
    "real": true,
-   "h": "Marathon runners stage the first-ever backwards mile race at {}",
-   "hint": "site of a blue-ice runway camp",
-   "lat": -79.7667,
-   "lng": -83.3833,
-   "place": "Union Glacier, Antarctica",
-   "src": "https://www.yahoo.com/news/videos/marathon-runners-stage-backwards-mile-145638289.html",
-   "published": "2025-12-15",
-   "clue": "runners waiting for a flight out after the Antarctic Ice Marathon; a one-mile ra"
+   "h": "Terrier guards his owner's grave for 14 years and becomes the beloved mascot of {}",
+   "hint": "home of a castle on an extinct volcano",
+   "lat": 55.9469,
+   "lng": -3.1913,
+   "place": "Edinburgh, Scotland",
+   "src": "https://en.wikipedia.org/wiki/Greyfriars_Bobby",
+   "published": "1872-01-14",
+   "clue": "Greyfriars Bobby kept vigil at John Gray's grave until 1872; the 14 years rests on local tradition and the breed is disputed"
   },
   {
    "real": false,
-   "h": "Lorry driver delivers 1,260 garden gnomes to the wrong depot, 214 km from the right one, in {}",
-   "tell": "A driver covering 214 km before noticing the wrong depot is implausibly oblivious."
+   "h": "Corgi in {} is expelled from 3 dog parks in one afternoon for herding toddlers into a sandpit",
+   "tell": "An expulsion needs written notice, so three parks can't all act in one afternoon."
   },
   {
    "real": true,
-   "h": "Mayor holds 'non-wedding' ceremonies where couples celebrate not getting married in {}",
-   "hint": "setting of the film Amélie",
-   "lat": 48.8867,
-   "lng": 2.3431,
-   "place": "Montmartre, Paris, France",
-   "src": "https://parisjetaime.com/eng/activity/ceremonie-de-non-mariage-p2643",
-   "published": "2026-11-04",
-   "clue": "annual Montmartre 'non-marriage' ceremony before the arrondissement mayor; dogs "
+   "h": "Black retriever credited with saving 27 people from drowning at the docks is later named 'Dog of the Century' in {}",
+   "hint": "birthplace of Dylan Thomas",
+   "lat": 51.6214,
+   "lng": -3.9436,
+   "place": "Swansea, Wales",
+   "src": "https://en.wikipedia.org/wiki/Swansea_Jack",
+   "published": "1937-10-01",
+   "clue": "Swansea Jack: 27 rescues is legend (some sources say 29); breed given as Newfoundland or flat-coated retriever; the 2000 title came from a Bristol dog-rescue group"
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "Fire station [] in Mauranipur, India, filmed taking a bribe for a firecracker shop permit before Diwali, in a police inspector's uniform",
+   "h2": "Shanghai shop replaces its staff with six humanoid [] for 24 hours, and one walks off the job",
    "ans": [
-    "driver",
-    "drivers"
+    "robots",
+    "robot",
+    "androids"
    ],
    "alt": [
-    "employee",
-    "firefighter",
-    "worker",
-    "man",
-    "officer",
-    "chauffeur"
+    "machines",
+    "bots",
+    "droids"
    ],
-   "place": "Mauranipur, Uttar Pradesh, India",
-   "src": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOejhDRDdMWVFJMWs3YkdhVlBtV0ZUeUx2eVNGbzlBY0U5LUNXLTh5U01DaW9QWl9uYXVlRXYxMWRVVzhMaXZzMHJyS0h1a09BcGw5c181aER0cE1wcUtUNm01bENYbmJWYUlYQ1Z2Y0l6c0Mzd2JLcDVQU0FpZnRtMmozZUxxLV96SFZGN1VWTGFGM1VoaS1YLTFQRmlXY01mVEdwd0NFTlg1MklZcU9XblA2Zm05bm1FZVBzeDVmaVlBVkpHWDBTbEVRaHVtcHlTWkdmM3JR0gHbAUFVX3lxTE1oOE1oMlp5cFBsNWxNV2Q4ZnUtanlMRG1nV3R1R0FSVmx0V3FWYnpWZjR3WnpGZHdsMUVYWkl4dHJZaF9XX2dmd2JLdlBhTlFVLVQ1RTZTZTJYamF0ZWRfQkh2eEtLR045MjhVNDA4dFhSRzBCbElMWEkzNDhfNnh5X2hTUGNGZ2FTVmxKcXFyTEtQeFNSQXgtZF9rclFLUDI0UmFGazRVZnVMOVlvZ3hqSmlTeTRZRGtGU3hJNl9yN2dReDVUOVpOcXFRWGRYUjUwSFROcDUwc3ZJbw?oc=5",
-   "published": "2026-11-04",
-   "vec": "5QJTDiQosCcg3kDukgou2N8o7pTcMLpNNZAG+igbf/XaD2YEKAwDHgkk8e4UsQzpcfc="
-  },
-  {
-   "real": true,
-   "h2": "Thieves who stole two AI-branded trailers from a warehouse in Newark, California pry them open to find 40,000 pounds of []",
-   "ans": [
-    "sand"
-   ],
-   "alt": [
-    "gravel",
-    "dirt",
-    "soil",
-    "rocks",
-    "stones"
-   ],
-   "place": "Newark, California",
-   "src": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOa1BITWtsQnN2dzRzSk4zbVhmOWlqeENpWmhNVW9WV2FqMWlyY2lZRllWZE10bVFtQ3BveFU2ZW5oZnRLZjhzR0EyUjNlMFNkb25TYmtzVnhNd2FHM2ptU2Q4aWFvaTVBbzV3WHQzNHJZTlc4bkthRVR4ellkZkV2Zi1mSExDMEFNc2d1WkNPZEh4UjJnYTRWd2UxTEozRFZOMHdUUlI5TnVEYy05Mk9vQkI2dFpsOUp6ckFlb0o4cHExaXIyWDA0cTJETmlYWTlEcnlZZ3k2UW9uUGU3VlJlMXE1ZktmcGVWeVhaSjZSUWJFcnVPSmExN3dVWmU1TkthNl8waUpmU0F2bVRJeHBhZ3dhUE5mcnYwRWxfbzVMX09hUkh5V09oQnFmYU4xX19xV0MtQjdKakxtY1NoZ0lTdkxpd0tkdXZsTEFBWklpYTEtcUh6VDJZVGNR?oc=5",
-   "published": "2026-11-05",
-   "vec": "AA/v++T85wsU6OgHJw/wGXv6xrgAADDaDfr3Uzzcf7r7FfI18Q82AAAJMQ4F4QmtB7U="
-  },
-  {
-   "real": true,
-   "h2": "Two Germans and a Pole held at Lima airport with nearly 3,000 [] hidden in suitcases bound for Europe",
-   "ans": [
-    "tarantulas",
-    "tarantula",
-    "spiders",
-    "spider"
-   ],
-   "alt": [
-    "arachnids",
-    "scorpions",
-    "snakes",
-    "insects"
-   ],
-   "place": "Lima, Peru",
-   "src": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOdkpJQ2dJM2NBNk52X0ZLU3VTMmYtcDNPcXJhbmNnbzhJTV9OWDl2VTE3Y3RWOGJZNTV0SnhFR0JUVDhNUE5VcnVVR1o1NkJ2OXJ6eVdzdjI1VGVuQjk4V1J2YmJWanRKdTFpZC14YklNU05wSUFsWk9vYzYtemx6QXdmOUx2RktxUlFxc0tXWUROS0VtbFA4c2NHZzQ5Z21NUUkxU3J5cHE0NXppT21id2FoQW5OVGxjaEt2V2w0UVU0V3prLW9HeTYxMzJJLVZUcVc2MUNldmZYQQ?oc=5",
+   "place": "Shanghai, China",
+   "src": "https://mezha.ua/en/news/humanoid-robots-work-24-hour-store-shift-316912/",
    "published": "2026-11-06",
-   "vec": "W5zNJAn6KeAELv8iQyYe6vMr8ezG9lwn6UrtBvXNwAYwItPwxdzk2+XKLX87/++y2Oc="
+   "clue": "Humanoid robot retail stunts = Chinese tech hub",
+   "country": "China",
+   "cc": "CN",
+   "clue_strength": 3,
+   "unbelievable": 3,
+   "theme": "robots",
+   "lat": 31.2312707,
+   "lng": 121.4700152,
+   "rules": 2
   },
   {
    "real": true,
-   "h2": "Police [] circling low over Fleet, Hampshire draws a rude shape on tracking sites; force says it was accidental",
+   "h2": "Players mix cement and lay [] to fill a hole in the pitch mid-match in a regional league in Cebreros, Spain",
    "ans": [
-    "helicopter",
-    "helicopters",
-    "chopper"
+    "bricks",
+    "brick"
    ],
    "alt": [
-    "aircraft",
-    "plane",
-    "drone",
-    "copter"
+    "stones",
+    "blocks",
+    "tiles",
+    "concrete"
    ],
-   "place": "Fleet, Hampshire",
-   "src": "https://metro.co.uk/2026/11/05/police-helicopter-denies-making-penis-shaped-flight-path-purpose-29767323/",
-   "published": "2026-11-05",
-   "vec": "buFF9uP4ryIilhfpDi619rU8j+vrTN7MF6z4IiEGfwXTKUE1IMbpHAgdKcYW1wQX9Pc="
+   "place": "Cebreros, Spain",
+   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNWEh4aWVyTzd0cXBUY0xOcng4SkQzckxvRzZibmIzd1BEQmNzLXR1ZjdIWnVEOXREUlRNSXdPeHh1YzB3Tl9kUWNWRVpQcmlJQ1pyYWVnTF9iODFldmlwVk9UUEt5eXhwM0pmYm1EQ3JzMFZxRmdCdDBkZEdRQ3ZibTJoaUFVZzZ0Z3lnc1Z1TzNqdlFsMDY1TnBGT01ZLWJ6SUtlWjAyekswUV81U3IwM3JzR28wUXJKbkNlZUh6YXQ?oc=5",
+   "published": "2026-10-11",
+   "clue": "Regional football division in Spain",
+   "country": "Spain",
+   "cc": "ES",
+   "clue_strength": 1,
+   "unbelievable": 4,
+   "theme": "pitch",
+   "lat": 40.4551504,
+   "lng": -4.4651595,
+   "rules": 2
   },
   {
    "real": true,
-   "h2": "Water workers terrified by creepy baby [] blocking a sewer before Halloween in Exmouth, England",
+   "h2": "[] climbs onto roof of single-storey house to graze on grass in Lalapaşa, Edirne, Turkey",
    "ans": [
-    "doll",
-    "dolls"
+    "sheep",
+    "ram",
+    "ewe",
+    "lamb"
    ],
    "alt": [
-    "toy",
-    "puppet",
-    "figure",
-    "mannequin"
+    "goat",
+    "cow",
+    "animal",
+    "lambs"
    ],
-   "place": "Exmouth, England",
-   "src": "https://metro.co.uk/2026/10/30/eerie-baby-doll-among-disturbing-sewer-discoveries-dredged-halloween-29748699/",
-   "published": "2026-10-30",
-   "vec": "BePS71piwJjN9Q4eDERcC8g2CPEN66r2/cCBIQGHJgIHO+I+HwsimvP35dZdESSlDgc="
+   "place": "Lalapaşa, Edirne, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMid0FVX3lxTE90Q2dQSjJSRDVrN1dYd0RpU0s1eGRmVlpzSmI1V0J2QW1sSHVrN0NlRVVsd004WmFGZ2Y5V0FyQkJNc2JCVHZpeEU0MEdnbWtWdWhULUpWcTJSNHNhODk2VlV0RTZhWC1DaVZlZ2NuakttTWZHbkd3?oc=5",
+   "published": "2026-10-28",
+   "clue": "village grazing livestock near the Balkan border",
+   "country": "Turkey",
+   "cc": "TR",
+   "clue_strength": 1,
+   "unbelievable": 2,
+   "theme": "roof",
+   "lat": 41.8390388,
+   "lng": 26.7361017,
+   "rules": 2
+  },
+  {
+   "real": true,
+   "h2": "Grandmother, 76, and her 29-year-old [] steal perfume from shops of one chain in Kościan, Poland, worth 1,015 zloty",
+   "ans": [
+    "granddaughter",
+    "granddaughters"
+   ],
+   "alt": [
+    "daughter",
+    "niece",
+    "girl",
+    "grandchild"
+   ],
+   "place": "Kościan, Poland",
+   "src": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNc1h1clZadzJhT2cwNWlPVnVFWkFxQVNvSnhHR01DMWlDZ3JMSk9qenVqQmdxYldSbUY2UUVfUlNwRG1MT29LNjNXWGVDVVdmYmpIdnhETHAwUWFmQWx6dE1BcFNSeXNLeTJkcWUtNUFPdG1qaTdVcTBQSUU2bHJjVncwenFiWDFzU2x0Y2FrZnBzRTlwMkVuMXpBclZCV19FbUtIaDhwLUpFSmtRYjVuSGFEZ0hMM1JPN2xoRE5nS2Z1c3VIWHhGY2JHeTVLdnF2RWc?oc=5",
+   "published": "2026-11-03",
+   "clue": "zloty = Poland",
+   "country": "Poland",
+   "cc": "PL",
+   "clue_strength": 2,
+   "unbelievable": 3,
+   "theme": "shoplifting",
+   "lat": 52.086325,
+   "lng": 16.6449995,
+   "rules": 2
+  },
+  {
+   "real": true,
+   "h2": "Dehradun, India: thief who stole woman's [] messages her family asking for the password",
+   "ans": [
+    "phone",
+    "phones",
+    "smartphone",
+    "iphone",
+    "mobile"
+   ],
+   "alt": [
+    "cellphone",
+    "device",
+    "handset",
+    "mobiles"
+   ],
+   "place": "Dehradun, India",
+   "src": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPOWphWTJHbVV6dTZhbFZjMzQ2MVBqa05vR2JwaGZWeS1xUDFKc1RmWDhWRmZDTk44aEwzbXVmdlhQRTV3ajJCN1FDazdRRFZTaERZdU9JcHh2X1hRMEdTZFBxWU5EUEVSNk5Od294ZzdPbFQ0M1lpOEVxSk00LTl5M2FVNkVjOGp3djM0OW5KT0dTTjAtMHgydG5uQTFSdlJsSDNwd0lTMXhpUlUwb3pxQk1jcTRHaDlLTlcxZGZ2LXV3cTN6aTBCMXVMY0ppNHZLQVB1TldaVDZ1cmtXWkFvVnc5VUhQdEt4YU80ZHdhMkVweWRKQlhSQ2tJb9IBgAJBVV95cUxPSUk3Q1gzU2J0S2NQU2JBdzM4RG00WWFKSkd4eXQ3RTUyVlF6YlZ4U25zZ0w4RTFBR1FTNUQ2eFZRLVRlSzl2SzlXci0zVzBMVnNWNVlyRTdiNmRjdDNKUVFkU1Jjb2dOcVJmaDFueXhFcWtGU1E4bXMzWF81V0h2cVc4MmVNT3B2ay1pMng2c0NRNXMtUlA2YUJaQjdBMzc2Vm9PRmxDeFd3cFh4bktqbjJfVG9KSHlzNUNEODBZa0pFOTlSZXlpTm5ObHB0U0lJYjNQeXFsYU1za3BITEVSM3lvdWcwS1FRUVRvOWthei1xWi1CRnNiOF91V2RBSW13?oc=5",
+   "published": "2026-10-08",
+   "clue": "police told her to come back next morning; WhatsApp culture",
+   "country": "India",
+   "cc": "IN",
+   "clue_strength": 2,
+   "unbelievable": 3,
+   "theme": "phone",
+   "lat": 30.2613281,
+   "lng": 78.0120117,
+   "rules": 2
   }
  ]
 }

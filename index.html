@@ -731,6 +731,7 @@ body.planetview #final,body.planetview #bar,body.planetview #comeBack,body.plane
 /* desktop only: the opening Start button sits in the right column level with the middle of the planet, clear of the title and text above it */
 @media (min-width:1100px) and (min-height:600px){ body.introIdle .rcol #bar{margin:calc(50vh - 120px) 0 0 auto;width:min(340px,100%)} }
 #introLine{margin:14px 0 10px;font:23px/1.15 var(--vt);color:#eef0f4;text-shadow:2px 2px 0 #05060c}
+#introNote{margin:0 0 12px;font:10px/1.5 var(--px);letter-spacing:.12em;text-transform:uppercase;color:#ffd23f;text-shadow:2px 2px 0 #05060c}
 #introHow summary{display:inline-block;cursor:pointer;list-style:none;font:10px/1 var(--px);color:var(--accent);padding:7px 10px;border:2px solid var(--line);background:rgba(13,15,20,.7)}
 #introHow summary::-webkit-details-marker{display:none}
 #introHow summary::after{content:' ▾'}
@@ -1188,6 +1189,7 @@ body.intro #ausBar{display:none}
 #np .npMotto{font:9px/1.4 var(--px);letter-spacing:.14em;text-transform:uppercase;text-align:center;color:#a8231a;padding:8px 0 0}
 #np .npDate{justify-content:center!important}
 #np .npDate{display:flex;justify-content:space-between;gap:8px;font:15px/1 var(--vt);letter-spacing:.04em;text-transform:uppercase;padding:5px 0;border-bottom:1px solid var(--npRule);margin-bottom:10px}
+#np .npNote{margin:0 0 8px;font:9px/1.5 var(--px);letter-spacing:.14em;text-transform:uppercase;text-align:center;color:#a8231a}
 #np h2{margin:2px 0 8px;font:26px/1.12 var(--px);letter-spacing:-.01em;text-transform:uppercase;text-align:center}
 #np h2 b{font-weight:400;color:#a8231a}
 #np .npDeck{margin:0 0 6px;font:21px/1.08 var(--vt);text-align:center}
@@ -1242,7 +1244,7 @@ body.intro #ausBar{display:none}
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
 <canvas id="intro" aria-hidden="true" hidden></canvas>
-<div id="introTop" hidden><h1 class="it"><img src="icons/title.png" alt="Far-Fetched" width="280" height="45"></h1><p id="introLine"></p><details id="introHow"><summary>HOW TO PLAY</summary><div id="introHowText"></div></details></div>
+<div id="introTop" hidden><h1 class="it"><img src="icons/title.png" alt="Far-Fetched" width="280" height="45"></h1><p id="introLine"></p><p id="introNote" hidden></p><details id="introHow"><summary>HOW TO PLAY</summary><div id="introHowText"></div></details></div>
 <div id="browseHint" aria-hidden="true">↕ drag or scroll to explore your dig</div>
 <div id="ruler" aria-hidden="true"></div>
 <div class="app">
@@ -1333,6 +1335,7 @@ body.intro #ausBar{display:none}
       <div class="npMast">THE DAILY ODD</div>
       <div class="npMotto" id="npNo"></div>
       <div class="npDate"><span id="npDay"></span></div>
+      <p class="npNote" id="npNote" hidden></p>
       <h2 id="npHead"></h2>
       <p class="npDeck" id="npDeck"></p>
       <p class="npBy">By our dig correspondent</p>
@@ -3518,6 +3521,7 @@ function renderFrontPage(inf,total,max){
   const k=tierOf(total,max), t=TIERS[k]||{}, z=String(inf.zone||'');
   const d=new Date(dayKey()+'T12:00:00Z');
   $('npNo').textContent = S.mode==='daily' ? modeName(S.kind)+' #'+dayNumber() : S.mode==='back' ? 'Back issue #'+dayNumber()+' · '+modeName(S.kind) : 'Practice · '+modeName(S.kind);
+  { const paper=(S.mode==='back'&&typeof BACK!=='undefined'&&BACK)?BACK:DAILY, note=(S.mode==='daily'||S.mode==='back')&&paper&&paper.dedication||''; $('npNote').textContent=note; $('npNote').hidden=!note; }
   $('npDay').textContent=d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
   const mm=Math.round(+inf.m||0), km=(mm>=1000 ? String(+(mm/1000).toFixed(2))+' km' : mm+' m').replace(' ','\u00a0');   // 2 decimals where they matter: 6.93 km, 7 km
   $('npHead').innerHTML = z==='NOWHERE' ? 'Local jaw refuses to drop'
@@ -5083,6 +5087,8 @@ const Intro=(function(){
     if(!S || !S.rounds) return;
     const blank=S.kind==='blank', n=S.rounds.length, r=S.rounds.filter(x=>x.real).length, f=n-r;
     $('introLine').textContent = blank ? n+' true headlines, one word missing. Fill in the blank.' : n+' offbeat news stories, '+r+' true, '+f+' false. Map the true ones.';
+    const paper=(S.mode==='back'&&typeof BACK!=='undefined'&&BACK)?BACK:DAILY, note=(S.mode==='daily'||S.mode==='back')&&paper&&paper.dedication||'';   // an optional line the paper carries, e.g. a dedication
+    $('introNote').textContent=note; $('introNote').hidden=!note;
     $('introHowText').innerHTML = (blank
       ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how close it is: <b>cold, cool, warm, hot, on fire</b>, or exact. Spelling slips are fixed for you.</li><li>You have <b>30 seconds</b> per headline. The exact word scores the most, however fast you find it.</li><li>Every point drops his jaw a little further.</li></ol>'
       : '<ol><li>Read the headline. The place is <b>left out</b>.</li><li>Call it <b>REAL</b> or <b>FAKE</b>. Quick answers score more. Once you have called it, a <b>clue</b> about where it happened is added to the headline.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin where you think it happened, then <b>LOCK IN</b>. You get 20 seconds: closer and faster scores more.</li><li>Every point drops his jaw.</li></ol>')
