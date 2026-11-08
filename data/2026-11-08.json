@@ -32,25 +32,25 @@
   },
   {
    "real": true,
-   "h": "Black Labrador rides the city bus by herself to the dog park in {}",
-   "hint": "home of the Space Needle",
-   "lat": 47.6062,
-   "lng": -122.3321,
-   "place": "Seattle, Washington",
-   "src": "https://www.foxnews.com/us/black-lab-in-seattle-likes-to-hop-on-bus-take-solo-ride-to-her-dog-park-stop",
-   "published": "2015-01-13",
-   "clue": "Eclipse boarded the D-Line alone, three to four stops, and always knew where to get off"
+   "h": "St. Bernard credited with saving more than 40 stranded travelers from blizzards at {}",
+   "hint": "where Napoleon crossed the Alps in 1800",
+   "lat": 45.8689,
+   "lng": 7.1706,
+   "place": "Great St Bernard Pass hospice, Switzerland",
+   "src": "https://nmbe.ch/en/node/59",
+   "published": "1814-01-01",
+   "clue": "Barry, monks' rescue dog at the hospice, said to have saved about 40 people; the count is legend and many of his stories are unverified"
   },
   {
    "real": true,
-   "h": "Terrier guards his owner's grave for 14 years and becomes the beloved mascot of {}",
-   "hint": "home of a castle on an extinct volcano",
-   "lat": 55.9469,
-   "lng": -3.1913,
-   "place": "Edinburgh, Scotland",
-   "src": "https://en.wikipedia.org/wiki/Greyfriars_Bobby",
-   "published": "1872-01-14",
-   "clue": "Greyfriars Bobby kept vigil at John Gray's grave until 1872; the 14 years rests on local tradition and the breed is disputed"
+   "h": "Young pit bull guards his owner's body for four days through a sub-zero Himalayan snowstorm in {}",
+   "hint": "a valley home to the Gaddi shepherds",
+   "lat": 32.4414,
+   "lng": 76.5339,
+   "place": "Bharmour, Chamba, Himachal Pradesh, India",
+   "src": "https://gulfnews.com/world/asia/india/loyal-till-the-end-devoted-pit-bull-guards-dead-owner-s-body-for-four-days-in-himachal-snow-1.500422024",
+   "published": "2026-01-26",
+   "clue": "1.5-year-old pit bull stayed by a teenager's body after two cousins died trekking; rescued on Jan 26; names and ages vary between reports"
   },
   {
    "real": false,
