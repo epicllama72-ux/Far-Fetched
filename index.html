@@ -3529,7 +3529,7 @@ function renderFrontPage(inf,total,max){
   const k=tierOf(total,max), t=TIERS[k]||{}, z=String(inf.zone||'');
   const d=new Date(dayKey()+'T12:00:00Z');
   $('npNo').textContent = S.mode==='daily' ? modeName(S.kind)+' #'+dayNumber() : S.mode==='back' ? 'Back issue #'+dayNumber()+' · '+modeName(S.kind) : 'Practice · '+modeName(S.kind);
-  { const paper=(S.mode==='back'&&typeof BACK!=='undefined'&&BACK)?BACK:DAILY, on=S.mode==='daily'||S.mode==='back', note=on&&paper&&paper.dedication||'', stamp=on&&paper&&paper.stamp||'', sp=$('npStamp');
+  { const paper=(S.mode==='back'&&typeof BACK!=='undefined'&&BACK)?BACK:DAILY, on=S.mode==='daily'||S.mode==='back', note=on&&paper&&paper.dedication||'', stamp=on&&S.kind==='call'&&paper&&paper.stamp||'', sp=$('npStamp');
     $('npNote').textContent=note; $('npNote').hidden=!note;
     if(stamp){ sp.innerHTML=PAW+'<span></span>'+PAW; sp.querySelector('span').textContent=stamp; sp.hidden=false; } else { sp.hidden=true; sp.textContent=''; } }
   $('npDay').textContent=d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
@@ -5099,7 +5099,7 @@ const Intro=(function(){
     $('introLine').textContent = blank ? n+' true headlines, one word missing. Fill in the blank.' : n+' offbeat news stories, '+r+' true, '+f+' false. Map the true ones.';
     const paper=(S.mode==='back'&&typeof BACK!=='undefined'&&BACK)?BACK:DAILY, note=(S.mode==='daily'||S.mode==='back')&&paper&&paper.dedication||'';   // an optional line the paper carries, e.g. a dedication
     $('introNote').textContent=note; $('introNote').hidden=!note;
-    const stamp=(S.mode==='daily'||S.mode==='back')&&paper&&paper.stamp||'', st=$('introStamp');   // an optional rubber stamp under the title
+    const stamp=(S.mode==='daily'||S.mode==='back')&&S.kind==='call'&&paper&&paper.stamp||'', st=$('introStamp');   // the stamp belongs to the Daily Dig only   // an optional rubber stamp under the title
     if(stamp){ st.innerHTML=PAW+'<span></span>'+PAW; st.querySelector('span').textContent=stamp; st.hidden=false; }
     else{ st.hidden=true; st.textContent=''; }
     $('introHowText').innerHTML = (blank
