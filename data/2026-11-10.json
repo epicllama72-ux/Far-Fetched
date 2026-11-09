@@ -1,0 +1,109 @@
+{
+ "date": "2026-11-10",
+ "generated": "2026-11-09T07:06:35+00:00",
+ "call": [
+  {
+   "real": true,
+   "h": "Three friends dressed as hobbits travel to Ireland to return holidaymaker's wedding ring lost in a stream near {}",
+   "hint": "a Tuscan thermal-spa town",
+   "lat": 44.01,
+   "lng": 10.5906,
+   "place": "Bagni di Lucca, Italy",
+   "src": "https://www.fashiontimes.co.uk/italian-hobbits-return-lost-wedding-ring-1767210",
+   "published": "2026-11-06",
+   "clue": "Mountain stream holiday, wedding ring lost"
+  },
+  {
+   "real": true,
+   "h": "Retiree's swimming pool drained and its liner stolen in {}",
+   "hint": "home of Monte Cristo's Château d'If",
+   "lat": 43.2964,
+   "lng": 5.3778,
+   "place": "Marseille, France",
+   "src": "https://news.google.com/rss/articles/CBMimgJBVV95cUxPeHM2Mmw0cjBFS2JvaTBEV2RHMV9MMGVQazhNdHNDWjhFQk9QWjNfaHZOb1ZteFpOTExUdld3UDVjTVZ2el8wRGxOdkRhQTRkWU1aMGZiQTZMWlVrX0FHdDV1M3hGSmFxNnlBQk9PZG5GNWE5RkdZUmFyM0kyZ1VPbXNRZ3o5ekZsODVpRS1pTE5sSk52a2FmUV9iQU5tNDVFS0NYSnFyZkU0SlVDNlJvS0hsaUJXVVVpRmluU0d1SUVIdGpDYzJnempJanNJR3lhUkRWcXFWUFQxUkxOWHNmdDF3ZXpSaVpGVmxuR1g0THR0WlktMTQxdjJMMXY1UVBDa3ZiVlJkTE1ZNHpuTVBFdDVLYlBjTUFBemc?oc=5",
+   "published": "2026-11-06",
+   "clue": "Sunny Mediterranean port, private pools are common"
+  },
+  {
+   "real": true,
+   "h": "Plaintiff hides tiny white text in court filings telling AI to agree with him; judge strips his e-filing rights in {}",
+   "hint": "setting of Gilmore Girls' Stars Hollow",
+   "lat": 41.6032,
+   "lng": -72.7,
+   "place": "Connecticut",
+   "src": "https://www.jdsupra.com/legalnews/connecticut-court-issues-first-prompt-1389493/",
+   "published": "2026-08-06",
+   "clue": "self-represented plaintiff's hidden prompt injection in motions; judge ordered p"
+  },
+  {
+   "real": false,
+   "h": "Rickshaw driver in {} returns a bag of 48,000 rupees, then is handed a second bag by mistake",
+   "tell": "An over-tidy coincidence: the same honest act is rewarded with a repeat mix-up."
+  },
+  {
+   "real": true,
+   "h": "Police disguise themselves as lion dancers at a temple fair to catch a burglar in {}",
+   "hint": "home of prized Mon Thong durians",
+   "lat": 13.8621,
+   "lng": 100.5144,
+   "place": "Nonthaburi, Thailand",
+   "src": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/02/21/thai-police-go-undercover-as-lion-dancers-to-nab-burglar",
+   "published": "2026-02-20",
+   "clue": "Lunar New Year lion-dance costume, a temple fair, Buddhist artefact thefts, Sout"
+  },
+  {
+   "real": false,
+   "h": "Maple farmer in {} finds 1,260 litres of syrup swapped for cold tea overnight",
+   "tell": "Thieves would not bother refilling barrels with tea; the swap is too tidy."
+  },
+  {
+   "real": true,
+   "h": "Players and fans celebrate season-long table title on pitch in {}, unaware rivals just scored a late winner",
+   "hint": "birthplace of Lionel Messi",
+   "lat": -32.9594,
+   "lng": -60.6617,
+   "place": "Rosario, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQVjJGU1NHRExZbUJVTDI5SEcyYldPZHU5ZmtWUms0NmwwQ1NLbktfQV9XczNQWDRXbEotM2ZneUZVVFplSEwtUFBjWktPbklGdldVQWUyVWVSdGwtTUpCWXVON0YyMlZQNF9oaUl1VUJCUFVWSVp3cEdFZVNfa0VSSkNBYnBoak5RcWV0Y2RQTEd0UWxYSzA1UkJtLXN0R20wbURsT041LVlaRmJPYmhUdE5kTjR2UHVORXFEYjVZa2ZVQTZpOUVvSl9SUmxEdEw4aF9zTDg5MGZaQdIB3wFBVV95cUxPdV9aWGJGSm9OdjhRUE5JejlZY3JKU0VfX0tqU1BxWDJCMUg2T3pPWHE2bzFHa0dxY0ZGYjZhOUotUXB1V21naVlrWGo5R0lRazEtRVJiT3NNQ0RvVE9RT2lkOThaTDBwLXQ1WWx4QklROGVxdnpzSEIyTUhQRFpRZEktZGhfZzJiVmg4OS04VzlfUFpvMzJESUlaMGlDV2VydXlFUHhWb2FkdThTeGx0WkdDVlREbkJJY2FKZ05iMzU1NlJrazBnd0dYNEJpZHNtbk9hSVRTVzBzNUI1NEtJ?oc=5",
+   "published": "2026-11-08",
+   "clue": "Football-mad South America, a title race with a big rival"
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Airport bookshop self-checkout adds 3% 'employee benefit' [] labelled 'not a tip' in New York",
+   "ans": [
+    "fee",
+    "fees"
+   ],
+   "alt": [
+    "charge",
+    "surcharge",
+    "levy",
+    "tax"
+   ],
+   "place": "New York, New York",
+   "src": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1FaVcyaUdQRTF6NjRYMEEycC1HZHBhU29mT0J1cF82QVgyUHJQLWNhSHhtZG5jZ0NrRTJLX0ZWNkFsbFQyOVBLMWR3TlRQMHlCQXpWM0oyWXhLMHRpLXVsOXdrTjZaS093OUYyWENB?oc=5",
+   "published": "2026-11-05",
+   "vec": "E0Qc3uLs8esjHP4YF9UyDg/jCPElw+0ascwbBfkKfyL3Nyz8PQUO9DUi8kjFmwspEyE="
+  },
+  {
+   "real": true,
+   "h2": "Crooked [] on the pitch delay match by 15 minutes in Turin, Italy",
+   "ans": [
+    "lines",
+    "line"
+   ],
+   "alt": [
+    "markings",
+    "stripes",
+    "paint",
+    "boundaries"
+   ],
+   "place": "Turin, Italy",
+   "src": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNNnN5NzJCem5OeWVhRkFjaTBxYnBtZ3NLS3hUaEJFZjlkdHJXYmpVNmJiYVZ4MGR5N3V6SW9mazFlb3g5X0daUXd5SUdKMVRJNzMyTkNwblFuOFg5N0RmRTRrcGpQWWJrdW9ySVdwN0Vrd1JCNGdIdW1IN1lZalhwcXJvSEpSVFM1TEpvUzFrOXZUd1lidnpBd2hOYy02d3F0amN2N2NHS2hTQUpHd2fSAbMBQVVfeXFMT3dpZnp3VzY5UGhsczU4WmxtWEUyQTczUXhVdlF4OEFLaVlkdTVWb2FBVVNKLU51VTFPb0xCLUNTSlI0R2FKS3FXTzI1b0F4YmlZel9xWFViRktvZl9xRHo5UURHWm84Z01TaEFrdURzZEtZT3VuZ3ZQUWRvUWZ2VGFQUGRCcVNkbEdUQ3VVS1RfTDVjOWpxeGc1M3MtVnJEWUphTG43bUNrV3YzY05pM29lbGM?oc=5",
+   "published": "2026-11-07",
+   "vec": "GAUU/Oci7vPu4/v09wTbBeYBAdcW8vsVCdzvGCXhfw0P/fn7+vToJBQFAwHn/gr08vE="
+  }
+ ]
+}

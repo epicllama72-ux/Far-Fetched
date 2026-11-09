@@ -1,168 +1,109 @@
 {
- "date": "2026-11-09",
- "generated": "2026-11-07T06:31:49+00:00",
+ "date": "2026-11-10",
+ "generated": "2026-11-09T07:06:35+00:00",
  "call": [
   {
    "real": true,
-   "h": "Burglar breaks into a bar in {}, drinks half a bottle of orujo and three beers, falls asleep and is arrested",
-   "hint": "home of the red-and-white Athletic Club",
-   "lat": 43.26,
-   "lng": -2.9226,
-   "place": "Bilbao, Spain",
-   "src": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOUGp0aUVzbi1LNDZ3Z3ZzaEJSSHRhSkxqNHJIWHNaT2tSYU83dlE4dlBuTk9yRGRDRFMzM2o5aTNUNVV4bUk4UEl1VU1wZHV2V3cwd05ZVUlFZDY2N2NESnN1aDhUT1ZZYXNJa0dZT2R5QWFOdXJrUmVvMjdyQjlISmpZV2JZOVF4eFAzSF9TelV3aXJXSlB5RDVDT0dlbUFMa21BSlNwM2tULTRGYjZkVU9xejQ0MkJ1NGtaWHhpaUpSdldMQzA1WmN4WWZUQ2hKLVRJdjVGZ1hwdElkTVBlRG5NcWVXZHZGRklBTA?oc=5",
+   "h": "Three friends dressed as hobbits travel to Ireland to return holidaymaker's wedding ring lost in a stream near {}",
+   "hint": "a Tuscan thermal-spa town",
+   "lat": 44.01,
+   "lng": 10.5906,
+   "place": "Bagni di Lucca, Italy",
+   "src": "https://www.fashiontimes.co.uk/italian-hobbits-return-lost-wedding-ring-1767210",
    "published": "2026-11-06",
-   "clue": "orujo is a Spanish pomace spirit"
+   "clue": "Mountain stream holiday, wedding ring lost"
   },
   {
    "real": true,
-   "h": "Man dressed as the Grim Reaper climbs hospital roof and stares at patients in {}",
-   "hint": "a Vale of Clwyd cathedral city",
-   "lat": 53.2578,
-   "lng": -3.4426,
-   "place": "St Asaph, Denbighshire, Wales",
-   "src": "https://www.independent.co.uk/news/uk/home-news/grim-reaper-wales-hospital-denbighshire-b3027735.html",
+   "h": "Retiree's swimming pool drained and its liner stolen in {}",
+   "hint": "home of Monte Cristo's Château d'If",
+   "lat": 43.2964,
+   "lng": 5.3778,
+   "place": "Marseille, France",
+   "src": "https://news.google.com/rss/articles/CBMimgJBVV95cUxPeHM2Mmw0cjBFS2JvaTBEV2RHMV9MMGVQazhNdHNDWjhFQk9QWjNfaHZOb1ZteFpOTExUdld3UDVjTVZ2el8wRGxOdkRhQTRkWU1aMGZiQTZMWlVrX0FHdDV1M3hGSmFxNnlBQk9PZG5GNWE5RkdZUmFyM0kyZ1VPbXNRZ3o5ekZsODVpRS1pTE5sSk52a2FmUV9iQU5tNDVFS0NYSnFyZkU0SlVDNlJvS0hsaUJXVVVpRmluU0d1SUVIdGpDYzJnempJanNJR3lhUkRWcXFWUFQxUkxOWHNmdDF3ZXpSaVpGVmxuR1g0THR0WlktMTQxdjJMMXY1UVBDa3ZiVlJkTE1ZNHpuTVBFdDVLYlBjTUFBemc?oc=5",
+   "published": "2026-11-06",
+   "clue": "Sunny Mediterranean port, private pools are common"
+  },
+  {
+   "real": true,
+   "h": "Plaintiff hides tiny white text in court filings telling AI to agree with him; judge strips his e-filing rights in {}",
+   "hint": "setting of Gilmore Girls' Stars Hollow",
+   "lat": 41.6032,
+   "lng": -72.7,
+   "place": "Connecticut",
+   "src": "https://www.jdsupra.com/legalnews/connecticut-court-issues-first-prompt-1389493/",
    "published": "2026-08-06",
-   "clue": "hooded man with a scythe on Ysbyty Glan Clwyd's roof for about 50 minutes; arres"
+   "clue": "self-represented plaintiff's hidden prompt injection in motions; judge ordered p"
   },
   {
    "real": false,
-   "h": "Crows in {} steal 37 teaspoons from a seaside cafe and line a rooftop nest with them",
-   "tell": "Crows steal shiny things, but a tidy tally of teaspoons lining a whole nest is too neat."
+   "h": "Rickshaw driver in {} returns a bag of 48,000 rupees, then is handed a second bag by mistake",
+   "tell": "An over-tidy coincidence: the same honest act is rewarded with a repeat mix-up."
   },
   {
    "real": true,
-   "h": "Inmate in {} sues himself for violating his own civil rights, asking the state to pay $5 million",
-   "hint": "home of Dollar Tree's headquarters",
-   "lat": 36.7682,
-   "lng": -76.2875,
-   "place": "Chesapeake, Virginia",
-   "src": "https://www.deseret.com/1995/4/9/19168705/inmate-sues-himself-for-5-million",
-   "published": "1995-04-08",
-   "clue": "inmate at Indian Creek Correctional Center blamed his own drinking for breaching"
-  },
-  {
-   "real": true,
-   "h": "Marathon runners stage the first-ever backwards mile race at {}",
-   "hint": "site of a blue-ice runway camp",
-   "lat": -79.7667,
-   "lng": -83.3833,
-   "place": "Union Glacier, Antarctica",
-   "src": "https://www.yahoo.com/news/videos/marathon-runners-stage-backwards-mile-145638289.html",
-   "published": "2025-12-15",
-   "clue": "runners waiting for a flight out after the Antarctic Ice Marathon; a one-mile ra"
+   "h": "Police disguise themselves as lion dancers at a temple fair to catch a burglar in {}",
+   "hint": "home of prized Mon Thong durians",
+   "lat": 13.8621,
+   "lng": 100.5144,
+   "place": "Nonthaburi, Thailand",
+   "src": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/02/21/thai-police-go-undercover-as-lion-dancers-to-nab-burglar",
+   "published": "2026-02-20",
+   "clue": "Lunar New Year lion-dance costume, a temple fair, Buddhist artefact thefts, Sout"
   },
   {
    "real": false,
-   "h": "Lorry driver delivers 1,260 garden gnomes to the wrong depot, 214 km from the right one, in {}",
-   "tell": "A driver covering 214 km before noticing the wrong depot is implausibly oblivious."
+   "h": "Maple farmer in {} finds 1,260 litres of syrup swapped for cold tea overnight",
+   "tell": "Thieves would not bother refilling barrels with tea; the swap is too tidy."
   },
   {
    "real": true,
-   "h": "Mayor holds 'non-wedding' ceremonies where couples celebrate not getting married in {}",
-   "hint": "setting of the film Amélie",
-   "lat": 48.8867,
-   "lng": 2.3431,
-   "place": "Montmartre, Paris, France",
-   "src": "https://parisjetaime.com/eng/activity/ceremonie-de-non-mariage-p2643",
-   "published": "2026-11-04",
-   "clue": "annual Montmartre 'non-marriage' ceremony before the arrondissement mayor; dogs "
+   "h": "Players and fans celebrate season-long table title on pitch in {}, unaware rivals just scored a late winner",
+   "hint": "birthplace of Lionel Messi",
+   "lat": -32.9594,
+   "lng": -60.6617,
+   "place": "Rosario, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQVjJGU1NHRExZbUJVTDI5SEcyYldPZHU5ZmtWUms0NmwwQ1NLbktfQV9XczNQWDRXbEotM2ZneUZVVFplSEwtUFBjWktPbklGdldVQWUyVWVSdGwtTUpCWXVON0YyMlZQNF9oaUl1VUJCUFVWSVp3cEdFZVNfa0VSSkNBYnBoak5RcWV0Y2RQTEd0UWxYSzA1UkJtLXN0R20wbURsT041LVlaRmJPYmhUdE5kTjR2UHVORXFEYjVZa2ZVQTZpOUVvSl9SUmxEdEw4aF9zTDg5MGZaQdIB3wFBVV95cUxPdV9aWGJGSm9OdjhRUE5JejlZY3JKU0VfX0tqU1BxWDJCMUg2T3pPWHE2bzFHa0dxY0ZGYjZhOUotUXB1V21naVlrWGo5R0lRazEtRVJiT3NNQ0RvVE9RT2lkOThaTDBwLXQ1WWx4QklROGVxdnpzSEIyTUhQRFpRZEktZGhfZzJiVmg4OS04VzlfUFpvMzJESUlaMGlDV2VydXlFUHhWb2FkdThTeGx0WkdDVlREbkJJY2FKZ05iMzU1NlJrazBnd0dYNEJpZHNtbk9hSVRTVzBzNUI1NEtJ?oc=5",
+   "published": "2026-11-08",
+   "clue": "Football-mad South America, a title race with a big rival"
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "Fire station [] in Mauranipur, India, filmed taking a bribe for a firecracker shop permit before Diwali, in a police inspector's uniform",
+   "h2": "Airport bookshop self-checkout adds 3% 'employee benefit' [] labelled 'not a tip' in New York",
    "ans": [
-    "driver",
-    "drivers"
+    "fee",
+    "fees"
    ],
    "alt": [
-    "employee",
-    "firefighter",
-    "worker",
-    "man",
-    "officer",
-    "chauffeur"
+    "charge",
+    "surcharge",
+    "levy",
+    "tax"
    ],
-   "place": "Mauranipur, Uttar Pradesh, India",
-   "src": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOejhDRDdMWVFJMWs3YkdhVlBtV0ZUeUx2eVNGbzlBY0U5LUNXLTh5U01DaW9QWl9uYXVlRXYxMWRVVzhMaXZzMHJyS0h1a09BcGw5c181aER0cE1wcUtUNm01bENYbmJWYUlYQ1Z2Y0l6c0Mzd2JLcDVQU0FpZnRtMmozZUxxLV96SFZGN1VWTGFGM1VoaS1YLTFQRmlXY01mVEdwd0NFTlg1MklZcU9XblA2Zm05bm1FZVBzeDVmaVlBVkpHWDBTbEVRaHVtcHlTWkdmM3JR0gHbAUFVX3lxTE1oOE1oMlp5cFBsNWxNV2Q4ZnUtanlMRG1nV3R1R0FSVmx0V3FWYnpWZjR3WnpGZHdsMUVYWkl4dHJZaF9XX2dmd2JLdlBhTlFVLVQ1RTZTZTJYamF0ZWRfQkh2eEtLR045MjhVNDA4dFhSRzBCbElMWEkzNDhfNnh5X2hTUGNGZ2FTVmxKcXFyTEtQeFNSQXgtZF9rclFLUDI0UmFGazRVZnVMOVlvZ3hqSmlTeTRZRGtGU3hJNl9yN2dReDVUOVpOcXFRWGRYUjUwSFROcDUwc3ZJbw?oc=5",
-   "published": "2026-11-04",
-   "vec": "5QJTDiQosCcg3kDukgou2N8o7pTcMLpNNZAG+igbf/XaD2YEKAwDHgkk8e4UsQzpcfc="
-  },
-  {
-   "real": true,
-   "h2": "Thieves who stole two AI-branded trailers from a warehouse in Newark, California pry them open to find 40,000 pounds of []",
-   "ans": [
-    "sand"
-   ],
-   "alt": [
-    "gravel",
-    "dirt",
-    "soil",
-    "rocks",
-    "stones"
-   ],
-   "place": "Newark, California",
-   "src": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxOa1BITWtsQnN2dzRzSk4zbVhmOWlqeENpWmhNVW9WV2FqMWlyY2lZRllWZE10bVFtQ3BveFU2ZW5oZnRLZjhzR0EyUjNlMFNkb25TYmtzVnhNd2FHM2ptU2Q4aWFvaTVBbzV3WHQzNHJZTlc4bkthRVR4ellkZkV2Zi1mSExDMEFNc2d1WkNPZEh4UjJnYTRWd2UxTEozRFZOMHdUUlI5TnVEYy05Mk9vQkI2dFpsOUp6ckFlb0o4cHExaXIyWDA0cTJETmlYWTlEcnlZZ3k2UW9uUGU3VlJlMXE1ZktmcGVWeVhaSjZSUWJFcnVPSmExN3dVWmU1TkthNl8waUpmU0F2bVRJeHBhZ3dhUE5mcnYwRWxfbzVMX09hUkh5V09oQnFmYU4xX19xV0MtQjdKakxtY1NoZ0lTdkxpd0tkdXZsTEFBWklpYTEtcUh6VDJZVGNR?oc=5",
+   "place": "New York, New York",
+   "src": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1FaVcyaUdQRTF6NjRYMEEycC1HZHBhU29mT0J1cF82QVgyUHJQLWNhSHhtZG5jZ0NrRTJLX0ZWNkFsbFQyOVBLMWR3TlRQMHlCQXpWM0oyWXhLMHRpLXVsOXdrTjZaS093OUYyWENB?oc=5",
    "published": "2026-11-05",
-   "vec": "AA/v++T85wsU6OgHJw/wGXv6xrgAADDaDfr3Uzzcf7r7FfI18Q82AAAJMQ4F4QmtB7U="
+   "vec": "E0Qc3uLs8esjHP4YF9UyDg/jCPElw+0ascwbBfkKfyL3Nyz8PQUO9DUi8kjFmwspEyE="
   },
   {
    "real": true,
-   "h2": "Two Germans and a Pole held at Lima airport with nearly 3,000 [] hidden in suitcases bound for Europe",
+   "h2": "Crooked [] on the pitch delay match by 15 minutes in Turin, Italy",
    "ans": [
-    "tarantulas",
-    "tarantula",
-    "spiders",
-    "spider"
+    "lines",
+    "line"
    ],
    "alt": [
-    "arachnids",
-    "scorpions",
-    "snakes",
-    "insects"
+    "markings",
+    "stripes",
+    "paint",
+    "boundaries"
    ],
-   "place": "Lima, Peru",
-   "src": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOdkpJQ2dJM2NBNk52X0ZLU3VTMmYtcDNPcXJhbmNnbzhJTV9OWDl2VTE3Y3RWOGJZNTV0SnhFR0JUVDhNUE5VcnVVR1o1NkJ2OXJ6eVdzdjI1VGVuQjk4V1J2YmJWanRKdTFpZC14YklNU05wSUFsWk9vYzYtemx6QXdmOUx2RktxUlFxc0tXWUROS0VtbFA4c2NHZzQ5Z21NUUkxU3J5cHE0NXppT21id2FoQW5OVGxjaEt2V2w0UVU0V3prLW9HeTYxMzJJLVZUcVc2MUNldmZYQQ?oc=5",
-   "published": "2026-11-06",
-   "vec": "W5zNJAn6KeAELv8iQyYe6vMr8ezG9lwn6UrtBvXNwAYwItPwxdzk2+XKLX87/++y2Oc="
-  },
-  {
-   "real": true,
-   "h2": "Police [] circling low over Fleet, Hampshire draws a rude shape on tracking sites; force says it was accidental",
-   "ans": [
-    "helicopter",
-    "helicopters",
-    "chopper"
-   ],
-   "alt": [
-    "aircraft",
-    "plane",
-    "drone",
-    "copter"
-   ],
-   "place": "Fleet, Hampshire",
-   "src": "https://metro.co.uk/2026/11/05/police-helicopter-denies-making-penis-shaped-flight-path-purpose-29767323/",
-   "published": "2026-11-05",
-   "vec": "buFF9uP4ryIilhfpDi619rU8j+vrTN7MF6z4IiEGfwXTKUE1IMbpHAgdKcYW1wQX9Pc="
-  },
-  {
-   "real": true,
-   "h2": "Water workers terrified by creepy baby [] blocking a sewer before Halloween in Exmouth, England",
-   "ans": [
-    "doll",
-    "dolls"
-   ],
-   "alt": [
-    "toy",
-    "puppet",
-    "figure",
-    "mannequin"
-   ],
-   "place": "Exmouth, England",
-   "src": "https://metro.co.uk/2026/10/30/eerie-baby-doll-among-disturbing-sewer-discoveries-dredged-halloween-29748699/",
-   "published": "2026-10-30",
-   "vec": "BePS71piwJjN9Q4eDERcC8g2CPEN66r2/cCBIQGHJgIHO+I+HwsimvP35dZdESSlDgc="
+   "place": "Turin, Italy",
+   "src": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNNnN5NzJCem5OeWVhRkFjaTBxYnBtZ3NLS3hUaEJFZjlkdHJXYmpVNmJiYVZ4MGR5N3V6SW9mazFlb3g5X0daUXd5SUdKMVRJNzMyTkNwblFuOFg5N0RmRTRrcGpQWWJrdW9ySVdwN0Vrd1JCNGdIdW1IN1lZalhwcXJvSEpSVFM1TEpvUzFrOXZUd1lidnpBd2hOYy02d3F0amN2N2NHS2hTQUpHd2fSAbMBQVVfeXFMT3dpZnp3VzY5UGhsczU4WmxtWEUyQTczUXhVdlF4OEFLaVlkdTVWb2FBVVNKLU51VTFPb0xCLUNTSlI0R2FKS3FXTzI1b0F4YmlZel9xWFViRktvZl9xRHo5UURHWm84Z01TaEFrdURzZEtZT3VuZ3ZQUWRvUWZ2VGFQUGRCcVNkbEdUQ3VVS1RfTDVjOWpxeGc1M3MtVnJEWUphTG43bUNrV3YzY05pM29lbGM?oc=5",
+   "published": "2026-11-07",
+   "vec": "GAUU/Oci7vPu4/v09wTbBeYBAdcW8vsVCdzvGCXhfw0P/fn7+vToJBQFAwHn/gr08vE="
   }
  ]
 }

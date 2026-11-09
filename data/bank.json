@@ -1,100 +1,240 @@
 {
  "real": [
   {
-   "id": 45,
-   "h": "Shop replaces its staff with six humanoid robots for 24 hours, and one walks off the job in {}",
-   "h2": "Shanghai shop replaces its staff with six humanoid [] for 24 hours, and one walks off the job",
+   "id": 20,
+   "h": "Patrol car bursts into flames outside traffic police station in {}; suspect flees by train",
+   "h2": "Police [] bursts into flames outside traffic police station in Xizhi, New Taipei, Taiwan; suspect flees by train",
    "ans": [
-    "robots",
-    "robot",
-    "androids"
+    "car",
+    "cars"
    ],
    "alt": [
-    "machines",
-    "bots",
-    "droids"
+    "vehicle",
+    "van",
+    "jeep",
+    "cruiser"
    ],
-   "place": "Shanghai, China",
-   "geocode": "Shanghai, China",
-   "lat": 31.2312707,
-   "lng": 121.4700152,
-   "country": "China",
-   "cc": "CN",
-   "hint": "host of the 2010 World Expo",
-   "clue": "Humanoid robot retail stunts = Chinese tech hub",
-   "clue_strength": 3,
+   "place": "Xizhi, New Taipei, Taiwan",
+   "geocode": "Xizhi District, New Taipei, Taiwan",
+   "lat": 25.0641586,
+   "lng": 121.6587475,
+   "country": "Taiwan",
+   "cc": "TW",
+   "hint": "",
+   "clue": "Island with high-speed rail and a traffic police unit",
+   "clue_strength": 1,
    "jargon_only": false,
    "mappable": 3,
    "unbelievable": 3,
-   "theme": "robots",
-   "src": "https://mezha.ua/en/news/humanoid-robots-work-24-hour-store-shift-316912/",
-   "published": "2026-11-06",
-   "banked": "2026-11-08",
+   "theme": "arson",
+   "src": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5mWVRhSnNLaTdUeHFfZV9ROW4wSS1IQmF6RHp6X0Fqd1lYQlpOQlhkZmxYem1HWlJHZ2NiVVVaR1NKTjg2MnIya1RJRkctVFlBNW83UHA1clBqUmh6SVHSAUtBVV95cUxOcm5pRE9RaTIwZzB3YzZXR2pCRklhblR5QUJZZnNIY2ExRXh1NF9yOFgxX09kcnI4QVRQWVN3cUlJbm5EeXQxWnh1Q00?oc=5",
+   "published": "2026-11-05",
+   "banked": "2026-11-10",
    "rules": 2
   },
   {
-   "id": 9,
-   "h": "Players mix cement and lay bricks to fill a hole in the pitch mid-match in a regional league in {}",
-   "h2": "Players mix cement and lay [] to fill a hole in the pitch mid-match in a regional league in Cebreros, Spain",
+   "id": 26,
+   "h": "Farmer's odd carved stone found outside his home in {} leads archaeologists to statues of a famed pharaoh",
+   "h2": "Farmer in Behbeit El Hagar, Egypt finds a strange carved [] outside his home that leads to statues of Ramses II",
    "ans": [
-    "bricks",
-    "brick"
+    "stone",
+    "stones",
+    "block",
+    "blocks"
    ],
    "alt": [
-    "stones",
-    "blocks",
-    "tiles",
-    "concrete"
+    "rock",
+    "slab",
+    "boulder"
    ],
-   "place": "Cebreros, Spain",
-   "geocode": "Cebreros, Ávila, Spain",
-   "lat": 40.4551504,
-   "lng": -4.4651595,
-   "country": "Spain",
-   "cc": "ES",
-   "hint": "a Castilian village",
-   "clue": "Regional football division in Spain",
+   "place": "Behbeit El Hagar, Egypt",
+   "geocode": "Behbeit El Hagar, Gharbia, Egypt",
+   "lat": 31.03,
+   "lng": 31.29,
+   "country": "Egypt",
+   "cc": "EG",
+   "hint": "a Nile Delta Isis-temple village",
+   "clue": "Pharaoh statues under village farmland = Egypt",
+   "clue_strength": 3,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 2,
+   "theme": "archaeology",
+   "src": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9wcF96ZERYTk1DR0pidzRaUFFtWHF1RVE5eHk3Wkd4U0ZaWlZXQ3Exc2tKaDdqbk5BWUJ0Q3g5ZWFJUXZIWUU1TU9fVlE0eHdpMWhIYVZSUWxuRGx6cy1SU2lXUE9YTjN0empKVUFRWExTRFhmOXliQ2Zkcw?oc=5",
+   "published": "2026-10-14",
+   "banked": "2026-11-10",
+   "rules": 2,
+   "blank_only": true
+  },
+  {
+   "id": 3,
+   "h": "30 crocodiles found on board a train in {}",
+   "h2": "30 [] found on board a train in Upper Egypt",
+   "ans": [
+    "crocodiles",
+    "crocodile"
+   ],
+   "alt": [
+    "alligators",
+    "gators",
+    "reptiles",
+    "caimans"
+   ],
+   "place": "Upper Egypt",
+   "geocode": "Upper Egypt, Egypt",
+   "lat": 26.0,
+   "lng": 32.0,
+   "country": "Egypt",
+   "cc": "EG",
+   "hint": "setting of Death on the Nile",
+   "clue": "Nile crocodiles + a long-distance train line = Egypt",
+   "clue_strength": 3,
+   "jargon_only": false,
+   "mappable": 1,
+   "unbelievable": 5,
+   "theme": "reptiles",
+   "src": "https://news.google.com/rss/articles/CBMiogNBVV95cUxOdzJaVUhFOUlidmVKUkVaQzB6XzBoUDVweHVqMDIxdGpiVk5UOVVjU3M1T2NLTlNGZDBKM1RPemdMV2VhT05aaW9ieWF0Qy1pMHlNV1QwMmhBU1lhTnE5cmFkREVRWXFzNDU0djRrT1FZdEUwYXc0Ykw0c1FrVjFsdE80WXNUOGYzc0NHWmZiRThxY0dnWVdQREVKek9sUlpMR2dFZ0dhVjAzYWQzekZ2VElPWEFrckFaZVBuWTB4VTJpTlB0OXRlUE9CRnRXVkU3QnlRZHJnWHhfQW4tV201LWh6YWp3aDg2UDBVUEZ3Wm9tOU1GTmRaVHR4eVgwUjNNWFJGMWNPM1pCSnhCeXJrX0padmJ5OHd6VnU4bEwzS1RLNzhvdTVIUUd2Z2RwXzZSQjJIckp0YzNpdExVelZrX1NmdjFwZ2hra2JYSDFzYWhzbXdKR25nNWxXWGxBbzJ2ZWZRM3EzZXdkdFR5dG5Hc05TTGFyZTVhV3hvekdDZ2tVdUxYSUVqb3Z2UGtobndyM1cyYm9tNWptdEdrMWJZb3BR0gGnA0FVX3lxTE5sU3RPQ0JndElKWjBRU0xmWUNOQ1Y2U3FDVkNFRURfZVNCUEdmM1JORUZpRFlacHhBQ1dQbVJvUVNRQjdNN0VVX2ZfejM3Y3lCQmREM2YyTHNRNnVJZ0ZJR01yck14UXRseUhVRUdlb2NVTzZkanYwT3U0eHAzd0ktQXBHaUtid1BNTzJXT3dFUmxOYzZraC1jN2IyWF9hYk04WlhaaUNaWDU1Mml0Z1pTSWFZMFNlSUlPVlpqUXlOelBXYzB2ZFE3SGhGS1BIV0g4TUhfcHljN2oyZGRCOGo1M2JUZTVHMHp6Z1VqMTFNXzR5VnI1STJMSzcyMzdXSzBLTG11RUZCazhWeWhyUTRMQllhVjd0NEJ4N2NNUl8tTGo3VHRHTFlqTEc1aFhuaHBhRHRQVTBoSjBuRzBwTVJ2OWM1Znc5SGd5bTZiaC1iS0haUnBkTjZDWnFtM3VxVTdoYV9hZXEzeTBBbjlrMWd6bHhBanZJQjFsM1Q0dlZTQmx5LWswR29CV3hoanV4WUpZVTlXdzhTZ1VNZjYyTlhILUgzY2g0RQ?oc=5",
+   "published": "2026-10-29",
+   "banked": "2026-11-10",
+   "rules": 2
+  },
+  {
+   "id": 11,
+   "h": "53 red cards in one under-20s football match after mass brawl at a goal celebration in {}, a world record",
+   "h2": "53 red [] in one under-20s match after mass brawl in Minas Gerais, Brazil, a world record",
+   "ans": [
+    "cards",
+    "card"
+   ],
+   "alt": [
+    "dismissals",
+    "sendings",
+    "offs"
+   ],
+   "place": "Minas Gerais, Brazil",
+   "geocode": "Minas Gerais, Brazil",
+   "lat": -18.5264844,
+   "lng": -44.1588654,
+   "country": "Brazil",
+   "cc": "BR",
+   "hint": "home of pão de queijo",
+   "clue": "Youth football brawl in a football-obsessed country",
    "clue_strength": 1,
    "jargon_only": false,
    "mappable": 1,
    "unbelievable": 4,
-   "theme": "pitch",
-   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNWEh4aWVyTzd0cXBUY0xOcng4SkQzckxvRzZibmIzd1BEQmNzLXR1ZjdIWnVEOXREUlRNSXdPeHh1YzB3Tl9kUWNWRVpQcmlJQ1pyYWVnTF9iODFldmlwVk9UUEt5eXhwM0pmYm1EQ3JzMFZxRmdCdDBkZEdRQ3ZibTJoaUFVZzZ0Z3lnc1Z1TzNqdlFsMDY1TnBGT01ZLWJ6SUtlWjAyekswUV81U3IwM3JzR28wUXJKbkNlZUh6YXQ?oc=5",
-   "published": "2026-10-11",
-   "banked": "2026-11-08",
+   "theme": "brawl",
+   "src": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxNa09OUndHYkRHVHhWWnliZUd3OHlIR3ZqdGFXY0hhV2RUbkswVXRDRFNTZ2t2eGFRWlhqNjdCaTFlRVhBZnI2U2ViTkZXNV9xV3U2ZU41U2ViREt4VnBoSXNzeUNQbjNrWkU3ckxmRmg0NlplX2pUTVhHUUdvbmhMNVNGZUpzYWJCTEt4RzAzRTFqTnVQV0tydFpWRjAxVWJwbVBMOU9JQXYtQmtRaTdkM21XZjhZTDRJZk1tYkRtcl8tOGhsN0V2WjhsWHU4aHN6SFhVOGJRbDF1YnI0MFp6d3pqOHZIVnlpc1B2dDljYkh1QXkyUjJuVm9qbFBPSnFpV25HYVEzOG92VDDSAZACQVVfeXFMTjNaTmZMR2x4b0E0bVhmS25jT1BpTzhOZFVZOHdocklGTFNJc1lWd3dyV3F1alRoWUtfc24wblRPVDZxaE1BdmFNdEd5TDdlZ1VIQ1hnM3VLZG1qM2ZnT1ZEZjhJOW9hM1VuV3RRaC1jc2VvSlhMRWJLaDd6QjQ5QWp5QzBDUkkwcVpyTHh2S0dDZ2k1TEsza0tWUWJDY1RvdmFRbFhRQWVBWnpRcVZCQU0yZnM3X1hTZjJmV2JFWk9zeDd1T2N4SkViLVRYNzJQY1Y5QkZ0dzA1bHlHUlBrM1I4UjBiUFNWNG5kQ1ctcWVEU2JkWC1ScXAxX1ZhYk5vMlR5SERlaU9tU1Vrc2lNTDg?oc=5",
+   "published": "2026-11-06",
+   "banked": "2026-11-10",
+   "rules": 2
+  },
+  {
+   "id": 14,
+   "h": "Man sneaks in at night to sleep in ex's rooftop water tank in {}; police find his sneakers and blanket",
+   "h2": "Man sneaks in at night to sleep in ex's rooftop water [] in Chubut, Argentina; police find his sneakers and blanket",
+   "ans": [
+    "tank",
+    "tanks"
+   ],
+   "alt": [
+    "cistern",
+    "reservoir",
+    "barrel",
+    "tower"
+   ],
+   "place": "Chubut, Argentina",
+   "geocode": "Chubut Province, Argentina",
+   "lat": -43.3,
+   "lng": -65.1,
+   "country": "Argentina",
+   "cc": "AR",
+   "hint": "where Butch Cassidy once ranched",
+   "clue": "Rooftop water tanks are common in Argentine homes",
+   "clue_strength": 1,
+   "jargon_only": false,
+   "mappable": 1,
+   "unbelievable": 4,
+   "theme": "ex",
+   "src": "https://news.google.com/rss/articles/CBMipAFBVV95cUxONVNxbFJhYjl5Qm9NcUF5aFJ2UzdFQW1zY3NZcFFFdGtEQi1iR2NNYVpUQjY1VzExSzRpOWRQdkdzeHNSTnZSdThKb3NMNURZSEpCeGs0N2JWYzRvSFAwZHRvU0x1c2xkSDdYVGs5WVlYRVB2dVdUQ3JzS3J5b28ycG84YW80cXl5OWFUT3V4dXJGZWJzeU1ZM0s1YkVEZTJhdjNydw?oc=5",
+   "published": "2026-11-09",
+   "banked": "2026-11-10",
    "rules": 2
   },
   {
    "id": 8,
-   "h": "Grandmother, 76, and granddaughter, 29, steal perfume from shops of one chain in {}, worth 1,015 zloty",
-   "h2": "Grandmother, 76, and her 29-year-old [] steal perfume from shops of one chain in Kościan, Poland, worth 1,015 zloty",
+   "h": "Escaped piglets dubbed 'bacon bits' lead cops on wild foot chase in {}",
+   "h2": "Runaway [] dubbed 'bacon bits' lead South Carolina cops on wild foot chase",
    "ans": [
-    "granddaughter",
-    "granddaughters"
+    "piglets",
+    "piglet",
+    "pigs",
+    "pig"
    ],
    "alt": [
-    "daughter",
-    "niece",
-    "girl",
-    "grandchild"
+    "hogs",
+    "swine",
+    "boars",
+    "porkers"
    ],
-   "place": "Kościan, Poland",
-   "geocode": "Kościan, Greater Poland, Poland",
-   "lat": 52.086325,
-   "lng": 16.6449995,
-   "country": "Poland",
-   "cc": "PL",
-   "hint": "a Wielkopolska town",
-   "clue": "zloty = Poland",
+   "place": "South Carolina",
+   "geocode": "South Carolina, USA",
+   "lat": 33.6874388,
+   "lng": -80.4363743,
+   "country": "United States",
+   "cc": "US",
+   "hint": "",
+   "clue": "Cops chasing pigs down sidewalks = US Southeast",
    "clue_strength": 2,
    "jargon_only": false,
-   "mappable": 3,
+   "mappable": 1,
    "unbelievable": 3,
-   "theme": "shoplifting",
-   "src": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNc1h1clZadzJhT2cwNWlPVnVFWkFxQVNvSnhHR01DMWlDZ3JMSk9qenVqQmdxYldSbUY2UUVfUlNwRG1MT29LNjNXWGVDVVdmYmpIdnhETHAwUWFmQWx6dE1BcFNSeXNLeTJkcWUtNUFPdG1qaTdVcTBQSUU2bHJjVncwenFiWDFzU2x0Y2FrZnBzRTlwMkVuMXpBclZCV19FbUtIaDhwLUpFSmtRYjVuSGFEZ0hMM1JPN2xoRE5nS2Z1c3VIWHhGY2JHeTVLdnF2RWc?oc=5",
-   "published": "2026-11-03",
-   "banked": "2026-11-06",
+   "theme": "pigs",
+   "src": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPcFoyRWtaVWVGZFhnZDBTU2tjcXJ4cnFXWnRGWUdwTjljZHd3SWhNN3J1ekVhTjBOT1BndEd4TThWQWcwUlJpRmdEZnRxZjlfRjRPdXdMUWU3VGRadDNZSjJUcmRYSl9DS3FQRGtTdEUtQmFHdTNJNk5yb0I1R08yMjh3cjBoYVVpTXdhMFplRzVWYWxia3JYQko4ekFMOWl6cm45Umdnd1VFdWhvQW14Z2Vlank5dEdBYlEzLXNB?oc=5",
+   "published": "2026-11-07",
+   "banked": "2026-11-10",
    "rules": 2
+  },
+  {
+   "h": "Black Labrador rides the city bus by herself to the dog park in {}",
+   "hint": "home of the Space Needle",
+   "lat": 47.6062,
+   "lng": -122.3321,
+   "place": "Seattle, Washington",
+   "src": "https://www.foxnews.com/us/black-lab-in-seattle-likes-to-hop-on-bus-take-solo-ride-to-her-dog-park-stop",
+   "published": "2015-01-13",
+   "clue": "Eclipse boarded the D-Line alone, three to four stops, and always knew where to get off",
+   "banked": "2026-11-08",
+   "rules": 2,
+   "unbelievable": 3,
+   "theme": "animals",
+   "cc": "US",
+   "country": "United States",
+   "geocode": "Seattle, Washington, USA",
+   "daily_only": true,
+   "mappable": 3,
+   "clue_strength": 3
+  },
+  {
+   "h": "Terrier guards his owner's grave for 14 years and becomes the beloved mascot of {}",
+   "hint": "where Harry Potter was written",
+   "lat": 55.9469,
+   "lng": -3.1913,
+   "place": "Edinburgh, Scotland",
+   "src": "https://en.wikipedia.org/wiki/Greyfriars_Bobby",
+   "published": "1872-01-14",
+   "clue": "Greyfriars Bobby kept vigil at John Gray's grave until 1872; the 14 years rests on local tradition and the breed is disputed",
+   "banked": "2026-11-08",
+   "rules": 2,
+   "unbelievable": 3,
+   "theme": "animals",
+   "cc": "GB",
+   "country": "United Kingdom",
+   "geocode": "Edinburgh, Scotland, UK",
+   "daily_only": true,
+   "mappable": 3,
+   "clue_strength": 3,
+   "jargon_only": false
   },
   {
    "id": 11,
@@ -163,48 +303,6 @@
    "jargon_only": false
   },
   {
-   "h": "Police disguise themselves as lion dancers at a temple fair to catch a burglar in {}",
-   "hint": "",
-   "lat": 13.8621,
-   "lng": 100.5144,
-   "place": "Nonthaburi, Thailand",
-   "src": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/02/21/thai-police-go-undercover-as-lion-dancers-to-nab-burglar",
-   "published": "2026-02-20",
-   "clue": "Lunar New Year lion-dance costume, a temple fair, Buddhist artefact thefts, Southeast Asia",
-   "banked": "2026-11-05",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "crime",
-   "cc": "TH",
-   "country": "Thailand",
-   "geocode": "Nonthaburi, Thailand",
-   "daily_only": true,
-   "mappable": 2,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
-   "h": "Plaintiff hides tiny white text in court filings telling AI to agree with him; judge strips his e-filing rights in {}",
-   "hint": "setting of Gilmore Girls' Stars Hollow",
-   "lat": 41.6032,
-   "lng": -72.7,
-   "place": "Connecticut",
-   "src": "https://www.jdsupra.com/legalnews/connecticut-court-issues-first-prompt-1389493/",
-   "published": "2026-08-06",
-   "clue": "self-represented plaintiff's hidden prompt injection in motions; judge ordered paper filing; he called later hidden messages jokes; state-level pin",
-   "banked": "2026-11-05",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "law",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Connecticut, USA",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
    "h": "Family checks into a vacation rental in {} and finds a giant photo of themselves hanging on the wall",
    "hint": "",
    "lat": 33.1959,
@@ -222,7 +320,7 @@
    "geocode": "Oceanside, California, USA",
    "daily_only": true,
    "mappable": 3,
-   "clue_strength": 2,
+   "clue_strength": 0,
    "jargon_only": false
   },
   {
@@ -244,41 +342,6 @@
    "daily_only": true,
    "mappable": 1,
    "clue_strength": 2
-  },
-  {
-   "id": 15,
-   "h": "Sheep climbs onto roof of single-storey house to graze on the grass growing there in {}",
-   "h2": "[] climbs onto roof of single-storey house to graze on grass in Lalapaşa, Edirne, Turkey",
-   "ans": [
-    "sheep",
-    "ram",
-    "ewe",
-    "lamb"
-   ],
-   "alt": [
-    "goat",
-    "cow",
-    "animal",
-    "lambs"
-   ],
-   "place": "Lalapaşa, Edirne, Turkey",
-   "geocode": "Lalapaşa, Edirne, Turkey",
-   "lat": 41.8390388,
-   "lng": 26.7361017,
-   "country": "Turkey",
-   "cc": "TR",
-   "hint": "a Thracian border district",
-   "clue": "village grazing livestock near the Balkan border",
-   "clue_strength": 1,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 2,
-   "theme": "roof",
-   "src": "https://news.google.com/rss/articles/CBMid0FVX3lxTE90Q2dQSjJSRDVrN1dYd0RpU0s1eGRmVlpzSmI1V0J2QW1sSHVrN0NlRVVsd004WmFGZ2Y5V0FyQkJNc2JCVHZpeEU0MEdnbWtWdWhULUpWcTJSNHNhODk2VlV0RTZhWC1DaVZlZ2NuakttTWZHbkd3?oc=5",
-   "published": "2026-10-28",
-   "banked": "2026-11-05",
-   "rules": 2,
-   "blank_only": true
   },
   {
    "id": 20,
@@ -311,41 +374,6 @@
    "src": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQYVJVRk1aUjRMbkk0WENOaEpaS2lrVHZxRVlOZFNGQzA4RVMtWVY5clNQSDJsMVZWZkhXQ0lqRUR0Z1RoaGVPRUMxdm0xYktCdVpnb3lBRmc4TXg3aGNxaXhrZGc2VzNPN2t0bHZLM09EQThXYTBCeUJTQVRTSVNmc2RmN2x3VHZDbzZ6YnRzaERrSGMxUDFUb2RLR01rOEExUDJGNVJlQnFMUmpQczRFTGpFM1VGcXlRM0JocFluMk1EOHdSWHdOZzBfc2pXTDV1?oc=5",
    "published": "2026-11-02",
    "banked": "2026-11-04",
-   "rules": 2
-  },
-  {
-   "id": 46,
-   "h": "Thief who stole woman's iPhone messages her family on SMS and WhatsApp asking for its password in {}",
-   "h2": "Dehradun, India: thief who stole woman's [] messages her family asking for the password",
-   "ans": [
-    "phone",
-    "phones",
-    "smartphone",
-    "iphone",
-    "mobile"
-   ],
-   "alt": [
-    "cellphone",
-    "device",
-    "handset",
-    "mobiles"
-   ],
-   "place": "Dehradun, India",
-   "geocode": "Clement Town, Dehradun, Uttarakhand, India",
-   "lat": 30.2613281,
-   "lng": 78.0120117,
-   "country": "India",
-   "cc": "IN",
-   "hint": "where Rajiv Gandhi attended boarding school",
-   "clue": "police told her to come back next morning; WhatsApp culture",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 3,
-   "theme": "phone",
-   "src": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPOWphWTJHbVV6dTZhbFZjMzQ2MVBqa05vR2JwaGZWeS1xUDFKc1RmWDhWRmZDTk44aEwzbXVmdlhQRTV3ajJCN1FDazdRRFZTaERZdU9JcHh2X1hRMEdTZFBxWU5EUEVSNk5Od294ZzdPbFQ0M1lpOEVxSk00LTl5M2FVNkVjOGp3djM0OW5KT0dTTjAtMHgydG5uQTFSdlJsSDNwd0lTMXhpUlUwb3pxQk1jcTRHaDlLTlcxZGZ2LXV3cTN6aTBCMXVMY0ppNHZLQVB1TldaVDZ1cmtXWkFvVnc5VUhQdEt4YU80ZHdhMkVweWRKQlhSQ2tJb9IBgAJBVV95cUxPSUk3Q1gzU2J0S2NQU2JBdzM4RG00WWFKSkd4eXQ3RTUyVlF6YlZ4U25zZ0w4RTFBR1FTNUQ2eFZRLVRlSzl2SzlXci0zVzBMVnNWNVlyRTdiNmRjdDNKUVFkU1Jjb2dOcVJmaDFueXhFcWtGU1E4bXMzWF81V0h2cVc4MmVNT3B2ay1pMng2c0NRNXMtUlA2YUJaQjdBMzc2Vm9PRmxDeFd3cFh4bktqbjJfVG9KSHlzNUNEODBZa0pFOTlSZXlpTm5ObHB0U0lJYjNQeXFsYU1za3BITEVSM3lvdWcwS1FRUVRvOWthei1xWi1CRnNiOF91V2RBSW13?oc=5",
-   "published": "2026-10-08",
-   "banked": "2026-11-03",
    "rules": 2
   },
   {
@@ -445,7 +473,7 @@
    "lng": -93.8863,
    "country": "United States",
    "cc": "US",
-   "hint": "a Piney Woods community",
+   "hint": "",
    "clue": "US sheriff 'remain indoors' alert + a semitrailer",
    "clue_strength": 1,
    "jargon_only": false,
@@ -467,7 +495,7 @@
    "lng": -81.8651,
    "country": "United States",
    "cc": "US",
-   "hint": "a Blue Ridge foothills town",
+   "hint": "",
    "clue": "US chain restaurant + a county health district",
    "clue_strength": 1,
    "jargon_only": false,
@@ -704,149 +732,54 @@
    "published": "2026-10-29",
    "daily_only": true,
    "hint": "where Napoleon's retreat began"
-  },
-  {
-   "h": "Great Pyrenees is elected mayor of {} in a dollar-a-vote race, then re-elected twice",
-   "hint": "a lakeside township in the Upper Midwest",
-   "lat": 46.89,
-   "lng": -96.08,
-   "place": "Cormorant, Minnesota",
-   "src": "https://www.mprnews.org/story/2016/08/24/dog-wins-reelection-mayor-cormorant-township",
-   "published": "2016-08-24",
-   "clue": "a fluffy dog named Duke wins write-in votes at a township festival; paid in a year of kibble; a township, not a village",
-   "banked": "2026-11-08",
-   "rules": 2,
-   "unbelievable": 3,
-   "theme": "animals",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Cormorant, Minnesota, USA",
-   "daily_only": true,
-   "mappable": 2,
-   "clue_strength": 1
-  },
-  {
-   "h": "Bloodhound slips out of her yard, joins a half marathon by accident and finishes seventh in {}",
-   "hint": "a Deep South farm town",
-   "lat": 34.9234,
-   "lng": -86.9703,
-   "place": "Elkmont, Alabama",
-   "src": "https://www.foxnews.com/us/owner-of-alabama-bloodhound-that-finished-7th-in-half-marathon-speaks-out",
-   "published": "2016-01-26",
-   "clue": "two-year-old Ludivine ran the 13.1 miles in 1:32:56, seventh of 165, stopping to sniff a dead rabbit",
-   "banked": "2026-11-08",
-   "rules": 2,
-   "unbelievable": 3,
-   "theme": "animals",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Elkmont, Alabama, USA",
-   "daily_only": true,
-   "mappable": 2,
-   "clue_strength": 2
-  },
-  {
-   "h": "Black Labrador rides the city bus by herself to the dog park in {}",
-   "hint": "home of the Space Needle",
-   "lat": 47.6062,
-   "lng": -122.3321,
-   "place": "Seattle, Washington",
-   "src": "https://www.foxnews.com/us/black-lab-in-seattle-likes-to-hop-on-bus-take-solo-ride-to-her-dog-park-stop",
-   "published": "2015-01-13",
-   "clue": "Eclipse boarded the D-Line alone, three to four stops, and always knew where to get off",
-   "banked": "2026-11-08",
-   "rules": 2,
-   "unbelievable": 3,
-   "theme": "animals",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Seattle, Washington, USA",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 3
-  },
-  {
-   "h": "Terrier guards his owner's grave for 14 years and becomes the beloved mascot of {}",
-   "hint": "home of a castle on an extinct volcano",
-   "lat": 55.9469,
-   "lng": -3.1913,
-   "place": "Edinburgh, Scotland",
-   "src": "https://en.wikipedia.org/wiki/Greyfriars_Bobby",
-   "published": "1872-01-14",
-   "clue": "Greyfriars Bobby kept vigil at John Gray's grave until 1872; the 14 years rests on local tradition and the breed is disputed",
-   "banked": "2026-11-08",
-   "rules": 2,
-   "unbelievable": 3,
-   "theme": "animals",
-   "cc": "GB",
-   "country": "United Kingdom",
-   "geocode": "Edinburgh, Scotland, UK",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 3
-  },
-  {
-   "h": "Black retriever credited with saving 27 people from drowning at the docks is later named 'Dog of the Century' in {}",
-   "hint": "birthplace of Catherine Zeta-Jones",
-   "lat": 51.6214,
-   "lng": -3.9436,
-   "place": "Swansea, Wales",
-   "src": "https://en.wikipedia.org/wiki/Swansea_Jack",
-   "published": "1937-10-01",
-   "clue": "Swansea Jack: 27 rescues is legend (some sources say 29); breed given as Newfoundland or flat-coated retriever; the 2000 title came from a Bristol dog-rescue group",
-   "banked": "2026-11-08",
-   "rules": 2,
-   "unbelievable": 3,
-   "theme": "animals",
-   "cc": "GB",
-   "country": "United Kingdom",
-   "geocode": "Swansea, Wales, UK",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 3
-  },
-  {
-   "h": "St. Bernard credited with saving more than 40 stranded travelers from blizzards at {}",
-   "hint": "where Napoleon crossed the Alps in 1800",
-   "lat": 45.8689,
-   "lng": 7.1706,
-   "place": "Great St Bernard Pass hospice, Switzerland",
-   "src": "https://nmbe.ch/en/node/59",
-   "published": "1814-01-01",
-   "clue": "Barry, monks' rescue dog at the hospice, said to have saved about 40 people; the count is legend and many of his stories are unverified",
-   "banked": "2026-11-08",
-   "rules": 2,
-   "unbelievable": 3,
-   "theme": "animals",
-   "cc": "CH",
-   "country": "Switzerland",
-   "geocode": "Great St Bernard Pass, Switzerland",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 3
-  },
-  {
-   "h": "Young pit bull guards his owner's body for four days through a sub-zero Himalayan snowstorm in {}",
-   "hint": "a valley home to the Gaddi shepherds",
-   "lat": 32.4414,
-   "lng": 76.5339,
-   "place": "Bharmour, Chamba, Himachal Pradesh, India",
-   "src": "https://gulfnews.com/world/asia/india/loyal-till-the-end-devoted-pit-bull-guards-dead-owner-s-body-for-four-days-in-himachal-snow-1.500422024",
-   "published": "2026-01-26",
-   "clue": "1.5-year-old pit bull stayed by a teenager's body after two cousins died trekking; rescued on Jan 26; names and ages vary between reports",
-   "banked": "2026-11-08",
-   "rules": 2,
-   "unbelievable": 3,
-   "theme": "animals",
-   "cc": "IN",
-   "country": "India",
-   "geocode": "Bharmour, Himachal Pradesh, India",
-   "daily_only": true,
-   "mappable": 2,
-   "clue_strength": 2
   }
  ],
  "fake": [
+  {
+   "h": "Tram driver in {} stops 13 times to buy pastries for passengers and runs 40 minutes late",
+   "tell": "Tram drivers cannot leave their vehicle at will on a fixed schedule.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "tram",
+   "banked": "2026-11-10",
+   "rules": 2
+  },
+  {
+   "h": "Reindeer herders in {} find 29 snowmobiles abandoned on a frozen lake, keys still inside",
+   "tell": "Ice would not hold that many machines, and owners rarely leave keys behind.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "reindeer",
+   "banked": "2026-11-10",
+   "rules": 2
+  },
+  {
+   "h": "Cricket match in {} halted 25 minutes while a monitor lizard eats a batsman's sandwich",
+   "tell": "The lizard eating a specific player's sandwich is an unlikely coincidence.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "cricket",
+   "banked": "2026-11-10",
+   "rules": 2
+  },
+  {
+   "h": "Trawler crew off {} haul up a red telephone box with a working dial tone",
+   "tell": "A phone box on the seabed would not still have a live line.",
+   "unbelievable": 5,
+   "obvious": 3,
+   "theme": "phone",
+   "banked": "2026-11-10",
+   "rules": 2
+  },
+  {
+   "h": "Man in {} steals a council gritter lorry and spends six hours salting a dry motorway",
+   "tell": "Nobody steals a gritter just to do the job; the cause is too tidy.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "gritter",
+   "banked": "2026-11-10",
+   "rules": 2
+  },
   {
    "h": "Teenager sells his school's 41 lost-property umbrellas back to pupils for 3 euros each in {}",
    "tell": "Selling back items to their owners at a fixed price is too neat a scheme for a teenager.",
@@ -1071,72 +1004,33 @@
    "theme": "duck",
    "banked": "2026-11-05",
    "rules": 2
-  },
-  {
-   "h": "Bus driver in {} halts route for 22 minutes so a flock of 63 geese can finish crossing",
-   "tell": "A 22-minute wait for one flock is long; a driver would sound the horn or edge forward.",
-   "obvious": 2,
-   "unbelievable": 3,
-   "theme": "bus",
-   "banked": "2026-11-04",
-   "rules": 2
-  },
-  {
-   "h": "Pensioner in {} repays a 1987 library fine of 4,310 rupees in coins carried by wheelbarrow",
-   "tell": "A library fine that huge is implausible for rupees, and the wheelbarrow detail is too staged.",
-   "obvious": 3,
-   "unbelievable": 4,
-   "theme": "library",
-   "banked": "2026-11-04",
-   "rules": 2
-  },
-  {
-   "h": "Postie in {} delivers the same parcel to the wrong house 19 days running; one neighbour signs each time",
-   "tell": "A coincidence stretched too far: someone would have returned it after the second day.",
-   "obvious": 3,
-   "unbelievable": 4,
-   "theme": "parcel",
-   "banked": "2026-11-04",
-   "rules": 2
-  },
-  {
-   "h": "Farmers in {} pull 1,260 golf balls from a drystone wall; the nearest course is 90 km away",
-   "tell": "Golf balls do not end up packed inside a wall far from any course.",
-   "obvious": 2,
-   "unbelievable": 4,
-   "theme": "golf",
-   "banked": "2026-11-04",
-   "rules": 2
-  },
-  {
-   "h": "Two rival ice-cream vans park nose to nose on a one-lane bridge in {} for 5 hours, trapping 212 cars",
-   "tell": "Drivers would have reversed or called for help long before five hours passed.",
-   "obvious": 3,
-   "unbelievable": 4,
-   "theme": "traffic",
-   "banked": "2026-11-04",
-   "rules": 2
-  },
-  {
-   "h": "Dachshund in {} orders 41 lamb chops through a smart speaker and pays with loyalty points",
-   "tell": "Loyalty points don't pay for a delivery ordered through a speaker.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "dogs",
-   "banked": "2026-11-08",
-   "rules": 2
-  },
-  {
-   "h": "Corgi in {} is expelled from 3 dog parks in one afternoon for herding toddlers into a sandpit",
-   "tell": "An expulsion needs written notice, so three parks can't all act in one afternoon.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "dogs",
-   "banked": "2026-11-08",
-   "rules": 2
   }
  ],
  "pol": [
+  {
+   "id": 36,
+   "h": "Final day of voting begins in {} as an unusual law bans any talk of politics",
+   "place": "Wellington, New Zealand",
+   "geocode": "Wellington, New Zealand",
+   "lat": -41.2887953,
+   "lng": 174.7772114,
+   "clue": "a harbour capital on Cook Strait, where election-day politics talk is banned",
+   "src": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPSnktWHRLU0lQUUhxbDFhQVdoWkY0WHU3TlFFNVFSQ3lkQ1ZGR2N4YmxkVTgxbnZsbGhKZFdYNEhLbnNSUzBsMzl3NEZHUEpWOFFmQ3NQaTdrYVoxVmRMYU5oT0NpUXY4a2dBT1AxdXE2NWpXdTNzWU44UzVhRTQxN2tnU01TSEJTRmtkNjlBOTViMDJsSzdsa1RQSnZFbkoyeWkzazBQRWhBMDhvSzJsdDQzYmhjNHhnM2dBenRUbnJqeXZHNjBaNWVJcFVnZlhJdHBoQmtPTG1BVV9lN3VPX3FERFPSAfIBQVVfeXFMTjljWFQxQi1RRFM1c2N4SjF4ZFFaSGhsa3VSTVRWV3pVNlU2bE52b05CUGtwdnBKc0pFTUZQYTRJRW5kUUF2RzU4VjFqTERuR293RkNXdHlNMUhURXhNS0sxMUxZaC1VWmdfc1RBcXBOSWpJRVg2M2xQNDhJTUpjMTIxYjNPa0ZOZEgzSDZ2YldlajJQMkRXc0FHTTJNX08tZlp4VmVWbVEydFJIMkowS2tiZnVHbFpHOGd0OGtOay1nSmlVZDlIQzNsY09ZYUEzMkVmbmRTOU5mMEFLa0ZlZ0ZuMjZBMmcyWTExX2JBQ2xuVmc?oc=5",
+   "published": "2026-11-07",
+   "banked": "2026-11-10"
+  },
+  {
+   "id": 33,
+   "h": "No recount, no revote: a bowl of numbers breaks mayoral runoff tie in {}",
+   "place": "Elm Springs, Arkansas, USA",
+   "geocode": "Elm Springs, Arkansas, USA",
+   "lat": 36.206183,
+   "lng": -94.2343657,
+   "clue": "a small Ozark town where a mayoral runoff is settled by a bowl of numbers",
+   "src": "https://news.google.com/rss/articles/CBMif0FVX3lxTE96V0hJMkxtc000Y0FzSDMxMHFHU2ZtYmROSFlHazJ1ZUczNWtLamRCWUtTVEFMY3FsYlJMRnVpUDB2T2NRSnRveDJTQ1kwdU5GaTg5MFZIM0lQUTZfSTg1N3Myb245elBFVnhhX0FVeDlnbXM5aEdTampMVTNMUlU?oc=5",
+   "published": "2026-11-07",
+   "banked": "2026-11-10"
+  },
   {
    "id": 25,
    "h": "Two in-laws tie with 38 votes each for a commission seat in {}",
@@ -1148,24 +1042,36 @@
    "src": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNRTQ2dTZBZ2QxQnBUeDQ4cVhiRmJ3YVVVaUcwdzdMV0xyR0JNUnhYQmtNRm84aHZSb2RBZGdydnExMmJONlgyNkp3YklNdUU0dVVualp1Zl92TnAtMUZtTnlZZHF1Rm9LVU5HNTluVS1FWEdCVDlaR1JpZ05ZY1FIc0RSZFBLWTFYTzNyUE1kMjI3b0YzUXY1N285YVNhN1VaUnZyWFB6N3Y2M2FaME5NMmw5a09zTTZib193ZmoxSEJYMmlrSGlPSjFxT2RQMnZLQTVnazNqaWlSY3hJSzJVZ2s0MGQ5LVliTmNWcjlvcEhGWUFU?oc=5",
    "published": "2026-11-04",
    "banked": "2026-11-08"
-  },
-  {
-   "id": 12,
-   "h": "Final day of voting begins in {} as unusual law bans any talk of politics",
-   "place": "Wellington, New Zealand",
-   "geocode": "NZ",
-   "lat": -41.5000831,
-   "lng": 172.8344077,
-   "clue": "election-day gag law; capital city on Cook Strait in the Southern Hemisphere",
-   "src": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9TZG5FR3Y1aklXLVQ4dTIyZW1lZ0ZlbDJkaU51VlR4QlpRWTg3T3VndUFzSkpWanlFNl9jQk80NmJNN0Z5WjN2aTctd1h4bUZUbU1sM1VQY3JzZG5HQmZnWXNRd19OeER5RmJTNll3?oc=5",
-   "published": "2026-11-07",
-   "banked": "2026-11-08"
   }
  ],
  "polfake": [
   {
    "h": "Voters in {} elect a mayor born on the same day as the last three mayors",
    "banked": "2026-11-07"
+  },
+  {
+   "h": "Mayor of {} cancels annual budget vote after clerk finds a typo in the third paragraph",
+   "banked": "2026-11-10"
+  },
+  {
+   "h": "Voters in {} elect a write-in candidate who had moved away the previous spring",
+   "banked": "2026-11-10"
+  },
+  {
+   "h": "Parliament in {} votes 63 to 61 to shift its sitting hour to ease commuter traffic",
+   "banked": "2026-11-10"
+  },
+  {
+   "h": "Town clerk in {} rules ballots marked in green ink valid after pen shortage at polling station",
+   "banked": "2026-11-10"
+  },
+  {
+   "h": "Alderman in {} wins re-election by 7 votes after rival's campaign bus breaks down on polling day",
+   "banked": "2026-11-10"
+  },
+  {
+   "h": "Borough assembly in {} bans leaf blowers on weekdays, citing a 13 percent rise in noise complaints",
+   "banked": "2026-11-10"
   },
   {
    "h": "Parliament in {} passes law forcing members to retire at 71 after finding their average age was 68",
@@ -1220,36 +1126,6 @@
    "h": "Town clerk in {} finds 212 uncounted ballots in a parish hall freezer, result unchanged",
    "banked": "2026-11-06",
    "tell": "Ballots found uncounted in a freezer would trigger a recount, not leave the result unchanged."
-  },
-  {
-   "h": "Newly elected councillor in {} resigns after learning the ward she won was merged last year",
-   "banked": "2026-11-06",
-   "tell": "A ward merged last year could not have elected her this year."
-  },
-  {
-   "h": "Mayor of {} signs bylaw requiring all taxis to be painted green, effective the same afternoon",
-   "banked": "2026-11-06",
-   "tell": "A bylaw cannot take effect the same afternoon it is signed; taxis cannot be repainted that fast."
-  },
-  {
-   "h": "Mayor of {} signs ordinance banning leaf blowers after hearing complaints at three consecutive meetings",
-   "banked": "2026-11-05",
-   "tell": "Three complaints at consecutive meetings rarely become a ban signed on the spot."
-  },
-  {
-   "h": "Voters in {} approve 14-member parliament expansion after turnout rises to 212 percent in one district",
-   "banked": "2026-11-05",
-   "tell": "Turnout of 212 percent in a district is impossible."
-  },
-  {
-   "h": "Budget vote in {} delayed 37 days because the only copy of the agenda was filed under the wrong ward",
-   "banked": "2026-11-05",
-   "tell": "An agenda filed under the wrong ward is found in days, not after 37."
-  },
-  {
-   "h": "Town of {} elects new sheriff by popular vote, county commissioners confirm him as prime minister's envoy",
-   "banked": "2026-11-05",
-   "tell": "A county commissioner confirms county posts, not a prime minister's envoy."
   }
  ]
 }
