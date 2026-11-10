@@ -148,6 +148,12 @@
    "before": "Rosario title-celebration story (no source could be found to back the headline)",
    "after": "Ankara couple who divorce, remarry and divorce again over cheating",
    "why": "the owner swapped out a story whose claim I could not verify; prefer stories with a named, checkable source over an unreadable news-aggregator link"
+  },
+  {
+   "kind": "headline",
+   "before": "Blind drunk driver reportedly makes 150 miles by following a lorry's lights before police stop him near {}",
+   "after": "Blind drunk driver reportedly makes it 150 miles before police stop him near {}",
+   "why": "say 'makes it' and drop the lorry-lights detail: the plain claim is stronger and shorter"
   }
  ]
 }
