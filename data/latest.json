@@ -19,9 +19,15 @@
    "tell": "One hive yields a few dozen litres a season, not 412 in an afternoon."
   },
   {
-   "real": false,
-   "h": "Boy, 9, reels in a 6.4-tonne tuna from a rowing boat in {} using sewing thread",
-   "tell": "Sewing thread would snap under a fraction of that weight."
+   "real": true,
+   "h": "Defendant files fake Supreme Court order dismissing his own case in {}",
+   "hint": "where James Dean was born",
+   "lat": 40.5584,
+   "lng": -85.6592,
+   "place": "Marion, Indiana",
+   "src": "https://www.newser.com/story/395381/john-roberts-signed-order-dismissing-guys-case-except-he-didnt.html",
+   "published": "2026-02-01",
+   "clue": "US county court + a forged Chief Justice signature"
   },
   {
    "real": true,
@@ -35,15 +41,9 @@
    "clue": "US state DOT + an interstate ramp"
   },
   {
-   "real": true,
-   "h": "Defendant files fake Supreme Court order dismissing his own case in {}",
-   "hint": "where James Dean was born",
-   "lat": 40.5584,
-   "lng": -85.6592,
-   "place": "Marion, Indiana",
-   "src": "https://www.newser.com/story/395381/john-roberts-signed-order-dismissing-guys-case-except-he-didnt.html",
-   "published": "2026-02-01",
-   "clue": "US county court + a forged Chief Justice signature"
+   "real": false,
+   "h": "Boy, 9, reels in a 6.4-tonne tuna from a rowing boat in {} using sewing thread",
+   "tell": "Sewing thread would snap under a fraction of that weight."
   },
   {
    "real": true,
