@@ -1670,9 +1670,12 @@ function pinPoints(d){return Math.max(Math.round(PK*PIN_MIN), Math.round(PK*PIN_
 /* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
 const PIN_SECS=20;                 // the pin has a 20 s limit, but taking longer no longer costs distance points
 function pinMult(){ return 1; }
-/* Bonus for a fast, fairly accurate pin (true call only): up to +20. Full if within 150 km in 6 s or less; fades to nothing at 800 km or 11 s. */
+/* Bonus for a close or a quick pin: up to +20. Always full within 100 km; otherwise full within 150 km in 12 s or less, fading to nothing at 800 km or 20 s. */
 const PIN_BONUS=20;
-function pinBonus(d,sec){ return Math.round(PK*PIN_BONUS*Math.max(0,Math.min(1,(11-sec)/5))*Math.max(0,Math.min(1,(800-d)/650))); }
+function pinBonus(d,sec){
+  if(d<=100) return Math.round(PK*PIN_BONUS);      // a Globalist pin always earns the full bonus, however long the zooming took
+  return Math.round(PK*PIN_BONUS*Math.max(0,Math.min(1,(20-sec)/8))*Math.max(0,Math.min(1,(800-d)/650)));   // otherwise full up to 12 s, gone by 20 s; fades out by 800 km
+}
 let PIN_RAF=0;
 function runPinTimer(){
   cancelAnimationFrame(PIN_RAF);
@@ -3061,7 +3064,7 @@ function startGame(mode, kind){
   $('mPractice').classList.toggle('on',!daily);
   $('howText').innerHTML = blank
     ? 'Guess the hidden word in each true headline. The exact word scores <b>'+Math.round(BLANK_MAX)+'</b>, however fast you find it. Near misses pay part of that, the closer the more. Every guess after your third costs 5%.'
-    : 'Right call on a true story: up to <b>+'+Math.round(PK*CALL_PTS)+'</b>, more the quicker you answer. Catching a fake: <b>+'+FAKE_PTS+'</b>. Fooled by a fake: <b>−'+Math.abs(FOOLED_PTS)+'</b>. Then pin where the true story happened for up to <b>+'+Math.round(PK*PIN_PTS)+'</b>, plus <b>+'+Math.round(PK*COUNTRY_PTS)+'</b> if your pin is in the right country. A fast, fairly close pin earns up to <b>+'+Math.round(PK*PIN_BONUS)+'</b> more. Every point drops his jaw the same distance, and losing points pulls it back up.';
+    : 'Right call on a true story: up to <b>+'+Math.round(PK*CALL_PTS)+'</b>, more the quicker you answer. Catching a fake: <b>+'+FAKE_PTS+'</b>. Fooled by a fake: <b>−'+Math.abs(FOOLED_PTS)+'</b>. Then pin where the true story happened for up to <b>+'+Math.round(PK*PIN_PTS)+'</b>, plus <b>+'+Math.round(PK*COUNTRY_PTS)+'</b> if your pin is in the right country. A pin within 100 km, or a quick and fairly close one, earns up to <b>+'+Math.round(PK*PIN_BONUS)+'</b> more. Every point drops his jaw the same distance, and losing points pulls it back up.';
   renderStats();
   closeMenu();
   Scene.configure(JAW_SCALE);
@@ -3410,7 +3413,7 @@ function submitGuess(timedOut){
   const distPts = pts;                                  // distance points alone, for the breakdown
   const bonus = guessLL ? Math.round(pinBonus(d,sec)*(S.cur.callOk?1:0.75)) : 0;   // a wrong call still earns it, at the same 75% credit as the pin
   pts += bonus; S.cur.pinBonus = bonus;
-  const cTrue = guessLL ? countryAt(st.lat,st.lng,60) : -1, cOk = cTrue>=0 && countryAt(guessLL.lat,guessLL.lng,0)===cTrue;
+  const cTrue = guessLL ? countryAt(st.lat,st.lng,60) : -1, cOk = cTrue>=0 && countryAt(guessLL.lat,guessLL.lng,30)===cTrue;   // a pin just off a coarse coastline still counts
   const cPts = cOk ? Math.round(PK*COUNTRY_PTS*(S.cur.callOk?1:0.75)) : 0;   // a flat bonus for the right country (75% credit after a wrong call, like the pin)
   pts += cPts; S.cur.countryPts = cPts;
   S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
