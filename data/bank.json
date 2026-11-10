@@ -736,274 +736,328 @@
  ],
  "fake": [
   {
-   "h": "Tram driver in {} stops 13 times to buy pastries for passengers and runs 40 minutes late",
-   "tell": "Tram drivers cannot leave their vehicle at will on a fixed schedule.",
-   "unbelievable": 4,
-   "obvious": 2,
-   "theme": "tram",
-   "banked": "2026-11-10",
-   "rules": 2
-  },
-  {
-   "h": "Reindeer herders in {} find 29 snowmobiles abandoned on a frozen lake, keys still inside",
-   "tell": "Ice would not hold that many machines, and owners rarely leave keys behind.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "reindeer",
-   "banked": "2026-11-10",
-   "rules": 2
-  },
-  {
-   "h": "Cricket match in {} halted 25 minutes while a monitor lizard eats a batsman's sandwich",
-   "tell": "The lizard eating a specific player's sandwich is an unlikely coincidence.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "cricket",
-   "banked": "2026-11-10",
-   "rules": 2
-  },
-  {
-   "h": "Trawler crew off {} haul up a red telephone box with a working dial tone",
-   "tell": "A phone box on the seabed would not still have a live line.",
-   "unbelievable": 5,
-   "obvious": 3,
-   "theme": "phone",
-   "banked": "2026-11-10",
-   "rules": 2
-  },
-  {
-   "h": "Man in {} steals a council gritter lorry and spends six hours salting a dry motorway",
-   "tell": "Nobody steals a gritter just to do the job; the cause is too tidy.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "gritter",
-   "banked": "2026-11-10",
-   "rules": 2
-  },
-  {
-   "h": "Teenager sells his school's 41 lost-property umbrellas back to pupils for 3 euros each in {}",
-   "tell": "Selling back items to their owners at a fixed price is too neat a scheme for a teenager.",
-   "unbelievable": 4,
-   "obvious": 2,
-   "theme": "umbrellas",
-   "banked": "2026-11-08",
-   "rules": 2
-  },
-  {
-   "h": "Postman in {} delivers mail by kayak for 11 days after the village's only bridge is repainted",
-   "tell": "Bridges are closed for wet paint rarely, and never for eleven days without a detour.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "mail",
-   "banked": "2026-11-08",
-   "rules": 2
-  },
-  {
-   "h": "Moose steps into a ski-rental shop in {} and sits on a display of 29 snowboards",
-   "tell": "Wandering animals rarely do something so specific as sit on a tidy display.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "moose",
-   "banked": "2026-11-08",
-   "rules": 2
-  },
-  {
-   "h": "Wedding in {} delayed 3 hours after the bride's 18 rented peacocks escape onto the ring road",
-   "tell": "Hiring exactly eighteen peacocks and losing every one is an unlikely coincidence.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "wedding",
-   "banked": "2026-11-08",
-   "rules": 2
-  },
-  {
-   "h": "Pensioners in {} play a 54-hour bingo marathon after the hall clock stops and nobody notices",
-   "tell": "Nobody in a room of pensioners would miss meals and sleep for two days.",
+   "h": "Hot-air balloon lands in a prison yard in {}; 3 inmates fold it, then walk back to their cells",
+   "tell": "Guards would clear the yard at once; inmates folding a balloon and strolling back is far too tidy.",
    "unbelievable": 5,
    "obvious": 2,
-   "theme": "bingo",
-   "banked": "2026-11-08",
-   "rules": 2
+   "theme": "balloons",
+   "banked": "2026-11-10",
+   "rules": 3
   },
   {
-   "h": "Burglar in {} leaves with a 63 kg safe but forgets his own bike, then returns by bus to collect it",
-   "tell": "A burglar carrying a 63 kg safe and then going back for a bike is over-tidy cause and effect.",
+   "h": "Trainee pilot lands a glider on a supermarket roof in {} and shops before taking off again",
+   "tell": "A glider can't take off again on its own; it needs a winch or a tow plane.",
    "unbelievable": 4,
    "obvious": 3,
-   "theme": "burglary",
-   "banked": "2026-11-08",
-   "rules": 2
+   "theme": "aviation",
+   "banked": "2026-11-10",
+   "rules": 3
   },
   {
-   "h": "Pensioner in {} ties his buffalo to a traffic signal for three days, delaying 4,310 commuters",
-   "tell": "A precise commuter count for an animal tied to a signal is invented-sounding.",
-   "obvious": 3,
+   "h": "Snail race in {} is won for the 83rd year running by a snail that covers 1 metre in 9 seconds",
+   "tell": "Snails take minutes to crawl a metre, not 9 seconds.",
    "unbelievable": 4,
-   "theme": "buffalo",
-   "banked": "2026-11-07",
-   "rules": 2
-  },
-  {
-   "h": "Taxi driver in {} returns lost suitcase holding 41 dried cod, a tuba and a wedding dress",
-   "tell": "The luggage contents read like a checklist of unrelated oddities.",
    "obvious": 2,
-   "unbelievable": 4,
-   "theme": "luggage",
-   "banked": "2026-11-07",
-   "rules": 2
+   "theme": "races",
+   "banked": "2026-11-10",
+   "rules": 3
   },
   {
-   "h": "Sauna in {} locks in 19 tourists overnight after attendant leaves early for a ski trip",
-   "tell": "Real saunas have exits and staff checks; this cause and effect is too tidy.",
-   "obvious": 3,
-   "unbelievable": 4,
-   "theme": "sauna",
-   "banked": "2026-11-07",
-   "rules": 2
-  },
-  {
-   "h": "Samba school in {} cancels rehearsal after 29 drummers get stuck in a lift for six hours",
-   "tell": "A lift rarely carries 29 drummers with instruments at once.",
-   "obvious": 2,
-   "unbelievable": 4,
-   "theme": "samba",
-   "banked": "2026-11-07",
-   "rules": 2
-  },
-  {
-   "h": "Winemaker in {} finds 2,310 bottles swapped for lookalike vinegar, tastings went on for a week",
-   "tell": "Nobody would keep tasting vinegar for a week without noticing.",
-   "obvious": 3,
-   "unbelievable": 4,
-   "theme": "wine",
-   "banked": "2026-11-07",
-   "rules": 2
-  },
-  {
-   "h": "Trawler crew in {} haul a grand piano up in their nets twice in one week",
-   "tell": "The same unlikely object turning up twice in one week is too much of a coincidence.",
-   "obvious": 2,
+   "h": "Ice-cream shop in {} sells 418 scoops of a new flavour before noticing the tub was empty",
+   "tell": "You can't sell 418 scoops out of an empty tub.",
    "unbelievable": 5,
+   "obvious": 3,
+   "theme": "icecream",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Fire crew in {} called to a blaze that turns out to be 214 candles on a single birthday cake",
+   "tell": "Nobody turns 214; that many candles makes no sense on a birthday cake.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "birthday",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Family cat in {} is listed as head of household on a census return, and the form is accepted",
+   "tell": "Census forms are checked; a cat can't be accepted as head of household.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "census",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Customs officers in {} seize 3,180 rubber ducks hidden inside a shipment of bathtubs",
+   "tell": "Rubber ducks aren't banned or taxed heavily, so there is no reason to smuggle them.",
+   "unbelievable": 5,
+   "obvious": 2,
+   "theme": "customs",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Lighthouse keeper in {} repaints the tower in 7 colours after misreading a paint order",
+   "tell": "A lighthouse's colours are set by the maritime authority, not chosen by its keeper.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "lighthouse",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Vending machine in {} drops 1,267 free chocolate bars after a moth lands on the service switch",
+   "tell": "A moth is far too light to trip a switch, and the service switch sits inside the locked machine.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "snacks",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Postman in {} delivers 1,486 letters to one house after a child's drawing covers a street sign",
+   "tell": "Post is sorted by postcode and address, not by reading street signs.",
+   "unbelievable": 5,
+   "obvious": 3,
+   "theme": "post",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Stray llama spends 6 nights in a hotel lobby in {} before staff realise it is not a decoration",
+   "tell": "A live llama eats, moves and smells; staff would notice within minutes.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "hotels",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Fishing trawler off {} nets a sunken piano that still plays 3 notes in tune",
+   "tell": "Seawater ruins a piano's strings and felts; nothing would still be in tune.",
+   "unbelievable": 4,
+   "obvious": 3,
    "theme": "fishing",
-   "banked": "2026-11-07",
-   "rules": 2
+   "banked": "2026-11-10",
+   "rules": 3
   },
   {
-   "h": "Thief takes 23 wheelie bins from one street in {} on bin day, returns them full of sorted recycling",
-   "tell": "On bin day the bins sit emptied at the kerb, so there was nothing to return full of sorted recycling.",
+   "h": "Hiker in {} reports a UFO that turns out to be his own drone, still filming him 214 metres up",
+   "tell": "Drones run out of battery in about half an hour, so his own drone couldn't still be hovering over him.",
+   "unbelievable": 5,
+   "obvious": 2,
+   "theme": "drones",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Hotel in {} bills a guest for 37 minibar items he drank while away on a 9-day cruise",
+   "tell": "He couldn't drink from the minibar while he was away at sea.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "travel",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Brass band plays the national anthem 27 times at a match in {} after the scoreboard jams",
+   "tell": "Anthems are played once before kick-off; a jammed scoreboard has nothing to do with them.",
    "unbelievable": 4,
    "obvious": 2,
-   "theme": "bins",
-   "banked": "2026-11-06",
-   "rules": 2
+   "theme": "bands",
+   "banked": "2026-11-10",
+   "rules": 3
   },
   {
-   "h": "Baker finds a 1962 love letter in a flour sack in {}; the writer, 84, lives two streets away",
-   "tell": "A flour sack is used within weeks; none sits 64 years waiting for someone to find a letter in it.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "letter",
-   "banked": "2026-11-06",
-   "rules": 2
-  },
-  {
-   "h": "Brushtail possum moves into a bowls club trophy cabinet in {} and sleeps through 19 night matches",
-   "tell": "Brushtail possums are nocturnal; one would be awake and out of the cabinet during night matches.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "marsupial",
-   "banked": "2026-11-06",
-   "rules": 2
-  },
-  {
-   "h": "Ferry turns back mid-fjord in {} after a passenger's parrot copies the foghorn and a second ferry answers",
-   "tell": "Ships answer horns by set signals; neither ferry would turn back over a parrot's imitation.",
+   "h": "Bin lorry in {} tips a parked hatchback into its hopper; the owner is charged a bulky-waste fee",
+   "tell": "A bin lorry's lift arms are built for wheelie bins; they can't lift a car.",
    "unbelievable": 5,
    "obvious": 3,
-   "theme": "parrot",
-   "banked": "2026-11-06",
-   "rules": 2
+   "theme": "rubbish",
+   "banked": "2026-11-10",
+   "rules": 3
   },
   {
-   "h": "Cows in {} refuse to come down from the high pasture for 3 days in July until the farmer's brass band plays",
-   "tell": "In July alpine cows belong on the high pasture; they only come down in autumn.",
+   "h": "Booking slip sends 37 tour coaches to a farm track instead of the castle in {} in one morning",
+   "tell": "One booking error might misroute a coach, not 37 in one morning.",
    "unbelievable": 4,
    "obvious": 2,
-   "theme": "cattle",
-   "banked": "2026-11-06",
-   "rules": 2
+   "theme": "tourism",
+   "banked": "2026-11-10",
+   "rules": 3
   },
   {
-   "h": "Deputies in {} spend 6 hours hunting a stolen chainsaw-carved bear that was in their own evidence room",
-   "tell": "The bear was already in their evidence log; deputies would have checked the log before searching.",
+   "h": "Funicular in {} carries a sleeping passenger up and down 41 times before anyone wakes him",
+   "tell": "Funiculars are emptied at the terminus on every run.",
    "unbelievable": 4,
    "obvious": 3,
-   "theme": "statue",
-   "banked": "2026-11-06",
-   "rules": 2
+   "theme": "transport",
+   "banked": "2026-11-10",
+   "rules": 3
   },
   {
-   "h": "Reindeer wander into a petrol station near {} and queue for 3 hours outside the heated toilets",
-   "tell": "Reindeer move in loose herds and do not queue, least of all for a toilet block.",
+   "h": "Pub quiz team in {} wins 63 weeks running before it turns out to be the quizmaster's 4 brothers",
+   "tell": "A local pub quiz would spot the quizmaster's brothers long before week 63.",
+   "unbelievable": 5,
+   "obvious": 2,
+   "theme": "quiz",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Orchestra in {} plays a whole symphony in total darkness after a power cut, finishing early",
+   "tell": "Musicians read their parts from the page; in total darkness they couldn't.",
    "unbelievable": 4,
    "obvious": 3,
-   "theme": "reindeer",
-   "banked": "2026-11-05",
-   "rules": 2
+   "theme": "orchestra",
+   "banked": "2026-11-10",
+   "rules": 3
   },
   {
-   "h": "Burglar in {} steals 29 sets of false teeth from a dental lab and leaves the cash untouched",
-   "tell": "Burglars rarely ignore cash; the odd selectivity is an over-tidy detail.",
+   "h": "Hospital in {} discharges a man after 6 days, then learns he was a visitor in a spare bed",
+   "tell": "Patients are registered on admission; a visitor wouldn't be fed and checked on for 6 days.",
    "unbelievable": 4,
    "obvious": 2,
-   "theme": "teeth",
-   "banked": "2026-11-05",
-   "rules": 2
+   "theme": "hospitals",
+   "banked": "2026-11-10",
+   "rules": 3
   },
   {
-   "h": "Scrap dealer in {} buys a village's three church bells at a clearance auction for 880 euros",
-   "tell": "Church bells are protected heritage and are not sold at clearance auctions.",
-   "unbelievable": 3,
+   "h": "Scarecrow in {} gets a parking ticket after a farmer leaves it driving his tractor in a field",
+   "tell": "Wardens don't ticket farm vehicles parked in fields.",
+   "unbelievable": 5,
    "obvious": 3,
-   "theme": "bells",
-   "banked": "2026-11-05",
-   "rules": 2
+   "theme": "farming",
+   "banked": "2026-11-10",
+   "rules": 3
   },
   {
-   "h": "Cricket match in {} halted for 52 minutes as a monitor lizard sits on the umpire's hat",
-   "tell": "A lizard choosing the umpire's hat is an unlikely coincidence, and no one would wait 52 minutes.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "lizard",
-   "banked": "2026-11-05",
-   "rules": 2
-  },
-  {
-   "h": "Fishing boat off {} lands a refrigerator holding 63 frozen pizzas, all still in date",
-   "tell": "A fridge lost at sea cannot keep pizzas frozen, let alone in date.",
+   "h": "Fireworks in {} go off 4 hours early when a technician's phone alarm triggers the launch",
+   "tell": "Displays are fired from a control panel; a phone alarm can't launch them.",
    "unbelievable": 4,
    "obvious": 2,
-   "theme": "pizza",
-   "banked": "2026-11-05",
-   "rules": 2
+   "theme": "fireworks",
+   "banked": "2026-11-10",
+   "rules": 3
   },
   {
-   "h": "Skier at {} rides a chairlift for three hours in a full snowman costume before staff notice",
-   "tell": "Lift staff watch every chair; three unnoticed hours in a costume is implausible.",
-   "unbelievable": 3,
-   "obvious": 3,
-   "theme": "skiing",
-   "banked": "2026-11-05",
-   "rules": 2
-  },
-  {
-   "h": "Tram services in {} halted for 47 minutes while 63 ducks cross the tracks in single file",
-   "tell": "Ducks scatter and waddle in clumps; 47 minutes of orderly single file does not happen.",
+   "h": "Stolen garden bench in {} is returned with 214 new memorial plaques screwed along its back",
+   "tell": "A bench back has room for a few plaques, not 214.",
    "unbelievable": 4,
    "obvious": 3,
-   "theme": "duck",
-   "banked": "2026-11-05",
-   "rules": 2
+   "theme": "gardens",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Herd of 41 goats sleeps across a bank's front steps in {}, delaying opening by 37 minutes",
+   "tell": "Staff use a back entrance; goats on the steps wouldn't keep a bank shut.",
+   "unbelievable": 5,
+   "obvious": 2,
+   "theme": "goats",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Wind turbine in {} spins backwards for an afternoon and sends power to 9 homes the wrong way",
+   "tell": "Household electricity has no 'wrong way' for power to flow.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "energy",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Escaped emu joins a cycling time trial in {} and is given an official finishing time of 41:07",
+   "tell": "Race officials time registered riders, not animals that wander onto the course.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "emus",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Cheese wheel rolls 2.3 km downhill from a farm in {} and stops at the door of a rival dairy",
+   "tell": "A rolling cheese stopping at a rival's door is too neat a coincidence.",
+   "unbelievable": 5,
+   "obvious": 3,
+   "theme": "cheese",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Swans in {} block a motorway slip road for 41 minutes to escort 9 cygnets to a petrol station",
+   "tell": "Swans head for water, not petrol stations.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "swans",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Snow plough in {} clears 14 km of the wrong motorway after its satnav picks a ferry route",
+   "tell": "Ploughs follow assigned routes, and a ferry route can't put him on a motorway.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "roads",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Town clock in {} runs 13 minutes fast for 47 years until a schoolboy checks it on his phone",
+   "tell": "Phones weren't around to check a clock 47 years ago, so nobody could have missed it for that long.",
+   "unbelievable": 5,
+   "obvious": 2,
+   "theme": "clocks",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Escalator in {} runs backwards all day; shoppers climb it 8,417 times before staff notice",
+   "tell": "Staff and sensors would notice a backwards escalator in minutes, not after thousands of trips.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "shopping",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Weather station in {} records 61°C on a winter afternoon after a hen nests on the sensor",
+   "tell": "A hen's body heat is about 41°C; it can't push a reading to 61°C.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "weather",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Drawbridge in {} stays raised for 7 hours after the operator's lunch box jams the control lever",
+   "tell": "Drawbridges have manual overrides; a lunch box wouldn't keep one up for 7 hours.",
+   "unbelievable": 5,
+   "obvious": 3,
+   "theme": "bridges",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Pensioner in {} wins a village marrow contest with a cucumber, and the judges keep the result",
+   "tell": "A cucumber and a marrow look different enough that judges would spot it at once.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "vegetables",
+   "banked": "2026-11-10",
+   "rules": 3
+  },
+  {
+   "h": "Window cleaner in {} finishes a 37-storey tower in one afternoon on a single bucket of water",
+   "tell": "One bucket of water couldn't clean the windows of a 37-storey tower.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "cleaning",
+   "banked": "2026-11-10",
+   "rules": 3
   }
  ],
  "pol": [
