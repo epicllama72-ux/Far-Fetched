@@ -754,15 +754,6 @@
    "rules": 3
   },
   {
-   "h": "Snail race in {} is won for the 83rd year running by a snail that covers 1 metre in 9 seconds",
-   "tell": "Snails take minutes to crawl a metre, not 9 seconds.",
-   "unbelievable": 4,
-   "obvious": 2,
-   "theme": "races",
-   "banked": "2026-11-10",
-   "rules": 3
-  },
-  {
    "h": "Ice-cream shop in {} sells 418 scoops of a new flavour before noticing the tub was empty",
    "tell": "You can't sell 418 scoops out of an empty tub.",
    "unbelievable": 5,
@@ -1020,15 +1011,6 @@
    "unbelievable": 4,
    "obvious": 3,
    "theme": "shopping",
-   "banked": "2026-11-10",
-   "rules": 3
-  },
-  {
-   "h": "Weather station in {} records 61°C on a winter afternoon after a hen nests on the sensor",
-   "tell": "A hen's body heat is about 41°C; it can't push a reading to 61°C.",
-   "unbelievable": 4,
-   "obvious": 2,
-   "theme": "weather",
    "banked": "2026-11-10",
    "rules": 3
   },

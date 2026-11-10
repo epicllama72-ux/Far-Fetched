@@ -37,8 +37,8 @@
   },
   {
    "real": false,
-   "h": "Rickshaw driver in {} returns a bag of 48,000 rupees, then is handed a second bag by mistake",
-   "tell": "An over-tidy coincidence: the same honest act is rewarded with a repeat mix-up."
+   "h": "Snail race in {} is won for the 83rd year running by a snail that covers 1 metre in 9 seconds",
+   "tell": "Snails take minutes to crawl a metre, not 9 seconds."
   },
   {
    "real": true,
@@ -53,8 +53,8 @@
   },
   {
    "real": false,
-   "h": "Maple farmer in {} finds 1,260 litres of syrup swapped for cold tea overnight",
-   "tell": "Thieves would not bother refilling barrels with tea; the swap is too tidy."
+   "h": "Weather station in {} records 61°C on a winter afternoon after a hen nests on the sensor",
+   "tell": "A hen's body heat is about 41°C; it can't push a reading to 61°C."
   },
   {
    "real": true,
