@@ -1,0 +1,212 @@
+{
+ "date": "2026-11-11",
+ "generated": "2026-11-10T07:42:29+00:00",
+ "call": [
+  {
+   "real": true,
+   "h": "Man pretends to be a cop, pulls over a Tesla, then calls 911 on himself in {}",
+   "hint": "where the film Psycho begins",
+   "lat": 33.803,
+   "lng": -112.114,
+   "place": "Phoenix, Arizona",
+   "src": "https://www.yahoo.com/news/us/articles/man-pretends-cop-pulls-over-150705003.html",
+   "published": "2026-09-18",
+   "clue": "US highway patrol (DPS) + a Tesla traffic stop"
+  },
+  {
+   "real": false,
+   "h": "Beekeeper in {} harvests 412 litres of honey from a single hive in one afternoon",
+   "tell": "One hive yields a few dozen litres a season, not 412 in an afternoon."
+  },
+  {
+   "real": false,
+   "h": "Boy, 9, reels in a 6.4-tonne tuna from a rowing boat in {} using sewing thread",
+   "tell": "Sewing thread would snap under a fraction of that weight."
+  },
+  {
+   "real": true,
+   "h": "Driver removed a 'Road Closed' sign, drove straight into wet concrete and got stuck in {}",
+   "hint": "home of Harley-Davidson motorcycles",
+   "lat": 43.0389,
+   "lng": -87.9065,
+   "place": "Milwaukee, Wisconsin",
+   "src": "https://www.upi.com/Odd_News/2026/05/27/Wisconsin-Department-of-Transportation-wet-concrete-pickup-truck/8401779889353/",
+   "published": "2026-05-27",
+   "clue": "US state DOT + an interstate ramp"
+  },
+  {
+   "real": true,
+   "h": "Defendant files fake Supreme Court order dismissing his own case in {}",
+   "hint": "where James Dean was born",
+   "lat": 40.5584,
+   "lng": -85.6592,
+   "place": "Marion, Indiana",
+   "src": "https://www.newser.com/story/395381/john-roberts-signed-order-dismissing-guys-case-except-he-didnt.html",
+   "published": "2026-02-01",
+   "clue": "US county court + a forged Chief Justice signature"
+  },
+  {
+   "real": true,
+   "h": "Pastor in {} tells church he has had two wives for three years and says God approves",
+   "hint": "host of the 2016 Republican convention",
+   "lat": 41.4993,
+   "lng": -81.6944,
+   "place": "Cleveland, Ohio",
+   "src": "https://www.christianpost.com/news/ohio-pastor-reveals-hes-had-2-wives-for-3-years.html",
+   "published": "",
+   "clue": "US city with a state bigamy law; the church is a local megachurch"
+  },
+  {
+   "real": true,
+   "h": "Doctors prescribe Diet Coke to woman with stomach mass in {}",
+   "hint": "setting of Good Will Hunting",
+   "lat": 42.3601,
+   "lng": -71.0589,
+   "place": "Boston, Massachusetts",
+   "src": "https://www.newsnationnow.com/health/diet-coke-dissolve-stomach-mass-glp-1-patient/",
+   "published": "2026-07-08",
+   "clue": "US doctors + a GLP-1 drug case report"
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Players and fans in Rosario, Argentina, swarm the [] to celebrate a title, unaware rivals had just scored a late winner",
+   "ans": [
+    "pitch",
+    "field",
+    "pitches",
+    "fields"
+   ],
+   "alt": [
+    "stadium",
+    "ground",
+    "turf",
+    "stands"
+   ],
+   "place": "Rosario, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPcnpZdDBoSDVfRHh6LWVtRjV4bUxrZ2haOXRmanRUbUdZNER2bzV1SGx6dDZhZnUySHg5QkpXM3FsTlpTOENEb2ZJOV9wY1FxaTBWd2xHa2hTbGNZX2NYMWg3TXNwaVF2M2xYMnotOW5pb0pScFZnNVZCOVNEZXB3Y29RVTBBeHczeU9Jc0tWSmVtOXFESW9aSTlPd1FSODNRcGppcTJSOWhESnlpWHl6aGoxSC1vRjQ4ZTY4aGVHOWJoUU1VT1cwdy1yZnVXdzFKazR5WElRY2dDVGhHaVZRd05OdGF2NFJpVmxRdnQwQjZ5ZEhYcW1EVlQ2cw?oc=5",
+   "published": "2026-11-08",
+   "vec": "8fXjHA3s7yXuDPYP6hD79BTsztPW6wDzG+QuIjPYfxEbFvsFGRn9E/sHzzD5/xP58Rc="
+  },
+  {
+   "real": true,
+   "h2": "Pickup full of empty iron cages bursts into flames on a motorway in Xiluo, Yunlin, Taiwan and the [] is nowhere to be found",
+   "ans": [
+    "driver",
+    "drivers"
+   ],
+   "alt": [
+    "owner",
+    "man",
+    "motorist",
+    "trucker",
+    "person"
+   ],
+   "place": "Xiluo, Yunlin, Taiwan",
+   "src": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE10RXpRY1ZZaEJhY3g3VlQ1cXRRR3NYN2pPdEl3MFA3YlM3N2lLM0ZITUxzTUVLVlZROGZLaWdhNkxUdFZQMDNXdy1mTTJidFU?oc=5",
+   "published": "2026-11-05",
+   "vec": "5QJTDiQosCcg3kDukgou2N8o7pTcMLpNNZAG+igbf/XaD2YEKAwDHgkk8e4UsQzpcfc="
+  },
+  {
+   "real": true,
+   "h2": "[] found sleeping on a mattress in a bedroom after sneaking into a house overnight in Botucatu, Brazil",
+   "ans": [
+    "coati",
+    "coatis",
+    "quati",
+    "quatis"
+   ],
+   "alt": [
+    "raccoon",
+    "racoon",
+    "animal",
+    "anteater"
+   ],
+   "place": "Botucatu, Brazil",
+   "src": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQR0p0VGZTRnNDZjE3bmtnNk9QMjNzb3BSXzQyS1NFLVVQY1RVUHRBd3dVbkcxd0R5STZ1OVhZY3hXVFdCU3FzeU9vcERKcTdYYVhqNUEwUEJ6R04wR1hhNHdWM3lfMHpRUTBodW1KZGtoRWp0dThpd0lmNG9wa19fXy1ybUpHdHlBWFd6bTQxMGFvTnpwQ1EzVDBqejhsYXJONFBPWG9PNVFXM3RJMHo3bkRQRVJjY2prOEtyY1FkTkJNenhnaTdR?oc=5",
+   "published": "2026-11-08",
+   "vec": "CjMIBLQ5KujS01rQQBvOIvgV+AKBvqh1HTwDFgwCh9oTDvbErayrHfjvd7tLwmqZ6uU="
+  },
+  {
+   "real": true,
+   "h2": "Dad buries £4,000 Boeing 737 in his back garden in Hilton, Derbyshire, England as a war [] and party pad",
+   "ans": [
+    "bunker",
+    "bunkers"
+   ],
+   "alt": [
+    "shelter",
+    "hideout",
+    "bolthole",
+    "fortress",
+    "den",
+    "cellar"
+   ],
+   "place": "Hilton, Derbyshire, England",
+   "src": "https://www.mirror.co.uk/news/uk-news/dad-buries-boeing-737-jet-37858552",
+   "published": "2026-11-09",
+   "vec": "KtdIvBDTABICs5jSoDC08msVuyXiCgK4CK3tQlHeWoHaVRBTGU04+CncLPsb9yi1/+8="
+  }
+ ],
+ "politics": [
+  {
+   "real": true,
+   "h": "Two in-laws tie with 38 votes each for a commission seat in {}",
+   "hint": "",
+   "lat": 35.9715,
+   "lng": -83.0985,
+   "place": "Parrottsville, Tennessee, USA",
+   "src": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNRTQ2dTZBZ2QxQnBUeDQ4cVhiRmJ3YVVVaUcwdzdMV0xyR0JNUnhYQmtNRm84aHZSb2RBZGdydnExMmJONlgyNkp3YklNdUU0dVVualp1Zl92TnAtMUZtTnlZZHF1Rm9LVU5HNTluVS1FWEdCVDlaR1JpZ05ZY1FIc0RSZFBLWTFYTzNyUE1kMjI3b0YzUXY1N285YVNhN1VaUnZyWFB6N3Y2M2FaME5NMmw5a09zTTZib193ZmoxSEJYMmlrSGlPSjFxT2RQMnZLQTVnazNqaWlSY3hJSzJVZ2s0MGQ5LVliTmNWcjlvcEhGWUFU?oc=5",
+   "published": "2026-11-04",
+   "clue": "town commission seat + in-laws = a tiny US town in the Smoky Mountain foothills",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "No recount, no revote: a bowl of numbers breaks mayoral runoff tie in {}",
+   "hint": "",
+   "lat": 36.2062,
+   "lng": -94.2344,
+   "place": "Elm Springs, Arkansas, USA",
+   "src": "https://news.google.com/rss/articles/CBMif0FVX3lxTE96V0hJMkxtc000Y0FzSDMxMHFHU2ZtYmROSFlHazJ1ZUczNWtLamRCWUtTVEFMY3FsYlJMRnVpUDB2T2NRSnRveDJTQ1kwdU5GaTg5MFZIM0lQUTZfSTg1N3Myb245elBFVnhhX0FVeDlnbXM5aEdTampMVTNMUlU?oc=5",
+   "published": "2026-11-07",
+   "clue": "a small Ozark town where a mayoral runoff is settled by a bowl of numbers",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "Final day of voting begins in {} as an unusual law bans any talk of politics",
+   "hint": "",
+   "lat": -41.2888,
+   "lng": 174.7772,
+   "place": "Wellington, New Zealand",
+   "src": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPSnktWHRLU0lQUUhxbDFhQVdoWkY0WHU3TlFFNVFSQ3lkQ1ZGR2N4YmxkVTgxbnZsbGhKZFdYNEhLbnNSUzBsMzl3NEZHUEpWOFFmQ3NQaTdrYVoxVmRMYU5oT0NpUXY4a2dBT1AxdXE2NWpXdTNzWU44UzVhRTQxN2tnU01TSEJTRmtkNjlBOTViMDJsSzdsa1RQSnZFbkoyeWkzazBQRWhBMDhvSzJsdDQzYmhjNHhnM2dBenRUbnJqeXZHNjBaNWVJcFVnZlhJdHBoQmtPTG1BVV9lN3VPX3FERFPSAfIBQVVfeXFMTjljWFQxQi1RRFM1c2N4SjF4ZFFaSGhsa3VSTVRWV3pVNlU2bE52b05CUGtwdnBKc0pFTUZQYTRJRW5kUUF2RzU4VjFqTERuR293RkNXdHlNMUhURXhNS0sxMUxZaC1VWmdfc1RBcXBOSWpJRVg2M2xQNDhJTUpjMTIxYjNPa0ZOZEgzSDZ2YldlajJQMkRXc0FHTTJNX08tZlp4VmVWbVEydFJIMkowS2tiZnVHbFpHOGd0OGtOay1nSmlVZDlIQzNsY09ZYUEzMkVmbmRTOU5mMEFLa0ZlZ0ZuMjZBMmcyWTExX2JBQ2xuVmc?oc=5",
+   "published": "2026-11-07",
+   "clue": "a harbour capital on Cook Strait, where election-day politics talk is banned",
+   "cat": "pol"
+  },
+  {
+   "real": false,
+   "h": "Three candidates in {} mayoral race share the same surname, none of them related",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "Election managers in {} certify a tie between co-winners who are related by marriage",
+   "hint": "",
+   "lat": 35.9467,
+   "lng": -83.104,
+   "place": "Cocke County, Tennessee, USA",
+   "src": "https://news.google.com/rss/articles/CBMikwJBVV95cUxNQWg1Q1ZJQ1UwSVNDUW00bWpvdFBTMllTU3RzOThoNUE3X3BHblEtS2s4clREZ3lCN01UN3ZZMHdFSUJnand5QnNncWtpZGJGZG4tQmdPU243UDNqdjV4YkswRFM3QW51MDA0RWVPTEJOWHZrS0dlLWFUV1lPRExfM3djTDI5QkhfMXhhZUNvNXBsbXdmZ0d5dDE2aUdMcVpQeXdFeVg4eVhNNHBpTXBpZ1hQRjVyQ0tSM1VBcFlnWlh5OVl2bHlDMmwwYjlYSVl5a0JPS0R1T2xrMWFoVHExYW1ZX2ZucVdOcU1DX2lHVkxwRVBDaHFpbHQydFBOeXpnLVF4TXFENEVaSXNWWWhCMjRmTQ?oc=5",
+   "published": "2026-11-06",
+   "clue": "county election commission + co-winners = a Smoky Mountains-foothills county",
+   "cat": "pol"
+  },
+  {
+   "real": false,
+   "h": "Budget vote in {} delayed 41 minutes after the council chamber's clock stops",
+   "cat": "pol"
+  }
+ ]
+}

@@ -1,6 +1,111 @@
 {
  "real": [
   {
+   "id": 1,
+   "h": "Strange incident as 30 crocodiles turn up on board a train in {}",
+   "h2": "Strange incident as 30 [] turn up on board a train in Upper Egypt, Egypt",
+   "ans": [
+    "crocodiles",
+    "crocodile",
+    "alligators",
+    "alligator"
+   ],
+   "alt": [
+    "reptiles",
+    "gators",
+    "caimans",
+    "lizards"
+   ],
+   "place": "Upper Egypt, Egypt",
+   "geocode": "Luxor, Egypt",
+   "lat": 25.702096,
+   "lng": 32.647186,
+   "country": "Egypt",
+   "cc": "EG",
+   "hint": "where Tutankhamun's tomb was found",
+   "clue": "crocodiles = Nile country; a southern railway",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 1,
+   "unbelievable": 4,
+   "theme": "reptiles",
+   "src": "https://news.google.com/rss/articles/CBMiogNBVV95cUxOdzJaVUhFOUlidmVKUkVaQzB6XzBoUDVweHVqMDIxdGpiVk5UOVVjU3M1T2NLTlNGZDBKM1RPemdMV2VhT05aaW9ieWF0Qy1pMHlNV1QwMmhBU1lhTnE5cmFkREVRWXFzNDU0djRrT1FZdEUwYXc0Ykw0c1FrVjFsdE80WXNUOGYzc0NHWmZiRThxY0dnWVdQREVKek9sUlpMR2dFZ0dhVjAzYWQzekZ2VElPWEFrckFaZVBuWTB4VTJpTlB0OXRlUE9CRnRXVkU3QnlRZHJnWHhfQW4tV201LWh6YWp3aDg2UDBVUEZ3Wm9tOU1GTmRaVHR4eVgwUjNNWFJGMWNPM1pCSnhCeXJrX0padmJ5OHd6VnU4bEwzS1RLNzhvdTVIUUd2Z2RwXzZSQjJIckp0YzNpdExVelZrX1NmdjFwZ2hra2JYSDFzYWhzbXdKR25nNWxXWGxBbzJ2ZWZRM3EzZXdkdFR5dG5Hc05TTGFyZTVhV3hvekdDZ2tVdUxYSUVqb3Z2UGtobndyM1cyYm9tNWptdEdrMWJZb3BR0gGnA0FVX3lxTE5sU3RPQ0JndElKWjBRU0xmWUNOQ1Y2U3FDVkNFRURfZVNCUEdmM1JORUZpRFlacHhBQ1dQbVJvUVNRQjdNN0VVX2ZfejM3Y3lCQmREM2YyTHNRNnVJZ0ZJR01yck14UXRseUhVRUdlb2NVTzZkanYwT3U0eHAzd0ktQXBHaUtid1BNTzJXT3dFUmxOYzZraC1jN2IyWF9hYk04WlhaaUNaWDU1Mml0Z1pTSWFZMFNlSUlPVlpqUXlOelBXYzB2ZFE3SGhGS1BIV0g4TUhfcHljN2oyZGRCOGo1M2JUZTVHMHp6Z1VqMTFNXzR5VnI1STJMSzcyMzdXSzBLTG11RUZCazhWeWhyUTRMQllhVjd0NEJ4N2NNUl8tTGo3VHRHTFlqTEc1aFhuaHBhRHRQVTBoSjBuRzBwTVJ2OWM1Znc5SGd5bTZiaC1iS0haUnBkTjZDWnFtM3VxVTdoYV9hZXEzeTBBbjlrMWd6bHhBanZJQjFsM1Q0dlZTQmx5LWswR29CV3hoanV4WUpZVTlXdzhTZ1VNZjYyTlhILUgzY2g0RQ?oc=5",
+   "published": "2026-10-29",
+   "banked": "2026-11-11",
+   "rules": 2
+  },
+  {
+   "id": 5,
+   "h": "Two escaped piglets dubbed 'bacon bits' lead cops on a foot chase across roads and sidewalks in {}",
+   "h2": "Two escaped [] dubbed 'bacon bits' lead cops on a foot chase across roads and sidewalks in South Carolina",
+   "ans": [
+    "piglets",
+    "piglet",
+    "pigs",
+    "pig"
+   ],
+   "alt": [
+    "hogs",
+    "swine",
+    "porkers",
+    "boars",
+    "piggies"
+   ],
+   "place": "South Carolina, USA",
+   "geocode": "Columbia, South Carolina, USA",
+   "lat": 34.000754,
+   "lng": -81.0352313,
+   "country": "United States",
+   "cc": "US",
+   "hint": "where the Civil War began",
+   "clue": "sidewalks and cops = US",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 1,
+   "unbelievable": 3,
+   "theme": "escaped-animal",
+   "src": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPcFoyRWtaVWVGZFhnZDBTU2tjcXJ4cnFXWnRGWUdwTjljZHd3SWhNN3J1ekVhTjBOT1BndEd4TThWQWcwUlJpRmdEZnRxZjlfRjRPdXdMUWU3VGRadDNZSjJUcmRYSl9DS3FQRGtTdEUtQmFHdTNJNk5yb0I1R08yMjh3cjBoYVVpTXdhMFplRzVWYWxia3JYQko4ekFMOWl6cm45Umdnd1VFdWhvQW14Z2Vlank5dEdBYlEzLXNB?oc=5",
+   "published": "2026-11-07",
+   "banked": "2026-11-11",
+   "rules": 2
+  },
+  {
+   "id": 7,
+   "h": "A 3-foot alligator strolls in the back door of a bagel shop in {}, caught on camera",
+   "h2": "A 3-foot [] strolls in the back door of a bagel shop in North Carolina, caught on camera",
+   "ans": [
+    "alligator",
+    "alligators",
+    "crocodile",
+    "crocodiles",
+    "gator"
+   ],
+   "alt": [
+    "reptile",
+    "caiman",
+    "lizard",
+    "croc"
+   ],
+   "place": "North Carolina, USA",
+   "geocode": "North Carolina, USA",
+   "lat": 35.6729639,
+   "lng": -79.0392919,
+   "country": "United States",
+   "cc": "US",
+   "hint": "setting of TV's One Tree Hill",
+   "clue": "alligators and feet = southeastern US",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 1,
+   "unbelievable": 2,
+   "theme": "intruder-gator",
+   "src": "https://www.upi.com/Odd_News/2026/11/03/alligator-bagel-store-southport-north-carolina/6751793729245/",
+   "published": "2026-11-03",
+   "banked": "2026-11-11",
+   "rules": 2,
+   "blank_only": true
+  },
+  {
    "id": 20,
    "h": "Patrol car bursts into flames outside traffic police station in {}; suspect flees by train",
    "h2": "Police [] bursts into flames outside traffic police station in Xizhi, New Taipei, Taiwan; suspect flees by train",
@@ -29,72 +134,6 @@
    "theme": "arson",
    "src": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5mWVRhSnNLaTdUeHFfZV9ROW4wSS1IQmF6RHp6X0Fqd1lYQlpOQlhkZmxYem1HWlJHZ2NiVVVaR1NKTjg2MnIya1RJRkctVFlBNW83UHA1clBqUmh6SVHSAUtBVV95cUxOcm5pRE9RaTIwZzB3YzZXR2pCRklhblR5QUJZZnNIY2ExRXh1NF9yOFgxX09kcnI4QVRQWVN3cUlJbm5EeXQxWnh1Q00?oc=5",
    "published": "2026-11-05",
-   "banked": "2026-11-10",
-   "rules": 2
-  },
-  {
-   "id": 26,
-   "h": "Farmer's odd carved stone found outside his home in {} leads archaeologists to statues of a famed pharaoh",
-   "h2": "Farmer in Behbeit El Hagar, Egypt finds a strange carved [] outside his home that leads to statues of Ramses II",
-   "ans": [
-    "stone",
-    "stones",
-    "block",
-    "blocks"
-   ],
-   "alt": [
-    "rock",
-    "slab",
-    "boulder"
-   ],
-   "place": "Behbeit El Hagar, Egypt",
-   "geocode": "Behbeit El Hagar, Gharbia, Egypt",
-   "lat": 31.03,
-   "lng": 31.29,
-   "country": "Egypt",
-   "cc": "EG",
-   "hint": "a Nile Delta Isis-temple village",
-   "clue": "Pharaoh statues under village farmland = Egypt",
-   "clue_strength": 3,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 2,
-   "theme": "archaeology",
-   "src": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9wcF96ZERYTk1DR0pidzRaUFFtWHF1RVE5eHk3Wkd4U0ZaWlZXQ3Exc2tKaDdqbk5BWUJ0Q3g5ZWFJUXZIWUU1TU9fVlE0eHdpMWhIYVZSUWxuRGx6cy1SU2lXUE9YTjN0empKVUFRWExTRFhmOXliQ2Zkcw?oc=5",
-   "published": "2026-10-14",
-   "banked": "2026-11-10",
-   "rules": 2,
-   "blank_only": true
-  },
-  {
-   "id": 3,
-   "h": "30 crocodiles found on board a train in {}",
-   "h2": "30 [] found on board a train in Upper Egypt",
-   "ans": [
-    "crocodiles",
-    "crocodile"
-   ],
-   "alt": [
-    "alligators",
-    "gators",
-    "reptiles",
-    "caimans"
-   ],
-   "place": "Upper Egypt",
-   "geocode": "Upper Egypt, Egypt",
-   "lat": 26.0,
-   "lng": 32.0,
-   "country": "Egypt",
-   "cc": "EG",
-   "hint": "setting of Death on the Nile",
-   "clue": "Nile crocodiles + a long-distance train line = Egypt",
-   "clue_strength": 3,
-   "jargon_only": false,
-   "mappable": 1,
-   "unbelievable": 5,
-   "theme": "reptiles",
-   "src": "https://news.google.com/rss/articles/CBMiogNBVV95cUxOdzJaVUhFOUlidmVKUkVaQzB6XzBoUDVweHVqMDIxdGpiVk5UOVVjU3M1T2NLTlNGZDBKM1RPemdMV2VhT05aaW9ieWF0Qy1pMHlNV1QwMmhBU1lhTnE5cmFkREVRWXFzNDU0djRrT1FZdEUwYXc0Ykw0c1FrVjFsdE80WXNUOGYzc0NHWmZiRThxY0dnWVdQREVKek9sUlpMR2dFZ0dhVjAzYWQzekZ2VElPWEFrckFaZVBuWTB4VTJpTlB0OXRlUE9CRnRXVkU3QnlRZHJnWHhfQW4tV201LWh6YWp3aDg2UDBVUEZ3Wm9tOU1GTmRaVHR4eVgwUjNNWFJGMWNPM1pCSnhCeXJrX0padmJ5OHd6VnU4bEwzS1RLNzhvdTVIUUd2Z2RwXzZSQjJIckp0YzNpdExVelZrX1NmdjFwZ2hra2JYSDFzYWhzbXdKR25nNWxXWGxBbzJ2ZWZRM3EzZXdkdFR5dG5Hc05TTGFyZTVhV3hvekdDZ2tVdUxYSUVqb3Z2UGtobndyM1cyYm9tNWptdEdrMWJZb3BR0gGnA0FVX3lxTE5sU3RPQ0JndElKWjBRU0xmWUNOQ1Y2U3FDVkNFRURfZVNCUEdmM1JORUZpRFlacHhBQ1dQbVJvUVNRQjdNN0VVX2ZfejM3Y3lCQmREM2YyTHNRNnVJZ0ZJR01yck14UXRseUhVRUdlb2NVTzZkanYwT3U0eHAzd0ktQXBHaUtid1BNTzJXT3dFUmxOYzZraC1jN2IyWF9hYk04WlhaaUNaWDU1Mml0Z1pTSWFZMFNlSUlPVlpqUXlOelBXYzB2ZFE3SGhGS1BIV0g4TUhfcHljN2oyZGRCOGo1M2JUZTVHMHp6Z1VqMTFNXzR5VnI1STJMSzcyMzdXSzBLTG11RUZCazhWeWhyUTRMQllhVjd0NEJ4N2NNUl8tTGo3VHRHTFlqTEc1aFhuaHBhRHRQVTBoSjBuRzBwTVJ2OWM1Znc5SGd5bTZiaC1iS0haUnBkTjZDWnFtM3VxVTdoYV9hZXEzeTBBbjlrMWd6bHhBanZJQjFsM1Q0dlZTQmx5LWswR29CV3hoanV4WUpZVTlXdzhTZ1VNZjYyTlhILUgzY2g0RQ?oc=5",
-   "published": "2026-10-29",
    "banked": "2026-11-10",
    "rules": 2
   },
@@ -162,38 +201,38 @@
    "rules": 2
   },
   {
-   "id": 8,
-   "h": "Escaped piglets dubbed 'bacon bits' lead cops on wild foot chase in {}",
-   "h2": "Runaway [] dubbed 'bacon bits' lead South Carolina cops on wild foot chase",
+   "id": 26,
+   "h": "Farmer's odd carved stone found outside his home in {} leads archaeologists to statues of a famed pharaoh",
+   "h2": "Farmer in Behbeit El Hagar, Egypt finds a strange carved [] outside his home that leads to statues of Ramses II",
    "ans": [
-    "piglets",
-    "piglet",
-    "pigs",
-    "pig"
+    "stone",
+    "stones",
+    "block",
+    "blocks"
    ],
    "alt": [
-    "hogs",
-    "swine",
-    "boars",
-    "porkers"
+    "rock",
+    "slab",
+    "boulder"
    ],
-   "place": "South Carolina",
-   "geocode": "South Carolina, USA",
-   "lat": 33.6874388,
-   "lng": -80.4363743,
-   "country": "United States",
-   "cc": "US",
-   "hint": "",
-   "clue": "Cops chasing pigs down sidewalks = US Southeast",
-   "clue_strength": 2,
+   "place": "Behbeit El Hagar, Egypt",
+   "geocode": "Behbeit El Hagar, Gharbia, Egypt",
+   "lat": 31.03,
+   "lng": 31.29,
+   "country": "Egypt",
+   "cc": "EG",
+   "hint": "a Nile Delta Isis-temple village",
+   "clue": "Pharaoh statues under village farmland = Egypt",
+   "clue_strength": 3,
    "jargon_only": false,
-   "mappable": 1,
-   "unbelievable": 3,
-   "theme": "pigs",
-   "src": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPcFoyRWtaVWVGZFhnZDBTU2tjcXJ4cnFXWnRGWUdwTjljZHd3SWhNN3J1ekVhTjBOT1BndEd4TThWQWcwUlJpRmdEZnRxZjlfRjRPdXdMUWU3VGRadDNZSjJUcmRYSl9DS3FQRGtTdEUtQmFHdTNJNk5yb0I1R08yMjh3cjBoYVVpTXdhMFplRzVWYWxia3JYQko4ekFMOWl6cm45Umdnd1VFdWhvQW14Z2Vlank5dEdBYlEzLXNB?oc=5",
-   "published": "2026-11-07",
+   "mappable": 3,
+   "unbelievable": 2,
+   "theme": "archaeology",
+   "src": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9wcF96ZERYTk1DR0pidzRaUFFtWHF1RVE5eHk3Wkd4U0ZaWlZXQ3Exc2tKaDdqbk5BWUJ0Q3g5ZWFJUXZIWUU1TU9fVlE0eHdpMWhIYVZSUWxuRGx6cy1SU2lXUE9YTjN0empKVUFRWExTRFhmOXliQ2Zkcw?oc=5",
+   "published": "2026-10-14",
    "banked": "2026-11-10",
-   "rules": 2
+   "rules": 2,
+   "blank_only": true
   },
   {
    "h": "Black Labrador rides the city bus by herself to the dog park in {}",
@@ -304,7 +343,7 @@
   },
   {
    "h": "Family checks into a vacation rental in {} and finds a giant photo of themselves hanging on the wall",
-   "hint": "",
+   "hint": "home of NFL legend Junior Seau",
    "lat": 33.1959,
    "lng": -117.3795,
    "place": "Oceanside, California",
@@ -320,7 +359,7 @@
    "geocode": "Oceanside, California, USA",
    "daily_only": true,
    "mappable": 3,
-   "clue_strength": 0,
+   "clue_strength": 1,
    "jargon_only": false
   },
   {
@@ -342,61 +381,6 @@
    "daily_only": true,
    "mappable": 1,
    "clue_strength": 2
-  },
-  {
-   "id": 20,
-   "h": "Couple who divorced over cheating remarry, then divorce again over cheating; first ruling set 125,000 lira in {}",
-   "h2": "Woman in Ankara, Turkey marries same [] twice and divorces him twice over cheating",
-   "ans": [
-    "husband",
-    "husbands"
-   ],
-   "alt": [
-    "man",
-    "spouse",
-    "partner",
-    "groom",
-    "ex"
-   ],
-   "place": "Ankara, Turkey",
-   "geocode": "Ankara, Turkey",
-   "lat": 39.9207759,
-   "lng": 32.8540497,
-   "country": "Turkey",
-   "cc": "TR",
-   "hint": "home of Angora goats and cats",
-   "clue": "lira compensation + family court = Turkey",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 3,
-   "theme": "marriage",
-   "src": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQYVJVRk1aUjRMbkk0WENOaEpaS2lrVHZxRVlOZFNGQzA4RVMtWVY5clNQSDJsMVZWZkhXQ0lqRUR0Z1RoaGVPRUMxdm0xYktCdVpnb3lBRmc4TXg3aGNxaXhrZGc2VzNPN2t0bHZLM09EQThXYTBCeUJTQVRTSVNmc2RmN2x3VHZDbzZ6YnRzaERrSGMxUDFUb2RLR01rOEExUDJGNVJlQnFMUmpQczRFTGpFM1VGcXlRM0JocFluMk1EOHdSWHdOZzBfc2pXTDV1?oc=5",
-   "published": "2026-11-02",
-   "banked": "2026-11-04",
-   "rules": 2
-  },
-  {
-   "id": 57,
-   "h": "Driver removed a 'Road Closed' sign and drove straight into wet concrete, immediately getting stuck in {}",
-   "place": "Milwaukee, Wisconsin",
-   "geocode": "Interstate ramp, Milwaukee County, Wisconsin, USA",
-   "lat": 43.0389,
-   "lng": -87.9065,
-   "country": "United States",
-   "cc": "US",
-   "hint": "birthplace of Harley-Davidson",
-   "clue": "US state DOT + an interstate ramp",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 2,
-   "unbelievable": 4,
-   "theme": "driving",
-   "src": "https://www.upi.com/Odd_News/2026/05/27/Wisconsin-Department-of-Transportation-wet-concrete-pickup-truck/8401779889353/",
-   "published": "2026-05-27",
-   "banked": "2026-11-03",
-   "rules": 2,
-   "daily_only": true
   },
   {
    "id": 62,
@@ -509,28 +493,6 @@
    "daily_only": true
   },
   {
-   "id": 48,
-   "h": "Man pretends to be a cop, pulls over a Tesla, then calls 911 on himself in {}",
-   "place": "Phoenix, Arizona",
-   "geocode": "I-17 near Dove Valley Road, Phoenix, Arizona, USA",
-   "lat": 33.803,
-   "lng": -112.114,
-   "country": "United States",
-   "cc": "US",
-   "hint": "where the film Psycho begins",
-   "clue": "US highway patrol (DPS) + a Tesla traffic stop",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 4,
-   "theme": "crime",
-   "src": "https://www.yahoo.com/news/us/articles/man-pretends-cop-pulls-over-150705003.html",
-   "published": "2026-09-18",
-   "banked": "2026-11-02",
-   "rules": 2,
-   "daily_only": true
-  },
-  {
    "id": 50,
    "h": "Man uses stolen excavator to rob bank directly next to a police station in {}",
    "place": "DeFuniak Springs, Florida",
@@ -548,28 +510,6 @@
    "theme": "crime",
    "src": "https://www.weartv.com/news/local/man-attempts-atm-heist-with-excavator-stolen-near-police-station-in-defuniak-springs",
    "published": "2025-04-30",
-   "banked": "2026-11-02",
-   "rules": 2,
-   "daily_only": true
-  },
-  {
-   "id": 51,
-   "h": "Defendant files fake Supreme Court order dismissing his own case in {}",
-   "place": "Marion, Indiana",
-   "geocode": "Grant County Superior Court, Marion, Indiana, USA",
-   "lat": 40.5584,
-   "lng": -85.6592,
-   "country": "United States",
-   "cc": "US",
-   "hint": "birthplace of the actor James Dean",
-   "clue": "US county court + a forged Chief Justice signature",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 4,
-   "theme": "law",
-   "src": "https://www.newser.com/story/395381/john-roberts-signed-order-dismissing-guys-case-except-he-didnt.html",
-   "published": "2026-02-01",
    "banked": "2026-11-02",
    "rules": 2,
    "daily_only": true
@@ -594,28 +534,6 @@
    "published": "2026-05-19",
    "banked": "2026-11-02",
    "rules": 2,
-   "daily_only": true
-  },
-  {
-   "id": 44,
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 2,
-   "unbelievable": 4,
-   "banked": "2026-11-01",
-   "rules": 2,
-   "h": "Doctors prescribe Diet Coke to woman with stomach mass in {}",
-   "place": "Boston, Massachusetts",
-   "geocode": "Boston, Massachusetts, USA",
-   "lat": 42.3601,
-   "lng": -71.0589,
-   "country": "United States",
-   "cc": "US",
-   "hint": "setting of Good Will Hunting",
-   "clue": "US doctors + a GLP-1 drug case report",
-   "theme": "medical",
-   "src": "https://www.newsnationnow.com/health/diet-coke-dissolve-stomach-mass-glp-1-patient/",
-   "published": "2026-07-08",
    "daily_only": true
   },
   {
@@ -669,27 +587,6 @@
    "banked": "2026-10-31",
    "rules": 2,
    "alt": []
-  },
-  {
-   "banked": "2026-10-30",
-   "rules": 2,
-   "theme": "odd news",
-   "unbelievable": 4,
-   "jargon_only": false,
-   "h": "Pastor in {} tells church he has had two wives for three years and says God approves",
-   "place": "Cleveland, Ohio",
-   "geocode": "Cleveland, Ohio",
-   "lat": 41.4993,
-   "lng": -81.6944,
-   "country": "United States",
-   "cc": "US",
-   "clue": "US city with a state bigamy law; the church is a local megachurch",
-   "clue_strength": 2,
-   "mappable": 3,
-   "src": "https://www.christianpost.com/news/ohio-pastor-reveals-hes-had-2-wives-for-3-years.html",
-   "published": "",
-   "hint": "host of the 2016 Republican convention",
-   "daily_only": true
   },
   {
    "banked": "2026-10-30",
@@ -1074,47 +971,79 @@
    "banked": "2026-11-10",
    "rules": 3,
    "hand": true
-  }
- ],
- "pol": [
-  {
-   "id": 36,
-   "h": "Final day of voting begins in {} as an unusual law bans any talk of politics",
-   "place": "Wellington, New Zealand",
-   "geocode": "Wellington, New Zealand",
-   "lat": -41.2887953,
-   "lng": 174.7772114,
-   "clue": "a harbour capital on Cook Strait, where election-day politics talk is banned",
-   "src": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPSnktWHRLU0lQUUhxbDFhQVdoWkY0WHU3TlFFNVFSQ3lkQ1ZGR2N4YmxkVTgxbnZsbGhKZFdYNEhLbnNSUzBsMzl3NEZHUEpWOFFmQ3NQaTdrYVoxVmRMYU5oT0NpUXY4a2dBT1AxdXE2NWpXdTNzWU44UzVhRTQxN2tnU01TSEJTRmtkNjlBOTViMDJsSzdsa1RQSnZFbkoyeWkzazBQRWhBMDhvSzJsdDQzYmhjNHhnM2dBenRUbnJqeXZHNjBaNWVJcFVnZlhJdHBoQmtPTG1BVV9lN3VPX3FERFPSAfIBQVVfeXFMTjljWFQxQi1RRFM1c2N4SjF4ZFFaSGhsa3VSTVRWV3pVNlU2bE52b05CUGtwdnBKc0pFTUZQYTRJRW5kUUF2RzU4VjFqTERuR293RkNXdHlNMUhURXhNS0sxMUxZaC1VWmdfc1RBcXBOSWpJRVg2M2xQNDhJTUpjMTIxYjNPa0ZOZEgzSDZ2YldlajJQMkRXc0FHTTJNX08tZlp4VmVWbVEydFJIMkowS2tiZnVHbFpHOGd0OGtOay1nSmlVZDlIQzNsY09ZYUEzMkVmbmRTOU5mMEFLa0ZlZ0ZuMjZBMmcyWTExX2JBQ2xuVmc?oc=5",
-   "published": "2026-11-07",
-   "banked": "2026-11-10"
   },
   {
-   "id": 33,
-   "h": "No recount, no revote: a bowl of numbers breaks mayoral runoff tie in {}",
-   "place": "Elm Springs, Arkansas, USA",
-   "geocode": "Elm Springs, Arkansas, USA",
-   "lat": 36.206183,
-   "lng": -94.2343657,
-   "clue": "a small Ozark town where a mayoral runoff is settled by a bowl of numbers",
-   "src": "https://news.google.com/rss/articles/CBMif0FVX3lxTE96V0hJMkxtc000Y0FzSDMxMHFHU2ZtYmROSFlHazJ1ZUczNWtLamRCWUtTVEFMY3FsYlJMRnVpUDB2T2NRSnRveDJTQ1kwdU5GaTg5MFZIM0lQUTZfSTg1N3Myb245elBFVnhhX0FVeDlnbXM5aEdTampMVTNMUlU?oc=5",
-   "published": "2026-11-07",
-   "banked": "2026-11-10"
+   "h": "Wolves in {} break into a deli, eat 1,260 bread rolls and leave 40 kilos of ham untouched",
+   "tell": "Wolves are meat-eaters; they would take the ham, not the bread.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "wolves",
+   "banked": "2026-11-11",
+   "rules": 2
   },
   {
-   "id": 25,
-   "h": "Two in-laws tie with 38 votes each for a commission seat in {}",
-   "place": "Parrottsville, Tennessee, USA",
-   "geocode": "US",
-   "lat": 35.9715,
-   "lng": -83.0985,
-   "clue": "town commission seat + in-laws = a tiny US town in the Smoky Mountain foothills",
-   "src": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNRTQ2dTZBZ2QxQnBUeDQ4cVhiRmJ3YVVVaUcwdzdMV0xyR0JNUnhYQmtNRm84aHZSb2RBZGdydnExMmJONlgyNkp3YklNdUU0dVVualp1Zl92TnAtMUZtTnlZZHF1Rm9LVU5HNTluVS1FWEdCVDlaR1JpZ05ZY1FIc0RSZFBLWTFYTzNyUE1kMjI3b0YzUXY1N285YVNhN1VaUnZyWFB6N3Y2M2FaME5NMmw5a09zTTZib193ZmoxSEJYMmlrSGlPSjFxT2RQMnZLQTVnazNqaWlSY3hJSzJVZ2s0MGQ5LVliTmNWcjlvcEhGWUFU?oc=5",
-   "published": "2026-11-04",
-   "banked": "2026-11-08"
+   "h": "Library in {} fines a borrower for returning a book 9 days before he borrowed it",
+   "tell": "You cannot return a book before borrowing it.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "library",
+   "banked": "2026-11-11",
+   "rules": 2
+  },
+  {
+   "h": "Pickpocket in {} arrested after stealing 63 wallets from a tram carrying 9 passengers",
+   "tell": "Nine passengers rarely carry 63 wallets between them.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "theft",
+   "banked": "2026-11-11",
+   "rules": 2
+  },
+  {
+   "h": "Airliner leaves {} on a 14-hour route and lands after 2 hours, crew blame a strong tailwind",
+   "tell": "No tailwind makes an airliner seven times faster.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "flight",
+   "banked": "2026-11-11",
+   "rules": 2
+  },
+  {
+   "h": "Twin sisters in {} celebrate their 53rd and 56th birthdays together with one cake",
+   "tell": "Twins are the same age, so they cannot have different birthdays.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "birthday",
+   "banked": "2026-11-11",
+   "rules": 2
   }
  ],
+ "pol": [],
  "polfake": [
+  {
+   "h": "Candidate in {} wins mayoral race with 163% of the votes cast, clerk confirms result is valid",
+   "banked": "2026-11-11"
+  },
+  {
+   "h": "Mayor of {} cancels annual election after the only candidate loses to himself by 37 votes",
+   "banked": "2026-11-11"
+  },
+  {
+   "h": "Town council in {} bans umbrellas to reduce rainfall, citing a 14-year-old parking study",
+   "banked": "2026-11-11"
+  },
+  {
+   "h": "Clerk in {} counts 8,412 ballots from a village of 640 registered voters and certifies the result",
+   "banked": "2026-11-11"
+  },
+  {
+   "h": "Ward vote in {} ends in a tie, then a coin lands on its edge twice in a row to pick the winner",
+   "banked": "2026-11-11"
+  },
+  {
+   "h": "Councillors in {} approve a budget after a cat chairs the meeting and calls the vote in Latin",
+   "banked": "2026-11-11"
+  },
   {
    "h": "Voters in {} elect a mayor born on the same day as the last three mayors",
    "banked": "2026-11-07"
@@ -1170,32 +1099,6 @@
   {
    "h": "Cantonal parliament in {} votes to cap rents, then raises its own office allowance in euros",
    "banked": "2026-11-07"
-  },
-  {
-   "h": "Town hall in {} moves its clocks forward 35 minutes so the market opens before the rain",
-   "banked": "2026-11-07"
-  },
-  {
-   "h": "Ward race in {} won by candidate with 4,212 votes in a district of 3,906 registered voters",
-   "banked": "2026-11-07"
-  },
-  {
-   "h": "Mayor of {} bans left turns downtown after a study found most crashes involved right turns",
-   "banked": "2026-11-07"
-  },
-  {
-   "h": "Lord mayor of {} resigns after the city's annual budget passed by a single vote at 3 a.m.",
-   "banked": "2026-11-07"
-  },
-  {
-   "h": "Parliament in {} votes 61 to 3 to move its summer recess to February, citing heating bills",
-   "banked": "2026-11-06",
-   "tell": "A summer recess moved to February makes no sense, and heating bills do not shift a recess."
-  },
-  {
-   "h": "Town clerk in {} finds 212 uncounted ballots in a parish hall freezer, result unchanged",
-   "banked": "2026-11-06",
-   "tell": "Ballots found uncounted in a freezer would trigger a recount, not leave the result unchanged."
   }
  ]
 }
