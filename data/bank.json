@@ -671,6 +671,26 @@
    "src": "https://www.newsnationnow.com/health/diet-coke-dissolve-stomach-mass-glp-1-patient/",
    "published": "2026-07-08",
    "daily_only": true
+  },
+  {
+   "h": "Elected county bailiff says he joined Russian special forces, and still holds office in {}",
+   "hint": "land of maple syrup and Ben & Jerry's",
+   "lat": 43.9867,
+   "lng": -72.4506,
+   "place": "Orange County, Vermont",
+   "src": "https://united24media.com/world/a-us-official-just-joined-russias-special-forces-he-still-holds-office-in-vermont-24191",
+   "published": "2026-10-20",
+   "clue": "elected high bailiff Chris Helali, now in Moscow, says he signed with the Akhmat unit; a Vermont official confirmed he still holds the post (TASS, VTDigger)",
+   "banked": "2026-11-10",
+   "rules": 2,
+   "unbelievable": 4,
+   "theme": "politics",
+   "cc": "US",
+   "country": "United States",
+   "geocode": "Orange County, Vermont, USA",
+   "daily_only": true,
+   "mappable": 2,
+   "clue_strength": 3
   }
  ],
  "fake": [
