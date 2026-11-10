@@ -671,6 +671,26 @@
    "src": "https://www.newsnationnow.com/health/diet-coke-dissolve-stomach-mass-glp-1-patient/",
    "published": "2026-07-08",
    "daily_only": true
+  },
+  {
+   "h": "Restaurant's werewolf entertainer, 44, punches girl, 12, in the face after she allegedly hit his arm in {}",
+   "hint": "host of the 'Race that Stops a Nation'",
+   "lat": -37.8136,
+   "lng": 144.9631,
+   "place": "Melbourne, Victoria, Australia",
+   "src": "https://7news.com.au/news/girl-punched-by-man-dressed-as-werewolf-at-melbourne-restaurant-during-halloween-celebrations-c-23106124",
+   "published": "2026-11-02",
+   "clue": "Halloween night at a Melbourne restaurant; text supplied by the owner, not independently confirmed; suburb and date not given",
+   "banked": "2026-11-10",
+   "rules": 2,
+   "unbelievable": 3,
+   "theme": "crime",
+   "cc": "AU",
+   "country": "Australia",
+   "geocode": "Melbourne, Victoria, Australia",
+   "daily_only": true,
+   "mappable": 2,
+   "clue_strength": 3
   }
  ],
  "fake": [
