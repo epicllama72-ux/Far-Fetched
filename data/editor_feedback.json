@@ -141,6 +141,12 @@
    "before": "Albania AI minister 'pregnant' story as the opener (a year old)",
    "after": "Kansas City porta-potty story first, Albania last",
    "why": "the owner moved the freshest, most visual story to the top; an old story should not open the paper"
+  },
+  {
+   "kind": "selection",
+   "before": "Rosario title-celebration story (no source could be found to back the headline)",
+   "after": "Ankara couple who divorce, remarry and divorce again over cheating",
+   "why": "the owner swapped out a story whose claim I could not verify; prefer stories with a named, checkable source over an unreadable news-aggregator link"
   }
  ]
 }
