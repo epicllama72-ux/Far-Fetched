@@ -742,7 +742,8 @@
    "obvious": 2,
    "theme": "balloons",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Trainee pilot lands a glider on a supermarket roof in {} and shops before taking off again",
@@ -751,7 +752,8 @@
    "obvious": 3,
    "theme": "aviation",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Ice-cream shop in {} sells 418 scoops of a new flavour before noticing the tub was empty",
@@ -760,7 +762,8 @@
    "obvious": 3,
    "theme": "icecream",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Fire crew in {} called to a blaze that turns out to be 214 candles on a single birthday cake",
@@ -769,7 +772,8 @@
    "obvious": 2,
    "theme": "birthday",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Family cat in {} is listed as head of household on a census return, and the form is accepted",
@@ -778,7 +782,8 @@
    "obvious": 3,
    "theme": "census",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Customs officers in {} seize 3,180 rubber ducks hidden inside a shipment of bathtubs",
@@ -787,7 +792,8 @@
    "obvious": 2,
    "theme": "customs",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Lighthouse keeper in {} repaints the tower in 7 colours after misreading a paint order",
@@ -796,7 +802,8 @@
    "obvious": 3,
    "theme": "lighthouse",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Vending machine in {} drops 1,267 free chocolate bars after a moth lands on the service switch",
@@ -805,7 +812,8 @@
    "obvious": 2,
    "theme": "snacks",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Postman in {} delivers 1,486 letters to one house after a child's drawing covers a street sign",
@@ -814,7 +822,8 @@
    "obvious": 3,
    "theme": "post",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Stray llama spends 6 nights in a hotel lobby in {} before staff realise it is not a decoration",
@@ -823,7 +832,8 @@
    "obvious": 2,
    "theme": "hotels",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Fishing trawler off {} nets a sunken piano that still plays 3 notes in tune",
@@ -832,7 +842,8 @@
    "obvious": 3,
    "theme": "fishing",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Hiker in {} reports a UFO that turns out to be his own drone, still filming him 214 metres up",
@@ -841,7 +852,8 @@
    "obvious": 2,
    "theme": "drones",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Hotel in {} bills a guest for 37 minibar items he drank while away on a 9-day cruise",
@@ -850,7 +862,8 @@
    "obvious": 3,
    "theme": "travel",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Brass band plays the national anthem 27 times at a match in {} after the scoreboard jams",
@@ -859,7 +872,8 @@
    "obvious": 2,
    "theme": "bands",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Bin lorry in {} tips a parked hatchback into its hopper; the owner is charged a bulky-waste fee",
@@ -868,7 +882,8 @@
    "obvious": 3,
    "theme": "rubbish",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Booking slip sends 37 tour coaches to a farm track instead of the castle in {} in one morning",
@@ -877,7 +892,8 @@
    "obvious": 2,
    "theme": "tourism",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Funicular in {} carries a sleeping passenger up and down 41 times before anyone wakes him",
@@ -886,7 +902,8 @@
    "obvious": 3,
    "theme": "transport",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Pub quiz team in {} wins 63 weeks running before it turns out to be the quizmaster's 4 brothers",
@@ -895,7 +912,8 @@
    "obvious": 2,
    "theme": "quiz",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Orchestra in {} plays a whole symphony in total darkness after a power cut, finishing early",
@@ -904,7 +922,8 @@
    "obvious": 3,
    "theme": "orchestra",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Hospital in {} discharges a man after 6 days, then learns he was a visitor in a spare bed",
@@ -913,7 +932,8 @@
    "obvious": 2,
    "theme": "hospitals",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Scarecrow in {} gets a parking ticket after a farmer leaves it driving his tractor in a field",
@@ -922,7 +942,8 @@
    "obvious": 3,
    "theme": "farming",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Fireworks in {} go off 4 hours early when a technician's phone alarm triggers the launch",
@@ -931,7 +952,8 @@
    "obvious": 2,
    "theme": "fireworks",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Stolen garden bench in {} is returned with 214 new memorial plaques screwed along its back",
@@ -940,7 +962,8 @@
    "obvious": 3,
    "theme": "gardens",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Herd of 41 goats sleeps across a bank's front steps in {}, delaying opening by 37 minutes",
@@ -949,7 +972,8 @@
    "obvious": 2,
    "theme": "goats",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Wind turbine in {} spins backwards for an afternoon and sends power to 9 homes the wrong way",
@@ -958,7 +982,8 @@
    "obvious": 3,
    "theme": "energy",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Escaped emu joins a cycling time trial in {} and is given an official finishing time of 41:07",
@@ -967,7 +992,8 @@
    "obvious": 2,
    "theme": "emus",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Cheese wheel rolls 2.3 km downhill from a farm in {} and stops at the door of a rival dairy",
@@ -976,7 +1002,8 @@
    "obvious": 3,
    "theme": "cheese",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Swans in {} block a motorway slip road for 41 minutes to escort 9 cygnets to a petrol station",
@@ -985,7 +1012,8 @@
    "obvious": 2,
    "theme": "swans",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Snow plough in {} clears 14 km of the wrong motorway after its satnav picks a ferry route",
@@ -994,7 +1022,8 @@
    "obvious": 3,
    "theme": "roads",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Town clock in {} runs 13 minutes fast for 47 years until a schoolboy checks it on his phone",
@@ -1003,7 +1032,8 @@
    "obvious": 2,
    "theme": "clocks",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Escalator in {} runs backwards all day; shoppers climb it 8,417 times before staff notice",
@@ -1012,7 +1042,8 @@
    "obvious": 3,
    "theme": "shopping",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Drawbridge in {} stays raised for 7 hours after the operator's lunch box jams the control lever",
@@ -1021,7 +1052,8 @@
    "obvious": 3,
    "theme": "bridges",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Pensioner in {} wins a village marrow contest with a cucumber, and the judges keep the result",
@@ -1030,7 +1062,8 @@
    "obvious": 2,
    "theme": "vegetables",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   },
   {
    "h": "Window cleaner in {} finishes a 37-storey tower in one afternoon on a single bucket of water",
@@ -1039,7 +1072,8 @@
    "obvious": 3,
    "theme": "cleaning",
    "banked": "2026-11-10",
-   "rules": 3
+   "rules": 3,
+   "hand": true
   }
  ],
  "pol": [
