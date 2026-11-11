@@ -1,212 +1,166 @@
 {
- "date": "2026-11-11",
- "generated": "2026-11-10T07:42:29+00:00",
+ "date": "2026-11-12",
+ "generated": "2026-11-11T07:01:35+00:00",
  "call": [
   {
    "real": true,
-   "h": "Man pretends to be a cop, pulls over a Tesla, then calls 911 on himself in {}",
-   "hint": "where the film Psycho begins",
-   "lat": 33.803,
-   "lng": -112.114,
-   "place": "Phoenix, Arizona",
-   "src": "https://www.yahoo.com/news/us/articles/man-pretends-cop-pulls-over-150705003.html",
-   "published": "2026-09-18",
-   "clue": "US highway patrol (DPS) + a Tesla traffic stop"
+   "h": "Man uses stolen excavator to rob bank directly next to a police station in {}",
+   "hint": "a Panhandle Chautauqua-movement town",
+   "lat": 30.7213,
+   "lng": -86.115,
+   "place": "DeFuniak Springs, Florida",
+   "src": "https://www.weartv.com/news/local/man-attempts-atm-heist-with-excavator-stolen-near-police-station-in-defuniak-springs",
+   "published": "2025-04-30",
+   "clue": "US bank + police station next door + a stolen excavator"
+  },
+  {
+   "real": true,
+   "h": "Family checks into a vacation rental in {} and finds a giant photo of themselves hanging on the wall",
+   "hint": "home of NFL legend Junior Seau",
+   "lat": 33.1959,
+   "lng": -117.3795,
+   "place": "Oceanside, California",
+   "src": "https://www.foxnews.com/travel/sisters-viral-video-reveal-truth-eerie-family-photo-discovered-rental-home",
+   "published": "2026-07-14",
+   "clue": "sisters at a beach-town rental recognise their own family in an aerial beach pho"
   },
   {
    "real": false,
-   "h": "Beekeeper in {} harvests 412 litres of honey from a single hive in one afternoon",
-   "tell": "One hive yields a few dozen litres a season, not 412 in an afternoon."
+   "h": "Bees fill a parked taxi in {} with 18 litres of honey in 25 minutes",
+   "tell": "A bee colony needs weeks to make that much honey, not 25 minutes."
   },
   {
    "real": true,
-   "h": "Defendant files fake Supreme Court order dismissing his own case in {}",
-   "hint": "where James Dean was born",
-   "lat": 40.5584,
-   "lng": -85.6592,
-   "place": "Marion, Indiana",
-   "src": "https://www.newser.com/story/395381/john-roberts-signed-order-dismissing-guys-case-except-he-didnt.html",
-   "published": "2026-02-01",
-   "clue": "US county court + a forged Chief Justice signature"
-  },
-  {
-   "real": true,
-   "h": "53 red cards in one under-20s football match after mass brawl at a goal celebration in {}, a world record",
-   "hint": "home of pão de queijo",
-   "lat": -18.5264844,
-   "lng": -44.1588654,
-   "place": "Minas Gerais, Brazil",
-   "src": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxNa09OUndHYkRHVHhWWnliZUd3OHlIR3ZqdGFXY0hhV2RUbkswVXRDRFNTZ2t2eGFRWlhqNjdCaTFlRVhBZnI2U2ViTkZXNV9xV3U2ZU41U2ViREt4VnBoSXNzeUNQbjNrWkU3ckxmRmg0NlplX2pUTVhHUUdvbmhMNVNGZUpzYWJCTEt4RzAzRTFqTnVQV0tydFpWRjAxVWJwbVBMOU9JQXYtQmtRaTdkM21XZjhZTDRJZk1tYkRtcl8tOGhsN0V2WjhsWHU4aHN6SFhVOGJRbDF1YnI0MFp6d3pqOHZIVnlpc1B2dDljYkh1QXkyUjJuVm9qbFBPSnFpV25HYVEzOG92VDDSAZACQVVfeXFMTjNaTmZMR2x4b0E0bVhmS25jT1BpTzhOZFVZOHdocklGTFNJc1lWd3dyV3F1alRoWUtfc24wblRPVDZxaE1BdmFNdEd5TDdlZ1VIQ1hnM3VLZG1qM2ZnT1ZEZjhJOW9hM1VuV3RRaC1jc2VvSlhMRWJLaDd6QjQ5QWp5QzBDUkkwcVpyTHh2S0dDZ2k1TEsza0tWUWJDY1RvdmFRbFhRQWVBWnpRcVZCQU0yZnM3X1hTZjJmV2JFWk9zeDd1T2N4SkViLVRYNzJQY1Y5QkZ0dzA1bHlHUlBrM1I4UjBiUFNWNG5kQ1ctcWVEU2JkWC1ScXAxX1ZhYk5vMlR5SERlaU9tU1Vrc2lNTDg?oc=5",
-   "published": "2026-11-06",
-   "clue": "Youth football brawl in a football-obsessed country"
-  },
-  {
-   "real": false,
-   "h": "Boy, 9, reels in a 6.4-tonne tuna from a rowing boat in {} using sewing thread",
-   "tell": "Sewing thread would snap under a fraction of that weight."
-  },
-  {
-   "real": true,
-   "h": "Farmer's odd carved stone found outside his home in {} leads archaeologists to statues of a famed pharaoh",
-   "hint": "a Nile Delta Isis-temple village",
-   "lat": 31.03,
-   "lng": 31.29,
-   "place": "Behbeit El Hagar, Egypt",
-   "src": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9wcF96ZERYTk1DR0pidzRaUFFtWHF1RVE5eHk3Wkd4U0ZaWlZXQ3Exc2tKaDdqbk5BWUJ0Q3g5ZWFJUXZIWUU1TU9fVlE0eHdpMWhIYVZSUWxuRGx6cy1SU2lXUE9YTjN0empKVUFRWExTRFhmOXliQ2Zkcw?oc=5",
-   "published": "2026-10-14",
-   "clue": "Pharaoh statues under village farmland = Egypt"
-  },
-  {
-   "real": true,
-   "h": "Masked wrestler elected to city council gets the OK to wear his mask in the chamber in {}",
-   "hint": "cradle of the Minamoto samurai clan",
-   "lat": 34.8297,
-   "lng": 135.4172,
-   "place": "Kawanishi, Hyogo, Japan",
-   "src": "https://mainichi.jp/english/articles/20261110/p2a/00m/0na/033000c",
+   "h": "Woman, 33, gets suspended six-month sentence for giving 14 'likes' to ex's post despite restraining order in {}",
+   "hint": "host of the 1964 Olympics",
+   "lat": 35.6769,
+   "lng": 139.7639,
+   "place": "Tokyo, Japan",
+   "src": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPVVdoMXdyb0UwQm0wR1RIZVRFb2NZRjgyZzU1QjJsanBpMGdyZTVnVTNSSGlDZ2txTXUxTU12Ylh2N0I2cjFCZnRqNHBueTl2ai1wWVJxNWpEX3JkM1ExRHJZVE5kZ29IMEJWb2FuUkx0SUlhdEdaaC1PbzRFTm51V1dkUkQ3cU1jem9sODdyOXR3Ymo5WS02MjZMSlY3UFdpOGdEQkhB?oc=5",
    "published": "2026-11-10",
-   "clue": "pro wrestler Billyken Kid, 52, the prefecture's first masked councillor; council ruled on the mask"
+   "clue": "District court convicts over social media likes"
+  },
+  {
+   "real": true,
+   "h": "Man, 68, who stole a scooter's key says his own motorbike key 'just happened' to start it; jailed in {}",
+   "hint": "setting of the drama Winter Sonata",
+   "lat": 37.8811,
+   "lng": 127.7298,
+   "place": "Chuncheon, South Korea",
+   "src": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9VQklPQkR0aUZMdC1CWUtsMkNINGE2NDFWenBfdm53UW1FdS1kR1NteW5iVUZTdnoxZnV3bDFpUVBySWN5RUstenpqOG85d3V1M1dlWk53dFRqNU3SAWBBVV95cUxQT3E5QVdZMG5fUmI0WnhWUUx6aktyOUlsNlhaaExSLWEzSGY5ZGxqWktQMVNqTnRnSVJndUpIVlNISVdaRzVBUk8wUkhrekJHSFFOX1lhMWtrUnQwRGRxYjU?oc=5",
+   "published": "2026-10-31",
+   "clue": "District court sentencing for a ridiculous excuse; East Asia"
+  },
+  {
+   "real": true,
+   "h": "Woman in {} blames years of bad luck on a feta bucket of sacred rocks her husband's grandad allegedly stole",
+   "hint": "where the First Fleet landed",
+   "lat": -33.8698,
+   "lng": 151.2083,
+   "place": "Sydney, Australia",
+   "src": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNQ0dJcEt4c0ZzSmpCa0xGUzVRVEd0cnFOa2I5Y0o0X0FrUElqMXQ2WEdVSko1VWFvSjVJd2RnR28xSi02bi1xM2VvTkFjMGtjWHB5QUJzWUNMWlFPaUxjSVloeGFvMExnZUxDYjBBbzUyTUZTb19nWGtFTFd0T0xrbXBFR3dBOHROVHc?oc=5",
+   "published": "2026-11-10",
+   "clue": "'Grandad' and sacred Aboriginal sites = Australia"
+  },
+  {
+   "real": false,
+   "h": "Tortoise wins a 58-metre sprint at a village fete in {} in 4 seconds, beating 12 hares",
+   "tell": "A tortoise cannot cover 58 metres in 4 seconds; that is far faster than any sprinter."
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "Players and fans in Rosario, Argentina, swarm the [] to celebrate a title, unaware rivals had just scored a late winner",
+   "h2": "Two saddled [] are led through a city bus at a stop in Detroit, Michigan, then exit by the rear doors",
    "ans": [
-    "pitch",
-    "field",
-    "pitches",
-    "fields"
+    "horses",
+    "horse"
    ],
    "alt": [
-    "stadium",
-    "ground",
-    "turf",
-    "stands"
+    "ponies",
+    "pony",
+    "mules",
+    "donkeys"
    ],
-   "place": "Rosario, Argentina",
-   "src": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPcnpZdDBoSDVfRHh6LWVtRjV4bUxrZ2haOXRmanRUbUdZNER2bzV1SGx6dDZhZnUySHg5QkpXM3FsTlpTOENEb2ZJOV9wY1FxaTBWd2xHa2hTbGNZX2NYMWg3TXNwaVF2M2xYMnotOW5pb0pScFZnNVZCOVNEZXB3Y29RVTBBeHczeU9Jc0tWSmVtOXFESW9aSTlPd1FSODNRcGppcTJSOWhESnlpWHl6aGoxSC1vRjQ4ZTY4aGVHOWJoUU1VT1cwdy1yZnVXdzFKazR5WElRY2dDVGhHaVZRd05OdGF2NFJpVmxRdnQwQjZ5ZEhYcW1EVlQ2cw?oc=5",
-   "published": "2026-11-08",
-   "vec": "8fXjHA3s7yXuDPYP6hD79BTsztPW6wDzG+QuIjPYfxEbFvsFGRn9E/sHzzD5/xP58Rc="
+   "place": "Detroit, Michigan",
+   "src": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQTzJ2clM1YTd2THI1VlFJTTFhckVyS1dHaG95MjhoX3ZjVEl6T3gtbHo5RkdhY2M5eU43WnZjRlptc3dlTm9GQ2FxMC11UE1yakRValdSd1pTZVc4eVp2MzVhY1pqak54aEtoQUhsMlU1eXA2NThsTi1taHF3NlhBMkV4M3FtVGkzbjNWanZkS2xkdFZlMXhvVGcxSVYtZWFOQ284V29mdmZQWFZYWnR2eHlZa1JaRmlwdmFVZnZPZ1pKYmvSAcgBQVVfeXFMUEJQelBETlY5ajR4bnhMajZwWmFVSWF4Nl9HSnA4STc4YlE1QktkTk1xWnRmazloSVFNM1BmWXR3RHR0dy1tdDNBUDVhaHJGMnhHYnJ0TFh3Z1JIS3IxUjIzRzJOdFV2ay1yelhCN0FSeEFIaEk4Y3k3a1BnY2NpSzlmLTNDY09WZTJBTFozVDQwTmNNTHRnNWQtM3lfNmJTX3doX1FxcU5jQm1sVEZDT1U4LVpLaURLQVpxeDdLYWFVLU1adGpOWVg?oc=5",
+   "published": "2026-11-11",
+   "vec": "GevywAAjnOQ5vAwGHLUu4zRUgZzL1SwONLu95irtd0X8Sz0V/T+5+t/REGRYsd2tB8k="
   },
   {
    "real": true,
-   "h2": "Pickup full of empty iron cages bursts into flames on a motorway in Xiluo, Yunlin, Taiwan and the [] is nowhere to be found",
+   "h2": "A 3-foot [] strolls in the back door of a bagel shop in North Carolina, caught on camera",
    "ans": [
-    "driver",
-    "drivers"
+    "alligator",
+    "alligators",
+    "crocodile",
+    "crocodiles",
+    "gator"
    ],
    "alt": [
-    "owner",
-    "man",
-    "motorist",
-    "trucker",
-    "person"
+    "reptile",
+    "caiman",
+    "lizard",
+    "croc"
    ],
-   "place": "Xiluo, Yunlin, Taiwan",
-   "src": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE10RXpRY1ZZaEJhY3g3VlQ1cXRRR3NYN2pPdEl3MFA3YlM3N2lLM0ZITUxzTUVLVlZROGZLaWdhNkxUdFZQMDNXdy1mTTJidFU?oc=5",
-   "published": "2026-11-05",
+   "place": "North Carolina, USA",
+   "src": "https://www.upi.com/Odd_News/2026/11/03/alligator-bagel-store-southport-north-carolina/6751793729245/",
+   "published": "2026-11-03",
+   "vec": "3szTE+Mb0cxl4t0IcCAB7Akxuz2t5iPx+MPePzGBJb0hVMZS8asgwtH4CVVltxWrFOw="
+  },
+  {
+   "real": true,
+   "h2": "Man, 39, steals diagnostic [] from an eye clinic on two visits and is caught by police in Maków Mazowiecki, Poland",
+   "ans": [
+    "lenses",
+    "lens"
+   ],
+   "alt": [
+    "glasses",
+    "contacts",
+    "spectacles",
+    "monocles"
+   ],
+   "place": "Maków Mazowiecki, Poland",
+   "src": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQaWlpUWp5Q21QWEJhMkpGVThWVWRyVEh2LTNBaDM1Z1AyR0tvaHo4M3pkSE5lSkQ0RmtYWXh5NzRISlBFd1IwSElrWGp5RHdyN2Q3LVJzV2l0dGlWQ1lXU1djeERDZWNrZEE3dE92UEdzVUd6X3FENTA4MG9pR3ZhZFB2MThSdjF5VURXUWw5c2diaVhJSnlUTUdWVDFxOGM3al9XTUZ0Q2pIMF9DZU5Cc1Jwdmo1UTh3T0E?oc=5",
+   "published": "2026-11-07",
+   "vec": "SRg5ttZURozUD1T1+j3CXrTn3ZX5Fv/9wBmwMwP4Nkf8v/EaM2DmzX8yNDoC7UXp+/U="
+  },
+  {
+   "real": true,
+   "h2": "Drunk [] with a seized licence is fined 250,000 lira in İnegöl, Turkey; told alcohol is forbidden, he replies 'OK, I'll quit'",
+   "ans": [
+    "driver",
+    "motorist"
+   ],
+   "alt": [
+    "man",
+    "chauffeur",
+    "pensioner",
+    "motorists"
+   ],
+   "place": "İnegöl, Bursa, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOTFBFcVItOHZqMFFDZ21zcVc0TnFrMDg4cm5wNEV2alB5U1VGc29oZGNxZW8xVWxxY0pFT184RFJiaklVYWp6WjJyWlFpdHNNQkJHZGxJQnpTUFA0OXhBREpnTTNtQU5fV0JFdk5xcXJscDdVME4yLVUxZmZGV014MXNoQWw0bGZ3NGVDNFNZdG5QSEoxMlVQdktueUZsUXhUenBNQktRM2xoZWY1RmQ3Y0lpMW9BdGxjU1JwdGZPQVnSAcMBQVVfeXFMUHJzZFhEV3UxSFMtQlhoUGRFQV9LTWxOeUFqQnFfY1VYMUk2T2JKOVp2QzdRMks4SWVQdnJkNFBKUUx3X21oVGdUSXAwZmJJdmVkMVpPNFRlZEp1V2Vta3Vfelo0WkRiVzZyaXk4QnkzOVJmdnpMS2xJRVhxZzBLMmMwWUxQYmZiSzVtQ1c1dHFJVkUweTg2UXVSR2VZdU1CeEp1bk5oc0cxb2Npc0ZnQ3JXNUxLMS1PckM4LUdZZU1JcFFz?oc=5",
+   "published": "2026-11-09",
    "vec": "5QJTDiQosCcg3kDukgou2N8o7pTcMLpNNZAG+igbf/XaD2YEKAwDHgkk8e4UsQzpcfc="
   },
   {
    "real": true,
-   "h2": "[] found sleeping on a mattress in a bedroom after sneaking into a house overnight in Botucatu, Brazil",
+   "h2": "Diver rescues Herrnhut [] complete with wish lists from a lake in Nochten, Saxony",
    "ans": [
-    "coati",
-    "coatis",
-    "quati",
-    "quatis"
+    "stars",
+    "star"
    ],
    "alt": [
-    "raccoon",
-    "racoon",
-    "animal",
-    "anteater"
+    "lanterns",
+    "lights",
+    "decorations",
+    "lamps"
    ],
-   "place": "Botucatu, Brazil",
-   "src": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQR0p0VGZTRnNDZjE3bmtnNk9QMjNzb3BSXzQyS1NFLVVQY1RVUHRBd3dVbkcxd0R5STZ1OVhZY3hXVFdCU3FzeU9vcERKcTdYYVhqNUEwUEJ6R04wR1hhNHdWM3lfMHpRUTBodW1KZGtoRWp0dThpd0lmNG9wa19fXy1ybUpHdHlBWFd6bTQxMGFvTnpwQ1EzVDBqejhsYXJONFBPWG9PNVFXM3RJMHo3bkRQRVJjY2prOEtyY1FkTkJNenhnaTdR?oc=5",
-   "published": "2026-11-08",
-   "vec": "CjMIBLQ5KujS01rQQBvOIvgV+AKBvqh1HTwDFgwCh9oTDvbErayrHfjvd7tLwmqZ6uU="
-  },
-  {
-   "real": true,
-   "h2": "Dad buries £4,000 Boeing 737 in his back garden in Hilton, Derbyshire, England as a war [] and party pad",
-   "ans": [
-    "bunker",
-    "bunkers"
-   ],
-   "alt": [
-    "shelter",
-    "hideout",
-    "bolthole",
-    "fortress",
-    "den",
-    "cellar"
-   ],
-   "place": "Hilton, Derbyshire, England",
-   "src": "https://www.mirror.co.uk/news/uk-news/dad-buries-boeing-737-jet-37858552",
-   "published": "2026-11-09",
-   "vec": "KtdIvBDTABICs5jSoDC08msVuyXiCgK4CK3tQlHeWoHaVRBTGU04+CncLPsb9yi1/+8="
-  }
- ],
- "politics": [
-  {
-   "real": true,
-   "h": "Two in-laws tie with 38 votes each for a commission seat in {}",
-   "hint": "",
-   "lat": 35.9715,
-   "lng": -83.0985,
-   "place": "Parrottsville, Tennessee, USA",
-   "src": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNRTQ2dTZBZ2QxQnBUeDQ4cVhiRmJ3YVVVaUcwdzdMV0xyR0JNUnhYQmtNRm84aHZSb2RBZGdydnExMmJONlgyNkp3YklNdUU0dVVualp1Zl92TnAtMUZtTnlZZHF1Rm9LVU5HNTluVS1FWEdCVDlaR1JpZ05ZY1FIc0RSZFBLWTFYTzNyUE1kMjI3b0YzUXY1N285YVNhN1VaUnZyWFB6N3Y2M2FaME5NMmw5a09zTTZib193ZmoxSEJYMmlrSGlPSjFxT2RQMnZLQTVnazNqaWlSY3hJSzJVZ2s0MGQ5LVliTmNWcjlvcEhGWUFU?oc=5",
-   "published": "2026-11-04",
-   "clue": "town commission seat + in-laws = a tiny US town in the Smoky Mountain foothills",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "No recount, no revote: a bowl of numbers breaks mayoral runoff tie in {}",
-   "hint": "",
-   "lat": 36.2062,
-   "lng": -94.2344,
-   "place": "Elm Springs, Arkansas, USA",
-   "src": "https://news.google.com/rss/articles/CBMif0FVX3lxTE96V0hJMkxtc000Y0FzSDMxMHFHU2ZtYmROSFlHazJ1ZUczNWtLamRCWUtTVEFMY3FsYlJMRnVpUDB2T2NRSnRveDJTQ1kwdU5GaTg5MFZIM0lQUTZfSTg1N3Myb245elBFVnhhX0FVeDlnbXM5aEdTampMVTNMUlU?oc=5",
-   "published": "2026-11-07",
-   "clue": "a small Ozark town where a mayoral runoff is settled by a bowl of numbers",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "Final day of voting begins in {} as an unusual law bans any talk of politics",
-   "hint": "",
-   "lat": -41.2888,
-   "lng": 174.7772,
-   "place": "Wellington, New Zealand",
-   "src": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPSnktWHRLU0lQUUhxbDFhQVdoWkY0WHU3TlFFNVFSQ3lkQ1ZGR2N4YmxkVTgxbnZsbGhKZFdYNEhLbnNSUzBsMzl3NEZHUEpWOFFmQ3NQaTdrYVoxVmRMYU5oT0NpUXY4a2dBT1AxdXE2NWpXdTNzWU44UzVhRTQxN2tnU01TSEJTRmtkNjlBOTViMDJsSzdsa1RQSnZFbkoyeWkzazBQRWhBMDhvSzJsdDQzYmhjNHhnM2dBenRUbnJqeXZHNjBaNWVJcFVnZlhJdHBoQmtPTG1BVV9lN3VPX3FERFPSAfIBQVVfeXFMTjljWFQxQi1RRFM1c2N4SjF4ZFFaSGhsa3VSTVRWV3pVNlU2bE52b05CUGtwdnBKc0pFTUZQYTRJRW5kUUF2RzU4VjFqTERuR293RkNXdHlNMUhURXhNS0sxMUxZaC1VWmdfc1RBcXBOSWpJRVg2M2xQNDhJTUpjMTIxYjNPa0ZOZEgzSDZ2YldlajJQMkRXc0FHTTJNX08tZlp4VmVWbVEydFJIMkowS2tiZnVHbFpHOGd0OGtOay1nSmlVZDlIQzNsY09ZYUEzMkVmbmRTOU5mMEFLa0ZlZ0ZuMjZBMmcyWTExX2JBQ2xuVmc?oc=5",
-   "published": "2026-11-07",
-   "clue": "a harbour capital on Cook Strait, where election-day politics talk is banned",
-   "cat": "pol"
-  },
-  {
-   "real": false,
-   "h": "Three candidates in {} mayoral race share the same surname, none of them related",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "Election managers in {} certify a tie between co-winners who are related by marriage",
-   "hint": "",
-   "lat": 35.9467,
-   "lng": -83.104,
-   "place": "Cocke County, Tennessee, USA",
-   "src": "https://news.google.com/rss/articles/CBMikwJBVV95cUxNQWg1Q1ZJQ1UwSVNDUW00bWpvdFBTMllTU3RzOThoNUE3X3BHblEtS2s4clREZ3lCN01UN3ZZMHdFSUJnand5QnNncWtpZGJGZG4tQmdPU243UDNqdjV4YkswRFM3QW51MDA0RWVPTEJOWHZrS0dlLWFUV1lPRExfM3djTDI5QkhfMXhhZUNvNXBsbXdmZ0d5dDE2aUdMcVpQeXdFeVg4eVhNNHBpTXBpZ1hQRjVyQ0tSM1VBcFlnWlh5OVl2bHlDMmwwYjlYSVl5a0JPS0R1T2xrMWFoVHExYW1ZX2ZucVdOcU1DX2lHVkxwRVBDaHFpbHQydFBOeXpnLVF4TXFENEVaSXNWWWhCMjRmTQ?oc=5",
-   "published": "2026-11-06",
-   "clue": "county election commission + co-winners = a Smoky Mountains-foothills county",
-   "cat": "pol"
-  },
-  {
-   "real": false,
-   "h": "Budget vote in {} delayed 41 minutes after the council chamber's clock stops",
-   "cat": "pol"
+   "place": "Nochten, Saxony, Germany",
+   "src": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPcE5Tb2RjNVI4S1lIVVZlZi05WDZOS0Vzb21PNk5RNlVObXJ5a3JFRWRGcktxMmRNWnVnelNCWVNEVlVnWXFrNER0V25yd3ZETExvYlg3Qk83Sm9nYnNQS0xVRHZ5UWpuVExHWkJLN3lkaWhFUWhFUkNMYW14WlFTMWRTNC05YXB4OWNHek1NS3dPZ1dRODVPZEZQMHlVRURRUElOUk5fRVhRN3NtTFplS25GdVg1b1JZbFhlbmtNVE9Oal8xZXBNb0h1LTVqaWFhR2R6THNMMXd6ckFYOHZlODA3LW5MVVVfQl9oSllGcm1NYmphR0xYNWJvdGlPRDFNajkxUFZIRG8wcknSAacCQVVfeXFMT1NwQnZFaHNLLWRBWjU4aHh2TEVaS2Y5cHFQaVBSbmMwQnU2a0p0SXZPVlFXNENrd0FUR21wSE1pODZFVW52eU1JbElQeVU0aE1BRW5DUktEeC1aY3BUT2ZNYzh3TWtWMUdaVGM3c0lvMTgyaC10eEF6dE9oY0dTT3hvd0lWWTVfR3FxcDRyZlBwZlVXeThQYzlhV3RxWWVMYmFUWEg5WlctQ2E2VHctS3N3UXZGOFA2a1NzYmJWNjZIS0pVc2VKNE9SNWlZZ3V1X3BCZG9DdnVuc19JZ0VyaXhlZVF1NndwTzlfNnpjdVhScnVEQm1SMmVtMlhDUXhtYVFlZHB2RUhRT0ZQOHd1blRWSjJSNkxyWDdMd20wOU5HWXpqTWFMSQ?oc=5",
+   "published": "2026-11-10",
+   "vec": "BVwMHRYb3uvVLxA24UszAC4ApODWHTIh++TdBN/Ifzkz1hgW9Ovlzf1R/Nbn/wnQ1Ak="
   }
  ]
 }

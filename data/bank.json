@@ -1,6 +1,40 @@
 {
  "real": [
   {
+   "id": 8,
+   "h": "Sheriff's deputies find a stolen gas-station dinosaur in a strange predicament near {}",
+   "h2": "California sheriff's deputies find a stolen gas-station [] in a strange predicament",
+   "ans": [
+    "dinosaur",
+    "dinosaurs",
+    "dino",
+    "dinos"
+   ],
+   "alt": [
+    "statue",
+    "sculpture",
+    "mascot",
+    "brontosaurus"
+   ],
+   "place": "California, USA",
+   "geocode": "California, USA",
+   "lat": 36.7014631,
+   "lng": -118.755997,
+   "country": "United States",
+   "cc": "US",
+   "hint": "where the 1849 Gold Rush began",
+   "clue": "Sheriff's deputies and a roadside gas-station mascot = US",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 1,
+   "unbelievable": 5,
+   "theme": "dinosaur",
+   "src": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNeURuVDEwMW56WWtNMkNyUEhRU1lCQjRJN1MzLW9XNS1GU1NUSkNxN194UzBOUDduNXpseFl1QWs3LV90ZFBpRlJfSFZObHdrQmVsMVRsenVhY2pZSnAtdmE5Rm5oQ3hOeW5mQlFiTkRNWWJ3QTRqbVNSb1hzMTA4NNIBhgFBVV95cUxOcTh6V1pmNGg0QVBSUE10eUdnenhyT0daSlM1V20xT3NqMVB5akx3TlgwU0sybnc4VXQ2ZGs0VkVsTGlwR3ZqWVFqZ3ZuUjhMa1VIUXRDbjdzRGlCS2NEb0hteE96T294dHA1U3RseEktUkNYZEhtMS1VRllVX0hsLXd5eEdaQQ?oc=5",
+   "published": "2026-11-09",
+   "banked": "2026-11-12",
+   "rules": 2
+  },
+  {
    "id": 1,
    "h": "Strange incident as 30 crocodiles turn up on board a train in {}",
    "h2": "Strange incident as 30 [] turn up on board a train in Upper Egypt, Egypt",
@@ -70,42 +104,6 @@
    "rules": 2
   },
   {
-   "id": 7,
-   "h": "A 3-foot alligator strolls in the back door of a bagel shop in {}, caught on camera",
-   "h2": "A 3-foot [] strolls in the back door of a bagel shop in North Carolina, caught on camera",
-   "ans": [
-    "alligator",
-    "alligators",
-    "crocodile",
-    "crocodiles",
-    "gator"
-   ],
-   "alt": [
-    "reptile",
-    "caiman",
-    "lizard",
-    "croc"
-   ],
-   "place": "North Carolina, USA",
-   "geocode": "North Carolina, USA",
-   "lat": 35.6729639,
-   "lng": -79.0392919,
-   "country": "United States",
-   "cc": "US",
-   "hint": "setting of TV's One Tree Hill",
-   "clue": "alligators and feet = southeastern US",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 1,
-   "unbelievable": 2,
-   "theme": "intruder-gator",
-   "src": "https://www.upi.com/Odd_News/2026/11/03/alligator-bagel-store-southport-north-carolina/6751793729245/",
-   "published": "2026-11-03",
-   "banked": "2026-11-11",
-   "rules": 2,
-   "blank_only": true
-  },
-  {
    "id": 20,
    "h": "Patrol car bursts into flames outside traffic police station in {}; suspect flees by train",
    "h2": "Police [] bursts into flames outside traffic police station in Xizhi, New Taipei, Taiwan; suspect flees by train",
@@ -138,35 +136,25 @@
    "rules": 2
   },
   {
-   "id": 11,
-   "h": "53 red cards in one under-20s football match after mass brawl at a goal celebration in {}, a world record",
-   "h2": "53 red [] in one under-20s match after mass brawl in Minas Gerais, Brazil, a world record",
-   "ans": [
-    "cards",
-    "card"
-   ],
-   "alt": [
-    "dismissals",
-    "sendings",
-    "offs"
-   ],
-   "place": "Minas Gerais, Brazil",
-   "geocode": "Minas Gerais, Brazil",
-   "lat": -18.5264844,
-   "lng": -44.1588654,
-   "country": "Brazil",
-   "cc": "BR",
-   "hint": "home of pão de queijo",
-   "clue": "Youth football brawl in a football-obsessed country",
-   "clue_strength": 1,
-   "jargon_only": false,
-   "mappable": 1,
-   "unbelievable": 4,
-   "theme": "brawl",
-   "src": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxNa09OUndHYkRHVHhWWnliZUd3OHlIR3ZqdGFXY0hhV2RUbkswVXRDRFNTZ2t2eGFRWlhqNjdCaTFlRVhBZnI2U2ViTkZXNV9xV3U2ZU41U2ViREt4VnBoSXNzeUNQbjNrWkU3ckxmRmg0NlplX2pUTVhHUUdvbmhMNVNGZUpzYWJCTEt4RzAzRTFqTnVQV0tydFpWRjAxVWJwbVBMOU9JQXYtQmtRaTdkM21XZjhZTDRJZk1tYkRtcl8tOGhsN0V2WjhsWHU4aHN6SFhVOGJRbDF1YnI0MFp6d3pqOHZIVnlpc1B2dDljYkh1QXkyUjJuVm9qbFBPSnFpV25HYVEzOG92VDDSAZACQVVfeXFMTjNaTmZMR2x4b0E0bVhmS25jT1BpTzhOZFVZOHdocklGTFNJc1lWd3dyV3F1alRoWUtfc24wblRPVDZxaE1BdmFNdEd5TDdlZ1VIQ1hnM3VLZG1qM2ZnT1ZEZjhJOW9hM1VuV3RRaC1jc2VvSlhMRWJLaDd6QjQ5QWp5QzBDUkkwcVpyTHh2S0dDZ2k1TEsza0tWUWJDY1RvdmFRbFhRQWVBWnpRcVZCQU0yZnM3X1hTZjJmV2JFWk9zeDd1T2N4SkViLVRYNzJQY1Y5QkZ0dzA1bHlHUlBrM1I4UjBiUFNWNG5kQ1ctcWVEU2JkWC1ScXAxX1ZhYk5vMlR5SERlaU9tU1Vrc2lNTDg?oc=5",
-   "published": "2026-11-06",
+   "h": "Magistrate race ends in a 91-91 tie and is settled with a coin flip in {}",
+   "hint": "",
+   "lat": 38.5306,
+   "lng": -84.0405,
+   "place": "Robertson County, Kentucky",
+   "src": "https://www.wesh.com/article/coin-flip-kentucky-election-tie-robertson-county/74370129",
+   "published": "2026-11-08",
+   "clue": "tied county magistrate race, state board recommends a coin flip; state law settles ties by lot",
    "banked": "2026-11-10",
-   "rules": 2
+   "rules": 2,
+   "unbelievable": 3,
+   "theme": "elections",
+   "cc": "US",
+   "country": "United States",
+   "geocode": "Robertson County, Kentucky, USA",
+   "daily_only": true,
+   "mappable": 2,
+   "clue_strength": 1,
+   "jargon_only": false
   },
   {
    "id": 14,
@@ -199,40 +187,6 @@
    "published": "2026-11-09",
    "banked": "2026-11-10",
    "rules": 2
-  },
-  {
-   "id": 26,
-   "h": "Farmer's odd carved stone found outside his home in {} leads archaeologists to statues of a famed pharaoh",
-   "h2": "Farmer in Behbeit El Hagar, Egypt finds a strange carved [] outside his home that leads to statues of Ramses II",
-   "ans": [
-    "stone",
-    "stones",
-    "block",
-    "blocks"
-   ],
-   "alt": [
-    "rock",
-    "slab",
-    "boulder"
-   ],
-   "place": "Behbeit El Hagar, Egypt",
-   "geocode": "Behbeit El Hagar, Gharbia, Egypt",
-   "lat": 31.03,
-   "lng": 31.29,
-   "country": "Egypt",
-   "cc": "EG",
-   "hint": "a Nile Delta Isis-temple village",
-   "clue": "Pharaoh statues under village farmland = Egypt",
-   "clue_strength": 3,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 2,
-   "theme": "archaeology",
-   "src": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9wcF96ZERYTk1DR0pidzRaUFFtWHF1RVE5eHk3Wkd4U0ZaWlZXQ3Exc2tKaDdqbk5BWUJ0Q3g5ZWFJUXZIWUU1TU9fVlE0eHdpMWhIYVZSUWxuRGx6cy1SU2lXUE9YTjN0empKVUFRWExTRFhmOXliQ2Zkcw?oc=5",
-   "published": "2026-10-14",
-   "banked": "2026-11-10",
-   "rules": 2,
-   "blank_only": true
   },
   {
    "h": "Black Labrador rides the city bus by herself to the dog park in {}",
@@ -342,27 +296,6 @@
    "jargon_only": false
   },
   {
-   "h": "Family checks into a vacation rental in {} and finds a giant photo of themselves hanging on the wall",
-   "hint": "home of NFL legend Junior Seau",
-   "lat": 33.1959,
-   "lng": -117.3795,
-   "place": "Oceanside, California",
-   "src": "https://www.foxnews.com/travel/sisters-viral-video-reveal-truth-eerie-family-photo-discovered-rental-home",
-   "published": "2026-07-14",
-   "clue": "sisters at a beach-town rental recognise their own family in an aerial beach photo; host's decorator sells enlarged beach shots",
-   "banked": "2026-11-05",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "coincidence",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Oceanside, California, USA",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 1,
-   "jargon_only": false
-  },
-  {
    "h": "'Are You Dead?' app for people living alone goes viral in {}",
    "hint": "land of the Great Wall",
    "lat": 35.8617,
@@ -415,7 +348,7 @@
    "cc": "AU",
    "hint": "",
    "clue": "'college' + a fundraising walkathon + an apology",
-   "clue_strength": 2,
+   "clue_strength": 1,
    "jargon_only": false,
    "mappable": 2,
    "unbelievable": 3,
@@ -493,28 +426,6 @@
    "daily_only": true
   },
   {
-   "id": 50,
-   "h": "Man uses stolen excavator to rob bank directly next to a police station in {}",
-   "place": "DeFuniak Springs, Florida",
-   "geocode": "DeFuniak Springs, Walton County, Florida, USA",
-   "lat": 30.7213,
-   "lng": -86.115,
-   "country": "United States",
-   "cc": "US",
-   "hint": "a Panhandle Chautauqua-movement town",
-   "clue": "US bank + police station next door + a stolen excavator",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 4,
-   "theme": "crime",
-   "src": "https://www.weartv.com/news/local/man-attempts-atm-heist-with-excavator-stolen-near-police-station-in-defuniak-springs",
-   "published": "2025-04-30",
-   "banked": "2026-11-02",
-   "rules": 2,
-   "daily_only": true
-  },
-  {
    "id": 49,
    "h": "Man impersonating police officer charged after calling 911 to report zombies, ghosts and a UFO in {}",
    "place": "Elkins, West Virginia",
@@ -556,6 +467,28 @@
    "theme": "crime",
    "src": "https://www.yahoo.com/news/us/articles/woman-says-she-hates-kids-092016114.html",
    "published": "2026-10-05",
+   "daily_only": true
+  },
+  {
+   "id": 44,
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 2,
+   "unbelievable": 4,
+   "banked": "2026-11-01",
+   "rules": 2,
+   "h": "Doctors prescribe Diet Coke to woman with stomach mass in {}",
+   "place": "Boston, Massachusetts",
+   "geocode": "Boston, Massachusetts, USA",
+   "lat": 42.3601,
+   "lng": -71.0589,
+   "country": "United States",
+   "cc": "US",
+   "hint": "setting of Good Will Hunting",
+   "clue": "US doctors + a GLP-1 drug case report",
+   "theme": "medical",
+   "src": "https://www.newsnationnow.com/health/diet-coke-dissolve-stomach-mass-glp-1-patient/",
+   "published": "2026-07-08",
    "daily_only": true
   },
   {
@@ -629,48 +562,6 @@
    "published": "2026-10-29",
    "daily_only": true,
    "hint": "where Napoleon's retreat began"
-  },
-  {
-   "h": "Magistrate race ends in a 91-91 tie and is settled with a coin flip in {}",
-   "hint": "least populous county in the Bluegrass region",
-   "lat": 38.5306,
-   "lng": -84.0405,
-   "place": "Robertson County, Kentucky",
-   "src": "https://www.wesh.com/article/coin-flip-kentucky-election-tie-robertson-county/74370129",
-   "published": "2026-11-08",
-   "clue": "tied county magistrate race, state board recommends a coin flip; state law settles ties by lot",
-   "banked": "2026-11-10",
-   "rules": 2,
-   "unbelievable": 3,
-   "theme": "elections",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Robertson County, Kentucky, USA",
-   "daily_only": true,
-   "mappable": 2,
-   "clue_strength": 2
-  },
-  {
-   "id": 44,
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 2,
-   "unbelievable": 4,
-   "banked": "2026-11-01",
-   "rules": 2,
-   "h": "Doctors prescribe Diet Coke to woman with stomach mass in {}",
-   "place": "Boston, Massachusetts",
-   "geocode": "Boston, Massachusetts, USA",
-   "lat": 42.3601,
-   "lng": -71.0589,
-   "country": "United States",
-   "cc": "US",
-   "hint": "setting of Good Will Hunting",
-   "clue": "US doctors + a GLP-1 drug case report",
-   "theme": "medical",
-   "src": "https://www.newsnationnow.com/health/diet-coke-dissolve-stomach-mass-glp-1-patient/",
-   "published": "2026-07-08",
-   "daily_only": true
   }
  ],
  "fake": [
@@ -1015,6 +906,51 @@
    "hand": true
   },
   {
+   "h": "Library in {} fines a man for returning a book 12 days before he borrowed it",
+   "tell": "You cannot return a book before borrowing it; the logic is impossible.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "library",
+   "banked": "2026-11-12",
+   "rules": 2
+  },
+  {
+   "h": "Baker in {} bakes a 4-metre-wide loaf in an ordinary home oven and feeds 63 neighbours",
+   "tell": "A home oven is well under a metre wide; a 4-metre loaf cannot fit.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "baking",
+   "banked": "2026-11-12",
+   "rules": 2
+  },
+  {
+   "h": "Speed camera in {} fines a parked bus for doing 87 km/h",
+   "tell": "A parked bus is stationary, so it cannot be speeding at 87 km/h.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "speeding",
+   "banked": "2026-11-12",
+   "rules": 2
+  },
+  {
+   "h": "Adult hide-and-seek champion in {} stays hidden for 5 hours inside a 27-centimetre lunchbox",
+   "tell": "No adult could fit inside a 27-centimetre lunchbox.",
+   "unbelievable": 5,
+   "obvious": 2,
+   "theme": "games",
+   "banked": "2026-11-12",
+   "rules": 2
+  },
+  {
+   "h": "Pensioners in {} knit a 14-kilometre scarf in a single afternoon using 6 volunteers",
+   "tell": "Six knitters cannot produce 14 kilometres of scarf in an afternoon.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "knitting",
+   "banked": "2026-11-12",
+   "rules": 2
+  },
+  {
    "h": "Wolves in {} break into a deli, eat 1,260 bread rolls and leave 40 kilos of ham untouched",
    "tell": "Wolves are meat-eaters; they would take the ham, not the bread.",
    "unbelievable": 4,
@@ -1060,8 +996,45 @@
    "rules": 2
   }
  ],
- "pol": [],
+ "pol": [
+  {
+   "id": 12,
+   "h": "Mayoral race in {} ends in a tie, so the winner is chosen by random drawing, and the challenger seeks a recount",
+   "place": "Spring Lake Park, Minnesota, USA",
+   "geocode": "Spring Lake Park, Minnesota, USA",
+   "lat": 45.1154274,
+   "lng": -93.2492872,
+   "clue": "mayor + tie settled by a drawing = a northern Twin Cities suburb",
+   "src": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9GM0FmSU5SeU9rU2hRNXNyZHJxYVVrelZncnByQS03dGVQZ3AxcFY1VHd2VTBXUmRkNFdfQ1lMOGt1anNlYTJLTGd6OWhUcnlBWUJ3WGdLRmlBNUHSAWBBVV95cUxQMTBxOHBQOTMzdDlBTWtPdUliQ3MwS0VJMFd0NmFWTC12THdtUmhRVlVqWWlFaldkX2hZdDY5T2FvRFdiSDFiSFVaQ010c0hGVm9jZTFPZnNRVHZJSFpXTDk?oc=5",
+   "published": "2026-11-06",
+   "banked": "2026-11-12"
+  }
+ ],
  "polfake": [
+  {
+   "h": "Town council in {} votes to abolish itself, then re-forms next morning with the same seven members",
+   "banked": "2026-11-12"
+  },
+  {
+   "h": "Ballot box in {} found holding 2,413 votes in a village of 1,288 voters; result stands",
+   "banked": "2026-11-12"
+  },
+  {
+   "h": "Mayor of {} wins re-election with 4,317 votes in a town with 3,902 registered voters",
+   "banked": "2026-11-12"
+  },
+  {
+   "h": "Alderman in {} wins re-election after spending the entire 11-month campaign on holiday abroad",
+   "banked": "2026-11-12"
+  },
+  {
+   "h": "Voters in {} pick a new sheriff by a show of hands in a referendum open to residents aged 9 and over",
+   "banked": "2026-11-12"
+  },
+  {
+   "h": "Lawmakers in {} pass a law requiring every future law to be shorter than the one before it",
+   "banked": "2026-11-12"
+  },
   {
    "h": "Candidate in {} wins mayoral race with 163% of the votes cast, clerk confirms result is valid",
    "banked": "2026-11-11"
@@ -1117,30 +1090,6 @@
   {
    "h": "Parliament in {} passes law forcing members to retire at 71 after finding their average age was 68",
    "banked": "2026-11-08"
-  },
-  {
-   "h": "Voters in {} elect mayor by 3 votes after ballots are counted in the only bakery in town",
-   "banked": "2026-11-08"
-  },
-  {
-   "h": "Councillors in {} vote 7-2 to ban pigeons from the main square after a count shows a 4 percent rise",
-   "banked": "2026-11-08"
-  },
-  {
-   "h": "Three mayoral candidates in {} share a birthday and finish in alphabetical order",
-   "banked": "2026-11-08"
-  },
-  {
-   "h": "Mayor of {} swears in new county sheriff at the opening session of the regional senate",
-   "banked": "2026-11-08"
-  },
-  {
-   "h": "Lawmakers in {} approve a 14-page bill to move the capital after a single windy afternoon",
-   "banked": "2026-11-08"
-  },
-  {
-   "h": "Cantonal parliament in {} votes to cap rents, then raises its own office allowance in euros",
-   "banked": "2026-11-07"
   }
  ]
 }
