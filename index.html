@@ -4219,7 +4219,7 @@ async function checkGroupInvite(){
   const el=$('groupInvite');
   const by=(new URLSearchParams(location.search).get('by')||'').replace(/[<>]/g,'').trim().slice(0,24);
   const size=g.members+' member'+(g.members==1?'':'s');
-  el.innerHTML='<p class="gTitle">Join '+escH(by ? poss(by)+' Group' : g.name)+'</p>'
+  el.innerHTML='<p class="gTitle">Join '+escH(g.name)+'</p>'
     +'<p>'+(by ? escH(by)+' invited you to <b>'+escH(g.name)+'</b> ('+size+').' : 'You\'re invited to <b>'+escH(g.name)+'</b> ('+size+').')+' Join to see how you stack up on their private leaderboard.</p>'
     +'<div><button type="button" class="primary" id="gJoin">Join group</button> <button type="button" class="ghost" id="gNo">No thanks</button></div>';
   el.hidden=false;
