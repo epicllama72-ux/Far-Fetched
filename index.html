@@ -3136,6 +3136,7 @@ function shareEmoji(x){
   if(x.blank) return CLASS_EMOJI[resultClass(x)];
   if(!x.real) return x.callOk?'🟦':'🟥';
   if(x.dist==null) return '⬛';
+  if(x.dist<=1) return '👁️';                       // OMNISCIENT: a pin within 1 km
   return RARITY.find(r=>x.dist<=r[0])[6];
 }
 
