@@ -166,6 +166,41 @@
    "before": "Harry Potter read-aloud in 9 hours / 190 km cycling commute",
    "after": "burglar stuck in a chimney for 3 weeks / man camps 11 weeks outside a phone shop for an iPhone",
    "why": "the owner wants fakes about people doing stupid or ridiculous things (like the real stories), with a slip you have to think about"
+  },
+  {
+   "kind": "clue",
+   "place": "DeFuniak Springs",
+   "before": "US bank + police station next door + a stolen excavator",
+   "after": "Panhandle town built around a near-perfectly round lake",
+   "why": "the old clue named the country ('US bank'); a recognisable local landmark instead"
+  },
+  {
+   "kind": "clue",
+   "place": "Oceanside",
+   "before": "sisters at a beach-town rental recognise their own family in an aerial beach pho",
+   "after": "Home of the Top Gun house",
+   "why": "too vague; a famous film location is recognisable"
+  },
+  {
+   "kind": "clue",
+   "place": "Tokyo",
+   "before": "District court convicts over social media likes",
+   "after": "A city of about 14 million people",
+   "why": "the owner chose the city's population as the clue"
+  },
+  {
+   "kind": "clue",
+   "place": "Chuncheon",
+   "before": "District court sentencing for a ridiculous excuse; East Asia",
+   "after": "Lakeside city where the drama Winter Sonata was filmed",
+   "why": "too vague; a famous drama location suits an obscure city"
+  },
+  {
+   "kind": "clue",
+   "place": "Sydney",
+   "before": "'Grandad' and sacred Aboriginal sites = Australia",
+   "after": "Home of 42 Wallaby Way from Finding Nemo",
+   "why": "the old clue named the country; the owner wanted something less obvious than the Opera House"
   }
  ]
 }
