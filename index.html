@@ -3369,6 +3369,8 @@ function openMap(){
       WORLDS.forEach(dx=>{
         L.geoJSON(shiftFC(w.countries,dx),{style:{color:'#7f90b4',weight:1,fillColor:'#2c3850',fillOpacity:1},interactive:false}).addTo(map).bringToBack();
         L.geoJSON(shiftFC(w.states,dx),{style:{color:'#5a6a8c',weight:0.7,fill:false,dashArray:'2 2'},interactive:false}).addTo(map);
+        if(w.lakes) L.geoJSON(shiftFC(w.lakes,dx),{style:{color:'#7f90b4',weight:1,fillColor:'#0f1a2a',fillOpacity:1},interactive:false}).addTo(map);   // big lakes are water: state lines stop at the shore
+        if(w.lakeBorders) L.geoJSON(shiftFC(w.lakeBorders,dx),{style:{color:'#7f90b4',weight:1,fill:false,dashArray:'3 3'},interactive:false}).addTo(map);   // borders that run across a lake
       });
     }).catch(e=>{ try{ console.warn('map outlines failed to load',e); }catch(_){} });
     layer = L.layerGroup().addTo(map);
