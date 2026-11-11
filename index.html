@@ -3344,6 +3344,7 @@ function revealCall(st){
     wireWhy(fb);
     showFakePopup(c.callOk,c.callPts,FAKE_PTS);      // stays up until the next headline
     finishRound();
+    showFooledShare(S.i, c.callOk);
   }
   renderDots();
   aim();
@@ -3502,6 +3503,15 @@ function submitGuess(timedOut){
   },650);
 }
 
+/* how many other players today's fake fooled, in the popup where a pin shows "Closer than X%" */
+async function showFooledShare(i, ok){
+  if(S.mode!=='daily' || !sbOn()) return;
+  const r=await sbRpc('story_fooled',{p_day:dayKey(),p_kind:S.kind,p_i:i,p_player:playerId()});   // just two counts come back
+  if(!r || S.i!==i || S.phase!=='done') return;
+  const n=+r.n||0, tag=$('rCrowd');
+  tag.innerHTML = n>=3 ? '<b>'+Math.round(100*(+r.f||0)/n)+'%</b> of '+n.toLocaleString()+' players '+(ok?'were fooled':'were fooled too') : 'One of the first to see this one';
+  tag.hidden=false;
+}
 /* everyone's pins for this story (other players who finished today), and where yours ranks */
 let MAP_VIEW=null;
 async function showCrowdPins(i, mine){
