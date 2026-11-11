@@ -160,6 +160,12 @@
    "before": "reads all 7 Harry Potter books aloud in 41 minutes / cycles 470 km to work and back every day",
    "after": "in 9 hours / 190 km a day",
    "why": "the owner wanted the fakes a little less absurd: keep the slip, but make it a number you have to think about rather than one that is obviously impossible"
+  },
+  {
+   "kind": "fake",
+   "before": "Harry Potter read-aloud in 9 hours / 190 km cycling commute",
+   "after": "burglar stuck in a chimney for 3 weeks / man camps 11 weeks outside a phone shop for an iPhone",
+   "why": "the owner wants fakes about people doing stupid or ridiculous things (like the real stories), with a slip you have to think about"
   }
  ]
 }
