@@ -26,8 +26,8 @@
   },
   {
    "real": false,
-   "h": "Teen in {} reads all 7 Harry Potter books aloud for charity in 9 hours",
-   "tell": "The seven books run to over a million words; even reading fast, that is about 110 hours aloud, not 9."
+   "h": "Burglar in {} gets stuck in a chimney for 3 weeks before neighbours finally hear him shouting",
+   "tell": "Nobody survives 3 weeks wedged in a chimney without water; people last about 3 days."
   },
   {
    "real": true,
@@ -64,8 +64,8 @@
   },
   {
    "real": false,
-   "h": "Commuter in {} cycles 190 km to work and back every day for 6 years to save on bus fares",
-   "tell": "190 km is about 8 hours in the saddle a day on top of a full working day, every day for six years."
+   "h": "Man in {} camps outside a phone shop for 11 weeks to be first in line for the new iPhone",
+   "tell": "New iPhones go on sale about ten days after they are announced, so nobody could queue 11 weeks ahead."
   }
  ],
  "blank": [
