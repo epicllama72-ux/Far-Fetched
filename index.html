@@ -875,6 +875,10 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #mapWrap.open{transform:translate(-50%,0)}
 #map{height:min(30vh,260px);min-height:160px;transition:height .35s steps(5);border:3px solid var(--accent);margin-bottom:10px;background:#0f1a2a;box-shadow:0 0 0 3px var(--ink),6px 6px 0 3px var(--ink)}
 #mapWrap .primary{margin:0 3px;width:calc(100% - 6px)}
+#mapToggle{display:none;position:absolute;top:10px;right:24px;z-index:500;font:18px/1 var(--vt);padding:7px 10px;background:var(--panel);color:var(--accent);box-shadow:0 0 0 2px var(--ink)}
+body.pinDone #mapToggle{display:block}
+.crowdLine{display:block;font-size:19px;color:#c9d4f0;margin-top:3px}
+.crowdLine b{font-weight:400;color:var(--accent)}
 .leaflet-container{font:11px system-ui}
 .leaflet-bar{border:2px solid var(--ink)!important;border-radius:0!important}
 .leaflet-bar a{background:#14161d!important;color:var(--accent)!important;border-radius:0!important;border-bottom-color:var(--line)!important}
@@ -1339,6 +1343,7 @@ body.intro #ausBar{display:none}
 
   <div id="mapWrap" hidden>
     <div id="map"></div>
+    <button type="button" id="mapToggle">⤢ Explore map</button>
     <button class="primary" id="btnGuess" disabled>Tap the map to drop a pin</button>
     <button class="primary" id="btnNext2" hidden>Next</button>
   </div>
@@ -1552,6 +1557,7 @@ function showPopup(color,title,line,quip,icon){
   el.querySelector('em').textContent=quip;
   el.hidden=false; el.classList.remove('go'); void el.offsetWidth; el.classList.add('go');
 }
+function cap1(t){ t=String(t||'').toLowerCase(); return t.charAt(0).toUpperCase()+t.slice(1); }
 function showRarity(d,got,max){
   if(d==null) return;
   if(d<=1){ showOmniscient(d,got,max); return; }      // a pin within 1 km gets its own popup; it is not a tier on the scale
@@ -3252,7 +3258,7 @@ function firstGame(){ return !load('ff_coached') && !Object.keys(load('ff_hist')
 function showRound(shown,quiet,gate){
   document.body.classList.remove('answered');
   S.phase = gate ? 'ready' : 'call'; guessLL=null;
-  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned');
+  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone');
   $('blankUI').hidden=true; $('card').hidden=false; $('storyLink').hidden=true; hideHint();
   const st = S.rounds[S.i];
   $('kicker').textContent = 'Real or fake?'+(S.kind==='pol'?' · Politics':'')+(S.mode==='practice'?' · practice':'');
@@ -3385,6 +3391,7 @@ function openMap(){
     map.on('zoomend moveend',syncCaps);
     let flyUntil=0;
     map.on('click',e=>{
+      if(S.phase==='done' && document.body.classList.contains('pinDone') && document.body.classList.contains('pinned')){ toggleMapSize(); return; }   // tap the strip to open the map up again
       if(S.phase!=='pin') return;
       if(performance.now()<flyUntil) return;     // a tap while the zoom is still flying must not restart it or drop a pin at a half-zoomed spot
       if(map.getZoom()<3.5){                     // first tap zooms into that region
@@ -3446,6 +3453,7 @@ function submitGuess(timedOut){
   const cPts = cOk ? Math.round(PK*COUNTRY_PTS*(S.cur.callOk?1:0.75)) : 0;   // a flat bonus for the right country (75% credit after a wrong call, like the pin)
   pts += cPts; S.cur.countryPts = cPts;
   S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
+  S.cur.pin = guessLL ? [Math.round(guessLL.lat*100)/100, Math.round((((guessLL.lng+540)%360)-180)*100)/100] : null;   // saved with the answers so other players can see where people pinned
   Sound.play('lock',Math.min(1,pts/(PK*(PIN_PTS+COUNTRY_PTS)))); if(pts>0) Sound.play('jawDown');
   showRarity(d, S.cur.callPts+pts, Math.round(PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS)));   // stays up until the next headline
   let actual = L.latLng(st.lat,st.lng);
@@ -3466,7 +3474,7 @@ function submitGuess(timedOut){
     ? (S.cur.callOk?row('Call',S.cur.callPts):'')
       + row('Distance · '+Math.round(d).toLocaleString()+' km',distPts,(S.cur.callOk?'':'75% credit'))
       + (cPts?row('Right country · '+(countryName(cTrue)||'✓'),cPts):'')
-      + (bonus?row('Quick and close',bonus):'')
+      + (bonus?row(cap1(RARITY.find(r=>d<=r[0])[1])+' bonus',bonus):'')
     : (S.cur.callOk?row('Call',S.cur.callPts):'')+'<span class="brk">No pin before time ran out</span>';
   fb.innerHTML = '<span class="sum">'+(guessLL ? Math.round(d).toLocaleString()+' km · <b>+'+pts+'</b> pin' : 'Time! No pin · <b>+0</b>')+'</span>'
     + '<button class="why" type="button" aria-expanded="false">why?</button>'
@@ -3474,14 +3482,37 @@ function submitGuess(timedOut){
     + (st.src?' · <a href="'+st.src+'" target="_blank" rel="noopener">read the story</a>':'')+'</span></small>';
   wireWhy(fb);
   finishRound();
+  if(guessLL) showCrowdPins(S.i, d);
+  MAP_VIEW = guessLL ? {b:L.latLngBounds([guessLL,actual]).pad(0.5)} : {c:actual};
   if(!isDesk()) setTimeout(()=>{      // after a moment the map shrinks to a strip so the jaw is not hidden behind it
     if(S && S.phase==='done' && document.body.classList.contains('pinning')){
-      document.body.classList.add('pinned');
+      document.body.classList.add('pinned','pinDone');
       setTimeout(()=>{ map.invalidateSize(); if(guessLL) map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.5),{maxZoom:4.5,animate:false}); else map.setView(actual,5,{animate:false}); aim(); },420);
     }
   },650);
 }
 
+/* everyone's pins for this story (other players who finished today), and where yours ranks */
+let MAP_VIEW=null;
+async function showCrowdPins(i, mine){
+  if(S.mode!=='daily' || !sbOn()) return;
+  const r=await sbRpc('story_pins',{p_day:dayKey(),p_kind:S.kind,p_i:i,p_player:playerId()});
+  if(!r || S.i!==i || S.phase!=='done') return;
+  (r.p||[]).forEach(([la,ln])=>WORLDS.forEach(dx=>L.circleMarker([la,ln+dx],{radius:3,weight:0,fillColor:'#c9d4f0',fillOpacity:.55,interactive:false}).addTo(layer)));
+  const ds=(r.d||[]).filter(x=>typeof x==='number'), fb=$('feedback'), sum=fb.querySelector('.sum'); if(!sum) return;
+  const line=document.createElement('span'); line.className='crowdLine';
+  if(ds.length>=3){ const beat=ds.filter(x=>x>mine).length+ds.filter(x=>x===mine).length*0.5; line.innerHTML='Closer than <b>'+Math.round(100*beat/ds.length)+'%</b> of today\'s '+ds.length.toLocaleString()+' players'; }
+  else line.textContent='One of the first players to pin this today';
+  sum.after(line);
+}
+function toggleMapSize(){
+  const big=document.body.classList.contains('pinned');
+  if(big) hideRarity();                        // opening the map up: the popup would sit over it
+  document.body.classList.toggle('pinned',!big);
+  $('mapToggle').textContent = big ? '⤡ Shrink map' : '⤢ Explore map';
+  Sound.play('menu');
+  setTimeout(()=>{ map.invalidateSize(); if(MAP_VIEW){ if(MAP_VIEW.b) map.fitBounds(MAP_VIEW.b,{maxZoom:4.5,animate:false}); else map.setView(MAP_VIEW.c,5,{animate:false}); } aim(); },420);
+}
 function finishRound(){
   S.phase='done';
   S.results.push(S.cur);
@@ -3495,7 +3526,7 @@ function finishRound(){
 }
 
 function next(){
-  hideRarity();
+  hideRarity(); document.body.classList.remove('pinDone'); $('mapToggle').textContent='⤢ Explore map';
   S.i++;
   if(S.i<S.rounds.length) Sound.play('flip');
   window.scrollTo({top:0});
@@ -3639,7 +3670,7 @@ function drawDigLog(){
 function finish(restored){
   stopTimer(); cancelAnimationFrame(SPEED_RAF);
   $('unlockBox').hidden=true; S.newUnlocks=[]; S.froze=S.earnedFreeze=false;
-  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','answered');
+  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone','answered');
   ['card','speed','feedback','mapWrap','blankUI'].forEach(id=>$(id).hidden=true);
   setBar('end');
   getDb().then(d=>{ $('btnBoard').textContent = (d || sbOn()) ? 'Leaderboard' : 'My digs'; });
@@ -4024,7 +4055,7 @@ function renderCrowd(rows,agg){
     const q=document.createElement('i'); q.textContent='“'+short+'”'; $('crowdTop').append(q);
   }
 }
-function answersOf(results){ return results.map(x=>[x.callOk?1:0, x.dist==null?null:Math.round(x.dist)]); }
+function answersOf(results){ return results.map(x=>[x.callOk?1:0, x.dist==null?null:Math.round(x.dist)].concat(Array.isArray(x.pin)?x.pin:[])); }
 
 /* the zone his jaw reached, in plain words for the share text: "bedrock", "magma", "core"... */
 function shareZone(z){ return z==='NOWHERE' ? 'jaw shut' : String(z||'').toLowerCase().replace(/^the /,''); }
@@ -4557,7 +4588,7 @@ function stopTimer(){ if(TIMER){ clearInterval(TIMER); TIMER=null; } }
 function showBlankRound(live){
   document.body.classList.remove('answered');
   S.phase='ready'; S.blank=null;
-  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned');
+  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone');
   $('card').hidden=false; $('speed').hidden=true;
   $('feedback').hidden=true; $('mapWrap').hidden=true;
   $('blankUI').hidden=false; $('blankLive').hidden=true;
@@ -4748,6 +4779,7 @@ $('guessForm').addEventListener('submit',e=>{ e.preventDefault(); const inp=$('g
 $('btnReal').onclick=()=>onCall(true);
 $('btnFake').onclick=()=>onCall(false);
 $('btnGuess').onclick=()=>submitGuess();
+$('mapToggle').onclick=e=>{ e.stopPropagation(); toggleMapSize(); };
 $('btnNext').onclick=next;
 $('btnNext2').onclick=next;
 $('btnShare').onclick=share;
