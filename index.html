@@ -1082,6 +1082,18 @@ body.intro #ausBar{display:none}
 #curve{width:100%;height:auto;image-rendering:pixelated;background:#0b0e14;box-shadow:0 0 0 2px var(--line);margin:6px 0 8px}
 #rankLine{margin:0 0 8px;font:22px/1.1 var(--vt)}
 #rankLine b{font-weight:400;color:var(--accent)}
+#groupBar{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 10px}
+.gchip{font:17px/1 var(--vt);padding:6px 10px;border:2px solid #3d4558;background:#0d0f14;color:#c3cad8;cursor:pointer;max-width:12em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gchip.on{border-color:var(--accent);color:var(--accent)}
+.gchip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#groupTools{margin:0 0 10px;font:18px/1.25 var(--vt);color:#c3cad8}
+#groupTools p{margin:0 0 6px}
+#groupTools input{font:17px/1.2 var(--vt);background:var(--ink);color:#eef0f4;border:1px solid #3d4558;padding:3px 6px;width:min(19em,100%)}
+#groupTools button:not(.linkish){font:17px/1 var(--vt);padding:6px 10px;background:var(--accent);color:#2b2000;border:0;box-shadow:2px 2px 0 var(--ink);cursor:pointer}
+#groupTools button:not(.linkish):disabled{opacity:.6}
+#groupInvite{position:fixed;left:50%;top:max(70px,env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:40;width:min(480px,calc(100% - 32px));background:var(--card);background-image:var(--scan);border:2px solid var(--accent);padding:12px 14px;box-shadow:4px 4px 0 var(--ink);font:20px/1.2 var(--vt);color:#eef0f4}
+#groupInvite p{margin:0 0 10px}
+#groupInvite button{font-size:18px}
 #topList{margin:0 0 12px;padding:0;list-style:none;font:20px/1.25 var(--vt)}
 #topList li{display:flex;justify-content:space-between;gap:10px;padding:2px 8px;border-bottom:1px dashed #2a2f3b}
 #topList li.me{background:#1e2433;color:var(--accent)}
@@ -1387,6 +1399,7 @@ body.intro #ausBar{display:none}
   </div>
 
   <div id="toast" hidden></div>
+  <div id="groupInvite" role="dialog" aria-label="Group invite" hidden></div>
   <div id="rarity" aria-live="polite" hidden><canvas id="rIcon" width="16" height="16" hidden></canvas><b></b><small></small><em></em></div>
   <div id="ausBar" aria-hidden="true"><i></i><b>0%</b></div>
   <button class="ghost" id="skipRecap">Skip ▸</button>
@@ -1406,10 +1419,12 @@ body.intro #ausBar{display:none}
   <section id="sheet" hidden aria-label="Today's leaderboard">
     <div class="sheetIn">
       <div class="sheetTop"><p class="kicker" id="boardKicker">Today's diggers</p><button id="sheetClose" aria-label="Close">×</button></div>
+      <div id="groupBar" hidden></div>
+      <div id="groupTools" hidden></div>
       <canvas id="curve" width="320" height="130" aria-label="Distribution of today's jaw depths"></canvas>
       <p id="rankLine"></p>
       <ol id="topList"></ol>
-      <p id="nameRow" hidden>Playing as <b id="nameShow"></b> · <button class="linkish" id="nameEdit" type="button">change</button><small id="nameHint"> (a new name shows from your next round)</small></p>
+      <p id="nameRow" hidden>Playing as <b id="nameShow"></b> · <button class="linkish" id="nameEdit" type="button">change</button><small id="nameHint"> (your scores on the board update too)</small></p>
       <div class="digRow">
         <img id="digImg" alt="Your jaw dig">
         <div><p id="digCap"></p><button class="ghost" id="btnSaveImg">Save image</button><p id="saveMsg"></p></div>
@@ -4080,6 +4095,93 @@ async function sbRename(name){
     return true;
   }catch(e){ return false; }
 }
+/* keep the name on the board in step: after a rename, and once a day in case an earlier rename never reached the server */
+function syncName(force){
+  if(!sbOn() || !load('ff_name')) return;
+  const n=playerName(), last=load('ff_name_synced')||{};
+  if(!force && last.name===n && last.day===dayKey()) return;
+  sbRename(n).then(ok=>{ if(ok) store('ff_name_synced',{name:n,day:dayKey()}); });
+}
+
+/* ---------- Private groups (scripts/supabase_groups.sql): a small board for friends, joined with a ?g=CODE link ---------- */
+let BOARD_VIEW='all', MY_GROUPS=load('ff_groups')||[];
+async function sbRpc(fn,body){
+  if(!sbOn()) return null;
+  try{ const r=await fetch(SUPABASE_URL+'/rest/v1/rpc/'+fn,{method:'POST',headers:sbHeaders(),body:JSON.stringify(body)}); if(!r.ok) return null;
+       const t=await r.text(); return t ? JSON.parse(t) : true; }catch(e){ return null; }
+}
+function escH(t){ return String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function groupUrl(code){ return siteUrl()+'?g='+encodeURIComponent(code)+'&r='+refCode()+'&ref=group'; }
+async function refreshGroups(){ const g=await sbRpc('my_groups',{p_player:playerId()}); if(Array.isArray(g)){ MY_GROUPS=g; store('ff_groups',g); } return MY_GROUPS; }
+function renderGroupBar(){
+  const bar=$('groupBar'); if(!sbOn()){ bar.hidden=true; return; } bar.hidden=false;
+  const chip=(code,label)=>'<button type="button" class="gchip'+(BOARD_VIEW===code?' on':'')+'" data-g="'+escH(code)+'">'+escH(label)+'</button>';
+  bar.innerHTML=chip('all','Everyone')+MY_GROUPS.map(g=>chip(g.code,g.name)).join('')+chip('new','+ New group');
+  bar.querySelectorAll('.gchip').forEach(b=>b.onclick=()=>{ Sound.play('menu'); const g=b.dataset.g; if(g==='new') newGroupForm(); else if(g==='all') openBoard(); else renderGroupBoard(g); });
+}
+async function renderGroupBoard(code){
+  BOARD_VIEW=code; renderGroupBar();
+  const g=MY_GROUPS.find(x=>x.code===code)||{code,name:'Group'};
+  $('boardKicker').textContent=g.name+' · '+modeName(S.kind);
+  $('curve').hidden=true; $('digImg').parentElement.hidden=true; $('nameRow').hidden=true;
+  $('rankLine').textContent='Loading…'; $('topList').innerHTML='';
+  showGroupTools(g);
+  const b=await sbRpc('group_board',{p_code:code,p_day:dayKey(),p_kind:S.kind});
+  if(BOARD_VIEW!==code) return;
+  if(!b || !Array.isArray(b.rows)){ $('rankLine').textContent="Couldn't load this group right now."; return; }
+  g.members=+b.members||g.members; showGroupTools(g);
+  const me=playerId(), rows=b.rows;
+  $('rankLine').innerHTML = rows.length ? '<b>'+rows.length+'</b> of '+b.members+' member'+(b.members==1?'':'s')+' played today.' : 'Nobody in this group has played today yet. Send them the link!';
+  const ol=$('topList'); ol.innerHTML='';
+  rows.forEach((r,i)=>{
+    const li=document.createElement('li'); if(r.player===me) li.className='me';
+    const nm=document.createElement('span'); nm.className='nm'; nm.textContent=(i+1)+'. '+(r.player===me?'You':(r.name||'Someone'));
+    const v=document.createElement('span'); v.textContent=fmtM(+r.m)+' · '+fmtPts(+r.score);
+    li.append(nm,v); ol.append(li);
+  });
+}
+function showGroupTools(g){
+  const t=$('groupTools'); t.hidden=false;
+  t.innerHTML='<p>Invite: <input id="gLink" readonly value="'+escH(groupUrl(g.code))+'" aria-label="Invite link"> <button type="button" id="gCopy">Copy link</button></p>'
+    +'<p><small>'+(g.members ? g.members+' member'+(g.members==1?'':'s')+' · ' : '')+'code '+escH(g.code)+' · <button type="button" class="linkish" id="gLeave">leave group</button></small></p>';
+  $('gLink').onclick=e=>e.target.select();
+  $('gCopy').onclick=async()=>{ try{ await navigator.clipboard.writeText(groupUrl(g.code)); $('gCopy').textContent='Copied!'; }catch(e){ $('gLink').select(); } };
+  $('gLeave').onclick=async()=>{ if(!confirm('Leave '+g.name+'?')) return; await sbRpc('group_leave',{p_player:playerId(),p_code:g.code});
+    MY_GROUPS=MY_GROUPS.filter(x=>x.code!==g.code); store('ff_groups',MY_GROUPS); openBoard(); };
+}
+function newGroupForm(){
+  BOARD_VIEW='new'; renderGroupBar();
+  const t=$('groupTools'); t.hidden=false;
+  t.innerHTML='<p>Name your group: <input id="gName" maxlength="40" placeholder="The Smith family"> <button type="button" id="gMake">Create</button></p><p><small>You get a link to send. Anyone who opens it can join.</small></p>';
+  const go=async()=>{
+    const n=$('gName').value.trim(); if(!n){ $('gName').focus(); return; }
+    $('gMake').disabled=true;
+    const g=await sbRpc('group_create',{p_player:playerId(),p_name:n});
+    if(!g || g.error){ $('gMake').disabled=false; showToast(g&&g.error==='too_many' ? 'You can make up to 10 groups.' : "Couldn't make the group. Try again."); return; }
+    MY_GROUPS=MY_GROUPS.filter(x=>x.code!==g.code).concat([g]); store('ff_groups',MY_GROUPS); renderGroupBoard(g.code);
+  };
+  $('gMake').onclick=go; $('gName').onkeydown=e=>{ if(e.key==='Enter') go(); }; $('gName').focus();
+}
+async function checkGroupInvite(){
+  const code=(new URLSearchParams(location.search).get('g')||'').trim().toUpperCase();
+  if(!code || !sbOn()) return;
+  const clean=()=>{ try{ const u=new URL(location.href); u.searchParams.delete('g'); history.replaceState(null,'',u.pathname+u.search+u.hash); }catch(e){} };
+  await refreshGroups();
+  if(MY_GROUPS.some(g=>g.code===code)){ clean(); return; }
+  const g=await sbRpc('group_info',{p_code:code}); if(!g || !g.code){ clean(); return; }
+  const el=$('groupInvite');
+  el.innerHTML='<p>You\'re invited to <b>'+escH(g.name)+'</b> ('+g.members+' member'+(g.members==1?'':'s')+'). Join to see how you stack up on their private leaderboard.</p>'
+    +'<div><button type="button" class="primary" id="gJoin">Join group</button> <button type="button" class="ghost" id="gNo">No thanks</button></div>';
+  el.hidden=false;
+  $('gNo').onclick=()=>{ el.hidden=true; clean(); };
+  $('gJoin').onclick=async()=>{
+    const j=await sbRpc('group_join',{p_player:playerId(),p_code:g.code}); el.hidden=true; clean();
+    if(!j || j.error){ showToast(j&&j.error==='full' ? 'That group is full.' : "Couldn't join right now. Try the link again."); return; }
+    MY_GROUPS=MY_GROUPS.filter(x=>x.code!==j.code).concat([j]); store('ff_groups',MY_GROUPS);
+    showToast('Joined '+j.name+'! Find it on the leaderboard.');
+  };
+}
+
 /* The leaderboard summary (scripts/supabase_board.sql): one small response instead of every score row.
    Depths are stored to 0.1 m, so the per-depth counts rebuild the curve and your ranking exactly. */
 async function sbBoardSummary(kind){
@@ -4201,6 +4303,7 @@ async function openBoard(){
   if(S && S.phase==='call') document.body.classList.add('hideq');     // the board pauses the clock, so hide the question too
   $('boardKicker').textContent="Today's diggers · "+modeName(S.kind);
   $('nameRow').hidden=true;
+  BOARD_VIEW='all'; $('groupTools').hidden=true; renderGroupBar(); refreshGroups().then(()=>{ if(BOARD_VIEW==='all') renderGroupBar(); });
   const done = S.mode==='daily' && S.results.length>=S.rounds.length;    // only a finished daily round goes on the board
   const inf=Scene.info(), mine=done ? (S.finalM!=null ? S.finalM : +inf.m) : null;
   drawCurve([], mine);
@@ -4659,7 +4762,7 @@ $('nameEdit').onclick=()=>{
   if(row.querySelector('input')) return;
   const inp=document.createElement('input'); inp.type='text'; inp.maxLength=24; inp.value=playerName(); inp.id='nameIn'; inp.setAttribute('aria-label','Leaderboard name');
   const ok=document.createElement('button'); ok.type='button'; ok.className='linkish'; ok.textContent='save';
-  const save=()=>{ store('ff_name', inp.value.replace(/[<>]/g,'').trim().slice(0,24)); $('nameShow').textContent=playerName(); sbRename(playerName()); inp.remove(); ok.remove(); $('nameShow').hidden=false; $('nameEdit').hidden=false; $('nameHint').hidden=false; };
+  const save=()=>{ store('ff_name', inp.value.replace(/[<>]/g,'').trim().slice(0,24)); $('nameShow').textContent=playerName(); syncName(true); inp.remove(); ok.remove(); $('nameShow').hidden=false; $('nameEdit').hidden=false; $('nameHint').hidden=false; };
   ok.onclick=save; inp.onkeydown=e=>{ if(e.key==='Enter') save(); };
   $('nameShow').hidden=true; $('nameEdit').hidden=true; $('nameHint').hidden=true;
   row.append(inp,' ',ok); inp.focus(); inp.select();
@@ -5221,7 +5324,7 @@ Scene.start(); applyKit(); renderWardSub();
 Intro.show();                                   // the earth from space until you say you're ready
 updateStreak();
 setTimeout(checkInvites,4000);
-Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS&&(POL_ON||VS.kind!=='pol')?VS.kind:KIND); loadIssues(); setTimeout(Intro.check,60); });
+Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS&&(POL_ON||VS.kind!=='pol')?VS.kind:KIND); loadIssues(); setTimeout(Intro.check,60); setTimeout(()=>{ checkGroupInvite(); syncName(false); },1200); });
 window.addEventListener('resize',()=>{ clearTimeout(window._aimT); window._aimT=setTimeout(()=>aim(),200); });
 </script>
 </body>
