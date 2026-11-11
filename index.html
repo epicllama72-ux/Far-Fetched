@@ -878,10 +878,6 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #mapWrap .primary{margin:0 3px;width:calc(100% - 6px)}
 #mapToggle{display:none;position:absolute;top:10px;right:24px;z-index:500;font:18px/1 var(--vt);padding:7px 10px;background:var(--panel);color:var(--accent);box-shadow:0 0 0 2px var(--ink)}
 body.pinDone #mapToggle{display:block}
-#mapWrap{--tagTop:-13px}
-#crowdTag{position:absolute;top:var(--tagTop);left:28px;z-index:501;font:17px/1 var(--vt);padding:5px 9px;background:var(--panel);color:#e8ecf5;box-shadow:0 0 0 2px var(--ink),0 0 0 4px var(--accent);pointer-events:none;white-space:nowrap;max-width:calc(100% - 44px);overflow:hidden;text-overflow:ellipsis}
-body.pinDone #crowdTag{max-width:calc(100% - 196px)}
-#crowdTag b{font-weight:400;color:var(--accent)}
 
 .leaflet-container{font:11px system-ui}
 .leaflet-bar{border:2px solid var(--ink)!important;border-radius:0!important}
@@ -1048,6 +1044,9 @@ body.recap #bar{display:none}
 #rarity canvas{display:block;width:48px;height:48px;margin:0 auto 8px;image-rendering:pixelated;filter:drop-shadow(0 0 6px var(--c))}
 #rarity b{display:block;font:clamp(16px,5.2vw,26px)/1 var(--px);letter-spacing:.14em;color:var(--c);text-shadow:3px 3px 0 #0d0f14,0 0 14px var(--c),0 0 30px var(--c)}
 #rarity small{display:block;margin-top:8px;font:20px/1 var(--vt);color:#e8ecf5;text-shadow:2px 2px 0 #0d0f14}
+#rarity i{display:block;margin-top:8px;font:18px/1 var(--vt);font-style:normal;color:#e8ecf5;text-shadow:2px 2px 0 #0d0f14}
+#rarity i b{display:inline;font:inherit;letter-spacing:0;color:var(--c);text-shadow:inherit}
+body.pinDone:not(.pinned) #rarity{z-index:4}   /* map opened up again: the popup waits behind it */
 #rarity em{display:block;margin-top:6px;font:italic 18px/1.1 var(--vt);color:var(--c);text-shadow:2px 2px 0 #0d0f14,0 0 8px #0d0f14}
 #rarity.go{animation:rarityPop .9s steps(8) forwards}
 @keyframes rarityPop{0%{opacity:0;transform:translateX(-50%) scale(.5)}12%{opacity:1;transform:translateX(-50%) scale(1.15)}22%,100%{opacity:1;transform:translateX(-50%) scale(1)}}
@@ -1347,7 +1346,6 @@ body.intro #ausBar{display:none}
 
   <div id="mapWrap" hidden>
     <div id="map"></div>
-    <div id="crowdTag" hidden></div>
     <button type="button" id="mapToggle">⤢ Explore map</button>
     <button class="primary" id="btnGuess" disabled>Tap the map to drop a pin</button>
     <button class="primary" id="btnNext2" hidden>Next</button>
@@ -1410,7 +1408,7 @@ body.intro #ausBar{display:none}
 
   <div id="toast" hidden></div>
   <div id="groupInvite" role="dialog" aria-label="Group invite" hidden></div>
-  <div id="rarity" aria-live="polite" hidden><canvas id="rIcon" width="16" height="16" hidden></canvas><b></b><small></small><em></em></div>
+  <div id="rarity" aria-live="polite" hidden><canvas id="rIcon" width="16" height="16" hidden></canvas><b></b><small></small><i id="rCrowd" hidden></i><em></em></div>
   <div id="ausBar" aria-hidden="true"><i></i><b>0%</b></div>
   <button class="ghost" id="skipRecap">Skip ▸</button>
   <section id="about" hidden aria-label="About Far-Fetched">
@@ -1560,6 +1558,7 @@ function showPopup(color,title,line,quip,icon){
   el.querySelector('b').textContent=title;
   el.querySelector('small').textContent=line;
   el.querySelector('em').textContent=quip;
+  $('rCrowd').hidden=true;
   el.hidden=false; el.classList.remove('go'); void el.offsetWidth; el.classList.add('go');
 }
 function cap1(t){ t=String(t||'').toLowerCase(); return t.charAt(0).toUpperCase()+t.slice(1); }
@@ -3508,13 +3507,12 @@ async function showCrowdPins(i, mine){
     const k=km(la,ln,st.lat,st.lng), col=k<=1 ? '#9ff6ff' : RARITY.find(x=>k<=x[0])[2];
     WORLDS.forEach(dx=>L.circleMarker([la,ln+dx],{radius:3.5,weight:1,color:'#0b0e14',fillColor:col,fillOpacity:.8,interactive:false}).addTo(layer));
   });
-  const n=+r.n||0, tag=$('crowdTag');
+  const n=+r.n||0, tag=$('rCrowd');   // shown in the rarity popup, just above the quip
   tag.innerHTML = n>=3 ? 'Closer than <b>'+Math.round(100*(+r.beat||0)/n)+'%</b> of '+n.toLocaleString()+' players' : 'One of the first to pin this';
   tag.hidden=false;
 }
 function toggleMapSize(){
   const big=document.body.classList.contains('pinned');
-  if(big) hideRarity();                        // opening the map up: the popup would sit over it
   document.body.classList.toggle('pinned',!big);
   $('mapToggle').textContent = big ? '⤡ Shrink map' : '⤢ Explore map';
   Sound.play('menu');
@@ -3533,7 +3531,7 @@ function finishRound(){
 }
 
 function next(){
-  hideRarity(); $('crowdTag').hidden=true; document.body.classList.remove('pinDone'); $('mapToggle').textContent='⤢ Explore map';
+  hideRarity(); document.body.classList.remove('pinDone'); $('mapToggle').textContent='⤢ Explore map';
   S.i++;
   if(S.i<S.rounds.length) Sound.play('flip');
   window.scrollTo({top:0});
