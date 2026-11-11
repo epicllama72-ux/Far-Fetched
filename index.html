@@ -3496,12 +3496,12 @@ function submitGuess(timedOut){
 let MAP_VIEW=null;
 async function showCrowdPins(i, mine){
   if(S.mode!=='daily' || !sbOn()) return;
-  const r=await sbRpc('story_pins',{p_day:dayKey(),p_kind:S.kind,p_i:i,p_player:playerId()});
+  const r=await sbRpc('story_crowd',{p_day:dayKey(),p_kind:S.kind,p_i:i,p_player:playerId(),p_dist:Math.round(mine)});   // the server counts; at most 150 dots come back
   if(!r || S.i!==i || S.phase!=='done') return;
   (r.p||[]).forEach(([la,ln])=>WORLDS.forEach(dx=>L.circleMarker([la,ln+dx],{radius:3,weight:0,fillColor:'#c9d4f0',fillOpacity:.55,interactive:false}).addTo(layer)));
-  const ds=(r.d||[]).filter(x=>typeof x==='number'), fb=$('feedback'), sum=fb.querySelector('.sum'); if(!sum) return;
+  const n=+r.n||0, fb=$('feedback'), sum=fb.querySelector('.sum'); if(!sum) return;
   const line=document.createElement('span'); line.className='crowdLine';
-  if(ds.length>=3){ const beat=ds.filter(x=>x>mine).length+ds.filter(x=>x===mine).length*0.5; line.innerHTML='Closer than <b>'+Math.round(100*beat/ds.length)+'%</b> of today\'s '+ds.length.toLocaleString()+' players'; }
+  if(n>=3){ line.innerHTML='Closer than <b>'+Math.round(100*(+r.beat||0)/n)+'%</b> of today\'s '+n.toLocaleString()+' players'; }
   else line.textContent='One of the first players to pin this today';
   sum.after(line);
 }
