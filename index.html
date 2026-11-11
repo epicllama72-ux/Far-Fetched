@@ -864,6 +864,7 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #feedback .why{display:inline-block;width:auto;margin:0 0 0 10px;padding:1px 8px 2px;font:17px/1.1 var(--vt);color:var(--cyan);background:none;border:1px solid #3d4558;box-shadow:none;vertical-align:2px;cursor:pointer}
 #feedback .more{display:none}
 #feedback.open .more{display:block}
+#feedback.open{position:relative;z-index:9}   /* the breakdown sits above the rarity popup */
 #feedback .brk{display:block}
 #feedback .brk i{font-style:normal;color:var(--dim)}
 #feedback .brk.dim{color:var(--dim);margin-top:4px}
@@ -877,8 +878,11 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #mapWrap .primary{margin:0 3px;width:calc(100% - 6px)}
 #mapToggle{display:none;position:absolute;top:10px;right:24px;z-index:500;font:18px/1 var(--vt);padding:7px 10px;background:var(--panel);color:var(--accent);box-shadow:0 0 0 2px var(--ink)}
 body.pinDone #mapToggle{display:block}
-.crowdLine{display:block;font-size:19px;color:#c9d4f0;margin-top:3px}
-.crowdLine b{font-weight:400;color:var(--accent)}
+#mapWrap{--tagTop:-13px}
+#crowdTag{position:absolute;top:var(--tagTop);left:28px;z-index:501;font:17px/1 var(--vt);padding:5px 9px;background:var(--panel);color:#e8ecf5;box-shadow:0 0 0 2px var(--ink),0 0 0 4px var(--accent);pointer-events:none;white-space:nowrap;max-width:calc(100% - 44px);overflow:hidden;text-overflow:ellipsis}
+body.pinDone #crowdTag{max-width:calc(100% - 196px)}
+#crowdTag b{font-weight:400;color:var(--accent)}
+
 .leaflet-container{font:11px system-ui}
 .leaflet-bar{border:2px solid var(--ink)!important;border-radius:0!important}
 .leaflet-bar a{background:#14161d!important;color:var(--accent)!important;border-radius:0!important;border-bottom-color:var(--line)!important}
@@ -1160,7 +1164,7 @@ body.intro #ausBar{display:none}
   .btns button{font-size:32px;padding:16px 12px}
   .primary{font-size:28px;padding:15px 16px}
   #endBtns button{font-size:26px;padding:14px 6px}
-  .rcol #mapWrap{order:2;position:static;left:auto;bottom:auto;width:100%;padding:0 3px 20px;transform:none;transition:none;margin-top:2px}
+  .rcol #mapWrap{order:2;position:relative;left:auto;bottom:auto;width:100%;padding:0 3px 20px;transform:none;transition:none;margin-top:2px}
   #mapWrap.open{transform:none}
   #map{height:clamp(220px,calc(100vh - 500px),520px)}
   #btnGuess,#btnNext2{font-size:25px;padding:14px 12px}
@@ -1343,6 +1347,7 @@ body.intro #ausBar{display:none}
 
   <div id="mapWrap" hidden>
     <div id="map"></div>
+    <div id="crowdTag" hidden></div>
     <button type="button" id="mapToggle">⤢ Explore map</button>
     <button class="primary" id="btnGuess" disabled>Tap the map to drop a pin</button>
     <button class="primary" id="btnNext2" hidden>Next</button>
@@ -3498,12 +3503,14 @@ async function showCrowdPins(i, mine){
   if(S.mode!=='daily' || !sbOn()) return;
   const r=await sbRpc('story_crowd',{p_day:dayKey(),p_kind:S.kind,p_i:i,p_player:playerId(),p_dist:Math.round(mine)});   // the server counts; at most 150 dots come back
   if(!r || S.i!==i || S.phase!=='done') return;
-  (r.p||[]).forEach(([la,ln])=>WORLDS.forEach(dx=>L.circleMarker([la,ln+dx],{radius:3,weight:0,fillColor:'#c9d4f0',fillOpacity:.55,interactive:false}).addTo(layer)));
-  const n=+r.n||0, fb=$('feedback'), sum=fb.querySelector('.sum'); if(!sum) return;
-  const line=document.createElement('span'); line.className='crowdLine';
-  if(n>=3){ line.innerHTML='Closer than <b>'+Math.round(100*(+r.beat||0)/n)+'%</b> of today\'s '+n.toLocaleString()+' players'; }
-  else line.textContent='One of the first players to pin this today';
-  sum.after(line);
+  const st=S.rounds[i];
+  (r.p||[]).forEach(([la,ln])=>{                     // each dot in the colour of the rarity that pin earned
+    const k=km(la,ln,st.lat,st.lng), col=k<=1 ? '#9ff6ff' : RARITY.find(x=>k<=x[0])[2];
+    WORLDS.forEach(dx=>L.circleMarker([la,ln+dx],{radius:3.5,weight:1,color:'#0b0e14',fillColor:col,fillOpacity:.8,interactive:false}).addTo(layer));
+  });
+  const n=+r.n||0, tag=$('crowdTag');
+  tag.innerHTML = n>=3 ? 'Closer than <b>'+Math.round(100*(+r.beat||0)/n)+'%</b> of '+n.toLocaleString()+' players' : 'One of the first to pin this';
+  tag.hidden=false;
 }
 function toggleMapSize(){
   const big=document.body.classList.contains('pinned');
@@ -3526,7 +3533,7 @@ function finishRound(){
 }
 
 function next(){
-  hideRarity(); document.body.classList.remove('pinDone'); $('mapToggle').textContent='⤢ Explore map';
+  hideRarity(); $('crowdTag').hidden=true; document.body.classList.remove('pinDone'); $('mapToggle').textContent='⤢ Explore map';
   S.i++;
   if(S.i<S.rounds.length) Sound.play('flip');
   window.scrollTo({top:0});
