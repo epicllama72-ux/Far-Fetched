@@ -1101,6 +1101,8 @@ body.intro #ausBar{display:none}
 #groupTools button:not(.linkish):disabled{opacity:.6}
 #groupInvite{position:fixed;left:50%;top:max(70px,env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:40;width:min(480px,calc(100% - 32px));background:var(--card);background-image:var(--scan);border:2px solid var(--accent);padding:12px 14px;box-shadow:4px 4px 0 var(--ink);font:20px/1.2 var(--vt);color:#eef0f4}
 #groupInvite p{margin:0 0 10px}
+#groupInvite .gHint{font-size:17px;color:#9aa3b6}
+#groupInvite .gHint b{color:#eef0f4;font-weight:400}
 #groupInvite .gTitle{font:clamp(14px,4.2vw,18px)/1.3 var(--px);letter-spacing:.06em;color:var(--accent)}
 #groupInvite button{font-size:18px}
 #topList{margin:0 0 12px;padding:0;list-style:none;font:20px/1.25 var(--vt)}
@@ -4170,7 +4172,7 @@ async function refreshGroups(){ const g=await sbRpc('my_groups',{p_player:player
 function renderGroupBar(){
   const bar=$('groupBar'); if(!sbOn()){ bar.hidden=true; return; } bar.hidden=false;
   const chip=(code,label)=>'<button type="button" class="gchip'+(BOARD_VIEW===code?' on':'')+'" data-g="'+escH(code)+'">'+escH(label)+'</button>';
-  bar.innerHTML=chip('all','Everyone')+MY_GROUPS.map(g=>chip(g.code,g.name)).join('')+chip('new','+ New group');
+  bar.innerHTML=chip('all','Everyone')+MY_GROUPS.map(g=>chip(g.code,g.name)).join('')+chip('new','+ New or join');
   bar.querySelectorAll('.gchip').forEach(b=>b.onclick=()=>{ Sound.play('menu'); const g=b.dataset.g; if(g==='new') newGroupForm(); else if(g==='all') openBoard(); else renderGroupBoard(g); });
 }
 async function renderGroupBoard(code){
@@ -4218,7 +4220,9 @@ function newGroupForm(){
   BOARD_VIEW='new'; renderGroupBar(); toolsAt('top'); $('boardKicker').textContent='New group';
   $('curve').hidden=true; $('rankLine').textContent=''; $('topList').innerHTML=''; $('digImg').parentElement.hidden=true; $('nameRow').hidden=true;
   const t=$('groupTools'); t.hidden=false;
-  t.innerHTML='<p>Name your group: <input id="gName" maxlength="40" placeholder="The Smith family"> <button type="button" id="gMake">Create</button></p><p><small>You get a link to send. Anyone who opens it can join.</small></p>';
+  t.innerHTML='<p>Name your group: <input id="gName" maxlength="40" placeholder="The Smith family"> <button type="button" id="gMake">Create</button></p><p><small>You get a link to send. Anyone who opens it can join.</small></p>'
+    +'<p>Got a code? <input id="gCode" maxlength="80" placeholder="AB12CD" autocapitalize="characters" autocomplete="off" aria-label="Group code or invite link"> <button type="button" id="gJoinCode">Join</button></p>'
+    +'<p><small>Paste the code or the whole invite link.</small></p>';
   const go=async()=>{
     const n=$('gName').value.trim(); if(!n){ $('gName').focus(); return; }
     $('gMake').disabled=true;
@@ -4227,6 +4231,22 @@ function newGroupForm(){
     MY_GROUPS=MY_GROUPS.filter(x=>x.code!==g.code).concat([g]); store('ff_groups',MY_GROUPS); renderGroupBoard(g.code);
   };
   $('gMake').onclick=go; $('gName').onkeydown=e=>{ if(e.key==='Enter') go(); }; $('gName').focus();
+  const join=async()=>{   // for the Home Screen app on iPhone, which a tapped link can't open: paste the code here instead
+    let v=$('gCode').value.trim(); const m=v.match(/[?&]g=([A-Za-z0-9]+)/); if(m) v=m[1];
+    v=v.replace(/[^A-Za-z0-9]/g,'').toUpperCase(); if(!v){ $('gCode').focus(); return; }
+    $('gJoinCode').disabled=true;
+    const j=await joinGroup(v);
+    $('gJoinCode').disabled=false;
+    if(j) renderGroupBoard(j.code);
+  };
+  $('gJoinCode').onclick=join; $('gCode').onkeydown=e=>{ if(e.key==='Enter') join(); };
+}
+async function joinGroup(code){
+  const j=await sbRpc('group_join',{p_player:playerId(),p_code:code});
+  if(!j || !j.code){ showToast(j&&j.error==='full' ? 'That group is full.' : "No group has that code. Check it and try again."); return null; }
+  MY_GROUPS=MY_GROUPS.filter(x=>x.code!==j.code).concat([j]); store('ff_groups',MY_GROUPS);
+  showToast('Joined '+j.name+'!');
+  return j;
 }
 async function checkGroupInvite(){
   const code=(new URLSearchParams(location.search).get('g')||'').trim().toUpperCase();
@@ -4240,6 +4260,7 @@ async function checkGroupInvite(){
   const size=g.members+' member'+(g.members==1?'':'s');
   el.innerHTML='<p class="gTitle">Join '+escH(g.name)+'</p>'
     +'<p>'+(by ? escH(by)+' invited you to <b>'+escH(g.name)+'</b> ('+size+').' : 'You\'re invited to <b>'+escH(g.name)+'</b> ('+size+').')+' Join to see how you stack up on their private leaderboard.</p>'
+    +(/iP(hone|ad|od)/.test(navigator.userAgent) && !navigator.standalone ? '<p class="gHint">Play from the Home Screen app? Open it, tap Leaderboard, then <b>+ New or join</b>, and enter code <b>'+escH(g.code)+'</b>.</p>' : '')
     +'<div><button type="button" class="primary" id="gJoin">Join group</button> <button type="button" class="ghost" id="gNo">No thanks</button></div>';
   el.hidden=false;
   $('gNo').onclick=()=>{ el.hidden=true; clean(); };
