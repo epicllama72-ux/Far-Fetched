@@ -154,6 +154,12 @@
    "before": "Bees fill a parked taxi in {} with 18 litres of honey in 25 minutes / Tortoise wins a 58-metre sprint at a village fete in {} in 4 seconds, beating 12 hares",
    "after": "Teen in {} reads all 7 Harry Potter books aloud for charity in 41 minutes / Commuter in {} cycles 470 km to work and back every day for 6 years to save on bus fares",
    "why": "the owner asked for better fakes that are not about animals; vary the subject away from animal fakes, keep one impossible number as the slip"
+  },
+  {
+   "kind": "fake",
+   "before": "reads all 7 Harry Potter books aloud in 41 minutes / cycles 470 km to work and back every day",
+   "after": "in 9 hours / 190 km a day",
+   "why": "the owner wanted the fakes a little less absurd: keep the slip, but make it a number you have to think about rather than one that is obviously impossible"
   }
  ]
 }
