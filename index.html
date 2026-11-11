@@ -3034,7 +3034,9 @@ const Sound=(function(){
 let S = null, map = null, layer = null, guessLL = null;
 
 const POL_ON = false;   // Politics mode is on hold: greyed out in the menu as "coming soon"
-let KIND = (function(){ try{ const k=localStorage.getItem('ff_kind'); return (k==='blank'||(POL_ON&&k==='pol'))?k:'call'; }catch(e){ return 'call'; } })();
+let KIND = (function(){ try{ const k=localStorage.getItem('ff_kind');
+  if(localStorage.getItem('ff_kind_day')!==todayKey()) return 'call';   // a new day opens on the Daily Dig; a reload the same day keeps the mode you picked
+  return (k==='blank'||(POL_ON&&k==='pol'))?k:'call'; }catch(e){ return 'call'; } })();
 function saveKey(kind){ return kind==='blank'?'ff_blank':kind==='pol'?'ff_pol':'ff_daily'; }
 function modeName(kind){ return kind==='blank'?'Fill the Blank':kind==='pol'?'Politics':'Daily Dig'; }
 let BLANK_MAX = 200; const BLANK_SECS = 30, BLANK_N = 5, BLANK_NEAR = 1.35;   // 5 headlines, 30 seconds each; near misses pay 1.35x their old rate
@@ -3045,7 +3047,7 @@ function startGame(mode, kind){
   if(typeof Intro!=='undefined' && Intro.planetOn()) Intro.hide(true);
   if(typeof Intro!=='undefined') setTimeout(Intro.check,60);   // a fresh start opens on the planet; a finished day shows it zoomed out   // a finished day has no ready button: drop straight to the room
   if(kind) KIND = kind;
-  try{ localStorage.setItem('ff_kind',KIND); }catch(e){}
+  try{ localStorage.setItem('ff_kind',KIND); localStorage.setItem('ff_kind_day',todayKey()); }catch(e){}
   stopTimer(); hideToast(); $('sheet').hidden=true;
   RECAP_ON=false; document.body.classList.remove('recap','returned'); Scene.endRecap();
   const daily = mode === 'daily';
