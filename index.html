@@ -4152,7 +4152,7 @@ async function sbRpc(fn,body){
 function escH(t){ return String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 function groupUrl(code){ return siteUrl()+'?g='+encodeURIComponent(code)+'&by='+encodeURIComponent(playerName())+'&r='+refCode()+'&ref=group'; }   // by: who sent it, for "Join Sam's group"
 function poss(n){ return n+(/s$/i.test(n)?"'":"'s"); }
-function groupInviteText(g){ return 'Join '+poss(playerName())+' group "'+g.name+'" on Far-Fetched, the daily weird-news game!'; }
+function groupInviteText(g){ return 'Join '+poss(playerName())+' group "'+g.name+'" on Far-Fetched!'; }
 async function refreshGroups(){ const g=await sbRpc('my_groups',{p_player:playerId()}); if(Array.isArray(g)){ MY_GROUPS=g; store('ff_groups',g); } return MY_GROUPS; }
 function renderGroupBar(){
   const bar=$('groupBar'); if(!sbOn()){ bar.hidden=true; return; } bar.hidden=false;
