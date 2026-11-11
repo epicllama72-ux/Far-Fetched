@@ -4191,7 +4191,7 @@ async function renderGroupBoard(code){
   const ol=$('topList'); ol.innerHTML='';
   rows.forEach((r,i)=>{
     const li=document.createElement('li'); if(r.player===me) li.className='me';
-    const nm=document.createElement('span'); nm.className='nm'; nm.textContent=(i+1)+'. '+(r.player===me?'You':(r.name||'Someone'));
+    const nm=document.createElement('span'); nm.className='nm'; nm.textContent=(i+1)+'. '+(r.player===me?playerName():(r.name||'Someone'));
     const v=document.createElement('span'); v.textContent=fmtM(+r.m)+' · '+fmtPts(+r.score);
     li.append(nm,v); ol.append(li);
   });
@@ -4261,7 +4261,7 @@ async function sbBoardSummary(kind){
   const j=await r.json(); if(!j || !Array.isArray(j.hist)) return null;
   const left=new Map(j.hist.map(([m,c])=>[Math.round(+m*10)/10,+c])), rows=[], names={};
   const take=x=>{ const m=Math.round(+x.m*10)/10; rows.push({id:x.player,m,score:+x.score,zone:''}); left.set(m,(left.get(m)||0)-1);
-                  names[x.player]=x.player===me?'You':x.name; };
+                  names[x.player]=x.player===me?playerName():x.name; };
   (j.top||[]).forEach(take);
   if(j.me && !(j.top||[]).some(x=>x.player===j.me.player)) take(j.me);
   let k=0; left.forEach((c,m)=>{ for(let i=0;i<c;i++) rows.push({id:'~'+(k++),m,score:-1e9,zone:''}); });   // everyone else: only their depth is needed
@@ -4275,7 +4275,7 @@ async function sbBoard(kind){
   if(!r.ok) r=await fetch(SUPABASE_URL+'/rest/v1/scores?select=player,name,m,score,zone'+q,{headers:sbHeaders()});
   if(!r.ok) throw new Error('HTTP '+r.status);
   const data=await r.json(), names={}, me=playerId();
-  const rows=data.map(x=>{ names[x.player]=x.player===me?'You':x.name; return {id:x.player, m:+x.m, score:+x.score, zone:x.zone||'', ans:Array.isArray(x.answers)?x.answers:null}; });
+  const rows=data.map(x=>{ names[x.player]=x.player===me?playerName():x.name; return {id:x.player, m:+x.m, score:+x.score, zone:x.zone||'', ans:Array.isArray(x.answers)?x.answers:null}; });
   return {rows, me, names, sb:true};
 }
 
@@ -4412,7 +4412,7 @@ async function openBoard(){
   list.forEach(r=>{
     const li=document.createElement('li'); if(r.id===b.me) li.className='me';
     const nm=document.createElement('span'); nm.className='nm';
-    nm.textContent=((r.id===b.me && b.rank) ? b.rank : rows.indexOf(r)+1)+'. '+(r.id===b.me?'You':(b.names[r.id]||'Someone'));
+    nm.textContent=((r.id===b.me && b.rank) ? b.rank : rows.indexOf(r)+1)+'. '+(r.id===b.me?playerName():(b.names[r.id]||'Someone'));
     const v=document.createElement('span'); v.textContent=fmtM(r.m)+' · '+fmtPts(r.score);
     li.append(nm,v); ol.append(li);
   });
