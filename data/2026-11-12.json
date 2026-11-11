@@ -26,8 +26,8 @@
   },
   {
    "real": false,
-   "h": "Teen in {} reads all 7 Harry Potter books aloud for charity in 41 minutes",
-   "tell": "The seven books run to over a million words; reading them aloud takes days, not 41 minutes."
+   "h": "Teen in {} reads all 7 Harry Potter books aloud for charity in 9 hours",
+   "tell": "The seven books run to over a million words; even reading fast, that is about 110 hours aloud, not 9."
   },
   {
    "real": true,
@@ -64,8 +64,8 @@
   },
   {
    "real": false,
-   "h": "Commuter in {} cycles 470 km to work and back every day for 6 years to save on bus fares",
-   "tell": "470 km is about 20 hours in the saddle; nobody could ride that every day, let alone hold a job too."
+   "h": "Commuter in {} cycles 190 km to work and back every day for 6 years to save on bus fares",
+   "tell": "190 km is about 8 hours in the saddle a day on top of a full working day, every day for six years."
   }
  ],
  "blank": [
