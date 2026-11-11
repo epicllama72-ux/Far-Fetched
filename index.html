@@ -1100,6 +1100,7 @@ body.intro #ausBar{display:none}
 #groupTools button:not(.linkish):disabled{opacity:.6}
 #groupInvite{position:fixed;left:50%;top:max(70px,env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:40;width:min(480px,calc(100% - 32px));background:var(--card);background-image:var(--scan);border:2px solid var(--accent);padding:12px 14px;box-shadow:4px 4px 0 var(--ink);font:20px/1.2 var(--vt);color:#eef0f4}
 #groupInvite p{margin:0 0 10px}
+#groupInvite .gTitle{font:clamp(14px,4.2vw,18px)/1.3 var(--px);letter-spacing:.06em;color:var(--accent)}
 #groupInvite button{font-size:18px}
 #topList{margin:0 0 12px;padding:0;list-style:none;font:20px/1.25 var(--vt)}
 #topList li{display:flex;justify-content:space-between;gap:10px;padding:2px 8px;border-bottom:1px dashed #2a2f3b}
@@ -4149,7 +4150,9 @@ async function sbRpc(fn,body){
        const t=await r.text(); return t ? JSON.parse(t) : true; }catch(e){ return null; }
 }
 function escH(t){ return String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-function groupUrl(code){ return siteUrl()+'?g='+encodeURIComponent(code)+'&r='+refCode()+'&ref=group'; }
+function groupUrl(code){ return siteUrl()+'?g='+encodeURIComponent(code)+'&by='+encodeURIComponent(playerName())+'&r='+refCode()+'&ref=group'; }   // by: who sent it, for "Join Sam's group"
+function poss(n){ return n+(/s$/i.test(n)?"'":"'s"); }
+function groupInviteText(g){ return 'Join '+poss(playerName())+' group "'+g.name+'" on Far-Fetched, the daily weird-news game!'; }
 async function refreshGroups(){ const g=await sbRpc('my_groups',{p_player:playerId()}); if(Array.isArray(g)){ MY_GROUPS=g; store('ff_groups',g); } return MY_GROUPS; }
 function renderGroupBar(){
   const bar=$('groupBar'); if(!sbOn()){ bar.hidden=true; return; } bar.hidden=false;
@@ -4181,9 +4184,15 @@ async function renderGroupBoard(code){
 function showGroupTools(g){
   const t=$('groupTools'); t.hidden=false;
   t.innerHTML='<p>Invite: <input id="gLink" readonly value="'+escH(groupUrl(g.code))+'" aria-label="Invite link"> <button type="button" id="gCopy">Copy link</button></p>'
+    +'<p><button type="button" id="gShare">Share link</button></p>'
     +'<p><small>'+(g.members ? g.members+' member'+(g.members==1?'':'s')+' · ' : '')+'code '+escH(g.code)+' · <button type="button" class="linkish" id="gLeave">leave group</button></small></p>';
   $('gLink').onclick=e=>e.target.select();
   $('gCopy').onclick=async()=>{ try{ await navigator.clipboard.writeText(groupUrl(g.code)); $('gCopy').textContent='Copied!'; }catch(e){ $('gLink').select(); } };
+  $('gShare').onclick=async()=>{
+    const url=groupUrl(g.code), text=groupInviteText(g);
+    if(navigator.share){ try{ await navigator.share({title:'Join '+poss(playerName())+' group',text,url}); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
+    try{ await navigator.clipboard.writeText(text+' '+url); $('gShare').textContent='Invite copied!'; }catch(e){ $('gLink').select(); }
+  };
   $('gLeave').onclick=async()=>{ if(!confirm('Leave '+g.name+'?')) return; await sbRpc('group_leave',{p_player:playerId(),p_code:g.code});
     MY_GROUPS=MY_GROUPS.filter(x=>x.code!==g.code); store('ff_groups',MY_GROUPS); openBoard(); };
 }
@@ -4203,12 +4212,15 @@ function newGroupForm(){
 async function checkGroupInvite(){
   const code=(new URLSearchParams(location.search).get('g')||'').trim().toUpperCase();
   if(!code || !sbOn()) return;
-  const clean=()=>{ try{ const u=new URL(location.href); u.searchParams.delete('g'); history.replaceState(null,'',u.pathname+u.search+u.hash); }catch(e){} };
+  const clean=()=>{ try{ const u=new URL(location.href); u.searchParams.delete('g'); u.searchParams.delete('by'); history.replaceState(null,'',u.pathname+u.search+u.hash); }catch(e){} };
   await refreshGroups();
   if(MY_GROUPS.some(g=>g.code===code)){ clean(); return; }
   const g=await sbRpc('group_info',{p_code:code}); if(!g || !g.code){ clean(); return; }
   const el=$('groupInvite');
-  el.innerHTML='<p>You\'re invited to <b>'+escH(g.name)+'</b> ('+g.members+' member'+(g.members==1?'':'s')+'). Join to see how you stack up on their private leaderboard.</p>'
+  const by=(new URLSearchParams(location.search).get('by')||'').replace(/[<>]/g,'').trim().slice(0,24);
+  const size=g.members+' member'+(g.members==1?'':'s');
+  el.innerHTML='<p class="gTitle">Join '+escH(by ? poss(by)+' Group' : g.name)+'</p>'
+    +'<p>'+(by ? escH(by)+' invited you to <b>'+escH(g.name)+'</b> ('+size+').' : 'You\'re invited to <b>'+escH(g.name)+'</b> ('+size+').')+' Join to see how you stack up on their private leaderboard.</p>'
     +'<div><button type="button" class="primary" id="gJoin">Join group</button> <button type="button" class="ghost" id="gNo">No thanks</button></div>';
   el.hidden=false;
   $('gNo').onclick=()=>{ el.hidden=true; clean(); };
