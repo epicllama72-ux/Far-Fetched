@@ -148,6 +148,12 @@
    "before": "Rosario title-celebration story (no source could be found to back the headline)",
    "after": "Ankara couple who divorce, remarry and divorce again over cheating",
    "why": "the owner swapped out a story whose claim I could not verify; prefer stories with a named, checkable source over an unreadable news-aggregator link"
+  },
+  {
+   "kind": "fake",
+   "before": "Bees fill a parked taxi in {} with 18 litres of honey in 25 minutes / Tortoise wins a 58-metre sprint at a village fete in {} in 4 seconds, beating 12 hares",
+   "after": "Teen in {} reads all 7 Harry Potter books aloud for charity in 41 minutes / Commuter in {} cycles 470 km to work and back every day for 6 years to save on bus fares",
+   "why": "the owner asked for better fakes that are not about animals; vary the subject away from animal fakes, keep one impossible number as the slip"
   }
  ]
 }

@@ -26,8 +26,8 @@
   },
   {
    "real": false,
-   "h": "Bees fill a parked taxi in {} with 18 litres of honey in 25 minutes",
-   "tell": "A bee colony needs weeks to make that much honey, not 25 minutes."
+   "h": "Teen in {} reads all 7 Harry Potter books aloud for charity in 41 minutes",
+   "tell": "The seven books run to over a million words; reading them aloud takes days, not 41 minutes."
   },
   {
    "real": true,
@@ -64,8 +64,8 @@
   },
   {
    "real": false,
-   "h": "Tortoise wins a 58-metre sprint at a village fete in {} in 4 seconds, beating 12 hares",
-   "tell": "A tortoise cannot cover 58 metres in 4 seconds; that is far faster than any sprinter."
+   "h": "Commuter in {} cycles 470 km to work and back every day for 6 years to save on bus fares",
+   "tell": "470 km is about 20 hours in the saddle; nobody could ride that every day, let alone hold a job too."
   }
  ],
  "blank": [
