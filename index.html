@@ -1094,6 +1094,7 @@ body.intro #ausBar{display:none}
 .gchip.on{border-color:var(--accent);color:var(--accent)}
 .gchip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 #groupTools{margin:0 0 10px;font:18px/1.25 var(--vt);color:#c3cad8}
+#topList + #groupTools{margin:14px 0 6px;padding-top:10px;border-top:1px dashed #3d4558}
 #groupTools p{margin:0 0 6px}
 #groupTools input{font:17px/1.2 var(--vt);background:var(--ink);color:#eef0f4;border:1px solid #3d4558;padding:3px 6px;width:min(19em,100%)}
 #groupTools button:not(.linkish){font:17px/1 var(--vt);padding:6px 10px;background:var(--accent);color:#2b2000;border:0;box-shadow:2px 2px 0 var(--ink);cursor:pointer}
@@ -4168,12 +4169,14 @@ async function renderGroupBoard(code){
   $('boardKicker').textContent=g.name+' · '+modeName(S.kind);
   $('curve').hidden=true; $('digImg').parentElement.hidden=true; $('nameRow').hidden=true;
   $('rankLine').textContent='Loading…'; $('topList').innerHTML='';
-  showGroupTools(g);
+  toolsAt('bottom'); showGroupTools(g);   // the group's scores come first, the invite link and buttons below them
   const b=await sbRpc('group_board',{p_code:code,p_day:dayKey(),p_kind:S.kind});
   if(BOARD_VIEW!==code) return;
   if(!b || !Array.isArray(b.rows)){ $('rankLine').textContent="Couldn't load this group right now."; return; }
   g.members=+b.members||g.members; showGroupTools(g);
-  const me=playerId(), rows=b.rows;
+  const me=playerId(), rows=b.rows, mine=rows.find(r=>r.player===me);
+  $('curve').hidden=rows.length<3;             // the bell curve, once enough of the group has played
+  if(rows.length>=3) drawCurve(rows.map(r=>({id:r.player,m:+r.m,score:+r.score})), mine ? +mine.m : null);
   $('rankLine').innerHTML = rows.length ? '<b>'+rows.length+'</b> of '+b.members+' member'+(b.members==1?'':'s')+' played today.' : 'Nobody in this group has played today yet. Send them the link!';
   const ol=$('topList'); ol.innerHTML='';
   rows.forEach((r,i)=>{
@@ -4182,6 +4185,9 @@ async function renderGroupBoard(code){
     const v=document.createElement('span'); v.textContent=fmtM(+r.m)+' · '+fmtPts(+r.score);
     li.append(nm,v); ol.append(li);
   });
+}
+function toolsAt(where){   // the group tools sit under the bar for a new-group form, under the scores on a group's board
+  const t=$('groupTools'); if(where==='bottom') $('topList').after(t); else $('groupBar').after(t);
 }
 function showGroupTools(g){
   const t=$('groupTools'); t.hidden=false;
@@ -4199,7 +4205,8 @@ function showGroupTools(g){
     MY_GROUPS=MY_GROUPS.filter(x=>x.code!==g.code); store('ff_groups',MY_GROUPS); openBoard(); };
 }
 function newGroupForm(){
-  BOARD_VIEW='new'; renderGroupBar();
+  BOARD_VIEW='new'; renderGroupBar(); toolsAt('top'); $('boardKicker').textContent='New group';
+  $('curve').hidden=true; $('rankLine').textContent=''; $('topList').innerHTML=''; $('digImg').parentElement.hidden=true; $('nameRow').hidden=true;
   const t=$('groupTools'); t.hidden=false;
   t.innerHTML='<p>Name your group: <input id="gName" maxlength="40" placeholder="The Smith family"> <button type="button" id="gMake">Create</button></p><p><small>You get a link to send. Anyone who opens it can join.</small></p>';
   const go=async()=>{
