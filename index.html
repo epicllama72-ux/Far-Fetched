@@ -4484,8 +4484,8 @@ async function challenge(){
   const text='Beat my score: '+fmtM(S.finalM!=null?S.finalM:0)+', '+rank+'\nFar-Fetched #'+dayNumber()+(S.kind!=='call'?' · '+modeName(S.kind):'')+'\n'+shareUrl('challenge');
   try{
     if(navigator.share){
-      try{ await navigator.share({text}); return; }
-      catch(e){ if(e && e.name==='AbortError') return; }
+      try{ await navigator.share({text}); settleBar(); return; }
+      catch(e){ if(e && e.name==='AbortError'){ settleBar(); return; } }
     }
     await navigator.clipboard.writeText(text);
     btn.textContent='Copied!';
@@ -4849,7 +4849,7 @@ function showGroupTools(g){
   $('gCopy').onclick=async()=>{ try{ await navigator.clipboard.writeText(groupUrl(g.code)); $('gCopy').textContent='Copied!'; }catch(e){ $('gLink').select(); } };
   $('gShare').onclick=async()=>{
     const url=groupUrl(g.code), text=groupInviteText(g);
-    if(navigator.share){ try{ await navigator.share({title:'Join '+poss(playerName())+' group',text,url}); return; }catch(e){ if(e&&e.name==='AbortError') return; } }
+    if(navigator.share){ try{ await navigator.share({title:'Join '+poss(playerName())+' group',text,url}); settleBar(); return; }catch(e){ if(e&&e.name==='AbortError'){ settleBar(); return; } } }
     try{ await navigator.clipboard.writeText(text+' '+url); $('gShare').textContent='Invite copied!'; }catch(e){ $('gLink').select(); }
   };
   $('gLeave').onclick=async()=>{ if(!confirm('Leave '+g.name+'?')) return; await sbRpc('group_leave',{p_player:playerId(),p_code:g.code});
@@ -5461,7 +5461,15 @@ function liftBar(){
   bar.style.bottom = off ? off+'px' : '';
 }
 if(window.visualViewport){ visualViewport.addEventListener('resize',liftBar); visualViewport.addEventListener('scroll',liftBar); }
-const settleBar=()=>{ liftBar(); setTimeout(liftBar,250); setTimeout(liftBar,900); };
+/* after the share sheet, phones can leave a fixed bar painted where the old, shorter screen ended: take it out of the layout for a moment
+   and put it back, so it is placed against the real bottom of the screen again */
+function reglueBar(){
+  const bar=$('bar'); if(!bar) return;
+  liftBar();
+  const d=bar.style.display; bar.style.display='none'; void bar.offsetHeight; bar.style.display=d;
+  try{ window.scrollTo(window.scrollX,window.scrollY); }catch(e){}
+}
+const settleBar=()=>{ reglueBar(); setTimeout(reglueBar,250); setTimeout(reglueBar,900); };
 document.addEventListener('visibilitychange',()=>{ if(!document.hidden) settleBar(); });
 window.addEventListener('pageshow',settleBar); window.addEventListener('focus',settleBar);
 window.addEventListener('resize',settleBar); window.addEventListener('orientationchange',settleBar);
