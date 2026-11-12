@@ -3569,12 +3569,20 @@ function renderDots(){
     sc.classList.remove('pop','up'); void sc.offsetWidth; sc.classList.add(d<0?'pop':'up');
     clearTimeout(S._popT); S._popT=setTimeout(()=>sc.classList.remove('pop','up'),450);
     const de=$('delta'); de.textContent=(d>0?'▲ ':'▼ ')+Math.abs(d); de.className=d>0?'plus':'minus';   // the last move stays under the score
-    if(!RECAP_ON) Scene.popPts(d);
+    if(!RECAP_ON){ if(S.holdJaw) S.pendPop=d; else Scene.popPts(d); }
   }
   if(S._shown===undefined){ $('delta').textContent=''; $('delta').className=''; }
   S._shown=S.score;
   sc.textContent=fmtPts(S.score);
+  if(!S.holdJaw) Scene.setJaw(jawPoints()*S.jawK);
+}
+/* after a pin on a phone the jaw waits until the map has shrunk to its strip, so you see it drop */
+function releaseJaw(){
+  if(!S || !S.holdJaw) return;
+  S.holdJaw=false;
+  if(S.pendPop!=null){ try{ Scene.popPts(S.pendPop); }catch(e){} S.pendPop=null; }
   Scene.setJaw(jawPoints()*S.jawK);
+  if(S.holdSound){ S.holdSound=false; Sound.play('jawDown'); }
 }
 
 function fmtPts(n){ return n<0 ? '−'+Math.abs(n) : String(n); }
@@ -3847,7 +3855,9 @@ function submitGuess(timedOut){
   if(newStamp) setTimeout(()=>Sound.play('unlock'),350);
   S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
   S.cur.pin = guessLL ? [Math.round(guessLL.lat*100)/100, Math.round((((guessLL.lng+540)%360)-180)*100)/100] : null;   // saved with the answers so other players can see where people pinned
-  Sound.play('lock',Math.min(1,pts/(PK*(PIN_PTS+COUNTRY_PTS)))); if(pts>0) Sound.play('jawDown');
+  const holdMap = !isDesk() && !!guessLL;   // phones: the map shrinks first, then the jaw drops
+  Sound.play('lock',Math.min(1,pts/(PK*(PIN_PTS+COUNTRY_PTS))));
+  if(holdMap){ S.holdJaw=true; S.holdSound=pts>0; clearTimeout(S._holdT); S._holdT=setTimeout(releaseJaw,1400); } else if(pts>0) Sound.play('jawDown');   // the timer is a safety net if the map never collapses
   showRarity(d, S.cur.callPts+pts, Math.round(PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS)));   // stays up until the next headline
   let actual = L.latLng(st.lat,st.lng);
   if(guessLL) actual = L.latLng(st.lat, st.lng + 360*Math.round((guessLL.lng-st.lng)/360));   // the copy of the world nearest the pin, so the line never wraps the long way round
@@ -3881,7 +3891,7 @@ function submitGuess(timedOut){
   if(!isDesk()) setTimeout(()=>{      // after a moment the map shrinks to a strip so the jaw is not hidden behind it
     if(S && S.phase==='done' && document.body.classList.contains('pinning')){
       document.body.classList.add('pinned','pinDone');
-      setTimeout(()=>{ map.invalidateSize(); if(guessLL) map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.5),{maxZoom:4.5,animate:false}); else map.setView(actual,5,{animate:false}); aim(); },420);
+      setTimeout(()=>{ map.invalidateSize(); if(guessLL) map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.5),{maxZoom:4.5,animate:false}); else map.setView(actual,5,{animate:false}); aim(); releaseJaw(); },420);
     }
   },650);
 }
@@ -3943,6 +3953,7 @@ function finishRound(){
 
 function next(){
   hideRarity(); document.body.classList.remove('pinDone'); $('mapToggle').textContent='⤢ Explore map';
+  if(S.holdJaw){ clearTimeout(S._holdT); S.holdJaw=false; S.holdSound=false; S.pendPop=null; Scene.setJaw(jawPoints()*S.jawK); }   // moved on before the jaw was let go
   S.i++;
   if(S.i<S.rounds.length) Sound.play('flip');
   window.scrollTo({top:0});
