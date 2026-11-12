@@ -806,38 +806,44 @@ body.np #logList li i{border-color:var(--newsink);box-shadow:none}
   body.np .lcol .mid #roundLbl{box-shadow:none;background:none;padding:0} body.np #log{border:0;clip-path:none} body.np #log .lbl{margin:-10px -14px 8px} }
 
 
-/* ===== DRAFT: full-screen, see-through menu with square tiles, as newspaper clippings (body.mgrid; try it with ?menu=grid) ===== */
+/* ===== DRAFT: the menu as one newspaper page; each option is a section of the paper (body.mgrid; try it with ?menu=grid) ===== */
 body.mgrid{--paper:#ece4cf;--newsink:#1f1b16;--inkdim:#5c5345;--stamp:#a8231a;
   --grain:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(60,45,20,.03) 0 1px,transparent 1px 4px)}
-body.mgrid #menu{inset:0!important;top:0!important;left:0!important;width:auto;max-height:none;height:100%;border:0;box-shadow:none;
-  background:rgba(18,15,11,.74);background-image:none;-webkit-backdrop-filter:blur(5px) sepia(.35);backdrop-filter:blur(5px) sepia(.35);
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(160px,calc(50% - 6px)),1fr));grid-auto-rows:auto;align-content:start;gap:14px 12px;
-  padding:calc(58px + env(safe-area-inset-top,0px)) max(16px,calc((100vw - 760px)/2)) 40px;z-index:25;color:var(--paper)}
+body.mgrid #menu{top:calc(52px + env(safe-area-inset-top,0px))!important;left:50%!important;transform:translateX(-50%);bottom:12px;width:min(780px,calc(100vw - 24px));max-height:none;
+  background:var(--paper);background-image:var(--grain);border:0;color:var(--newsink);
+  box-shadow:0 0 0 2px var(--newsink),0 0 0 6px var(--paper),0 0 0 8px var(--newsink);
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(170px,calc(50% - 1px)),1fr));grid-auto-rows:auto;align-content:start;gap:0;padding:14px 16px 22px;z-index:25}
+body.mgrid #menu>*{order:1}
+body.mgrid #menu>.npMast{order:0}
+body.mgrid #mlAcct,body.mgrid #mlSound{display:none}
+body.mgrid #mAcct,body.mgrid #mAmb,body.mgrid #mAbout,body.mgrid #mContact,body.mgrid #mPrivacy{order:2}   /* account, sound and the about pages join the grid of sections */
+body.mgrid #menu>.mlEnd,body.mgrid #menu>.how{order:3}
 body.mgrid #menu>.mlbl,body.mgrid #menu>.how,body.mgrid #menu>.npMast,body.mgrid #practiceList,body.mgrid #backList{grid-column:1/-1}
 /* masthead */
-body.mgrid #menu .npMast{display:block!important;text-align:center;margin:0 0 4px;padding:12px 12px 8px;background:var(--paper);background-image:var(--grain);color:var(--newsink);box-shadow:0 0 0 2px var(--newsink),5px 5px 0 2px rgba(0,0,0,.5)}
-body.mgrid #menu .npMast b{display:block;font:clamp(18px,5.4vw,30px)/1.2 var(--px);letter-spacing:.02em;color:var(--newsink)}
-body.mgrid #menu .npMast i{display:flex;justify-content:center;font:18px/1 var(--vt);font-style:normal;color:var(--inkdim);border-top:3px double var(--newsink);padding:6px 2px 0;margin-top:8px;white-space:nowrap}
-/* section heads between double rules */
-body.mgrid #menu .mlbl{font:9px/1 var(--px);letter-spacing:.24em;color:var(--paper);margin:10px 0 0;display:flex;align-items:center;gap:10px;text-shadow:0 2px 0 #000}
-body.mgrid #menu .mlbl::before,body.mgrid #menu .mlbl::after{content:'';flex:1;height:3px;border-top:1px solid rgba(236,228,207,.7);border-bottom:1px solid rgba(236,228,207,.7)}
-/* the tiles: clippings with a section strip, a headline, a standfirst and column lines */
-body.mgrid #menu>button,body.mgrid #menu>a.mlink{height:auto;min-height:min(176px,44vw);justify-content:flex-start;align-items:stretch;text-align:left;white-space:normal;
-  padding:0 12px 12px;gap:5px;font:25px/1 var(--vt);color:var(--newsink);background:rgba(236,228,207,.93);background-image:var(--grain);border:0;
-  box-shadow:0 0 0 2px var(--newsink),4px 4px 0 2px rgba(0,0,0,.5);position:relative}
-body.mgrid #menu>button::before,body.mgrid #menu>a.mlink::before{content:attr(data-kick);display:block;margin:0 -12px 6px;padding:6px 12px 5px;background:var(--newsink);color:var(--paper);font:8px/1 var(--px);letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-body.mgrid #menu>button::after,body.mgrid #menu>a.mlink::after{content:'';flex:1;min-height:16px;margin-top:6px;border-top:1px solid var(--newsink);
-  background:repeating-linear-gradient(180deg,transparent 0 5px,rgba(31,27,22,.22) 5px 7px),linear-gradient(90deg,transparent calc(50% - 3px),var(--paper) calc(50% - 3px) calc(50% + 3px),transparent calc(50% + 3px));background-blend-mode:normal}
-body.mgrid #menu>button small,body.mgrid #menu>a.mlink small{font-size:17px;line-height:1.05;white-space:normal;color:var(--inkdim);opacity:1}
-body.mgrid #menu>button:hover,body.mgrid #menu>a.mlink:hover{background-color:#f4eedc}
-body.mgrid #menu>button.on{box-shadow:0 0 0 3px var(--stamp),4px 4px 0 3px rgba(0,0,0,.5)}
-body.mgrid #menu>button.on::before{background:var(--stamp)}
-body.mgrid #menu>button.soon{opacity:.55}
+body.mgrid #menu .npMast{display:block!important;text-align:center;margin:0 0 4px;padding:2px 0 0;color:var(--newsink)}
+body.mgrid #menu .npMast b{display:block;font:clamp(20px,6vw,34px)/1.15 var(--px);letter-spacing:.02em;color:var(--newsink)}
+body.mgrid #menu .npMast i{display:flex;justify-content:center;font:18px/1 var(--vt);font-style:normal;color:var(--inkdim);border-top:3px double var(--newsink);border-bottom:1px solid var(--newsink);padding:5px 2px 4px;margin-top:8px;white-space:nowrap}
+/* a section head: a black bar across the page */
+body.mgrid #menu .mlbl{font:8px/1 var(--px);letter-spacing:.24em;color:var(--paper);background:var(--newsink);padding:6px 8px 5px;margin:14px 0 0;text-shadow:none}
+body.mgrid #menu .npMast+.mlbl{margin-top:8px}
+/* each option is a story in that section, set in columns with thin rules between them */
+body.mgrid #menu>button,body.mgrid #menu>a.mlink{height:auto;min-height:min(150px,40vw);justify-content:flex-start;align-items:stretch;text-align:left;white-space:normal;
+  padding:10px 12px 12px;gap:5px;font:26px/1 var(--vt);color:var(--newsink);background:none;border:0;box-shadow:inset -1px 0 0 rgba(31,27,22,.55),inset 0 -1px 0 rgba(31,27,22,.55);position:relative}
+body.mgrid #menu>button::before,body.mgrid #menu>a.mlink::before{content:attr(data-kick);display:block;font:7px/1 var(--px);letter-spacing:.18em;text-transform:uppercase;color:var(--inkdim);padding-bottom:5px;border-bottom:1px solid rgba(31,27,22,.35);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.mgrid #menu>button::after,body.mgrid #menu>a.mlink::after{content:'';flex:1;min-height:14px;margin-top:6px;
+  background:repeating-linear-gradient(180deg,transparent 0 5px,rgba(31,27,22,.2) 5px 7px),linear-gradient(90deg,transparent calc(50% - 3px),var(--paper) calc(50% - 3px) calc(50% + 3px),transparent calc(50% + 3px))}
+body.mgrid #menu>button small,body.mgrid #menu>a.mlink small{font-size:17px;line-height:1.05;white-space:normal;overflow-wrap:anywhere;color:var(--inkdim);opacity:1}
+body.mgrid #menu>button>*,body.mgrid #menu>a.mlink>*,body.mgrid #menu>button::before,body.mgrid #menu>a.mlink::before{flex-shrink:0}
+body.mgrid:has(#menu:not([hidden]))::before{content:'';position:fixed;inset:0;z-index:24;background:rgba(14,12,9,.62)}   /* the room dims behind the open paper */
+body.mgrid #menu>button:hover,body.mgrid #menu>a.mlink:hover{background:rgba(31,27,22,.06)}
+body.mgrid #menu>button.on::before{color:var(--stamp);border-bottom-color:var(--stamp)}
+body.mgrid #menu>button.on{color:var(--newsink);box-shadow:inset -1px 0 0 rgba(31,27,22,.55),inset 0 -1px 0 rgba(31,27,22,.55),inset 0 3px 0 var(--stamp)}
+body.mgrid #menu>button.soon{opacity:.45}
 body.mgrid #mAmbState{color:var(--stamp)!important}
-body.mgrid #menu .how{font:19px/1.2 var(--vt);color:var(--paper);margin:0 2px;max-width:60ch;text-shadow:0 2px 0 #000}
-body.mgrid #menu .how b{color:#fff}
-body.mgrid #practiceList,body.mgrid #backList{flex-direction:row;flex-wrap:wrap;max-height:none;padding:0}
-body.mgrid #practiceList button,body.mgrid #backList button{width:auto!important;flex:1 1 140px;background:var(--paper);color:var(--newsink);box-shadow:0 0 0 2px var(--newsink)}
+body.mgrid #menu .how{font:19px/1.2 var(--vt);color:var(--newsink);margin:0;padding:8px 2px 2px;column-width:16em;column-gap:24px;column-rule:1px solid rgba(31,27,22,.4)}
+body.mgrid #menu .how b{color:var(--newsink);font-weight:400;text-decoration:underline}
+body.mgrid #practiceList,body.mgrid #backList{flex-direction:row;flex-wrap:wrap;max-height:none;padding:8px 0}
+body.mgrid #practiceList button,body.mgrid #backList button{width:auto!important;flex:1 1 140px;background:none;color:var(--newsink);box-shadow:0 0 0 1px var(--newsink)}
 
 /* HUD */
 .topline{position:relative;display:flex;align-items:center;gap:10px;margin:0 0 8px;font:10px/1 var(--px);letter-spacing:.14em;color:var(--dim);text-shadow:0 2px 0 #000}
@@ -1434,13 +1440,13 @@ body.intro #ausBar{display:none}
       <button id="mPassport" data-kick="Travel">Passport <small id="passSub">stamps for right-country pins</small></button>
       <button id="mBack" data-kick="Archive" hidden>Back issues <small>earlier papers · no streak</small></button>
       <div id="backList" hidden></div>
-      <p class="mlbl">ACCOUNT</p>
+      <p class="mlbl" id="mlAcct">ACCOUNT</p>
       <button id="mAcct" data-kick="Your account"><span id="acctMain">Sign in with Google</span> <small id="acctSub">save your streak, passport and wardrobe</small></button>
-      <p class="mlbl">SOUND</p>
+      <p class="mlbl" id="mlSound">SOUND</p>
       <button id="mAmb" data-kick="Sound">Background newsroom <small id="mAmbState">On</small></button>
-      <p class="mlbl">YOUR RECORD</p>
+      <p class="mlbl mlEnd">YOUR RECORD</p>
       <p class="how" id="menuStats"></p>
-      <p class="mlbl">HOW TO SCORE</p>
+      <p class="mlbl mlEnd">HOW TO SCORE</p>
       <p class="how" id="howText"></p>
       <button id="mAbout" data-kick="About us">About Far-Fetched</button>
       <a id="mContact" data-kick="Letters" class="mlink" href="mailto:playfarfetched@gmail.com">Contact <small>playfarfetched@gmail.com</small></a>
@@ -5219,7 +5225,7 @@ function pinMenu(){
 window.addEventListener('scroll',pinMenu,{passive:true}); window.addEventListener('resize',pinMenu); pinMenu();
 function closeMenu(){ document.body.classList.remove('hideq'); $('menu').hidden=true; $('backList').hidden=true; $('practiceList').hidden=true; $('menuBtn').setAttribute('aria-expanded','false'); }
 $('menuBtn').onclick=e=>{ e.stopPropagation(); Sound.play('menu'); const open=$('menu').hidden; $('menu').hidden=!open; document.body.classList.toggle('hideq',open && !!S && S.phase==='call'); $('menuBtn').setAttribute('aria-expanded',String(open)); if(open){ renderStats(); pinMenu(); } };
-$('menu').addEventListener('click',e=>{ e.stopPropagation(); if(e.target===$('menu') && document.body.classList.contains('mgrid')) closeMenu(); });   // full-screen menu: a tap on the empty backdrop closes it
+$('menu').addEventListener('click',e=>e.stopPropagation());
 document.addEventListener('click',closeMenu);
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){ if(RECAP_ON) endRecapUI(true); closeMenu(); $('sheet').hidden=true; closeWardrobe(); closePassport(); return; }
