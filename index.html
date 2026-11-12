@@ -1540,6 +1540,19 @@ body.intro #ausBar{display:none}
 #sheet #groupTools input{background:#fff;color:var(--np-ink);border:1px solid var(--np-ink)}
 #sheet #groupTools button:not(.linkish){background:var(--np-ink);color:var(--np-card);box-shadow:2px 2px 0 var(--np-dim)}
 #sheet #groupTools small{color:var(--np-dim)}
+/* ---------- Real / Fake: stamped ink blocks, worn at the edges, tilted like they were pressed by hand ---------- */
+#callBtns{gap:16px;padding-top:4px}
+#callBtns #btnReal,#callBtns #btnFake{font:15px/1 var(--px);letter-spacing:.14em;padding:20px 8px 18px;color:#f7f3e8;background-color:#2f6b2f;rotate:-2.5deg;
+  outline:3px solid #f7f3e8;outline-offset:-9px;box-shadow:none;filter:drop-shadow(4px 5px 0 rgba(0,0,0,.45));transform:none;
+  background-image:radial-gradient(rgba(0,0,0,.2) 30%,transparent 33%),radial-gradient(rgba(255,255,255,.14) 22%,transparent 25%);background-size:5px 5px,9px 9px;background-position:0 0,2px 3px;
+  clip-path:polygon(0 3%,4% 0,30% 2%,55% 0,80% 2%,100% 0,98% 30%,100% 60%,99% 100%,70% 98%,40% 100%,12% 98%,0 100%,2% 60%)}
+#callBtns #btnFake{background-color:#a8231a;rotate:2.5deg}
+#callBtns #btnReal:hover,#callBtns #btnFake:hover{filter:drop-shadow(4px 5px 0 rgba(0,0,0,.45)) brightness(1.1)}
+#callBtns #btnReal:active,#callBtns #btnFake:active{transform:none;box-shadow:none;animation:stampThump .25s steps(3)}
+@keyframes stampThump{0%{scale:1}40%{scale:.92}100%{scale:1}}
+#callBtns #btnReal:focus-visible,#callBtns #btnFake:focus-visible{outline:3px solid #ffcc4d;outline-offset:-9px}
+#callBtns button:disabled{background-color:#4a4e58;color:#aab0bd}
+@media (prefers-reduced-motion:reduce){ #callBtns #btnReal:active,#callBtns #btnFake:active{animation:none} }
 </style>
 </head>
 <body>
