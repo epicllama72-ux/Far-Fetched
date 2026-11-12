@@ -1530,7 +1530,8 @@ body.intro #ausBar{display:none}
 #sheet .sheetTop{border-bottom:3px double var(--np-ink);padding-bottom:8px;margin-bottom:2px}
 #sheet #boardKicker{margin:0;font:clamp(11px,3.6vw,15px)/1.25 var(--px);letter-spacing:.04em;color:var(--np-ink);text-shadow:none}
 #sheetClose{background:var(--np-card);color:var(--np-ink);box-shadow:none;border:2px solid var(--np-ink);box-shadow:2px 2px 0 var(--np-ink);font:20px/1 var(--vt)}
-#sheet #groupBar{gap:4px;margin:10px 0 0;padding:0;border-bottom:2px solid var(--np-ink);flex-wrap:nowrap;overflow-x:auto}
+#sheet #groupBar{gap:4px;margin:10px 0 0;padding:0;border-bottom:2px solid var(--np-ink);flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;overscroll-behavior:contain;touch-action:pan-x;scrollbar-width:none}   /* the tabs slide left and right only */
+#sheet #groupBar::-webkit-scrollbar{display:none}
 #sheet .gchip{flex:none;font:17px/1 var(--vt);padding:7px 12px 6px;background:var(--np-tab);color:var(--np-dim);border:2px solid var(--np-ink);border-bottom:0;border-radius:6px 6px 0 0;margin-bottom:-2px}
 #sheet .gchip.on{background:var(--np-paper);color:var(--np-ink);padding-bottom:8px}
 #sheet .gchip:focus-visible{outline:2px solid var(--np-stamp)}
