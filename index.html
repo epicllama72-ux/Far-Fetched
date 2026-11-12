@@ -699,7 +699,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=UnifrakturCook:wght@700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0f1115;--card:#141821;--panel:#10131a;--line:#2a2f3b;--ink:#0a0c10;
@@ -761,6 +761,49 @@ body.returned #browseHint{display:block;animation:bh 7s forwards}
 .tick.zone{font:8px/1 var(--px);letter-spacing:.12em;color:var(--accent);background:#0d0f14;border:1px solid var(--accent);padding:4px 5px}
 .app{max-width:560px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-right,0px)) 120px max(16px,env(safe-area-inset-left,0px))}
 body.pinning .app{padding-bottom:calc(min(30vh,260px) + 96px)}
+
+
+/* ===== DRAFT: newspaper look for the menu and the HUD (body.np; try it with ?paper=1) ===== */
+body.np{--paper:#ece4cf;--paper2:#e2d8bf;--newsink:#1f1b16;--inkdim:#5c5345;--rule:#1f1b16;--stamp:#a8231a;
+  --grain:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(60,45,20,.03) 0 1px,transparent 1px 4px);
+  --serif:'Old Standard TT',Georgia,'Times New Roman',serif}
+/* the menu: a front page / table of contents */
+body.np #menu{background:var(--paper);background-image:var(--grain);border:0;box-shadow:0 0 0 2px var(--newsink),0 0 0 5px var(--paper),0 0 0 7px var(--newsink),8px 8px 0 7px rgba(0,0,0,.55);color:var(--newsink);gap:0;padding:12px 14px 14px}
+body.np #menu .npMast{display:block;text-align:center;margin:0 0 2px}
+body.np #menu .npMast b{display:block;font:700 30px/1 'UnifrakturCook',var(--serif);color:var(--newsink);letter-spacing:.01em}
+body.np #menu .npMast i{display:flex;justify-content:space-between;gap:6px;font:italic 13px/1 var(--serif);color:var(--inkdim);border-top:3px double var(--rule);border-bottom:1px solid var(--rule);padding:4px 1px 3px;margin-top:6px;white-space:nowrap;letter-spacing:0}
+body.np #menu .mlbl{font:700 12px/1 var(--serif);letter-spacing:.32em;color:var(--newsink);text-align:center;margin:14px 0 4px;display:flex;align-items:center;gap:8px}
+body.np #menu .mlbl::before,body.np #menu .mlbl::after{content:'';flex:1;height:3px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+body.np #menu button,body.np #menu a.mlink{background:none;box-shadow:none;border-bottom:1px dotted rgba(31,27,22,.45);padding:7px 2px 6px;color:var(--newsink);font:700 19px/1.05 var(--serif);gap:2px}
+body.np #menu button small,body.np #menu a.mlink small{font:italic 14px/1.1 var(--serif);opacity:1;color:var(--inkdim)}
+body.np #menu button:hover,body.np #menu a.mlink:hover{background:rgba(31,27,22,.06)}
+body.np #menu button.on{background:var(--newsink);color:var(--paper);box-shadow:none;padding-left:8px}
+body.np #menu button.on small{color:#cfc5ad}
+body.np #menu button.soon{opacity:.45}
+body.np #mAmbState{color:var(--stamp)}
+body.np #menu .how{font:15px/1.25 var(--serif);color:var(--inkdim);margin:2px 2px 4px}
+body.np #menu .how b{color:var(--newsink);font-weight:700}
+body.np #menuBtn,body.np #muteBtn{background:var(--paper);background-image:var(--grain);box-shadow:0 0 0 2px var(--newsink);color:var(--newsink)}
+body.np #menuBtn[aria-expanded="true"]{background:var(--newsink);color:var(--paper)}
+/* the HUD: boxed figures, like the weather and stock boxes on a front page */
+body.np .panel{background:var(--paper);background-image:var(--grain);border:0;clip-path:none;box-shadow:0 0 0 2px var(--newsink),3px 3px 0 2px rgba(0,0,0,.5);padding:0 0 4px;min-width:108px}
+body.np .lbl{font:700 10px/1 var(--serif);letter-spacing:.28em;color:var(--paper);background:var(--newsink);padding:4px 8px 3px;margin:0 0 3px}
+body.np .val{color:var(--newsink);font:34px/0.95 var(--vt);padding:0 9px;border-top:1px solid var(--rule);margin:0 4px;padding-top:2px}
+body.np .val small{color:var(--inkdim)}
+body.np #score{color:var(--newsink)}
+body.np #score.pop{color:var(--stamp)} body.np #score.up{color:#2f6b2f}
+body.np #delta{color:var(--stamp);text-shadow:0 0 0 transparent,1px 1px 0 var(--paper),-1px -1px 0 var(--paper),1px -1px 0 var(--paper),-1px 1px 0 var(--paper)}
+body.np #delta.plus{color:#2f6b2f}
+body.np #roundLbl{font:700 11px/1 var(--serif);letter-spacing:.24em;color:var(--newsink);background:var(--paper);background-image:var(--grain);padding:4px 7px 3px;box-shadow:0 0 0 2px var(--newsink);text-shadow:none}
+body.np #log{background:var(--paper);background-image:var(--grain);border:0;clip-path:none;box-shadow:0 0 0 2px var(--newsink),3px 3px 0 2px rgba(0,0,0,.5);color:var(--newsink)}
+body.np #log .lbl{margin:-8px -10px 6px}
+body.np #log li{color:var(--newsink);border-bottom:1px dotted rgba(31,27,22,.4)}
+body.np #logList li span{color:var(--newsink);font:16px/1.1 var(--serif)}
+body.np #logList li b{color:var(--newsink);font:22px/1 var(--vt)}
+body.np #logList li.empty{color:var(--inkdim);font:italic 16px/1.2 var(--serif)}
+body.np #logList li i{border-color:var(--newsink);box-shadow:none}
+@media (min-width:1100px) and (min-height:600px){ body.np .lcol .mid{background:var(--paper);background-image:var(--grain);border:0;clip-path:none;box-shadow:0 0 0 2px var(--newsink),3px 3px 0 2px rgba(0,0,0,.5)}
+  body.np .lcol .mid #roundLbl{box-shadow:none;background:none;padding:0} body.np #log{border:0;clip-path:none} body.np #log .lbl{margin:-10px -14px 8px} }
 
 /* HUD */
 .topline{position:relative;display:flex;align-items:center;gap:10px;margin:0 0 8px;font:10px/1 var(--px);letter-spacing:.14em;color:var(--dim);text-shadow:0 2px 0 #000}
@@ -1341,6 +1384,7 @@ body.intro #ausBar{display:none}
     <span class="logo">FAR-<b>FETCHED</b></span><span id="streak"></span>
     <button id="muteBtn" aria-label="Sound on" aria-pressed="false">♪</button>
     <div id="menu" hidden>
+      <p class="npMast" hidden><b>The Daily Odd</b><i><span id="npMastDate"></span><span>Price: free</span></i></p>
       <p class="mlbl">GAME</p>
       <button id="mCall">Daily Dig <small>real or fake? 5 true, 2 fake</small></button>
       <button id="mBlank">Fill the Blank <small>20 s each</small></button>
@@ -1602,6 +1646,10 @@ async function loadDaily(){
   }
 }
 const RARITY=[[100,'GLOBALIST','#ffd23f','Were you there? Be honest.','globe','gl','🟨'],[400,'STATESMAN','#b56bff','A short trip from correct.','capitol','st','🟪'],[1500,'PUNDIT','#ff4d5e','You\'d do great on cable news.','tv','pu','🟥'],[5000,'SKIMMER','#4da6ff','You read the headline. Mostly.','news','sk','🟦'],[Infinity,'ROCK-DWELLER','#ffffff','Come out from under there. It\'s a big world.','rock','rk','⬜']];   // pin distance in km -> name, colour and quip
+/* DRAFT newspaper look: ?paper=1 turns it on (remembered on this device), ?paper=0 turns it off */
+(function(){ try{ const q=new URLSearchParams(location.search).get('paper'); if(q==='1') localStorage.setItem('ff_paper','1'); if(q==='0') localStorage.removeItem('ff_paper');
+  if(localStorage.getItem('ff_paper')){ document.body.classList.add('np'); const m=document.querySelector('#menu .npMast'); if(m) m.hidden=false;
+    const d=document.getElementById('npMastDate'); if(d) d.textContent=new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'}); } }catch(e){} })();
 function hideRarity(){ const el=$('rarity'); el.hidden=true; el.classList.remove('go'); }
 const RICONS={eye:["................","................","......oooo......","...ooowwwwooo...","..owwwwwwwwwwo..",".owwwwddddwwwwo.","owwwwdccccdwwwwo","owwwdcclcccdwwwo","owwwdccccccdwwwo","owwwwdccccdwwwwo",".owwwwddddwwwwo.","..owwwwwwwwwwo..","...ooowwwwooo...","......oooo......","................","................"],globe:["....oooddooo....","...occcddccco...","..oclllddcccco..","..oddddddddddo..",".ocllllddccccco.",".ocllllddccccco.",".oddddddddddddo.",".oddddddddddddo.",".occcccddccccco.",".occcccddccccco.","..oddddddddddo..","...occcddccco...","....occddcco....","......oooo......","....oooooooo....","................"],capitol:["................","......oooo......","....ooccccoo....","..ooccllllccoo..","ooccccccccccccoo","oooooooooooooooo",".occcccccccccco.",".oooooooooooooo.",".ocdcdcdcdcdcdo.",".ocdcdcdcdcdcdo.",".ocdcdcdcdcdcdo.",".ocdcdcdcdcdcdo.",".ocdcdcdcdcdcdo.",".occcccccccccco.","ooccccccccccccoo","oooooooooooooooo"],tv:["...o........o...","....o......o....",".....o....o.....","......o..o......",".oooooooooooooo.",".occcccccccccco.",".ocolllllllloco.",".ocowwlllllloco.",".ocolllllllloco.",".ocolllllllloco.",".ocolllllllloco.",".ocooooooooooco.",".occcccccccccco.",".oooooooooooooo.","..oo........oo..","................"],news:["................","..oooooooooooo..","..owwwwwwwwwwo..","..owccccccccwo..","..owccccccccwo..","..owwwwwwwwwwo..","..owccccccwwwo..","..owwwwwwwwwwo..","..owccccccccwo..","..owwwwwwwwwwo..","..owccccwwwwwo..","..owwwwwwwwwwo..","..owccccccwwwo..","..owwwwwwwwwwo..","..oooooooooooo..","................"],rock:["................","................",".....oooooo.....","...ooollllcoo...","..oollllllcccoo.",".ollllllllcccco.",".olllllllcccccco","ollllllcccccccdo","ollllcccccccccdo","occccccccccccddo","occcccccccccdddo","oddccccccccddddo",".ooddddddddddoo.","..oooooooooooo..","................","................"],magnifier:["................","...oooooooo.....","..ooccccccoo....",".ooccwllccco....",".occwllllccoo...",".ocwwlllllcco...",".oclllllllcco...",".oclllllllcco...",".occllllllcco...",".occcllllccoo...",".oocccccccddoo..","..oooccccodddoo.","....ooooooodddoo","..........oodddo","...........ooddd","............oodo"],nose:["................","................",".....oooooo.....","...oooccccooo...","...occcccccco...","..oocwwcccccoo..","..oclwllccccdo..","oooccllccccddooo","wwwcccccccccdwww","ooocccccccccdooo","..occcccccccdo..","..ooccccccccoo..","...occcccccdo...","...oooccccooo...",".....oooooo.....","................"]};
 /* a 16x16 pixel sprite in the tier's colour: o outline, c main, l light, d dark, w paper */
