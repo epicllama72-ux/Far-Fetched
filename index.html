@@ -746,6 +746,7 @@ body.planetview #final,body.planetview #bar,body.planetview #comeBack,body.plane
 #introHowText b{color:var(--accent);font-weight:400}
 #introHowText .sc{color:var(--dim)}
 body.introIdle #card{display:none}
+body.introIdle .hud,body.introIdle #log{visibility:hidden}   /* no jaw drop, headline count or score until the player starts */
 button.soon,button.soon:hover{opacity:.45;filter:grayscale(1);cursor:not-allowed}
 button.soon small{font-size:.8em}
 #intro{position:fixed;left:0;top:0;width:100vw;height:100lvh;z-index:-1;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;image-rendering:pixelated;pointer-events:none}
@@ -3744,7 +3745,7 @@ function submitGuess(timedOut){
       + (newStamp?'<span class="brk stampNew">🛂 New passport stamp: <b>'+cName+'</b></span>':'')
       + (bonus?row(cap1(RARITY.find(r=>d<=r[0])[1])+' bonus',bonus):'')
     : (S.cur.callOk?row('Call',S.cur.callPts):'')+'<span class="brk">No pin before time ran out</span>';
-  fb.innerHTML = '<span class="sum">'+(guessLL ? Math.round(d).toLocaleString()+' km · <b>+'+pts+'</b> pin'+(newStamp?' · 🛂 <b>'+cName+'</b> stamped':'') : 'Time! No pin · <b>+0</b>')+'</span>'
+  fb.innerHTML = '<span class="sum">'+(guessLL ? Math.round(d).toLocaleString()+' km · <b>+'+pts+'</b> pin' : 'Time! No pin · <b>+0</b>')+'</span>'
     + '<button class="why" type="button" aria-expanded="false">why?</button>'
     + '<small class="more">'+breakdown+'<span class="brk dim">'+(st.clue?'Clues: '+st.clue+'. ':'')+st.place+(st.published?' · '+fmtDate(st.published):'')
     + (st.src?' · <a href="'+st.src+'" target="_blank" rel="noopener">read the story</a>':'')+'</span></small>';
