@@ -824,6 +824,22 @@ body:has(#menu:not([hidden]))::before{content:'';position:fixed;inset:0;z-index:
 #menu .pad{background:#fbf8ee;padding:22px 12px 14px;border:1px solid var(--rule);background-image:linear-gradient(90deg,transparent 22px,rgba(168,35,26,.35) 22px 23px,transparent 23px),repeating-linear-gradient(180deg,transparent 0 21px,rgba(36,50,74,.22) 21px 22px)}
 #menu .pad::before{content:'';position:absolute;left:8px;right:8px;top:-7px;height:14px;background:radial-gradient(circle at 50% 50%,#3d3a34 0 3px,transparent 3.5px) 0 0/16px 14px repeat-x}
 #menu .pad .ttl,#menu .pad small{padding-left:16px} #menu .pad small{margin-top:6px}
+/* Practice: the notepad's page flips down to show the modes, written on its lines */
+#menu .pad{cursor:default;transition:rotate .25s}
+#menu .pad:has(.padList:not([hidden])){rotate:0deg}
+#menu .pad:has(.padHead.on){outline:3px solid var(--stamp);outline-offset:5px}
+#menu .padHead{all:unset;display:block;cursor:pointer;width:100%}
+#menu .padHead:hover .ttl{color:var(--stamp)}
+#menu .padList{display:flex;flex-direction:column;margin-top:8px;padding:4px 0 0 16px;border-top:1px dashed rgba(27,24,19,.45);transform-origin:50% 0;animation:padFlip .45s cubic-bezier(.2,.8,.3,1.2) both}
+@keyframes padFlip{0%{transform:perspective(600px) rotateX(-95deg);opacity:0}60%{opacity:1}100%{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){ #menu .padList{animation:none} }
+#menu .padList button{all:unset;cursor:pointer;display:flex;align-items:baseline;gap:8px;font:21px/22px var(--vt);color:var(--ink)}
+#menu .padList button::before{content:'';flex:none;width:10px;height:10px;border:2px solid var(--ink);translate:0 1px}
+#menu .padList button:hover{color:var(--stamp)}
+#menu .padList button.on::before{background:var(--stamp);border-color:var(--stamp)}
+#menu .padList button.on{color:var(--stamp)}
+#menu .padList button small{display:inline;font-size:16px;color:var(--inkdim)}
+#menu .padList button.soon{opacity:.5;cursor:default} #menu .padList button.soon:hover{color:var(--ink)}
 #menu .stand{background:var(--cardc);padding:16px 10px 10px;border:1px solid var(--ink)}
 #menu .stand::before{content:'';position:absolute;left:50%;top:-6px;width:14px;height:14px;translate:-50% 0;border-radius:50%;background:radial-gradient(circle at 35% 35%,#e5594d,var(--stamp) 60%,#5f130e);box-shadow:1px 2px 0 rgba(0,0,0,.35)}
 #dBoard{display:block;margin-top:6px;font:17px/1.1 var(--vt);font-variant-numeric:tabular-nums}
@@ -1508,11 +1524,13 @@ body.intro #ausBar{display:none}
           <span class="stampbox" id="dStamp">7 STORIES<br>INSIDE</span>
         </button>
         <button id="mBlank" type="button" class="obj cross" style="--r:2deg;--i:1"><span class="ttl">FILL THE BLANK</span><span class="cgrid" aria-hidden="true"><i>B</i><i class="f">?</i><i>N</i><i>K</i><i class="f">?</i><i>R</i><i class="b"></i></span><small>5 headlines, one word missing from each</small></button>
-        <button id="mPractice" type="button" class="obj pad" style="--r:-2.5deg;--i:2"><span class="ttl">PRACTICE</span><small>Every past story. Nothing counts.</small></button>
-        <div id="practiceList" class="drawer" hidden>
-          <button data-k="call" type="button">Daily Dig</button>
-          <button data-k="blank" type="button">Fill the Blank</button>
-          <button data-k="pol" type="button" class="soon" disabled aria-disabled="true">Politics <small>coming soon</small></button>
+        <div class="obj pad" style="--r:-2.5deg;--i:2">
+          <button id="mPractice" type="button" class="padHead" aria-expanded="false" aria-controls="practiceList"><span class="ttl">PRACTICE</span><small>Every past story. Nothing counts.</small></button>
+          <div id="practiceList" class="padList" hidden>
+            <button data-k="call" type="button">Daily Dig</button>
+            <button data-k="blank" type="button">Fill the Blank</button>
+            <button data-k="pol" type="button" class="soon" disabled aria-disabled="true">Politics <small>soon</small></button>
+          </div>
         </div>
         <button id="mBoard" type="button" class="obj stand" style="--r:1.5deg;--i:3"><span class="ttl">STANDINGS</span><span id="dBoard"><small>Today's deepest digs</small></span></button>
         <button id="mPassport" type="button" class="obj pass" style="--r:-3deg;--i:4"><span class="band">PRESS</span><span class="in"><span class="face" aria-hidden="true"></span><span><span class="ttl">PASSPORT</span><small id="passSub">stamps for right-country pins</small></span></span></button>
@@ -5269,7 +5287,7 @@ $('replayDig').onclick=()=>startRecap(false);
 Scene.onMark(()=>Sound.play('pin'));
 $('btnBoard').onclick=openBoard;
 $('mBoard').onclick=()=>{ closeMenu(); openBoard(); };
-$('mBack').onclick=()=>{ $('practiceList').hidden=true; $('howBox').hidden=true; $('backList').hidden=!$('backList').hidden; renderIssues(); };
+$('mBack').onclick=()=>{ $('practiceList').hidden=true; $('mPractice').setAttribute('aria-expanded','false'); $('howBox').hidden=true; $('backList').hidden=!$('backList').hidden; renderIssues(); };
 $('nameEdit').onclick=()=>{
   const row=$('nameRow');
   if(row.querySelector('input')) return;
@@ -5296,11 +5314,11 @@ function pinMenu(){
   $('menu').style.top=(top+38)+'px'; $('menu').style.left=left+'px';
 }
 window.addEventListener('scroll',pinMenu,{passive:true}); window.addEventListener('resize',pinMenu); pinMenu();
-function closeMenu(){ document.body.classList.remove('hideq'); $('menu').hidden=true; $('backList').hidden=true; $('practiceList').hidden=true; $('howBox').hidden=true; $('mHow').setAttribute('aria-expanded','false'); $('menuBtn').setAttribute('aria-expanded','false'); }
+function closeMenu(){ document.body.classList.remove('hideq'); $('menu').hidden=true; $('backList').hidden=true; $('practiceList').hidden=true; $('mPractice').setAttribute('aria-expanded','false'); $('howBox').hidden=true; $('mHow').setAttribute('aria-expanded','false'); $('menuBtn').setAttribute('aria-expanded','false'); }
 $('menuBtn').onclick=e=>{ e.stopPropagation(); Sound.play('menu'); const open=$('menu').hidden; $('menu').hidden=!open; document.body.classList.toggle('hideq',open && !!S && S.phase==='call'); $('menuBtn').setAttribute('aria-expanded',String(open)); if(open){ renderStats(); pinMenu(); renderDesk(); $('menu').scrollTop=0; } };
 $('menu').addEventListener('click',e=>e.stopPropagation());
 $('mFold').onclick=()=>{ Sound.play('menu'); closeMenu(); };
-$('mHow').onclick=()=>{ const b=$('howBox'); b.hidden=!b.hidden; $('mHow').setAttribute('aria-expanded',String(!b.hidden)); $('practiceList').hidden=true; $('backList').hidden=true; };
+$('mHow').onclick=()=>{ const b=$('howBox'); b.hidden=!b.hidden; $('mHow').setAttribute('aria-expanded',String(!b.hidden)); $('practiceList').hidden=true; $('mPractice').setAttribute('aria-expanded','false'); $('backList').hidden=true; };
 /* the menu's front page: date and issue number, today's story count, yesterday's date on the bundle, a peek at the standings, and a map of the past week's true stories */
 function renderDesk(){
   const d=dayKey(), t=new Date(d+'T12:00:00');
@@ -5363,7 +5381,7 @@ document.addEventListener('keydown',e=>{
 $('mCall').onclick=()=>startGame('daily','call');
 $('mBlank').onclick=()=>startGame('daily','blank');
 $('mPol').onclick=()=>{ if(POL_ON) startGame('daily','pol'); };
-$('mPractice').onclick=()=>{ const l=$('practiceList'); l.hidden=!l.hidden; $('backList').hidden=true; $('howBox').hidden=true; l.querySelectorAll('button').forEach(b=>b.classList.toggle('on',S&&S.mode==='practice'&&b.dataset.k===S.kind)); };
+$('mPractice').onclick=()=>{ const l=$('practiceList'); l.hidden=!l.hidden; $('mPractice').setAttribute('aria-expanded',String(!l.hidden)); Sound.play('menu'); $('backList').hidden=true; $('howBox').hidden=true; l.querySelectorAll('button').forEach(b=>b.classList.toggle('on',S&&S.mode==='practice'&&b.dataset.k===S.kind)); };
 $('practiceList').querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(!b.disabled) startGame('practice',b.dataset.k); });
 
 
