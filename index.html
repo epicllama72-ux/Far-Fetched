@@ -1570,7 +1570,7 @@ body.intro #ausBar{display:none}
 #card #speed span{color:#a8231a;font:9px/1 var(--px)}
 #card #speed.pin i{background:repeating-linear-gradient(90deg,#b8860b 0 6px,transparent 6px 8px)}
 #card #speed.low i{background:repeating-linear-gradient(90deg,#a8231a 0 6px,transparent 6px 8px)}
-#card[data-truth]::after{content:attr(data-truth);position:absolute;right:10px;top:-10px;rotate:-9deg;border:2px solid #2f6b2f;color:#2f6b2f;background:#f7f3e8;font:9px/1 var(--px);letter-spacing:.12em;padding:5px 7px 4px;box-shadow:2px 2px 0 rgba(0,0,0,.35);text-transform:uppercase}
+#card[data-truth]::after{content:attr(data-truth);position:absolute;right:10px;top:-17px;rotate:-9deg;border:2px solid #2f6b2f;color:#2f6b2f;background:#f7f3e8;font:9px/1 var(--px);letter-spacing:.12em;padding:5px 7px 4px;box-shadow:2px 2px 0 rgba(0,0,0,.35);text-transform:uppercase}
 #card[data-truth="fake"]::after{border-color:#a8231a;color:#a8231a}
 #feedback{position:relative;margin:-3px 16px 12px;background:#fff;color:#1b1813;background-image:none;border:1px solid #1b1813;border-top:2px dashed #1b1813;padding:7px 11px 8px;rotate:.8deg;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.45));font:18px/1.12 var(--vt)}
 #feedback::before{content:'';position:absolute;left:24px;top:-9px;width:22px;height:5px;border:2px solid #8a8f99;border-bottom:0}
@@ -1582,8 +1582,13 @@ body.intro #ausBar{display:none}
 #feedback .brk.stampNew{color:#a8231a}
 @media not all and (min-width:1100px) and (min-height:600px){
   body.answered #card{padding:0 10px 7px} body.answered #card .kicker{margin:0 -10px 5px}
-  body.answered #feedback{margin-top:-3px;border-top:2px dashed #1b1813;padding:5px 10px 6px}
+  body.answered #feedback{margin-top:-3px;border-top:2px dashed #1b1813;padding:5px 10px 6px;font-size:17px;line-height:1.05}
+  body.answered #card #headline,body.answered.pinning #card #headline{font-size:19px;line-height:1.02}   /* once answered the box shrinks, so the jaw and the map have room */
+  body.answered #card .kicker{font-size:7px;padding:4px 10px 3px;margin-bottom:4px}
+  body.answered #card .storyLink{font-size:16px;margin-top:2px}
+  body.answered #feedback .more{font-size:15px;margin-top:4px;padding-top:4px}
 }
+body.pinning #card #headline{font-size:23px}
 @media (min-width:1100px) and (min-height:600px){ .rcol #card{padding:0 18px 14px} .rcol #card .kicker{margin:0 -18px 10px;padding:7px 18px 6px} .rcol #feedback{margin:-3px 18px 14px} }
 </style>
 </head>
