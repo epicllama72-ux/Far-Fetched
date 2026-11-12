@@ -1600,6 +1600,25 @@ body.intro #ausBar{display:none}
 }
 body.pinning #card #headline{font-size:23px}
 @media (min-width:1100px) and (min-height:600px){ .rcol #card{padding:0 18px 14px} .rcol #card .kicker{margin:0 -18px 10px;padding:7px 18px 6px} .rcol #feedback{margin:-3px 18px 14px} }
+/* ---------- Start: a folded copy of today's paper; Next: a paper slip ---------- */
+#btnStart.paperBtn{display:flex;flex-direction:column;align-items:stretch;padding:0;overflow:hidden;position:relative;background:#f7f3e8;background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(60,45,20,.03) 0 1px,transparent 1px 4px);
+  color:#1b1813;border:2px solid #1b1813;box-shadow:5px 5px 0 rgba(0,0,0,.55);rotate:-.8deg}
+#btnStart.paperBtn::after{content:'';position:absolute;top:0;bottom:0;left:50%;width:12px;translate:-50% 0;background:linear-gradient(90deg,transparent,rgba(27,24,19,.12),rgba(255,255,255,.35),transparent);pointer-events:none}
+#btnStart .pbm{display:flex;justify-content:space-between;background:#1b1813;color:#f7f3e8;font:8px/1 var(--px);letter-spacing:.14em;padding:5px 10px 4px}
+#btnStart .pbl{display:flex;align-items:center;justify-content:center;gap:10px;font:16px/1 var(--px);letter-spacing:.06em;padding:12px 8px 11px}
+#btnStart .pbl i{font:26px/1 var(--vt);font-style:normal;color:#a8231a}
+#btnStart.paperBtn:hover{rotate:0deg}
+#btnStart.paperBtn:active{translate:3px 3px;box-shadow:2px 2px 0 rgba(0,0,0,.55);transform:none}
+#btnStart.paperBtn:disabled{background:#d9cfb4;color:#5a5043;box-shadow:none;rotate:0deg}
+#btnStart.paperBtn:disabled .pbm{background:#5a5043}
+.nextBtn{display:flex;align-items:center;justify-content:center;gap:10px;background:#f7f3e8;background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px);color:#1b1813;
+  border:3px solid #1b1813;box-shadow:4px 4px 0 #000;font:13px/1 var(--px);letter-spacing:.08em;padding:14px 10px}
+.nextBtn i{font:24px/1 var(--vt);font-style:normal;color:#a8231a}
+.nextBtn .nbp{font:16px/1 var(--vt);color:#fff;background:#2f6b2f;padding:4px 7px 3px;rotate:-4deg;letter-spacing:0}
+.nextBtn .nbp.neg{background:#a8231a}
+.nextBtn:hover{background-color:#fff}
+.nextBtn:active{translate:3px 3px;box-shadow:1px 1px 0 #000;transform:none}
+@media (min-width:1100px) and (min-height:600px){ #btnNext2.nextBtn,#btnNext.nextBtn{font-size:14px;padding:16px 12px} }
 </style>
 </head>
 <body>
@@ -3638,7 +3657,7 @@ function showRound(shown,quiet,gate){
       + '</span>';
     $('speed').hidden=true; $('feedback').hidden=true; $('mapWrap').hidden=true;
     setBar('start');
-    const b=$('btnStart'); b.disabled=false; b.textContent="I'm ready";
+    const b=$('btnStart'); b.disabled=false; paperBtn(b,"I'M READY");
     if(!S.results.length) Scene.setPaper(false,true);    // he just sits there until you start
     renderDots(); aim();
     return;
@@ -3897,14 +3916,26 @@ function toggleMapSize(){
   Sound.play('menu');
   setTimeout(()=>{ map.invalidateSize(); if(MAP_VIEW){ if(MAP_VIEW.b) map.fitBounds(MAP_VIEW.b,{maxZoom:4.5,animate:false}); else map.setView(MAP_VIEW.c,5,{animate:false}); } aim(); },420);
 }
+/* the start button is a folded copy of today's paper: its masthead strip, then the label with a red arrow */
+function paperBtn(b,label,plain){
+  b.classList.add('paperBtn');
+  b.innerHTML='<span class="pbm"><span>THE DAILY ODD</span><span>NO. '+dayNumber()+'</span></span><span class="pbl"></span>';
+  b.querySelector('.pbl').innerHTML=escH(label)+(plain?'':' <i aria-hidden="true">→</i>');
+}
+/* next headline: a paper slip, with the points just won on a green tag */
+function nextBtn(b,label,pts){
+  b.classList.add('nextBtn');
+  b.innerHTML=(pts!=null?'<span class="nbp'+(pts<0?' neg':'')+'">'+(pts>=0?'+':'−')+Math.abs(pts)+'</span>':'')+'<span class="nbl"></span><i aria-hidden="true">→</i>';
+  b.querySelector('.nbl').textContent=label.toUpperCase();
+}
 function finishRound(){
   S.phase='done';
   S.results.push(S.cur);
   saveProgress();
   const last = S.i === S.rounds.length-1;
   const nl = last ? 'See results' : 'Next headline';
-  $('btnNext').textContent = nl; $('btnNext2').textContent = nl;
-  if(S.cur.real){ const g=S.cur.callPts+(S.cur.pinPts||0); $('btnNext2').textContent=(g>=0?'+':'−')+Math.abs(g)+' · '+nl; $('btnNext2').hidden=false; setBar('none'); }
+  nextBtn($('btnNext'),nl); nextBtn($('btnNext2'),nl);
+  if(S.cur.real){ const g=S.cur.callPts+(S.cur.pinPts||0); nextBtn($('btnNext2'),nl,g); $('btnNext2').hidden=false; setBar('none'); }
   else setBar('next');
   renderDots();
 }
@@ -5202,12 +5233,12 @@ function showBlankRound(live){
   $('headline').innerHTML='<span class="fakeplace">'+(S.results.length ? 'Ready for the next one? One word is hidden. 30 seconds.' : 'One word is hidden. You get 30 seconds and as many guesses as you like. The exact word scores most.')+'</span>';
   setBar('start');
   if(!S.results.length && !live) Scene.setPaper(false,true);
-  const b=$('btnStart'); b.disabled=true; b.textContent='Loading word list…';
+  const b=$('btnStart'); b.disabled=true; paperBtn(b,'Loading word list…',true);
   renderDots();
   aim();
   loadVectors().then(()=>{
     if(S.phase!=='ready' || S.kind!=='blank') return;
-    b.disabled=false; b.textContent='Start · '+BLANK_SECS+' seconds';
+    b.disabled=false; paperBtn(b,'START · '+BLANK_SECS+' S');
     if(live) startBlankRound(live.wall);     // a round started before a reload keeps running on the same clock
   }).catch(()=>{
     b.disabled=true;
@@ -5350,7 +5381,7 @@ function endBlank(){
   S.results.push(res);
   saveProgress();
   const last=S.i===S.rounds.length-1;
-  $('btnNext').textContent=last?'See results':'Next headline';
+  nextBtn($('btnNext'),last?'See results':'Next headline');
   setBar('next');
   renderDots();
   aim();
