@@ -1459,11 +1459,11 @@ body.intro #ausBar{display:none}
 @media not all and (min-width:1100px) and (min-height:600px){
   .topline{margin-bottom:6px}                                   /* phones: the counters sit tight under the top bar, for more room below */
   .hud{margin-bottom:6px}
-  .hud .panel .lbl{padding:4px 8px 3px}
-  .hud .val{padding:1px 8px 2px;font-size:32px}
-  .hud .ruler{margin-bottom:4px}
-  #delta{padding-bottom:4px}
-  .hud .mid{padding:10px 8px 5px}
+  .hud .panel .lbl{padding:3px 8px 2px}
+  .hud .val{padding:1px 8px 3px;font-size:28px}
+  .hud .mid{padding:9px 8px 4px}
+  .hud .mid #roundLbl{font-size:6px}
+  #dots .dot{height:12px;width:10px}
   body #card[data-truth]::after{top:-2px;right:8px;rotate:-5deg;padding:3px 5px 2px;font-size:8px}
 }
 .hud .panel{background:var(--np-card);background-image:var(--np-grain);border:1px solid var(--np-ink);clip-path:none;padding:0;min-width:0;color:var(--np-ink);filter:drop-shadow(3px 4px 0 rgba(0,0,0,.45));rotate:-1.5deg}
@@ -1474,7 +1474,10 @@ body.intro #ausBar{display:none}
 .hud .ruler{display:block;height:9px;margin:0 8px 6px;border-top:1px solid var(--np-ink);background:repeating-linear-gradient(90deg,var(--np-ink) 0 1px,transparent 1px 6px) 0 0/100% 5px no-repeat,repeating-linear-gradient(90deg,var(--np-ink) 0 1px,transparent 1px 30px) 0 0/100% 9px no-repeat}
 #score{color:var(--np-ink);transform-origin:right center}
 #score.pop{color:var(--np-stamp)} #score.up{color:var(--np-green)}
-#delta{position:static;display:block;opacity:1;min-height:16px;padding:0 8px 6px;font:16px/1 var(--vt);color:var(--np-dim);text-shadow:none;animation:none}
+#delta{position:static;display:inline-block;opacity:1;font:18px/1 var(--vt);color:var(--np-dim);text-shadow:none;animation:none;margin-right:8px;vertical-align:.2em;letter-spacing:0}
+#delta:empty{display:none}
+.hud .sv{text-align:right}
+#score{display:inline-block}
 #delta.plus{color:var(--np-green)} #delta.minus{color:var(--np-stamp)}
 .hud .mid{position:relative;align-self:center;background:var(--np-card);background-image:var(--np-grain);border:1px solid var(--np-ink);padding:12px 8px 7px;gap:6px;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.45))}
 .hud .mid::before{content:'';position:absolute;left:50%;top:-6px;width:12px;height:12px;translate:-50% 0;border-radius:50%;background:radial-gradient(circle at 35% 35%,#e5594d,#a8231a 60%,#5f130e);box-shadow:1px 2px 0 rgba(0,0,0,.35)}
@@ -1492,8 +1495,8 @@ body.intro #ausBar{display:none}
   .topline{margin:-18px -36px 18px;padding:8px 36px}
   .lcol .hud{gap:18px}
   .lcol .panel{padding:0} .lcol .panel.r{text-align:right}
-  .lcol .val{font-size:46px} .lcol .lbl{font-size:8px;margin:0}
-  #delta{right:auto;top:auto;font-size:17px}
+  .lcol .val{font-size:40px} .lcol .lbl{font-size:8px;margin:0}
+  #delta{font-size:20px}
   .lcol .mid{align-items:center;background:var(--np-card);background-image:var(--np-grain);border:1px solid var(--np-ink);clip-path:none;padding:14px 12px 10px}
   #dots .dot{width:16px;height:20px}
   #roundLbl{font-size:9px}
@@ -1672,9 +1675,9 @@ body.pinning #card #headline{font-size:23px}
   </div>
   <div class="lcol">
   <div class="hud">
-    <div class="panel"><span class="lbl">JAW DROP</span><span class="val"><span id="depth">0</span><small id="depthU">m</small></span><span class="ruler" aria-hidden="true"></span></div>
+    <div class="panel"><span class="lbl">JAW DROP</span><span class="val"><span id="depth">0</span><small id="depthU">m</small></span></div>
     <div class="mid"><div id="dots"></div><p id="roundLbl">HEADLINE 1/10</p></div>
-    <div class="panel r"><span class="lbl">SCORE</span><span class="val" id="score">0</span><span id="delta"></span></div>
+    <div class="panel r"><span class="lbl">SCORE</span><span class="val sv"><span id="delta"></span><span id="score">0</span></span></div>
   </div>
   <div id="log" aria-label="Headline log"><span class="lbl">YOUR HEADLINES</span><ol id="logList"></ol></div>
   </div>
@@ -3568,7 +3571,8 @@ function renderDots(){
     const d=S.score-S._shown;
     sc.classList.remove('pop','up'); void sc.offsetWidth; sc.classList.add(d<0?'pop':'up');
     clearTimeout(S._popT); S._popT=setTimeout(()=>sc.classList.remove('pop','up'),450);
-    const de=$('delta'); de.textContent=(d>0?'▲ ':'▼ ')+Math.abs(d); de.className=d>0?'plus':'minus';   // the last move stays under the score
+    const de=$('delta'); de.textContent=(d>0?'▲ ':'▼ ')+Math.abs(d); de.className=d>0?'plus':'minus';   // the last move shows left of the total for five seconds
+    clearTimeout(S._deltaT); S._deltaT=setTimeout(clearDelta,5000);
     if(!RECAP_ON){ if(S.holdJaw) S.pendPop=d; else Scene.popPts(d); }
   }
   if(S._shown===undefined){ $('delta').textContent=''; $('delta').className=''; }
@@ -3576,6 +3580,7 @@ function renderDots(){
   sc.textContent=fmtPts(S.score);
   if(!S.holdJaw) Scene.setJaw(jawPoints()*S.jawK);
 }
+function clearDelta(){ if(S) clearTimeout(S._deltaT); const de=$('delta'); if(de){ de.textContent=''; de.className=''; } }
 /* after a pin on a phone the jaw waits until the map has shrunk to its strip, so you see it drop */
 function releaseJaw(){
   if(!S || !S.holdJaw) return;
@@ -3953,6 +3958,7 @@ function finishRound(){
 
 function next(){
   hideRarity(); document.body.classList.remove('pinDone'); $('mapToggle').textContent='⤢ Explore map';
+  clearDelta();   // the gain goes when the next headline comes
   if(S.holdJaw){ clearTimeout(S._holdT); S.holdJaw=false; S.holdSound=false; S.pendPop=null; Scene.setJaw(jawPoints()*S.jawK); }   // moved on before the jaw was let go
   S.i++;
   if(S.i<S.rounds.length) Sound.play('flip');
