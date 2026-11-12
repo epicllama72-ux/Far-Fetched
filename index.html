@@ -773,7 +773,7 @@ body.pinning .app{padding-bottom:calc(min(30vh,260px) + 96px)}
 /* ---------- The menu: a newspaper spread that unfolds over the game; each option is a newsroom object lying on it ---------- */
 #menu{--paper:#ece5d1;--newsprint:#d9cfb4;--ink:#1b1813;--inkdim:#5a5043;--rule:rgba(27,24,19,.5);--stamp:#a8231a;--note:#f2d65a;--kraftdk:#8a6535;--cardc:#f7f3e8;--navy:#24324a;
   --grain:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(60,45,20,.03) 0 1px,transparent 1px 4px);
-  position:fixed;z-index:25;left:50%!important;top:calc(52px + env(safe-area-inset-top,0px))!important;bottom:12px;width:min(880px,calc(100vw - 20px));translate:-50% 0;
+  position:fixed;z-index:25;left:50%!important;top:calc(60px + env(safe-area-inset-top,0px))!important;bottom:12px;width:min(880px,calc(100vw - 20px));translate:-50% 0;
   background:var(--paper);background-image:var(--grain);color:var(--ink);text-shadow:none;letter-spacing:0;text-align:left;font:18px/1.2 var(--vt);
   box-shadow:0 0 0 3px var(--ink),5px 7px 0 3px rgba(0,0,0,.45),0 0 34px rgba(0,0,0,.6);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;transform-origin:50% 0}
 #menu [hidden]{display:none!important}
@@ -1415,6 +1415,72 @@ body.intro #ausBar{display:none}
 #final.news #comeBack,#final.news #comeBack .linkish,#final.news #replayWrap .linkish{color:#a8231a;text-align:center}
 #final.news #comeBack,#final.news #replayWrap{text-align:center}
 #final.news #letters{transform:none;box-shadow:none;margin:14px 0 0;border-top:3px double #1f1b16}
+/* ---------- Top bar and counters as newsprint, to match the newspaper menu ---------- */
+.topline,.hud,#log{--np-paper:#ece5d1;--np-card:#f7f3e8;--np-ink:#1b1813;--np-dim:#5a5043;--np-stamp:#a8231a;--np-green:#2f6b2f;
+  --np-grain:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(60,45,20,.03) 0 1px,transparent 1px 4px)}
+.topline{background:var(--np-paper);background-image:var(--np-grain);color:var(--np-ink);text-shadow:none;border-bottom:3px double var(--np-ink);box-shadow:0 4px 0 rgba(0,0,0,.35);
+  margin:-10px -16px 14px;padding:6px 12px;gap:10px;letter-spacing:0}
+#menuSlot{width:36px;height:36px;flex:none}
+.topline .logo{flex:1;margin-left:0;display:flex;flex-direction:column;gap:3px;min-width:0}
+.topline .logo .lt{font:clamp(11px,3.4vw,16px)/1 var(--px);letter-spacing:.06em;color:var(--np-ink);white-space:nowrap}
+.topline .logo .lt b{color:var(--np-stamp)}
+.topline .logo .lsub{font:14px/1 var(--vt);text-transform:uppercase;letter-spacing:.08em;color:var(--np-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#streak{font:8px/1.3 var(--px);letter-spacing:.06em;color:var(--np-stamp);border:2px solid var(--np-stamp);padding:4px 6px 3px;rotate:-5deg;text-align:center;background:rgba(247,243,232,.6)}
+#streak:empty{display:none}
+#streak em{display:block;font:18px/1 var(--vt);font-style:normal;letter-spacing:0}
+#streak small{font:14px/1 var(--vt);color:#1f4f86}
+#menuBtn,#muteBtn{width:36px;height:36px;background:var(--np-card,#f7f3e8);border:2px solid #1b1813;box-shadow:2px 2px 0 #1b1813;color:#1b1813;box-sizing:border-box}
+#menuBtn[aria-expanded="true"]{background:#1b1813;color:#f7f3e8}
+#menuBtn .paperIcon{width:20px;height:18px;position:relative;box-sizing:border-box;border:2px solid currentColor;background:linear-gradient(currentColor,currentColor) 1px 1px/9px 3px no-repeat,repeating-linear-gradient(180deg,currentColor 0 2px,transparent 2px 4px) 1px 6px/14px 8px no-repeat}
+#menuBtn .paperIcon::after{content:'';position:absolute;right:-2px;top:-2px;border-style:solid;border-width:0 6px 6px 0;border-color:transparent #f7f3e8 currentColor transparent}
+#menuBtn[aria-expanded="true"] .paperIcon::after{border-color:transparent #1b1813 currentColor transparent}
+#muteBtn svg{width:18px;height:18px;display:block}
+#muteBtn.off{color:#1b1813}
+#muteBtn.off::after{background:#a8231a;left:6px;right:6px}
+/* the three clippings */
+.hud{grid-template-columns:1fr auto 1fr;gap:12px;align-items:start}
+.hud .panel{background:var(--np-card);background-image:var(--np-grain);border:1px solid var(--np-ink);clip-path:none;padding:0;min-width:0;color:var(--np-ink);filter:drop-shadow(3px 4px 0 rgba(0,0,0,.45));rotate:-1.5deg}
+.hud .panel.r{rotate:1.5deg;text-align:right}
+.hud .lbl{display:block;background:var(--np-ink);color:var(--np-card);font:7px/1 var(--px);letter-spacing:.18em;padding:5px 8px 4px;margin:0;text-align:left}
+.hud .val{display:block;padding:2px 8px 4px;font:36px/.95 var(--vt);color:var(--np-ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hud .val small{font-size:20px;color:var(--np-dim)}
+.hud .ruler{display:block;height:9px;margin:0 8px 6px;border-top:1px solid var(--np-ink);background:repeating-linear-gradient(90deg,var(--np-ink) 0 1px,transparent 1px 6px) 0 0/100% 5px no-repeat,repeating-linear-gradient(90deg,var(--np-ink) 0 1px,transparent 1px 30px) 0 0/100% 9px no-repeat}
+#score{color:var(--np-ink);transform-origin:right center}
+#score.pop{color:var(--np-stamp)} #score.up{color:var(--np-green)}
+#delta{position:static;display:block;opacity:1;min-height:16px;padding:0 8px 6px;font:16px/1 var(--vt);color:var(--np-dim);text-shadow:none;animation:none}
+#delta.plus{color:var(--np-green)} #delta.minus{color:var(--np-stamp)}
+.hud .mid{position:relative;align-self:center;background:var(--np-card);background-image:var(--np-grain);border:1px solid var(--np-ink);padding:12px 8px 7px;gap:6px;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.45))}
+.hud .mid::before{content:'';position:absolute;left:50%;top:-6px;width:12px;height:12px;translate:-50% 0;border-radius:50%;background:radial-gradient(circle at 35% 35%,#e5594d,#a8231a 60%,#5f130e);box-shadow:1px 2px 0 rgba(0,0,0,.35)}
+#dots{gap:3px;filter:none}
+#dots .dot{width:11px;height:14px;border:1.5px solid #1b1813;box-shadow:none;background:#fff;position:relative;box-sizing:border-box}
+#dots .dot::after{content:'';position:absolute;left:1px;right:1px;top:2px;height:6px;background:repeating-linear-gradient(180deg,rgba(27,24,19,.35) 0 1px,transparent 1px 3px)}
+#dots .dot.now{background:#fff;outline:2px solid #a8231a;outline-offset:1px}
+#dots .dot.ok,#dots .dot.no,#dots .dot.meh,#dots .dot.warm,#dots .dot.gl,#dots .dot.st,#dots .dot.pu,#dots .dot.sk,#dots .dot.rk,#dots .dot.fake,#dots .dot.fooled{box-shadow:none}
+#dots .dot.ok::after,#dots .dot.no::after,#dots .dot.meh::after,#dots .dot.warm::after,#dots .dot.gl::after,#dots .dot.st::after,#dots .dot.pu::after,#dots .dot.sk::after,#dots .dot.rk::after,#dots .dot.fake::after,#dots .dot.fooled::after{display:none}
+#dots .dot.ok{background:var(--good)} #dots .dot.no{background:var(--bad)} #dots .dot.meh{background:#d9a441} #dots .dot.warm{background:#e07a3a}
+#dots .dot.gl{background:#ffd23f} #dots .dot.st{background:#b56bff} #dots .dot.pu{background:#ff4d5e} #dots .dot.sk{background:#4da6ff} #dots .dot.rk{background:#eef0f4}
+#dots .dot.fake{background:#4a8fe0} #dots .dot.fooled{background:#1b1813}
+#roundLbl{font:7px/1 var(--px);letter-spacing:.12em;color:#1b1813;text-shadow:none}
+@media (min-width:1100px) and (min-height:600px){
+  .topline{margin:-18px -36px 18px;padding:8px 36px}
+  .lcol .hud{gap:18px}
+  .lcol .panel{padding:0} .lcol .panel.r{text-align:right}
+  .lcol .val{font-size:46px} .lcol .lbl{font-size:8px;margin:0}
+  #delta{right:auto;top:auto;font-size:17px}
+  .lcol .mid{align-items:center;background:var(--np-card);background-image:var(--np-grain);border:1px solid var(--np-ink);clip-path:none;padding:14px 12px 10px}
+  #dots .dot{width:16px;height:20px}
+  #roundLbl{font-size:9px}
+  #log{margin-top:22px;rotate:-1deg;background:#fbf8ee;border:1px solid rgba(27,24,19,.5);clip-path:none;padding:20px 12px 12px;color:#1b1813;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.45));
+    background-image:linear-gradient(90deg,transparent 22px,rgba(168,35,26,.35) 22px 23px,transparent 23px),repeating-linear-gradient(180deg,transparent 0 23px,rgba(36,50,74,.22) 23px 24px);background-position:0 0,0 14px;overflow:visible;position:relative}
+  #log::before{content:'';position:absolute;left:8px;right:8px;top:-7px;height:14px;background:radial-gradient(circle at 50% 50%,#3d3a34 0 3px,transparent 3.5px) 0 0/16px 14px repeat-x}
+  #log .lbl{background:none;color:#1b1813;font:8px/1 var(--px);letter-spacing:.16em;padding:0;margin:0 0 6px 16px}
+  #logList{padding-left:16px;gap:0;max-height:calc(100vh - 520px);overflow:auto}
+  #logList li{font:19px/24px var(--vt);color:#1b1813;gap:6px}
+  #logList li i{border-color:#1b1813;box-shadow:none;width:12px;height:12px}
+  #logList li span{color:#1b1813;font-size:19px}
+  #logList li b{color:#2f6b2f}
+  #logList li.empty{color:#5a5043}
+}
 </style>
 </head>
 <body>
@@ -1425,9 +1491,9 @@ body.intro #ausBar{display:none}
 <div id="ruler" aria-hidden="true"></div>
 <div class="app">
   <div class="topline">
-    <button id="menuBtn" aria-label="Menu" aria-haspopup="true" aria-expanded="false">≡</button>
-    <span class="logo">FAR-<b>FETCHED</b></span><span id="streak"></span>
-    <button id="muteBtn" aria-label="Sound on" aria-pressed="false">♪</button>
+    <span id="menuSlot" aria-hidden="true"></span><button id="menuBtn" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span class="paperIcon" aria-hidden="true"></span></button>
+    <span class="logo"><span class="lt">FAR-<b>FETCHED</b></span><span class="lsub" id="logoSub">The Daily Odd</span></span><span id="streak"></span>
+    <button id="muteBtn" aria-label="Sound on" aria-pressed="false"><svg viewBox="0 0 9 9" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M1 3h2v3H1zM3 2h1v5H3zM4 1h1v7H4zM6 3h1v1H6zM6 5h1v1H6zM7 2h1v1H7zM7 6h1v1H7zM8 3h1v3H8z"/></svg></button>
     <div id="menu" hidden role="dialog" aria-label="Menu">
       <div class="dTop">
         <button id="mFold" type="button" class="ctl">&lsaquo; FOLD UP<span>back to the dig</span></button>
@@ -1465,7 +1531,7 @@ body.intro #ausBar{display:none}
   </div>
   <div class="lcol">
   <div class="hud">
-    <div class="panel"><span class="lbl">JAW DROP</span><span class="val"><span id="depth">0</span><small id="depthU">m</small></span></div>
+    <div class="panel"><span class="lbl">JAW DROP</span><span class="val"><span id="depth">0</span><small id="depthU">m</small></span><span class="ruler" aria-hidden="true"></span></div>
     <div class="mid"><div id="dots"></div><p id="roundLbl">HEADLINE 1/10</p></div>
     <div class="panel r"><span class="lbl">SCORE</span><span class="val" id="score">0</span><span id="delta"></span></div>
   </div>
@@ -3271,6 +3337,7 @@ function startGame(mode, kind){
   $('mBlank').classList.toggle('on',blank && daily);
   $('mPol').classList.toggle('on',pol && daily);
   $('mPractice').classList.toggle('on',!daily);
+  try{ $('logoSub').textContent='The Daily Odd · No. '+dayNumber(); }catch(e){}
   $('howText').innerHTML = blank
     ? 'Guess the hidden word in each true headline. The exact word scores <b>'+Math.round(BLANK_MAX)+'</b>, however fast you find it. Near misses pay part of that, the closer the more. Every guess after your third costs 5%.'
     : 'Right call on a true story: up to <b>+'+Math.round(PK*CALL_PTS)+'</b>, more the quicker you answer. Catching a fake: <b>+'+FAKE_PTS+'</b>. Fooled by a fake: <b>−'+Math.abs(FOOLED_PTS)+'</b>. Then pin where the true story happened for up to <b>+'+Math.round(PK*PIN_PTS)+'</b>, plus <b>+'+Math.round(PK*COUNTRY_PTS)+'</b> if your pin is in the right country. Your pin\'s rarity adds a bonus: <b>+'+pinBonus(0)+'</b> Globalist, <b>+'+pinBonus(300)+'</b> Statesman, <b>+'+pinBonus(1000)+'</b> Pundit, <b>+'+pinBonus(3000)+'</b> Skimmer. Every point drops his jaw the same distance, and losing points pulls it back up.';
@@ -3360,9 +3427,10 @@ function renderDots(){
     const d=S.score-S._shown;
     sc.classList.remove('pop','up'); void sc.offsetWidth; sc.classList.add(d<0?'pop':'up');
     clearTimeout(S._popT); S._popT=setTimeout(()=>sc.classList.remove('pop','up'),450);
-    const de=$('delta'); de.textContent=(d>0?'+':'−')+Math.abs(d); de.className=''; void de.offsetWidth; de.className='go'+(d>0?' plus':'');
+    const de=$('delta'); de.textContent=(d>0?'▲ ':'▼ ')+Math.abs(d); de.className=d>0?'plus':'minus';   // the last move stays under the score
     if(!RECAP_ON) Scene.popPts(d);
   }
+  if(S._shown===undefined){ $('delta').textContent=''; $('delta').className=''; }
   S._shown=S.score;
   sc.textContent=fmtPts(S.score);
   Scene.setJaw(jawPoints()*S.jawK);
@@ -3979,7 +4047,8 @@ function streakCount(){
 }
 function updateStreak(){
   const n=streakCount(), st=load('ff_streak')||{}, fz=st.freezes||0;
-  $('streak').innerHTML = n ? n+'<span class="sl">-DAY STREAK</span><span class="ss">🔥</span>'+(fz?' ❄'+(fz>1?fz:''):'') : '';
+  $('streak').innerHTML = n ? 'STREAK<em>'+n+' day'+(n>1?'s':'')+(fz?' <small>❄'+(fz>1?fz:'')+'</small>':'')+'</em>' : '';
+  try{ $('logoSub').textContent='The Daily Odd · No. '+dayNumber(); }catch(e){}
 }
 
 /* ---------- The Dig Kit: cosmetic unlocks for coming back, with a wardrobe to wear them ---------- */
@@ -5221,7 +5290,7 @@ renderAmb();
 $('btnPractice').onclick=()=>startGame('practice',KIND);
 /* the menu button follows its spot in the header until the page scrolls past it, then stays on screen */
 function pinMenu(){
-  const tl=document.querySelector('.topline'); if(!tl) return;
+  const tl=$('menuSlot'); if(!tl) return;   // the button sits over its slot in the top bar, and stays on screen once the page scrolls
   const r=tl.getBoundingClientRect(), top=Math.max(10,Math.round(r.top)), left=Math.round(r.left);
   $('menuBtn').style.top=top+'px'; $('menuBtn').style.left=left+'px';
   $('menu').style.top=(top+38)+'px'; $('menu').style.left=left+'px';
