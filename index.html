@@ -771,7 +771,7 @@ body.np{--paper:#ece4cf;--paper2:#e2d8bf;--newsink:#1f1b16;--inkdim:#5c5345;--ru
 body.np #menu{background:var(--paper);background-image:var(--grain);border:0;box-shadow:0 0 0 2px var(--newsink),0 0 0 5px var(--paper),0 0 0 7px var(--newsink),8px 8px 0 7px rgba(0,0,0,.55);color:var(--newsink);gap:0;padding:12px 14px 14px}
 body.np #menu .npMast{display:block;text-align:center;margin:0 0 2px}
 body.np #menu .npMast b{display:block;font:20px/1.2 var(--px);color:var(--newsink);letter-spacing:.02em;padding-top:2px}
-body.np #menu .npMast i{display:flex;justify-content:space-between;gap:6px;font:17px/1 var(--vt);color:var(--inkdim);border-top:3px double var(--rule);border-bottom:1px solid var(--rule);padding:4px 1px 3px;margin-top:6px;white-space:nowrap;letter-spacing:0}
+body.np #menu .npMast i{display:flex;justify-content:center;gap:6px;font:17px/1 var(--vt);color:var(--inkdim);border-bottom:3px double var(--rule);padding:0 1px 5px;margin:0 0 8px;white-space:nowrap;letter-spacing:0}
 body.np #menu .mlbl{font:8px/1 var(--px);letter-spacing:.24em;color:var(--newsink);text-align:center;margin:14px 0 4px;display:flex;align-items:center;gap:8px}
 body.np #menu .mlbl::before,body.np #menu .mlbl::after{content:'';flex:1;height:3px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 body.np #menu button,body.np #menu a.mlink{background:none;box-shadow:none;border-bottom:1px dotted rgba(31,27,22,.45);padding:7px 2px 6px;color:var(--newsink);font:22px/1 var(--vt);gap:3px}
@@ -817,7 +817,7 @@ body.mgrid #menu>.mlbl,body.mgrid #menu>.how,body.mgrid #menu>.npMast,body.mgrid
 /* masthead */
 body.mgrid #menu .npMast{display:block!important;text-align:center;margin:0 0 4px;padding:12px 12px 8px;background:var(--paper);background-image:var(--grain);color:var(--newsink);box-shadow:0 0 0 2px var(--newsink),5px 5px 0 2px rgba(0,0,0,.5)}
 body.mgrid #menu .npMast b{display:block;font:clamp(18px,5.4vw,30px)/1.2 var(--px);letter-spacing:.02em;color:var(--newsink)}
-body.mgrid #menu .npMast i{display:flex;justify-content:space-between;gap:6px;font:18px/1 var(--vt);font-style:normal;color:var(--inkdim);border-top:3px double var(--newsink);border-bottom:1px solid var(--newsink);padding:5px 2px 3px;margin-top:8px;white-space:nowrap}
+body.mgrid #menu .npMast i{display:flex;justify-content:center;font:18px/1 var(--vt);font-style:normal;color:var(--inkdim);border-bottom:3px double var(--newsink);padding:0 2px 5px;margin-bottom:10px;white-space:nowrap}
 /* section heads between double rules */
 body.mgrid #menu .mlbl{font:9px/1 var(--px);letter-spacing:.24em;color:var(--paper);margin:10px 0 0;display:flex;align-items:center;gap:10px;text-shadow:0 2px 0 #000}
 body.mgrid #menu .mlbl::before,body.mgrid #menu .mlbl::after{content:'';flex:1;height:3px;border-top:1px solid rgba(236,228,207,.7);border-bottom:1px solid rgba(236,228,207,.7)}
@@ -1418,7 +1418,7 @@ body.intro #ausBar{display:none}
     <span class="logo">FAR-<b>FETCHED</b></span><span id="streak"></span>
     <button id="muteBtn" aria-label="Sound on" aria-pressed="false">♪</button>
     <div id="menu" hidden>
-      <p class="npMast" hidden><b>The Daily Odd</b><i><span id="npMastDate"></span><span>Price: free</span></i></p>
+      <p class="npMast" hidden><i><span id="npMastDate"></span></i><b>The Daily Odd</b></p>
       <p class="mlbl">GAME</p>
       <button id="mCall" data-kick="Today's paper">Daily Dig <small>real or fake? 5 true, 2 fake</small></button>
       <button id="mBlank" data-kick="Puzzles">Fill the Blank <small>20 s each</small></button>
