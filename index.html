@@ -1510,8 +1510,9 @@ body.intro #ausBar{display:none}
 }
 /* ---------- End-of-game buttons: a newsprint strip stuck to the bottom of the screen ---------- */
 #bar:has(#endBtns:not([hidden])){background:#ece5d1;background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px);border-top:3px double #1b1813;box-shadow:0 -4px 0 rgba(0,0,0,.3)}
+#bar:has(#endBtns:not([hidden])){padding-top:6px;padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}   /* a slimmer strip, tucked right at the bottom so the summary stays readable */
 #endBtns{gap:8px}
-#endBtns button{flex:1 1 0;min-width:0;min-height:46px;padding:8px 6px;margin:0;font:9px/1.2 var(--px);letter-spacing:.06em;white-space:nowrap;text-transform:uppercase;
+#endBtns button{flex:1 1 0;min-width:0;min-height:38px;padding:6px 6px;margin:0;font:9px/1.2 var(--px);letter-spacing:.06em;white-space:nowrap;text-transform:uppercase;
   background:#1b1813;color:#f7f3e8;border:2px solid #1b1813;box-shadow:3px 3px 0 #5a5043;transform:none}
 #endBtns #btnShare{background:#a8231a;color:#fff;box-shadow:3px 3px 0 #1b1813}
 #endBtns button:hover{filter:brightness(1.12)}
@@ -1569,7 +1570,7 @@ body.intro #ausBar{display:none}
 #card.flash{border-color:#a8231a}
 #card .kicker{display:block;margin:0 -13px 8px;padding:6px 12px 5px;background:#1b1813;color:#f7f3e8;font:8px/1.3 var(--px);letter-spacing:.14em}
 #card .kicker.bad{color:#ff8a7a}
-#card #headline{color:#1b1813;font-size:26px;line-height:1.08}
+#card #headline{color:#1b1813;font-size:26px;line-height:.98}
 #card .reveal{color:#a8231a;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
 #card .clue{color:#5a5043}
 #card .fakeplace{color:#5a5043}
@@ -1593,7 +1594,7 @@ body.intro #ausBar{display:none}
 @media not all and (min-width:1100px) and (min-height:600px){
   body.answered #card{padding:0 10px 7px} body.answered #card .kicker{margin:0 -10px 5px}
   body.answered #feedback{margin-top:-3px;border-top:2px dashed #1b1813;padding:5px 10px 6px;font-size:17px;line-height:1.05}
-  body.answered #card #headline,body.answered.pinning #card #headline{font-size:19px;line-height:1.02}   /* once answered the box shrinks, so the jaw and the map have room */
+  body.answered #card #headline,body.answered.pinning #card #headline{font-size:19px;line-height:.95}   /* once answered the box shrinks, so the jaw and the map have room */
   body.answered #card .kicker{font-size:7px;padding:4px 10px 3px;margin-bottom:4px}
   body.answered #card .storyLink{font-size:16px;margin-top:2px}
   body.answered #feedback .more{font-size:15px;margin-top:4px;padding-top:4px}
