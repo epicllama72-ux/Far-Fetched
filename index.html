@@ -1583,8 +1583,8 @@ body.intro #ausBar{display:none}
 #card #speed.low i{background:repeating-linear-gradient(90deg,#a8231a 0 6px,transparent 6px 8px)}
 #card[data-truth]::after{content:attr(data-truth);position:absolute;right:10px;top:-17px;rotate:-9deg;border:2px solid #2f6b2f;color:#2f6b2f;background:#f7f3e8;font:9px/1 var(--px);letter-spacing:.12em;padding:5px 7px 4px;box-shadow:2px 2px 0 rgba(0,0,0,.35);text-transform:uppercase}
 #card[data-truth="fake"]::after{border-color:#a8231a;color:#a8231a}
-#feedback{position:relative;margin:-3px 16px 12px;background:#fff;color:#1b1813;background-image:none;border:1px solid #1b1813;border-top:2px dashed #1b1813;padding:7px 11px 8px;rotate:.8deg;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.45));font:18px/1.12 var(--vt)}
-#feedback::before{content:'';position:absolute;left:24px;top:-9px;width:22px;height:5px;border:2px solid #8a8f99;border-bottom:0}
+#feedback{position:relative;width:fit-content;max-width:calc(100% - 24px);margin:-1px 14px 10px auto;background:#fff;color:#1b1813;background-image:none;border:1px solid #1b1813;padding:6px 10px 6px;rotate:.8deg;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.45));font:18px/1.12 var(--vt)}
+#feedback::before{content:'';position:absolute;left:50%;top:-8px;width:46px;height:14px;translate:-50% 0;rotate:-3deg;background:rgba(234,212,150,.78);border:1px solid rgba(138,110,50,.35);box-shadow:0 1px 0 rgba(0,0,0,.12)}   /* a strip of tape holds the slip on */
 #feedback b{color:#2f6b2f}
 #feedback a{color:#1f4f86}
 #feedback small,#feedback .brk i,#feedback .brk.dim{color:#5a5043}
@@ -1593,14 +1593,14 @@ body.intro #ausBar{display:none}
 #feedback .brk.stampNew{color:#a8231a}
 @media not all and (min-width:1100px) and (min-height:600px){
   body.answered #card{padding:0 10px 7px} body.answered #card .kicker{margin:0 -10px 5px}
-  body.answered #feedback{margin-top:-3px;border-top:2px dashed #1b1813;padding:5px 10px 6px;font-size:17px;line-height:1.05}
+  body.answered #feedback{margin-top:-1px;padding:4px 9px 5px;font-size:17px;line-height:1.05}
   body.answered #card #headline,body.answered.pinning #card #headline{font-size:19px;line-height:.95}   /* once answered the box shrinks, so the jaw and the map have room */
   body.answered #card .kicker{font-size:7px;padding:4px 10px 3px;margin-bottom:4px}
   body.answered #card .storyLink{font-size:16px;margin-top:2px}
   body.answered #feedback .more{font-size:15px;margin-top:4px;padding-top:4px}
 }
 body.pinning #card #headline{font-size:23px}
-@media (min-width:1100px) and (min-height:600px){ .rcol #card{padding:0 18px 14px} .rcol #card .kicker{margin:0 -18px 10px;padding:7px 18px 6px} .rcol #feedback{margin:-3px 18px 14px} }
+@media (min-width:1100px) and (min-height:600px){ .rcol #card{padding:0 18px 14px} .rcol #card .kicker{margin:0 -18px 10px;padding:7px 18px 6px} .rcol #feedback{margin:-1px 18px 14px auto} }
 /* ---------- Start: a folded copy of today's paper; Next: a paper slip ---------- */
 #btnStart.paperBtn{display:flex;flex-direction:column;align-items:stretch;padding:0;overflow:hidden;position:relative;background:#f7f3e8;background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(60,45,20,.03) 0 1px,transparent 1px 4px);
   color:#1b1813;border:2px solid #1b1813;box-shadow:5px 5px 0 rgba(0,0,0,.55);rotate:-.8deg}
