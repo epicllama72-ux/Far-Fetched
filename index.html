@@ -1498,6 +1498,48 @@ body.intro #ausBar{display:none}
   #logList li b{color:#2f6b2f}
   #logList li.empty{color:#5a5043}
 }
+/* ---------- End-of-game buttons: a newsprint strip stuck to the bottom of the screen ---------- */
+#bar:has(#endBtns:not([hidden])){background:#ece5d1;background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px);border-top:3px double #1b1813;box-shadow:0 -4px 0 rgba(0,0,0,.3)}
+#endBtns{gap:8px}
+#endBtns button{flex:1 1 0;min-width:0;min-height:46px;padding:8px 6px;margin:0;font:9px/1.2 var(--px);letter-spacing:.06em;white-space:nowrap;text-transform:uppercase;
+  background:#1b1813;color:#f7f3e8;border:2px solid #1b1813;box-shadow:3px 3px 0 #5a5043;transform:none}
+#endBtns #btnShare{background:#a8231a;color:#fff;box-shadow:3px 3px 0 #1b1813}
+#endBtns button:hover{filter:brightness(1.12)}
+#endBtns button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #1b1813}
+@media (max-width:360px){ #endBtns button{font-size:8px;letter-spacing:0} }
+@media (min-width:1100px) and (min-height:600px){ .rcol #bar:has(#endBtns:not([hidden])){padding:10px 10px 12px} }
+
+/* ---------- The leaderboard: the Standings page ---------- */
+#sheet .sheetIn{--np-paper:#ece5d1;--np-card:#f7f3e8;--np-ink:#1b1813;--np-dim:#5a5043;--np-rule:rgba(27,24,19,.5);--np-stamp:#a8231a;--np-tab:#d9cfb4;
+  background:var(--np-paper);background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(60,45,20,.03) 0 1px,transparent 1px 4px);
+  color:var(--np-ink);border-top:4px solid var(--np-ink);box-shadow:0 -4px 0 rgba(0,0,0,.35)}
+#sheet .sheetTop{border-bottom:3px double var(--np-ink);padding-bottom:8px;margin-bottom:2px}
+#sheet #boardKicker{margin:0;font:clamp(11px,3.6vw,15px)/1.25 var(--px);letter-spacing:.04em;color:var(--np-ink);text-shadow:none}
+#sheetClose{background:var(--np-card);color:var(--np-ink);box-shadow:none;border:2px solid var(--np-ink);box-shadow:2px 2px 0 var(--np-ink);font:20px/1 var(--vt)}
+#sheet #groupBar{gap:4px;margin:10px 0 0;padding:0;border-bottom:2px solid var(--np-ink);flex-wrap:nowrap;overflow-x:auto}
+#sheet .gchip{flex:none;font:17px/1 var(--vt);padding:7px 12px 6px;background:var(--np-tab);color:var(--np-dim);border:2px solid var(--np-ink);border-bottom:0;border-radius:6px 6px 0 0;margin-bottom:-2px}
+#sheet .gchip.on{background:var(--np-paper);color:var(--np-ink);padding-bottom:8px}
+#sheet .gchip:focus-visible{outline:2px solid var(--np-stamp)}
+#sheet #rankLine{margin:12px 0 8px;font:clamp(24px,6.4vw,30px)/1.05 var(--vt);color:var(--np-ink)}
+#sheet #rankLine b{color:var(--np-stamp)}
+#sheet #curve{background:var(--np-card);box-shadow:none;border:1px solid var(--np-ink);margin:2px 0 12px}
+#sheet #topList{border-top:2px solid var(--np-ink);font:20px/1 var(--vt);font-variant-numeric:tabular-nums;margin:0 0 12px}
+#sheet #topList li{padding:8px 2px 7px;border-bottom:1px dotted var(--np-rule);color:var(--np-ink)}
+#sheet #topList li.me{background:linear-gradient(180deg,transparent 52%,rgba(255,204,77,.6) 52% 88%,transparent 88%);color:var(--np-ink)}
+#sheet #topList li>span:last-child{color:var(--np-dim)} #sheet #topList li.me>span:last-child{color:var(--np-ink)}
+#sheet #nameRow{color:var(--np-dim)} #sheet #nameRow b{color:var(--np-ink)}
+#sheet .linkish{color:#1f4f86}
+#sheet .digRow{border-top:3px double var(--np-ink);padding-top:12px}
+#sheet #digImg{box-shadow:none;border:1px solid var(--np-ink)}
+#sheet #digCap{color:var(--np-ink);font-size:19px}
+#sheet #btnSaveImg{background:var(--np-card);color:var(--np-ink);border:2px solid var(--np-ink);box-shadow:3px 3px 0 var(--np-ink);font:8px/1 var(--px);letter-spacing:.12em;padding:10px 11px 9px}
+#sheet #btnSaveImg:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--np-ink)}
+#sheet #saveMsg{color:var(--np-dim)}
+#sheet #groupTools{color:var(--np-ink)}
+#sheet #topList + #groupTools{border-top:1px dashed var(--np-rule)}
+#sheet #groupTools input{background:#fff;color:var(--np-ink);border:1px solid var(--np-ink)}
+#sheet #groupTools button:not(.linkish){background:var(--np-ink);color:var(--np-card);box-shadow:2px 2px 0 var(--np-dim)}
+#sheet #groupTools small{color:var(--np-dim)}
 </style>
 </head>
 <body>
@@ -1584,8 +1626,8 @@ body.intro #ausBar{display:none}
     </form>
   </div>
   <div class="btns" id="endBtns" hidden>
-    <button class="primary" id="btnShare">Share</button>
-    <button class="primary" id="btnBoard">Leaderboard</button>
+    <button class="primary" id="btnShare">Share ↗</button>
+    <button class="primary" id="btnBoard">Standings</button>
     <button class="ghost" id="btnPractice">Practice</button>
   </div>
   </div>
@@ -3890,8 +3932,8 @@ function renderFrontPage(inf,total,max){
   renderNpPass();
 }
 /* on the front page the charts are printed in ink on newsprint: greys flip (dark ground -> paper, light lines -> ink), colours stay, bright ones darken a touch */
-function paperize(cv){
-  if(!cv || !cv.closest('#final.news')) return;
+function paperize(cv,force){   // recolour a chart drawn for the dark screens as ink on newsprint
+  if(!cv || (!force && !cv.closest('#final.news'))) return;
   const g=cv.getContext('2d'), im=g.getImageData(0,0,cv.width,cv.height), d=im.data;
   const P=[239,232,214], K=[31,27,22];
   for(let i=0;i<d.length;i+=4){
@@ -3953,7 +3995,7 @@ function finish(restored){
   $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone','answered');
   ['card','speed','feedback','mapWrap','blankUI'].forEach(id=>$(id).hidden=true);
   setBar('end');
-  getDb().then(d=>{ $('btnBoard').textContent = (d || sbOn()) ? 'Leaderboard' : 'My digs'; });
+  getDb().then(d=>{ $('btnBoard').textContent = (d || sbOn()) ? 'Standings' : 'My digs'; });
   const total = sumPts(S.results), max = S.maxScore;
   S.score = total; renderDots();
   const inf = Scene.info();
@@ -4427,7 +4469,7 @@ async function share(){
     await navigator.clipboard.writeText(text);
     btn.textContent='Copied!';
   }catch(e){ btn.textContent='Copy failed'; }
-  setTimeout(()=>btn.textContent='Share',1500);
+  setTimeout(()=>btn.textContent='Share ↗',1500);
   settleBar();
 }
 
@@ -4629,7 +4671,7 @@ async function renderGroupBoard(code){
   g.members=+b.members||g.members; showGroupTools(g);
   const me=playerId(), rows=b.rows, mine=rows.find(r=>r.player===me);
   $('curve').hidden=rows.length<3;             // the bell curve, once enough of the group has played
-  if(rows.length>=3) drawCurve(rows.map(r=>({id:r.player,m:+r.m,score:+r.score})), mine ? +mine.m : null);
+  if(rows.length>=3){ drawCurve(rows.map(r=>({id:r.player,m:+r.m,score:+r.score})), mine ? +mine.m : null); paperize($('curve'),true); }
   $('rankLine').innerHTML = rows.length ? '<b>'+rows.length+'</b> of '+b.members+' member'+(b.members==1?'':'s')+' played today.' : 'Nobody in this group has played today yet. Send them the link!';
   const ol=$('topList'); ol.innerHTML='';
   rows.forEach((r,i)=>{
@@ -4837,7 +4879,7 @@ async function openBoard(){
   BOARD_VIEW='all'; $('groupTools').hidden=true; renderGroupBar(); refreshGroups().then(()=>{ if(BOARD_VIEW==='all') renderGroupBar(); });
   const done = S.mode==='daily' && S.results.length>=S.rounds.length;    // only a finished daily round goes on the board
   const inf=Scene.info(), mine=done ? (S.finalM!=null ? S.finalM : +inf.m) : null;
-  drawCurve([], mine);
+  drawCurve([], mine); paperize($('curve'),true);
   $('rankLine').textContent='Loading the leaderboard…'; $('topList').innerHTML='';
   $('digImg').parentElement.hidden=!done;
   if(done) renderDigCard();
@@ -4857,7 +4899,7 @@ async function openBoard(){
   const rows=b.rows;
   if(done && b.me && !rows.some(r=>r.id===b.me)) rows.push({id:b.me,m:mine,score:S.total,zone:inf.zone});
   $('curve').hidden=rows.length<3;
-  drawCurve(rows, mine);
+  drawCurve(rows, mine); paperize($('curve'),true);
   const others=rows.filter(r=>r.id!==b.me);
   if(S.mode!=='daily') $('rankLine').innerHTML=rows.length+' reader'+(rows.length===1?'':'s')+' so far today. '+(S.mode==='back'?'Back issues':'Practice runs')+' don\'t count.';
   else if(!done) $('rankLine').innerHTML=(rows.length ? rows.length+' reader'+(rows.length===1?'':'s')+' so far today.' : 'Nobody has finished today\'s round yet.')+' Finish yours to see where you land.';
