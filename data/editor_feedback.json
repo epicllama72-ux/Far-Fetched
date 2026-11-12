@@ -207,6 +207,12 @@
    "before": "edited the clue field",
    "after": "edited the hint field",
    "why": "the game shows story.hint after the call; clue is only the builder's note, so clue edits never reach players. Always change hint."
+  },
+  {
+   "kind": "rule",
+   "before": "hints with local trivia (Kyushu's yatai street stalls; a Subcarpathian village)",
+   "after": "birthplace of tonkotsu ramen; a Carpathian foothills village",
+   "why": "a reader wrote that the hints are too specifically local; hints must be known to a well-read person on any continent, use the wider region for obscure places, and still not be obvious"
   }
  ]
 }
