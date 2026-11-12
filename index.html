@@ -806,41 +806,57 @@ body.np #logList li i{border-color:var(--newsink);box-shadow:none}
   body.np .lcol .mid #roundLbl{box-shadow:none;background:none;padding:0} body.np #log{border:0;clip-path:none} body.np #log .lbl{margin:-10px -14px 8px} }
 
 
-/* ===== DRAFT: the menu as one newspaper page; each option is a section of the paper (body.mgrid; try it with ?menu=grid) ===== */
-body.mgrid{--paper:#ece4cf;--newsink:#1f1b16;--inkdim:#5c5345;--stamp:#a8231a;
+/* ===== DRAFT: the menu as a real front page; each option is a story (body.mgrid; try it with ?menu=grid) ===== */
+body.np:not(.mgrid) .npEar{display:none}
+body.mgrid{--paper:#ebe3cd;--newsink:#1c1914;--inkdim:#4f473b;--stamp:#a8231a;
   --grain:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(60,45,20,.03) 0 1px,transparent 1px 4px)}
-body.mgrid #menu{top:calc(52px + env(safe-area-inset-top,0px))!important;left:50%!important;transform:translateX(-50%);bottom:12px;width:min(780px,calc(100vw - 24px));max-height:none;
-  background:var(--paper);background-image:var(--grain);border:0;color:var(--newsink);
-  box-shadow:0 0 0 2px var(--newsink),0 0 0 6px var(--paper),0 0 0 8px var(--newsink);
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(170px,calc(50% - 1px)),1fr));grid-auto-rows:auto;align-content:start;gap:0;padding:14px 16px 22px;z-index:25}
+.npMast,.npPhoto{display:none}
+body.mgrid #menu{top:calc(52px + env(safe-area-inset-top,0px))!important;left:50%!important;transform:translateX(-50%);bottom:12px;width:min(820px,calc(100vw - 20px));max-height:none;
+  background:var(--paper);background-image:var(--grain);border:0;color:var(--newsink);box-shadow:4px 6px 0 rgba(0,0,0,.45),0 0 30px rgba(0,0,0,.6);
+  display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:auto;grid-auto-flow:row dense;align-content:start;gap:0;padding:12px 14px 22px;z-index:25}
+@media (min-width:700px){ body.mgrid #menu{grid-template-columns:repeat(4,1fr);padding:16px 20px 26px} }
+body.mgrid:has(#menu:not([hidden]))::before{content:'';position:fixed;inset:0;z-index:24;background:rgba(14,12,9,.62)}
 body.mgrid #menu>*{order:1}
 body.mgrid #menu>.npMast{order:0}
-body.mgrid #mlAcct,body.mgrid #mlSound{display:none}
-body.mgrid #mAcct,body.mgrid #mAmb,body.mgrid #mAbout,body.mgrid #mContact,body.mgrid #mPrivacy{order:2}   /* account, sound and the about pages join the grid of sections */
+body.mgrid #mlGame,body.mgrid #mlAcct,body.mgrid #mlSound{display:none}
+body.mgrid #mAcct,body.mgrid #mAmb,body.mgrid #mAbout,body.mgrid #mContact,body.mgrid #mPrivacy{order:2}
 body.mgrid #menu>.mlEnd,body.mgrid #menu>.how{order:3}
 body.mgrid #menu>.mlbl,body.mgrid #menu>.how,body.mgrid #menu>.npMast,body.mgrid #practiceList,body.mgrid #backList{grid-column:1/-1}
-/* masthead */
-body.mgrid #menu .npMast{display:block!important;text-align:center;margin:0 0 4px;padding:2px 0 0;color:var(--newsink)}
-body.mgrid #menu .npMast b{display:block;font:clamp(20px,6vw,34px)/1.15 var(--px);letter-spacing:.02em;color:var(--newsink)}
-body.mgrid #menu .npMast i{display:flex;justify-content:center;font:18px/1 var(--vt);font-style:normal;color:var(--inkdim);border-top:3px double var(--newsink);border-bottom:1px solid var(--newsink);padding:5px 2px 4px;margin-top:8px;white-space:nowrap}
-/* a section head: a black bar across the page */
-body.mgrid #menu .mlbl{font:8px/1 var(--px);letter-spacing:.24em;color:var(--paper);background:var(--newsink);padding:6px 8px 5px;margin:14px 0 0;text-shadow:none}
-body.mgrid #menu .npMast+.mlbl{margin-top:8px}
-/* each option is a story in that section, set in columns with thin rules between them */
-body.mgrid #menu>button,body.mgrid #menu>a.mlink{height:auto;min-height:min(150px,40vw);justify-content:flex-start;align-items:stretch;text-align:left;white-space:normal;
-  padding:10px 12px 12px;gap:5px;font:26px/1 var(--vt);color:var(--newsink);background:none;border:0;box-shadow:inset -1px 0 0 rgba(31,27,22,.55),inset 0 -1px 0 rgba(31,27,22,.55);position:relative}
-body.mgrid #menu>button::before,body.mgrid #menu>a.mlink::before{content:attr(data-kick);display:block;font:7px/1 var(--px);letter-spacing:.18em;text-transform:uppercase;color:var(--inkdim);padding-bottom:5px;border-bottom:1px solid rgba(31,27,22,.35);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-body.mgrid #menu>button::after,body.mgrid #menu>a.mlink::after{content:'';flex:1;min-height:14px;margin-top:6px;
-  background:repeating-linear-gradient(180deg,transparent 0 5px,rgba(31,27,22,.2) 5px 7px),linear-gradient(90deg,transparent calc(50% - 3px),var(--paper) calc(50% - 3px) calc(50% + 3px),transparent calc(50% + 3px))}
-body.mgrid #menu>button small,body.mgrid #menu>a.mlink small{font-size:17px;line-height:1.05;white-space:normal;overflow-wrap:anywhere;color:var(--inkdim);opacity:1}
-body.mgrid #menu>button>*,body.mgrid #menu>a.mlink>*,body.mgrid #menu>button::before,body.mgrid #menu>a.mlink::before{flex-shrink:0}
-body.mgrid:has(#menu:not([hidden]))::before{content:'';position:fixed;inset:0;z-index:24;background:rgba(14,12,9,.62)}   /* the room dims behind the open paper */
-body.mgrid #menu>button:hover,body.mgrid #menu>a.mlink:hover{background:rgba(31,27,22,.06)}
-body.mgrid #menu>button.on::before{color:var(--stamp);border-bottom-color:var(--stamp)}
-body.mgrid #menu>button.on{color:var(--newsink);box-shadow:inset -1px 0 0 rgba(31,27,22,.55),inset 0 -1px 0 rgba(31,27,22,.55),inset 0 3px 0 var(--stamp)}
-body.mgrid #menu>button.soon{opacity:.45}
+/* masthead: ears either side of the title, then the volume and date line between rules */
+body.mgrid #menu .npMast{display:grid!important;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin:0 0 10px;color:var(--newsink)}
+body.mgrid #menu .npMast b{font:clamp(19px,6.2vw,40px)/1.1 var(--px);letter-spacing:.01em;text-align:center;white-space:nowrap;color:var(--newsink);font-weight:400}
+body.mgrid .npEar{font:15px/1.05 var(--vt);color:var(--inkdim);border:1px solid var(--newsink);padding:4px 6px;text-transform:uppercase;max-width:90px}
+body.mgrid .npEar.r{justify-self:end;text-align:right} body.mgrid .npEar em{font-style:normal;color:var(--stamp)}
+@media (max-width:520px){ body.mgrid .npEar{display:none} body.mgrid #menu .npMast{grid-template-columns:1fr} }
+body.mgrid #menu .npMast i{grid-column:1/-1;display:flex;justify-content:space-between;gap:8px;font:16px/1 var(--vt);font-style:normal;text-transform:uppercase;color:var(--newsink);
+  border-top:3px double var(--newsink);border-bottom:3px double var(--newsink);padding:4px 2px 3px;white-space:nowrap;overflow:hidden}
+@media (max-width:520px){ body.mgrid #menu .npMast i span:last-child{display:none} }
+/* stories: kicker, headline, standfirst, justified body copy; rules between columns */
+body.mgrid #menu>button,body.mgrid #menu>a.mlink{height:auto;justify-content:flex-start;align-items:stretch;text-align:left;white-space:normal;
+  padding:8px 10px 12px;gap:4px;font:24px/1 var(--vt);color:var(--newsink);background:none;border:0;
+  box-shadow:inset -1px 0 0 rgba(28,25,20,.6),inset 0 -1px 0 rgba(28,25,20,.35);position:relative}
+body.mgrid #menu>button::before,body.mgrid #menu>a.mlink::before{content:attr(data-kick);display:block;font:7px/1 var(--px);letter-spacing:.16em;text-transform:uppercase;color:var(--stamp);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.mgrid #menu>button::after,body.mgrid #menu>a.mlink::after{content:attr(data-blurb);display:block;font:16px/1.05 var(--vt);color:var(--newsink);text-align:left;margin-top:3px}
+body.mgrid #menu>button small,body.mgrid #menu>a.mlink small{font-size:16px;line-height:1.05;white-space:normal;overflow-wrap:anywhere;color:var(--inkdim);opacity:1;text-transform:uppercase;letter-spacing:.02em}
+body.mgrid #menu>button>*,body.mgrid #menu>a.mlink>*,body.mgrid #menu>button::before,body.mgrid #menu>a.mlink::before,body.mgrid #menu>button::after{flex-shrink:0}
+body.mgrid #menu>button:hover,body.mgrid #menu>a.mlink:hover{background:rgba(28,25,20,.05)}
+body.mgrid #menu>button.soon{opacity:.5}
 body.mgrid #mAmbState{color:var(--stamp)!important}
-body.mgrid #menu .how{font:19px/1.2 var(--vt);color:var(--newsink);margin:0;padding:8px 2px 2px;column-width:16em;column-gap:24px;column-rule:1px solid rgba(31,27,22,.4)}
+/* the lead story: the Daily Dig across two columns, with a big headline, a drop cap and a photo */
+body.mgrid #menu>#mCall{grid-column:span 2;font:clamp(30px,8vw,44px)/.95 var(--vt);padding:6px 12px 14px}
+@media (min-width:700px){ body.mgrid #menu>#mCall{grid-row:span 2} }
+body.mgrid #menu>#mCall::before{font-size:8px}
+body.mgrid #menu>#mCall::after{font-size:18px;line-height:1.05;text-align:justify}
+body.mgrid #menu>#mCall::first-letter{}
+body.mgrid #mCall .npPhoto{display:flex;flex-direction:column;gap:4px;order:5;margin-top:8px}
+body.mgrid #mCall .npPhoto i{display:block;aspect-ratio:16/8;border:1px solid var(--newsink);position:relative;overflow:hidden;
+  background:var(--npPhoto,none) center 40%/cover no-repeat,#cfc6ad;image-rendering:pixelated;filter:grayscale(1) contrast(1.25) brightness(1.15) sepia(.3)}
+body.mgrid #mCall .npPhoto i::after{content:'';position:absolute;inset:0;background:radial-gradient(rgba(28,25,20,.5) 28%,transparent 31%) 0 0/4px 4px;mix-blend-mode:multiply}
+body.mgrid #mCall .npPhoto span{font:15px/1.05 var(--vt);color:var(--inkdim);text-align:left}
+body.mgrid #menu>#mCall.on{color:var(--newsink)}
+/* bottom of the page: record and how-to-play as a box and columns */
+body.mgrid #menu .mlbl.mlEnd{font:8px/1 var(--px);letter-spacing:.2em;color:var(--newsink);background:none;margin:14px 0 4px;padding:0 0 5px;border-bottom:2px solid var(--newsink);text-shadow:none}
+body.mgrid #menu .how{font:17px/1.1 var(--vt);color:var(--newsink);margin:0;padding:4px 0 2px;column-width:15em;column-gap:22px;column-rule:1px solid rgba(28,25,20,.5);text-align:justify;hyphens:auto}
 body.mgrid #menu .how b{color:var(--newsink);font-weight:400;text-decoration:underline}
 body.mgrid #practiceList,body.mgrid #backList{flex-direction:row;flex-wrap:wrap;max-height:none;padding:8px 0}
 body.mgrid #practiceList button,body.mgrid #backList button{width:auto!important;flex:1 1 140px;background:none;color:var(--newsink);box-shadow:0 0 0 1px var(--newsink)}
@@ -1424,33 +1440,33 @@ body.intro #ausBar{display:none}
     <span class="logo">FAR-<b>FETCHED</b></span><span id="streak"></span>
     <button id="muteBtn" aria-label="Sound on" aria-pressed="false">♪</button>
     <div id="menu" hidden>
-      <p class="npMast" hidden><b>The Daily Odd</b><i><span id="npMastDate"></span></i></p>
-      <p class="mlbl">GAME</p>
-      <button id="mCall" data-kick="Today's paper">Daily Dig <small>real or fake? 5 true, 2 fake</small></button>
-      <button id="mBlank" data-kick="Puzzles">Fill the Blank <small>20 s each</small></button>
-      <button id="mPol" data-kick="Politics" class="soon" disabled aria-disabled="true">Politics <small>coming soon</small></button>
-      <button id="mPractice" data-kick="Training">Practice set <small>doesn't count · pick a mode</small></button>
+      <div class="npMast" hidden><span class="npEar l">Strange<br>but true.<br><em>Mostly.</em></span><b>The Daily Odd</b><span class="npEar r">Today:<br>5 true<br>2 fake</span><i><span id="npVol">Vol. I</span><span id="npMastDate"></span><span>farfetchedgame.com</span></i></div>
+      <p class="mlbl" id="mlGame">GAME</p>
+      <button id="mCall" data-blurb="Seven strange headlines land on the desk each morning. Five are true and two were made up by our staff. Call each one, then pin where the real ones happened." data-kick="Today's paper">Daily Dig <small>real or fake? 5 true, 2 fake</small><span class="npPhoto" aria-hidden="true"><i></i><span>Staff photo: our reporter, mid-dig, this morning.</span></span></button>
+      <button id="mBlank" data-blurb="Five true headlines, one word missing from each. Twenty seconds on the clock. Spell it right for full marks." data-kick="Puzzles">Fill the Blank <small>20 s each</small></button>
+      <button id="mPol" data-blurb="Our political desk is still sharpening its pencils. Watch this space." data-kick="Politics" class="soon" disabled aria-disabled="true">Politics <small>coming soon</small></button>
+      <button id="mPractice" data-blurb="Every past story, ready to practise on. Nothing counts, so take your time." data-kick="Training">Practice set <small>doesn't count · pick a mode</small></button>
       <div id="practiceList" hidden>
         <button data-k="call">Daily Dig</button>
         <button data-k="blank">Fill the Blank</button>
         <button data-k="pol" class="soon" disabled aria-disabled="true">Politics <small>coming soon</small></button>
       </div>
-      <button id="mBoard" data-kick="Standings">Leaderboard <small>today's deepest digs</small></button>
-      <button id="mWardrobe" data-kick="Fashion">Wardrobe <small id="wardSub">dress the digger</small></button>
-      <button id="mPassport" data-kick="Travel">Passport <small id="passSub">stamps for right-country pins</small></button>
-      <button id="mBack" data-kick="Archive" hidden>Back issues <small>earlier papers · no streak</small></button>
+      <button id="mBoard" data-blurb="Who dug deepest today, and where you rank among every reader." data-kick="Standings">Leaderboard <small>today's deepest digs</small></button>
+      <button id="mWardrobe" data-blurb="Dress the digger. New looks unlock as you play." data-kick="Fashion">Wardrobe <small id="wardSub">dress the digger</small></button>
+      <button id="mPassport" data-blurb="A stamp for every country you pin correctly. How many can you collect?" data-kick="Travel">Passport <small id="passSub">stamps for right-country pins</small></button>
+      <button id="mBack" data-blurb="Missed a day? Earlier papers are kept in the archive. They don't count toward your streak." data-kick="Archive" hidden>Back issues <small>earlier papers · no streak</small></button>
       <div id="backList" hidden></div>
       <p class="mlbl" id="mlAcct">ACCOUNT</p>
-      <button id="mAcct" data-kick="Your account"><span id="acctMain">Sign in with Google</span> <small id="acctSub">save your streak, passport and wardrobe</small></button>
+      <button id="mAcct" data-blurb="Keep your streak, passport and wardrobe on every device." data-kick="Your account"><span id="acctMain">Sign in with Google</span> <small id="acctSub">save your streak, passport and wardrobe</small></button>
       <p class="mlbl" id="mlSound">SOUND</p>
-      <button id="mAmb" data-kick="Sound">Background newsroom <small id="mAmbState">On</small></button>
+      <button id="mAmb" data-blurb="The hum of the newsroom while you read." data-kick="Sound">Background newsroom <small id="mAmbState">On</small></button>
       <p class="mlbl mlEnd">YOUR RECORD</p>
       <p class="how" id="menuStats"></p>
       <p class="mlbl mlEnd">HOW TO SCORE</p>
       <p class="how" id="howText"></p>
-      <button id="mAbout" data-kick="About us">About Far-Fetched</button>
-      <a id="mContact" data-kick="Letters" class="mlink" href="mailto:playfarfetched@gmail.com">Contact <small>playfarfetched@gmail.com</small></a>
-      <a id="mPrivacy" data-kick="Notices" class="mlink" href="privacy.html">Privacy policy <small>what we keep and why</small></a>
+      <button id="mAbout" data-blurb="Who makes this paper, and why." data-kick="About us">About Far-Fetched</button>
+      <a id="mContact" data-blurb="Write to the editor with a weird story, a correction or a complaint." data-kick="Letters" class="mlink" href="mailto:playfarfetched@gmail.com">Contact <small>playfarfetched@gmail.com</small></a>
+      <a id="mPrivacy" data-blurb="What we keep, why we keep it, and how to have it removed." data-kick="Notices" class="mlink" href="privacy.html">Privacy policy <small>what we keep and why</small></a>
     </div>
   </div>
   <div class="lcol">
@@ -1688,7 +1704,9 @@ async function loadDaily(){
 const RARITY=[[100,'GLOBALIST','#ffd23f','Were you there? Be honest.','globe','gl','🟨'],[400,'STATESMAN','#b56bff','A short trip from correct.','capitol','st','🟪'],[1500,'PUNDIT','#ff4d5e','You\'d do great on cable news.','tv','pu','🟥'],[5000,'SKIMMER','#4da6ff','You read the headline. Mostly.','news','sk','🟦'],[Infinity,'ROCK-DWELLER','#ffffff','Come out from under there. It\'s a big world.','rock','rk','⬜']];   // pin distance in km -> name, colour and quip
 /* DRAFT newspaper look: ?paper=1 turns it on (remembered on this device), ?paper=0 turns it off */
 (function(){ try{ const g=new URLSearchParams(location.search).get('menu'); if(g==='grid') localStorage.setItem('ff_mgrid','1'); if(g==='list') localStorage.removeItem('ff_mgrid');
-  if(localStorage.getItem('ff_mgrid')){ document.body.classList.add('mgrid'); const d=document.getElementById('npMastDate'); if(d) d.textContent=new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'}); } }catch(e){} })();
+  if(localStorage.getItem('ff_mgrid')){ document.body.classList.add('mgrid'); const now=new Date(), d=document.getElementById('npMastDate'), v=document.getElementById('npVol');
+    if(d) d.textContent=now.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+    if(v) v.textContent='Vol. I · No. '+(Math.floor((Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())-Date.UTC(2026,9,27))/864e5)+1); } }catch(e){} })();
 (function(){ try{ const q=new URLSearchParams(location.search).get('paper'); if(q==='1') localStorage.setItem('ff_paper','1'); if(q==='0') localStorage.removeItem('ff_paper');
   if(localStorage.getItem('ff_paper')){ document.body.classList.add('np'); const m=document.querySelector('#menu .npMast'); if(m) m.hidden=false;
     const d=document.getElementById('npMastDate'); if(d) d.textContent=new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'}); } }catch(e){} })();
@@ -5226,6 +5244,10 @@ window.addEventListener('scroll',pinMenu,{passive:true}); window.addEventListene
 function closeMenu(){ document.body.classList.remove('hideq'); $('menu').hidden=true; $('backList').hidden=true; $('practiceList').hidden=true; $('menuBtn').setAttribute('aria-expanded','false'); }
 $('menuBtn').onclick=e=>{ e.stopPropagation(); Sound.play('menu'); const open=$('menu').hidden; $('menu').hidden=!open; document.body.classList.toggle('hideq',open && !!S && S.phase==='call'); $('menuBtn').setAttribute('aria-expanded',String(open)); if(open){ renderStats(); pinMenu(); } };
 $('menu').addEventListener('click',e=>e.stopPropagation());
+$('menuBtn').addEventListener('click',()=>{   // DRAFT front-page menu: the lead story's photo is a snapshot of the room as it is now
+  if(!document.body.classList.contains('mgrid') || $('menu').hidden) return;
+  try{ $('mCall').style.setProperty('--npPhoto','url('+$('bg').toDataURL('image/jpeg',0.6)+')'); }catch(e){}
+});
 document.addEventListener('click',closeMenu);
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){ if(RECAP_ON) endRecapUI(true); closeMenu(); $('sheet').hidden=true; closeWardrobe(); closePassport(); return; }
