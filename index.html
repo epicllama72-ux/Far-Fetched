@@ -1082,10 +1082,10 @@ body.intro #ausBar{display:none}
 #about .aboutIn{width:min(480px,100%);max-height:80vh;overflow:auto;background:rgba(20,24,34,.82);border:2px solid var(--accent);box-shadow:0 0 0 3px var(--ink);padding:12px 16px 16px}
 #about .aboutIn p:not(.kicker){margin:12px 0 0;font:20px/1.3 var(--vt);color:var(--text)}
 #aboutClose{width:34px;height:34px;padding:0;font:28px/1 var(--vt);background:var(--panel);box-shadow:0 0 0 2px var(--line)}
-#sheet,#wardrobe{position:fixed;inset:0;z-index:30;background:rgba(5,6,10,.72);display:flex;align-items:flex-end;justify-content:center;padding:0 0 env(safe-area-inset-bottom,0px)}
-#sheet .sheetIn,#wardrobe .sheetIn{width:min(560px,100%);max-height:88vh;overflow:auto;background:var(--card);background-image:var(--scan);border-top:3px solid var(--accent);padding:12px max(16px,env(safe-area-inset-left,0px)) 18px;box-shadow:0 -6px 0 var(--ink)}
+#sheet,#wardrobe,#passport{position:fixed;inset:0;z-index:30;background:rgba(5,6,10,.72);display:flex;align-items:flex-end;justify-content:center;padding:0 0 env(safe-area-inset-bottom,0px)}
+#sheet .sheetIn,#wardrobe .sheetIn,#passport .sheetIn{width:min(560px,100%);max-height:88vh;overflow:auto;background:var(--card);background-image:var(--scan);border-top:3px solid var(--accent);padding:12px max(16px,env(safe-area-inset-left,0px)) 18px;box-shadow:0 -6px 0 var(--ink)}
 .sheetTop{display:flex;justify-content:space-between;align-items:center}
-#sheetClose,#wardClose{width:34px;height:34px;padding:0;font:28px/1 var(--vt);background:var(--panel);box-shadow:0 0 0 2px var(--line)}
+#sheetClose,#wardClose,#passClose{width:34px;height:34px;padding:0;font:28px/1 var(--vt);background:var(--panel);box-shadow:0 0 0 2px var(--line)}
 #curve{width:100%;height:auto;image-rendering:pixelated;background:#0b0e14;box-shadow:0 0 0 2px var(--line);margin:6px 0 8px}
 #rankLine{margin:0 0 8px;font:22px/1.1 var(--vt)}
 #rankLine b{font-weight:400;color:var(--accent)}
@@ -1194,6 +1194,22 @@ body.intro #ausBar{display:none}
 #unlockBox .ut{font:9px/1 var(--px);letter-spacing:.16em;color:var(--accent);margin-bottom:6px}
 #unlockBox b{font-weight:400;color:var(--accent)}
 #unlockBox .un{font-size:16px;color:var(--dim)}
+#passport .sheetIn{background-color:#1d2433}
+#passNote{font:19px/1.2 var(--vt);color:#c9ced8;margin:4px 2px 10px}
+#passNote b{color:var(--accent);font-weight:400}
+.pbar{height:8px;background:var(--panel);box-shadow:0 0 0 2px var(--line);margin:6px 2px 14px}
+.pbar i{display:block;height:100%;background:var(--accent)}
+.stamps{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:14px 10px;padding:4px 2px 10px}
+.stamp{--ink:#d2485a;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:82px;padding:8px 4px;border:3px double var(--ink);color:var(--ink);text-align:center;transform:rotate(var(--rot,0deg));background:rgba(255,255,255,.02);box-shadow:inset 0 0 0 2px rgba(0,0,0,.15)}
+.stamp.round{border-radius:50%;aspect-ratio:1;min-height:0}
+.stamp .sn{font:8px/1.35 var(--px);letter-spacing:.06em;word-break:break-word}
+.stamp .sd{font:15px/1 var(--vt);opacity:.85}
+.stamp .sx{position:absolute;right:-6px;top:-8px;background:var(--ink);color:#14161c;font:13px/1 var(--vt);padding:2px 4px;transform:rotate(calc(var(--rot,0deg) * -1))}
+.stamp.fresh{animation:stampIn .5s cubic-bezier(.2,1.6,.4,1)}
+@keyframes stampIn{0%{transform:scale(2.2) rotate(var(--rot,0deg));opacity:0}100%{transform:scale(1) rotate(var(--rot,0deg));opacity:1}}
+@media (prefers-reduced-motion:reduce){.stamp.fresh{animation:none}}
+.pempty{font:19px/1.25 var(--vt);color:#9aa3b5;text-align:center;padding:26px 10px 30px;border:2px dashed var(--line)}
+.brk.stampNew{color:var(--accent)}
 #wardrobe .wsec{font:8px/1 var(--px);letter-spacing:.18em;color:#7d8494;margin:12px 2px 6px}
 #wardrobe .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
 #wardrobe .wgrid button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 4px;background:var(--panel);box-shadow:0 0 0 2px var(--line);font:18px/1.05 var(--vt);text-align:center;min-height:84px}
@@ -1294,8 +1310,11 @@ body.intro #ausBar{display:none}
       </div>
       <button id="mBoard">Leaderboard <small>today's deepest digs</small></button>
       <button id="mWardrobe">Wardrobe <small id="wardSub">dress the digger</small></button>
+      <button id="mPassport">Passport <small id="passSub">stamps for right-country pins</small></button>
       <button id="mBack" hidden>Back issues <small>earlier papers · no streak</small></button>
       <div id="backList" hidden></div>
+      <p class="mlbl">ACCOUNT</p>
+      <button id="mAcct"><span id="acctMain">Sign in with Google</span> <small id="acctSub">save your streak, passport and wardrobe</small></button>
       <p class="mlbl">SOUND</p>
       <button id="mAmb">Background newsroom <small id="mAmbState">On</small></button>
       <p class="mlbl">YOUR RECORD</p>
@@ -1426,6 +1445,13 @@ body.intro #ausBar{display:none}
       <div class="sheetTop"><p class="kicker">Wardrobe</p><button id="wardClose" aria-label="Close">×</button></div>
       <p id="wardNote"></p>
       <div id="wardBody"></div>
+    </div>
+  </section>
+  <section id="passport" hidden aria-label="Passport">
+    <div class="sheetIn">
+      <div class="sheetTop"><p class="kicker">Passport</p><button id="passClose" aria-label="Close">×</button></div>
+      <p id="passNote"></p>
+      <div id="passBody"></div>
     </div>
   </section>
   <section id="sheet" hidden aria-label="Today's leaderboard">
@@ -1727,7 +1753,7 @@ function runPinTimer(){
   const tick=()=>{
     if(!S || S.phase!=='pin') return;
     const now=performance.now();
-    if(!S.pinGo || !$('menu').hidden || !$('sheet').hidden || !$('wardrobe').hidden) S.pinT0+=now-lastT;          // the clock waits for the map, and stops while the menu is open
+    if(!S.pinGo || !$('menu').hidden || !$('sheet').hidden || !$('wardrobe').hidden || !$('passport').hidden) S.pinT0+=now-lastT;          // the clock waits for the map, and stops while the menu is open
     lastT=now;
     const sec=(now-S.pinT0)/1000, left=Math.max(0,PIN_SECS-sec);
     bar.style.width=(left/PIN_SECS*100)+'%';
@@ -1738,7 +1764,7 @@ function runPinTimer(){
   };
   PIN_RAF=requestAnimationFrame(tick);
 }
-function store(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function store(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){} if(window.__cloudTouch) window.__cloudTouch(k);}   // signed-in players: progress keys are copied to their account
 function load(k){try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;}}
 /* One-time conversion of this device's saved results from the old point scale (a perfect day = 4,780; Fill the Blank 5,000) to the new one
    (1,000, 1 point = 10 m). Finished days, personal bests, back issues and half-played games all carry over in proportion. */
@@ -3255,7 +3281,7 @@ function runSpeed(){
   const tick=()=>{
     if(!S || S.phase!=='call' || S.kind==='blank'){ return; }
     const now=performance.now();
-    if(!$('menu').hidden || !$('sheet').hidden || !$('wardrobe').hidden) S.t0+=now-lastT;          // the clock stops while the menu is open
+    if(!$('menu').hidden || !$('sheet').hidden || !$('wardrobe').hidden || !$('passport').hidden) S.t0+=now-lastT;          // the clock stops while the menu is open
     lastT=now;
     const st=S.rounds[S.i], sec=(now-S.t0)/1000, pts=speedPts(sec,st);
     bar.style.width=(pts/(PK*CALL_PTS)*100)+'%'; lab.textContent='+'+pts;
@@ -3465,6 +3491,9 @@ function submitGuess(timedOut){
   const cTrue = guessLL ? countryAt(st.lat,st.lng,60) : -1, cOk = cTrue>=0 && countryAt(guessLL.lat,guessLL.lng,30)===cTrue;   // a pin just off a coarse coastline still counts
   const cPts = cOk ? Math.round(PK*COUNTRY_PTS*(S.cur.callOk?1:0.75)) : 0;   // a flat bonus for the right country (75% credit after a wrong call, like the pin)
   pts += cPts; S.cur.countryPts = cPts;
+  const cName = cOk ? (countryName(cTrue) || String(st.place||'').split(',').pop().trim()) : '';
+  const newStamp = cOk ? stampPassport(cName) : false;   // the passport collects every country pinned right
+  if(newStamp) setTimeout(()=>Sound.play('unlock'),350);
   S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
   S.cur.pin = guessLL ? [Math.round(guessLL.lat*100)/100, Math.round((((guessLL.lng+540)%360)-180)*100)/100] : null;   // saved with the answers so other players can see where people pinned
   Sound.play('lock',Math.min(1,pts/(PK*(PIN_PTS+COUNTRY_PTS)))); if(pts>0) Sound.play('jawDown');
@@ -3487,9 +3516,10 @@ function submitGuess(timedOut){
     ? (S.cur.callOk?row('Call',S.cur.callPts):'')
       + row('Distance · '+Math.round(d).toLocaleString()+' km',distPts,(S.cur.callOk?'':'75% credit'))
       + (cPts?row('Right country · '+(countryName(cTrue)||'✓'),cPts):'')
+      + (newStamp?'<span class="brk stampNew">🛂 New passport stamp: <b>'+cName+'</b></span>':'')
       + (bonus?row(cap1(RARITY.find(r=>d<=r[0])[1])+' bonus',bonus):'')
     : (S.cur.callOk?row('Call',S.cur.callPts):'')+'<span class="brk">No pin before time ran out</span>';
-  fb.innerHTML = '<span class="sum">'+(guessLL ? Math.round(d).toLocaleString()+' km · <b>+'+pts+'</b> pin' : 'Time! No pin · <b>+0</b>')+'</span>'
+  fb.innerHTML = '<span class="sum">'+(guessLL ? Math.round(d).toLocaleString()+' km · <b>+'+pts+'</b> pin'+(newStamp?' · 🛂 <b>'+cName+'</b> stamped':'') : 'Time! No pin · <b>+0</b>')+'</span>'
     + '<button class="why" type="button" aria-expanded="false">why?</button>'
     + '<small class="more">'+breakdown+'<span class="brk dim">'+(st.clue?'Clues: '+st.clue+'. ':'')+st.place+(st.published?' · '+fmtDate(st.published):'')
     + (st.src?' · <a href="'+st.src+'" target="_blank" rel="noopener">read the story</a>':'')+'</span></small>';
@@ -3905,12 +3935,50 @@ function renderWardrobe(){
   });
 }
 $('mWardrobe').onclick=openWardrobe;
+/* ---------- Passport: a stamp for every country you have pinned a true story inside ---------- */
+const STAMP_INKS=['#d2485a','#4f8fe0','#4fbf6a','#b07ae0','#e0a33a','#3fbcc2'];
+function passport(){ return load('ff_passport')||{}; }
+function passTotal(){ return new Set(COUNTRY_LABELS.map(c=>c[0])).size; }
+function stampPassport(name){            // returns true the first time a country is stamped
+  if(!name) return false;
+  const p=passport(), ed=dayKey(), had=!!p[name];
+  p[name]=had ? {n:(p[name].n||1)+1, first:p[name].first, last:ed} : {n:1, first:ed, last:ed};
+  store('ff_passport',p); renderPassSub();
+  if(!had){ PASS_FRESH=name; }
+  return !had;
+}
+let PASS_FRESH=null;
+function renderPassSub(){ const n=Object.keys(passport()).length; $('passSub').textContent = n ? n+' of '+passTotal()+' countries stamped' : 'stamps for right-country pins'; }
+function stampDate(d){ try{ const [y,m,dd]=d.split('-').map(Number); return new Date(y,m-1,dd).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}); }catch(e){ return d; } }
+function renderPassport(){
+  const p=passport(), names=Object.keys(p).sort((a,b)=>(p[a].first<p[b].first?-1:p[a].first>p[b].first?1:a.localeCompare(b))), tot=passTotal();
+  $('passNote').innerHTML = names.length
+    ? '<b>'+names.length+'</b> of '+tot+' countries stamped. Pin a true story inside the right country to earn its stamp.<div class="pbar"><i style="width:'+Math.max(2,Math.round(100*names.length/tot))+'%"></i></div>'
+    : '';
+  if(!names.length){ $('passBody').innerHTML='<div class="pempty">No stamps yet.<br>Pin a true story inside the right country and its stamp goes here.</div>'; return; }
+  const h=str=>{ let x=0; for(let i=0;i<str.length;i++) x=(x*31+str.charCodeAt(i))>>>0; return x; };
+  $('passBody').innerHTML='<div class="stamps">'+names.map(n=>{
+    const v=h(n), ink=STAMP_INKS[v%STAMP_INKS.length], rot=((v>>3)%15)-7, round=(v>>7)%3===0, e=p[n];
+    return '<div class="stamp'+(round?' round':'')+(n===PASS_FRESH?' fresh':'')+'" style="--ink:'+ink+';--rot:'+rot+'deg"><span class="sn">'+n.toUpperCase()+'</span><span class="sd">'+stampDate(e.first)+'</span>'+(e.n>1?'<span class="sx">×'+e.n+'</span>':'')+'</div>';
+  }).join('')+'</div>';
+  PASS_FRESH=null;
+}
+function openPassport(){
+  Sound.play('menu'); closeMenu();
+  if(S && S.phase==='call') document.body.classList.add('hideq');
+  renderPassport(); $('passport').hidden=false;
+}
+function closePassport(){ $('passport').hidden=true; if($('menu').hidden && $('sheet').hidden && $('wardrobe').hidden) document.body.classList.remove('hideq'); }
+$('mPassport').onclick=openPassport;
+$('passClose').onclick=closePassport;
+$('passport').addEventListener('click',e=>{ if(e.target===$('passport')) closePassport(); });
+renderPassSub();
 $('wardClose').onclick=closeWardrobe;
 /* a finished day can be scrolled by hand. A gesture belongs to whatever it started on and keeps it: starting on the summary scrolls only the page,
    starting on the open scene scrolls only the dig, so the two never drag each other along.
    The summary counts as everything level with or below its top edge across its width (plus a margin each side), not just the card's own pixels. */
 (function(){
-  const open=()=>document.body.classList.contains('returned') && !Intro.planetOn() && $('menu').hidden && $('sheet').hidden && $('wardrobe').hidden && $('about').hidden;
+  const open=()=>document.body.classList.contains('returned') && !Intro.planetOn() && $('menu').hidden && $('sheet').hidden && $('wardrobe').hidden && $('passport').hidden && $('about').hidden;
   const sceneEl=t=>{ const e=t&&t.nodeType===1?t:document.body; return e===document.documentElement || e===document.body || e.matches('.app,#bg,#ruler,#marks,#browseHint,.topline'); };
   const onSummary=(x,y)=>{ const f=$('final'); if(!f||f.hidden) return false; const r=f.getBoundingClientRect(); return r.height>0 && y>=r.top-8 && x>=r.left-28 && x<=r.right+28; };
   const sceneAt=(t,x,y)=>sceneEl(t) && !onSummary(x,y);
@@ -4159,6 +4227,104 @@ function syncName(force){
 
 /* ---------- Private groups (scripts/supabase_groups.sql): a small board for friends, joined with a ?g=CODE link ---------- */
 let BOARD_VIEW='all', MY_GROUPS=load('ff_groups')||[];
+/* ---------- Sign in with Google: progress follows the player to any device ----------
+   Uses Supabase Auth (Google provider) and one row per player in the "progress" table (row-level security: a player can
+   only read and write their own row). Everything still works signed out; signing in just copies progress to the account. */
+const Cloud=(function(){
+  const LIB='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js';
+  const SYNC=['ff_hist','ff_streak','ff_best','ff_life','ff_kit','ff_invites','ff_name','ff_pid','ff_groups','ff_daily','ff_blank','ff_pol','ff_passport','ff_coached','ff_pseen'];
+  const synced=k=>SYNC.includes(k) || k.indexOf('ff_back:')===0;
+  let sb=null, user=null, ready=false, timer=0, status='', armOut=0;
+  const raw=k=>{ try{ return JSON.parse(localStorage.getItem(k)); }catch(e){ return null; } };
+  function snapshot(){ const o={}; try{ Object.keys(localStorage).filter(synced).forEach(k=>{ o[k]=raw(k); }); }catch(e){} return o; }
+  const later=(x,y)=>String(x||'')>=String(y||'');
+  // combine this device's progress (a) with the account's (b), keeping the best of both
+  function mergeKey(k,a,b){
+    if(a==null) return b; if(b==null) return a;
+    if(k==='ff_hist'){ const o=Object.assign({},b); Object.keys(a).forEach(d=>{ if(!o[d] || (a[d]&&a[d].score)>=(o[d].score||0)) o[d]=a[d]; }); return o; }
+    if(k.indexOf('ff_back:')===0 || k==='ff_best') return (+(a.score||a.m||0))>=(+(b.score||b.m||0)) ? a : b;
+    if(k==='ff_streak'){   // a streak kept up on two devices: the day after the other device's last day carries its count on
+      const w=a.last===b.last ? ((a.count||0)>=(b.count||0)?a:b) : (later(a.last,b.last)?a:b), o=w===a?b:a;
+      const count = o.last && o.last===prevDay(w.last) ? Math.max(w.count||0,(o.count||0)+1) : (w.count||0);
+      return Object.assign({},w,{count, freezes:Math.max(a.freezes||0,b.freezes||0)}); }
+    if(k==='ff_life'){ const w=later(a.dLast,b.dLast)?a:b, o=w===a?b:a, dCount=o.dLast && o.dLast===prevDay(w.dLast) ? Math.max(w.dCount||0,(o.dCount||0)+1) : (w.dCount||0); return Object.assign({},w,{dCount,best:Math.max(a.best||0,b.best||0),pins:Math.max(a.pins||0,b.pins||0),catches:Math.max(a.catches||0,b.catches||0),zmax:Math.max(a.zmax||0,b.zmax||0)}); }
+    if(k==='ff_kit') return {eq:Object.keys(a.eq||{}).length?a.eq:(b.eq||{}), seen:[...new Set([].concat(b.seen||[],a.seen||[]))]};
+    if(k==='ff_invites') return Math.max(+a||0,+b||0);
+    if(k==='ff_name') return a||b;
+    if(k==='ff_pid') return b;                       // the account's player id wins, so the leaderboard knows you on every device
+    if(k==='ff_groups'){ const m={}; [].concat(b,a).forEach(g=>{ if(g&&g.code) m[g.code]=g; }); return Object.values(m); }
+    if(k==='ff_daily'||k==='ff_blank'||k==='ff_pol'){ if(a.date!==b.date) return later(a.date,b.date)?a:b; return ((a.results||[]).length>=(b.results||[]).length)?a:b; }
+    if(k==='ff_passport'){ const o=Object.assign({},b); Object.keys(a).forEach(c=>{ const x=a[c], y=o[c]; o[c]=!y?x:{n:Math.max(x.n||1,y.n||1), first:later(y.first,x.first)?x.first:y.first, last:later(x.last,y.last)?x.last:y.last}; }); return o; }
+    if(k==='ff_pseen') return [...new Set([].concat(b||[],a||[]))].slice(-5000);
+    if(k==='ff_coached') return a||b;
+    return a;
+  }
+  function lib(){ return window.supabase ? Promise.resolve() : new Promise((res,rej)=>{ const sc=document.createElement('script'); sc.src=LIB; sc.onload=res; sc.onerror=rej; document.head.appendChild(sc); }); }
+  async function client(){
+    if(sb) return sb;
+    await lib();
+    sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{flowType:'pkce',persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storageKey:'ff_auth'}});
+    sb.auth.onAuthStateChange((ev,session)=>{ setTimeout(()=>setUser(session&&session.user),0); });
+    return sb;
+  }
+  function firstName(u){ const m=(u&&u.user_metadata)||{}; return String(m.given_name||m.full_name||m.name||'').split(' ')[0].replace(/[<>&]/g,'').slice(0,20) || 'you'; }
+  function render(){
+    const main=$('acctMain'), sub=$('acctSub'); if(!main) return;
+    if(!user){ main.textContent='Sign in with Google'; sub.textContent='save your streak, passport and wardrobe'; return; }
+    main.textContent='Signed in as '+firstName(user);
+    sub.textContent = armOut ? 'tap again to sign out' : (status||'progress saved to your account');
+  }
+  function setStatus(t){ status=t; render(); }
+  async function push(){
+    if(!user || !sb) return;
+    setStatus('saving…');
+    const {error}=await sb.from('progress').upsert({user_id:user.id, data:snapshot(), updated_at:new Date().toISOString()});
+    setStatus(error ? 'couldn\'t save just now, will try again' : 'progress saved to your account');
+    if(error){ clearTimeout(timer); timer=setTimeout(push,15000); }
+  }
+  function touch(k){ if(!user || !synced(k)) return; clearTimeout(timer); timer=setTimeout(push,1500); }
+  window.__cloudTouch=touch;
+  async function pull(){
+    const {data,error}=await sb.from('progress').select('data').eq('user_id',user.id).maybeSingle();
+    if(error){ setStatus('couldn\'t reach your account'); return; }
+    const local=snapshot(), cloud=(data&&data.data)||{}, keys=new Set(Object.keys(local).concat(Object.keys(cloud)));
+    let changed=false;
+    keys.forEach(k=>{ if(!synced(k)) return; const m=mergeKey(k,local[k],cloud[k]); if(JSON.stringify(m)!==JSON.stringify(local[k])){ changed=true; try{ localStorage.setItem(k,JSON.stringify(m)); }catch(e){} } });
+    await push();
+    // bring the screen up to date with what came from the account, but never in the middle of a round
+    if(changed && (!S || S.phase==='ready' || !$('final').hidden)){ try{ if(!sessionStorage.getItem('ff_cloud_reload')){ sessionStorage.setItem('ff_cloud_reload','1'); location.reload(); } }catch(e){} }
+  }
+  function setUser(u){
+    const was=user&&user.id; user=u||null; armOut=0; render();
+    if(user && was!==user.id){ ready=true; pull(); }
+  }
+  async function signIn(){
+    setStatus('');
+    $('acctSub').textContent='opening Google…';
+    try{ await client(); await sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}}); }
+    catch(e){ $('acctSub').textContent='sign-in isn\'t available right now'; }
+  }
+  async function signOut(){ try{ await client(); await sb.auth.signOut(); }catch(e){} user=null; render(); }
+  async function boot(){
+    const q=new URLSearchParams(location.search), back=q.has('code');
+    let had=false; try{ had=!!localStorage.getItem('ff_auth'); }catch(e){}
+    if(!had && !back) return;                      // never signed in on this device: load nothing
+    try{
+      await client();
+      const {data}=await sb.auth.getSession();
+      setUser(data && data.session && data.session.user);
+    }catch(e){}
+    if(back){ q.delete('code'); const rest=q.toString(); history.replaceState(null,'',location.pathname+(rest?'?'+rest:'')+location.hash); }
+  }
+  $('mAcct').onclick=()=>{
+    Sound.play('menu');
+    if(!user){ signIn(); return; }
+    if(!armOut){ armOut=setTimeout(()=>{ armOut=0; render(); },3000); render(); return; }
+    clearTimeout(armOut); armOut=0; signOut();
+  };
+  render(); boot();
+  return {user:()=>user, push, mergeKey};
+})();
 async function sbRpc(fn,body){
   if(!sbOn()) return null;
   try{ const r=await fetch(SUPABASE_URL+'/rest/v1/rpc/'+fn,{method:'POST',headers:sbHeaders(),body:JSON.stringify(body)}); if(!r.ok) return null;
@@ -4879,7 +5045,7 @@ $('menuBtn').onclick=e=>{ e.stopPropagation(); Sound.play('menu'); const open=$(
 $('menu').addEventListener('click',e=>e.stopPropagation());
 document.addEventListener('click',closeMenu);
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){ if(RECAP_ON) endRecapUI(true); closeMenu(); $('sheet').hidden=true; closeWardrobe(); return; }
+  if(e.key==='Escape'){ if(RECAP_ON) endRecapUI(true); closeMenu(); $('sheet').hidden=true; closeWardrobe(); closePassport(); return; }
   if(e.metaKey||e.ctrlKey||e.altKey) return;
   const t=e.target; if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA')) return;
   if(!$('sheet').hidden || !$('menu').hidden || !S) return;
