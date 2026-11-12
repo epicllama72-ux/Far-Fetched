@@ -2094,6 +2094,14 @@ function countryName(i){
   if(!CNAMES){ CNAMES={}; COUNTRY_LABELS.forEach(([n,la,ln])=>{ const j=countryAt(la,ln,0); if(j>=0 && !(j in CNAMES)) CNAMES[j]=n; }); }
   return CNAMES[i]||'';
 }
+/* world.pack.json holds world.json's coordinates as integer steps of 0.01 degrees (scripts/pack_world.py): rebuild the exact GeoJSON */
+function unpackWorld(p){
+  const ring=a=>{ const r=[]; let x=0,y=0; for(let i=0;i<a.length;i+=2){ x+=a[i]; y+=a[i+1]; r.push([x/100,y/100]); } return r; };
+  const geom=g=>g.t==='P'?{type:'Polygon',coordinates:g.c.map(ring)}:g.t==='M'?{type:'MultiPolygon',coordinates:g.c.map(q=>q.map(ring))}:g.t==='L'?{type:'MultiLineString',coordinates:g.c.map(ring)}:{type:'LineString',coordinates:ring(g.c)};
+  const feat=f=>({type:'Feature',properties:f.p||{},geometry:geom(f.g)});
+  const o={}; for(const k in p){ const v=p[k]; o[k]=v.fc?{type:'FeatureCollection',features:v.fc.map(feat)}:v.f?feat(v.f):geom(v.g); }
+  return o;
+}
 function shiftFC(g,dx){   // shift any GeoJSON (collection, feature or bare geometry) sideways by dx degrees
   if(!dx || !g) return g;
   const sh=c=>typeof c[0]==='number' ? [c[0]+dx,c[1]] : c.map(sh);
@@ -3778,7 +3786,7 @@ function openMap(){
                        worldCopyJump:true,minZoom:1.5,maxZoom:8,zoomSnap:0.5,renderer:L.canvas({padding:1}),   // draw a full screen of land beyond each edge so panning while zoomed in never shows blank margins
                        inertia:true,inertiaDeceleration:2200,attributionControl:false,
                        maxBounds:[[-85,-540],[78,540]],maxBoundsViscosity:1});   // the world repeats sideways: scroll past Alaska and Asia appears
-    fetch('world.json').then(r=>r.json()).then(w=>{
+    fetch('world.pack.json').then(r=>r.json()).then(unpackWorld).then(w=>{
       WORLD_FC=w.countries; CBOX=null; CNAMES=null;
       WORLDS.forEach(dx=>{
         L.geoJSON(shiftFC(w.countries,dx),{style:{color:'#7f90b4',weight:1,fillColor:'#2c3850',fillOpacity:1},interactive:false}).addTo(map).bringToBack();
