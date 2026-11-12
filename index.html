@@ -4371,9 +4371,20 @@ const Cloud=(function(){
     const local=snapshot(), cloud=(data&&data.data)||{}, keys=new Set(Object.keys(local).concat(Object.keys(cloud)));
     let changed=false;
     keys.forEach(k=>{ if(!synced(k)) return; const m=mergeKey(k,local[k],cloud[k]); if(JSON.stringify(m)!==JSON.stringify(local[k])){ changed=true; try{ localStorage.setItem(k,JSON.stringify(m)); }catch(e){} } });
+    const newPid=raw('ff_pid');
+    if(local.ff_pid && newPid && local.ff_pid!==newPid) await moveGroups(local.ff_pid,newPid,local.ff_groups);
     await push();
     // bring the screen up to date with what came from the account, but never in the middle of a round
     if(changed && (!S || S.phase==='ready' || !$('final').hidden)){ try{ if(!sessionStorage.getItem('ff_cloud_reload')){ sessionStorage.setItem('ff_cloud_reload','1'); location.reload(); } }catch(e){} }
+  }
+  // the account's player id replaced this device's: group memberships are kept on the server under the old id, so carry them over
+  async function moveGroups(from,to,localList){
+    try{
+      const srv=await sbRpc('my_groups',{p_player:from});
+      const codes=[...new Set([].concat(Array.isArray(srv)?srv:[],Array.isArray(localList)?localList:[]).map(g=>g&&g.code).filter(Boolean))];
+      for(const code of codes){ const j=await sbRpc('group_join',{p_player:to,p_code:code}); if(j&&j.code) await sbRpc('group_leave',{p_player:from,p_code:code}); }
+      await refreshGroups();
+    }catch(e){}
   }
   function setUser(u){
     const was=user&&user.id; user=u||null; armOut=0; render(); try{ renderNpPass(); }catch(e){}
