@@ -4313,7 +4313,7 @@ let BOARD_VIEW='all', MY_GROUPS=load('ff_groups')||[];
    only read and write their own row). Everything still works signed out; signing in just copies progress to the account. */
 const Cloud=(function(){
   const LIB='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js';
-  const SYNC=['ff_hist','ff_streak','ff_best','ff_life','ff_kit','ff_invites','ff_name','ff_pid','ff_groups','ff_daily','ff_blank','ff_pol','ff_passport','ff_coached','ff_pseen'];
+  const SYNC=['ff_hist','ff_streak','ff_best','ff_life','ff_kit','ff_invites','ff_name','ff_pid','ff_groups','ff_daily','ff_blank','ff_pol','ff_passport','ff_coached'];   // the practice 'already seen' list stays on the device: it is the bulk of the data and the least important
   const synced=k=>SYNC.includes(k) || k.indexOf('ff_back:')===0;
   let sb=null, user=null, ready=false, timer=0, status='', armOut=0;
   const raw=k=>{ try{ return JSON.parse(localStorage.getItem(k)); }catch(e){ return null; } };
