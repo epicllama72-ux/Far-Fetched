@@ -1456,6 +1456,16 @@ body.intro #ausBar{display:none}
 #muteBtn.off::after{background:#a8231a;left:6px;right:6px}
 /* the three clippings */
 .hud{grid-template-columns:1fr auto 1fr;gap:12px;align-items:start}
+@media not all and (min-width:1100px) and (min-height:600px){
+  .topline{margin-bottom:6px}                                   /* phones: the counters sit tight under the top bar, for more room below */
+  .hud{margin-bottom:6px}
+  .hud .panel .lbl{padding:4px 8px 3px}
+  .hud .val{padding:1px 8px 2px;font-size:32px}
+  .hud .ruler{margin-bottom:4px}
+  #delta{padding-bottom:4px}
+  .hud .mid{padding:10px 8px 5px}
+  body #card[data-truth]::after{top:-2px;right:8px;rotate:-5deg;padding:3px 5px 2px;font-size:8px}
+}
 .hud .panel{background:var(--np-card);background-image:var(--np-grain);border:1px solid var(--np-ink);clip-path:none;padding:0;min-width:0;color:var(--np-ink);filter:drop-shadow(3px 4px 0 rgba(0,0,0,.45));rotate:-1.5deg}
 .hud .panel.r{rotate:1.5deg;text-align:right}
 .hud .lbl{display:block;background:var(--np-ink);color:var(--np-card);font:7px/1 var(--px);letter-spacing:.18em;padding:5px 8px 4px;margin:0;text-align:left}
