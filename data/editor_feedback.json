@@ -213,6 +213,12 @@
    "before": "hints with local trivia (Kyushu's yatai street stalls; a Subcarpathian village)",
    "after": "birthplace of tonkotsu ramen; a Carpathian foothills village",
    "why": "a reader wrote that the hints are too specifically local; hints must be known to a well-read person on any continent, use the wider region for obscure places, and still not be obvious"
+  },
+  {
+   "kind": "clue",
+   "before": "a Panhandle town with a perfectly round lake / a city of about 14 million / where the drama Winter Sonata was filmed",
+   "after": "a Deep South town near the Gulf / home of the world's busiest crossing / a lakeside city near the DMZ",
+   "why": "owner picked widely known region-level hints over local trivia (Panhandle, round lake, a regional TV drama) and a bare population figure"
   }
  ]
 }
