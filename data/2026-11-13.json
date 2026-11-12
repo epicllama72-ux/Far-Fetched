@@ -1,0 +1,166 @@
+{
+ "date": "2026-11-13",
+ "generated": "2026-11-12T07:39:33+00:00",
+ "call": [
+  {
+   "real": true,
+   "h": "Hundreds in {} shove a giant steel sculpture seven inches to free a man rumoured to be trapped inside",
+   "hint": "setting of Ferris Bueller's Day Off",
+   "lat": 41.8826,
+   "lng": -87.6225,
+   "place": "Chicago, Illinois",
+   "src": "https://metro.co.uk/2026/11/09/bizarre-urban-legend-saw-hundreds-try-free-a-man-trapped-inside-a-bean-29778088/",
+   "published": "2026-11-09",
+   "clue": "inches + steel sculpture in a big Midwest city park = US"
+  },
+  {
+   "real": true,
+   "h": "Sumo wrestler thrown straight between the referee's legs at a tournament in {}",
+   "hint": "home of Kyushu's yatai street stalls",
+   "lat": 33.6043,
+   "lng": 130.4035,
+   "place": "Fukuoka, Japan",
+   "src": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBELTkyeTd3d3hrMzBFbEdZa0hHTVZ0V2ZSSGhodjdOM3hqR0I3Z2ZCR2EyaTgwMTIxRGdTTDRNQ1pnOTN6S212NVktZXAtdHplRVJJYQ?oc=5",
+   "published": "2026-11-11",
+   "clue": "sumo basho in southern Japan's Fukuoka"
+  },
+  {
+   "real": false,
+   "h": "Ice-cream shop in {} sells 418 scoops of a new flavour before noticing the tub was empty",
+   "tell": "You can't sell 418 scoops out of an empty tub."
+  },
+  {
+   "real": true,
+   "h": "Man impersonating police officer charged after calling 911 to report zombies, ghosts and a UFO in {}",
+   "hint": "where John Denver's country roads lead",
+   "lat": 38.9262,
+   "lng": -79.8462,
+   "place": "Elkins, West Virginia",
+   "src": "https://www.wboy.com/news/crime/man-charged-after-calling-911-to-report-zombies-ghosts-and-a-ufo/",
+   "published": "2026-05-19",
+   "clue": "US sheriff's office + 911 misuse charge"
+  },
+  {
+   "real": false,
+   "h": "Hot-air balloon lands in a prison yard in {}; 3 inmates fold it, then walk back to their cells",
+   "tell": "Guards would clear the yard at once; inmates folding a balloon and strolling back is far too tidy."
+  },
+  {
+   "real": true,
+   "h": "Man, 51, flees police in a tiny microcar, rams a patrol car and ends the chase in {}",
+   "hint": "a Subcarpathian village",
+   "lat": 49.6104,
+   "lng": 21.9064,
+   "place": "Milcza, Poland",
+   "src": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5RSE9kTFBrNGgycnNnT3pQNkhSOHYwT3lVb1JVTy16RVFsZWpCYlIyeDRNM29Td0tHaEU4TDh5V2NpUUtfb3I4Z2VsdWh2U0hac09FcTFKVU52UmhQRE45REpKZ3RYSHJQaFZzWEUzRDF4VFduZHF6M0tR?oc=5",
+   "published": "2026-11-11",
+   "clue": "microcar licence class and county roads = central Europe"
+  },
+  {
+   "real": true,
+   "h": "Woman in a bar in {} sips wine while slipping a table lamp into her bag; CCTV clip tops six million views",
+   "hint": "a Peak District spa town",
+   "lat": 53.1375,
+   "lng": -1.5545,
+   "place": "Matlock, Derbyshire",
+   "src": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1Lb1l2YWV0VDk1Y1htUkNvSFlLVURtdE1oY2Rtd3pWdFphQU9RS01lQ1JlVnRldHhZMy1fUjBQWk9OVmdXYTZmN1JjbnF5YW1SNzluRTFZZjQyUE9ZUDh4bkVIRy04bFk0Q2FmaTRPQXk1N3E3NEZ3?oc=5",
+   "published": "2026-10-26",
+   "clue": "pub, CCTV and a lost lamp = Britain"
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Tow truck driver in Konya, Turkey loads [], numbed by the cold, onto his recovery truck and drives them back to their shepherd",
+   "ans": [
+    "donkeys",
+    "donkey",
+    "asses",
+    "ass"
+   ],
+   "alt": [
+    "mules",
+    "horses",
+    "sheep",
+    "animals"
+   ],
+   "place": "Konya, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOYW1qcVVuTGxjN0pVd2poRlVaMThGM3JyUmdWRXlsUGFnR1dYVjhQZFctT1ZiN2V1NG9nYTY4VnhEVHNlUHJjOVlxamZZZk54czlXdjFYM0xRT2piM1NseC1KanlCNmNBNG5aZjE4ODR5YzdzeVhuQy0tR2t3dklkdXE1LWZ2c1FTSXlWSklyd3hQZjMyUlRSeEdGcWRraUdM?oc=5",
+   "published": "2026-11-11",
+   "vec": "K6QTlNMsm5owtf8KPbkQ5j1Bz7mn2zc2WgDeBB619n/MZy839QOvOOsLESxG2/jnIps="
+  },
+  {
+   "real": true,
+   "h2": "Two mayoral candidates tie on 671 votes each in Conima, Peru; a month later a one-sol [] toss picks the winner",
+   "ans": [
+    "coin",
+    "coins"
+   ],
+   "alt": [
+    "penny",
+    "token"
+   ],
+   "place": "Conima, Puno, Peru",
+   "src": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOVWoxYmdFWHhWT1ZTLVJzZ3EzQ2g0aVA1aEJmS0pLd0d3eFY2aUl6UENoQnQyT0c1SmFkR2dGLWV5YV9fWDM3czBaQnMzc0ZWUXpYTXFaNUc2Z3k4MmgyTng4UXVxbzlsZEw1OV9aZ2VRTFNVZ2lraGpQLWZfdkUxcXNRSHdvendmbUE2T2p6ZTV5WklTWS1FZGRkV0dEckY2clBMNVhESnlCbkUwMnNwYk5SREZuOUV5YjQ0aG9BWG9tclZyTF91ZGFtUkV0eDVJUTlVb9IB6AFBVV95cUxOazAyaGVWQi1HNHMxQjgzVDJ3VjZfVVYtal9mY2d1Skw1dktYUlhzMmNSUFZOYnlsdnZ6bTBMTzVrUk1VQ1ZpdWllUi1nX0JFWkFUOVBwX3NiUEZEdzlVTG1QcDZvN0JKUUNuUUt4TkFFM3JXN3JsbjUtejJXSHpiYmpRaFdHNkRQblZfWjdHM3g0ZDJEVTBZeUlGZS1ZOHJ5VlVncFd4Y2NuVlNfa3RfUWFQZ1NtRTR6eFdnaHBzNlZhdzNSNElEQnVzTUhrMW13eWhuYV9yTWd0TDNfa19aRGVPN1pqTUUt?oc=5",
+   "published": "2026-11-10",
+   "vec": "shH27kL5DOX3/PgtQRk09/3lwc1LgQLe58bKEgvaO+YXR+wPLiXkyT4FDiPwCv0IGdU="
+  },
+  {
+   "real": true,
+   "h2": "Bloke locks himself in the gents of a [] in Ripley, Surrey for an hour, then leaves with the soap, loo roll, plants and wall signs",
+   "ans": [
+    "pub",
+    "pubs"
+   ],
+   "alt": [
+    "bar",
+    "inn",
+    "tavern",
+    "boozer"
+   ],
+   "place": "Ripley, Surrey",
+   "src": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPdGZWTjVvLVVJT0FYamlmTmpjdzJaeE54U2xYREdoTnh6MUpCWHNNUG5uWWgyb09LbUxEanVHWmhhSVkzSjJQUEtEUUdiUmt6VnVKTWMtZ2dDS1I4dW1aTTA4V0dxVDFLbWV3aW15aVFvSkxhWUVLbmZuc09seXZmZF9FeWlRejZUbjZ3UGIxVEpVOUdiQVJrZDRmVlNCRzNGS2lzQ3lnTVh1T1Ux0gGyAUFVX3lxTE1uU2Z1RHhaUzg2N3ZHWTBpMnl6bWh3aWxXaHBSMS0yVVZHcVNwdEdKd2Y4bXRGMzVvOXJ6SU1FZ0hGTWtYX3BfRXNkWk9lR3YzSTBNeW5MZ19QS1FoSUhYTzBEazNQQjBFQ29Ld3VwUXRiSU9sWDIxVTFJMXNLZVlueTdNLVhkUXBKczc3NkJEWjJWY3VWX00ySUZOLWd0aUlZZnEtRmpTbEpsdVd3MVloN2c?oc=5",
+   "published": "2026-11-11",
+   "vec": "Aga87iXuwPv65+P+9xAdICU20fNKCNN/1e3kGA8RSPwYRAUWHccaDR4EtTohCtu1MfM="
+  },
+  {
+   "real": true,
+   "h2": "Two escaped [] dubbed 'bacon bits' lead cops on a foot chase for several minutes through Beaufort, South Carolina",
+   "ans": [
+    "piglets",
+    "piglet",
+    "pigs",
+    "pig",
+    "swine",
+    "hogs"
+   ],
+   "alt": [
+    "porkers",
+    "boars",
+    "animals",
+    "hog"
+   ],
+   "place": "Beaufort, South Carolina",
+   "src": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPcFoyRWtaVWVGZFhnZDBTU2tjcXJ4cnFXWnRGWUdwTjljZHd3SWhNN3J1ekVhTjBOT1BndEd4TThWQWcwUlJpRmdEZnRxZjlfRjRPdXdMUWU3VGRadDNZSjJUcmRYSl9DS3FQRGtTdEUtQmFHdTNJNk5yb0I1R08yMjh3cjBoYVVpTXdhMFplRzVWYWxia3JYQko4ekFMOWl6cm45Umdnd1VFdWhvQW14Z2Vlank5dEdBYlEzLXNB?oc=5",
+   "published": "2026-11-07",
+   "vec": "+aQnoVlv4epEMDOqfwBFF9wMAwbzyV/1GSz27wmxll8OJEkkAiAY5Z68xBt/6Sf607I="
+  },
+  {
+   "real": true,
+   "h2": "Tennis club in Bailleul, France calls in a specialist to catch an [] that was flying around its hall",
+   "ans": [
+    "owl",
+    "owls"
+   ],
+   "alt": [
+    "bird",
+    "chouette",
+    "owlet"
+   ],
+   "place": "Bailleul, France",
+   "src": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOZzlvUWZxd2hrc1B4c0E4WWM5cU5QX2VEcS1iWWdmc05BamVQYnN1S1hXeWVfWXBocjI2Q04tMVV2LVF2R0hoZ2s2U1ZrVmtkZklvYVBzV292cnpJRXRMbDJKcUFiU0VBZkFWdU9VMlVEenBiSTFlNGt4UHhUV25KLWo2NTMzcVlOSXVWWXhnX3h1SEEzQmlHbzA1blhUZVlTU3hWYUV1V0VwZUpoT3Z0VG5mMmNTbjU0TFdfTmJBX0VCMHFfUGRnZ0IxdVhLQQ?oc=5",
+   "published": "2026-11-07",
+   "vec": "/+XO5hoGxp8a3Ag1dBH7KAsyshfABPUODPECPvTQINQRFgkdDIECyusB7y0Y8TD8Hvs="
+  }
+ ]
+}

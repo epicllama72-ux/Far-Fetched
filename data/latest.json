@@ -1,166 +1,166 @@
 {
- "date": "2026-11-12",
- "generated": "2026-11-11T07:01:35+00:00",
+ "date": "2026-11-13",
+ "generated": "2026-11-12T07:39:33+00:00",
  "call": [
   {
    "real": true,
-   "h": "Man uses stolen excavator to rob bank directly next to a police station in {}",
-   "hint": "a Panhandle town with a perfectly round lake",
-   "lat": 30.7213,
-   "lng": -86.115,
-   "place": "DeFuniak Springs, Florida",
-   "src": "https://www.weartv.com/news/local/man-attempts-atm-heist-with-excavator-stolen-near-police-station-in-defuniak-springs",
-   "published": "2025-04-30",
-   "clue": "Panhandle town built around a near-perfectly round lake"
+   "h": "Hundreds in {} shove a giant steel sculpture seven inches to free a man rumoured to be trapped inside",
+   "hint": "setting of Ferris Bueller's Day Off",
+   "lat": 41.8826,
+   "lng": -87.6225,
+   "place": "Chicago, Illinois",
+   "src": "https://metro.co.uk/2026/11/09/bizarre-urban-legend-saw-hundreds-try-free-a-man-trapped-inside-a-bean-29778088/",
+   "published": "2026-11-09",
+   "clue": "inches + steel sculpture in a big Midwest city park = US"
   },
   {
    "real": true,
-   "h": "Family checks into a vacation rental in {} and finds a giant photo of themselves hanging on the wall",
-   "hint": "home of the Top Gun house",
-   "lat": 33.1959,
-   "lng": -117.3795,
-   "place": "Oceanside, California",
-   "src": "https://www.foxnews.com/travel/sisters-viral-video-reveal-truth-eerie-family-photo-discovered-rental-home",
-   "published": "2026-07-14",
-   "clue": "Home of the Top Gun house"
+   "h": "Sumo wrestler thrown straight between the referee's legs at a tournament in {}",
+   "hint": "home of Kyushu's yatai street stalls",
+   "lat": 33.6043,
+   "lng": 130.4035,
+   "place": "Fukuoka, Japan",
+   "src": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBELTkyeTd3d3hrMzBFbEdZa0hHTVZ0V2ZSSGhodjdOM3hqR0I3Z2ZCR2EyaTgwMTIxRGdTTDRNQ1pnOTN6S212NVktZXAtdHplRVJJYQ?oc=5",
+   "published": "2026-11-11",
+   "clue": "sumo basho in southern Japan's Fukuoka"
   },
   {
    "real": false,
-   "h": "Burglar in {} gets stuck in a chimney for 3 weeks before neighbours finally hear him shouting",
-   "tell": "Nobody survives 3 weeks wedged in a chimney without water; people last about 3 days."
+   "h": "Ice-cream shop in {} sells 418 scoops of a new flavour before noticing the tub was empty",
+   "tell": "You can't sell 418 scoops out of an empty tub."
   },
   {
    "real": true,
-   "h": "Woman, 33, gets suspended six-month sentence for giving 14 'likes' to ex's post despite restraining order in {}",
-   "hint": "a city of about 14 million",
-   "lat": 35.6769,
-   "lng": 139.7639,
-   "place": "Tokyo, Japan",
-   "src": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPVVdoMXdyb0UwQm0wR1RIZVRFb2NZRjgyZzU1QjJsanBpMGdyZTVnVTNSSGlDZ2txTXUxTU12Ylh2N0I2cjFCZnRqNHBueTl2ai1wWVJxNWpEX3JkM1ExRHJZVE5kZ29IMEJWb2FuUkx0SUlhdEdaaC1PbzRFTm51V1dkUkQ3cU1jem9sODdyOXR3Ymo5WS02MjZMSlY3UFdpOGdEQkhB?oc=5",
-   "published": "2026-11-10",
-   "clue": "A city of about 14 million people"
-  },
-  {
-   "real": true,
-   "h": "Man, 68, who stole a scooter's key says his own motorbike key 'just happened' to start it; jailed in {}",
-   "hint": "where the drama Winter Sonata was filmed",
-   "lat": 37.8811,
-   "lng": 127.7298,
-   "place": "Chuncheon, South Korea",
-   "src": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9VQklPQkR0aUZMdC1CWUtsMkNINGE2NDFWenBfdm53UW1FdS1kR1NteW5iVUZTdnoxZnV3bDFpUVBySWN5RUstenpqOG85d3V1M1dlWk53dFRqNU3SAWBBVV95cUxQT3E5QVdZMG5fUmI0WnhWUUx6aktyOUlsNlhaaExSLWEzSGY5ZGxqWktQMVNqTnRnSVJndUpIVlNISVdaRzVBUk8wUkhrekJHSFFOX1lhMWtrUnQwRGRxYjU?oc=5",
-   "published": "2026-10-31",
-   "clue": "Lakeside city where the drama Winter Sonata was filmed"
-  },
-  {
-   "real": true,
-   "h": "Woman in {} blames years of bad luck on a feta bucket of sacred rocks her husband's grandad allegedly stole",
-   "hint": "home of Finding Nemo's 42 Wallaby Way",
-   "lat": -33.8698,
-   "lng": 151.2083,
-   "place": "Sydney, Australia",
-   "src": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNQ0dJcEt4c0ZzSmpCa0xGUzVRVEd0cnFOa2I5Y0o0X0FrUElqMXQ2WEdVSko1VWFvSjVJd2RnR28xSi02bi1xM2VvTkFjMGtjWHB5QUJzWUNMWlFPaUxjSVloeGFvMExnZUxDYjBBbzUyTUZTb19nWGtFTFd0T0xrbXBFR3dBOHROVHc?oc=5",
-   "published": "2026-11-10",
-   "clue": "Home of 42 Wallaby Way from Finding Nemo"
+   "h": "Man impersonating police officer charged after calling 911 to report zombies, ghosts and a UFO in {}",
+   "hint": "where John Denver's country roads lead",
+   "lat": 38.9262,
+   "lng": -79.8462,
+   "place": "Elkins, West Virginia",
+   "src": "https://www.wboy.com/news/crime/man-charged-after-calling-911-to-report-zombies-ghosts-and-a-ufo/",
+   "published": "2026-05-19",
+   "clue": "US sheriff's office + 911 misuse charge"
   },
   {
    "real": false,
-   "h": "Man in {} camps outside a phone shop for 11 weeks to be first in line for the new iPhone",
-   "tell": "New iPhones go on sale about ten days after they are announced, so nobody could queue 11 weeks ahead."
+   "h": "Hot-air balloon lands in a prison yard in {}; 3 inmates fold it, then walk back to their cells",
+   "tell": "Guards would clear the yard at once; inmates folding a balloon and strolling back is far too tidy."
+  },
+  {
+   "real": true,
+   "h": "Man, 51, flees police in a tiny microcar, rams a patrol car and ends the chase in {}",
+   "hint": "a Subcarpathian village",
+   "lat": 49.6104,
+   "lng": 21.9064,
+   "place": "Milcza, Poland",
+   "src": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5RSE9kTFBrNGgycnNnT3pQNkhSOHYwT3lVb1JVTy16RVFsZWpCYlIyeDRNM29Td0tHaEU4TDh5V2NpUUtfb3I4Z2VsdWh2U0hac09FcTFKVU52UmhQRE45REpKZ3RYSHJQaFZzWEUzRDF4VFduZHF6M0tR?oc=5",
+   "published": "2026-11-11",
+   "clue": "microcar licence class and county roads = central Europe"
+  },
+  {
+   "real": true,
+   "h": "Woman in a bar in {} sips wine while slipping a table lamp into her bag; CCTV clip tops six million views",
+   "hint": "a Peak District spa town",
+   "lat": 53.1375,
+   "lng": -1.5545,
+   "place": "Matlock, Derbyshire",
+   "src": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1Lb1l2YWV0VDk1Y1htUkNvSFlLVURtdE1oY2Rtd3pWdFphQU9RS01lQ1JlVnRldHhZMy1fUjBQWk9OVmdXYTZmN1JjbnF5YW1SNzluRTFZZjQyUE9ZUDh4bkVIRy04bFk0Q2FmaTRPQXk1N3E3NEZ3?oc=5",
+   "published": "2026-10-26",
+   "clue": "pub, CCTV and a lost lamp = Britain"
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "Two saddled [] are led through a city bus at a stop in Detroit, Michigan, then exit by the rear doors",
+   "h2": "Tow truck driver in Konya, Turkey loads [], numbed by the cold, onto his recovery truck and drives them back to their shepherd",
    "ans": [
-    "horses",
-    "horse"
+    "donkeys",
+    "donkey",
+    "asses",
+    "ass"
    ],
    "alt": [
-    "ponies",
-    "pony",
     "mules",
-    "donkeys"
+    "horses",
+    "sheep",
+    "animals"
    ],
-   "place": "Detroit, Michigan",
-   "src": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQTzJ2clM1YTd2THI1VlFJTTFhckVyS1dHaG95MjhoX3ZjVEl6T3gtbHo5RkdhY2M5eU43WnZjRlptc3dlTm9GQ2FxMC11UE1yakRValdSd1pTZVc4eVp2MzVhY1pqak54aEtoQUhsMlU1eXA2NThsTi1taHF3NlhBMkV4M3FtVGkzbjNWanZkS2xkdFZlMXhvVGcxSVYtZWFOQ284V29mdmZQWFZYWnR2eHlZa1JaRmlwdmFVZnZPZ1pKYmvSAcgBQVVfeXFMUEJQelBETlY5ajR4bnhMajZwWmFVSWF4Nl9HSnA4STc4YlE1QktkTk1xWnRmazloSVFNM1BmWXR3RHR0dy1tdDNBUDVhaHJGMnhHYnJ0TFh3Z1JIS3IxUjIzRzJOdFV2ay1yelhCN0FSeEFIaEk4Y3k3a1BnY2NpSzlmLTNDY09WZTJBTFozVDQwTmNNTHRnNWQtM3lfNmJTX3doX1FxcU5jQm1sVEZDT1U4LVpLaURLQVpxeDdLYWFVLU1adGpOWVg?oc=5",
+   "place": "Konya, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOYW1qcVVuTGxjN0pVd2poRlVaMThGM3JyUmdWRXlsUGFnR1dYVjhQZFctT1ZiN2V1NG9nYTY4VnhEVHNlUHJjOVlxamZZZk54czlXdjFYM0xRT2piM1NseC1KanlCNmNBNG5aZjE4ODR5YzdzeVhuQy0tR2t3dklkdXE1LWZ2c1FTSXlWSklyd3hQZjMyUlRSeEdGcWRraUdM?oc=5",
    "published": "2026-11-11",
-   "vec": "GevywAAjnOQ5vAwGHLUu4zRUgZzL1SwONLu95irtd0X8Sz0V/T+5+t/REGRYsd2tB8k="
+   "vec": "K6QTlNMsm5owtf8KPbkQ5j1Bz7mn2zc2WgDeBB619n/MZy839QOvOOsLESxG2/jnIps="
   },
   {
    "real": true,
-   "h2": "A 3-foot [] strolls in the back door of a bagel shop in North Carolina, caught on camera",
+   "h2": "Two mayoral candidates tie on 671 votes each in Conima, Peru; a month later a one-sol [] toss picks the winner",
    "ans": [
-    "alligator",
-    "alligators",
-    "crocodile",
-    "crocodiles",
-    "gator"
+    "coin",
+    "coins"
    ],
    "alt": [
-    "reptile",
-    "caiman",
-    "lizard",
-    "croc"
+    "penny",
+    "token"
    ],
-   "place": "North Carolina, USA",
-   "src": "https://www.upi.com/Odd_News/2026/11/03/alligator-bagel-store-southport-north-carolina/6751793729245/",
-   "published": "2026-11-03",
-   "vec": "3szTE+Mb0cxl4t0IcCAB7Akxuz2t5iPx+MPePzGBJb0hVMZS8asgwtH4CVVltxWrFOw="
-  },
-  {
-   "real": true,
-   "h2": "Man, 39, steals diagnostic [] from an eye clinic on two visits and is caught by police in Maków Mazowiecki, Poland",
-   "ans": [
-    "lenses",
-    "lens"
-   ],
-   "alt": [
-    "glasses",
-    "contacts",
-    "spectacles",
-    "monocles"
-   ],
-   "place": "Maków Mazowiecki, Poland",
-   "src": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQaWlpUWp5Q21QWEJhMkpGVThWVWRyVEh2LTNBaDM1Z1AyR0tvaHo4M3pkSE5lSkQ0RmtYWXh5NzRISlBFd1IwSElrWGp5RHdyN2Q3LVJzV2l0dGlWQ1lXU1djeERDZWNrZEE3dE92UEdzVUd6X3FENTA4MG9pR3ZhZFB2MThSdjF5VURXUWw5c2diaVhJSnlUTUdWVDFxOGM3al9XTUZ0Q2pIMF9DZU5Cc1Jwdmo1UTh3T0E?oc=5",
-   "published": "2026-11-07",
-   "vec": "SRg5ttZURozUD1T1+j3CXrTn3ZX5Fv/9wBmwMwP4Nkf8v/EaM2DmzX8yNDoC7UXp+/U="
-  },
-  {
-   "real": true,
-   "h2": "Drunk [] with a seized licence is fined 250,000 lira in İnegöl, Turkey; told alcohol is forbidden, he replies 'OK, I'll quit'",
-   "ans": [
-    "driver",
-    "motorist"
-   ],
-   "alt": [
-    "man",
-    "chauffeur",
-    "pensioner",
-    "motorists"
-   ],
-   "place": "İnegöl, Bursa, Turkey",
-   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOTFBFcVItOHZqMFFDZ21zcVc0TnFrMDg4cm5wNEV2alB5U1VGc29oZGNxZW8xVWxxY0pFT184RFJiaklVYWp6WjJyWlFpdHNNQkJHZGxJQnpTUFA0OXhBREpnTTNtQU5fV0JFdk5xcXJscDdVME4yLVUxZmZGV014MXNoQWw0bGZ3NGVDNFNZdG5QSEoxMlVQdktueUZsUXhUenBNQktRM2xoZWY1RmQ3Y0lpMW9BdGxjU1JwdGZPQVnSAcMBQVVfeXFMUHJzZFhEV3UxSFMtQlhoUGRFQV9LTWxOeUFqQnFfY1VYMUk2T2JKOVp2QzdRMks4SWVQdnJkNFBKUUx3X21oVGdUSXAwZmJJdmVkMVpPNFRlZEp1V2Vta3Vfelo0WkRiVzZyaXk4QnkzOVJmdnpMS2xJRVhxZzBLMmMwWUxQYmZiSzVtQ1c1dHFJVkUweTg2UXVSR2VZdU1CeEp1bk5oc0cxb2Npc0ZnQ3JXNUxLMS1PckM4LUdZZU1JcFFz?oc=5",
-   "published": "2026-11-09",
-   "vec": "5QJTDiQosCcg3kDukgou2N8o7pTcMLpNNZAG+igbf/XaD2YEKAwDHgkk8e4UsQzpcfc="
-  },
-  {
-   "real": true,
-   "h2": "Diver rescues Herrnhut [] complete with wish lists from a lake in Nochten, Saxony",
-   "ans": [
-    "stars",
-    "star"
-   ],
-   "alt": [
-    "lanterns",
-    "lights",
-    "decorations",
-    "lamps"
-   ],
-   "place": "Nochten, Saxony, Germany",
-   "src": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPcE5Tb2RjNVI4S1lIVVZlZi05WDZOS0Vzb21PNk5RNlVObXJ5a3JFRWRGcktxMmRNWnVnelNCWVNEVlVnWXFrNER0V25yd3ZETExvYlg3Qk83Sm9nYnNQS0xVRHZ5UWpuVExHWkJLN3lkaWhFUWhFUkNMYW14WlFTMWRTNC05YXB4OWNHek1NS3dPZ1dRODVPZEZQMHlVRURRUElOUk5fRVhRN3NtTFplS25GdVg1b1JZbFhlbmtNVE9Oal8xZXBNb0h1LTVqaWFhR2R6THNMMXd6ckFYOHZlODA3LW5MVVVfQl9oSllGcm1NYmphR0xYNWJvdGlPRDFNajkxUFZIRG8wcknSAacCQVVfeXFMT1NwQnZFaHNLLWRBWjU4aHh2TEVaS2Y5cHFQaVBSbmMwQnU2a0p0SXZPVlFXNENrd0FUR21wSE1pODZFVW52eU1JbElQeVU0aE1BRW5DUktEeC1aY3BUT2ZNYzh3TWtWMUdaVGM3c0lvMTgyaC10eEF6dE9oY0dTT3hvd0lWWTVfR3FxcDRyZlBwZlVXeThQYzlhV3RxWWVMYmFUWEg5WlctQ2E2VHctS3N3UXZGOFA2a1NzYmJWNjZIS0pVc2VKNE9SNWlZZ3V1X3BCZG9DdnVuc19JZ0VyaXhlZVF1NndwTzlfNnpjdVhScnVEQm1SMmVtMlhDUXhtYVFlZHB2RUhRT0ZQOHd1blRWSjJSNkxyWDdMd20wOU5HWXpqTWFMSQ?oc=5",
+   "place": "Conima, Puno, Peru",
+   "src": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOVWoxYmdFWHhWT1ZTLVJzZ3EzQ2g0aVA1aEJmS0pLd0d3eFY2aUl6UENoQnQyT0c1SmFkR2dGLWV5YV9fWDM3czBaQnMzc0ZWUXpYTXFaNUc2Z3k4MmgyTng4UXVxbzlsZEw1OV9aZ2VRTFNVZ2lraGpQLWZfdkUxcXNRSHdvendmbUE2T2p6ZTV5WklTWS1FZGRkV0dEckY2clBMNVhESnlCbkUwMnNwYk5SREZuOUV5YjQ0aG9BWG9tclZyTF91ZGFtUkV0eDVJUTlVb9IB6AFBVV95cUxOazAyaGVWQi1HNHMxQjgzVDJ3VjZfVVYtal9mY2d1Skw1dktYUlhzMmNSUFZOYnlsdnZ6bTBMTzVrUk1VQ1ZpdWllUi1nX0JFWkFUOVBwX3NiUEZEdzlVTG1QcDZvN0JKUUNuUUt4TkFFM3JXN3JsbjUtejJXSHpiYmpRaFdHNkRQblZfWjdHM3g0ZDJEVTBZeUlGZS1ZOHJ5VlVncFd4Y2NuVlNfa3RfUWFQZ1NtRTR6eFdnaHBzNlZhdzNSNElEQnVzTUhrMW13eWhuYV9yTWd0TDNfa19aRGVPN1pqTUUt?oc=5",
    "published": "2026-11-10",
-   "vec": "BVwMHRYb3uvVLxA24UszAC4ApODWHTIh++TdBN/Ifzkz1hgW9Ovlzf1R/Nbn/wnQ1Ak="
+   "vec": "shH27kL5DOX3/PgtQRk09/3lwc1LgQLe58bKEgvaO+YXR+wPLiXkyT4FDiPwCv0IGdU="
+  },
+  {
+   "real": true,
+   "h2": "Bloke locks himself in the gents of a [] in Ripley, Surrey for an hour, then leaves with the soap, loo roll, plants and wall signs",
+   "ans": [
+    "pub",
+    "pubs"
+   ],
+   "alt": [
+    "bar",
+    "inn",
+    "tavern",
+    "boozer"
+   ],
+   "place": "Ripley, Surrey",
+   "src": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPdGZWTjVvLVVJT0FYamlmTmpjdzJaeE54U2xYREdoTnh6MUpCWHNNUG5uWWgyb09LbUxEanVHWmhhSVkzSjJQUEtEUUdiUmt6VnVKTWMtZ2dDS1I4dW1aTTA4V0dxVDFLbWV3aW15aVFvSkxhWUVLbmZuc09seXZmZF9FeWlRejZUbjZ3UGIxVEpVOUdiQVJrZDRmVlNCRzNGS2lzQ3lnTVh1T1Ux0gGyAUFVX3lxTE1uU2Z1RHhaUzg2N3ZHWTBpMnl6bWh3aWxXaHBSMS0yVVZHcVNwdEdKd2Y4bXRGMzVvOXJ6SU1FZ0hGTWtYX3BfRXNkWk9lR3YzSTBNeW5MZ19QS1FoSUhYTzBEazNQQjBFQ29Ld3VwUXRiSU9sWDIxVTFJMXNLZVlueTdNLVhkUXBKczc3NkJEWjJWY3VWX00ySUZOLWd0aUlZZnEtRmpTbEpsdVd3MVloN2c?oc=5",
+   "published": "2026-11-11",
+   "vec": "Aga87iXuwPv65+P+9xAdICU20fNKCNN/1e3kGA8RSPwYRAUWHccaDR4EtTohCtu1MfM="
+  },
+  {
+   "real": true,
+   "h2": "Two escaped [] dubbed 'bacon bits' lead cops on a foot chase for several minutes through Beaufort, South Carolina",
+   "ans": [
+    "piglets",
+    "piglet",
+    "pigs",
+    "pig",
+    "swine",
+    "hogs"
+   ],
+   "alt": [
+    "porkers",
+    "boars",
+    "animals",
+    "hog"
+   ],
+   "place": "Beaufort, South Carolina",
+   "src": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPcFoyRWtaVWVGZFhnZDBTU2tjcXJ4cnFXWnRGWUdwTjljZHd3SWhNN3J1ekVhTjBOT1BndEd4TThWQWcwUlJpRmdEZnRxZjlfRjRPdXdMUWU3VGRadDNZSjJUcmRYSl9DS3FQRGtTdEUtQmFHdTNJNk5yb0I1R08yMjh3cjBoYVVpTXdhMFplRzVWYWxia3JYQko4ekFMOWl6cm45Umdnd1VFdWhvQW14Z2Vlank5dEdBYlEzLXNB?oc=5",
+   "published": "2026-11-07",
+   "vec": "+aQnoVlv4epEMDOqfwBFF9wMAwbzyV/1GSz27wmxll8OJEkkAiAY5Z68xBt/6Sf607I="
+  },
+  {
+   "real": true,
+   "h2": "Tennis club in Bailleul, France calls in a specialist to catch an [] that was flying around its hall",
+   "ans": [
+    "owl",
+    "owls"
+   ],
+   "alt": [
+    "bird",
+    "chouette",
+    "owlet"
+   ],
+   "place": "Bailleul, France",
+   "src": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOZzlvUWZxd2hrc1B4c0E4WWM5cU5QX2VEcS1iWWdmc05BamVQYnN1S1hXeWVfWXBocjI2Q04tMVV2LVF2R0hoZ2s2U1ZrVmtkZklvYVBzV292cnpJRXRMbDJKcUFiU0VBZkFWdU9VMlVEenBiSTFlNGt4UHhUV25KLWo2NTMzcVlOSXVWWXhnX3h1SEEzQmlHbzA1blhUZVlTU3hWYUV1V0VwZUpoT3Z0VG5mMmNTbjU0TFdfTmJBX0VCMHFfUGRnZ0IxdVhLQQ?oc=5",
+   "published": "2026-11-07",
+   "vec": "/+XO5hoGxp8a3Ag1dBH7KAsyshfABPUODPECPvTQINQRFgkdDIECyusB7y0Y8TD8Hvs="
   }
  ]
 }
