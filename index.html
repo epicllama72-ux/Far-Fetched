@@ -5850,9 +5850,9 @@ const Intro=(function(){
       + '<p class="sc">'+$('howText').innerHTML+'</p>';
   }
   function titleOn(){                   // the game's name, the day's line and "how to play" above the turning planet
-    const t=$('introTop'), hud=document.querySelector('.hud'), narrow=innerWidth<1100;
+    const t=$('introTop'), bar=document.querySelector('.topline');
     introText();
-    t.style.top=Math.round(narrow && hud ? hud.getBoundingClientRect().bottom+18 : 76)+'px';
+    t.style.top=Math.round(bar ? bar.getBoundingClientRect().bottom+18 : 76)+'px';   // straight under the top bar: the counters are hidden until the game starts
     t.hidden=false; document.body.classList.add('introIdle');
     layoutIdle();
     requestAnimationFrame(()=>t.classList.add('on'));
