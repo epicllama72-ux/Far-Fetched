@@ -1194,21 +1194,51 @@ body.intro #ausBar{display:none}
 #unlockBox .ut{font:9px/1 var(--px);letter-spacing:.16em;color:var(--accent);margin-bottom:6px}
 #unlockBox b{font-weight:400;color:var(--accent)}
 #unlockBox .un{font-size:16px;color:var(--dim)}
-#passport .sheetIn{background-color:#1d2433}
-#passNote{font:19px/1.2 var(--vt);color:#c9ced8;margin:4px 2px 10px}
-#passNote b{color:var(--accent);font-weight:400}
-.pbar{height:8px;background:var(--panel);box-shadow:0 0 0 2px var(--line);margin:6px 2px 14px}
-.pbar i{display:block;height:100%;background:var(--accent)}
-.stamps{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:14px 10px;padding:4px 2px 10px}
-.stamp{--ink:#d2485a;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:82px;padding:8px 4px;border:3px double var(--ink);color:var(--ink);text-align:center;transform:rotate(var(--rot,0deg));background:rgba(255,255,255,.02);box-shadow:inset 0 0 0 2px rgba(0,0,0,.15)}
+#passport .sheetIn{background-color:#141a26}
+#passCover{position:relative;margin:2px 0 12px;padding:16px 14px 14px;background:#1c2b4f;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.025) 0 2px,transparent 2px 6px);box-shadow:0 0 0 2px #0d1426,inset 0 0 0 3px #253a68,inset 0 0 0 5px #c9a44c;color:#e9cf86;display:grid;grid-template-columns:64px 1fr;gap:4px 14px;align-items:center}
+#passCover svg{grid-row:span 3;width:64px;height:64px;image-rendering:pixelated}
+#passCover .pcT{font:13px/1 var(--px);letter-spacing:.22em;color:#f0d68c;text-shadow:2px 2px 0 #0d1426}
+#passCover .pcS{font:7px/1.4 var(--px);letter-spacing:.14em;color:#b99a52}
+#passCover .pcH{font:18px/1.1 var(--vt);color:#e6e9f0}
+#passCover .pcH i{font-style:normal;color:#b99a52}
+.pcStats{grid-column:1/-1;display:flex;gap:8px;margin-top:10px}
+.pcStats div{flex:1;background:rgba(6,10,20,.45);box-shadow:inset 0 0 0 1px #3a4f80;padding:6px 8px}
+.pcStats span{display:block;font:7px/1.3 var(--px);letter-spacing:.12em;color:#b99a52}
+.pcStats b{font:24px/1 var(--vt);font-weight:400;color:#f0d68c}
+.pcStats b small{font-size:16px;color:#8d9bbd}
+.pcBar{height:4px;margin-top:5px;background:#0d1426}
+.pcBar i{display:block;height:100%;background:#c9a44c}
+.ppage{position:relative;margin:0 0 12px;padding:12px 12px 14px;background:#efe6cf;background-image:radial-gradient(circle at 50% 50%,rgba(150,120,60,.10) 0 1px,transparent 1.5px),repeating-radial-gradient(circle at 100% 0,rgba(120,140,170,.10) 0 1px,transparent 1px 9px);background-size:7px 7px,auto;color:#3b3427;box-shadow:0 0 0 2px #0d1426,4px 4px 0 rgba(0,0,0,.35)}
+.ppage::before{content:'';position:absolute;inset:6px;border:1px solid rgba(90,70,40,.25);pointer-events:none}
+.ppHead{display:flex;justify-content:space-between;align-items:baseline;font:8px/1 var(--px);letter-spacing:.16em;color:#5e5546;border-bottom:1px dashed rgba(90,70,40,.45);padding:2px 2px 7px;margin-bottom:10px}
+.ppHead b{font-weight:400;color:#3b3427}
+.ppNone{font:17px/1.2 var(--vt);color:#8a7f69;text-align:center;padding:6px 0 2px;font-style:italic}
+.stamps{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:12px 8px}
+.stamp{--ink:#b3263a;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:78px;padding:7px 4px;border:3px solid var(--ink);color:var(--ink);text-align:center;transform:rotate(var(--rot,0deg));opacity:.88;mix-blend-mode:multiply;
+  -webkit-mask-image:radial-gradient(circle,#000 55%,rgba(0,0,0,.55) 56%);-webkit-mask-size:4px 4px;mask-image:radial-gradient(circle,#000 55%,rgba(0,0,0,.55) 56%);mask-size:4px 4px}
+.stamp::before{content:'';position:absolute;inset:3px;border:1px solid var(--ink);pointer-events:none}
 .stamp.round{border-radius:50%;aspect-ratio:1;min-height:0}
-.stamp .sn{font:8px/1.35 var(--px);letter-spacing:.06em;word-break:break-word}
-.stamp .sd{font:15px/1 var(--vt);opacity:.85}
-.stamp .sx{position:absolute;right:-6px;top:-8px;background:var(--ink);color:#14161c;font:13px/1 var(--vt);padding:2px 4px;transform:rotate(calc(var(--rot,0deg) * -1))}
-.stamp.fresh{animation:stampIn .5s cubic-bezier(.2,1.6,.4,1)}
-@keyframes stampIn{0%{transform:scale(2.2) rotate(var(--rot,0deg));opacity:0}100%{transform:scale(1) rotate(var(--rot,0deg));opacity:1}}
+.stamp.round::before{border-radius:50%;border-style:dashed}
+.stamp.oval{border-radius:40% / 50%}
+.stamp.oval::before{border-radius:40% / 50%}
+.stamp .sk{font:6px/1 var(--px);letter-spacing:.2em;opacity:.8}
+.stamp .sn{font:8px/1.3 var(--px);letter-spacing:.05em;word-break:break-word;max-width:100%}
+.stamp .sd{font:15px/1 var(--vt)}
+.stamp .sx{position:absolute;right:-8px;top:-9px;background:var(--ink);color:#efe6cf;font:13px/1 var(--vt);padding:2px 4px;transform:rotate(calc(var(--rot,0deg) * -1))}
+.stamp.fresh{animation:stampIn .55s cubic-bezier(.2,1.6,.4,1)}
+@keyframes stampIn{0%{transform:scale(2.4) rotate(var(--rot,0deg));opacity:0}60%{opacity:.95}100%{transform:scale(1) rotate(var(--rot,0deg));opacity:.88}}
 @media (prefers-reduced-motion:reduce){.stamp.fresh{animation:none}}
-.pempty{font:19px/1.25 var(--vt);color:#9aa3b5;text-align:center;padding:26px 10px 30px;border:2px dashed var(--line)}
+/* newspaper strip under today's stats */
+#npPass{display:flex;align-items:center;gap:12px;width:100%;margin:0 0 10px;padding:8px 10px;background:transparent;border:1px dashed var(--npInk,#1f1b16);color:var(--npInk,#1f1b16);text-align:left;cursor:pointer;box-shadow:none}
+#npPass .mini{position:relative;flex:0 0 auto;width:58px;height:40px}
+#npPass .mini i{position:absolute;width:30px;height:30px;border:2px solid var(--ink);border-radius:50%;opacity:.8;mix-blend-mode:multiply}
+#npPass .mini i.sq{border-radius:2px}
+#npPass .tx{flex:1;min-width:0;font:17px/1.15 var(--vt)}
+#npPass .tx span{display:block;font:7px/1.2 var(--px);letter-spacing:.14em;color:var(--npDim,#5e5546);margin-bottom:3px}
+#npPass .tx b{font-weight:400;color:#a8231a}
+#npPass .go{font:17px/1 var(--vt);color:var(--npDim,#5e5546)}
+#npSave{margin:-2px 0 10px;font:16px/1.25 var(--vt);color:var(--npDim,#5e5546);text-align:center}
+#npSave .linkish{font:inherit;color:var(--npInk,#1f1b16);text-decoration:underline;text-underline-offset:3px;background:none;border:0;box-shadow:none;padding:0;cursor:pointer}
 .brk.stampNew{color:var(--accent)}
 #wardrobe .wsec{font:8px/1 var(--px);letter-spacing:.18em;color:#7d8494;margin:12px 2px 6px}
 #wardrobe .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
@@ -1396,6 +1426,8 @@ body.intro #ausBar{display:none}
     <div id="unlockBox" hidden></div>
     <div id="grid"></div>
     <div id="npStats"></div>
+    <button id="npPass" type="button" hidden></button>
+    <p id="npSave" hidden>Keep your streak and passport on any device. <button class="linkish" id="npSaveBtn" type="button">Sign in with Google</button></p>
     <div id="summary">
       <p id="vsLine" hidden></p>
       <p id="crowdTop" hidden></p>
@@ -1450,7 +1482,7 @@ body.intro #ausBar{display:none}
   <section id="passport" hidden aria-label="Passport">
     <div class="sheetIn">
       <div class="sheetTop"><p class="kicker">Passport</p><button id="passClose" aria-label="Close">×</button></div>
-      <p id="passNote"></p>
+      <div id="passCover"></div>
       <div id="passBody"></div>
     </div>
   </section>
@@ -3661,6 +3693,7 @@ function renderFrontPage(inf,total,max){
   $('npStats').innerHTML = cell('Jaw drop', z==='NOWHERE'?'0 km':km)
     + (reals ? cell('True stories', pinned+' of '+reals) : '')
     + (fakes ? cell('Fakes caught', caught+' of '+fakes) : '');
+  renderNpPass();
 }
 /* on the front page the charts are printed in ink on newsprint: greys flip (dark ground -> paper, light lines -> ink), colours stay, bright ones darken a touch */
 function paperize(cv){
@@ -3936,7 +3969,6 @@ function renderWardrobe(){
 }
 $('mWardrobe').onclick=openWardrobe;
 /* ---------- Passport: a stamp for every country you have pinned a true story inside ---------- */
-const STAMP_INKS=['#d2485a','#4f8fe0','#4fbf6a','#b07ae0','#e0a33a','#3fbcc2'];
 function passport(){ return load('ff_passport')||{}; }
 function passTotal(){ return new Set(COUNTRY_LABELS.map(c=>c[0])).size; }
 function stampPassport(name){            // returns true the first time a country is stamped
@@ -3950,18 +3982,52 @@ function stampPassport(name){            // returns true the first time a countr
 let PASS_FRESH=null;
 function renderPassSub(){ const n=Object.keys(passport()).length; $('passSub').textContent = n ? n+' of '+passTotal()+' countries stamped' : 'stamps for right-country pins'; }
 function stampDate(d){ try{ const [y,m,dd]=d.split('-').map(Number); return new Date(y,m-1,dd).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}); }catch(e){ return d; } }
+const CONTINENTS=[
+  ['North & Central America','Canada|United States|Mexico|Guatemala|Cuba|Honduras|Nicaragua|Costa Rica|Panama'],
+  ['South America','Colombia|Venezuela|Ecuador|Peru|Bolivia|Brazil|Paraguay|Chile|Argentina|Uruguay|Guyana'],
+  ['Europe','Iceland|Ireland|United Kingdom|Portugal|Spain|France|Belgium|Netherlands|Germany|Switzerland|Italy|Austria|Czechia|Poland|Denmark|Norway|Sweden|Finland|Estonia|Latvia|Lithuania|Belarus|Ukraine|Moldova|Romania|Hungary|Slovakia|Slovenia|Croatia|Serbia|Bosnia|Bulgaria|North Macedonia|Albania|Greece|Russia'],
+  ['Africa','Morocco|Algeria|Tunisia|Libya|Egypt|Mauritania|Mali|Niger|Chad|Sudan|Senegal|Guinea|Ivory Coast|Ghana|Nigeria|Cameroon|Ethiopia|Somalia|Kenya|Uganda|Tanzania|DR Congo|Angola|Zambia|Zimbabwe|Mozambique|Namibia|Botswana|South Africa|Madagascar'],
+  ['Asia','Turkey|Georgia|Armenia|Azerbaijan|Kazakhstan|Uzbekistan|Turkmenistan|Kyrgyzstan|Tajikistan|Afghanistan|Iran|Iraq|Syria|Lebanon|Israel|Jordan|Saudi Arabia|Yemen|Oman|UAE|Pakistan|India|Nepal|Bangladesh|Sri Lanka|Myanmar|Thailand|Laos|Cambodia|Vietnam|Malaysia|Singapore|Indonesia|Philippines|China|Mongolia|North Korea|South Korea|Japan|Taiwan'],
+  ['Oceania','Australia|New Zealand|Papua New Guinea'],
+  ['Antarctica','Antarctica']].map(([n,l])=>[n,l.split('|')]);
+const contOf=c=>{ const x=CONTINENTS.find(k=>k[1].includes(c)); return x?x[0]:'Elsewhere'; };
+const PASS_GLOBE='<svg viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges"><g fill="#c9a44c"><rect x="5" y="1" width="6" height="1"/><rect x="3" y="2" width="2" height="1"/><rect x="11" y="2" width="2" height="1"/><rect x="2" y="3" width="1" height="2"/><rect x="13" y="3" width="1" height="2"/><rect x="1" y="5" width="1" height="6"/><rect x="14" y="5" width="1" height="6"/><rect x="2" y="11" width="1" height="2"/><rect x="13" y="11" width="1" height="2"/><rect x="3" y="13" width="2" height="1"/><rect x="11" y="13" width="2" height="1"/><rect x="5" y="14" width="6" height="1"/><rect x="7" y="2" width="2" height="12"/><rect x="2" y="7" width="12" height="2"/><rect x="4" y="4" width="1" height="8"/><rect x="11" y="4" width="1" height="8"/></g><g fill="#0d1426"><rect x="5" y="5" width="2" height="2"/><rect x="9" y="9" width="2" height="2"/></g></svg>';
+function stampHash(str){ let x=0; for(let i=0;i<str.length;i++) x=(x*31+str.charCodeAt(i))>>>0; return x; }
+const STAMP_INKS_PAPER=['#b3263a','#2a5bb8','#2f7d4a','#6b3fa0','#b5651d','#1f6f78'];
+function stampHTML(n,e,fresh){
+  const v=stampHash(n), ink=STAMP_INKS_PAPER[v%STAMP_INKS_PAPER.length], rot=((v>>>3)%13)-6, shape=['','round','oval'][(v>>>7)%3], kick=['ARRIVED','ENTRY','ADMITTED','VISITED'][(v>>>9)%4];
+  return '<div class="stamp '+shape+(fresh?' fresh':'')+'" style="--ink:'+ink+';--rot:'+rot+'deg"><span class="sk">'+kick+'</span><span class="sn">'+n.toUpperCase()+'</span><span class="sd">'+stampDate(e.first)+'</span>'+(e.n>1?'<span class="sx">×'+e.n+'</span>':'')+'</div>';
+}
 function renderPassport(){
-  const p=passport(), names=Object.keys(p).sort((a,b)=>(p[a].first<p[b].first?-1:p[a].first>p[b].first?1:a.localeCompare(b))), tot=passTotal();
-  $('passNote').innerHTML = names.length
-    ? '<b>'+names.length+'</b> of '+tot+' countries stamped. Pin a true story inside the right country to earn its stamp.<div class="pbar"><i style="width:'+Math.max(2,Math.round(100*names.length/tot))+'%"></i></div>'
-    : '';
-  if(!names.length){ $('passBody').innerHTML='<div class="pempty">No stamps yet.<br>Pin a true story inside the right country and its stamp goes here.</div>'; return; }
-  const h=str=>{ let x=0; for(let i=0;i<str.length;i++) x=(x*31+str.charCodeAt(i))>>>0; return x; };
-  $('passBody').innerHTML='<div class="stamps">'+names.map(n=>{
-    const v=h(n), ink=STAMP_INKS[v%STAMP_INKS.length], rot=((v>>3)%15)-7, round=(v>>7)%3===0, e=p[n];
-    return '<div class="stamp'+(round?' round':'')+(n===PASS_FRESH?' fresh':'')+'" style="--ink:'+ink+';--rot:'+rot+'deg"><span class="sn">'+n.toUpperCase()+'</span><span class="sd">'+stampDate(e.first)+'</span>'+(e.n>1?'<span class="sx">×'+e.n+'</span>':'')+'</div>';
-  }).join('')+'</div>';
+  const p=passport(), names=Object.keys(p), tot=passTotal();
+  const conts=new Set(names.map(contOf).filter(c=>c!=='Antarctica'&&c!=='Elsewhere'));
+  const firsts=names.map(n=>p[n].first).sort();
+  $('passCover').innerHTML=PASS_GLOBE
+    + '<div class="pcT">PASSPORT</div><div class="pcS">REPUBLIC OF FAR-FETCHED · NO. FF-'+String(playerId()).replace(/[^a-z0-9]/gi,'').slice(0,6).toUpperCase()+'</div>'
+    + '<div class="pcH"><i>Holder</i> '+playerName().replace(/[<>&]/g,'')+(firsts.length?' <i>· since</i> '+stampDate(firsts[0]):'')+'</div>'
+    + '<div class="pcStats"><div><span>COUNTRIES</span><b>'+names.length+' <small>/ '+tot+'</small></b><div class="pcBar"><i style="width:'+Math.round(100*names.length/tot)+'%"></i></div></div>'
+    + '<div><span>CONTINENTS</span><b>'+conts.size+' <small>/ 6</small></b><div class="pcBar"><i style="width:'+Math.round(100*conts.size/6)+'%"></i></div></div></div>';
+  const order=(a,b)=>p[a].first<p[b].first?-1:p[a].first>p[b].first?1:a.localeCompare(b);
+  const pages=CONTINENTS.map(([cn,list])=>[cn,list,names.filter(n=>contOf(n)===cn).sort(order)])
+    .concat([['Elsewhere',[],names.filter(n=>contOf(n)==='Elsewhere').sort(order)]])
+    .filter(([cn,list,have])=>have.length || (cn!=='Antarctica' && cn!=='Elsewhere'));
+  $('passBody').innerHTML = (names.length?'':'<div class="ppage"><div class="ppNone" style="font-style:normal;color:#5e5546">Pin a true story inside the right country and its stamp goes in here.</div></div>')
+    + pages.map(([cn,list,have])=>'<div class="ppage"><div class="ppHead"><span>'+cn.toUpperCase()+'</span><b>'+have.length+(list.length?' / '+list.length:'')+'</b></div>'
+      + (have.length ? '<div class="stamps">'+have.map(n=>stampHTML(n,p[n],n===PASS_FRESH)).join('')+'</div>' : '<div class="ppNone">No stamps yet</div>')+'</div>').join('');
   PASS_FRESH=null;
+}
+/* on the front page: today's new stamps, and a nudge to save progress for players who are not signed in */
+function renderNpPass(){
+  const p=passport(), names=Object.keys(p), ed=dayKey(), today=names.filter(n=>p[n].first===ed);
+  const el=$('npPass');
+  if(!names.length){ el.hidden=true; }
+  else {
+    const show=(today.length?today:names.slice(-3)).slice(-3);
+    el.innerHTML='<span class="mini">'+show.map((n,i)=>{ const v=stampHash(n); return '<i class="'+((v>>>7)%3===0?'sq':'')+'" style="--ink:'+STAMP_INKS_PAPER[v%STAMP_INKS_PAPER.length]+';left:'+(i*13)+'px;top:'+[6,0,8][i]+'px;transform:rotate('+(((v>>>3)%13)-6)+'deg)"></i>'; }).join('')+'</span>'
+      + '<span class="tx"><span>PASSPORT</span>'+(today.length ? '<b>'+today.length+' new stamp'+(today.length>1?'s':'')+'</b> · '+today.join(', ') : names.length+' countr'+(names.length>1?'ies':'y')+' stamped')+'</span><span class="go">Open ›</span>';
+    el.hidden=false;
+  }
+  $('npSave').hidden = !!(window.Cloud && Cloud.user()) || (!names.length && Object.keys(load('ff_hist')||{}).length<2);
 }
 function openPassport(){
   Sound.play('menu'); closeMenu();
@@ -3970,6 +4036,8 @@ function openPassport(){
 }
 function closePassport(){ $('passport').hidden=true; if($('menu').hidden && $('sheet').hidden && $('wardrobe').hidden) document.body.classList.remove('hideq'); }
 $('mPassport').onclick=openPassport;
+$('npPass').onclick=openPassport;
+$('npSaveBtn').onclick=()=>{ if(window.Cloud) Cloud.signIn(); };
 $('passClose').onclick=closePassport;
 $('passport').addEventListener('click',e=>{ if(e.target===$('passport')) closePassport(); });
 renderPassSub();
@@ -4295,7 +4363,7 @@ const Cloud=(function(){
     if(changed && (!S || S.phase==='ready' || !$('final').hidden)){ try{ if(!sessionStorage.getItem('ff_cloud_reload')){ sessionStorage.setItem('ff_cloud_reload','1'); location.reload(); } }catch(e){} }
   }
   function setUser(u){
-    const was=user&&user.id; user=u||null; armOut=0; render();
+    const was=user&&user.id; user=u||null; armOut=0; render(); try{ renderNpPass(); }catch(e){}
     if(user && was!==user.id){ ready=true; pull(); }
   }
   async function signIn(){
@@ -4323,8 +4391,9 @@ const Cloud=(function(){
     clearTimeout(armOut); armOut=0; signOut();
   };
   render(); boot();
-  return {user:()=>user, push, mergeKey};
+  return {user:()=>user, push, mergeKey, signIn};
 })();
+window.Cloud=Cloud;
 async function sbRpc(fn,body){
   if(!sbOn()) return null;
   try{ const r=await fetch(SUPABASE_URL+'/rest/v1/rpc/'+fn,{method:'POST',headers:sbHeaders(),body:JSON.stringify(body)}); if(!r.ok) return null;
