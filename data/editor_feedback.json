@@ -201,6 +201,12 @@
    "before": "'Grandad' and sacred Aboriginal sites = Australia",
    "after": "Home of 42 Wallaby Way from Finding Nemo",
    "why": "the old clue named the country; the owner wanted something less obvious than the Opera House"
+  },
+  {
+   "kind": "clue",
+   "before": "edited the clue field",
+   "after": "edited the hint field",
+   "why": "the game shows story.hint after the call; clue is only the builder's note, so clue edits never reach players. Always change hint."
   }
  ]
 }
