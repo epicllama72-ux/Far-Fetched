@@ -1553,6 +1553,38 @@ body.intro #ausBar{display:none}
 #callBtns #btnReal:focus-visible,#callBtns #btnFake:focus-visible{outline:3px solid #ffcc4d;outline-offset:-9px}
 #callBtns button:disabled{background-color:#4a4e58;color:#aab0bd}
 @media (prefers-reduced-motion:reduce){ #callBtns #btnReal:active,#callBtns #btnFake:active{animation:none} }
+/* ---------- The headline box: a newspaper clipping, with the result on a slip stapled under it ---------- */
+#card{position:relative;background:#f7f3e8;background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(60,45,20,.03) 0 1px,transparent 1px 4px);
+  color:#1b1813;border:1px solid #1b1813;clip-path:none;padding:0 13px 10px;rotate:-.6deg;filter:drop-shadow(4px 5px 0 rgba(0,0,0,.5))}
+#card.flash{border-color:#a8231a}
+#card .kicker{display:block;margin:0 -13px 8px;padding:6px 12px 5px;background:#1b1813;color:#f7f3e8;font:8px/1.3 var(--px);letter-spacing:.14em}
+#card .kicker.bad{color:#ff8a7a}
+#card #headline{color:#1b1813;font-size:26px;line-height:1.08}
+#card .reveal{color:#a8231a;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+#card .clue{color:#5a5043}
+#card .fakeplace{color:#5a5043}
+#card .redact{background:#1b1813;box-shadow:none}
+#card .storyLink{color:#1f4f86;font-size:17px}
+#card #speed .trk{height:8px;background:transparent;box-shadow:0 0 0 2px #1b1813}
+#card #speed i{background:repeating-linear-gradient(90deg,#1b1813 0 6px,transparent 6px 8px)}
+#card #speed span{color:#a8231a;font:9px/1 var(--px)}
+#card #speed.pin i{background:repeating-linear-gradient(90deg,#b8860b 0 6px,transparent 6px 8px)}
+#card #speed.low i{background:repeating-linear-gradient(90deg,#a8231a 0 6px,transparent 6px 8px)}
+#card[data-truth]::after{content:attr(data-truth);position:absolute;right:10px;top:-10px;rotate:-9deg;border:2px solid #2f6b2f;color:#2f6b2f;background:#f7f3e8;font:9px/1 var(--px);letter-spacing:.12em;padding:5px 7px 4px;box-shadow:2px 2px 0 rgba(0,0,0,.35);text-transform:uppercase}
+#card[data-truth="fake"]::after{border-color:#a8231a;color:#a8231a}
+#feedback{position:relative;margin:-3px 16px 12px;background:#fff;color:#1b1813;background-image:none;border:1px solid #1b1813;border-top:2px dashed #1b1813;padding:7px 11px 8px;rotate:.8deg;filter:drop-shadow(3px 4px 0 rgba(0,0,0,.45));font:18px/1.12 var(--vt)}
+#feedback::before{content:'';position:absolute;left:24px;top:-9px;width:22px;height:5px;border:2px solid #8a8f99;border-bottom:0}
+#feedback b{color:#2f6b2f}
+#feedback a{color:#1f4f86}
+#feedback small,#feedback .brk i,#feedback .brk.dim{color:#5a5043}
+#feedback .why{color:#1b1813;border:2px solid #1b1813;font:7px/1 var(--px);letter-spacing:.1em;padding:4px 5px 3px;text-transform:uppercase}
+#feedback .more{border-top:1px dotted rgba(27,24,19,.5);margin-top:6px;padding-top:5px;font-size:16px}
+#feedback .brk.stampNew{color:#a8231a}
+@media not all and (min-width:1100px) and (min-height:600px){
+  body.answered #card{padding:0 10px 7px} body.answered #card .kicker{margin:0 -10px 5px}
+  body.answered #feedback{margin-top:-3px;border-top:2px dashed #1b1813;padding:5px 10px 6px}
+}
+@media (min-width:1100px) and (min-height:600px){ .rcol #card{padding:0 18px 14px} .rcol #card .kicker{margin:0 -18px 10px;padding:7px 18px 6px} .rcol #feedback{margin:-3px 18px 14px} }
 </style>
 </head>
 <body>
@@ -3426,7 +3458,7 @@ function startGame(mode, kind){
     const hh=(load('ff_hist')||{})[dayKey()+':'+KIND];
     if(hh){
       Scene.setPaper(false,true); $('card').hidden=false; $('speed').hidden=true; $('feedback').hidden=true; $('mapWrap').hidden=true; $('blankUI').hidden=true;
-      $('kicker').textContent='Already played today'; $('kicker').classList.remove('bad');
+      delete $('card').dataset.truth; $('kicker').textContent='Already played today'; $('kicker').classList.remove('bad');
       $('headline').innerHTML='You finished today\'s '+modeName(KIND)+': <span class="clue">'+fmtM(hh.m)+' · '+fmtPts(hh.score)+'</span>. The next paper arrives at midnight. Practice has plenty more.';
       $('storyLink').hidden=true; setBar('none'); renderDots(); aim();
       return;
@@ -3578,6 +3610,7 @@ function showRound(shown,quiet,gate){
   $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone');
   $('blankUI').hidden=true; $('card').hidden=false; $('storyLink').hidden=true; hideHint();
   const st = S.rounds[S.i];
+  delete $('card').dataset.truth;   // the REAL / FAKE stamp goes on once the headline is answered
   $('kicker').textContent = 'Real or fake?'+(S.kind==='pol'?' · Politics':'')+(S.mode==='practice'?' · practice':'');
   $('kicker').classList.remove('bad');
   if(gate){
@@ -3631,6 +3664,7 @@ function revealCall(st){
   if(st.real){
     Scene.gasp();
     if(c.callOk){ Sound.play('real'); Sound.play('jawDown'); } else Sound.play('twist');
+    $('card').dataset.truth='real';
     $('kicker').textContent = c.callOk ? 'Real ✓ +'+c.callPts+' · where did it happen?' : 'Plot twist: it\'s real · pin it for 75% credit';
     fb.hidden=true;
     $('headline').innerHTML = headlineHTML(st,false,true);       // the clue joins the headline now that the call is made
@@ -3640,6 +3674,7 @@ function revealCall(st){
     fb.hidden=false;
     if(c.callOk){ Sound.play('catchFake'); Sound.play('jawDown'); Scene.gasp(); } else { Sound.play('fooled'); if(jawPoints()>0||S.results.some(x=>x.real)) Sound.play('jawUp'); }
     const tell = st.tell ? '<button class="why" type="button" aria-expanded="false">why?</button><small class="more">Why it smelled fake: '+st.tell+'</small>' : '';
+    $('card').dataset.truth='fake';
     $('kicker').textContent = (c.callOk ? 'Fake ✓ caught +'+FAKE_PTS : 'Fooled ✗ −'+Math.abs(FOOLED_PTS))+(S.kind==='pol'?' · Politics':'');
     $('kicker').classList.toggle('bad',!c.callOk);
     if(c.callOk) fb.innerHTML='<span class="sum"><b>Caught it!</b> Made up · <b>+'+FAKE_PTS+'</b></span>'+tell;
@@ -5147,6 +5182,7 @@ function showBlankRound(live){
   $('card').hidden=false; $('speed').hidden=true;
   $('feedback').hidden=true; $('mapWrap').hidden=true;
   $('blankUI').hidden=false; $('blankLive').hidden=true;
+  delete $('card').dataset.truth;
   $('kicker').textContent='Fill the blank'+(S.mode==='practice'?' · practice':''); $('kicker').classList.remove('bad');
   $('headline').innerHTML='<span class="fakeplace">'+(S.results.length ? 'Ready for the next one? One word is hidden. 30 seconds.' : 'One word is hidden. You get 30 seconds and as many guesses as you like. The exact word scores most.')+'</span>';
   setBar('start');
