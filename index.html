@@ -806,31 +806,38 @@ body.np #logList li i{border-color:var(--newsink);box-shadow:none}
   body.np .lcol .mid #roundLbl{box-shadow:none;background:none;padding:0} body.np #log{border:0;clip-path:none} body.np #log .lbl{margin:-10px -14px 8px} }
 
 
-/* ===== DRAFT: full-screen, see-through menu with square tiles (body.mgrid; try it with ?menu=grid) ===== */
+/* ===== DRAFT: full-screen, see-through menu with square tiles, as newspaper clippings (body.mgrid; try it with ?menu=grid) ===== */
+body.mgrid{--paper:#ece4cf;--newsink:#1f1b16;--inkdim:#5c5345;--stamp:#a8231a;
+  --grain:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(60,45,20,.03) 0 1px,transparent 1px 4px)}
 body.mgrid #menu{inset:0!important;top:0!important;left:0!important;width:auto;max-height:none;height:100%;border:0;box-shadow:none;
-  background:rgba(9,11,16,.72);background-image:none;-webkit-backdrop-filter:blur(5px) saturate(.8);backdrop-filter:blur(5px) saturate(.8);
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(160px,calc(50% - 6px)),1fr));grid-auto-rows:auto;align-content:start;gap:12px;
-  padding:calc(58px + env(safe-area-inset-top,0px)) max(16px,calc((100vw - 760px)/2)) 40px;z-index:25}
+  background:rgba(18,15,11,.74);background-image:none;-webkit-backdrop-filter:blur(5px) sepia(.35);backdrop-filter:blur(5px) sepia(.35);
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(160px,calc(50% - 6px)),1fr));grid-auto-rows:auto;align-content:start;gap:14px 12px;
+  padding:calc(58px + env(safe-area-inset-top,0px)) max(16px,calc((100vw - 760px)/2)) 40px;z-index:25;color:var(--paper)}
 body.mgrid #menu>.mlbl,body.mgrid #menu>.how,body.mgrid #menu>.npMast,body.mgrid #practiceList,body.mgrid #backList{grid-column:1/-1}
-body.mgrid #menu .mlbl{font:9px/1 var(--px);letter-spacing:.22em;color:var(--accent);margin:10px 2px 0;text-shadow:0 2px 0 #000}
-body.mgrid #menu>button,body.mgrid #menu>a.mlink{height:auto;justify-content:flex-end;align-items:flex-start;white-space:normal;
-  min-height:min(176px,44vw);padding:40px 12px 12px;gap:6px;font:25px/1 var(--vt);background:rgba(20,24,33,.68);box-shadow:0 0 0 2px var(--line),4px 4px 0 2px rgba(0,0,0,.55);position:relative}
-body.mgrid #menu>button::before,body.mgrid #menu>a.mlink::before{content:'';position:absolute;left:12px;top:12px;width:22px;height:6px;background:var(--accent);box-shadow:0 0 0 2px var(--ink)}
-body.mgrid #menu>button small,body.mgrid #menu>a.mlink small{font-size:16px;line-height:1.05;white-space:normal}
-body.mgrid #menu>button:hover,body.mgrid #menu>a.mlink:hover{background:rgba(32,38,52,.9)}
-body.mgrid #menu>button.on{background:var(--accent);color:#2b2000}
-body.mgrid #menu>button.on::before{background:#2b2000}
-body.mgrid #menu>button.soon{opacity:.5}
-body.mgrid #menu .how{font:19px/1.2 var(--vt);color:#c3cad8;margin:0 2px;max-width:60ch;text-shadow:0 2px 0 #000}
+/* masthead */
+body.mgrid #menu .npMast{display:block!important;text-align:center;margin:0 0 4px;padding:12px 12px 8px;background:var(--paper);background-image:var(--grain);color:var(--newsink);box-shadow:0 0 0 2px var(--newsink),5px 5px 0 2px rgba(0,0,0,.5)}
+body.mgrid #menu .npMast b{display:block;font:clamp(18px,5.4vw,30px)/1.2 var(--px);letter-spacing:.02em;color:var(--newsink)}
+body.mgrid #menu .npMast i{display:flex;justify-content:space-between;gap:6px;font:18px/1 var(--vt);font-style:normal;color:var(--inkdim);border-top:3px double var(--newsink);border-bottom:1px solid var(--newsink);padding:5px 2px 3px;margin-top:8px;white-space:nowrap}
+/* section heads between double rules */
+body.mgrid #menu .mlbl{font:9px/1 var(--px);letter-spacing:.24em;color:var(--paper);margin:10px 0 0;display:flex;align-items:center;gap:10px;text-shadow:0 2px 0 #000}
+body.mgrid #menu .mlbl::before,body.mgrid #menu .mlbl::after{content:'';flex:1;height:3px;border-top:1px solid rgba(236,228,207,.7);border-bottom:1px solid rgba(236,228,207,.7)}
+/* the tiles: clippings with a section strip, a headline, a standfirst and column lines */
+body.mgrid #menu>button,body.mgrid #menu>a.mlink{height:auto;min-height:min(176px,44vw);justify-content:flex-start;align-items:stretch;text-align:left;white-space:normal;
+  padding:0 12px 12px;gap:5px;font:25px/1 var(--vt);color:var(--newsink);background:rgba(236,228,207,.93);background-image:var(--grain);border:0;
+  box-shadow:0 0 0 2px var(--newsink),4px 4px 0 2px rgba(0,0,0,.5);position:relative}
+body.mgrid #menu>button::before,body.mgrid #menu>a.mlink::before{content:attr(data-kick);display:block;margin:0 -12px 6px;padding:6px 12px 5px;background:var(--newsink);color:var(--paper);font:8px/1 var(--px);letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.mgrid #menu>button::after,body.mgrid #menu>a.mlink::after{content:'';flex:1;min-height:16px;margin-top:6px;border-top:1px solid var(--newsink);
+  background:repeating-linear-gradient(180deg,transparent 0 5px,rgba(31,27,22,.22) 5px 7px),linear-gradient(90deg,transparent calc(50% - 3px),var(--paper) calc(50% - 3px) calc(50% + 3px),transparent calc(50% + 3px));background-blend-mode:normal}
+body.mgrid #menu>button small,body.mgrid #menu>a.mlink small{font-size:17px;line-height:1.05;white-space:normal;color:var(--inkdim);opacity:1}
+body.mgrid #menu>button:hover,body.mgrid #menu>a.mlink:hover{background-color:#f4eedc}
+body.mgrid #menu>button.on{box-shadow:0 0 0 3px var(--stamp),4px 4px 0 3px rgba(0,0,0,.5)}
+body.mgrid #menu>button.on::before{background:var(--stamp)}
+body.mgrid #menu>button.soon{opacity:.55}
+body.mgrid #mAmbState{color:var(--stamp)!important}
+body.mgrid #menu .how{font:19px/1.2 var(--vt);color:var(--paper);margin:0 2px;max-width:60ch;text-shadow:0 2px 0 #000}
+body.mgrid #menu .how b{color:#fff}
 body.mgrid #practiceList,body.mgrid #backList{flex-direction:row;flex-wrap:wrap;max-height:none;padding:0}
-body.mgrid #practiceList button,body.mgrid #backList button{width:auto!important;flex:1 1 140px}
-/* newspaper look on top of the grid */
-body.mgrid.np #menu{background:rgba(236,228,207,.86);color:var(--newsink)}
-body.mgrid.np #menu>button,body.mgrid.np #menu>a.mlink{background:rgba(236,228,207,.95);background-image:var(--grain);box-shadow:0 0 0 2px var(--newsink),4px 4px 0 2px rgba(31,27,22,.35);border:0}
-body.mgrid.np #menu>button::before,body.mgrid.np #menu>a.mlink::before{background:var(--newsink);box-shadow:none}
-body.mgrid.np #menu>button.on{background:var(--newsink);color:var(--paper)} body.mgrid.np #menu>button.on::before{background:var(--paper)}
-body.mgrid.np #menu .mlbl{color:var(--newsink);text-shadow:none}
-body.mgrid.np #menu .how{color:var(--inkdim);text-shadow:none}
+body.mgrid #practiceList button,body.mgrid #backList button{width:auto!important;flex:1 1 140px;background:var(--paper);color:var(--newsink);box-shadow:0 0 0 2px var(--newsink)}
 
 /* HUD */
 .topline{position:relative;display:flex;align-items:center;gap:10px;margin:0 0 8px;font:10px/1 var(--px);letter-spacing:.14em;color:var(--dim);text-shadow:0 2px 0 #000}
@@ -1413,31 +1420,31 @@ body.intro #ausBar{display:none}
     <div id="menu" hidden>
       <p class="npMast" hidden><b>The Daily Odd</b><i><span id="npMastDate"></span><span>Price: free</span></i></p>
       <p class="mlbl">GAME</p>
-      <button id="mCall">Daily Dig <small>real or fake? 5 true, 2 fake</small></button>
-      <button id="mBlank">Fill the Blank <small>20 s each</small></button>
-      <button id="mPol" class="soon" disabled aria-disabled="true">Politics <small>coming soon</small></button>
-      <button id="mPractice">Practice set <small>doesn't count · pick a mode</small></button>
+      <button id="mCall" data-kick="Today's paper">Daily Dig <small>real or fake? 5 true, 2 fake</small></button>
+      <button id="mBlank" data-kick="Puzzles">Fill the Blank <small>20 s each</small></button>
+      <button id="mPol" data-kick="Politics" class="soon" disabled aria-disabled="true">Politics <small>coming soon</small></button>
+      <button id="mPractice" data-kick="Training">Practice set <small>doesn't count · pick a mode</small></button>
       <div id="practiceList" hidden>
         <button data-k="call">Daily Dig</button>
         <button data-k="blank">Fill the Blank</button>
         <button data-k="pol" class="soon" disabled aria-disabled="true">Politics <small>coming soon</small></button>
       </div>
-      <button id="mBoard">Leaderboard <small>today's deepest digs</small></button>
-      <button id="mWardrobe">Wardrobe <small id="wardSub">dress the digger</small></button>
-      <button id="mPassport">Passport <small id="passSub">stamps for right-country pins</small></button>
-      <button id="mBack" hidden>Back issues <small>earlier papers · no streak</small></button>
+      <button id="mBoard" data-kick="Standings">Leaderboard <small>today's deepest digs</small></button>
+      <button id="mWardrobe" data-kick="Fashion">Wardrobe <small id="wardSub">dress the digger</small></button>
+      <button id="mPassport" data-kick="Travel">Passport <small id="passSub">stamps for right-country pins</small></button>
+      <button id="mBack" data-kick="Archive" hidden>Back issues <small>earlier papers · no streak</small></button>
       <div id="backList" hidden></div>
       <p class="mlbl">ACCOUNT</p>
-      <button id="mAcct"><span id="acctMain">Sign in with Google</span> <small id="acctSub">save your streak, passport and wardrobe</small></button>
+      <button id="mAcct" data-kick="Your account"><span id="acctMain">Sign in with Google</span> <small id="acctSub">save your streak, passport and wardrobe</small></button>
       <p class="mlbl">SOUND</p>
-      <button id="mAmb">Background newsroom <small id="mAmbState">On</small></button>
+      <button id="mAmb" data-kick="Sound">Background newsroom <small id="mAmbState">On</small></button>
       <p class="mlbl">YOUR RECORD</p>
       <p class="how" id="menuStats"></p>
       <p class="mlbl">HOW TO SCORE</p>
       <p class="how" id="howText"></p>
-      <button id="mAbout">About Far-Fetched</button>
-      <a id="mContact" class="mlink" href="mailto:playfarfetched@gmail.com">Contact <small>playfarfetched@gmail.com</small></a>
-      <a id="mPrivacy" class="mlink" href="privacy.html">Privacy policy <small>what we keep and why</small></a>
+      <button id="mAbout" data-kick="About us">About Far-Fetched</button>
+      <a id="mContact" data-kick="Letters" class="mlink" href="mailto:playfarfetched@gmail.com">Contact <small>playfarfetched@gmail.com</small></a>
+      <a id="mPrivacy" data-kick="Notices" class="mlink" href="privacy.html">Privacy policy <small>what we keep and why</small></a>
     </div>
   </div>
   <div class="lcol">
@@ -1675,7 +1682,7 @@ async function loadDaily(){
 const RARITY=[[100,'GLOBALIST','#ffd23f','Were you there? Be honest.','globe','gl','🟨'],[400,'STATESMAN','#b56bff','A short trip from correct.','capitol','st','🟪'],[1500,'PUNDIT','#ff4d5e','You\'d do great on cable news.','tv','pu','🟥'],[5000,'SKIMMER','#4da6ff','You read the headline. Mostly.','news','sk','🟦'],[Infinity,'ROCK-DWELLER','#ffffff','Come out from under there. It\'s a big world.','rock','rk','⬜']];   // pin distance in km -> name, colour and quip
 /* DRAFT newspaper look: ?paper=1 turns it on (remembered on this device), ?paper=0 turns it off */
 (function(){ try{ const g=new URLSearchParams(location.search).get('menu'); if(g==='grid') localStorage.setItem('ff_mgrid','1'); if(g==='list') localStorage.removeItem('ff_mgrid');
-  if(localStorage.getItem('ff_mgrid')) document.body.classList.add('mgrid'); }catch(e){} })();
+  if(localStorage.getItem('ff_mgrid')){ document.body.classList.add('mgrid'); const d=document.getElementById('npMastDate'); if(d) d.textContent=new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'}); } }catch(e){} })();
 (function(){ try{ const q=new URLSearchParams(location.search).get('paper'); if(q==='1') localStorage.setItem('ff_paper','1'); if(q==='0') localStorage.removeItem('ff_paper');
   if(localStorage.getItem('ff_paper')){ document.body.classList.add('np'); const m=document.querySelector('#menu .npMast'); if(m) m.hidden=false;
     const d=document.getElementById('npMastDate'); if(d) d.textContent=new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'}); } }catch(e){} })();
