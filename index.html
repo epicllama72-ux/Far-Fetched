@@ -3873,7 +3873,7 @@ function submitGuess(timedOut){
   const cPts = cOk ? Math.round(PK*COUNTRY_PTS*(S.cur.callOk?1:0.75)) : 0;   // a flat bonus for the right country (75% credit after a wrong call, like the pin)
   pts += cPts; S.cur.countryPts = cPts;
   const cName = cOk ? (countryName(cTrue) || String(st.place||'').split(',').pop().trim()) : '';
-  const newStamp = cOk ? stampPassport(cName, {d:(S.mode==='back'&&S.backDate)||dayKey(), h:String(st.h||'').replace('{}',st.place||'').slice(0,160), pl:String(st.place||'').slice(0,60), src:st.src||'', p:S.mode==='practice'?1:0}) : false;   // the passport collects every country pinned right
+  const newStamp = cOk && S.mode==='daily' && S.kind==='call' ? stampPassport(cName, {d:dayKey(), h:String(st.h||'').replace('{}',st.place||'').slice(0,160), pl:String(st.place||'').slice(0,60), src:st.src||''}) : false;   // only today's Daily Dig earns stamps (not practice or back issues)   // the passport collects every country pinned right
   if(newStamp) setTimeout(()=>Sound.play('unlock'),350);
   S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
   S.cur.pin = guessLL ? [Math.round(guessLL.lat*100)/100, Math.round((((guessLL.lng+540)%360)-180)*100)/100] : null;   // saved with the answers so other players can see where people pinned
@@ -4379,7 +4379,7 @@ function renderPassport(){
   const pages=CONTINENTS.map(([cn,list])=>[cn,list,names.filter(n=>contOf(n)===cn).sort(order)])
     .concat([['Elsewhere',[],names.filter(n=>contOf(n)==='Elsewhere').sort(order)]])
     .filter(([cn,list,have])=>have.length || (cn!=='Antarctica' && cn!=='Elsewhere'));
-  $('passBody').innerHTML = (names.length?'':'<div class="ppage"><div class="ppNone" style="font-style:normal;color:#5e5546">Pin a true story inside the right country and its stamp goes in here.</div></div>')
+  $('passBody').innerHTML = (names.length?'':'<div class="ppage"><div class="ppNone" style="font-style:normal;color:#5e5546">Pin a true story inside the right country in the Daily Dig and its stamp goes in here.</div></div>')
     + pages.map(([cn,list,have])=>'<div class="ppage"><div class="ppHead"><span>'+cn.toUpperCase()+'</span><b>'+have.length+(list.length?' / '+list.length:'')+'</b></div>'
       + (have.length ? '<div class="stamps">'+have.map(n=>stampHTML(n,p[n],n===PASS_FRESH)).join('')+'</div><div class="pStories" hidden></div>' : '<div class="ppNone">No stamps yet</div>')+'</div>').join('');
   PASS_FRESH=null;
