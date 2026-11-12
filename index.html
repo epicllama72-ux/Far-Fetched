@@ -1624,6 +1624,23 @@ body.pinning #card #headline{font-size:23px}
 .nextBtn:hover{background-color:#fff}
 .nextBtn:active{translate:3px 3px;box-shadow:1px 1px 0 #000;transform:none}
 @media (min-width:1100px) and (min-height:600px){ #btnNext2.nextBtn,#btnNext.nextBtn{font-size:14px;padding:16px 12px} }
+/* passport: tap a stamp to read the stories behind it */
+.stamps .stamp{cursor:pointer;font:inherit;background:transparent;appearance:none;-webkit-appearance:none}
+.stamps .stamp:hover{filter:brightness(1.1) saturate(1.2)}
+.stamps .stamp.sel{outline:2px dashed #3b3427;outline-offset:4px}
+.stamps .stamp:focus-visible{outline:2px solid #3b3427;outline-offset:4px}
+.pStories{position:relative;margin:14px 2px 0;padding:10px 12px 12px;background:#f8f2e2;border:1px solid rgba(90,70,40,.45);box-shadow:2px 3px 0 rgba(90,70,40,.25);color:#3b3427}
+.pStories::before{content:'';position:absolute;left:50%;top:-8px;width:46px;height:14px;translate:-50% 0;rotate:-3deg;background:rgba(234,212,150,.8);border:1px solid rgba(138,110,50,.35)}
+.psHead{display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-bottom:1px dashed rgba(90,70,40,.45);padding-bottom:6px;margin-bottom:6px}
+.psHead b{font:9px/1 var(--px);letter-spacing:.14em;font-weight:400}
+.psHead span{font:16px/1 var(--vt);color:#5e5546}
+.pStories ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.pStories li{display:flex;flex-direction:column;gap:2px;padding-bottom:7px;border-bottom:1px dotted rgba(90,70,40,.35)}
+.pStories li:last-child{border-bottom:0;padding-bottom:0}
+.psD{font:8px/1 var(--px);letter-spacing:.1em;color:#a8231a;text-transform:uppercase}
+.psH{font:19px/1.05 var(--vt)}
+.pStories a{align-self:flex-end;font:16px/1 var(--vt);color:#1f4f86;text-decoration:underline}
+.psNone{margin:4px 0 0;font:17px/1.15 var(--vt);color:#8a7f69;font-style:italic}
 </style>
 </head>
 <body>
@@ -3856,7 +3873,7 @@ function submitGuess(timedOut){
   const cPts = cOk ? Math.round(PK*COUNTRY_PTS*(S.cur.callOk?1:0.75)) : 0;   // a flat bonus for the right country (75% credit after a wrong call, like the pin)
   pts += cPts; S.cur.countryPts = cPts;
   const cName = cOk ? (countryName(cTrue) || String(st.place||'').split(',').pop().trim()) : '';
-  const newStamp = cOk ? stampPassport(cName) : false;   // the passport collects every country pinned right
+  const newStamp = cOk ? stampPassport(cName, {d:(S.mode==='back'&&S.backDate)||dayKey(), h:String(st.h||'').replace('{}',st.place||'').slice(0,160), pl:String(st.place||'').slice(0,60), src:st.src||'', p:S.mode==='practice'?1:0}) : false;   // the passport collects every country pinned right
   if(newStamp) setTimeout(()=>Sound.play('unlock'),350);
   S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
   S.cur.pin = guessLL ? [Math.round(guessLL.lat*100)/100, Math.round((((guessLL.lng+540)%360)-180)*100)/100] : null;   // saved with the answers so other players can see where people pinned
@@ -4320,10 +4337,12 @@ $('mWardrobe').onclick=openWardrobe;
 /* ---------- Passport: a stamp for every country you have pinned a true story inside ---------- */
 function passport(){ return load('ff_passport')||{}; }
 function passTotal(){ return new Set(COUNTRY_LABELS.map(c=>c[0])).size; }
-function stampPassport(name){            // returns true the first time a country is stamped
+function stampPassport(name,story){      // returns true the first time a country is stamped; keeps a short note of the story that earned it
   if(!name) return false;
   const p=passport(), ed=dayKey(), had=!!p[name];
-  p[name]=had ? {n:(p[name].n||1)+1, first:p[name].first, last:ed} : {n:1, first:ed, last:ed};
+  const prev=had ? (p[name].s||[]) : [];
+  p[name]=had ? {n:(p[name].n||1)+1, first:p[name].first, last:ed, s:prev} : {n:1, first:ed, last:ed, s:prev};
+  if(story && story.h && !prev.some(x=>x.h===story.h)) p[name].s=prev.concat([story]).slice(-40);   // the stories pinned in this country, newest last
   store('ff_passport',p); renderPassSub();
   if(!had){ PASS_FRESH=name; }
   return !had;
@@ -4345,7 +4364,7 @@ function stampHash(str){ let x=0; for(let i=0;i<str.length;i++) x=(x*31+str.char
 const STAMP_INKS_PAPER=['#b3263a','#2a5bb8','#2f7d4a','#6b3fa0','#b5651d','#1f6f78'];
 function stampHTML(n,e,fresh){
   const v=stampHash(n), ink=STAMP_INKS_PAPER[v%STAMP_INKS_PAPER.length], rot=((v>>>3)%13)-6, shape=['','round','oval'][(v>>>7)%3], kick=['ARRIVED','ENTRY','ADMITTED','VISITED'][(v>>>9)%4];
-  return '<div class="stamp '+shape+(fresh?' fresh':'')+'" style="--ink:'+ink+';--rot:'+rot+'deg"><span class="sk">'+kick+'</span><span class="sn">'+n.toUpperCase()+'</span><span class="sd">'+stampDate(e.first)+'</span>'+(e.n>1?'<span class="sx">×'+e.n+'</span>':'')+'</div>';
+  return '<button type="button" class="stamp '+shape+(fresh?' fresh':'')+'" data-c="'+escH(n)+'" aria-label="Stories in '+escH(n)+'" style="--ink:'+ink+';--rot:'+rot+'deg"><span class="sk">'+kick+'</span><span class="sn">'+n.toUpperCase()+'</span><span class="sd">'+stampDate(e.first)+'</span>'+(e.n>1?'<span class="sx">×'+e.n+'</span>':'')+'</button>';
 }
 function renderPassport(){
   const p=passport(), names=Object.keys(p), tot=passTotal();
@@ -4362,8 +4381,23 @@ function renderPassport(){
     .filter(([cn,list,have])=>have.length || (cn!=='Antarctica' && cn!=='Elsewhere'));
   $('passBody').innerHTML = (names.length?'':'<div class="ppage"><div class="ppNone" style="font-style:normal;color:#5e5546">Pin a true story inside the right country and its stamp goes in here.</div></div>')
     + pages.map(([cn,list,have])=>'<div class="ppage"><div class="ppHead"><span>'+cn.toUpperCase()+'</span><b>'+have.length+(list.length?' / '+list.length:'')+'</b></div>'
-      + (have.length ? '<div class="stamps">'+have.map(n=>stampHTML(n,p[n],n===PASS_FRESH)).join('')+'</div>' : '<div class="ppNone">No stamps yet</div>')+'</div>').join('');
+      + (have.length ? '<div class="stamps">'+have.map(n=>stampHTML(n,p[n],n===PASS_FRESH)).join('')+'</div><div class="pStories" hidden></div>' : '<div class="ppNone">No stamps yet</div>')+'</div>').join('');
   PASS_FRESH=null;
+  $('passBody').querySelectorAll('.stamp[data-c]').forEach(b=>b.onclick=()=>showPassStories(b));
+}
+/* the stories behind a stamp, written under its page like visa notes */
+function showPassStories(b){
+  const page=b.closest('.ppage'), box=page.querySelector('.pStories'), c=b.dataset.c, open=b.classList.contains('sel');
+  $('passBody').querySelectorAll('.stamp.sel').forEach(x=>x.classList.remove('sel')); $('passBody').querySelectorAll('.pStories').forEach(x=>x.hidden=true);
+  Sound.play('menu');
+  if(open) return;
+  const e=passport()[c]||{}, list=(e.s||[]).slice().reverse();
+  b.classList.add('sel');
+  box.innerHTML='<div class="psHead"><b>'+escH(c.toUpperCase())+'</b><span>'+(e.n||1)+' right-country pin'+((e.n||1)>1?'s':'')+'</span></div>'
+    + (list.length ? '<ol>'+list.map(x=>'<li><span class="psD">'+stampDate(x.d)+(x.p?' · practice':'')+'</span><span class="psH">'+escH(x.h)+'</span>'+(x.src?'<a href="'+escH(x.src)+'" target="_blank" rel="noopener">read the story ↗</a>':'')+'</li>').join('')+'</ol>'
+      : '<p class="psNone">Stamped before the passport kept stories. Your next pin here will show up.</p>')
+    + ((e.n||0)>list.length && list.length ? '<p class="psNone">Earlier pins here were stamped before the passport kept stories.</p>' : '');
+  box.hidden=false; box.scrollIntoView({block:'nearest',behavior:'smooth'});
 }
 /* on the front page: today's new stamps, and a nudge to save progress for players who are not signed in */
 function renderNpPass(){
@@ -4671,7 +4705,9 @@ const Cloud=(function(){
     if(k==='ff_pid') return b;                       // the account's player id wins, so the leaderboard knows you on every device
     if(k==='ff_groups'){ const m={}; [].concat(b,a).forEach(g=>{ if(g&&g.code) m[g.code]=g; }); return Object.values(m); }
     if(k==='ff_daily'||k==='ff_blank'||k==='ff_pol'){ if(a.date!==b.date) return later(a.date,b.date)?a:b; return ((a.results||[]).length>=(b.results||[]).length)?a:b; }
-    if(k==='ff_passport'){ const o=Object.assign({},b); Object.keys(a).forEach(c=>{ const x=a[c], y=o[c]; o[c]=!y?x:{n:Math.max(x.n||1,y.n||1), first:later(y.first,x.first)?x.first:y.first, last:later(x.last,y.last)?x.last:y.last}; }); return o; }
+    if(k==='ff_passport'){ const o=Object.assign({},b); Object.keys(a).forEach(c=>{ const x=a[c], y=o[c]; if(!y){ o[c]=x; return; }
+      const ss=[]; [].concat(y.s||[],x.s||[]).forEach(t=>{ if(t&&t.h&&!ss.some(u=>u.h===t.h)) ss.push(t); }); ss.sort((u,v)=>String(u.d)<String(v.d)?-1:1);
+      o[c]={n:Math.max(x.n||1,y.n||1), first:later(y.first,x.first)?x.first:y.first, last:later(x.last,y.last)?x.last:y.last, s:ss.slice(-40)}; }); return o; }
     if(k==='ff_pseen') return [...new Set([].concat(b||[],a||[]))].slice(-5000);
     if(k==='ff_coached') return a||b;
     return a;
