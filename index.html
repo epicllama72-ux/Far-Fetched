@@ -5385,6 +5385,27 @@ function stem(w){
   if(w.endsWith('s')&&!w.endsWith('ss')) return w.slice(0,-1);
   return w;
 }
+/* Every singular form a word could come from, so singular and plural always match: boxes/box, glasses/glass, cookies/cookie, knives/knife,
+   mice/mouse, men/man, people/person. Two words are the same form when their lists share a word. */
+const IRREG={men:'man',women:'woman',children:'child',mice:'mouse',lice:'louse',geese:'goose',teeth:'tooth',feet:'foot',people:'person',oxen:'ox',dice:'die',
+  knives:'knife',wives:'wife',lives:'life',leaves:'leaf',wolves:'wolf',shelves:'shelf',thieves:'thief',loaves:'loaf',halves:'half',calves:'calf',selves:'self',elves:'elf',
+  hooves:'hoof',scarves:'scarf',cacti:'cactus',fungi:'fungus',octopi:'octopus',alumni:'alumnus',bacteria:'bacterium',criteria:'criterion',phenomena:'phenomenon',
+  analyses:'analysis',crises:'crisis',theses:'thesis',oases:'oasis'};
+const FORMS=new Map();
+function forms(w){
+  let f=FORMS.get(w); if(f) return f;
+  const o=new Set([w]);
+  if(IRREG[w]) o.add(IRREG[w]);
+  if(w.length>3){
+    if(w.endsWith('ies')){ o.add(w.slice(0,-3)+'y'); o.add(w.slice(0,-1)); }
+    if(w.endsWith('ves')){ o.add(w.slice(0,-3)+'f'); o.add(w.slice(0,-3)+'fe'); o.add(w.slice(0,-1)); }
+    if(/(s|x|z|ch|sh|o)es$/.test(w)) o.add(w.slice(0,-2));
+    if(w.endsWith('es')) o.add(w.slice(0,-1));
+    if(w.endsWith('s') && !w.endsWith('ss')) o.add(w.slice(0,-1));
+  }
+  FORMS.set(w,f=[...o]); return f;
+}
+const sameForm=(a,b)=>a===b || forms(a).some(x=>forms(b).includes(x));
 function vecOf(st){
   if(st._v!==undefined) return st._v;
   st._v=null;
@@ -5404,16 +5425,16 @@ const nearSet=st=>st.alt!==undefined ? st.alt : st.ans.slice(1);
    from the same group as an exact answer is exact too. The groups come from data/synonyms.json. */
 let SYN=new Map();
 function loadSynonyms(j){
-  const m=new Map(); ((j&&j.groups)||[]).forEach((g,i)=>g.forEach(w=>{ w=String(w).toLowerCase(); m.set(w,i); m.set(stem(w),i); }));
+  const m=new Map(); ((j&&j.groups)||[]).forEach((g,i)=>g.forEach(w=>{ w=String(w).toLowerCase(); m.set(w,i); forms(w).forEach(x=>m.set(x,i)); }));
   SYN=m;
 }
-const synOf=w=>SYN.has(w)?SYN.get(w):SYN.get(stem(w));
-const sameWord=(a,b)=>{ if(a===b || stem(a)===stem(b)) return true; const g=synOf(a); return g!==undefined && g===synOf(b); };
+const synOf=w=>{ if(SYN.has(w)) return SYN.get(w); for(const x of forms(w)) if(SYN.has(x)) return SYN.get(x); };
+const sameWord=(a,b)=>{ if(sameForm(a,b)) return true; const g=synOf(a); return g!==undefined && g===synOf(b); };
 function isExactWord(word,st){
   if(exactSet(st).some(a=>sameWord(a,word))) return true;
   if(st.alt===undefined){                       // older papers listed synonyms and inflections together: inflections of the answer stay exact
     const p=st.ans[0];
-    return st.ans.slice(1).some(a=>sameWord(a,word) && (stem(a)===stem(p) || (lev(a,p,2)<=2 && a.slice(0,3)===p.slice(0,3))));
+    return st.ans.slice(1).some(a=>sameWord(a,word) && (sameForm(a,p) || (lev(a,p,2)<=2 && a.slice(0,3)===p.slice(0,3))));
   }
   return false;
 }

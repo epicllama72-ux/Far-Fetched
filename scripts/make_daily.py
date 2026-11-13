@@ -603,7 +603,7 @@ def guess_test(cands, model):
         exact = {a.lower() for a in (r.get("ans") or [])}
         near = {a.lower() for a in (r.get("alt") or [])}
         for pos, g in enumerate([str(w).lower().strip() for w in (x.get("guesses") or [])][:5], 1):
-            if g in exact or stem_word(g) in {stem_word(a) for a in exact} or (syn_group(g) is not None and syn_group(g) in {syn_group(a) for a in exact}):
+            if g in exact or any(same_form(g, a) for a in exact) or (syn_group(g) is not None and syn_group(g) in {syn_group(a) for a in exact}):
                 found[int(x["id"])] = pos
                 break
     return found
@@ -616,6 +616,31 @@ def stem_word(w):
         return w[:-1]
     return w
 
+_IRREG = {"men": "man", "women": "woman", "children": "child", "mice": "mouse", "lice": "louse", "geese": "goose", "teeth": "tooth", "feet": "foot",
+          "people": "person", "oxen": "ox", "dice": "die", "knives": "knife", "wives": "wife", "lives": "life", "leaves": "leaf", "wolves": "wolf",
+          "shelves": "shelf", "thieves": "thief", "loaves": "loaf", "halves": "half", "calves": "calf", "selves": "self", "elves": "elf", "hooves": "hoof",
+          "scarves": "scarf", "cacti": "cactus", "fungi": "fungus", "octopi": "octopus", "alumni": "alumnus", "bacteria": "bacterium",
+          "criteria": "criterion", "phenomena": "phenomenon", "analyses": "analysis", "crises": "crisis", "theses": "thesis", "oases": "oasis"}
+def sing_forms(w):
+    """Every singular a word could come from (boxes/box, glasses/glass, cookies/cookie, knives/knife, mice/mouse); mirrors forms() in index.html."""
+    o = {w}
+    if w in _IRREG:
+        o.add(_IRREG[w])
+    if len(w) > 3:
+        if w.endswith("ies"):
+            o |= {w[:-3] + "y", w[:-1]}
+        if w.endswith("ves"):
+            o |= {w[:-3] + "f", w[:-3] + "fe", w[:-1]}
+        if re.search(r"(s|x|z|ch|sh|o)es$", w):
+            o.add(w[:-2])
+        if w.endswith("es"):
+            o.add(w[:-1])
+        if w.endswith("s") and not w.endswith("ss"):
+            o.add(w[:-1])
+    return o
+def same_form(a, b):
+    return a == b or bool(sing_forms(a) & sing_forms(b))
+
 _SYN = None
 def syn_group(w):
     """The group of interchangeable words (pub/bar/tavern, cops/police, colour/color) a word belongs to, from data/synonyms.json; None if it has none."""
@@ -625,12 +650,12 @@ def syn_group(w):
         try:
             for i, g in enumerate(json.load(open(os.path.join(DATA, "synonyms.json")))["groups"]):
                 for x in g:
-                    _SYN[x.lower()] = i
-                    _SYN[stem_word(x.lower())] = i
+                    for f in sing_forms(x.lower()):
+                        _SYN[f] = i
         except Exception:
             pass
     w = (w or "").lower()
-    return _SYN.get(w, _SYN.get(stem_word(w)))
+    return next((_SYN[f] for f in sing_forms(w) if f in _SYN), None)
 
 
 
