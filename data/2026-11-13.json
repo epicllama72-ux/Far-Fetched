@@ -26,8 +26,8 @@
   },
   {
    "real": false,
-   "h": "Man in {} tries to return a 43-year-old library book, is told the library closed 72 years ago",
-   "tell": "A 43-year-old book can't have come from a library that closed 72 years ago."
+   "h": "President of {} asks for November 19 off work to play GTA 6",
+   "tell": "A head of state doesn't ask permission for a day off like an employee."
   },
   {
    "real": true,
