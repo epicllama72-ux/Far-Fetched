@@ -4107,7 +4107,8 @@ function renderLetters(){
   if(box.hidden) return;
   const ticks=[...box.querySelectorAll('input[type=checkbox]')], msg=$('ltMsg'), btn=$('ltSend');
   const ready=()=>{ btn.disabled = sent || !(ticks.some(c=>c.checked) || msg.value.trim()); };
-  ticks.forEach(c=>{ c.checked=false; c.disabled=sent; c.onchange=ready; }); msg.value=''; msg.disabled=sent; msg.oninput=ready;
+  const CLASH={loved:['okay','not_for_me'],okay:['loved','not_for_me'],not_for_me:['loved','okay','again'],again:['not_for_me'],too_easy:['too_hard'],too_hard:['too_easy']};   // opinions that contradict each other: ticking one clears the others
+  ticks.forEach(c=>{ c.checked=false; c.disabled=sent; c.onchange=()=>{ if(c.checked) ticks.forEach(o=>{ if((CLASH[c.value]||[]).includes(o.value)) o.checked=false; }); ready(); }; }); msg.value=''; msg.disabled=sent; msg.oninput=ready;
   $('ltThanks').hidden=!sent; btn.textContent=sent?'SENT':'SEND'; ready();
   btn.onclick=async()=>{
     btn.disabled=true; btn.textContent='SENDING';
