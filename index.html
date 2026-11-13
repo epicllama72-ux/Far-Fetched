@@ -4418,7 +4418,7 @@ function kitBrag(){
 }
 function renderWardSub(){ const n=unlockedIds().length; $('wardSub').textContent=n+' of '+KIT.length+' unlocked'; }
 function openWardrobe(){
-  Sound.play('menu'); closeMenu();
+  Sound.play('menu');
   if(S && S.phase==='call') document.body.classList.add('hideq');
   renderWardrobe(); $('wardrobe').hidden=false;
 }
@@ -4528,7 +4528,7 @@ function renderNpPass(){
   $('npSave').hidden = !!(window.Cloud && Cloud.user()) || (!names.length && Object.keys(load('ff_hist')||{}).length<2);
 }
 function openPassport(){
-  Sound.play('menu'); closeMenu();
+  Sound.play('menu');
   if(S && S.phase==='call') document.body.classList.add('hideq');
   renderPassport(); $('passport').hidden=false;
 }
@@ -4583,16 +4583,15 @@ function a2hsOs(o){
 }
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); installEv=e; });
 window.addEventListener('appinstalled',()=>{ installEv=null; $('a2hs').hidden=true; syncA2hs(); });
-$('mA2HS').onclick=()=>{ Sound.play('menu'); closeMenu(); a2hsOs(/Android/i.test(navigator.userAgent)?'and':'ios'); $('a2hs').hidden=false; };
+$('mA2HS').onclick=()=>{ Sound.play('menu'); a2hsOs(/Android/i.test(navigator.userAgent)?'and':'ios'); $('a2hs').hidden=false; };
 $('a2hsClose').onclick=()=>{ $('a2hs').hidden=true; };
 $('a2hs').addEventListener('click',e=>{ if(e.target===$('a2hs')) $('a2hs').hidden=true; });
 document.querySelectorAll('#a2hs .aOs button').forEach(b=>b.onclick=()=>a2hsOs(b.dataset.os));
 $('a2hsNow').onclick=async()=>{ if(!installEv) return; try{ installEv.prompt(); await installEv.userChoice; }catch(e){} installEv=null; $('a2hs').hidden=true; };
 syncA2hs();
-$('mAbout').onclick=()=>{ Sound.play('menu'); closeMenu(); $('about').hidden=false; };
+$('mAbout').onclick=()=>{ Sound.play('menu'); $('about').hidden=false; };
 $('aboutClose').onclick=closeAbout;
 $('about').addEventListener('click',e=>{ if(e.target===$('about')) closeAbout(); });
-document.addEventListener('keydown',e=>{ if(e.key==='Escape' && !$('about').hidden) closeAbout(); });
 $('wardrobe').addEventListener('click',e=>{ if(e.target===$('wardrobe')) closeWardrobe(); });
 
 /* ---------- Friend challenge: the share link carries your dig; a friend who opens it is told to beat it ---------- */
@@ -5651,7 +5650,7 @@ $('skipRecap').onclick=()=>endRecapUI(true);
 $('replayDig').onclick=()=>startRecap(false);
 Scene.onMark(()=>Sound.play('pin'));
 $('btnBoard').onclick=openBoard;
-$('mBoard').onclick=()=>{ closeMenu(); openBoard(); };
+$('mBoard').onclick=()=>{ openBoard(); };   // opens over the menu, which stays behind it
 $('mBack').onclick=()=>{ $('practiceList').hidden=true; $('mPractice').setAttribute('aria-expanded','false'); $('howBox').hidden=true; $('backList').hidden=!$('backList').hidden; renderIssues(); };
 $('nameEdit').onclick=()=>{
   const row=$('nameRow');
@@ -5730,9 +5729,11 @@ async function deskBoard(){   // the top two and you, from the small leaderboard
   DESK_BOARD.html=h; el.innerHTML=h;
 }
 
-document.addEventListener('click',closeMenu);
+document.addEventListener('click',e=>{ if(e.target.closest&&e.target.closest('#wardrobe,#passport,#sheet,#about,#a2hs,#gsi')) return; closeMenu(); });   // a click inside a sheet opened from the menu leaves the menu open behind it
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){ if(RECAP_ON) endRecapUI(true); closeMenu(); $('sheet').hidden=true; closeWardrobe(); closePassport(); return; }
+  if(e.key==='Escape'){ if(RECAP_ON) endRecapUI(true); const top=['gsi','a2hs','about','passport','wardrobe','sheet'].find(id=>$(id)&&!$(id).hidden);   // Escape peels off the sheet on top first, then the menu
+    if(top){ if(top==='wardrobe') closeWardrobe(); else if(top==='passport') closePassport(); else if(top==='sheet') closeSheet(); else if(top==='about') closeAbout(); else $(top).hidden=true; return; }
+    closeMenu(); return; }
   if(e.metaKey||e.ctrlKey||e.altKey) return;
   const t=e.target; if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA')) return;
   if(!$('sheet').hidden || !$('menu').hidden || !S) return;
