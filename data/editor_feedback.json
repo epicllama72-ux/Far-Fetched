@@ -219,6 +219,30 @@
    "before": "a Panhandle town with a perfectly round lake / a city of about 14 million / where the drama Winter Sonata was filmed",
    "after": "a Deep South town near the Gulf / home of the world's busiest crossing / a lakeside city near the DMZ",
    "why": "owner picked widely known region-level hints over local trivia (Panhandle, round lake, a regional TV drama) and a bare population figure"
+  },
+  {
+   "kind": "selection",
+   "before": "Sumo wrestler thrown between the referee's legs (Fukuoka; could not be verified)",
+   "after": "Two men jailed for plotting to kill the president with witchcraft and a live chameleon (Zambia)",
+   "why": "the owner said the opener's neighbours were not very good; replaced an unverifiable story with a verified one that has a strong hook, and added a new continent"
+  },
+  {
+   "kind": "selection",
+   "before": "Woman in a bar in {} sips wine while slipping a table lamp into her bag (Matlock)",
+   "after": "Cargo plane's hatch flies open on takeoff, scattering 172 gold and silver bars across the runway (Yakutsk)",
+   "why": "small, low-stakes theft story replaced by a vivid one with no victim; 'sips wine' could not be confirmed"
+  },
+  {
+   "kind": "headline",
+   "before": "Man, 51, flees police in a tiny microcar, rams a patrol car and ends the chase in {}",
+   "after": "Man, 51, rams a patrol car fleeing in a microcar with scrapyard plates, then gets stuck in a field in {}",
+   "why": "add the details that make it funny (plates from a scrapyard, ends stuck in a field) and keep the ending as the punchline"
+  },
+  {
+   "kind": "headline",
+   "before": "Hundreds in {} shove a giant steel sculpture seven inches to free a man rumoured to be trapped inside",
+   "after": "Hundreds in {} shove a 110-ton steel sculpture seven inches to free a 'trapped' man; it doesn't budge",
+   "why": "a concrete weight and the punchline that it did not move"
   }
  ]
 }

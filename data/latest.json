@@ -4,7 +4,7 @@
  "call": [
   {
    "real": true,
-   "h": "Hundreds in {} shove a giant steel sculpture seven inches to free a man rumoured to be trapped inside",
+   "h": "Hundreds in {} shove a 110-ton steel sculpture seven inches to free a 'trapped' man; it doesn't budge",
    "hint": "setting of Ferris Bueller's Day Off",
    "lat": 41.8826,
    "lng": -87.6225,
@@ -15,14 +15,14 @@
   },
   {
    "real": true,
-   "h": "Sumo wrestler thrown straight between the referee's legs at a tournament in {}",
-   "hint": "birthplace of tonkotsu ramen",
-   "lat": 33.6043,
-   "lng": 130.4035,
-   "place": "Fukuoka, Japan",
-   "src": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBELTkyeTd3d3hrMzBFbEdZa0hHTVZ0V2ZSSGhodjdOM3hqR0I3Z2ZCR2EyaTgwMTIxRGdTTDRNQ1pnOTN6S212NVktZXAtdHplRVJJYQ?oc=5",
-   "published": "2026-11-11",
-   "clue": "sumo basho in southern Japan's Fukuoka"
+   "h": "Two men are jailed for plotting to kill the president with witchcraft and a live chameleon in {}",
+   "hint": "home of half of Victoria Falls",
+   "lat": -13.1339,
+   "lng": 27.8493,
+   "place": "Zambia",
+   "src": "https://www.independent.co.uk/news/world/africa/zambia-hakainde-hichilema-withcraft-arrests-b2827245.html",
+   "published": "2025-09-16",
+   "clue": "Witchcraft Act case; plot against President Hichilema = southern Africa"
   },
   {
    "real": false,
@@ -47,7 +47,7 @@
   },
   {
    "real": true,
-   "h": "Man, 51, flees police in a tiny microcar, rams a patrol car and ends the chase in {}",
+   "h": "Man, 51, rams a patrol car fleeing in a microcar with scrapyard plates, then gets stuck in a field in {}",
    "hint": "a Carpathian foothills village",
    "lat": 49.6104,
    "lng": 21.9064,
@@ -58,14 +58,14 @@
   },
   {
    "real": true,
-   "h": "Woman in a bar in {} sips wine while slipping a table lamp into her bag; CCTV clip tops six million views",
-   "hint": "a Peak District spa town",
-   "lat": 53.1375,
-   "lng": -1.5545,
-   "place": "Matlock, Derbyshire",
-   "src": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1Lb1l2YWV0VDk1Y1htUkNvSFlLVURtdE1oY2Rtd3pWdFphQU9RS01lQ1JlVnRldHhZMy1fUjBQWk9OVmdXYTZmN1JjbnF5YW1SNzluRTFZZjQyUE9ZUDh4bkVIRy04bFk0Q2FmaTRPQXk1N3E3NEZ3?oc=5",
-   "published": "2026-10-26",
-   "clue": "pub, CCTV and a lost lamp = Britain"
+   "h": "Cargo plane's hatch flies open on takeoff, scattering 172 gold and silver bars across the runway in {}",
+   "hint": "the world's coldest major city",
+   "lat": 62.0355,
+   "lng": 129.6755,
+   "place": "Yakutsk, Russia",
+   "src": "https://www.theguardian.com/world/2018/mar/16/gold-silver-ingots-runway-falling-cargo-plane-russia",
+   "published": "2018-03-16",
+   "clue": "Siberian city; An-12 carrying Chukotka mine gold = Russian Far East"
   }
  ],
  "blank": [
