@@ -193,10 +193,14 @@ TASTE = """WHAT MAKES A GREAT STORY (the owner's taste, learned from swapping do
  - Spread over the world; at most 3 of 16 from any one country; no two stories of the same kind."""
 
 FAKE_GUIDE = """WHAT MAKES A GOOD FAKE (the owner's taste):
- - About PEOPLE doing something silly in an ordinary place, with concrete numbers (never round, never "exactly").
- - Believable at first glance, one notch more absurd than the real stories, and with ONE slip a careful reader can catch from the headline alone (an impossible sum, a physical impossibility, a timeline that does not add up). The slip must be in the headline itself, not hidden.
- - NOT good: animals as the joke, puns, quotes, official reactions, a fine/ban/apology ending, stories that are merely dull ("man finds wallet"), or absurd with no catchable slip.
- - Good: "Man in {} tries to return a 43-year-old library book, is told the library closed 72 years ago" (a 43-year-old book cannot come from a library that closed 72 years ago)."""
+ - Best: a PERSON doing a weird crime or something generally strange, told deadpan, with concrete details. At least half of the fakes should be like this (a thief, a burglar, a fraudster, a driver, a customer, a mayor, a pensioner, a tourist). The rest can be other everyday absurdity (a shop, a school, an office, a town), but never an animal as the joke.
+ - Every fake still needs ONE inconsistency a careful reader can catch from the headline alone: an impossible sum, a timeline that cannot work, a physical impossibility, a size or speed that does not fit. Funny without a catchable slip is NOT good enough. The slip must be in the headline itself, not hidden, and fair (arithmetic, calendar, physics, common knowledge).
+ - Believable at first glance, one notch more absurd than the real stories, specific numbers (never round, never "exactly"), no quotes, no puns, no official reaction (fine, ban, apology) as the ending.
+ - Examples of the target (never copy them or their topics):
+   "Man, 28, jailed for a bank robbery in {} that took place four years before he was born" / tell: "He can't commit a robbery before he exists."
+   "Burglar in {} carries 14 laptops out of a shop in one trouser pocket, caught when the pocket rips" / tell: "14 laptops can't fit in a trouser pocket."
+   "Customer in {} pays a 38-euro bill with a 20-euro note and is arrested for leaving change" / tell: "A 20-euro note can't cover a 38-euro bill."
+   "Hotel guest in {} is billed for 23 nights after checking in on a Monday and out the following Wednesday" / tell: "Monday to the following Wednesday is 9 nights, not 23." """
 
 PROMPT = """You are the editor of "Far-Fetched", a daily guessing game built on weird-but-true news.
 
@@ -296,7 +300,7 @@ def ask_claude(cands, model, prompt=None, avoid=None):
     if avoid:
         extra = ("\n\nALREADY USED in earlier games. Never pick any of these stories again, even if a candidate tells it "
                  "with different words or comes from a different outlet:\n" + "\n".join("- " + a for a in avoid) + "\n")
-    return call_claude(styled(prompt or (TASTE + "\n\n" + PROMPT), "Candidates:") + json.dumps(payload, ensure_ascii=False) + extra, model, max_tokens=24000, keys=["real", "fake"])
+    return call_claude(styled(prompt or (TASTE + "\n\n" + FAKE_GUIDE + "\n\n" + PROMPT), "Candidates:") + json.dumps(payload, ensure_ascii=False) + extra, model, max_tokens=24000, keys=["real", "fake"])
 
 
 PRICES = {"haiku": (0.10, 0.50), "sonnet": (2.0, 10.0), "opus": (5.0, 25.0)}   # USD per million tokens (in, out)
