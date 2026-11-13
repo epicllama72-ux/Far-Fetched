@@ -1008,6 +1008,10 @@ body.pinDone #mapToggle{display:block}
 #guessForm .primary{width:auto;padding:10px 18px}
 #guessMsg{min-height:0;margin:0 0 8px;font:18px/1.1 var(--vt);color:#ffb3c0;background:#0d0f14;display:inline-block;padding:3px 8px}
 #guessMsg:empty{display:none}
+#guessIn.nope{animation:inShake .4s;color:#ff8a8a;box-shadow:0 0 0 3px var(--bad)}
+#guessIn.nope::selection{background:var(--bad);color:#fff}
+@keyframes inShake{0%,100%{transform:translateX(0)}15%{transform:translateX(-9px)}35%{transform:translateX(8px)}55%{transform:translateX(-6px)}75%{transform:translateX(4px)}}
+@media (prefers-reduced-motion:reduce){#guessIn.nope{animation:none}}
 #guessMsg.warmer{color:#ffd07a}
 #guessMsg.colder{color:#9ec5ff}
 .bshare{display:block;margin-top:3px;font-size:.85em;opacity:.85}
@@ -5618,7 +5622,11 @@ function submitWord(raw){
     return;
   }
   const c=closeness(word,st);
-  if(c===null){ msg.textContent='"'+typed+'" isn\'t in the word list.'; Sound.play('nope'); return; }
+  if(c===null){                           // not in the word list: nothing is submitted; the word stays in the box, highlighted, and the box shakes
+    const inp=$('guessIn'); inp.value=raw; inp.classList.remove('nope'); void inp.offsetWidth; inp.classList.add('nope');
+    try{ inp.select(); }catch(e){}
+    msg.className=''; msg.textContent='Not in the word list.'; Sound.play('nope'); return;
+  }
   msg.textContent=''; msg.className='';
   const tl=Math.max(0,BLANK_SECS-(performance.now()-bl.t0)/1000);
   bl.seen.add(word);
@@ -5704,6 +5712,7 @@ $('btnStart').onclick=()=>{
   if(Intro.active()){ $('btnStart').disabled=true; Intro.go(()=>{ $('btnStart').disabled=false; begin(); }); return; }
   begin();
 };
+$('guessIn').addEventListener('input',()=>$('guessIn').classList.remove('nope'));
 $('guessForm').addEventListener('submit',e=>{ e.preventDefault(); const inp=$('guessIn'); const v=inp.value; inp.value=''; submitWord(v); inp.focus(); });
 
 $('btnReal').onclick=()=>onCall(true);
