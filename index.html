@@ -5576,9 +5576,15 @@ function submitWord(raw){
   }
   const fx=fixGuess(word,st), typed=word; word=fx.word;
   if(bl.seen.has(word)){ msg.textContent='Already guessed "'+word+'".'; return; }
+  if(fx.fixed){                            // autocorrect never submits on its own: the corrected word goes back in the box with a note, and the player decides
+    const inp=$('guessIn'); inp.value=word; try{ inp.setSelectionRange(word.length,word.length); }catch(e){}
+    msg.textContent='"'+typed+'" → "'+word+'". Press GUESS to submit it, or type something else.';
+    Sound.play('menu');
+    return;
+  }
   const c=closeness(word,st);
   if(c===null){ msg.textContent='"'+typed+'" isn\'t in the word list.'; Sound.play('nope'); return; }
-  msg.textContent = fx.fixed ? 'Read "'+typed+'" as "'+word+'".' : '';
+  msg.textContent='';
   const tl=Math.max(0,BLANK_SECS-(performance.now()-bl.t0)/1000);
   bl.seen.add(word);
   bl.guesses.push({word,c});
