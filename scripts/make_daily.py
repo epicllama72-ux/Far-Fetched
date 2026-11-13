@@ -184,6 +184,20 @@ def gather(now, used_links, feeds=FEEDS, max_age=MAX_AGE_DAYS):
 
 
 # ---------------------------------------------------------------- Claude
+# ---------------------------------------------------------------- the owner's taste (learned from daily edits; keep in sync with data/editor_feedback.json)
+TASTE = """WHAT MAKES A GREAT STORY (the owner's taste, learned from swapping dozens of picks):
+ - GREAT: a person or group does something baffling with a concrete, vivid detail and a punchline or twist: 172 gold bars scattered over a runway, hundreds of people pushing a statue to free a man who is not inside it, 30 baby crocodiles in a train passenger's bag, a fugitive rappelling off a balcony on a mountaineering harness, a scammer posing as an astronaut who is out of oxygen, a man ringing 911 to report zombies and a UFO.
+ - BORING (never pick): police chases that simply end in a crash or an arrest, a driver stuck somewhere, a rare animal sighted, a sports result, a quiet record, anything that "just happened" with no twist, a story whose best detail is a number.
+ - Prefer stories a reader would repeat to a friend ("you will not believe this"). If you cannot say in one breath why it is funny or strange, it is not good enough.
+ - Prefer people doing silly things over animals; keep animals to at most 2 of 16.
+ - Spread over the world; at most 3 of 16 from any one country; no two stories of the same kind."""
+
+FAKE_GUIDE = """WHAT MAKES A GOOD FAKE (the owner's taste):
+ - About PEOPLE doing something silly in an ordinary place, with concrete numbers (never round, never "exactly").
+ - Believable at first glance, one notch more absurd than the real stories, and with ONE slip a careful reader can catch from the headline alone (an impossible sum, a physical impossibility, a timeline that does not add up). The slip must be in the headline itself, not hidden.
+ - NOT good: animals as the joke, puns, quotes, official reactions, a fine/ban/apology ending, stories that are merely dull ("man finds wallet"), or absurd with no catchable slip.
+ - Good: "Man in {} tries to return a 43-year-old library book, is told the library closed 72 years ago" (a 43-year-old book cannot come from a library that closed 72 years ago)."""
+
 PROMPT = """You are the editor of "Far-Fetched", a daily guessing game built on weird-but-true news.
 
 Below are candidate news stories from the past month (JSON). Some include "text", the opening of the article: use it for the facts and the punchline. Some are not in English: write everything you output in English. Do two jobs and reply with ONE JSON object only, no prose.
@@ -282,7 +296,7 @@ def ask_claude(cands, model, prompt=None, avoid=None):
     if avoid:
         extra = ("\n\nALREADY USED in earlier games. Never pick any of these stories again, even if a candidate tells it "
                  "with different words or comes from a different outlet:\n" + "\n".join("- " + a for a in avoid) + "\n")
-    return call_claude(styled(prompt or PROMPT, "Candidates:") + json.dumps(payload, ensure_ascii=False) + extra, model, max_tokens=24000, keys=["real", "fake"])
+    return call_claude(styled(prompt or (TASTE + "\n\n" + PROMPT), "Candidates:") + json.dumps(payload, ensure_ascii=False) + extra, model, max_tokens=24000, keys=["real", "fake"])
 
 
 PRICES = {"haiku": (0.10, 0.50), "sonnet": (2.0, 10.0), "opus": (5.0, 25.0)}   # USD per million tokens (in, out)
@@ -391,7 +405,7 @@ def screen(cands, model, top=SCREEN_TOP):
     for start in range(0, len(cands), 120):
         chunk = [{"id": i, "title": c["title"], "summary": c["summary"][:220], "source": c["source"]}
                  for i, c in enumerate(cands) if start <= i < start + 120]
-        res = call_claude(SCREEN_PROMPT + json.dumps(chunk, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["s"])
+        res = call_claude(TASTE + "\n\n" + SCREEN_PROMPT + json.dumps(chunk, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["s"])
         for pair in (res or {}).get("s", []):
             try:
                 i, sc = int(pair[0]), float(pair[1])
@@ -712,7 +726,7 @@ def final_desk(reals, fakes, model, texts, can_reject=True):
     items = [{"id": i, "kind": "real", "h": r.get("h", ""), "hint": r.get("hint", ""), "place": r.get("place", ""),
               "source": (texts.get(r.get("src")) or r.get("_text") or "")[:1500]} for i, r in enumerate(reals)]
     items += [{"id": len(reals) + j, "kind": "fake", "h": f.get("h", "")} for j, f in enumerate(fakes)]
-    res = call_claude(styled(DESK_PROMPT, "Reply with ONE JSON object only") + json.dumps(items, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["items"])
+    res = call_claude(styled(TASTE + "\n\n" + DESK_PROMPT, "Reply with ONE JSON object only") + json.dumps(items, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["items"])
     if not res or "items" not in res:
         print("  desk pass unavailable; printing the paper as it is", file=sys.stderr)
         return [], [], None
@@ -1089,9 +1103,62 @@ def merit(r):
     try:
         u = int(r.get("unbelievable", 2) or 2)
         curated = 3 if (r.get("daily_only") or r.get("priority")) else 0      # hand-picked by the owner
-        return 5 * u + eff_strength(r) + 0.5 * map_score(r) + curated + 0.5 * r.get("_fresh", 0)
+        taste = 3 * (float(r["taste"]) - 5) if r.get("taste") else 0          # the harsh second editor: +-15 swings a pick
+        return 5 * u + eff_strength(r) + 0.5 * map_score(r) + curated + 0.5 * r.get("_fresh", 0) + taste
     except Exception:
         return 1
+
+
+
+# ---------------------------------------------------------------- taste judge and dedicated fake writer
+JUDGE_PROMPT = """You are a sharp, slightly cynical newspaper editor choosing what to print in "Far-Fetched", a daily game of weird true news and invented fakes.
+
+Score every item 1-10 for "would a reader repeat this to a friend?" Be harsh: most items deserve 3-6. 9-10 is rare (a story or fake that makes you laugh out loud on first read). Items that are merely odd, a chase or crash, a rare animal, a quiet record, a bland mishap, or a fake with no catchable slip score 1-4.
+"r" items are TRUE stories (judge the story and its funniest detail). "f" items are INVENTED headlines (judge funniness AND whether a careful reader could catch one slip from the headline alone; a fake whose slip is missing, hidden or unfair scores 1-4).
+
+""" + "{taste}\n\n" + """Reply with ONE JSON object only: {"r":[[id,score],...],"f":[[id,score],...]} covering every id.
+
+Items:
+"""
+
+
+def taste_judge(reals, fakes, model):
+    """Ask one extra, harsh editor to score stories and fakes for entertainment; stored as item["taste"] (1-10).
+    Silent no-op when the call fails, so a bad day never blocks the paper."""
+    items = {"r": [{"id": i, "h": r.get("h", ""), "place": r.get("place", ""), "text": (r.get("_judge_text") or "")[:300]} for i, r in enumerate(reals)],
+             "f": [{"id": i, "h": f.get("h", ""), "tell": f.get("tell", "")} for i, f in enumerate(fakes)]}
+    if not items["r"] and not items["f"]:
+        return 0
+    res = call_claude(JUDGE_PROMPT.replace("{taste}", TASTE + "\n\n" + FAKE_GUIDE) + json.dumps(items, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["r", "f"])
+    n = 0
+    for key, lst in (("r", reals), ("f", fakes)):
+        for pair in (res or {}).get(key, []):
+            try:
+                i, sc = int(pair[0]), float(pair[1])
+            except Exception:
+                continue
+            if 0 <= i < len(lst) and 1 <= sc <= 10:
+                lst[i]["taste"] = sc
+                n += 1
+    return n
+
+
+FAKE_WRITER_PROMPT = """You write the invented headlines for "Far-Fetched", a daily game where players decide whether a deadpan wire-style headline (place hidden as {}) is real or fake. The true stories already in today's paper are listed so you match their tone, length and kind of detail but NEVER copy their topics.
+
+Write 14 fakes. Each has {} exactly once, is at most 95 characters, and carries a "tell": one sentence explaining the single slip that proves it fake (the slip must be visible in the headline alone).
+
+""" + "{guide}\n\n" + """Variety: different settings, different countries' currencies and units, different kinds of slip (arithmetic, physics, timeline, scale). No two fakes may open with the same words. No quotes, puns, round numbers, "exactly", official reactions, or animals as the main joke.
+
+Reply with ONE JSON object only: {"fake":[{"h":"...","tell":"...","obvious":3,"theme":"one lowercase word"}]}
+
+Today's true stories:
+"""
+
+
+def write_fakes(reals, model):
+    """A dedicated call for fakes (the main call writes 8 while also picking 16 stories; quality is better when it is the only job)."""
+    res = call_claude(FAKE_WRITER_PROMPT.replace("{guide}", FAKE_GUIDE) + json.dumps([r.get("h", "") for r in reals], ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["fake"])
+    return [f for f in (res or {}).get("fake", []) if isinstance(f, dict) and f.get("h") and valid_fake(f)]
 
 
 GENERIC_THEMES = {"", "odd news", "odd", "weird", "weird news", "news", "strange", "misc", "other", "general", "oddity"}
@@ -1231,6 +1298,16 @@ def main():
             fresh_fakes.append(f)
         else:
             print(f"  drop fake (tell too obvious): {f.get('h')}", file=sys.stderr)
+    if not args.picks:
+        extra_fakes = write_fakes(fresh, model)
+        print(f"  dedicated fake writer: {len(extra_fakes)} more fakes", file=sys.stderr)
+        fresh_fakes += extra_fakes
+        for r_ in fresh:
+            r_["_judge_text"] = (src_text.get(r_["src"]) or "")
+        scored = taste_judge(fresh, fresh_fakes, model)
+        print(f"  taste judge scored {scored} items", file=sys.stderr)
+        for r_ in fresh:
+            r_.pop("_judge_text", None)
     for f in fresh_fakes:
         f["banked"], f["rules"] = day, RULES
 
@@ -1310,6 +1387,12 @@ def main():
                 break
         if len(lively) >= N_CALL_REAL + 2:
             break
+    # Quality gate: the harsh second editor's verdict. Stories it scored under 5 stay out when the pool is deep enough
+    # (the owner no longer has to veto dull picks by hand); hand-banked stories are exempt.
+    keen = [r for r in reals if r.get("daily_only") or r.get("priority") or float(r.get("taste", 6) or 6) >= 5]
+    if len(keen) >= N_CALL_REAL + 2:
+        print(f"  quality gate: {len(reals) - len(keen)} stories the taste judge scored under 5 left out", file=sys.stderr)
+        reals = keen
     pool_all = list(reals)       # everything that fits the map: Fill the Blank and the bank draw on this, not just on the theme-spread list below
     if len(lively) >= N_CALL_REAL + 2:
         print(f"  Daily Dig takes stories rated {floor}+ for unbelievable; {len(reals) - len(lively)} milder ones kept out", file=sys.stderr)
@@ -1453,7 +1536,7 @@ def main():
     fake_target = min(5.0, sum(real_u) / len(real_u) + 0.5)        # fakes sound a notch more far-fetched than today's true stories
     def fake_rank(f):
         try:
-            return abs(float(f.get("obvious", 2.5)) - 2.5) + 0.6 * abs(float(f.get("unbelievable", fake_target)) - fake_target)
+            return abs(float(f.get("obvious", 2.5)) - 2.5) + 0.6 * abs(float(f.get("unbelievable", fake_target)) - fake_target) - 0.6 * (float(f.get("taste", 5)) - 5)
         except Exception:
             return 1.0
     chosen_fakes = pick_fakes(fakes, call_real, day, N_CALL_FAKE, lambda f: fake_rank(f) + (0 if f.get("banked") == day or f.get("hand") else 0.3))   # the owner's hand-written fakes compete with fresh ones
