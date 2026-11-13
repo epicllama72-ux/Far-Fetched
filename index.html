@@ -4655,7 +4655,7 @@ const VS=(()=>{ try{
   const v=new URLSearchParams(location.search).get('vs'); if(!v) return null;
   const [name,m,score,day,kind]=v.split('~');
   if(!name || isNaN(+m)) return null;
-  return {name:name.replace(/[<>&]/g,'').slice(0,24), m:Math.min(40,Math.max(0,+m)), score:Math.min(9999,Math.max(0,+score||0)), day:day||'', kind:kind||'call'};
+  return {name:name.replace(/[<>&]/g,'').slice(0,24), m:Math.min(99999,Math.max(0,+m)), score:Math.min(9999,Math.max(0,+score||0)), day:day||'', kind:kind||'call'};
 }catch(e){ return null; } })();
 function vsLive(){ return VS && S && S.mode==='daily' && S.kind===VS.kind && VS.day===dayKey() && VS.name!==playerName(); }
 function renderVs(){
