@@ -16,7 +16,8 @@
   "FAKES: deadpan wire-story absurd, a clear notch more ridiculous than the real stories, each with ONE slip a reader can catch from the headline alone (an impossible number, an animal acting against its nature, something physically impossible, broken logic). Never a tell that depends on the hidden place.",
   "SELECTION: chases that just end in a crash or arrest, a driver stuck somewhere, rare-animal sightings and 'just happened' stories are boring; pick a vivid concrete detail plus a twist the reader would repeat to a friend.",
   "FAKES: a human mishap with one slip catchable from the headline alone (impossible sum, timeline or physics); never animals as the joke, never a headline with no slip.",
-  "FAKES: best when about a person doing a weird crime or something strange (at least half); the rest can be other everyday absurdity. Every fake still needs one inconsistency catchable from the headline alone."
+  "FAKES: best when about a person doing a weird crime or something strange (at least half); the rest can be other everyday absurdity. Every fake still needs one inconsistency catchable from the headline alone.",
+  "FAKES: write them like the real ones (vivid, absurd, specific), never dull transactions such as splitting a bill, a fine or a hotel bill; the quiet inconsistency is in a stated number, age, date or duration."
  ],
  "edits": [
   {
@@ -276,6 +277,18 @@
    "before": "Man in {} tries to return a 43-year-old library book, is told the library closed 72 years ago",
    "after": "President of {} asks for November 19 off work to play GTA 6",
    "why": "owner supplied the fake: a head of state asking for the GTA 6 launch day off"
+  },
+  {
+   "kind": "selection",
+   "before": "Hotel guest in {} is billed for 23 nights after checking in on a Monday and out the following Wednesday",
+   "after": "Teenager, 19, is sentenced in {} for stealing a vintage tram in 1996",
+   "why": "fakes should be absurd, vivid stories like the real ones with a quiet inconsistency; bill splitting and hotel billing are dull"
+  },
+  {
+   "kind": "selection",
+   "before": "Four friends in {} split a 7,240-yen restaurant bill evenly, each pays 2,310 yen",
+   "after": "Pensioner, 79, rides a mobility scooter with a 15 km range 240 km to a casino in {}",
+   "why": "fakes should be absurd, vivid stories like the real ones with a quiet inconsistency; bill splitting and hotel billing are dull"
   }
  ]
 }

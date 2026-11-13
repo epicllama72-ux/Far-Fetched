@@ -26,8 +26,8 @@
   },
   {
    "real": false,
-   "h": "Hotel guest in {} is billed for 23 nights after checking in on a Monday and out the following Wednesday",
-   "tell": "Monday to the following Wednesday is 9 nights, not 23."
+   "h": "Teenager, 19, is sentenced in {} for stealing a vintage tram in 1996",
+   "tell": "A 19-year-old wasn't born in 1996."
   },
   {
    "real": true,
@@ -64,8 +64,8 @@
   },
   {
    "real": false,
-   "h": "Four friends in {} split a 7,240-yen restaurant bill evenly, each pays 2,310 yen",
-   "tell": "Four payments of 2,310 yen total 9,240 yen, not 7,240."
+   "h": "Pensioner, 79, rides a mobility scooter with a 15 km range 240 km to a casino in {}",
+   "tell": "A 15 km range can't cover 240 km."
   }
  ],
  "blank": [
