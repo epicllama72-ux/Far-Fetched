@@ -26,8 +26,8 @@
   },
   {
    "real": false,
-   "h": "Fisherman in {} hauls up a 1998 Nokia 3310 from a fjord, and it still has 14% battery",
-   "tell": "The 3310 wasn't released until 2000, and batteries don't last decades."
+   "h": "Alpine village in {} introduces mandatory yodel licences to curb avalanche-triggering noise",
+   "tell": "A human voice can't trigger an avalanche."
   },
   {
    "real": true,
@@ -64,8 +64,8 @@
   },
   {
    "real": false,
-   "h": "Town bans red patio umbrellas in {} after a bull, enraged by the colour, wrecks three cafés",
-   "tell": "Bulls are red-green colour-blind; they react to movement, not red."
+   "h": "Retired trawler captain, 68, fined in {} for teaching little penguins to snatch tourists' sunglasses",
+   "tell": "Little penguins come ashore only after dark, when nobody wears sunglasses."
   }
  ],
  "blank": [
