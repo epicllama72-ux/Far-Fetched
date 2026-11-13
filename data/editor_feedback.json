@@ -302,6 +302,18 @@
    "before": "Pensioner, 79, rides a mobility scooter with a 15 km range 240 km to a casino in {}",
    "after": "Town bans red patio umbrellas in {} after a bull, enraged by the colour, wrecks three cafés",
    "why": "owner's preferred fake style: absurd real-style story exposed by a world-knowledge slip (biology, science myth, anachronism), not arithmetic"
+  },
+  {
+   "kind": "selection",
+   "before": "Fisherman in {} hauls up a 1998 Nokia 3310 from a fjord, and it still has 14% battery",
+   "after": "Alpine village in {} introduces mandatory yodel licences to curb avalanche-triggering noise",
+   "why": "owner chose fakes 1 and 2 from their own example set (yodel licences, penguin sunglasses)"
+  },
+  {
+   "kind": "selection",
+   "before": "Town bans red patio umbrellas in {} after a bull, enraged by the colour, wrecks three cafés",
+   "after": "Retired captain, 68, fined in {} for teaching little penguins to steal tourists' sunglasses",
+   "why": "owner chose fakes 1 and 2 from their own example set (yodel licences, penguin sunglasses)"
   }
  ]
 }
