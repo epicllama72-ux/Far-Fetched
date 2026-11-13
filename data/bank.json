@@ -20,7 +20,7 @@
    "lng": 32.0,
    "country": "Egypt",
    "cc": "EG",
-   "hint": "",
+   "hint": "where Tutankhamun's tomb was found",
    "clue": "Nile crocodiles on a southern line = Egypt",
    "clue_strength": 3,
    "jargon_only": false,
@@ -120,7 +120,7 @@
    "cc": "TW",
    "hint": "",
    "clue": "Island with high-speed rail and a traffic police unit",
-   "clue_strength": 1,
+   "clue_strength": 3,
    "jargon_only": false,
    "mappable": 3,
    "unbelievable": 3,
@@ -385,7 +385,7 @@
    "lng": -93.8863,
    "country": "United States",
    "cc": "US",
-   "hint": "",
+   "hint": "a Piney Woods community",
    "clue": "US sheriff 'remain indoors' alert + a semitrailer",
    "clue_strength": 1,
    "jargon_only": false,
@@ -407,7 +407,7 @@
    "lng": -81.8651,
    "country": "United States",
    "cc": "US",
-   "hint": "",
+   "hint": "a Blue Ridge foothills town",
    "clue": "US chain restaurant + a county health district",
    "clue_strength": 1,
    "jargon_only": false,
@@ -418,28 +418,6 @@
    "published": "2026-10-30",
    "banked": "2026-11-03",
    "rules": 2,
-   "daily_only": true
-  },
-  {
-   "id": 45,
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 4,
-   "banked": "2026-11-01",
-   "rules": 2,
-   "h": "Woman who says she hates kids allegedly posed as a substitute teacher because she was 'bored' in {}",
-   "place": "Milwaukee, Wisconsin",
-   "geocode": "Rufus King International High School, Milwaukee, Wisconsin, USA",
-   "lat": 43.0933,
-   "lng": -87.9046,
-   "country": "United States",
-   "cc": "US",
-   "hint": "setting of Happy Days",
-   "clue": "US high school + felony complaint = US",
-   "theme": "crime",
-   "src": "https://www.yahoo.com/news/us/articles/woman-says-she-hates-kids-092016114.html",
-   "published": "2026-10-05",
    "daily_only": true
   },
   {
@@ -859,138 +837,162 @@
    "hand": true
   },
   {
-   "h": "Bakery in {} sells 2,310 loaves in an hour from one oven that fits nine loaves per 40-minute bake",
-   "tell": "That oven could bake about a dozen loaves in an hour, not thousands.",
-   "unbelievable": 4,
+   "h": "Cyclist in {} rides a 42-kilometre commute in 11 minutes on a bike with a flat tyre",
+   "tell": "That is about 230 km/h, impossible on a bicycle, let alone one with a flat tyre.",
    "obvious": 3,
-   "theme": "baking",
-   "banked": "2026-11-13",
+   "theme": "cycling",
+   "taste": 3.0,
+   "banked": "2026-11-14",
    "rules": 2
   },
   {
-   "h": "Burglar in {} hides in a walk-in freezer for 19 hours, then is treated for heatstroke",
-   "tell": "Hours in a freezer cause hypothermia or frostbite, never heatstroke.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "hiding",
-   "banked": "2026-11-13",
-   "rules": 2
-  },
-  {
-   "h": "Library in {} receives a book 41 years overdue from a borrower aged 29",
-   "tell": "The borrower was not yet born when the book was borrowed.",
-   "unbelievable": 4,
+   "h": "Thief in {} walks out of a jewellery shop with a 2.4-tonne safe hidden under his jacket",
+   "tell": "A 2.4-tonne safe cannot be carried, let alone hidden under a jacket.",
    "obvious": 2,
-   "theme": "library",
-   "banked": "2026-11-13",
+   "theme": "theft",
+   "taste": 3.0,
+   "banked": "2026-11-14",
    "rules": 2
   },
   {
-   "h": "Angler in {} lands a 3-metre trout from a garden pond that measures 2 metres across",
-   "tell": "A 3-metre fish cannot fit, let alone turn, in a pond 2 metres wide.",
-   "unbelievable": 4,
+   "h": "Student in {} hands in his 3-hour exam paper after 40 minutes and is marked down for taking too long",
+   "tell": "Finishing in 40 minutes of a 3-hour exam is quick, not too long.",
    "obvious": 3,
-   "theme": "fishing",
-   "banked": "2026-11-13",
-   "rules": 2
-  },
-  {
-   "h": "Driver in {} spends 45 minutes searching for the petrol cap of his electric car, then fills it with 48 litres",
-   "tell": "Electric cars have no petrol tank, so 48 litres could not go in.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "motoring",
-   "banked": "2026-11-13",
-   "rules": 2
-  },
-  {
-   "h": "Teacher in {} takes the register for a class of 24 and marks 29 pupils present",
-   "tell": "You cannot have more pupils present than the class contains.",
-   "unbelievable": 3,
-   "obvious": 2,
    "theme": "school",
-   "banked": "2026-11-13",
+   "taste": 4.0,
+   "banked": "2026-11-14",
    "rules": 2
   },
   {
-   "h": "Thief in {} wheels a 3.4-tonne church bell 6 kilometres home on a bicycle, mostly uphill",
-   "tell": "No bicycle could carry or even move 3.4 tonnes, let alone uphill.",
-   "unbelievable": 5,
-   "obvious": 3,
-   "theme": "bell",
-   "banked": "2026-11-13",
-   "rules": 2
-  },
-  {
-   "h": "Runner in {} wins a marathon in 1 hour 4 minutes after stopping for a 50-minute lunch",
-   "tell": "The fastest marathon ever run takes about two hours, with no lunch.",
-   "unbelievable": 4,
+   "h": "Man in {} sues his neighbour over 37 years of loud music, though the neighbour moved in last spring",
+   "tell": "A neighbour who moved in last spring cannot have played music for 37 years.",
    "obvious": 2,
-   "theme": "running",
-   "banked": "2026-11-13",
+   "theme": "lawsuit",
+   "taste": 5.0,
+   "banked": "2026-11-14",
    "rules": 2
   },
   {
-   "h": "Library in {} fines a man for returning a book 12 days before he borrowed it",
-   "tell": "You cannot return a book before borrowing it; the logic is impossible.",
-   "unbelievable": 4,
+   "h": "Baker in {} turns out 1,260 loaves in 20 minutes from a one-metre-wide home oven",
+   "tell": "A small home oven cannot bake over a thousand loaves in 20 minutes.",
    "obvious": 3,
-   "theme": "library",
-   "banked": "2026-11-12",
-   "rules": 2
-  },
-  {
-   "h": "Baker in {} bakes a 4-metre-wide loaf in an ordinary home oven and feeds 63 neighbours",
-   "tell": "A home oven is well under a metre wide; a 4-metre loaf cannot fit.",
-   "unbelievable": 4,
-   "obvious": 2,
    "theme": "baking",
-   "banked": "2026-11-12",
+   "taste": 3.0,
+   "banked": "2026-11-14",
    "rules": 2
   },
   {
-   "h": "Speed camera in {} fines a parked bus for doing 87 km/h",
-   "tell": "A parked bus is stationary, so it cannot be speeding at 87 km/h.",
-   "unbelievable": 3,
+   "h": "Twin brothers in {} celebrate their 40th and 44th birthdays at the same party",
+   "tell": "Twins are the same age, so they cannot be 40 and 44.",
+   "obvious": 2,
+   "theme": "birthday",
+   "taste": 4.0,
+   "banked": "2026-11-14",
+   "rules": 2
+  },
+  {
+   "h": "Customer in {} is served a 14-litre pint and finishes it in 38 seconds",
+   "tell": "A pint is about half a litre, and nobody drinks 14 litres in 38 seconds.",
    "obvious": 3,
-   "theme": "speeding",
-   "banked": "2026-11-12",
+   "theme": "pub",
+   "taste": 3.0,
+   "banked": "2026-11-14",
    "rules": 2
   },
   {
-   "h": "Adult hide-and-seek champion in {} stays hidden for 5 hours inside a 27-centimetre lunchbox",
-   "tell": "No adult could fit inside a 27-centimetre lunchbox.",
-   "unbelievable": 5,
-   "obvious": 2,
-   "theme": "games",
-   "banked": "2026-11-12",
+   "h": "Commuter in {} misses the 8:15 train, waits 3 hours for the next, which departs at 8:50",
+   "tell": "8:15 to 8:50 is only 35 minutes, not 3 hours.",
+   "obvious": 3,
+   "theme": "transit",
+   "taste": 4.0,
+   "banked": "2026-11-14",
    "rules": 2
   },
   {
-   "h": "Pensioners in {} knit a 14-kilometre scarf in a single afternoon using 6 volunteers",
-   "tell": "Six knitters cannot produce 14 kilometres of scarf in an afternoon.",
-   "unbelievable": 4,
+   "h": "Woman, 29, marks 35th wedding anniversary at the café where she met her husband in {}",
+   "tell": "A 29-year-old cannot have been married for 35 years.",
    "obvious": 2,
-   "theme": "knitting",
-   "banked": "2026-11-12",
+   "theme": "marriage",
+   "taste": 4.0,
+   "banked": "2026-11-14",
+   "rules": 2
+  },
+  {
+   "h": "Cyclist in {} rides 96 km to work in 38 minutes after missing the bus",
+   "tell": "96 km in 38 minutes is about 150 km/h, impossible on a bicycle.",
+   "obvious": 3,
+   "theme": "speed",
+   "taste": 3.0,
+   "banked": "2026-11-14",
+   "rules": 2
+  },
+  {
+   "h": "Man, 52, builds a 14-metre-long shed in a back garden measuring 6 metres by 5 in {}",
+   "tell": "A 14-metre shed cannot fit in a garden only 6 metres long.",
+   "obvious": 2,
+   "theme": "building",
+   "taste": 5.0,
+   "banked": "2026-11-14",
+   "rules": 2
+  },
+  {
+   "h": "Bakery in {} marks 40th anniversary of its 2009 opening with 1,140 free rolls",
+   "tell": "40 years after 2009 is 2049, which is in the future.",
+   "obvious": 3,
+   "theme": "anniversary",
+   "taste": 4.0,
+   "banked": "2026-11-14",
+   "rules": 2
+  },
+  {
+   "h": "Couple in {} marry on 31 June in a car park with 212 guests",
+   "tell": "June has only 30 days, so 31 June does not exist.",
+   "obvious": 2,
+   "theme": "wedding",
+   "taste": 5.0,
+   "banked": "2026-11-14",
    "rules": 2
   }
  ],
  "pol": [
   {
-   "id": 12,
-   "h": "Mayoral race in {} ends in a tie, winner picked by random drawing, then challenger seeks recount",
+   "id": 17,
+   "h": "Mayor in {} wins tied race by random drawing; challenger seeks recount",
    "place": "Spring Lake Park, Minnesota, USA",
    "geocode": "Spring Lake Park, Minnesota, USA",
    "lat": 45.1154274,
    "lng": -93.2492872,
-   "clue": "A northern Twin Cities suburb whose name has a lake and a park",
-   "src": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9GM0FmSU5SeU9rU2hRNXNyZHJxYVVrelZncnByQS03dGVQZ3AxcFY1VHd2VTBXUmRkNFdfQ1lMOGt1anNlYTJLTGd6OWhUcnlBWUJ3WGdLRmlBNUHSAWBBVV95cUxQMTBxOHBQOTMzdDlBTWtPdUliQ3MwS0VJMFd0NmFWTC12THdtUmhRVlVqWWlFaldkX2hZdDY5T2FvRFdiSDFiSFVaQ010c0hGVm9jZTFPZnNRVHZJSFpXTDk?oc=5",
-   "published": "2026-11-06",
-   "banked": "2026-11-13"
+   "clue": "Twin Cities suburb north of Minneapolis, in the Land of 10,000 Lakes",
+   "src": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQb2lPUXBjLXQ1SGZCX1B2a0NlWkpmdE50WTBTYzNFUlNON0VSMjVvYl9RRDh4bmR4SElJbEpIQUxoczdpZExoR0M3YzlRX3pMU0NuSVprRy11NlZzbmRsVzd2QmtwbVdFQzB0emJBcTc4Z3lLZHpWSkhCVTk0UHZvajdRSldhZ0pLZDItYzJPVjVvNDdfdjdEeWpMT3l0N012ZEJHdUlWcFZ3SmJoTGZ5QmRtdE9kYUJ1eGJCLVR0Q0dVSnI0WHpj?oc=5",
+   "published": "2026-11-10",
+   "banked": "2026-11-14"
   }
  ],
  "polfake": [
+  {
+   "h": "Mayor of {} wins re-election by 212 votes in a ward where 187 people voted",
+   "banked": "2026-11-14"
+  },
+  {
+   "h": "Returning officer in {} finishes hand count of 6,240 ballots an hour before polls close",
+   "banked": "2026-11-14"
+  },
+  {
+   "h": "Teen, 16, in {} casts first vote after 19 years on the electoral roll, clerk confirms",
+   "banked": "2026-11-14"
+  },
+  {
+   "h": "Planners in {} open a 14-kilometre cycle path that measures 9 kilometres end to end",
+   "banked": "2026-11-14"
+  },
+  {
+   "h": "Parliament in {} sits for 31 hours straight to pass a law capping the working day at 6 hours",
+   "banked": "2026-11-14"
+  },
+  {
+   "h": "Candidate in {} gets 340 votes in a district of 290 registered voters and is declared runner-up",
+   "banked": "2026-11-14"
+  },
   {
    "h": "Councillor in {} walks 61 km to a meeting to save fuel, arrives two days before it is scheduled",
    "banked": "2026-11-13"
@@ -1046,30 +1048,6 @@
   {
    "h": "Mayor of {} cancels annual election after the only candidate loses to himself by 37 votes",
    "banked": "2026-11-11"
-  },
-  {
-   "h": "Town council in {} bans umbrellas to reduce rainfall, citing a 14-year-old parking study",
-   "banked": "2026-11-11"
-  },
-  {
-   "h": "Clerk in {} counts 8,412 ballots from a village of 640 registered voters and certifies the result",
-   "banked": "2026-11-11"
-  },
-  {
-   "h": "Ward vote in {} ends in a tie, then a coin lands on its edge twice in a row to pick the winner",
-   "banked": "2026-11-11"
-  },
-  {
-   "h": "Councillors in {} approve a budget after a cat chairs the meeting and calls the vote in Latin",
-   "banked": "2026-11-11"
-  },
-  {
-   "h": "Voters in {} elect a mayor born on the same day as the last three mayors",
-   "banked": "2026-11-07"
-  },
-  {
-   "h": "Mayor of {} cancels annual budget vote after clerk finds a typo in the third paragraph",
-   "banked": "2026-11-10"
   }
  ]
 }
