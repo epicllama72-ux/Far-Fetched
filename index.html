@@ -1772,7 +1772,7 @@ body.pinning #card #headline{font-size:23px}
         </div>
         <button id="mBoard" type="button" class="obj stand" style="--r:1.5deg;--i:3"><span class="ttl">STANDINGS</span><span id="dBoard"><small>Today's deepest digs</small></span></button>
         <button id="mPassport" type="button" class="obj pass" style="--r:-3deg;--i:4"><span class="band">PRESS</span><span class="in"><span class="face" aria-hidden="true"></span><span><span class="ttl">PASSPORT</span><small id="passSub">stamps for right-country pins</small></span></span></button>
-        <button id="mBack" type="button" class="obj bundle" style="--r:2deg;--i:5" hidden><span class="stack" aria-hidden="true"><i></i><i></i><i></i><b></b></span><span class="tag" id="dBackTag"></span><span class="blbl"><span class="ttl">BACK ISSUES</span><small>earlier papers &middot; no streak</small></span></button>
+        <button id="mBack" type="button" class="obj bundle" style="--r:2deg;--i:5" hidden><span class="stack" aria-hidden="true"><i></i><i></i><i></i><b></b></span><span class="tag" id="dBackTag"></span><span class="blbl"><span class="ttl">BACK ISSUES</span><small>the last 5 papers &middot; no streak</small></span></button>
         <div id="backList" class="drawer" hidden></div>
         <button id="mWardrobe" type="button" class="obj ad" style="--r:-1deg;--i:6"><span class="ttl">WARDROBE</span><small>FOR SALE: hats, coats &amp; specs for one digger. <span id="wardSub">dress the digger</span></small></button>
         <button id="mHow" type="button" class="obj card" style="--r:2.5deg;--i:7" aria-expanded="false"><span class="q" aria-hidden="true">?</span><span class="ttl">HOW TO SCORE</span><small>Calls, pins, country bonus and rarity.</small></button>
@@ -4698,8 +4698,10 @@ let ISSUES=[];
 function loadIssues(){
   return fetch('data/issues.json',{cache:'no-cache'}).then(r=>r.ok?r.json():[]).then(d=>{ ISSUES=Array.isArray(d)?d:[]; renderIssues(); }).catch(()=>{});
 }
+const BACK_FREE=5;    // back issues on offer: the most recent 5 earlier papers. Every older paper stays stored (data/*.json, issues.json) for later.
+const backWindow=()=>ISSUES.filter(x=>x && x.date && x.date<dayKey()).sort((a,b)=>a.date<b.date?1:-1).slice(0,BACK_FREE);
 function renderIssues(){
-  const past=ISSUES.filter(x=>x && x.date && x.date<dayKey());
+  const past=backWindow();
   $('mBack').hidden=!past.length;
   $('backList').innerHTML=past.map(x=>{
     const done=load('ff_back:'+x.date+':call');
@@ -4709,6 +4711,7 @@ function renderIssues(){
 }
 let BACK=null;
 async function openBackIssue(date){
+  if(!backWindow().some(x=>x.date===date)) return;   // only the recent window opens
   try{
     const r=await fetch('data/'+date+'.json',{cache:'no-cache'}); if(!r.ok) return;
     BACK=await r.json(); BACK.date=date;
