@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,interactive-widget=overlays-content">
 <title>Far-Fetched - The Daily Dig</title>
 <meta name="copyright" content="© 2026 Far-Fetched. All rights reserved.">
 <meta name="description" content="A free daily news game. Seven weird headlines: spot the two that are made up, then pin the real ones on the map. Plus Fill the Blank and Politics. New puzzles every day.">
@@ -5684,7 +5684,18 @@ function endBlank(){
 /* keep the bottom bar above the on-screen keyboard. It is only lifted while a text box is being typed in, and it is put straight back
    whenever the page comes back into view (after the share sheet or another app) or the window changes size: the browser can report a
    stale, shorter viewport right after returning, which used to leave the buttons stuck out of place. */
+/* While a word is being typed in Fill the Blank, keep the headline in the visible part of the screen: the keyboard can slide the page (iOS pans the
+   visual viewport, other browsers shrink it), which used to carry the headline off the top. The card is nudged down to the top of whatever is visible. */
+function pinHeadline(vv){
+  vv=vv||window.visualViewport; const c=$('card'); if(!c) return;
+  const typing=!!(S && S.kind==='blank' && S.phase==='live' && (document.activeElement||{}).id==='guessIn');
+  c.style.transform=''; c.style.position='';
+  if(!typing || !vv) return;
+  const top=c.getBoundingClientRect().top, want=vv.offsetTop+4;
+  if(top<want){ c.style.position='relative'; c.style.zIndex='6'; c.style.transform='translateY('+Math.round(want-top)+'px)'; }
+}
 function liftBar(){
+  pinHeadline();
   const bar=$('bar'); if(!bar) return;
   const vv=window.visualViewport;
   const typing=/^(INPUT|TEXTAREA)$/.test((document.activeElement||{}).tagName||'');
@@ -5705,6 +5716,7 @@ document.addEventListener('visibilitychange',()=>{ if(!document.hidden) settleBa
 window.addEventListener('pageshow',()=>settleBar(true)); window.addEventListener('focus',()=>settleBar(true));
 window.addEventListener('resize',()=>settleBar()); window.addEventListener('orientationchange',()=>settleBar(true));
 document.addEventListener('focusout',()=>setTimeout(liftBar,50));
+document.addEventListener('focusin',()=>{ settleBar(); });   // the keyboard opening: settle the bar and the headline as it slides in
 
 $('btnStart').onclick=()=>{
   const begin=()=>{ if(S.kind==='blank') startBlankRound(); else startCallRound(); };
