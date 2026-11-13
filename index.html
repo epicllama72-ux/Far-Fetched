@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Far-Fetched - The Daily Dig</title>
+<meta name="copyright" content="© 2026 Far-Fetched. All rights reserved.">
 <meta name="description" content="A free daily news game. Seven weird headlines: spot the two that are made up, then pin the real ones on the map. Plus Fill the Blank and Politics. New puzzles every day.">
 <link rel="canonical" href="https://farfetchedgame.com/">
 <meta name="robots" content="index,follow,max-image-preview:large">
@@ -887,6 +888,7 @@ body:has(#menu:not([hidden]))::before{content:'';position:fixed;inset:0;z-index:
 #menuStats b{font-weight:400;color:var(--ink)}
 #menu .dSmall{display:flex;flex-wrap:wrap;justify-content:center;gap:2px 0;margin-top:10px;border-top:1px solid var(--rule);padding-top:8px}
 #menu .dSmall>*{all:unset;cursor:pointer;font:17px/1 var(--vt);color:var(--ink);padding:4px 12px;border-right:1px solid var(--rule)}
+#menu .dCopy{margin:8px 0 0;text-align:center;font:15px/1.2 var(--vt);color:var(--inkdim)}
 #menu .dSmall>*:last-child{border-right:0} #menu .dSmall>*:hover{color:var(--stamp)}
 .topline b{color:var(--accent);font-weight:400}
 #streak{color:var(--accent);white-space:nowrap}
@@ -1687,6 +1689,7 @@ body.pinning #card #headline{font-size:23px}
       </div>
       <p id="menuStats"></p>
       <div class="dSmall"><button id="mAbout" type="button">About</button><a id="mContact" href="mailto:playfarfetched@gmail.com">Letters to the editor</a><a id="mPrivacy" href="privacy.html">Privacy</a></div>
+      <p class="dCopy">&copy; 2026 Far-Fetched. All rights reserved.</p>
       </div>
     </div>
   </div>
@@ -1804,6 +1807,7 @@ body.pinning #card #headline{font-size:23px}
     <div class="aboutIn">
       <div class="sheetTop"><p class="kicker">About Far-Fetched</p><button id="aboutClose" aria-label="Close">×</button></div>
       <p>Far-Fetched is a free daily news game. In the Daily Dig you get seven weird headlines each day: five really happened and two were made up. Call each one real or fake, then pin the real ones on the map. Every point drops the digger's jaw deeper. The Daily Dig is the only mode that earns Wardrobe items and builds your Dig Kit. Fill the Blank and Politics are daily too, and Practice lets you play older stories without touching your streak.</p>
+    <p class="aboutCopy" style="margin-top:14px;font-size:.85em;opacity:.7">&copy; 2026 Far-Fetched. All rights reserved. The game, its code, art, text and puzzles may not be copied or reused without permission.</p>
     </div>
   </section>
   <section id="wardrobe" hidden aria-label="Wardrobe">
