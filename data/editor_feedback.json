@@ -17,7 +17,8 @@
   "SELECTION: chases that just end in a crash or arrest, a driver stuck somewhere, rare-animal sightings and 'just happened' stories are boring; pick a vivid concrete detail plus a twist the reader would repeat to a friend.",
   "FAKES: a human mishap with one slip catchable from the headline alone (impossible sum, timeline or physics); never animals as the joke, never a headline with no slip.",
   "FAKES: best when about a person doing a weird crime or something strange (at least half); the rest can be other everyday absurdity. Every fake still needs one inconsistency catchable from the headline alone.",
-  "FAKES: write them like the real ones (vivid, absurd, specific), never dull transactions such as splitting a bill, a fine or a hotel bill; the quiet inconsistency is in a stated number, age, date or duration."
+  "FAKES: write them like the real ones (vivid, absurd, specific), never dull transactions such as splitting a bill, a fine or a hotel bill; the quiet inconsistency is in a stated number, age, date or duration.",
+  "FAKES: the slip should usually be general knowledge (biology/animal facts, science myths, technology or history anachronisms, food/culture facts), checkable from the headline alone and never dependent on the hidden place; numbers, ages and dates can also be used but not dull bills or fines."
  ],
  "edits": [
   {
@@ -289,6 +290,18 @@
    "before": "Four friends in {} split a 7,240-yen restaurant bill evenly, each pays 2,310 yen",
    "after": "Pensioner, 79, rides a mobility scooter with a 15 km range 240 km to a casino in {}",
    "why": "fakes should be absurd, vivid stories like the real ones with a quiet inconsistency; bill splitting and hotel billing are dull"
+  },
+  {
+   "kind": "selection",
+   "before": "Teenager, 19, is sentenced in {} for stealing a vintage tram in 1996",
+   "after": "Fisherman in {} hauls up a 1998 Nokia 3310 from a fjord, and it still has 14% battery",
+   "why": "owner's preferred fake style: absurd real-style story exposed by a world-knowledge slip (biology, science myth, anachronism), not arithmetic"
+  },
+  {
+   "kind": "selection",
+   "before": "Pensioner, 79, rides a mobility scooter with a 15 km range 240 km to a casino in {}",
+   "after": "Town bans red patio umbrellas in {} after a bull, enraged by the colour, wrecks three cafés",
+   "why": "owner's preferred fake style: absurd real-style story exposed by a world-knowledge slip (biology, science myth, anachronism), not arithmetic"
   }
  ]
 }
