@@ -269,6 +269,12 @@
    "before": "where the Holy Family is said to have stayed longest",
    "after": "the Nile's ancient \"city of wolves\"",
    "why": "owner asked for a different clue for the Assiut crocodile story"
+  },
+  {
+   "kind": "selection",
+   "before": "Man in {} tries to return a 43-year-old library book, is told the library closed 72 years ago",
+   "after": "President of {} asks for November 19 off work to play GTA 6",
+   "why": "owner supplied the fake: a head of state asking for the GTA 6 launch day off"
   }
  ]
 }
