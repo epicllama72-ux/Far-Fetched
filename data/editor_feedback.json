@@ -243,6 +243,24 @@
    "before": "Hundreds in {} shove a giant steel sculpture seven inches to free a man rumoured to be trapped inside",
    "after": "Hundreds in {} shove a 110-ton steel sculpture seven inches to free a 'trapped' man; it doesn't budge",
    "why": "a concrete weight and the punchline that it did not move"
+  },
+  {
+   "kind": "selection",
+   "before": "Hundreds in {} shove a 110-ton steel sculpture seven inches to free a 'trapped' man; it doesn't budge",
+   "after": "Officials open a passenger's bag on a train from Aswan and find 30 baby crocodiles in {}",
+   "why": "owner found the Chicago Bean push not interesting enough; wants stranger, more vivid true stories"
+  },
+  {
+   "kind": "selection",
+   "before": "Man, 51, rams a patrol car fleeing in a microcar with scrapyard plates, then gets stuck in a field in {}",
+   "after": "Woman, 80, loses 1 million yen to a scammer posing as an astronaut in need of oxygen, police in {} say",
+   "why": "microcar chase judged dull; prefers a strange scam with a surreal hook"
+  },
+  {
+   "kind": "selection",
+   "before": "Ice-cream shop in {} sells 418 scoops of a new flavour before noticing the tub was empty",
+   "after": "Man in {} tries to return a 43-year-old library book, is told the library closed 72 years ago",
+   "why": "ice-cream fake was weak; prefer a human mishap with one catchable arithmetic/logic slip"
   }
  ]
 }
