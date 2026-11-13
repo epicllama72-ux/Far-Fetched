@@ -1167,7 +1167,16 @@ body.intro #ausBar{display:none}
 #blankBar #timerNum{flex:0 0 48px;height:48px;font-size:26px}
 #blankBar .inwrap{flex:1;min-width:0;position:relative}
 #blankBar #guessIn{width:100%;border-bottom:0;padding-bottom:13px}
-#blankBar #timerTrack{position:absolute;left:0;right:0;bottom:0;height:4px;box-shadow:none;background:#1c2230}
+#blankBar #timerTrack{display:none}   /* the clock runs along the bottom of the headline card instead */
+#card{position:relative}
+#card.timing{padding-bottom:30px!important}
+#cardTimer{position:absolute;left:0;right:0;bottom:0;height:14px;background:rgba(27,24,19,.16);border-top:2px solid var(--ink)}
+#cardTimer[hidden]{display:none}
+#cardTimerBar{display:block;height:100%;width:100%;background:repeating-linear-gradient(90deg,var(--good) 0 10px,rgba(0,0,0,.4) 10px 12px)}
+#cardTimer.low #cardTimerBar{background:repeating-linear-gradient(90deg,var(--bad) 0 10px,rgba(0,0,0,.4) 10px 12px)}
+#cardTimer.low{animation:ctPulse .5s steps(2) infinite}
+@keyframes ctPulse{50%{background:rgba(168,35,26,.28)}}
+@media (prefers-reduced-motion:reduce){#cardTimer.low{animation:none}}
 #blankBar .primary{width:auto;padding:12px 16px}
 #guessList{display:flex;flex-wrap:wrap;gap:6px}
 .chip{font:20px/1 var(--vt);padding:5px 8px;background:#141821;border:2px solid var(--line);color:var(--text)}
@@ -1782,6 +1791,7 @@ body.pinning #card #headline{font-size:23px}
     <a id="storyLink" class="storyLink" hidden target="_blank" rel="noopener">read the story ↗</a>
     <div id="hint" hidden><svg id="hintBg" aria-hidden="true"></svg><span id="hintTxt"></span></div>
     <div id="speed" hidden><div class="trk"><i></i></div><span>+100</span></div>
+    <div id="cardTimer" hidden aria-hidden="true"><i id="cardTimerBar"></i></div>
   </section>
   <div id="feedback" hidden aria-live="polite"></div>
   <div id="bar">
@@ -3605,7 +3615,7 @@ function startGame(mode, kind){
   $('mPractice').classList.toggle('on',!daily);
   try{ $('logoSub').textContent='The Daily Odd · No. '+dayNumber(); }catch(e){}
   $('howText').innerHTML = blank
-    ? 'Guess the hidden word in each true headline. The exact word scores <b>'+Math.round(BLANK_MAX)+'</b>, however fast you find it. Near misses pay part of that, the closer the more. Every guess after your third costs 5%.'
+    ? 'Guess the hidden word in each true headline. The exact word, or any word that means the same (pub or bar), scores <b>'+Math.round(BLANK_MAX)+'</b>, however fast you find it. Near misses pay part of that, the closer the more. Every guess after your third costs 5%.'
     : 'Right call on a true story: up to <b>+'+Math.round(PK*CALL_PTS)+'</b>, more the quicker you answer. Catching a fake: <b>+'+FAKE_PTS+'</b>. Fooled by a fake: <b>−'+Math.abs(FOOLED_PTS)+'</b>. Then pin where the true story happened for up to <b>+'+Math.round(PK*PIN_PTS)+'</b>, plus <b>+'+Math.round(PK*COUNTRY_PTS)+'</b> if your pin is in the right country. Your pin\'s rarity adds a bonus: <b>+'+pinBonus(0)+'</b> Globalist, <b>+'+pinBonus(300)+'</b> Statesman, <b>+'+pinBonus(1000)+'</b> Pundit, <b>+'+pinBonus(3000)+'</b> Skimmer. Every point drops his jaw the same distance, and losing points pulls it back up.';
   renderStats();
   closeMenu();
@@ -5344,7 +5354,8 @@ let VM = null, VLOAD = null, TIMER = null;
 
 function loadVectors(){
   if(VLOAD) return VLOAD;
-  VLOAD = fetch('words.json').then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+  const syn=fetch('data/synonyms.json').then(r=>r.ok?r.json():null).then(loadSynonyms).catch(()=>{});   // optional: without it only the editor's own lists count
+  VLOAD = Promise.all([fetch('words.json').then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); }),syn]).then(a=>a[0])
     .then(j=>{
       const words=j.words.split('\n'), n=j.n, d=j.d;
       const raw=atob(j.data), arr=new Int8Array(n*d);
@@ -5384,7 +5395,15 @@ function vecOf(st){
    Rank 0 is the closest word of all, and the heat follows the rank, so the same word always runs as hot or cold whatever the headline. */
 const exactSet=st=>st.alt!==undefined ? st.ans : [st.ans[0]];
 const nearSet=st=>st.alt!==undefined ? st.alt : st.ans.slice(1);
-const sameWord=(a,b)=>a===b || stem(a)===stem(b);
+/* Words that fill a headline equally well (pub / bar, cops / police, mobile / phone, colour / color) count as the same word, so a guess
+   from the same group as an exact answer is exact too. The groups come from data/synonyms.json. */
+let SYN=new Map();
+function loadSynonyms(j){
+  const m=new Map(); ((j&&j.groups)||[]).forEach((g,i)=>g.forEach(w=>{ w=String(w).toLowerCase(); m.set(w,i); m.set(stem(w),i); }));
+  SYN=m;
+}
+const synOf=w=>SYN.has(w)?SYN.get(w):SYN.get(stem(w));
+const sameWord=(a,b)=>{ if(a===b || stem(a)===stem(b)) return true; const g=synOf(a); return g!==undefined && g===synOf(b); };
 function isExactWord(word,st){
   if(exactSet(st).some(a=>sameWord(a,word))) return true;
   if(st.alt===undefined){                       // older papers listed synonyms and inflections together: inflections of the answer stay exact
@@ -5440,7 +5459,7 @@ function blankHTML(st,reveal){
   const bar = '<span class="redact" role="img" aria-label="word hidden" style="width:'+w+'px"></span>';
   return st.h2.replace('[]', reveal ? '<span class="reveal">'+st.ans[0]+'</span>' : bar);
 }
-function stopTimer(){ if(TIMER){ clearInterval(TIMER); TIMER=null; } }
+function stopTimer(){ if(TIMER){ clearInterval(TIMER); TIMER=null; } $('card').classList.remove('timing'); $('cardTimer').hidden=true; }
 
 function showBlankRound(live){
   document.body.classList.remove('answered');
@@ -5480,6 +5499,7 @@ function startBlankRound(wall){
   $('storyLink').hidden=true;
   $('headline').innerHTML=blankHTML(st,false);
   $('blankLive').hidden=false; setBar('guess');
+  $('card').classList.add('timing'); $('cardTimer').hidden=false; $('cardTimer').classList.remove('low');
   $('guessList').innerHTML=''; $('guessMsg').textContent='';
   const inp=$('guessIn'); inp.value='';
   updateTimer();
@@ -5494,6 +5514,7 @@ function updateTimer(){
   $('timerBar').style.width=(tl/BLANK_SECS*100)+'%';
   $('timerNum').textContent=tl>=10?Math.ceil(tl):tl.toFixed(1);
   $('timerBar').classList.toggle('low',tl<4);
+  $('cardTimerBar').style.width=(tl/BLANK_SECS*100)+'%'; $('cardTimer').classList.toggle('low',tl<5);
   const sec=Math.ceil(tl);
   if(sec!==S.blank.lastSec){ S.blank.lastSec=sec; if(sec<=5 && sec>0) Sound.play('tick'); }
   if(tl<=0){ Sound.play('timeup'); endBlank(); }
