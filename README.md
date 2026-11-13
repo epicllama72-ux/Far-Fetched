@@ -25,3 +25,7 @@ The builder reads odd-news RSS feeds (UPI Odd News, Sky News Strange, NY Post We
 - write believable fake headlines
 
 Places are geocoded with OpenStreetMap Nominatim. If a day's run fails, the game keeps showing the last good set.
+
+## Copyright
+
+(c) 2026 Far-Fetched. All rights reserved. See `LICENSE`.

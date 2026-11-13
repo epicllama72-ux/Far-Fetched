@@ -1,0 +1,14 @@
+Copyright (c) 2026 Far-Fetched. All rights reserved.
+
+This repository and the game it contains, including the source code, game
+design, text, headlines and hints, artwork, sounds and data files, are
+proprietary. The source is publicly viewable only so that the game can be
+hosted. No licence is granted to copy, modify, distribute, host, sell, or
+create derivative works from any part of it without prior written permission
+from the owner.
+
+Third-party components keep their own licences: Leaflet (BSD 2-Clause),
+Supabase JS (MIT), the Press Start 2P and VT323 fonts (SIL Open Font
+License 1.1) and the Natural Earth lake outlines (public domain).
+
+For permission requests: playfarfetched@gmail.com
