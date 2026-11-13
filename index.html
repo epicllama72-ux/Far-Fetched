@@ -1186,6 +1186,9 @@ body.intro #ausBar{display:none}
 @keyframes ctPulse{50%{background:rgba(168,35,26,.28)}}
 @media (prefers-reduced-motion:reduce){#cardTimer.low{animation:none}}
 #blankBar .primary{width:auto;padding:12px 16px}
+/* the guess box sits right under the headline, high on the screen, so the keyboard opens over the lower part of the game and nothing has to slide */
+#blankUI #blankBar{margin:0 0 8px;padding:8px 10px;background:rgba(10,12,16,.88);box-shadow:0 0 0 2px var(--ink)}
+#bar:not(:has(>:not([hidden]))){display:none}
 #guessList{display:flex;flex-wrap:wrap;gap:6px}
 .chip{font:20px/1 var(--vt);padding:5px 8px;background:#141821;border:2px solid var(--line);color:var(--text)}
 .chip b{font-weight:400;margin-left:6px;font-size:16px}
@@ -1809,16 +1812,6 @@ body.pinning #card #headline{font-size:23px}
   </div>
   <button class="primary" id="btnStart" hidden>Start</button>
   <button class="primary" id="btnNext" hidden>Next</button>
-  <div id="blankBar" hidden>
-    <form id="guessForm" autocomplete="off">
-      <span id="timerNum">20</span>
-      <div class="inwrap">
-        <input id="guessIn" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="guess…" aria-label="Guess the hidden word">
-        <div id="timerTrack"><div id="timerBar"></div></div>
-      </div>
-      <button class="primary" type="submit">GUESS</button>
-    </form>
-  </div>
   <div class="btns" id="endBtns" hidden>
     <button class="primary" id="btnShare">Share ↗</button>
     <button class="primary" id="btnBoard">Standings</button>
@@ -1833,6 +1826,16 @@ body.pinning #card #headline{font-size:23px}
     <button class="primary" id="btnNext2" hidden>Next</button>
   </div>
   <section id="blankUI" hidden>
+    <div id="blankBar" hidden>
+      <form id="guessForm" autocomplete="off">
+        <span id="timerNum">20</span>
+        <div class="inwrap">
+          <input id="guessIn" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="guess…" aria-label="Guess the hidden word">
+          <div id="timerTrack"><div id="timerBar"></div></div>
+        </div>
+        <button class="primary" type="submit">GUESS</button>
+      </form>
+    </div>
     <div id="blankLive" hidden>
       <p id="guessMsg"></p>
       <div id="guessList"></div>
@@ -5684,18 +5687,7 @@ function endBlank(){
 /* keep the bottom bar above the on-screen keyboard. It is only lifted while a text box is being typed in, and it is put straight back
    whenever the page comes back into view (after the share sheet or another app) or the window changes size: the browser can report a
    stale, shorter viewport right after returning, which used to leave the buttons stuck out of place. */
-/* While a word is being typed in Fill the Blank, keep the headline in the visible part of the screen: the keyboard can slide the page (iOS pans the
-   visual viewport, other browsers shrink it), which used to carry the headline off the top. The card is nudged down to the top of whatever is visible. */
-function pinHeadline(vv){
-  vv=vv||window.visualViewport; const c=$('card'); if(!c) return;
-  const typing=!!(S && S.kind==='blank' && S.phase==='live' && (document.activeElement||{}).id==='guessIn');
-  c.style.transform=''; c.style.position='';
-  if(!typing || !vv) return;
-  const top=c.getBoundingClientRect().top, want=vv.offsetTop+4;
-  if(top<want){ c.style.position='relative'; c.style.zIndex='6'; c.style.transform='translateY('+Math.round(want-top)+'px)'; }
-}
 function liftBar(){
-  pinHeadline();
   const bar=$('bar'); if(!bar) return;
   const vv=window.visualViewport;
   const typing=/^(INPUT|TEXTAREA)$/.test((document.activeElement||{}).tagName||'');
@@ -5716,7 +5708,6 @@ document.addEventListener('visibilitychange',()=>{ if(!document.hidden) settleBa
 window.addEventListener('pageshow',()=>settleBar(true)); window.addEventListener('focus',()=>settleBar(true));
 window.addEventListener('resize',()=>settleBar()); window.addEventListener('orientationchange',()=>settleBar(true));
 document.addEventListener('focusout',()=>setTimeout(liftBar,50));
-document.addEventListener('focusin',()=>{ settleBar(); });   // the keyboard opening: settle the bar and the headline as it slides in
 
 $('btnStart').onclick=()=>{
   const begin=()=>{ if(S.kind==='blank') startBlankRound(); else startCallRound(); };
