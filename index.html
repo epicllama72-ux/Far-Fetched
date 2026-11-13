@@ -4264,14 +4264,14 @@ const KIT=[
   {id:'hardhat', slot:'head',   name:'Hard hat + headlamp',icon:'⛑️', need:'60-day streak',  ok:L=>L.best>=60},
   {id:'goldjaw', slot:'teeth',  name:'Golden jaw',         icon:'👑', need:'100-day streak', ok:L=>L.best>=100},
   {id:'mug',     slot:'mug',    name:'Gold mug',           icon:'☕', need:'10 papers finished', ok:L=>L.papers>=10},
-  {id:'trophy',  slot:'trophy', name:'Core trophy',        icon:'🏆', need:'reach THE CORE', ok:L=>L.zmax>=5},
+  {id:'trophy',  slot:'trophy', name:'Core trophy',        icon:'🏆', need:'blow up THE CORE', ok:L=>L.cblown||L.zmax>=6},
   {id:'globe',   slot:'globe',  name:'Desk globe',         icon:'🌍', need:'pin 50 stories', ok:L=>L.pins>=50},
   {id:'shades',  slot:'glasses',name:'Aussie sunglasses',  icon:'🕶️', need:'dig through to Australia', ok:L=>L.zmax>=6},
   {id:'monocle',slot:'monocle',name:'Detective monocle',   icon:'🧐', need:'catch 20 fake stories', ok:L=>L.catches>=20},
   {id:'pigeon', slot:'pigeon', name:'Carrier pigeon',      icon:'🕊️', need:'a friend joins from your challenge', ok:L=>L.invites>=1}];
 function lifeNow(){
   const l=load('ff_life')||{}, h=load('ff_hist')||{};
-  return {best:l.best||0, pins:l.pins||0, catches:l.catches||0, zmax:l.zmax||0, invites:+load('ff_invites')||0, papers:new Set(Object.keys(h).filter(k=>k.endsWith(':call')).map(k=>k.split(':')[0])).size};
+  return {best:l.best||0, pins:l.pins||0, catches:l.catches||0, zmax:l.zmax||0, cblown:!!l.cblown, invites:+load('ff_invites')||0, papers:new Set(Object.keys(h).filter(k=>k.endsWith(':call')).map(k=>k.split(':')[0])).size};
 }
 function kitState(){ const k=load('ff_kit'); return {eq:(k&&k.eq)||{}, seen:(k&&k.seen)||[]}; }
 function unlockedIds(){ const L=lifeNow(); return KIT.filter(it=>it.ok(L)).map(it=>it.id); }
@@ -4298,6 +4298,7 @@ function updateLife(inf){
   l.pins=(l.pins||0)+S.results.filter(x=>x.pinPts>0).length;
   l.catches=(l.catches||0)+S.results.filter(x=>x.real===false && x.callOk).length;
   l.zmax=Math.max(l.zmax||0, ZONE_ORDER.indexOf(inf.zone)+1);
+  if(Scene.coreBlown()) l.cblown=1;   // the Core trophy needs the core to actually blow, not just the layer reached
   store('ff_life',l);
 }
 /* anything newly earned goes on straight away */
@@ -4711,7 +4712,7 @@ const Cloud=(function(){
       const w=a.last===b.last ? ((a.count||0)>=(b.count||0)?a:b) : (later(a.last,b.last)?a:b), o=w===a?b:a;
       const count = o.last && o.last===prevDay(w.last) ? Math.max(w.count||0,(o.count||0)+1) : (w.count||0);
       return Object.assign({},w,{count, freezes:Math.max(a.freezes||0,b.freezes||0)}); }
-    if(k==='ff_life'){ const w=later(a.dLast,b.dLast)?a:b, o=w===a?b:a, dCount=o.dLast && o.dLast===prevDay(w.dLast) ? Math.max(w.dCount||0,(o.dCount||0)+1) : (w.dCount||0); return Object.assign({},w,{dCount,best:Math.max(a.best||0,b.best||0),pins:Math.max(a.pins||0,b.pins||0),catches:Math.max(a.catches||0,b.catches||0),zmax:Math.max(a.zmax||0,b.zmax||0)}); }
+    if(k==='ff_life'){ const w=later(a.dLast,b.dLast)?a:b, o=w===a?b:a, dCount=o.dLast && o.dLast===prevDay(w.dLast) ? Math.max(w.dCount||0,(o.dCount||0)+1) : (w.dCount||0); return Object.assign({},w,{dCount,best:Math.max(a.best||0,b.best||0),pins:Math.max(a.pins||0,b.pins||0),catches:Math.max(a.catches||0,b.catches||0),zmax:Math.max(a.zmax||0,b.zmax||0),cblown:(a.cblown||b.cblown)?1:0}); }
     if(k==='ff_kit') return {eq:Object.keys(a.eq||{}).length?a.eq:(b.eq||{}), seen:[...new Set([].concat(b.seen||[],a.seen||[]))]};
     if(k==='ff_invites') return Math.max(+a||0,+b||0);
     if(k==='ff_name') return a||b;
