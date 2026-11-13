@@ -1244,6 +1244,44 @@ def valid_blank(r):
     return True
 
 
+
+def top_up_blank(blank_pool, blank_src, call_pick, prior, used, vecs, need, day):
+    """Fill the Blank always prints `need` headlines. The Daily Dig has already taken its picks (they are never touched); this loosens the
+    fussier rules step by step until the Blank has enough: (1) the same candidates without the one-similar-answer and leak checks,
+    (2) as a last resort, a story from the practice archive that last ran at least two weeks ago (a repeat, but the round is never short). Returns how many were added."""
+    free = lambda: [r for r in blank_pool if not any(r is q for q in call_pick)]
+    added = 0
+    def add(r, vec=True):
+        nonlocal added
+        blank_pool.append(r); added += 1
+    for r in blank_src:
+        if len(free()) >= need:
+            return added
+        if any(r is q for q in call_pick) or any(r is q for q in blank_pool) or not valid_blank(r):
+            continue
+        a = next((a for a in r["ans"] if a in vecs), None)
+        if a is None and vecs:
+            continue
+        if a:
+            r["vec"] = pack_vec(vecs[a])
+        add(r)
+    if len(free()) >= need:
+        return added
+    try:
+        arch = json.load(open(os.path.join(DATA, "practice.json"))).get("real", [])
+    except Exception:
+        arch = []
+    have = {r.get("h2") for r in blank_pool} | {r.get("h2") for r in call_pick}
+    cutoff = (dt.date.fromisoformat(day) - dt.timedelta(days=14)).isoformat()
+    for r in sorted([x for x in arch if x.get("h2") and x.get("ans") and x.get("vec") and x.get("day", "9") <= cutoff], key=lambda x: x.get("day", "")):   # the longest-unseen first
+        if len(free()) >= need:
+            break
+        if r["h2"] in have or r.get("src") in used or not valid_blank(r):
+            continue
+        r = dict(r); r["_archive"] = 1
+        have.add(r["h2"]); add(r)
+    return added
+
 # ---------------------------------------------------------------- main
 def main():
     ap = argparse.ArgumentParser()
@@ -1500,7 +1538,7 @@ def main():
 
     # Fill the Blank: real stories whose answer has a word vector
     # Fill the Blank isn't tied to the news cycle: older banked stories (up to a year) are fair game too.
-    blank_src = sorted(pool_all + stock["blank"], key=merit, reverse=True) + sorted(bank_old + bank_blank, key=merit, reverse=True)
+    blank_src = sorted(pool_all + stock["blank"], key=merit, reverse=True) + sorted(bank_old + bank_blank + [q for q in dropped_unfit if q not in pool_all], key=merit, reverse=True)   # the Blank needs no map pin, so stories that were too hard to pin still count
     blank_src = [r for i, r in enumerate(blank_src) if not any(r is q for q in blank_src[:i])]   # a topped-up story can sit in two lists
     h2words = {w for r in blank_src for w in re.findall(r"[a-z]+", (r.get("h2") or "").lower())}
     vecs = load_vectors(os.environ.get("GLOVE"), [a for r in blank_src for a in (r.get("ans") or [])] + sorted(h2words))
@@ -1539,9 +1577,12 @@ def main():
     # Fill the Blank only takes what Real or Fake doesn't use, so a story never appears in two modes
     # (on a thin day the round is a little shorter instead).
     call_real = call_pick
+    if len([r for r in blank_pool if r not in call_real]) < N_BLANK:
+        n_add = top_up_blank(blank_pool, blank_src, call_real, prior, used, vecs, N_BLANK, day)
+        print(f"  Fill the Blank was short: loosened the checks and the practice archive, {n_add} more stories", file=sys.stderr)
     blank = [r for r in blank_pool if r not in call_real][:N_BLANK]
     if len(blank) < N_BLANK:
-        print(f"  Fill the Blank has {len(blank)} stories today (no sharing with Real or Fake)", file=sys.stderr)
+        print(f"  WARNING: Fill the Blank has only {len(blank)} stories today even after topping up (no sharing with Real or Fake)", file=sys.stderr)
 
     def with_hint(h, hint):
         """The knowledge clue rides in the headline itself: 'in {}, a capital on an extinct volcano'. Skipped if it would make the headline too long."""
