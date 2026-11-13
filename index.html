@@ -1187,6 +1187,18 @@ body.intro #ausBar{display:none}
 #endBtns button{flex:1}
 #endBtns .ghost{flex:1}
 #menu #mA2HS{color:var(--stamp)}
+#gsi{position:fixed;inset:0;z-index:42;background:rgba(14,12,9,.7);display:flex;align-items:flex-end;justify-content:center;padding:0 0 env(safe-area-inset-bottom,0px)}
+#gsi[hidden]{display:none}
+#gsi .gIn{--paper:#ece5d1;--ink:#1b1813;--dim:#5a5043;--stamp:#a8231a;width:min(480px,100%);background:var(--paper);background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(60,45,20,.03) 0 1px,transparent 1px 4px);color:var(--ink);text-shadow:none;letter-spacing:0;text-align:left;border-top:3px solid var(--ink);box-shadow:0 -5px 0 rgba(0,0,0,.4);padding:0 0 18px;font:20px/1.15 var(--vt)}
+#gsi :focus-visible{outline:3px solid var(--stamp);outline-offset:3px}
+#gsi .gTop{display:grid;grid-template-columns:1fr auto;border-bottom:3px double var(--ink)}
+#gsi .gTop h2{margin:0;padding:12px 14px 10px;font:10px/1.5 var(--px);letter-spacing:.06em}
+#gsi #gsiClose{all:unset;cursor:pointer;width:46px;display:flex;align-items:center;justify-content:center;font:28px/1 var(--vt);border-left:2px solid var(--ink)}
+#gsi #gsiClose:hover{background:var(--ink);color:var(--paper)}
+#gsi .gWhy{margin:14px 14px 0;font:20px/1.15 var(--vt);color:var(--dim)}
+#gsi .gBtn{margin:14px 14px 0;min-height:44px;display:flex;justify-content:center}
+#gsi .gMsg{margin:10px 14px 0;min-height:1.2em;font:19px/1.15 var(--vt);color:var(--stamp);text-align:center}
+#gsi .gOld{all:unset;cursor:pointer;display:block;margin:6px auto 0;font:17px/1 var(--vt);color:var(--dim);text-decoration:underline;padding:6px}
 #a2hs{position:fixed;inset:0;z-index:41;background:rgba(14,12,9,.7);display:flex;align-items:flex-end;justify-content:center;padding:0 0 env(safe-area-inset-bottom,0px)}
 #a2hs[hidden]{display:none}
 #a2hs .aIn{--paper:#ece5d1;--ink:#1b1813;--dim:#5a5043;--stamp:#a8231a;--cardc:#f7f3e8;width:min(480px,100%);max-height:88vh;overflow:auto;background:var(--paper);background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(60,45,20,.03) 0 1px,transparent 1px 4px);color:var(--ink);text-shadow:none;letter-spacing:0;text-align:left;border-top:3px solid var(--ink);box-shadow:0 -5px 0 rgba(0,0,0,.4);padding:0 0 18px;font:20px/1.15 var(--vt)}
@@ -1864,6 +1876,15 @@ body.pinning #card #headline{font-size:23px}
   <div id="rarity" aria-live="polite" hidden><canvas id="rIcon" width="16" height="16" hidden></canvas><b></b><small></small><i id="rCrowd" hidden></i><em></em></div>
   <div id="ausBar" aria-hidden="true"><i></i><b>0%</b></div>
   <button class="ghost" id="skipRecap">Skip ▸</button>
+  <section id="gsi" hidden aria-label="Sign in">
+    <div class="gIn" role="dialog" aria-modal="true">
+      <div class="gTop"><h2>SIGN IN</h2><button id="gsiClose" type="button" aria-label="Close">×</button></div>
+      <p class="gWhy">Save your streak, passport and wardrobe, and carry them to any device.</p>
+      <div id="gsiBtn" class="gBtn"></div>
+      <p id="gsiMsg" class="gMsg" aria-live="polite"></p>
+      <button id="gsiOld" class="gOld" type="button">Button not working? Sign in another way</button>
+    </div>
+  </section>
   <section id="a2hs" hidden aria-label="Add to Home Screen">
     <div class="aIn" role="dialog" aria-modal="true">
       <div class="aTop"><h2>ADD TO HOME SCREEN</h2><button id="a2hsClose" type="button" aria-label="Close">×</button></div>
@@ -4877,12 +4898,42 @@ const Cloud=(function(){
     const was=user&&user.id; user=u||null; armOut=0; render(); try{ renderNpPass(); }catch(e){}
     if(user && was!==user.id){ ready=true; pull(); }
   }
-  async function signIn(){
-    setStatus('');
-    $('acctSub').textContent='opening Google…';
+  /* Sign-in: Google's own button inside a small sheet; its ID token goes straight to Supabase, so Google's screen shows the game, not the Supabase address. */
+  const GOOGLE_CLIENT='170775693360-aijpdj39sh7a5eoe81mkrskl7tamh1c2.apps.googleusercontent.com';
+  let gsiReady=null, gsiRaw='';
+  const hex=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+  async function gsiNonce(){
+    const raw=hex(crypto.getRandomValues(new Uint8Array(16)));
+    return {raw, hashed:hex(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(raw)))};
+  }
+  function gsiLib(){ return window.google&&google.accounts&&google.accounts.id ? Promise.resolve() : new Promise((res,rej)=>{ const sc=document.createElement('script'); sc.src='https://accounts.google.com/gsi/client'; sc.async=true; sc.onload=res; sc.onerror=rej; document.head.appendChild(sc); }); }
+  async function gsiCallback(resp){
+    $('gsiMsg').textContent='Signing you in…';
+    try{
+      await client();
+      const {error}=await sb.auth.signInWithIdToken({provider:'google',token:resp.credential,nonce:gsiRaw});
+      if(error) throw error;
+      $('gsi').hidden=true; $('gsiMsg').textContent='';
+    }catch(e){ $('gsiMsg').textContent='That didn\'t work. Try again, or use the link below.'; }
+  }
+  async function oauthSignIn(){
+    $('gsi').hidden=true; $('acctSub').textContent='opening Google…';
     try{ await client(); await sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}}); }
     catch(e){ $('acctSub').textContent='sign-in isn\'t available right now'; }
   }
+  async function signIn(){
+    setStatus(''); $('gsiMsg').textContent=''; $('gsi').hidden=false;
+    try{
+      await Promise.all([client(), gsiLib()]);
+      const n=await gsiNonce(); gsiRaw=n.raw;
+      google.accounts.id.initialize({client_id:GOOGLE_CLIENT, callback:gsiCallback, nonce:n.hashed, use_fedcm_for_prompt:true});
+      const host=$('gsiBtn'); host.innerHTML='';
+      google.accounts.id.renderButton(host,{type:'standard',theme:'filled_black',size:'large',text:'continue_with',shape:'rectangular',width:Math.min(320,Math.max(200,innerWidth-60))});
+    }catch(e){ $('gsiMsg').textContent='Google\'s button couldn\'t load. Use the link below.'; }
+  }
+  $('gsiClose').onclick=()=>{ $('gsi').hidden=true; };
+  $('gsi').addEventListener('click',e=>{ if(e.target===$('gsi')) $('gsi').hidden=true; });
+  $('gsiOld').onclick=oauthSignIn;
   async function signOut(){ try{ await client(); await sb.auth.signOut(); }catch(e){} user=null; render(); }
   async function boot(){
     const q=new URLSearchParams(location.search), back=q.has('code');
