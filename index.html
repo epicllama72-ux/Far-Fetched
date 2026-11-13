@@ -1008,6 +1008,10 @@ body.pinDone #mapToggle{display:block}
 #guessForm .primary{width:auto;padding:10px 18px}
 #guessMsg{min-height:0;margin:0 0 8px;font:18px/1.1 var(--vt);color:#ffb3c0;background:#0d0f14;display:inline-block;padding:3px 8px}
 #guessMsg:empty{display:none}
+#guessMsg.warmer{color:#ffd07a}
+#guessMsg.colder{color:#9ec5ff}
+.bshare{display:block;margin-top:3px;font-size:.85em;opacity:.85}
+#recapList .rs{display:block;margin-top:2px;opacity:.8}
 .g{display:flex;align-items:center;gap:10px;padding:5px 10px;margin:0 0 6px;background:#141821;border:2px solid var(--line);font:22px/1 var(--vt)}
 .g.new{border-color:var(--accent)}
 .g .w{flex:0 0 38%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -4258,8 +4262,9 @@ function finish(restored){
     const cls=resultClass(x), pts=x.callPts+(x.pinPts||0);
     const head = x.blank ? blankHTML(st,true) : headlineHTML(st,true);
     const meta = st.real===false ? 'Invented for this game' : [st.place, st.src?'<a href="'+st.src+'" target="_blank" rel="noopener">read the story</a>':''].filter(Boolean).join(' · ');
-    return '<li class="'+cls+'"><i></i><div><span class="rh">'+head+'</span><span class="rm">'+meta+' · <b>'+(pts<0?'−'+Math.abs(pts):'+'+pts)+'</b></span></div></li>';
+    return '<li class="'+cls+'"><i></i><div><span class="rh">'+head+'</span><span class="rm">'+meta+' · <b>'+(pts<0?'−'+Math.abs(pts):'+'+pts)+'</b></span>'+(x.blank?'<span class="rs" data-bi="'+i+'"></span>':'')+'</div></li>';
   }).join('');
+  if(S.kind==='blank') blankStats().then(st=>{ document.querySelectorAll('#recapList .rs').forEach(el=>{ const t=gotItText(st,+el.dataset.bi); if(t) el.textContent=t; }); });
   const daily=S.mode==='daily';
   $('nextEd').hidden=!daily; if(daily) runCountdown();
   const others=['call','blank'].concat(POL_ON&&DAILY&&DAILY.politics&&DAILY.politics.length?['pol']:[]).filter(k=>k!==S.kind);
@@ -4744,7 +4749,7 @@ function renderCrowd(rows,agg){
     const q=document.createElement('i'); q.textContent='“'+short+'”'; $('crowdTop').append(q);
   }
 }
-function answersOf(results){ return results.map(x=>[x.callOk?1:0, x.dist==null?null:Math.round(x.dist)].concat(Array.isArray(x.pin)?x.pin:[])); }
+function answersOf(results){ return results.map(x=>x.blank ? [x.callOk?1:0, null, (x.exact!==undefined?x.exact:x.c>=0.999)?1:0, x.secs==null?null:x.secs] : [x.callOk?1:0, x.dist==null?null:Math.round(x.dist)].concat(Array.isArray(x.pin)?x.pin:[])); }   // blank: [close enough, -, found the word, seconds]
 
 /* the zone his jaw reached, in plain words for the share text: "bedrock", "magma", "core"... */
 function shareZone(z){ return z==='NOWHERE' ? 'jaw shut' : String(z||'').toLowerCase().replace(/^the /,''); }
@@ -5459,6 +5464,15 @@ function blankHTML(st,reveal){
   const bar = '<span class="redact" role="img" aria-label="word hidden" style="width:'+w+'px"></span>';
   return st.h2.replace('[]', reveal ? '<span class="reveal">'+st.ans[0]+'</span>' : bar);
 }
+/* how many other players found each Fill the Blank word today (one small request, kept for the session) */
+let BSTATS=null;
+function blankStats(){
+  if(S.mode!=='daily' || S.kind!=='blank' || !sbOn()) return Promise.resolve(null);
+  const d=dayKey(); if(BSTATS && BSTATS.day===d) return BSTATS.p;
+  const p=sbRpc('blank_stats',{p_day:d,p_player:playerId()}).then(r=>Array.isArray(r)?r:null).catch(()=>null);
+  BSTATS={day:d,p}; return p;
+}
+const gotItText=(st,i)=>{ const x=st&&st[i]; const n=x?+x.n||0:0; return n>=3 ? Math.round(100*(+x.e||0)/n)+'% of '+n.toLocaleString()+' players got it' : ''; };
 function stopTimer(){ if(TIMER){ clearInterval(TIMER); TIMER=null; } $('card').classList.remove('timing'); $('cardTimer').hidden=true; }
 
 function showBlankRound(live){
@@ -5578,19 +5592,21 @@ function submitWord(raw){
   if(bl.seen.has(word)){ msg.textContent='Already guessed "'+word+'".'; return; }
   if(fx.fixed){                            // autocorrect never submits on its own: the corrected word goes back in the box with a note, and the player decides
     const inp=$('guessIn'); inp.value=word; try{ inp.setSelectionRange(word.length,word.length); }catch(e){}
-    msg.textContent='"'+typed+'" → "'+word+'". Press GUESS to submit it, or type something else.';
+    msg.className=''; msg.textContent='"'+typed+'" → "'+word+'". Press GUESS to submit it, or type something else.';
     Sound.play('menu');
     return;
   }
   const c=closeness(word,st);
   if(c===null){ msg.textContent='"'+typed+'" isn\'t in the word list.'; Sound.play('nope'); return; }
-  msg.textContent='';
+  msg.textContent=''; msg.className='';
   const tl=Math.max(0,BLANK_SECS-(performance.now()-bl.t0)/1000);
   bl.seen.add(word);
   bl.guesses.push({word,c});
   const pts=blankPts(c,tl,bl.guesses.length);
   if(pts>bl.bestPts || !bl.bestWord){ bl.bestPts=pts; bl.bestC=c; bl.bestWord=word; }
   renderGuesses();
+  { const prev=bl.guesses.length>1 ? bl.guesses[bl.guesses.length-2].c : null;      // one word of feedback against the guess before
+    if(c<1 && prev!==null){ const up=c>prev+0.005, down=c<prev-0.005; msg.textContent=up?'Warmer.':down?'Colder.':'Same heat.'; msg.className=up?'warmer':down?'colder':''; } else msg.className=''; }
   if(c>=1){ bl.exact=true; bl.exactWord=word; Sound.play('exact'); endBlank(); } else Sound.play('guess',c);
 }
 
@@ -5609,7 +5625,7 @@ function endBlank(){
   stopTimer();
   S.phase='done';
   const bl=S.blank, st=S.rounds[S.i];
-  const res={blank:true, real:st.real, c:bl.bestC, callOk:bl.bestC>=0.55, callPts:bl.bestPts, pinPts:0, callWord:bl.bestWord};
+  const res={blank:true, real:st.real, c:bl.bestC, callOk:bl.bestC>=0.55, callPts:bl.bestPts, pinPts:0, callWord:bl.bestWord, exact:!!bl.exact, secs:bl.exact?Math.round(Math.min(BLANK_SECS,(performance.now()-bl.t0)/1000)*10)/10:null};
   S.score+=res.callPts;
   if(res.callPts>0){ Scene.gasp(); Sound.play('jawDown'); }
   $('blankLive').hidden=true;
@@ -5626,6 +5642,7 @@ function endBlank(){
   else line='Time. No guesses landed.';
   fb.innerHTML='<span class="sum">'+line+'</span><button class="why" type="button" aria-expanded="false">source</button><small class="more">'+st.place+(st.published?' · '+fmtDate(st.published):'')+(st.src?' · <a href="'+st.src+'" target="_blank" rel="noopener">read the story</a>':'')+'</small>';
   wireWhy(fb); fb.querySelector('.why').textContent='source';
+  { const bi=S.i; blankStats().then(st=>{ const t=gotItText(st,bi); if(t && S.i===bi && S.phase==='done'){ const sum=fb.querySelector('.sum'); if(sum && !sum.querySelector('.bshare')) sum.insertAdjacentHTML('beforeend','<span class="bshare">'+t+'.</span>'); } }); }
   S.results.push(res);
   saveProgress();
   const last=S.i===S.rounds.length-1;
