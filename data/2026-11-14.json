@@ -26,8 +26,8 @@
   },
   {
    "real": false,
-   "h": "Teenager, 19, is sentenced in {} for stealing a vintage tram in 1996",
-   "tell": "A 19-year-old wasn't born in 1996."
+   "h": "Fisherman in {} hauls up a 1998 Nokia 3310 from a fjord, and it still has 14% battery",
+   "tell": "The 3310 wasn't released until 2000, and batteries don't last decades."
   },
   {
    "real": true,
@@ -64,8 +64,8 @@
   },
   {
    "real": false,
-   "h": "Pensioner, 79, rides a mobility scooter with a 15 km range 240 km to a casino in {}",
-   "tell": "A 15 km range can't cover 240 km."
+   "h": "Town bans red patio umbrellas in {} after a bull, enraged by the colour, wrecks three cafés",
+   "tell": "Bulls are red-green colour-blind; they react to movement, not red."
   }
  ],
  "blank": [
