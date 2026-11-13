@@ -213,8 +213,8 @@ Below are candidate news stories from the past month (JSON). Some include "text"
    - "id": the candidate id.
    - "h": a punchy wire-style headline, max 110 characters, keeping every fact of the story exactly as reported (never change what happened, who or what was involved, numbers or outcome). You MAY reword and add short descriptive wording that makes the region easier to deduce, as long as it is generically true of that place and does not alter or add to the story: e.g. local terms and institutions ("the county sheriff", "council", "constabulary", "a roo", "monsoon rains", "rupees", "kilometres", "on the ski slopes"), local climate, wildlife or customs, or spelling and units typical of the country. Replace the place with the literal token {} exactly once (e.g. "... in {}"). Remove every EXPLICIT location clue: no state/country/city names, demonyms, local team, landmark, university or company names that reveal the place (landmarks and nearby cities belong in "hint", not here), no "Florida man". But KEEP the implicit, deducible clues that are part of the story (the animal, the weather, the local custom, currency or units, the type of institution), so a sharp player can reason their way to the right region. Keep the oddity intact. Write in clear English a reader anywhere can follow, but USE THE LOCAL LINGO of the place when you can: the words and spellings people there really use (lorry, bairns, footy, lolly, takeaway, bin, council, garda, "wee", "mate", "cuppa", "fortnight", rupees, a "roo") are great regional clues, so prefer them to the neutral word, as long as a reader can still understand it from the sentence ("ute" for a pickup is too obscure; "lorry" for a truck is fine). Never use lingo that names the place itself, and never invent it. Nothing may be read two ways (if a cafe fines the whole table, say "pay a fine", not "pay the bill"); the funny part must land on the first read. Put {} straight after a preposition ("in {}", "at {}", "near {}") so a clue can be attached after it. The clues do NOT have to come from the original headline: the article text ("text") often holds the best ones (a currency, a unit, a local institution, an animal, the weather, a local custom or law, a sport, a typical job). If a great story's clues sit in the body, WRITE them into "h" in your own words, as long as they are facts the text states or are generically true of that place, so the game headline can differ a lot from the source headline. A story whose body gives a fair regional clue is better than one with a punchier headline and nothing to deduce from.
    - "h2": the same story as a headline that DOES name the place (city + state/country), with the main subject noun of the story (the animal, object or kind of person it is about, e.g. "kangaroo", "pelicans", "kitten") replaced by the literal token [] exactly once. The hidden word must be an ordinary common noun that is written in lowercase in normal text: never a name, brand, product, model, company, team, place or nationality (not "Maserati" or "Vegemite" - use "car" or "spread" instead, or pick another noun). The rest of h2 must NOT contain the hidden word, a synonym or a close variant of it (if the hidden word is "toilets", h2 must not say "potties" or "loo"), and give each pick a different hidden word than the other picks (not both "burglar" and "thief"). IMPORTANT: the hidden word must be GUESSABLE from the rest of the headline by a well-read person: choose the word that the surrounding details point to most strongly, a common everyday word (not a rare animal, a technical term or an odd detail that could be anything), so that a player reading the headline would think of it within a few tries. If the story's most surprising noun could be a dozen different things from the context, hide a different, more implied noun instead.
-   - "ans": 1-8 lowercase single-word answers that count as an EXACT match for []: the hidden word first, then its singular/plural, then ONLY words a player has no way to tell apart from it given the headline. Exactness matters: a synonym is NOT exact ("car" is not "vehicle", "cops" is not "police"). The one exception is a specific type of something when nothing in the headline says which type: if the hidden word is a particular species, breed, variety or model, the general category and its sibling types are exact too (e.g. "boa" -> ["boa","boas","snake","snakes","python","pythons","cobra","cobras"] because nothing says which snake; "poodle" -> ["poodle","poodles","dog","dogs"]). Letters only.
-   - "alt": up to 8 lowercase single words that are close but NOT exact: synonyms, informal words, regional variants, a broader or narrower word the headline does rule out (e.g. for "police": "officers","cops","constables"; for "car": "vehicle","auto","automobile"). They earn big partial credit, never full. Never a word that means something clearly different. Letters only.
+   - "ans": 1-8 lowercase single-word answers that count as an EXACT match for []: the hidden word first, then its singular/plural, then every word that would fill the blank JUST AS WELL, so that a player who types it has found the same word. Ask: could the headline have been printed with this word instead, meaning exactly the same thing? If yes it is exact. That covers true synonyms and dialect or spelling variants ("pub" -> "bar","tavern"; "lorry" -> "truck"; "cops" -> "police","officers" when the headline does not say which; "phone" -> "mobile","cellphone"; "colour" -> "color"). A word is NOT exact when it is broader, narrower or only related ("car" is not "vehicle" or "van"; "dog" is not "pet"). The one other exception is a specific type of something when nothing in the headline says which type: if the hidden word is a particular species, breed, variety or model, the general category and its sibling types are exact too (e.g. "boa" -> ["boa","boas","snake","snakes","python","pythons","cobra","cobras"] because nothing says which snake; "poodle" -> ["poodle","poodles","dog","dogs"]). Letters only.
+   - "alt": up to 8 lowercase single words that are close but NOT exact: broader or narrower words, related things, a word the headline rules out (e.g. for "pub": "restaurant","club","hotel"; for "car": "vehicle","van","jeep"). Words that fit the blank just as well belong in "ans", never here. They earn big partial credit, never full. Never a word that means something clearly different. Letters only.
    - "place": display name like "Appleton, Wisconsin" or "Mykolaiv, Ukraine".
    - "geocode": a precise query for a geocoder, like "Appleton, Wisconsin, USA".
    - "lat", "lng": your best coordinates for the place (decimal degrees).
@@ -603,7 +603,7 @@ def guess_test(cands, model):
         exact = {a.lower() for a in (r.get("ans") or [])}
         near = {a.lower() for a in (r.get("alt") or [])}
         for pos, g in enumerate([str(w).lower().strip() for w in (x.get("guesses") or [])][:5], 1):
-            if g in exact or stem_word(g) in {stem_word(a) for a in exact}:
+            if g in exact or stem_word(g) in {stem_word(a) for a in exact} or (syn_group(g) is not None and syn_group(g) in {syn_group(a) for a in exact}):
                 found[int(x["id"])] = pos
                 break
     return found
@@ -615,6 +615,22 @@ def stem_word(w):
     if w.endswith("s") and not w.endswith("ss"):
         return w[:-1]
     return w
+
+_SYN = None
+def syn_group(w):
+    """The group of interchangeable words (pub/bar/tavern, cops/police, colour/color) a word belongs to, from data/synonyms.json; None if it has none."""
+    global _SYN
+    if _SYN is None:
+        _SYN = {}
+        try:
+            for i, g in enumerate(json.load(open(os.path.join(DATA, "synonyms.json")))["groups"]):
+                for x in g:
+                    _SYN[x.lower()] = i
+                    _SYN[stem_word(x.lower())] = i
+        except Exception:
+            pass
+    w = (w or "").lower()
+    return _SYN.get(w, _SYN.get(stem_word(w)))
 
 
 
@@ -1218,6 +1234,13 @@ def valid_blank(r):
     r["ans"] = [ans[0]] + [a for a in dict.fromkeys(ans[1:]) if a != ans[0] and not re.search(r"\b" + a + r"\b", low)][:15]
     r["alt"] = [a for a in dict.fromkeys(r.get("alt") or []) if isinstance(a, str) and re.fullmatch(r"[a-z]+", a) and a not in r["ans"]
                 and not re.search(r"\b" + a + r"\b", low)][:10]
+    # a word that fills the blank just as well (pub/bar, cops/police) is exact, not a near miss: the editor's alt words that belong to the same
+    # group of interchangeable words as an answer move across (the game applies the same groups to guesses)
+    groups = {syn_group(a) for a in r["ans"]} - {None}
+    if groups:
+        moved = [a for a in r["alt"] if syn_group(a) in groups]
+        r["ans"] = (r["ans"] + moved)[:16]
+        r["alt"] = [a for a in r["alt"] if a not in moved]
     return True
 
 
