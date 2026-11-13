@@ -4,14 +4,14 @@
  "call": [
   {
    "real": true,
-   "h": "Hundreds in {} shove a 110-ton steel sculpture seven inches to free a 'trapped' man; it doesn't budge",
-   "hint": "setting of Ferris Bueller's Day Off",
-   "lat": 41.8826,
-   "lng": -87.6225,
-   "place": "Chicago, Illinois",
-   "src": "https://metro.co.uk/2026/11/09/bizarre-urban-legend-saw-hundreds-try-free-a-man-trapped-inside-a-bean-29778088/",
-   "published": "2026-11-09",
-   "clue": "inches + steel sculpture in a big Midwest city park = US"
+   "h": "Officials open a passenger's bag on a train from Aswan and find 30 baby crocodiles in {}",
+   "hint": "where the Holy Family is said to have stayed longest",
+   "lat": 27.18,
+   "lng": 31.18,
+   "place": "Assiut, Egypt",
+   "src": "https://gulfnews.com/world/mena/egyptian-authorities-seize-30-baby-crocodiles-from-train-passenger-1.500728040",
+   "published": "2026-10-29",
+   "clue": "Assiut station, on the Aswan to Alexandria line, Egypt."
   },
   {
    "real": true,
@@ -26,8 +26,8 @@
   },
   {
    "real": false,
-   "h": "Ice-cream shop in {} sells 418 scoops of a new flavour before noticing the tub was empty",
-   "tell": "You can't sell 418 scoops out of an empty tub."
+   "h": "Man in {} tries to return a 43-year-old library book, is told the library closed 72 years ago",
+   "tell": "A 43-year-old book can't have come from a library that closed 72 years ago."
   },
   {
    "real": true,
@@ -47,14 +47,14 @@
   },
   {
    "real": true,
-   "h": "Man, 51, rams a patrol car fleeing in a microcar with scrapyard plates, then gets stuck in a field in {}",
-   "hint": "a Carpathian foothills village",
-   "lat": 49.6104,
-   "lng": 21.9064,
-   "place": "Milcza, Poland",
-   "src": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5RSE9kTFBrNGgycnNnT3pQNkhSOHYwT3lVb1JVTy16RVFsZWpCYlIyeDRNM29Td0tHaEU4TDh5V2NpUUtfb3I4Z2VsdWh2U0hac09FcTFKVU52UmhQRE45REpKZ3RYSHJQaFZzWEUzRDF4VFduZHF6M0tR?oc=5",
-   "published": "2026-11-11",
-   "clue": "microcar licence class and county roads = central Europe"
+   "h": "Woman, 80, loses 1 million yen to a scammer posing as an astronaut in need of oxygen, police in {} say",
+   "hint": "host of the 1972 Winter Olympics",
+   "lat": 43.2203,
+   "lng": 142.8635,
+   "place": "Hokkaido, Japan",
+   "src": "https://newswav.com/article/woman-loses-5-000-to-online-scammer-pretending-to-be-astronaut-stuck-in-spa-A2509_JsbcJ5",
+   "published": "2025-09-05",
+   "clue": "Hokkaido, Japan."
   },
   {
    "real": true,
