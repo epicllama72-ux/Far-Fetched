@@ -1361,15 +1361,54 @@ body.intro #ausBar{display:none}
 #npSave .tx em{display:block;font-style:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #npPass:only-child,#npSave:only-child{flex:1}
 .brk.stampNew{color:var(--accent)}
-#wardrobe .wsec{font:8px/1 var(--px);letter-spacing:.18em;color:#7d8494;margin:12px 2px 6px}
-#wardrobe .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
-#wardrobe .wgrid button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 4px;background:var(--panel);box-shadow:0 0 0 2px var(--line);font:18px/1.05 var(--vt);text-align:center;min-height:84px}
-#wardrobe .wgrid button.on{background:var(--accent);color:#2b2000}
-#wardrobe .wgrid button.lock{opacity:.6;cursor:default}
-#wardrobe .wgrid button.lock .wi{filter:brightness(0) contrast(.4)}
-#wardrobe .wi{font-size:26px;line-height:1.1}
-#wardrobe small{font-size:15px;opacity:.8}
-#wardNote{font:19px/1.2 var(--vt);color:var(--dim);margin:6px 0 0}
+/* Wardrobe: a newsprint sheet like the menu paper */
+#wardrobe .sheetIn.wpaper{--paper:#ece5d1;--news:#d9cfb4;--ink:#1b1813;--dim:#5a5043;--stamp:#a8231a;--kraft:#8a6535;--cardc:#f7f3e8;
+  background:var(--paper);background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(60,45,20,.03) 0 1px,transparent 1px 4px);
+  color:var(--ink);text-shadow:none;letter-spacing:0;text-align:left;padding:0;border-top:0;box-shadow:0 0 0 3px var(--ink),5px 7px 0 3px rgba(0,0,0,.45);font:19px/1.15 var(--vt)}
+#wardrobe .wpaper :focus-visible{outline:3px solid var(--stamp);outline-offset:3px}
+#wardrobe .wTop{display:grid;grid-template-columns:1fr auto;border-bottom:3px double var(--ink)}
+#wardrobe .wMast{padding:10px 14px 8px}
+#wardrobe .wMast b{display:block;font:11px/1.3 var(--px);letter-spacing:.08em}
+#wardrobe .wMast span{display:block;font:8px/1.5 var(--px);letter-spacing:.14em;color:var(--dim);margin-top:5px}
+#wardrobe #wardClose{all:unset;cursor:pointer;box-sizing:border-box;width:52px;display:flex;align-items:center;justify-content:center;font:30px/1 var(--vt);border-left:2px solid var(--ink)}
+#wardrobe #wardClose:hover{background:var(--ink);color:var(--paper)}
+#wardrobe .wHead{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:14px;border-bottom:2px solid var(--ink)}
+#wardrobe .wHead h2{margin:0;font:clamp(18px,5.4vw,26px)/1.15 var(--px);letter-spacing:.03em}
+#wardrobe .wCount{font:8px/1.4 var(--px);letter-spacing:.1em;text-align:center;border:2px solid var(--ink);padding:8px 10px;background:var(--cardc);rotate:2deg;white-space:nowrap}
+#wardrobe .wCount b{display:block;font:22px/1 var(--px);color:var(--stamp);margin-bottom:5px}
+#wardrobe .wWorn{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:9px 14px;background:var(--news);border-bottom:2px solid var(--ink)}
+#wardrobe .wWorn .k{font:8px/1 var(--px);letter-spacing:.14em;margin-right:4px}
+#wardrobe .wWorn i{font-style:normal;font-size:22px;line-height:1;background:var(--cardc);box-shadow:0 0 0 2px var(--ink);padding:3px 5px}
+#wardrobe .wWorn .none{font:18px/1 var(--vt);color:var(--dim)}
+#wardrobe .wCols{padding:6px 14px 12px}
+#wardrobe .wsec{margin:16px 0 8px;display:flex;align-items:center;gap:10px;font:9px/1 var(--px);letter-spacing:.2em}
+#wardrobe .wsec::after{content:'';flex:1;border-top:3px double var(--ink)}
+#wardrobe .wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+#wardrobe .wgrid button.ad{all:unset;box-sizing:border-box;position:relative;cursor:pointer;display:flex;flex-direction:column;gap:5px;min-width:0;background:var(--cardc);padding:12px 12px 11px;outline:2px dashed var(--ink);outline-offset:-6px;rotate:var(--r,0deg);transition:rotate .15s}
+#wardrobe .ad:hover{rotate:0deg}
+#wardrobe .ad .row{display:flex;align-items:center;gap:10px;min-width:0}
+#wardrobe .ad .ic{flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:30px;line-height:1;background:var(--news);box-shadow:inset 0 0 0 2px var(--ink)}
+#wardrobe .ad .nm{font:9px/1.5 var(--px);letter-spacing:.04em;min-width:0;overflow-wrap:anywhere}
+#wardrobe .ad .st{font:19px/1.1 var(--vt);color:var(--dim)}
+#wardrobe .ad.own .st{color:var(--ink)}
+#wardrobe .ad.on{background:#fff9e6;outline:3px solid var(--ink);outline-offset:-5px}
+#wardrobe .ad .wstamp{display:none;position:absolute;right:6px;top:-9px;rotate:6deg;font:8px/1 var(--px);letter-spacing:.14em;color:var(--stamp);border:2px solid var(--stamp);padding:5px 6px 4px;background:var(--cardc)}
+#wardrobe .ad.on .wstamp{display:block}
+#wardrobe .ad.lock{background:transparent;outline-color:rgba(27,24,19,.55);cursor:default}
+#wardrobe .ad.lock .ic{background:transparent;box-shadow:inset 0 0 0 2px rgba(27,24,19,.45);filter:grayscale(1) contrast(.5) brightness(.9);opacity:.7}
+#wardrobe .ad.lock .nm{color:var(--dim)}
+#wardrobe .wbar{height:8px;background:var(--news);box-shadow:inset 0 0 0 2px var(--ink);position:relative}
+#wardrobe .wbar i{position:absolute;inset:0 auto 0 0;background:var(--kraft)}
+#wardrobe .wprog{display:flex;justify-content:space-between;font:17px/1 var(--vt);color:var(--dim)}
+#wardrobe .wNotice{margin:6px 14px 16px;padding:12px 14px;background:var(--cardc);box-shadow:0 0 0 2px var(--ink);display:grid;gap:8px}
+#wardrobe .wNotice h3{margin:0;font:8px/1.4 var(--px);letter-spacing:.2em;border-bottom:2px solid var(--ink);padding-bottom:7px}
+#wardrobe .wNotice p{margin:0;font:19px/1.15 var(--vt)}
+#wardrobe .wNotice p b{font-weight:400;color:var(--stamp)}
+#wardrobe .wFreeze{display:flex;gap:6px}
+#wardrobe .wFreeze i{width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:15px;box-shadow:inset 0 0 0 2px var(--ink);background:var(--news)}
+#wardrobe .wFreeze i.off{background:transparent;opacity:.45}
+@media (max-width:420px){#wardrobe .wgrid{grid-template-columns:1fr 1fr;gap:10px}#wardrobe .ad .row{flex-direction:column;align-items:flex-start;gap:6px}}
+@media (prefers-reduced-motion:reduce){#wardrobe .ad{transition:none}}
 [hidden]{display:none!important}
 </style>
 <script data-goatcounter="https://farfetched.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
@@ -1812,10 +1851,12 @@ body.pinning #card #headline{font-size:23px}
     </div>
   </section>
   <section id="wardrobe" hidden aria-label="Wardrobe">
-    <div class="sheetIn">
-      <div class="sheetTop"><p class="kicker">Wardrobe</p><button id="wardClose" aria-label="Close">×</button></div>
-      <p id="wardNote"></p>
-      <div id="wardBody"></div>
+    <div class="sheetIn wpaper">
+      <div class="wTop"><div class="wMast"><b>THE DAILY ODD</b><span id="wardNo"></span></div><button id="wardClose" type="button" aria-label="Close">×</button></div>
+      <div class="wHead"><h2>WARDROBE</h2><div class="wCount"><b id="wardCount"></b>UNLOCKED</div></div>
+      <div class="wWorn" id="wardWorn" aria-live="polite"></div>
+      <div id="wardBody" class="wCols"></div>
+      <section class="wNotice" aria-label="Notices"><h3>NOTICES</h3><p id="wardNote"></p><div class="wFreeze" id="wardFreeze" aria-hidden="true"></div></section>
     </div>
   </section>
   <section id="passport" hidden aria-label="Passport">
@@ -4257,17 +4298,17 @@ function updateStreak(){
 /* ---------- The Dig Kit: cosmetic unlocks for coming back, with a wardrobe to wear them ---------- */
 const ZONE_ORDER=['THE BASEMENT','THE DIRT','BEDROCK','MAGMA','THE CORE','AUSTRALIA'];
 const KIT=[
-  {id:'badge',   slot:'pocket', name:'Press badge',        icon:'🪪', need:'3-day streak',   ok:L=>L.best>=3},
-  {id:'goldtooth',slot:'teeth', name:'Gold tooth',         icon:'🪙', need:'7-day streak',   ok:L=>L.best>=7},
-  {id:'fedora',  slot:'head',   name:"Reporter's fedora",  icon:'🎩', need:'14-day streak',  ok:L=>L.best>=14},
-  {id:'diamond', slot:'teeth',  name:'Diamond teeth',      icon:'💎', need:'30-day streak',  ok:L=>L.best>=30},
-  {id:'hardhat', slot:'head',   name:'Hard hat + headlamp',icon:'⛑️', need:'60-day streak',  ok:L=>L.best>=60},
-  {id:'goldjaw', slot:'teeth',  name:'Golden jaw',         icon:'👑', need:'100-day streak', ok:L=>L.best>=100},
-  {id:'mug',     slot:'mug',    name:'Gold mug',           icon:'☕', need:'10 papers finished', ok:L=>L.papers>=10},
+  {id:'badge',   slot:'pocket', name:'Press badge',        icon:'🪪', need:'3-day streak',   ok:L=>L.best>=3, prog:L=>[L.best,3]},
+  {id:'goldtooth',slot:'teeth', name:'Gold tooth',         icon:'🪙', need:'7-day streak',   ok:L=>L.best>=7, prog:L=>[L.best,7]},
+  {id:'fedora',  slot:'head',   name:"Reporter's fedora",  icon:'🎩', need:'14-day streak',  ok:L=>L.best>=14, prog:L=>[L.best,14]},
+  {id:'diamond', slot:'teeth',  name:'Diamond teeth',      icon:'💎', need:'30-day streak',  ok:L=>L.best>=30, prog:L=>[L.best,30]},
+  {id:'hardhat', slot:'head',   name:'Hard hat + headlamp',icon:'⛑️', need:'60-day streak',  ok:L=>L.best>=60, prog:L=>[L.best,60]},
+  {id:'goldjaw', slot:'teeth',  name:'Golden jaw',         icon:'👑', need:'100-day streak', ok:L=>L.best>=100, prog:L=>[L.best,100]},
+  {id:'mug',     slot:'mug',    name:'Gold mug',           icon:'☕', need:'10 papers finished', ok:L=>L.papers>=10, prog:L=>[L.papers,10]},
   {id:'trophy',  slot:'trophy', name:'Core trophy',        icon:'🏆', need:'blow up THE CORE', ok:L=>L.cblown||L.zmax>=6},
-  {id:'globe',   slot:'globe',  name:'Desk globe',         icon:'🌍', need:'pin 50 stories', ok:L=>L.pins>=50},
+  {id:'globe',   slot:'globe',  name:'Desk globe',         icon:'🌍', need:'pin 50 stories', ok:L=>L.pins>=50, prog:L=>[L.pins,50]},
   {id:'shades',  slot:'glasses',name:'Aussie sunglasses',  icon:'🕶️', need:'dig through to Australia', ok:L=>L.zmax>=6},
-  {id:'monocle',slot:'monocle',name:'Detective monocle',   icon:'🧐', need:'catch 20 fake stories', ok:L=>L.catches>=20},
+  {id:'monocle',slot:'monocle',name:'Detective monocle',   icon:'🧐', need:'catch 20 fake stories', ok:L=>L.catches>=20, prog:L=>[L.catches,20]},
   {id:'pigeon', slot:'pigeon', name:'Carrier pigeon',      icon:'🕊️', need:'a friend joins from your challenge', ok:L=>L.invites>=1}];
 function lifeNow(){
   const l=load('ff_life')||{}, h=load('ff_hist')||{};
@@ -4331,15 +4372,23 @@ function openWardrobe(){
 }
 function closeWardrobe(){ $('wardrobe').hidden=true; if($('menu').hidden && $('sheet').hidden) document.body.classList.remove('hideq'); }
 function renderWardrobe(){
-  const k=kitState(), have=new Set(unlockedIds()), st=load('ff_streak')||{}, fz=st.freezes||0;
-  $('wardNote').innerHTML='Streak freezes: <b>'+fz+'</b> of 2. You earn one every 7 days of streak, and it covers one missed day.<br>Only the Daily Dig earns cosmetics.<br>Friends who joined from your challenges: <b>'+(+load('ff_invites')||0)+'</b>.';
+  const k=kitState(), have=new Set(unlockedIds()), st=load('ff_streak')||{}, fz=st.freezes||0, L=lifeNow();
+  $('wardNo').textContent='NO. '+issueNumber(dayKey());
+  $('wardCount').textContent=have.size+'/'+KIT.length;
+  $('wardNote').innerHTML='Streak freezes: <b>'+fz+'</b> of 2. One is earned every 7 days of streak and covers one missed day.<br>Friends who joined from your challenges: <b>'+(+load('ff_invites')||0)+'</b>. Only the Daily Dig earns cosmetics.';
+  $('wardFreeze').innerHTML=[0,1].map(i=>'<i class="'+(i<fz?'':'off')+'">&#10052;</i>').join('');
   checkInvites();
-  const secs=[['DESK AND SHELF',['pigeon','mug','trophy','globe']],['HEAD',['head']],['EYES',['glasses','monocle']],['POCKET',['pocket']],['TEETH',['teeth']]];
+  const act=KIT.filter(it=>have.has(it.id) && k.eq[it.slot]===it.id);
+  $('wardWorn').innerHTML='<span class="k">ACTIVE</span>'+(act.length?act.map(it=>'<i title="'+it.name+'">'+it.icon+'</i>').join(''):'<span class="none">Nothing yet. Tap an item to turn it on.</span>');
+  const secs=[['DESK AND SHELF',['pigeon','mug','trophy','globe']],['HEAD',['head']],['EYES',['glasses','monocle']],['POCKET',['pocket']],['TEETH',['teeth']]], rot=[-.8,.6,-.4,.9,-.7,.4];
+  let n=0;
   $('wardBody').innerHTML=secs.map(([name,slots])=>'<p class="wsec">'+name+'</p><div class="wgrid">'
     + KIT.filter(it=>slots.includes(it.slot)).sort((a,b)=>slots.indexOf(a.slot)-slots.indexOf(b.slot)).map(it=>{
-        const own=have.has(it.id), on=own && k.eq[it.slot]===it.id;
-        const ic='<span class="wi">'+it.icon+'</span>';
-        return '<button data-id="'+it.id+'" class="'+(on?'on':'')+(own?'':' lock')+'">'+ic+'<span>'+it.name+'</span><small>'+(own?(on?'wearing':'tap to wear'):'🔒 '+it.need)+'</small></button>';
+        const own=have.has(it.id), on=own && k.eq[it.slot]===it.id, p=it.prog?it.prog(L):null;
+        const sub=own?(on?'Tap to turn off.':'Tap to turn on.'):'To unlock: '+it.need+'.';
+        const bar=!own&&p?'<span class="wbar"><i style="width:'+Math.min(100,p[0]/p[1]*100)+'%"></i></span><span class="wprog"><span>'+Math.min(p[0],p[1])+' of '+p[1]+'</span><span>'+Math.max(0,p[1]-p[0])+' to go</span></span>':'';
+        return '<button type="button" data-id="'+it.id+'" class="ad '+(own?'own':'lock')+(on?' on':'')+'" style="--r:'+rot[n++%rot.length]+'deg"'+(own?'':' aria-disabled="true"')+'><span class="wstamp">ACTIVE</span>'
+          +'<span class="row"><span class="ic" aria-hidden="true">'+it.icon+'</span><span class="nm">'+it.name+'</span></span><span class="st">'+sub+'</span>'+bar+'</button>';
       }).join('')+'</div>').join('');
   $('wardBody').querySelectorAll('button').forEach(b=>b.onclick=()=>{
     const it=KIT.find(i=>i.id===b.dataset.id); if(!have.has(it.id)) return;
