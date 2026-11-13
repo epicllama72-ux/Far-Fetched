@@ -263,6 +263,12 @@
    "before": "Ice-cream shop in {} sells 418 scoops of a new flavour before noticing the tub was empty",
    "after": "Man in {} tries to return a 43-year-old library book, is told the library closed 72 years ago",
    "why": "ice-cream fake was weak; prefer a human mishap with one catchable arithmetic/logic slip"
+  },
+  {
+   "kind": "clue",
+   "before": "where the Holy Family is said to have stayed longest",
+   "after": "the Nile's ancient \"city of wolves\"",
+   "why": "owner asked for a different clue for the Assiut crocodile story"
   }
  ]
 }
