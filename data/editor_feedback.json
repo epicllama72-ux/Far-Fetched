@@ -219,6 +219,12 @@
    "before": "a Panhandle town with a perfectly round lake / a city of about 14 million / where the drama Winter Sonata was filmed",
    "after": "a Deep South town near the Gulf / home of the world's busiest crossing / a lakeside city near the DMZ",
    "why": "owner picked widely known region-level hints over local trivia (Panhandle, round lake, a regional TV drama) and a bare population figure"
+  },
+  {
+   "kind": "headline",
+   "before": "Man, 58, is convicted of taking a bus to drive pub regulars to the next village; it ends up in a canal in {}",
+   "after": "Man, 58, is convicted of stealing a bus to drive pub regulars to the next village; it ends up in a canal in {}",
+   "why": "owner prefers 'stealing' over 'taking' (reports call it a theft)"
   }
  ]
 }
