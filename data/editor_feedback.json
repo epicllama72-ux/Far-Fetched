@@ -314,6 +314,12 @@
    "before": "Town bans red patio umbrellas in {} after a bull, enraged by the colour, wrecks three cafés",
    "after": "Retired captain, 68, fined in {} for teaching little penguins to steal tourists' sunglasses",
    "why": "owner chose fakes 1 and 2 from their own example set (yodel licences, penguin sunglasses)"
+  },
+  {
+   "kind": "selection",
+   "before": "(only 4 Fill the Blank headlines)",
+   "after": "[] steps onto an icy driveway, slides out into the street and is caught on a home security camera in Alaska",
+   "why": "Fill the Blank always has 5 headlines; added the Alaska moose from the bank"
   }
  ]
 }
