@@ -697,6 +697,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 		}
 	}
 
+#sumCurve{image-rendering:auto}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1246,7 +1247,7 @@ body.intro #ausBar{display:none}
 #sheet .sheetIn,#wardrobe .sheetIn,#passport .sheetIn{width:min(560px,100%);max-height:88vh;overflow:auto;background:var(--card);background-image:var(--scan);border-top:3px solid var(--accent);padding:12px max(16px,env(safe-area-inset-left,0px)) 18px;box-shadow:0 -6px 0 var(--ink)}
 .sheetTop{display:flex;justify-content:space-between;align-items:center}
 #sheetClose,#wardClose,#passClose{width:34px;height:34px;padding:0;font:28px/1 var(--vt);background:var(--panel);box-shadow:0 0 0 2px var(--line)}
-#curve{width:100%;height:auto;image-rendering:pixelated;background:#0b0e14;box-shadow:0 0 0 2px var(--line);margin:6px 0 8px}
+#curve{width:100%;height:auto;image-rendering:auto;background:#0b0e14;box-shadow:0 0 0 2px var(--line);margin:6px 0 8px}
 #rankLine{margin:0 0 8px;font:22px/1.1 var(--vt)}
 #rankLine b{font-weight:400;color:var(--accent)}
 #groupBar{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 10px}
@@ -4226,7 +4227,7 @@ function renderSummary(total,max,mineM){
     const below=others.filter(r=>r.m<mineM).length, ties=others.filter(r=>r.m===mineM).length;
     const pct=Math.round(100*(below+ties*0.5)/Math.max(1,others.length));
     $('sumBoard').hidden=false;
-    drawCurve(rows, mineM, $('sumCurve')); paperize($('sumCurve'));
+    drawCurve(rows, mineM, $('sumCurve'));
     $('sumRank').innerHTML='Deeper than <b>'+pct+'%</b> of today\'s '+rows.length+' players';
   }).catch(()=>{});
 }
@@ -5017,7 +5018,7 @@ async function renderGroupBoard(code){
   g.members=+b.members||g.members; showGroupTools(g);
   const me=playerId(), rows=b.rows, mine=rows.find(r=>r.player===me);
   $('curve').hidden=rows.length<3;             // the bell curve, once enough of the group has played
-  if(rows.length>=3){ drawCurve(rows.map(r=>({id:r.player,m:+r.m,score:+r.score})), mine ? +mine.m : null); paperize($('curve'),true); }
+  if(rows.length>=3){ drawCurve(rows.map(r=>({id:r.player,m:+r.m,score:+r.score})), mine ? +mine.m : null); }
   $('rankLine').innerHTML = rows.length ? '<b>'+rows.length+'</b> of '+b.members+' member'+(b.members==1?'':'s')+' played today.' : 'Nobody in this group has played today yet. Send them the link!';
   const ol=$('topList'); ol.innerHTML='';
   rows.forEach((r,i)=>{
@@ -5171,47 +5172,59 @@ async function loadBoard(kind){
 
 /* bell curve of today's depths with your spot marked */
 function drawCurve(rows, mine, cvEl){
-  const cv=cvEl||$('curve'), g=cv.getContext('2d'), W=cv.width, H=cv.height;
-  g.imageSmoothingEnabled=false;
-  g.fillStyle='#0b0e14'; g.fillRect(0,0,W,H);
-  rows=rows.map(r=>Object.assign({},r,{m:r.m/1000}));             // depths are in metres; the chart is drawn in kilometres
+  /* Bell curve of today's dig depths in ink on newsprint: a smoothed curve with a red wash under it, a red YOU line ending in a dot on the curve,
+     and "YOU" standing where its tick number would be. Depths are in metres in the data; the chart is in kilometres. */
+  const cv=cvEl||$('curve'), K=2;
+  if(!cv.dataset.w0){ cv.dataset.w0=cv.width; cv.dataset.h0=cv.height; }
+  const W=cv.width=+cv.dataset.w0*K, H=cv.height=+cv.dataset.h0*K, g=cv.getContext('2d');
+  const INK='#1b1813', RED='#a8231a', DIM='#5a5043', GRID='rgba(27,24,19,.14)';
+  g.clearRect(0,0,W,H); g.imageSmoothingEnabled=true;
+  rows=rows.map(r=>Object.assign({},r,{m:r.m/1000}));
   if(typeof mine==='number') mine=mine/1000;
   const xs=rows.map(r=>r.m); if(typeof mine==='number') xs.push(mine);
-  // x axis: always 0 to 10 km, a perfect day (the same range every day), a mark every 1, 2 or 5 km
-  const ausM=Scene.layout().AUSM/1000;
-  const hi=Math.max(10, ausM, ...xs), lo=0;
+  const ausM=Scene.layout().AUSM/1000, hi=Math.max(10, ausM, ...xs), lo=0;   // the x axis always runs 0 to 10 km at least, with a mark every 1, 2 or 5 km
   const step=[1,2,5,10].find(st=>Math.ceil(hi/st)<=10)||20;
-  const L=24, R=W-34, X=m=>Math.round(L+(R-L)*(m-lo)/(hi-lo)), base=H-24;
-  // grid, ticks and labels
-  g.fillStyle='#1c2230'; for(let m=lo;m<=hi;m+=step){ g.fillRect(X(m),12,1,base-12); }
-  g.fillStyle='#3a4050'; g.fillRect(L-8,base,R-L+16,2);
-  g.fillStyle='#8a91a3'; g.font='15px VT323, monospace'; g.textAlign='center'; g.textBaseline='alphabetic';
-  const lastTick=Math.floor(hi/step)*step;
-  for(let m=lo;m<=lastTick;m+=step){ g.fillRect(X(m),base+2,1,3); if(hi-m>=step*0.6 || m===lastTick && hi===lastTick) g.fillText(String(m),X(m),H-6); }
-  if(hi>lastTick){ g.fillRect(X(hi),base+2,1,3); g.fillText(hi.toFixed(1).replace(/\.0$/,''),X(hi),H-6); }
-  g.textAlign='left'; g.fillText('km',R+12,H-6); g.textAlign='center';
-  // histogram of players (250 m bins)
-  const bw=0.25, bins={}; rows.forEach(r=>{ const b=Math.floor(r.m/bw)*bw; bins[b]=(bins[b]||0)+1; });
-  const top=Math.max(1,...Object.values(bins));
-  Object.keys(bins).forEach(b=>{ const h=Math.round((base-24)*bins[b]/top*0.7); const x0=X(+b), x1=X(+b+bw);
-    g.fillStyle='#2f3a55'; g.fillRect(x0+1,base-h,Math.max(2,x1-x0-2),h); });
-  // fitted normal curve
+  const L=28*K/2*1, R=W-50*K/2*1, base=H-Math.round(H*0.30), top=Math.round(H*0.10), X=m=>L+(R-L)*(m-lo)/(hi-lo);
+  // the curve: a Gaussian smoothing of the players' depths
+  let ys=null, peak=1;
+  const N=Math.round((R-L)/3);
   if(rows.length>=2){
-    const mean=rows.reduce((a,r)=>a+r.m,0)/rows.length;
-    const sd=Math.max(0.3,Math.sqrt(rows.reduce((a,r)=>a+(r.m-mean)**2,0)/rows.length));
-    g.fillStyle='#ffcc4d';
-    for(let px=L;px<=R;px+=2){
-      const m=lo+(px-L)/(R-L)*(hi-lo), y=Math.exp(-0.5*((m-mean)/sd)**2);
-      g.fillRect(px,Math.round(base-(base-20)*y),2,2);
-    }
-    g.fillRect(clamp01(X(mean),L,R),base+2,1,4);
+    const mean=rows.reduce((a,r)=>a+r.m,0)/rows.length, sd=Math.max(0.3,Math.sqrt(rows.reduce((a,r)=>a+(r.m-mean)**2,0)/rows.length));
+    const h=Math.max(0.5,1.5*sd*Math.pow(rows.length,-0.2)), bin=0.05, nb=Math.ceil(hi/bin)+1, cnt=new Float64Array(nb);
+    rows.forEach(r=>{ cnt[Math.min(nb-1,Math.round(r.m/bin))]++; });
+    ys=new Float64Array(N+1);
+    for(let i=0;i<=N;i++){ const m=lo+(hi-lo)*i/N; let v=0; const j0=Math.max(0,Math.floor((m-4*h)/bin)), j1=Math.min(nb-1,Math.ceil((m+4*h)/bin));
+      for(let j=j0;j<=j1;j++) if(cnt[j]){ const z=(j*bin-m)/h; v+=cnt[j]*Math.exp(-0.5*z*z); } ys[i]=v; }
+    peak=Math.max(1e-9,...ys);
   }
+  const Yc=i=>base-(base-top)*ys[i]/peak;
+  // grid and axis
+  g.strokeStyle=GRID; g.lineWidth=K; for(let m=lo;m<=hi+1e-9;m+=step){ g.beginPath(); g.moveTo(X(m),top); g.lineTo(X(m),base); g.stroke(); }
+  if(ys){
+    const grad=g.createLinearGradient(0,top,0,base); grad.addColorStop(0,'rgba(168,35,26,.5)'); grad.addColorStop(1,'rgba(168,35,26,.04)');
+    g.beginPath(); g.moveTo(X(lo),base); for(let i=0;i<=N;i++) g.lineTo(L+(R-L)*i/N,Yc(i)); g.lineTo(R,base); g.closePath(); g.fillStyle=grad; g.fill();
+    g.beginPath(); for(let i=0;i<=N;i++){ const x=L+(R-L)*i/N; i?g.lineTo(x,Yc(i)):g.moveTo(x,Yc(i)); }
+    g.strokeStyle=INK; g.lineWidth=2.6*K/2*1.2; g.lineJoin='round'; g.lineCap='round'; g.stroke();
+  }
+  g.strokeStyle=INK; g.lineWidth=1.6*K/2*1.2; g.beginPath(); g.moveTo(L-6,base); g.lineTo(R+6,base); g.stroke();
+  const fs=Math.round(H*0.115); g.font=fs+'px VT323, monospace'; g.textAlign='center'; g.textBaseline='alphabetic';
+  const youX=typeof mine==='number' ? clamp01(X(mine),L,R) : null, lastTick=Math.floor(hi/step)*step;
+  g.fillStyle=DIM;
+  for(let m=lo;m<=lastTick+1e-9;m+=step){
+    g.beginPath(); g.moveTo(X(m),base); g.lineTo(X(m),base+8*K/2); g.strokeStyle=INK; g.lineWidth=1.4*K/2*1.2; g.stroke();
+    if(youX!==null && Math.abs(X(m)-youX)<fs*1.05) continue;                 // YOU stands where a number would touch it
+    g.fillText(String(m),X(m),base+fs*1.25);
+  }
+  g.textAlign='left'; g.fillText('km',R+fs*0.85,base+fs*1.25); g.textAlign='center';
   // you
-  if(typeof mine==='number'){
-    const x=clamp01(X(mine),L,R);
-    g.fillStyle='#ff6b8b'; g.fillRect(x-1,10,3,base-10);
-    const lx=Math.max(14,Math.min(W-14,x));
-    g.fillRect(lx-14,0,28,11); g.fillStyle='#3a0010'; g.font='9px monospace'; g.fillText('YOU',lx,8);   // a dark maroon, not a grey, so the newsprint recolouring leaves it dark
+  if(youX!==null){
+    let yy=base; if(ys){ const i=Math.max(0,Math.min(N,Math.round((youX-L)/(R-L)*N))); yy=Yc(i); }
+    g.strokeStyle=RED; g.lineWidth=2.4*K/2*1.2; g.beginPath(); g.moveTo(youX,yy); g.lineTo(youX,base+8*K/2); g.stroke();
+    g.fillStyle=RED; g.beginPath(); g.arc(youX,yy,5*K/2*1.2,0,Math.PI*2); g.fill(); g.strokeStyle='#f7f3e8'; g.lineWidth=1.6*K/2*1.2; g.stroke();
+    g.fillStyle=RED; try{ g.letterSpacing=(fs*0.18)+'px'; }catch(e){}
+    g.fillText('YOU',youX+(fs*0.09),base+fs*1.25);
+    try{ g.letterSpacing='0px'; }catch(e){}
+    g.font=Math.round(fs*0.8)+'px VT323, monospace'; g.fillText((mine<10?mine.toFixed(1):Math.round(mine))+' km',youX,base+fs*2.15);
   }
 }
 function clamp01(v,a,b){ return Math.max(a,Math.min(b,v)); }
@@ -5230,7 +5243,7 @@ async function openBoard(kind){
   const done = own ? (S.mode==='daily' && S.results.length>=S.rounds.length) : !!(hk && typeof hk.m==='number');   // only a finished daily round goes on the board
   const inf=Scene.info(), mine=done ? (own ? (S.finalM!=null ? S.finalM : +inf.m) : hk.m) : null;
   const myScore = own ? S.total : (hk ? +hk.score||0 : 0);
-  drawCurve([], mine); paperize($('curve'),true);
+  drawCurve([], mine);
   $('rankLine').textContent='Loading the leaderboard…'; $('topList').innerHTML='';
   $('digImg').parentElement.hidden=!(done && own);
   if(done && own) renderDigCard();
@@ -5251,7 +5264,7 @@ async function openBoard(kind){
   const rows=b.rows;
   if(done && b.me && !rows.some(r=>r.id===b.me)) rows.push({id:b.me,m:mine,score:myScore,zone:inf.zone});
   $('curve').hidden=rows.length<3;
-  drawCurve(rows, mine); paperize($('curve'),true);
+  drawCurve(rows, mine);
   const others=rows.filter(r=>r.id!==b.me);
   if(own && S.mode!=='daily') $('rankLine').innerHTML=rows.length+' reader'+(rows.length===1?'':'s')+' so far today. '+(S.mode==='back'?'Back issues':'Practice runs')+' don\'t count.';
   else if(!done) $('rankLine').innerHTML=(rows.length ? rows.length+' reader'+(rows.length===1?'':'s')+' so far today.' : 'Nobody has finished today\'s round yet.')+' Finish yours to see where you land.';
