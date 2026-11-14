@@ -1159,12 +1159,83 @@ def merit(r):
 
 
 # ---------------------------------------------------------------- taste judge and dedicated fake writer
+FAKE_TARGET = (30.0, 35.0)       # the share of players a fake should fool; set by the owner
+_SB = {}
+def _supabase():
+    """The game's public URL and key (the same ones index.html ships), read from the page so there is one copy."""
+    if not _SB:
+        try:
+            t = open(os.path.join(os.path.dirname(DATA), "index.html"), encoding="utf-8").read()
+            _SB["url"] = re.search(r"SUPABASE_URL\s*=\s*'([^']+)'", t).group(1)
+            _SB["key"] = re.search(r"SUPABASE_KEY\s*=\s*'([^']+)'", t).group(1)
+        except Exception:
+            pass
+    return _SB
+
+
+def load_fake_stats():
+    try:
+        return json.load(open(os.path.join(DATA, "fake_stats.json")))
+    except Exception:
+        return {"target": list(FAKE_TARGET), "fakes": []}
+
+
+def refresh_fake_stats(day, days=4):
+    """Measure how many players each recent fake fooled (best effort: any failure just keeps the file as it is). Uses the public story_fooled
+    function the game already calls; a fake counts once at least 100 players have played its day."""
+    sb = _supabase()
+    if not sb:
+        return 0
+    stats = load_fake_stats(); have = {(x["day"], x["i"]): x for x in stats["fakes"]}
+    lo = (dt.date.fromisoformat(day) - dt.timedelta(days=days)).isoformat(); changed = 0
+    for fn in sorted(os.listdir(DATA)):
+        m = re.fullmatch(r"(\d{4}-\d{2}-\d{2})\.json", fn)
+        if not m or not (lo <= m.group(1) < day):
+            continue
+        try:
+            paper = json.load(open(os.path.join(DATA, fn)))
+        except Exception:
+            continue
+        for i, c in enumerate(paper.get("call") or []):
+            if c.get("real", True):
+                continue
+            try:
+                req = urllib.request.Request(sb["url"] + "/rest/v1/rpc/story_fooled", method="POST", headers={"apikey": sb["key"], "Authorization": "Bearer " + sb["key"], "Content-Type": "application/json"},
+                                             data=json.dumps({"p_day": m.group(1), "p_kind": "call", "p_i": i, "p_player": None}).encode())
+                r = json.loads(urllib.request.urlopen(req, timeout=20).read())
+                n, f = int(r.get("n", 0)), int(r.get("f", 0))
+            except Exception:
+                continue
+            if n >= 100:
+                have[(m.group(1), i)] = {"day": m.group(1), "i": i, "h": c.get("h", ""), "tell": c.get("tell", ""), "n": n, "pct": round(100.0 * f / n, 1)}
+                changed += 1
+    if changed:
+        stats["fakes"] = sorted(have.values(), key=lambda x: (x["day"], x["i"]))
+        json.dump(stats, open(os.path.join(DATA, "fake_stats.json"), "w"), ensure_ascii=False, indent=1)
+    return changed
+
+
+def fake_calibration():
+    """Plain-text results for the writer and the judge: what fooled too few, the right share, or too many players."""
+    fs = [x for x in load_fake_stats().get("fakes", []) if x.get("n", 0) >= 100][-40:]
+    lo, hi = FAKE_TARGET
+    if not fs:
+        return f"TARGET: each fake should fool about {lo:.0f}-{hi:.0f}% of players (they call it real)."
+    pick = lambda xs, k: "\n".join(f'   {x["pct"]:.0f}%  {x["h"]}' for x in xs[-k:])
+    on = [x for x in fs if lo - 3 <= x["pct"] <= hi + 3]
+    easy = [x for x in fs if x["pct"] < lo - 8]
+    hard = [x for x in fs if x["pct"] > hi + 8]
+    return (f"TARGET: each fake should fool about {lo:.0f}-{hi:.0f}% of players (they call it real). Measured results of earlier fakes:\n"
+            f"ON TARGET:\n{pick(on, 6)}\nTOO EASY, nearly everyone spotted them (the slip was too obvious):\n{pick(easy, 4)}\n"
+            f"TOO HARD, too many players were fooled (the slip was too hidden or the premise too believable):\n{pick(hard, 4)}")
+
+
 JUDGE_PROMPT = """You are a sharp, slightly cynical newspaper editor choosing what to print in "Far-Fetched", a daily game of weird true news and invented fakes.
 
 Score every item 1-10 for "would a reader repeat this to a friend?" Be harsh: most items deserve 3-6. 9-10 is rare (a story or fake that makes you laugh out loud on first read). Items that are merely odd, a chase or crash, a rare animal, a quiet record, a bland mishap, or a fake with no catchable slip score 1-4.
 "r" items are TRUE stories (judge the story and its funniest detail). "f" items are INVENTED headlines (judge funniness AND whether a careful reader could catch one slip from the headline alone; a fake whose slip is missing, hidden or unfair scores 1-4).
 
-""" + "{taste}\n\n" + """Reply with ONE JSON object only: {"r":[[id,score],...],"f":[[id,score],...]} covering every id.
+""" + "{taste}\n\n" + """""" + "{calib}\n\n" + """For every "f" item also predict the percentage of players (0-100) who would call it real and be fooled, using the measured results above as your guide. Reply with ONE JSON object only: {"r":[[id,score],...],"f":[[id,score,predicted_fooled_percent],...]} covering every id.
 
 Items:
 """
@@ -1177,7 +1248,7 @@ def taste_judge(reals, fakes, model):
              "f": [{"id": i, "h": f.get("h", ""), "tell": f.get("tell", "")} for i, f in enumerate(fakes)]}
     if not items["r"] and not items["f"]:
         return 0
-    res = call_claude(JUDGE_PROMPT.replace("{taste}", TASTE + "\n\n" + FAKE_GUIDE) + json.dumps(items, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["r", "f"])
+    res = call_claude(JUDGE_PROMPT.replace("{taste}", TASTE + "\n\n" + FAKE_GUIDE).replace("{calib}", fake_calibration()) + json.dumps(items, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["r", "f"])
     n = 0
     for key, lst in (("r", reals), ("f", fakes)):
         for pair in (res or {}).get(key, []):
@@ -1188,14 +1259,19 @@ def taste_judge(reals, fakes, model):
             if 0 <= i < len(lst) and 1 <= sc <= 10:
                 lst[i]["taste"] = sc
                 n += 1
+                if key == "f" and len(pair) > 2:
+                    try:
+                        lst[i]["pred"] = max(0.0, min(100.0, float(pair[2])))
+                    except Exception:
+                        pass
     return n
 
 
 FAKE_WRITER_PROMPT = """You write the invented headlines for "Far-Fetched", a daily game where players decide whether a deadpan wire-style headline (place hidden as {}) is real or fake. The true stories already in today's paper are listed so you match their tone, length and kind of detail but NEVER copy their topics.
 
-Write 14 fakes. Each has {} exactly once, is at most 95 characters, and carries a "tell": one sentence explaining the single slip that proves it fake (the slip must be visible in the headline alone).
+Write 14 fakes aimed at the target below. Each has {} exactly once, is at most 95 characters, and carries a "tell": one sentence explaining the single slip that proves it fake (the slip must be visible in the headline alone).
 
-""" + "{guide}\n\n" + """Variety: different settings, different countries' currencies and units, different kinds of slip (biology or animal fact, science myth, anachronism, food or culture fact, arithmetic, timeline). No two fakes may open with the same words. No quotes, puns, round numbers, "exactly", official reactions, or animals as the main joke.
+""" + "{guide}\n\n{calib}\n\n" + """Variety: different settings, different countries' currencies and units, different kinds of slip (biology or animal fact, science myth, anachronism, food or culture fact, arithmetic, timeline). No two fakes may open with the same words. No quotes, puns, round numbers, "exactly", official reactions, or animals as the main joke.
 
 Reply with ONE JSON object only: {"fake":[{"h":"...","tell":"...","obvious":3,"theme":"one lowercase word"}]}
 
@@ -1205,7 +1281,7 @@ Today's true stories:
 
 def write_fakes(reals, model):
     """A dedicated call for fakes (the main call writes 8 while also picking 16 stories; quality is better when it is the only job)."""
-    res = call_claude(FAKE_WRITER_PROMPT.replace("{guide}", FAKE_GUIDE) + json.dumps([r.get("h", "") for r in reals], ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["fake"])
+    res = call_claude(FAKE_WRITER_PROMPT.replace("{guide}", FAKE_GUIDE).replace("{calib}", fake_calibration()) + json.dumps([r.get("h", "") for r in reals], ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["fake"])
     return [f for f in (res or {}).get("fake", []) if isinstance(f, dict) and f.get("h") and valid_fake(f)]
 
 
@@ -1392,6 +1468,10 @@ def main():
         else:
             print(f"  drop fake (tell too obvious): {f.get('h')}", file=sys.stderr)
     if not args.picks:
+        try:
+            print(f"  fake stats: {refresh_fake_stats(day)} recent fakes measured", file=sys.stderr)
+        except Exception as e:
+            print(f"  fake stats not refreshed ({e})", file=sys.stderr)
         extra_fakes = write_fakes(fresh, model)
         print(f"  dedicated fake writer: {len(extra_fakes)} more fakes", file=sys.stderr)
         fresh_fakes += extra_fakes
@@ -1632,7 +1712,7 @@ def main():
     fake_target = min(5.0, sum(real_u) / len(real_u) + 0.5)        # fakes sound a notch more far-fetched than today's true stories
     def fake_rank(f):
         try:
-            return abs(float(f.get("obvious", 2.5)) - 2.5) + 0.6 * abs(float(f.get("unbelievable", fake_target)) - fake_target) - 0.6 * (float(f.get("taste", 5)) - 5)
+            return abs(float(f.get("obvious", 2.5)) - 2.5) + 0.6 * abs(float(f.get("unbelievable", fake_target)) - fake_target) - 0.6 * (float(f.get("taste", 5)) - 5) + 0.06 * (abs(float(f["pred"]) - sum(FAKE_TARGET) / 2) if f.get("pred") is not None else 0)
         except Exception:
             return 1.0
     chosen_fakes = pick_fakes(fakes, call_real, day, N_CALL_FAKE, lambda f: fake_rank(f) + (0 if f.get("banked") == day or f.get("hand") else 0.3))   # the owner's hand-written fakes compete with fresh ones
