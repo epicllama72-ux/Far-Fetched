@@ -321,6 +321,18 @@
    "before": "(only 4 Fill the Blank headlines)",
    "after": "[] steps onto an icy driveway, slides out into the street and is caught on a home security camera in Alaska",
    "why": "Fill the Blank always has 5 headlines; added the Alaska moose from the bank"
+  },
+  {
+   "kind": "selection",
+   "before": "Doctors in {} prescribe Diet Coke to a woman with a stomach mass",
+   "after": "Man, 58, is convicted of stealing a bus to drive pub regulars to the next village; it ends up in a canal in {}",
+   "why": "owner wanted a new country in tomorrow's paper; Diet Coke saved in the bank for another day"
+  },
+  {
+   "kind": "selection",
+   "before": "Myrtle Beach detective was headline 4",
+   "after": "Myrtle Beach detective moved to headline 1",
+   "why": "owner wanted it to open the paper"
   }
  ]
 }
