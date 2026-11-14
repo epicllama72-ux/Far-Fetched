@@ -5199,7 +5199,7 @@ function drawCurve(rows, mine, cvEl){
   const xs=rows.map(r=>r.m); if(typeof mine==='number') xs.push(mine);
   const ausM=Scene.layout().AUSM/1000, hi=Math.max(10, ausM, ...xs), lo=0;   // the x axis always runs 0 to 10 km at least, with a mark every 1, 2 or 5 km
   const step=[1,2,5,10].find(st=>Math.ceil(hi/st)<=10)||20;
-  const L=28*K/2*1, R=W-50*K/2*1, base=H-Math.round(H*0.30), top=Math.round(H*0.10), X=m=>L+(R-L)*(m-lo)/(hi-lo);
+  const L=28*K/2*1, R=W-50*K/2*1, base=H-Math.round(H*0.22), top=Math.round(H*0.30), X=m=>L+(R-L)*(m-lo)/(hi-lo);
   // the curve: a Gaussian smoothing of the players' depths
   let ys=null, peak=1;
   const N=Math.round((R-L)/3);
@@ -5227,7 +5227,6 @@ function drawCurve(rows, mine, cvEl){
   g.fillStyle=DIM;
   for(let m=lo;m<=lastTick+1e-9;m+=step){
     g.beginPath(); g.moveTo(X(m),base); g.lineTo(X(m),base+8*K/2); g.strokeStyle=INK; g.lineWidth=1.4*K/2*1.2; g.stroke();
-    if(youX!==null && Math.abs(X(m)-youX)<fs*1.05) continue;                 // YOU stands where a number would touch it
     g.fillText(String(m),X(m),base+fs*1.25);
   }
   g.textAlign='left'; g.fillText('km',R+fs*0.85,base+fs*1.25); g.textAlign='center';
@@ -5236,10 +5235,12 @@ function drawCurve(rows, mine, cvEl){
     let yy=base; if(ys){ const i=Math.max(0,Math.min(N,Math.round((youX-L)/(R-L)*N))); yy=Yc(i); }
     g.strokeStyle=RED; g.lineWidth=2.4*K/2*1.2; g.beginPath(); g.moveTo(youX,yy); g.lineTo(youX,base+8*K/2); g.stroke();
     g.fillStyle=RED; g.beginPath(); g.arc(youX,yy,5*K/2*1.2,0,Math.PI*2); g.fill(); g.strokeStyle='#f7f3e8'; g.lineWidth=1.6*K/2*1.2; g.stroke();
+    // the label sits above the dot, clear of the km numbers, and never past the edges
+    const lx=clamp01(youX,L+fs*1.4,R+fs*0.4);
     g.fillStyle=RED; try{ g.letterSpacing=(fs*0.18)+'px'; }catch(e){}
-    g.fillText('YOU',youX+(fs*0.09),base+fs*1.25);
+    g.fillText('YOU',lx+(fs*0.09),yy-fs*1.75);
     try{ g.letterSpacing='0px'; }catch(e){}
-    g.font=Math.round(fs*0.8)+'px VT323, monospace'; g.fillText((mine<10?mine.toFixed(1):Math.round(mine))+' km',youX,base+fs*2.15);
+    g.font=Math.round(fs*0.8)+'px VT323, monospace'; g.fillText((mine<10?mine.toFixed(1):Math.round(mine))+' km',lx,yy-fs*0.95);
   }
 }
 function clamp01(v,a,b){ return Math.max(a,Math.min(b,v)); }
