@@ -406,6 +406,27 @@
    "published": "2026-10-29",
    "daily_only": true,
    "hint": "where Napoleon's retreat began"
+  },
+  {
+   "banked": "2026-11-14",
+   "rules": 2,
+   "theme": "medical",
+   "unbelievable": 4,
+   "jargon_only": false,
+   "h": "Doctors in {} prescribe Diet Coke to a woman with a stomach mass",
+   "place": "Boston, Massachusetts",
+   "geocode": "Boston, Massachusetts, USA",
+   "lat": 42.3601,
+   "lng": -71.0589,
+   "country": "United States",
+   "cc": "US",
+   "clue": "US doctors + a GLP-1 drug case report",
+   "clue_strength": 2,
+   "mappable": 3,
+   "src": "https://www.newsnationnow.com/health/diet-coke-dissolve-stomach-mass-glp-1-patient/",
+   "published": "2026-07-08",
+   "daily_only": true,
+   "hint": "setting of Good Will Hunting"
   }
  ],
  "fake": [

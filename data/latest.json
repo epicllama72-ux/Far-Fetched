@@ -4,6 +4,17 @@
  "call": [
   {
    "real": true,
+   "h": "Detective in {} is fired after allegedly pointing a gun at a colleague who was heating fish",
+   "hint": "the Grand Strand's mini-golf capital",
+   "lat": 33.6891,
+   "lng": -78.8867,
+   "place": "Myrtle Beach, South Carolina",
+   "src": "https://www.vice.com/en/article/everything-we-know-about-the-cop-who-allegedly-pulled-a-gun-because-someone-microwaved-fish-at-work/",
+   "published": "",
+   "clue": "US beach resort town; police arrest warrant released by the state law enforcemen"
+  },
+  {
+   "real": true,
    "h": "Lump of amber worth a million euros, fished from a river, is used as a doorstop for years in {}",
    "hint": "a county in Dracula's Wallachia",
    "lat": 45.152,
@@ -15,14 +26,14 @@
   },
   {
    "real": true,
-   "h": "Doctors in {} prescribe Diet Coke to a woman with a stomach mass",
-   "hint": "setting of Good Will Hunting",
-   "lat": 42.3601,
-   "lng": -71.0589,
-   "place": "Boston, Massachusetts",
-   "src": "https://www.newsnationnow.com/health/diet-coke-dissolve-stomach-mass-glp-1-patient/",
-   "published": "2026-07-08",
-   "clue": "US doctors + a GLP-1 drug case report"
+   "h": "Man, 58, is convicted of stealing a bus to drive pub regulars to the next village; it ends up in a canal in {}",
+   "hint": "a town near the Drava River",
+   "lat": 45.8316,
+   "lng": 17.3855,
+   "place": "Virovitica, Croatia",
+   "src": "https://www.index.hr/mobile/magazin/clanak/serijski-kradljivac-buseva-u-virovitici-skupio-ekipu-i-odvezao-ih-na-pice-u-selo-do/2825297.aspx",
+   "published": "2026-08-15",
+   "clue": "Čazmatrans bus + a municipal court in a Slavic-language town = Croatia"
   },
   {
    "real": true,
@@ -34,17 +45,6 @@
    "src": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNRVRUV05GQ0ptZGFuVnBldldTRXpDNXpCMklvNUtBdjJkSjcxZlFMQ19ZTDAyVmR0d2VOYjFwR3hqQkRybmlZNmd4ejBqbmxOdFVIVmU0em1ydy12cDZmdVI4Z1lRU2ZPcGg2SGc0QU56SlZnaUZOaWt6Rk5uQ3NNbmtzM1p0VGlaT1YzYXBabTZ1eS1JclM5MnJsOUNIUW42M1YwaUJGRDVpNGVfWng0eEgzWFFtYWhtVDFPLWZNcDFxT2JyRElEdUNWZHB5dzZEQzM1dA?oc=5",
    "published": "2026-11-13",
    "clue": "euros + store detective in a pedestrian town centre = central Europe"
-  },
-  {
-   "real": true,
-   "h": "Detective in {} is fired after allegedly pointing a gun at a colleague who was heating fish",
-   "hint": "the Grand Strand's mini-golf capital",
-   "lat": 33.6891,
-   "lng": -78.8867,
-   "place": "Myrtle Beach, South Carolina",
-   "src": "https://www.vice.com/en/article/everything-we-know-about-the-cop-who-allegedly-pulled-a-gun-because-someone-microwaved-fish-at-work/",
-   "published": "",
-   "clue": "US beach resort town; police arrest warrant released by the state law enforcemen"
   },
   {
    "real": false,
