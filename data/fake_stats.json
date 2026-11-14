@@ -1,0 +1,281 @@
+{
+ "about": "How many players each fake fooled (share who called it real), measured from saved scores. The builder refreshes this and shows the writer and the judge what landed near the 30-35% target.",
+ "target": [
+  30,
+  35
+ ],
+ "fakes": [
+  {
+   "day": "2026-10-29",
+   "i": 1,
+   "h": "Fishermen on the Mekong near {} haul up a 58-kilogram safe full of wet school textbooks",
+   "tell": "A safe holding only textbooks is an over-tidy joke setup, not routine local news.",
+   "n": 104,
+   "pct": 50.0
+  },
+  {
+   "day": "2026-10-29",
+   "i": 3,
+   "h": "Taxi driver in {} returns a bag holding 14,300 rupees and a live hen left by a passenger",
+   "tell": "Returned-property stories rarely include such an oddly paired set of items.",
+   "n": 104,
+   "pct": 73.1
+  },
+  {
+   "day": "2026-10-30",
+   "i": 0,
+   "h": "Brewery in {} recalls 2,380 half-litre bottles after labels listed its lager as a soft drink",
+   "tell": "Recalls follow contamination, not a mislabelled drink type; regulators would just order new labels.",
+   "n": 167,
+   "pct": 81.4
+  },
+  {
+   "day": "2026-10-30",
+   "i": 6,
+   "h": "Monkey steals umpire's hat, halting village cricket match in {} for 27 minutes",
+   "tell": "Every element fits too neatly, like a joke setup with a precisely timed pause.",
+   "n": 167,
+   "pct": 51.5
+  },
+  {
+   "day": "2026-10-31",
+   "i": 0,
+   "h": "Reindeer herders in {} switch to e-bikes for the winter round-up after snowmobile fuel runs short",
+   "tell": "E-bikes would be useless in deep Arctic snow, so the detail is wrong for the region.",
+   "n": 116,
+   "pct": 48.3
+  },
+  {
+   "day": "2026-10-31",
+   "i": 5,
+   "h": "Pensioner in {} sells 1,860 jars of homemade chutney through an unattended honesty box at a bus shelter",
+   "tell": "The sales total is suspiciously tidy and an unattended box would not clear that many jars.",
+   "n": 116,
+   "pct": 40.5
+  },
+  {
+   "day": "2026-11-01",
+   "i": 3,
+   "h": "Library in {} finds 412 overdue books inside a freezer bought at a car-boot sale",
+   "tell": "'Car-boot sale' is British; locals there say garage sale.",
+   "n": 153,
+   "pct": 47.7
+  },
+  {
+   "day": "2026-11-01",
+   "i": 6,
+   "h": "Two constables in {} spend 4 hours chasing a loose ostrich around a retail park",
+   "tell": "Irish police are called gardaí, not constables.",
+   "n": 153,
+   "pct": 45.8
+  },
+  {
+   "day": "2026-11-02",
+   "i": 2,
+   "h": "Squirrels stash 1,260 acorns in the engine bay of a parked pickup in {}",
+   "tell": "Squirrels hoarding acorns is a northern-hemisphere habit, not typical of this country's cities.",
+   "n": 191,
+   "pct": 56.5
+  },
+  {
+   "day": "2026-11-02",
+   "i": 5,
+   "h": "Unicyclist fined 85 pounds for riding along a motorway hard shoulder in {}",
+   "tell": "The fine is in pounds, but this country uses euros.",
+   "n": 191,
+   "pct": 52.4
+  },
+  {
+   "day": "2026-11-03",
+   "i": 0,
+   "h": "Gnome thief in {} returns all 37 garden figures overnight, each with a euro coin tucked in its hand",
+   "tell": "Euro coins would not be used in this country, and the thief's gesture is too neat.",
+   "n": 156,
+   "pct": 76.9
+  },
+  {
+   "day": "2026-11-03",
+   "i": 6,
+   "h": "Ferry across the fjord delayed 51 minutes after a reindeer boards and eats the tickets in {}",
+   "tell": "Reindeer and fjords do not belong near this city; the cause and effect is also too tidy.",
+   "n": 156,
+   "pct": 38.5
+  },
+  {
+   "day": "2026-11-04",
+   "i": 2,
+   "h": "Ferry in {} delayed 47 minutes after a moose swims into its path and will not leave the channel",
+   "tell": "Moose swim, but one blocking a ferry for most of an hour is an over-tidy cause for a delay.",
+   "n": 245,
+   "pct": 54.3
+  },
+  {
+   "day": "2026-11-04",
+   "i": 6,
+   "h": "Burglars in {} steal a 3-tonne church bell and leave the clapper and a pizza box behind",
+   "tell": "Nobody carries off a 3-tonne bell unnoticed, and the pizza box is a too-neat flourish.",
+   "n": 245,
+   "pct": 43.7
+  },
+  {
+   "day": "2026-11-05",
+   "i": 2,
+   "h": "Thief in {} steals an ice-cream van, then drives its jingle route for 5 hours selling cones at full price",
+   "tell": "A thief following the van's route and selling cones is an over-tidy, cartoonish crime.",
+   "n": 186,
+   "pct": 43.0
+  },
+  {
+   "day": "2026-11-05",
+   "i": 6,
+   "h": "Baker in {} burns 214 loaves when a pigeon steps on the oven timer, so 63 pensioners eat free",
+   "tell": "A pigeon neatly causing a disaster that then helps pensioners is too tidy a chain.",
+   "n": 186,
+   "pct": 16.1
+  },
+  {
+   "day": "2026-11-06",
+   "i": 1,
+   "h": "Student in {} racks up 14 parking fines on a bullock cart left outside college, totalling 2,870 rupees",
+   "tell": "Parking fines are issued to registered vehicles; a bullock cart would not be ticketed repeatedly.",
+   "n": 136,
+   "pct": 71.3
+  },
+  {
+   "day": "2026-11-06",
+   "i": 5,
+   "h": "Baboons in {} open 9 parked cars at a supermarket and take only the bread",
+   "tell": "Baboons pick vehicles' contents, but choosing only bread from nine unlocked cars is too tidy.",
+   "n": 136,
+   "pct": 33.1
+  },
+  {
+   "day": "2026-11-07",
+   "i": 2,
+   "h": "Postman in {} delivers village's pension cheques to a goat farm; 37 pensioners wait a fortnight",
+   "tell": "A whole village's cheques going to one goat farm is too neat a mix-up.",
+   "n": 209,
+   "pct": 45.9
+  },
+  {
+   "day": "2026-11-07",
+   "i": 4,
+   "h": "Hockey club in {} forfeits game after its ice resurfacer is found parked inside a church hall",
+   "tell": "Nobody parks a machine that size in a church hall unnoticed.",
+   "n": 209,
+   "pct": 49.8
+  },
+  {
+   "day": "2026-11-08",
+   "i": 2,
+   "h": "Dachshund in {} orders 41 lamb chops through a smart speaker and pays with loyalty points",
+   "tell": "Loyalty points don't pay for a delivery ordered through a speaker.",
+   "n": 225,
+   "pct": 15.6
+  },
+  {
+   "day": "2026-11-08",
+   "i": 5,
+   "h": "Corgi in {} is expelled from 3 dog parks in one afternoon for herding toddlers into a sandpit",
+   "tell": "An expulsion needs written notice, so three parks can't all act in one afternoon.",
+   "n": 225,
+   "pct": 27.1
+  },
+  {
+   "day": "2026-11-09",
+   "i": 2,
+   "h": "Crows in {} steal 37 teaspoons from a seaside cafe and line a rooftop nest with them",
+   "tell": "Crows steal shiny things, but a tidy tally of teaspoons lining a whole nest is too neat.",
+   "n": 246,
+   "pct": 41.5
+  },
+  {
+   "day": "2026-11-09",
+   "i": 5,
+   "h": "Lorry driver delivers 1,260 garden gnomes to the wrong depot, 214 km from the right one, in {}",
+   "tell": "A driver covering 214 km before noticing the wrong depot is implausibly oblivious.",
+   "n": 246,
+   "pct": 49.6
+  },
+  {
+   "day": "2026-11-10",
+   "i": 3,
+   "h": "Snail race in {} is won for the 83rd year running by a snail that covers 1 metre in 9 seconds",
+   "tell": "Snails take minutes to crawl a metre, not 9 seconds.",
+   "n": 353,
+   "pct": 32.3
+  },
+  {
+   "day": "2026-11-10",
+   "i": 5,
+   "h": "Weather station in {} records 61°C on a winter afternoon after a hen nests on the sensor",
+   "tell": "A hen's body heat is about 41°C; it can't push a reading to 61°C.",
+   "n": 353,
+   "pct": 51.8
+  },
+  {
+   "day": "2026-11-11",
+   "i": 1,
+   "h": "Beekeeper in {} harvests 412 litres of honey from a single hive in one afternoon",
+   "tell": "One hive yields a few dozen litres a season, not 412 in an afternoon.",
+   "n": 335,
+   "pct": 41.5
+  },
+  {
+   "day": "2026-11-11",
+   "i": 4,
+   "h": "Boy, 9, reels in a 6.4-tonne tuna from a rowing boat in {} using sewing thread",
+   "tell": "Sewing thread would snap under a fraction of that weight.",
+   "n": 335,
+   "pct": 20.9
+  },
+  {
+   "day": "2026-11-12",
+   "i": 2,
+   "h": "Burglar in {} gets stuck in a chimney for 3 weeks before neighbours finally hear him shouting",
+   "tell": "Nobody survives 3 weeks wedged in a chimney without water; people last about 3 days.",
+   "n": 1590,
+   "pct": 35.5
+  },
+  {
+   "day": "2026-11-12",
+   "i": 6,
+   "h": "Man in {} camps outside a phone shop for 11 weeks to be first in line for the new iPhone",
+   "tell": "New iPhones go on sale about ten days after they are announced, so nobody could queue 11 weeks ahead.",
+   "n": 1590,
+   "pct": 58.2
+  },
+  {
+   "day": "2026-11-13",
+   "i": 2,
+   "h": "President of {} asks for November 19 off work to play GTA 6",
+   "tell": "A head of state doesn't ask permission for a day off like an employee.",
+   "n": 2824,
+   "pct": 33.3
+  },
+  {
+   "day": "2026-11-13",
+   "i": 4,
+   "h": "Hot-air balloon lands in a prison yard in {}; 3 inmates fold it, then walk back to their cells",
+   "tell": "Guards would clear the yard at once; inmates folding a balloon and strolling back is far too tidy.",
+   "n": 2824,
+   "pct": 39.9
+  },
+  {
+   "day": "2026-11-14",
+   "i": 2,
+   "h": "Alpine village in {} introduces mandatory yodel licences to curb avalanche-triggering noise",
+   "tell": "A human voice can't trigger an avalanche.",
+   "n": 1323,
+   "pct": 33.6
+  },
+  {
+   "day": "2026-11-14",
+   "i": 6,
+   "h": "Retired captain, 68, fined in {} for teaching little penguins to steal tourists' sunglasses",
+   "tell": "Little penguins come ashore only after dark, when nobody wears sunglasses.",
+   "n": 1324,
+   "pct": 32.5
+  }
+ ]
+}
