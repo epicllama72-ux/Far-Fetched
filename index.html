@@ -1627,6 +1627,11 @@ body.intro #ausBar{display:none}
 #sheetClose{background:var(--np-card);color:var(--np-ink);box-shadow:none;border:2px solid var(--np-ink);box-shadow:2px 2px 0 var(--np-ink);font:20px/1 var(--vt)}
 #sheet #groupBar{gap:4px;margin:10px 0 0;padding:0;border-bottom:2px solid var(--np-ink);flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;overscroll-behavior:contain;touch-action:pan-x;scrollbar-width:none}   /* the tabs slide left and right only */
 #sheet #groupBar::-webkit-scrollbar{display:none}
+#boardKind{display:flex;gap:0;margin:10px 0 0}
+#boardKind button{flex:1;font:8px/1 var(--px);letter-spacing:.12em;text-transform:uppercase;padding:10px 6px 9px;background:transparent;color:var(--np-ink,#1b1813);border:2px solid var(--np-ink,#1b1813);cursor:pointer}
+#boardKind button+button{border-left:0}
+#boardKind button[aria-pressed="true"]{background:var(--np-ink,#1b1813);color:var(--np-paper,#ece5d1)}
+#boardKind button:focus-visible{outline:3px solid var(--np-stamp,#a8231a);outline-offset:2px}
 #sheet .gchip{flex:none;font:17px/1 var(--vt);padding:7px 12px 6px;background:var(--np-tab);color:var(--np-dim);border:2px solid var(--np-ink);border-bottom:0;border-radius:6px 6px 0 0;margin-bottom:-2px}
 #sheet .gchip.on{background:var(--np-paper);color:var(--np-ink);padding-bottom:8px}
 #sheet .gchip:focus-visible{outline:2px solid var(--np-stamp)}
@@ -1941,6 +1946,7 @@ body.pinning #card #headline{font-size:23px}
   <section id="sheet" hidden aria-label="Today's leaderboard">
     <div class="sheetIn">
       <div class="sheetTop"><p class="kicker" id="boardKicker">Today's diggers</p><button id="sheetClose" aria-label="Close">×</button></div>
+      <div id="boardKind" role="group" aria-label="Leaderboard for"><button type="button" data-k="call">Daily Dig</button><button type="button" data-k="blank">Fill the Blank</button></div>
       <div id="groupBar" hidden></div>
       <div id="groupTools" hidden></div>
       <canvas id="curve" width="320" height="130" aria-label="Distribution of today's jaw depths"></canvas>
@@ -4839,7 +4845,7 @@ function syncName(force){
 }
 
 /* ---------- Private groups (scripts/supabase_groups.sql): a small board for friends, joined with a ?g=CODE link ---------- */
-let BOARD_VIEW='all', MY_GROUPS=load('ff_groups')||[];
+let BOARD_VIEW='all', BOARD_KIND='call', MY_GROUPS=load('ff_groups')||[];
 /* ---------- Sign in with Google: progress follows the player to any device ----------
    Uses Supabase Auth (Google provider) and one row per player in the "progress" table (row-level security: a player can
    only read and write their own row). Everything still works signed out; signing in just copies progress to the account. */
@@ -4996,16 +5002,16 @@ function renderGroupBar(){
   const bar=$('groupBar'); if(!sbOn()){ bar.hidden=true; return; } bar.hidden=false;
   const chip=(code,label)=>'<button type="button" class="gchip'+(BOARD_VIEW===code?' on':'')+'" data-g="'+escH(code)+'">'+escH(label)+'</button>';
   bar.innerHTML=chip('all','Everyone')+MY_GROUPS.map(g=>chip(g.code,g.name)).join('')+chip('new','+ New or join');
-  bar.querySelectorAll('.gchip').forEach(b=>b.onclick=()=>{ Sound.play('menu'); const g=b.dataset.g; if(g==='new') newGroupForm(); else if(g==='all') openBoard(); else renderGroupBoard(g); });
+  bar.querySelectorAll('.gchip').forEach(b=>b.onclick=()=>{ Sound.play('menu'); const g=b.dataset.g; if(g==='new') newGroupForm(); else if(g==='all') openBoard(BOARD_KIND); else renderGroupBoard(g); });
 }
 async function renderGroupBoard(code){
   BOARD_VIEW=code; renderGroupBar();
   const g=MY_GROUPS.find(x=>x.code===code)||{code,name:'Group'};
-  $('boardKicker').textContent=g.name+' · '+modeName(S.kind);
+  $('boardKicker').textContent=g.name+' · '+modeName(BOARD_KIND);
   $('curve').hidden=true; $('digImg').parentElement.hidden=true; $('nameRow').hidden=true;
   $('rankLine').textContent='Loading…'; $('topList').innerHTML='';
   toolsAt('bottom'); showGroupTools(g);   // the group's scores come first, the invite link and buttons below them
-  const b=await sbRpc('group_board',{p_code:code,p_day:dayKey(),p_kind:S.kind});
+  const b=await sbRpc('group_board',{p_code:code,p_day:dayKey(),p_kind:BOARD_KIND});
   if(BOARD_VIEW!==code) return;
   if(!b || !Array.isArray(b.rows)){ $('rankLine').textContent="Couldn't load this group right now."; return; }
   g.members=+b.members||g.members; showGroupTools(g);
@@ -5210,24 +5216,30 @@ function drawCurve(rows, mine, cvEl){
 }
 function clamp01(v,a,b){ return Math.max(a,Math.min(b,v)); }
 
-async function openBoard(){
+async function openBoard(kind){
   Sound.play('menu');
+  BOARD_KIND = (kind==='call'||kind==='blank') ? kind : (S.kind==='blank' ? 'blank' : 'call');   // the board follows the mode being played until a button switches it
+  const own = BOARD_KIND===S.kind;                                                              // the dig card and live score belong to the mode on screen
+  document.querySelectorAll('#boardKind button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.k===BOARD_KIND)));
   $('sheet').hidden=false;
   if(S && S.phase==='call') document.body.classList.add('hideq');     // the board pauses the clock, so hide the question too
-  $('boardKicker').textContent="Today's diggers · "+modeName(S.kind);
+  $('boardKicker').textContent="Today's diggers · "+modeName(BOARD_KIND);
   $('nameRow').hidden=true;
   BOARD_VIEW='all'; $('groupTools').hidden=true; renderGroupBar(); refreshGroups().then(()=>{ if(BOARD_VIEW==='all') renderGroupBar(); });
-  const done = S.mode==='daily' && S.results.length>=S.rounds.length;    // only a finished daily round goes on the board
-  const inf=Scene.info(), mine=done ? (S.finalM!=null ? S.finalM : +inf.m) : null;
+  const hk=(load('ff_hist')||{})[dayKey()+':'+BOARD_KIND];                // today's finished result for the other mode, kept on this device
+  const done = own ? (S.mode==='daily' && S.results.length>=S.rounds.length) : !!(hk && typeof hk.m==='number');   // only a finished daily round goes on the board
+  const inf=Scene.info(), mine=done ? (own ? (S.finalM!=null ? S.finalM : +inf.m) : hk.m) : null;
+  const myScore = own ? S.total : (hk ? +hk.score||0 : 0);
   drawCurve([], mine); paperize($('curve'),true);
   $('rankLine').textContent='Loading the leaderboard…'; $('topList').innerHTML='';
-  $('digImg').parentElement.hidden=!done;
-  if(done) renderDigCard();
-  let b=null; try{ b=await loadBoard(S.kind); }catch(e){}
+  $('digImg').parentElement.hidden=!(done && own);
+  if(done && own) renderDigCard();
+  let b=null; try{ b=await loadBoard(BOARD_KIND); }catch(e){}
+  if(BOARD_KIND!==(kind==='call'||kind==='blank'?kind:(S.kind==='blank'?'blank':'call'))) return;   // switched again while loading
   if(!b){
     const h=load('ff_hist')||{};
-    const mine=Object.keys(h).filter(k=>k.endsWith(':'+S.kind)).sort().reverse().slice(0,7);
-    $('boardKicker').textContent='My digs · '+modeName(S.kind);
+    const mine=Object.keys(h).filter(k=>k.endsWith(':'+BOARD_KIND)).sort().reverse().slice(0,7);
+    $('boardKicker').textContent='My digs · '+modeName(BOARD_KIND);
     $('curve').hidden=true;
     $('rankLine').innerHTML = mine.length ? 'Your recent digs on this device.' : 'Finish a daily round to start your dig history.';
     const ol=$('topList'); ol.innerHTML='';
@@ -5237,11 +5249,11 @@ async function openBoard(){
   $('nameRow').hidden=!b.sb;
   if(b.sb) $('nameShow').textContent=playerName();
   const rows=b.rows;
-  if(done && b.me && !rows.some(r=>r.id===b.me)) rows.push({id:b.me,m:mine,score:S.total,zone:inf.zone});
+  if(done && b.me && !rows.some(r=>r.id===b.me)) rows.push({id:b.me,m:mine,score:myScore,zone:inf.zone});
   $('curve').hidden=rows.length<3;
   drawCurve(rows, mine); paperize($('curve'),true);
   const others=rows.filter(r=>r.id!==b.me);
-  if(S.mode!=='daily') $('rankLine').innerHTML=rows.length+' reader'+(rows.length===1?'':'s')+' so far today. '+(S.mode==='back'?'Back issues':'Practice runs')+' don\'t count.';
+  if(own && S.mode!=='daily') $('rankLine').innerHTML=rows.length+' reader'+(rows.length===1?'':'s')+' so far today. '+(S.mode==='back'?'Back issues':'Practice runs')+' don\'t count.';
   else if(!done) $('rankLine').innerHTML=(rows.length ? rows.length+' reader'+(rows.length===1?'':'s')+' so far today.' : 'Nobody has finished today\'s round yet.')+' Finish yours to see where you land.';
   else if(!others.length) $('rankLine').innerHTML='You\'re the <b>first reader</b> today. Check back as others play.';
   else {
@@ -5746,6 +5758,12 @@ $('nameEdit').onclick=()=>{
 };
 function closeSheet(){ $('sheet').hidden=true; if($('menu').hidden) document.body.classList.remove('hideq'); }
 $('sheetClose').onclick=closeSheet;
+document.querySelectorAll('#boardKind button').forEach(b=>b.onclick=()=>{
+  const k=b.dataset.k; if(k===BOARD_KIND) return; Sound.play('menu');
+  if(BOARD_VIEW!=='all' && BOARD_VIEW!=='new'){                 // a group tab stays open: just show that group's board for the other mode
+    BOARD_KIND=k; document.querySelectorAll('#boardKind button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.k===k))); renderGroupBoard(BOARD_VIEW);
+  } else openBoard(k);
+});
 $('sheet').addEventListener('click',e=>{ if(e.target===$('sheet')) closeSheet(); });
 $('btnSaveImg').onclick=saveDigImage;
 function renderAmb(){ $('mAmbState').textContent=Sound.ambience()?'ON':'OFF'; }
