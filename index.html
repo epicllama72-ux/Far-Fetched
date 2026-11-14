@@ -1008,6 +1008,8 @@ body.pinDone #mapToggle{display:block}
 #guessForm .primary{width:auto;padding:10px 18px}
 #guessMsg{min-height:0;margin:0 0 8px;font:18px/1.1 var(--vt);color:#ffb3c0;background:#0d0f14;display:inline-block;padding:3px 8px}
 #guessMsg:empty{display:none}
+#guessProxy{position:fixed;left:50%;top:112px;width:2px;height:20px;margin:0;padding:0;border:0;opacity:0;font-size:16px;z-index:1;pointer-events:none;caret-color:transparent}
+#guessIn.typing{box-shadow:0 0 0 3px var(--accent)}
 #guessIn.nope{animation:inShake .4s;color:#ff8a8a;box-shadow:0 0 0 3px var(--bad)}
 #guessIn.nope::selection{background:var(--bad);color:#fff}
 @keyframes inShake{0%,100%{transform:translateX(0)}15%{transform:translateX(-9px)}35%{transform:translateX(8px)}55%{transform:translateX(-6px)}75%{transform:translateX(4px)}}
@@ -1741,6 +1743,7 @@ body.pinning #card #headline{font-size:23px}
 </style>
 </head>
 <body>
+<input id="guessProxy" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="Guess the hidden word" tabindex="-1">
 <canvas id="bg" aria-hidden="true"></canvas>
 <canvas id="intro" aria-hidden="true" hidden></canvas>
 <div id="introTop" hidden><h1 class="it"><img src="icons/title.png" alt="Far-Fetched" width="280" height="45"></h1><div id="introStamp" hidden></div><p id="introLine"></p><p id="introNote" hidden></p><details id="introHow"><summary>HOW TO PLAY</summary><div id="introHowText"></div></details></div>
@@ -5555,7 +5558,7 @@ function startBlankRound(wall){
   $('blankLive').hidden=false; setBar('guess');
   $('card').classList.add('timing'); $('cardTimer').hidden=false; $('cardTimer').classList.remove('low');
   $('guessList').innerHTML=''; $('guessMsg').textContent='';
-  const inp=$('guessIn'); inp.value='';
+  setGuess('');
   updateTimer();
   TIMER=setInterval(updateTimer,50);
   setTimeout(()=>{ try{ simsFor(st); }catch(e){} },0);     // rank every word against the answer once, up front
@@ -5631,15 +5634,15 @@ function submitWord(raw){
   const fx=fixGuess(word,st), typed=word; word=fx.word;
   if(bl.seen.has(word)){ msg.textContent='Already guessed "'+word+'".'; return; }
   if(fx.fixed){                            // autocorrect never submits on its own: the corrected word goes back in the box with a note, and the player decides
-    const inp=$('guessIn'); inp.value=word; try{ inp.setSelectionRange(word.length,word.length); }catch(e){}
+    setGuess(word); try{ (COARSE?gProxy:$('guessIn')).setSelectionRange(word.length,word.length); }catch(e){}
     msg.className=''; msg.textContent='"'+typed+'" → "'+word+'". Press GUESS to submit it, or type something else.';
     Sound.play('menu');
     return;
   }
   const c=closeness(word,st);
   if(c===null){                           // not in the word list: nothing is submitted; the word stays in the box, highlighted, and the box shakes
-    const inp=$('guessIn'); inp.value=raw; inp.classList.remove('nope'); void inp.offsetWidth; inp.classList.add('nope');
-    try{ inp.select(); }catch(e){}
+    const inp=$('guessIn'); setGuess(raw); inp.classList.remove('nope'); void inp.offsetWidth; inp.classList.add('nope');
+    selectGuess();
     msg.className=''; msg.textContent='Not in the word list.'; Sound.play('nope'); return;
   }
   msg.textContent=''; msg.className='';
@@ -5674,7 +5677,7 @@ function endBlank(){
   if(res.callPts>0){ Scene.gasp(); Sound.play('jawDown'); }
   $('blankLive').hidden=true;
   document.body.classList.add('answered');
-  $('guessIn').blur();
+  $('guessIn').blur(); gProxy.blur();
   $('headline').innerHTML=blankHTML(st,true);
   if(st.real && st.src){ const a=$('storyLink'); a.href=st.src; a.hidden=false; }
   const fb=$('feedback'); fb.hidden=false;
@@ -5699,18 +5702,7 @@ function endBlank(){
 /* keep the bottom bar above the on-screen keyboard. It is only lifted while a text box is being typed in, and it is put straight back
    whenever the page comes back into view (after the share sheet or another app) or the window changes size: the browser can report a
    stale, shorter viewport right after returning, which used to leave the buttons stuck out of place. */
-/* While a word is being typed in Fill the Blank, keep the headline in the visible part of the screen: the keyboard can slide the page (iOS pans the
-   visual viewport, other browsers shrink it), which used to carry the headline off the top. The card is nudged down to the top of whatever is visible. */
-function pinHeadline(vv){
-  vv=vv||window.visualViewport; const c=$('card'); if(!c) return;
-  const typing=!!(S && S.kind==='blank' && S.phase==='live' && (document.activeElement||{}).id==='guessIn');
-  c.style.transform=''; c.style.position='';
-  if(!typing || !vv) return;
-  const top=c.getBoundingClientRect().top, want=vv.offsetTop+4;
-  if(top<want){ c.style.position='relative'; c.style.zIndex='6'; c.style.transform='translateY('+Math.round(want-top)+'px)'; }
-}
 function liftBar(){
-  pinHeadline();
   const bar=$('bar'); if(!bar) return;
   const vv=window.visualViewport;
   const typing=/^(INPUT|TEXTAREA)$/.test((document.activeElement||{}).tagName||'');
@@ -5731,7 +5723,6 @@ document.addEventListener('visibilitychange',()=>{ if(!document.hidden) settleBa
 window.addEventListener('pageshow',()=>settleBar(true)); window.addEventListener('focus',()=>settleBar(true));
 window.addEventListener('resize',()=>settleBar()); window.addEventListener('orientationchange',()=>settleBar(true));
 document.addEventListener('focusout',()=>setTimeout(liftBar,50));
-document.addEventListener('focusin',()=>{ settleBar(); });   // the keyboard opening: settle the bar and the headline as it slides in
 
 $('btnStart').onclick=()=>{
   const begin=()=>{ if(S.kind==='blank') startBlankRound(); else startCallRound(); };
@@ -5739,8 +5730,23 @@ $('btnStart').onclick=()=>{
   if(Intro.active()){ $('btnStart').disabled=true; Intro.go(()=>{ $('btnStart').disabled=false; begin(); }); return; }
   begin();
 };
+/* On phones the text is typed into an invisible box near the top of the screen and mirrored into the visible one at the bottom. The browser only slides the
+   page when the box being typed in would end up behind the keyboard; this one never does, so the game stays put while the keyboard opens over it, and the bar
+   (guess box and button) rides up on top of the keyboard. Desktops type straight into the visible box. */
+const COARSE=!!(window.matchMedia && matchMedia('(pointer:coarse)').matches);
+const gProxy=$('guessProxy');
+function setGuess(v){ $('guessIn').value=v; if(COARSE) gProxy.value=v; }
+function focusGuess(){ try{ (COARSE?gProxy:$('guessIn')).focus({preventScroll:true}); }catch(e){} }
+function selectGuess(){ try{ (COARSE?gProxy:$('guessIn')).select(); }catch(e){} }
+if(COARSE){
+  const gin=$('guessIn'); gin.readOnly=true; gin.tabIndex=-1;
+  gin.addEventListener('pointerdown',e=>{ e.preventDefault(); focusGuess(); });         // tapping the visible box opens the keyboard on the hidden one
+  gProxy.addEventListener('input',()=>{ gin.value=gProxy.value; gin.classList.remove('nope'); });
+  gProxy.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); $('guessForm').dispatchEvent(new Event('submit',{cancelable:true,bubbles:true})); } });
+  gProxy.addEventListener('focus',()=>gin.classList.add('typing')); gProxy.addEventListener('blur',()=>gin.classList.remove('typing'));
+}
 $('guessIn').addEventListener('input',()=>$('guessIn').classList.remove('nope'));
-$('guessForm').addEventListener('submit',e=>{ e.preventDefault(); const inp=$('guessIn'); const v=inp.value; inp.value=''; submitWord(v); inp.focus(); });
+$('guessForm').addEventListener('submit',e=>{ e.preventDefault(); const v=$('guessIn').value; setGuess(''); submitWord(v); focusGuess(); });
 
 $('btnReal').onclick=()=>onCall(true);
 $('btnFake').onclick=()=>onCall(false);
