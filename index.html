@@ -4251,7 +4251,7 @@ function drawDigLog(){
     g.fillStyle=DIM; g.fillText(p?'+'+p:'0',left-6*K,Y(p));
   }
   g.strokeStyle=INK; g.lineWidth=1.6*K; g.beginPath(); g.moveTo(left-3*K,top); g.lineTo(right+3*K,top); g.stroke();   // the surface
-  const DOT={ok:'#2f7d4a',meh:'#c9a44c',warm:'#b5651d',no:null}, ic=Math.round(H*0.17);
+  const DOT={ok:'#2f7d4a',meh:'#c9a44c',warm:'#b5651d',no:null}, ic=Math.round(H*0.135);
   g.textAlign='center';
   S.results.forEach((x,i)=>{
     const cx=Math.round(left+ic*0.9+(right-left-ic*1.8)*(n>1?i/(n-1):0.5)), p=x.callPts+(x.pinPts||0), c=resultClass(x), fooled=c==='fooled';
