@@ -724,6 +724,27 @@
    "banked": "2026-11-13",
    "rules": 2,
    "daily_only": true
+  },
+  {
+   "banked": "2026-11-14",
+   "rules": 2,
+   "theme": "vehicle-theft",
+   "unbelievable": 4,
+   "jargon_only": false,
+   "h": "Man, 58, is convicted of taking a bus to drive pub regulars to the next village; it ends up in a canal in {}",
+   "place": "Virovitica, Croatia",
+   "geocode": "Virovitica, Croatia",
+   "lat": 45.8316,
+   "lng": 17.3855,
+   "country": "Croatia",
+   "cc": "HR",
+   "clue": "Čazmatrans bus + a municipal court in a Slavic-language town = Croatia",
+   "clue_strength": 2,
+   "mappable": 3,
+   "src": "https://www.index.hr/mobile/magazin/clanak/serijski-kradljivac-buseva-u-virovitici-skupio-ekipu-i-odvezao-ih-na-pice-u-selo-do/2825297.aspx",
+   "published": "2026-08-15",
+   "daily_only": true,
+   "hint": "a town near the Drava River"
   }
  ],
  "fake": [
