@@ -33,38 +33,6 @@
    "rules": 2
   },
   {
-   "id": 19,
-   "h": "Moose steps onto an icy driveway, slides out into the street and is caught on a home security camera in {}",
-   "h2": "[] steps onto an icy driveway, slides out into the street and is caught on a home security camera in Alaska",
-   "ans": [
-    "moose",
-    "elk"
-   ],
-   "alt": [
-    "deer",
-    "caribou",
-    "reindeer",
-    "animal"
-   ],
-   "place": "Alaska, USA",
-   "geocode": "Alaska, USA",
-   "lat": 64.4459613,
-   "lng": -149.680909,
-   "country": "United States",
-   "cc": "US",
-   "hint": "host of the Iditarod sled race",
-   "clue": "moose and ice = far north US or Canada",
-   "clue_strength": 3,
-   "jargon_only": false,
-   "mappable": 1,
-   "unbelievable": 3,
-   "theme": "wildlife",
-   "src": "https://www.upi.com/Odd_News/2026/11/11/moose-ice-driveway-anchorage/2421794423445/",
-   "published": "2026-11-11",
-   "banked": "2026-11-13",
-   "rules": 2
-  },
-  {
    "id": 8,
    "h": "Sheriff's deputies find a stolen gas-station dinosaur in a strange predicament near {}",
    "h2": "California sheriff's deputies find a stolen gas-station [] in a strange predicament",
@@ -118,9 +86,9 @@
    "lng": 121.6587475,
    "country": "Taiwan",
    "cc": "TW",
-   "hint": "",
+   "hint": "home of Acer's computer headquarters",
    "clue": "Island with high-speed rail and a traffic police unit",
-   "clue_strength": 3,
+   "clue_strength": 2,
    "jargon_only": false,
    "mappable": 3,
    "unbelievable": 3,
@@ -150,38 +118,6 @@
    "mappable": 3,
    "clue_strength": 2,
    "jargon_only": false
-  },
-  {
-   "id": 14,
-   "h": "Man sneaks in at night to sleep in ex's rooftop water tank in {}; police find his sneakers and blanket",
-   "h2": "Man sneaks in at night to sleep in ex's rooftop water [] in Chubut, Argentina; police find his sneakers and blanket",
-   "ans": [
-    "tank",
-    "tanks"
-   ],
-   "alt": [
-    "cistern",
-    "reservoir",
-    "barrel",
-    "tower"
-   ],
-   "place": "Chubut, Argentina",
-   "geocode": "Chubut Province, Argentina",
-   "lat": -43.3,
-   "lng": -65.1,
-   "country": "Argentina",
-   "cc": "AR",
-   "hint": "where Butch Cassidy once ranched",
-   "clue": "Rooftop water tanks are common in Argentine homes",
-   "clue_strength": 1,
-   "jargon_only": false,
-   "mappable": 1,
-   "unbelievable": 4,
-   "theme": "ex",
-   "src": "https://news.google.com/rss/articles/CBMipAFBVV95cUxONVNxbFJhYjl5Qm9NcUF5aFJ2UzdFQW1zY3NZcFFFdGtEQi1iR2NNYVpUQjY1VzExSzRpOWRQdkdzeHNSTnZSdThKb3NMNURZSEpCeGs0N2JWYzRvSFAwZHRvU0x1c2xkSDdYVGs5WVlYRVB2dVdUQ3JzS3J5b28ycG84YW80cXl5OWFUT3V4dXJGZWJzeU1ZM0s1YkVEZTJhdjNydw?oc=5",
-   "published": "2026-11-09",
-   "banked": "2026-11-10",
-   "rules": 2
   },
   {
    "h": "Black Labrador rides the city bus by herself to the dog park in {}",
@@ -343,7 +279,7 @@
    "cc": "AU",
    "hint": "",
    "clue": "'college' + a fundraising walkathon + an apology",
-   "clue_strength": 2,
+   "clue_strength": 1,
    "jargon_only": false,
    "mappable": 2,
    "unbelievable": 3,
@@ -409,7 +345,7 @@
    "cc": "US",
    "hint": "a Blue Ridge foothills town",
    "clue": "US chain restaurant + a county health district",
-   "clue_strength": 1,
+   "clue_strength": 2,
    "jargon_only": false,
    "mappable": 3,
    "unbelievable": 3,
@@ -418,28 +354,6 @@
    "published": "2026-10-30",
    "banked": "2026-11-03",
    "rules": 2,
-   "daily_only": true
-  },
-  {
-   "id": 44,
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 2,
-   "unbelievable": 4,
-   "banked": "2026-11-01",
-   "rules": 2,
-   "h": "Doctors prescribe Diet Coke to woman with stomach mass in {}",
-   "place": "Boston, Massachusetts",
-   "geocode": "Boston, Massachusetts, USA",
-   "lat": 42.3601,
-   "lng": -71.0589,
-   "country": "United States",
-   "cc": "US",
-   "hint": "setting of Good Will Hunting",
-   "clue": "US doctors + a GLP-1 drug case report",
-   "theme": "medical",
-   "src": "https://www.newsnationnow.com/health/diet-coke-dissolve-stomach-mass-glp-1-patient/",
-   "published": "2026-07-08",
    "daily_only": true
   },
   {
@@ -471,27 +385,6 @@
    "banked": "2026-10-31",
    "rules": 2,
    "alt": []
-  },
-  {
-   "banked": "2026-10-30",
-   "rules": 2,
-   "theme": "odd news",
-   "unbelievable": 4,
-   "jargon_only": false,
-   "h": "Detective in {} is fired after allegedly pointing a gun at a colleague who was heating fish",
-   "place": "Myrtle Beach, South Carolina",
-   "geocode": "Myrtle Beach, South Carolina",
-   "lat": 33.6891,
-   "lng": -78.8867,
-   "country": "United States",
-   "cc": "US",
-   "clue": "US beach resort town; police arrest warrant released by the state law enforcement agency",
-   "clue_strength": 2,
-   "mappable": 2,
-   "src": "https://www.vice.com/en/article/everything-we-know-about-the-cop-who-allegedly-pulled-a-gun-because-someone-microwaved-fish-at-work/",
-   "published": "",
-   "hint": "home of the Grand Strand boardwalk",
-   "daily_only": true
   },
   {
    "banked": "2026-10-30",
@@ -837,138 +730,178 @@
    "hand": true
   },
   {
-   "h": "Cyclist in {} rides a 42-kilometre commute in 11 minutes on a bike with a flat tyre",
-   "tell": "That is about 230 km/h, impossible on a bicycle, let alone one with a flat tyre.",
+   "h": "Dealer in {} sells a ballpoint pen 'signed by Napoleon' to a retired dentist for 4,310 euros",
+   "tell": "Napoleon died in 1821; ballpoint pens weren't invented until the late 1930s.",
+   "unbelievable": 3,
    "obvious": 3,
-   "theme": "cycling",
-   "taste": 3.0,
-   "banked": "2026-11-14",
-   "rules": 2
-  },
-  {
-   "h": "Thief in {} walks out of a jewellery shop with a 2.4-tonne safe hidden under his jacket",
-   "tell": "A 2.4-tonne safe cannot be carried, let alone hidden under a jacket.",
-   "obvious": 2,
-   "theme": "theft",
-   "taste": 3.0,
-   "banked": "2026-11-14",
-   "rules": 2
-  },
-  {
-   "h": "Student in {} hands in his 3-hour exam paper after 40 minutes and is marked down for taking too long",
-   "tell": "Finishing in 40 minutes of a 3-hour exam is quick, not too long.",
-   "obvious": 3,
-   "theme": "school",
-   "taste": 4.0,
-   "banked": "2026-11-14",
-   "rules": 2
-  },
-  {
-   "h": "Man in {} sues his neighbour over 37 years of loud music, though the neighbour moved in last spring",
-   "tell": "A neighbour who moved in last spring cannot have played music for 37 years.",
-   "obvious": 2,
-   "theme": "lawsuit",
+   "theme": "forgery",
    "taste": 5.0,
-   "banked": "2026-11-14",
+   "banked": "2026-11-15",
    "rules": 2
   },
   {
-   "h": "Baker in {} turns out 1,260 loaves in 20 minutes from a one-metre-wide home oven",
-   "tell": "A small home oven cannot bake over a thousand loaves in 20 minutes.",
+   "h": "Smuggler in {} is caught with 3.4 kilos of caviar from male sturgeon hidden in a cello case",
+   "tell": "Caviar is roe, so it can only come from female sturgeon.",
+   "unbelievable": 3,
    "obvious": 3,
-   "theme": "baking",
-   "taste": 3.0,
-   "banked": "2026-11-14",
-   "rules": 2
-  },
-  {
-   "h": "Twin brothers in {} celebrate their 40th and 44th birthdays at the same party",
-   "tell": "Twins are the same age, so they cannot be 40 and 44.",
-   "obvious": 2,
-   "theme": "birthday",
-   "taste": 4.0,
-   "banked": "2026-11-14",
-   "rules": 2
-  },
-  {
-   "h": "Customer in {} is served a 14-litre pint and finishes it in 38 seconds",
-   "tell": "A pint is about half a litre, and nobody drinks 14 litres in 38 seconds.",
-   "obvious": 3,
-   "theme": "pub",
-   "taste": 3.0,
-   "banked": "2026-11-14",
-   "rules": 2
-  },
-  {
-   "h": "Commuter in {} misses the 8:15 train, waits 3 hours for the next, which departs at 8:50",
-   "tell": "8:15 to 8:50 is only 35 minutes, not 3 hours.",
-   "obvious": 3,
-   "theme": "transit",
-   "taste": 4.0,
-   "banked": "2026-11-14",
-   "rules": 2
-  },
-  {
-   "h": "Woman, 29, marks 35th wedding anniversary at the café where she met her husband in {}",
-   "tell": "A 29-year-old cannot have been married for 35 years.",
-   "obvious": 2,
-   "theme": "marriage",
-   "taste": 4.0,
-   "banked": "2026-11-14",
-   "rules": 2
-  },
-  {
-   "h": "Cyclist in {} rides 96 km to work in 38 minutes after missing the bus",
-   "tell": "96 km in 38 minutes is about 150 km/h, impossible on a bicycle.",
-   "obvious": 3,
-   "theme": "speed",
-   "taste": 3.0,
-   "banked": "2026-11-14",
-   "rules": 2
-  },
-  {
-   "h": "Man, 52, builds a 14-metre-long shed in a back garden measuring 6 metres by 5 in {}",
-   "tell": "A 14-metre shed cannot fit in a garden only 6 metres long.",
-   "obvious": 2,
-   "theme": "building",
+   "theme": "smuggling",
    "taste": 5.0,
-   "banked": "2026-11-14",
+   "banked": "2026-11-15",
    "rules": 2
   },
   {
-   "h": "Bakery in {} marks 40th anniversary of its 2009 opening with 1,140 free rolls",
-   "tell": "40 years after 2009 is 2049, which is in the future.",
-   "obvious": 3,
-   "theme": "anniversary",
-   "taste": 4.0,
-   "banked": "2026-11-14",
-   "rules": 2
-  },
-  {
-   "h": "Couple in {} marry on 31 June in a car park with 212 guests",
-   "tell": "June has only 30 days, so 31 June does not exist.",
+   "h": "Shoplifter, 34, in {} admits stealing 1,213 tuna tins over 33 years, hidden in a trombone case",
+   "tell": "A 34-year-old who has stolen for 33 years began at age one.",
+   "unbelievable": 4,
    "obvious": 2,
+   "theme": "tuna",
+   "taste": 5.0,
+   "banked": "2026-11-15",
+   "rules": 2
+  },
+  {
+   "h": "Promoter in {} sells 642 tickets to watch a total solar eclipse at midnight from a rooftop",
+   "tell": "A solar eclipse needs the Sun in the sky, so it cannot happen at midnight.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "eclipse",
+   "taste": 3.0,
+   "banked": "2026-11-15",
+   "rules": 2
+  },
+  {
+   "h": "Collector in {} pays 7,300 euros for a 1979 laptop still running its original Windows 95",
+   "tell": "Windows 95 arrived sixteen years after 1979, and laptops barely existed then.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "computer",
+   "taste": 4.0,
+   "banked": "2026-11-15",
+   "rules": 2
+  },
+  {
+   "h": "Bakery in {} sells 'gluten-free' baguettes made from wheat for 9 weeks before anyone notices",
+   "tell": "Wheat flour contains gluten, so a wheat baguette can't be gluten-free.",
+   "unbelievable": 3,
+   "obvious": 2,
+   "theme": "bread",
+   "taste": 4.0,
+   "banked": "2026-11-15",
+   "rules": 2
+  },
+  {
+   "h": "Burglar in {} who stole 48 organ pipes says he was at a wedding on 29 February 2023",
+   "tell": "2023 was not a leap year, so there was no 29 February.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "alibi",
+   "taste": 5.0,
+   "banked": "2026-11-15",
+   "rules": 2
+  },
+  {
+   "h": "Rider in {} says he cycled 383 km in 54 minutes to deliver a still-warm pizza",
+   "tell": "That would mean about 425 km/h, far beyond any cyclist.",
+   "unbelievable": 3,
+   "obvious": 2,
+   "theme": "delivery",
+   "taste": 3.0,
+   "banked": "2026-11-15",
+   "rules": 2
+  },
+  {
+   "h": "Burglar in {} is caught after posting footage of his break-in from an iPhone stolen in 2005",
+   "tell": "The first iPhone wasn't released until 2007, so none could be stolen in 2005.",
+   "obvious": 3,
+   "theme": "burglary",
+   "taste": 5.0,
+   "banked": "2026-11-15",
+   "rules": 2
+  },
+  {
+   "h": "Metal detectorist, 67, in {} digs up a Roman coin stamped AD 140 under his potato patch",
+   "tell": "The AD dating system was devised centuries after Roman times, so no coin could carry it.",
+   "obvious": 3,
+   "theme": "treasure",
+   "taste": 4.0,
+   "banked": "2026-11-15",
+   "rules": 2
+  },
+  {
+   "h": "Funeral director in {} says a client's fingernails grew 9 cm in the casket after death",
+   "tell": "Nails and hair don't keep growing after death; the skin just retracts.",
+   "obvious": 3,
+   "theme": "funeral",
+   "taste": 3.0,
+   "banked": "2026-11-15",
+   "rules": 2
+  },
+  {
+   "h": "Cyclist, 36, in {} rides 1,350 km to his wedding in 9 hours, towing a sofa as a gift",
+   "tell": "1,350 km in 9 hours is an average of 150 km/h, impossible on a bicycle.",
+   "obvious": 3,
    "theme": "wedding",
-   "taste": 5.0,
-   "banked": "2026-11-14",
+   "taste": 4.0,
+   "banked": "2026-11-15",
+   "rules": 2
+  },
+  {
+   "h": "Auction buyer, 63, in {} pays €8,350 for a menu from the Titanic's last dinner, dated 1921",
+   "tell": "The Titanic sank in 1912, so a menu from its last dinner can't be dated 1921.",
+   "obvious": 2,
+   "theme": "auction",
+   "taste": 4.0,
+   "banked": "2026-11-15",
    "rules": 2
   }
  ],
  "pol": [
   {
+   "id": 51,
+   "h": "Every lawmaker in {} joins the government side, leaving the president with no political opponents",
+   "place": "Yaren, Nauru",
+   "geocode": "NR",
+   "lat": -0.5252306,
+   "lng": 166.9324426,
+   "clue": "world's smallest island republic in Micronesia, famed for phosphate rock",
+   "src": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1VaDd1Q1QyQ1Z0UHVoV2pkWjZmUnJULThkaFp1MzdJR3B5SW91amxPbTlVc2QwLURrbXl6OEJmNTdUTXhiYkpQeUxHc3ZqMGZ1MjF6VG9iT2UtTXFiU3hLY0Yxbkw5QVBFMUtXS1l4ZW1pUWN3YlkxbQ?oc=5",
+   "published": "2026-11-13",
+   "banked": "2026-11-15"
+  },
+  {
    "id": 17,
-   "h": "Mayor in {} wins tied race by random drawing; challenger seeks recount",
-   "place": "Spring Lake Park, Minnesota, USA",
-   "geocode": "Spring Lake Park, Minnesota, USA",
-   "lat": 45.1154274,
-   "lng": -93.2492872,
-   "clue": "Twin Cities suburb north of Minneapolis, in the Land of 10,000 Lakes",
+   "h": "Mayor in {} wins a tied race by drawing, and the challenger asks for a recount",
+   "place": "Spring Lake Park, Minnesota",
+   "geocode": "US",
+   "lat": 45.1075,
+   "lng": -93.2394,
+   "clue": "Twin Cities suburb north of Minneapolis; lots drawn to settle a tie",
    "src": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQb2lPUXBjLXQ1SGZCX1B2a0NlWkpmdE50WTBTYzNFUlNON0VSMjVvYl9RRDh4bmR4SElJbEpIQUxoczdpZExoR0M3YzlRX3pMU0NuSVprRy11NlZzbmRsVzd2QmtwbVdFQzB0emJBcTc4Z3lLZHpWSkhCVTk0UHZvajdRSldhZ0pLZDItYzJPVjVvNDdfdjdEeWpMT3l0N012ZEJHdUlWcFZ3SmJoTGZ5QmRtdE9kYUJ1eGJCLVR0Q0dVSnI0WHpj?oc=5",
    "published": "2026-11-10",
-   "banked": "2026-11-14"
+   "banked": "2026-11-15"
   }
  ],
  "polfake": [
+  {
+   "h": "Councillors in {} approve floodlights for the town sundial so it can tell the time at night",
+   "banked": "2026-11-15"
+  },
+  {
+   "h": "Election officials in {} fill ballot boxes with water to keep the paper dry before the count",
+   "banked": "2026-11-15"
+  },
+  {
+   "h": "Burglar in {} hides from police in a walk-in freezer for nine hours and is treated for heatstroke",
+   "banked": "2026-11-15"
+  },
+  {
+   "h": "Thief in {} steals a 6-tonne bronze statue by carrying it home in the basket of his bicycle",
+   "banked": "2026-11-15"
+  },
+  {
+   "h": "Treasurer, 26, in {} admits skimming funds since the 1992 budget, council says",
+   "banked": "2026-11-15"
+  },
   {
    "h": "Mayor of {} wins re-election by 212 votes in a ward where 187 people voted",
    "banked": "2026-11-14"
@@ -1028,26 +961,6 @@
   {
    "h": "Mayor of {} wins re-election with 4,317 votes in a town with 3,902 registered voters",
    "banked": "2026-11-12"
-  },
-  {
-   "h": "Alderman in {} wins re-election after spending the entire 11-month campaign on holiday abroad",
-   "banked": "2026-11-12"
-  },
-  {
-   "h": "Voters in {} pick a new sheriff by a show of hands in a referendum open to residents aged 9 and over",
-   "banked": "2026-11-12"
-  },
-  {
-   "h": "Lawmakers in {} pass a law requiring every future law to be shorter than the one before it",
-   "banked": "2026-11-12"
-  },
-  {
-   "h": "Candidate in {} wins mayoral race with 163% of the votes cast, clerk confirms result is valid",
-   "banked": "2026-11-11"
-  },
-  {
-   "h": "Mayor of {} cancels annual election after the only candidate loses to himself by 37 votes",
-   "banked": "2026-11-11"
   }
  ]
 }

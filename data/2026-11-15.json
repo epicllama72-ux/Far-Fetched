@@ -1,0 +1,173 @@
+{
+ "date": "2026-11-15",
+ "generated": "2026-11-14T06:57:40+00:00",
+ "call": [
+  {
+   "real": true,
+   "h": "Lump of amber worth a million euros, fished from a river, is used as a doorstop for years in {}",
+   "hint": "a county in Dracula's Wallachia",
+   "lat": 45.152,
+   "lng": 26.8163,
+   "place": "Buzău County, Romania",
+   "src": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNampIMkRWSFNveU90d0lCRG1aaGxXQ0dMMTJBWFl4T2M4RGRRVmY2dWRlS2JjckpLamFFWDFhUnVEQm5WUHhBV0szcE9jZDBDb1piY0NvajFMbWNPbEd5dFhNR2RaejNBeWtoUTdocWVKRWttM1ZsQ3lIdDJIUXdEZnVqeTFfMThNSTM5X3V1SV91ZXlCeVhyMTZOcW5jMHBPeS1uTlVnMmdwck5fOGlaNVhtS29GZzJpbDFYVDZ3SdIBxAFBVV95cUxNS2hNMnVHdzBKOHd1Skh1THdzc2dvRDJ5ZnVWbElYaFZrVjVTenhUWHZMaF9fX2g3VG9PSWFxS0ozMWlNQml4YmRLZnBpeXJwTmprYUVHUGE3aTdZaUYtMExFdkd2V2hXYkZoUmtTYWZ1cVdKUENoLThVNV90clVqaW5DWnJzSmdUc0dXbUJhWTQzYV9uYm5MTkdaZnc3T3JNTWdoQ09Zb1JleWR5VVNnMGNSTkhVRE4wYWtnYXI3SFlUaTJB?oc=5",
+   "published": "2026-11-06",
+   "clue": "amber found in a river = Carpathian foothills"
+  },
+  {
+   "real": true,
+   "h": "Doctors in {} prescribe Diet Coke to a woman with a stomach mass",
+   "hint": "setting of Good Will Hunting",
+   "lat": 42.3601,
+   "lng": -71.0589,
+   "place": "Boston, Massachusetts",
+   "src": "https://www.newsnationnow.com/health/diet-coke-dissolve-stomach-mass-glp-1-patient/",
+   "published": "2026-07-08",
+   "clue": "US doctors + a GLP-1 drug case report"
+  },
+  {
+   "real": true,
+   "h": "Thief in {} flees topless when a store detective grabs his shirt, abandoning over 800 euros of perfume",
+   "hint": "home of Franconia's Bergkirchweih beer festival",
+   "lat": 49.5892,
+   "lng": 10.9812,
+   "place": "Erlangen, Germany",
+   "src": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNRVRUV05GQ0ptZGFuVnBldldTRXpDNXpCMklvNUtBdjJkSjcxZlFMQ19ZTDAyVmR0d2VOYjFwR3hqQkRybmlZNmd4ejBqbmxOdFVIVmU0em1ydy12cDZmdVI4Z1lRU2ZPcGg2SGc0QU56SlZnaUZOaWt6Rk5uQ3NNbmtzM1p0VGlaT1YzYXBabTZ1eS1JclM5MnJsOUNIUW42M1YwaUJGRDVpNGVfWng0eEgzWFFtYWhtVDFPLWZNcDFxT2JyRElEdUNWZHB5dzZEQzM1dA?oc=5",
+   "published": "2026-11-13",
+   "clue": "euros + store detective in a pedestrian town centre = central Europe"
+  },
+  {
+   "real": true,
+   "h": "Detective in {} is fired after allegedly pointing a gun at a colleague who was heating fish",
+   "hint": "the Grand Strand's mini-golf capital",
+   "lat": 33.6891,
+   "lng": -78.8867,
+   "place": "Myrtle Beach, South Carolina",
+   "src": "https://www.vice.com/en/article/everything-we-know-about-the-cop-who-allegedly-pulled-a-gun-because-someone-microwaved-fish-at-work/",
+   "published": "",
+   "clue": "US beach resort town; police arrest warrant released by the state law enforcemen"
+  },
+  {
+   "real": false,
+   "h": "Antiques dealer, 58, in {} pays €9,200 for a 10th-century Viking helmet with two curved horns",
+   "tell": "Vikings didn't wear horned helmets; that image is a 19th-century invention."
+  },
+  {
+   "real": false,
+   "h": "Office in {} installs 84 sun lamps so staff can produce vitamin C from light during winter",
+   "tell": "Sunlight helps skin make vitamin D, not vitamin C."
+  },
+  {
+   "real": true,
+   "h": "Premier League defender stopped by six police cars, some armed, over a walk with a bow and arrows near {}",
+   "hint": "a village in Hadrian's Wall country",
+   "lat": 55.0499,
+   "lng": -1.7435,
+   "place": "Ponteland, Northumberland, England",
+   "src": "https://news.google.com/rss/articles/CBMiggJBVV95cUxOd09GamtwTjFKOHBnUXQxNFE2TDJFdUY1MkNmNy1zWUpBRjRGNXRTOXRqeWJ0bEF1UHljNHNQSEtOVXpXMVVkRG5sUlFaSGxaYkRoUHBaZTFiSUVIbkxTUXVOZ3ZOYnlpbUJxd3NEZ29wWE1nWUpRN2xkenRvanBLUUFNcnlQNWZhamh6Q2c1angtVnRvRmdYRzlHV0NHdHowNlotVnR5NU5Dbzd1UFhMTUJzV1FudWhoMk82Tnk2WWhsLTF5UWhZNDJjeHdiUXUwN3BUREkxbHF6T3NkeUZmcng1bTZ1dmVZTmg2M1BBc0lHQjVSZEd5QWNKMXVUT2w4d1HSAZwCQVVfeXFMUEtPaHpUSURhcGxUNTYwUk43QkY0WUVkZk1MSlRsVDdPTmRmbmQ3d1h1RDdrbExId0xsUkxXV0lXT3NBODJPX0N4dloyNEdTaXN4YVYxRXozb0I3anROZXFyVlo4OWlDQnRJeW8wbXh1RmVwbWpTUFFWUGJ5T1ZnbUF4UWlfNHNmdEltM3dnRXNPcUcxUFZURnR4bHJuNnhRMmlvU1o0Y1BoeWdfai1vRWlBY0Zjc0haSEF0VDJtcjNPLWctb3Q5aHVTU0VyX3lZNnlIM3JLcVZmNVNXcEpJVzdWNW52OHJ6U1g3Z1FxVXhsdlJwWHA5eUhBcTZ0Vlo2Z2U2Z0tJN0g3Mk9zd3FRakMwRnZ3bVRhQWhidWI?oc=5",
+   "published": "2026-11-05",
+   "clue": "Premier League + armed police response = England"
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Man sneaks in at night to sleep in ex's rooftop water [] in Chubut, Argentina; police find his sneakers and blanket",
+   "ans": [
+    "tank",
+    "tanks"
+   ],
+   "alt": [
+    "cistern",
+    "reservoir",
+    "barrel",
+    "tower"
+   ],
+   "place": "Chubut, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMipAFBVV95cUxONVNxbFJhYjl5Qm9NcUF5aFJ2UzdFQW1zY3NZcFFFdGtEQi1iR2NNYVpUQjY1VzExSzRpOWRQdkdzeHNSTnZSdThKb3NMNURZSEpCeGs0N2JWYzRvSFAwZHRvU0x1c2xkSDdYVGs5WVlYRVB2dVdUQ3JzS3J5b28ycG84YW80cXl5OWFUT3V4dXJGZWJzeU1ZM0s1YkVEZTJhdjNydw?oc=5",
+   "published": "2026-11-09",
+   "vec": "CfNKv/kD9ugSsArV6UCl/yZOq9se/QTP7qzXNx8qf9XqDPc3HAkmFy/eDNxDBf8TBQM="
+  },
+  {
+   "real": true,
+   "h2": "Painters locked in a laundry room in Cheonan, South Korea skip calling 119 and order [] delivery; the rider opens the door",
+   "ans": [
+    "coffee",
+    "coffees"
+   ],
+   "alt": [
+    "tea",
+    "pizza",
+    "food",
+    "drinks",
+    "chicken",
+    "juice",
+    "beer"
+   ],
+   "place": "Cheonan, South Korea",
+   "src": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5kTUdwczBxNV81U3JSNWVpOG02YmlpUTVzd2lGMmlkdmc2VV9USUpyc2RNYVJNUkIyR3NmOEQyb3JDa1dWeVRCaUpkb2x5ZGcxOF83ODN3MWVFZw?oc=5",
+   "published": "2026-11-13",
+   "vec": "4e/ZCTTMv9gpKQbqNuc/GeomFLBA9B8n4u73LTEhf/roPAX3vytDDgMl6/4zLuXYB+g="
+  },
+  {
+   "real": true,
+   "h2": "Man, 24, arrested at a gas station in Pembroke Pines, Florida after pickup rigged with [] and a hidden near-200-gallon tank filled up",
+   "ans": [
+    "magnets",
+    "magnet"
+   ],
+   "alt": [
+    "hoses",
+    "pipes",
+    "sensors",
+    "pumps",
+    "valves"
+   ],
+   "place": "Pembroke Pines, Florida",
+   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNY08xNHNQZmp3YlR3Y2JOSjdtQjcyeE1WWmxZTnNCRmk4aUF5Nm44eXRNX1NLNFJiU0FKRE1zVmJIc0JyVkdkYmN1YnQ0WVJPWkdaUlNJMXdXVUJIYlBaS0NZOXVYQzBqdFN6alhaNlU3ZVVOblBLaWZGd2pKT0pGbm54cHY2U3pNbDhMVVQ2WWE4Y0RhQldrdzVjcmQyVE4xV3BxWUZzbFJSUGtOay00ZGJVUmFtZDA3RHQ5UHhHNUjSAdsBQVVfeXFMTnlpNVo0bFVYNFd0d0pxMjRVLWpiRnhWWmdHaS1SN0Z3ZUgwRHhJUndMN0lEY2RJa2tRWG9Na0wyaEpPN3VtRXA4TTJzUHFhbEZqbmxaY055TUw5NTVXSkZaYW42Q1dNXy1ISk1NMGRfTl9OcHRfWm1jejR4ZnRCNmo0a3lTZjFtTEViS3piRG1SVUI2TGMyUERYM3ZoUjJ4MkM0UTA5SUtqLTJsNWFzZzU4dmNVcWt3RksxLVIwMzlZSGp1ck16SnRjTTh3WEhuUnNsUEN2ckl4Yy00?oc=5",
+   "published": "2026-11-12",
+   "vec": "CAlpCRo1YOAmMz71ZXr6cA5r9dZJjfAe7MLOEEG1ClQN4AZ/Cj73JPJG9D8zAir406U="
+  },
+  {
+   "real": true,
+   "h2": "Driver arrested at a McDonald's drive-through in Newport, Wales with seven boxes of laughing gas canisters begs to finish his [] ",
+   "ans": [
+    "chips",
+    "chip",
+    "fries"
+   ],
+   "alt": [
+    "burger",
+    "nuggets",
+    "food",
+    "dinner",
+    "meal",
+    "sandwich"
+   ],
+   "place": "Newport, Wales",
+   "src": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPdkE0U1ZQTDdMTXhHbTV3MzZqT1dWdWhTa05ON01jNFFqazlfSmY5TGlhOFlRUmV0UlNmZUswdmwtRGlqRmF4dDQ1YjcyOW53TkNTS2w3YUE1cFRIcnJ5TzB5ejJFdmltTm90ZldEaWJsbk9DLXB3bHNvMzNFU0RnNUY2Y0swSU12ZmJqSEF1WmdHQnpoanJKVVFFOGs3SUJaQ2phTVNtZTRXMC1zTUsw0gG0AUFVX3lxTE5fSXo5RTBSemVMRVl3RnNQaWgtT29SYVFpUHZicllMNGhBVU9wdXlvNzZ2b05seEdxQ25iUU5acUxHVzA0ZkNFRDk2bEQtRDNDWUxRV0drb1RfZThZZnc2QXY1ai1OMmhvaXVNMDJsUE1USkNXLTN1M2JMSEp4TkdOYmlza1BfaXRYdjBsYm5fblRuQ05YeEtfWTlWTHNnUThsNGdLc2kyREo3U0NWSGtqSU9CZA?oc=5",
+   "published": "2026-11-09",
+   "vec": "4sI6ORru/dz0JhH+EgTsM7v/DsA00Bv58/zp7iP6f+0YQR316SYS4g762CZLKiPt++w="
+  },
+  {
+   "real": true,
+   "h2": "Father and son, 15, caught at dawn loading 13 [] in cardboard boxes into a van at a park lake in Buenos Aires, Argentina",
+   "ans": [
+    "ducks",
+    "duck",
+    "ducklings"
+   ],
+   "alt": [
+    "geese",
+    "swans",
+    "birds",
+    "chickens",
+    "goose",
+    "pigeons"
+   ],
+   "place": "Palermo, Buenos Aires, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQMTJsQXBUOGdSV1g2VWFZWFFLWDN3S3FfOG1PemdjTnZ2VUtCLTB1MloxbkpZdjNUSjVxUUVlal9JdVJVS3NnZTdweHdLdTFLb1UtdFlGZEw4aVN4LThKOTZLcFcxT3pBNVotRzdRMEJXMF9qSmxlNmQyV1o3elpBSXpNcUo2bUZ6bnl2eUNOSGVLY1ZreG9xdTEzRlFFaXdXV2F3NHRlV3NiMTZ1cU1RbXU1UUV6Nm5k0gG-AUFVX3lxTFBwWVJuYm5sRy1tSUtKTG9Kc1VJQ2ZDR2lTdFVlZ3dxaThVMkxja0lGNHl2NG9zTjVGYWRBWlFVTVh3VEk1dWdjUGg4djlNbjVmWGdZUzRDSjZub0NCU1c0dExreEJWVDFSZzBlQzB2eU1DM3VzRU9yMHlYMlFuTTQxSVlyMG9leFdPZXZTYzhXLUd6S2drdGh0VXVuTG5SNDJDd0tZVUR4emxGcS1HLU95NEdnRkxrSTdGVExTVGc?oc=5",
+   "published": "2026-11-13",
+   "vec": "FdzWFP8mj+774hkROio33yPqgQ6bth75Ceo3FBGQPWYYJs0PDRES+sn/GCExMd4M+wI="
+  }
+ ]
+}
