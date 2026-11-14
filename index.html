@@ -1871,7 +1871,7 @@ body.pinning #card #headline{font-size:23px}
       <p id="crowdTop" hidden></p>
       <div id="sumBoard" hidden><canvas id="sumCurve" width="320" height="145" aria-label="Today's scores"></canvas><p id="sumRank"></p></div>
       <p class="slbl">YOUR DIG <span>deeper = more points</span></p>
-      <canvas id="digLog" width="320" height="150" aria-label="Points per headline"></canvas>
+      <canvas id="digLog" width="320" height="190" aria-label="Points per headline"></canvas>
       <p class="npCap">Each line is one headline, dropped as far as its points went.</p>
       <button id="btnChallenge" class="challenge" type="button" hidden>Challenge a friend</button>
       <p class="slbl">THE SCALE</p>
@@ -4242,8 +4242,8 @@ function drawDigLog(){
   const INK='#1b1813', DIM='#5a5043', RED='#a8231a';
   g.clearRect(0,0,W,H); g.imageSmoothingEnabled=false;
   const per=Math.round(PK*(CALL_PTS+PIN_PTS+COUNTRY_PTS+PIN_BONUS)), maxP=Math.max(per,...S.results.map(x=>x.callPts+(x.pinPts||0)));   // a true story is worth at most 180
-  const left=Math.round(W*0.115), right=W-Math.round(W*0.04), top=Math.round(H*0.12), bot=H-Math.round(H*0.31);
-  const Y=p=>top+(bot-top)*Math.max(0,p)/maxP, fs=Math.round(H*0.095);
+  const left=Math.round(W*0.115), right=W-Math.round(W*0.04), top=Math.round(H*0.12), bot=H-Math.round(W*0.063*1.35+W*0.0445*1.5);   // leave room under the deepest icon for its points and the headline numbers
+  const Y=p=>top+(bot-top)*Math.max(0,p)/maxP, fs=Math.round(W*0.0445);
   g.font=fs+'px VT323, monospace'; g.textBaseline='middle'; g.textAlign='right';
   const gs=Math.max(5,Math.round(per/3/5)*5);
   for(let p=0;p<=maxP;p+=gs){
@@ -4251,7 +4251,7 @@ function drawDigLog(){
     g.fillStyle=DIM; g.fillText(p?'+'+p:'0',left-6*K,Y(p));
   }
   g.strokeStyle=INK; g.lineWidth=1.6*K; g.beginPath(); g.moveTo(left-3*K,top); g.lineTo(right+3*K,top); g.stroke();   // the surface
-  const DOT={ok:'#2f7d4a',meh:'#c9a44c',warm:'#b5651d',no:null}, ic=Math.round(H*0.135);
+  const DOT={ok:'#2f7d4a',meh:'#c9a44c',warm:'#b5651d',no:null}, ic=Math.round(W*0.063);
   g.textAlign='center';
   S.results.forEach((x,i)=>{
     const cx=Math.round(left+ic*0.9+(right-left-ic*1.8)*(n>1?i/(n-1):0.5)), p=x.callPts+(x.pinPts||0), c=resultClass(x), fooled=c==='fooled';
