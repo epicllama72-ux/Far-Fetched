@@ -4496,7 +4496,7 @@ let PASS_FRESH=null;
 function renderPassSub(){ const n=passCount(Object.keys(passport())); $('passSub').textContent = n ? n+' of '+passTotal()+' mapped countries stamped' : 'stamps for right-country pins'; }
 function stampDate(d){ try{ const [y,m,dd]=d.split('-').map(Number); return new Date(y,m-1,dd).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}); }catch(e){ return d; } }
 const CONTINENTS=[
-  ['North & Central America','Canada|United States|Mexico|Guatemala|Cuba|Honduras|Nicaragua|Costa Rica|Panama'],
+  ['North America','Canada|United States|Mexico|Guatemala|Cuba|Honduras|Nicaragua|Costa Rica|Panama'],
   ['South America','Colombia|Venezuela|Ecuador|Peru|Bolivia|Brazil|Paraguay|Chile|Argentina|Uruguay|Guyana'],
   ['Europe','Iceland|Ireland|United Kingdom|Portugal|Spain|France|Belgium|Netherlands|Germany|Switzerland|Italy|Austria|Czechia|Poland|Denmark|Norway|Sweden|Finland|Estonia|Latvia|Lithuania|Belarus|Ukraine|Moldova|Romania|Hungary|Slovakia|Slovenia|Croatia|Serbia|Bosnia|Bulgaria|North Macedonia|Albania|Greece|Russia'],
   ['Africa','Morocco|Algeria|Tunisia|Libya|Egypt|Mauritania|Mali|Niger|Chad|Sudan|Senegal|Guinea|Ivory Coast|Ghana|Nigeria|Cameroon|Ethiopia|Somalia|Kenya|Uganda|Tanzania|DR Congo|Angola|Zambia|Zimbabwe|Mozambique|Namibia|Botswana|South Africa|Madagascar'],
@@ -4513,17 +4513,17 @@ function stampHTML(n,e,fresh){
 }
 function renderPassport(){
   const p=passport(), names=Object.keys(p), tot=passTotal();
-  const conts=new Set(names.map(contOf).filter(c=>c!=='Antarctica'&&c!=='Elsewhere'));
+  const conts=new Set(names.map(contOf).filter(c=>c!=='Elsewhere'));   // the seven continents; Antarctica counts if a story ever lands there
   const firsts=names.map(n=>p[n].first).sort();
   $('passCover').innerHTML=PASS_GLOBE
     + '<div class="pcT">PASSPORT</div><div class="pcS">REPUBLIC OF FAR-FETCHED · NO. FF-'+String(playerId()).replace(/[^a-z0-9]/gi,'').slice(0,6).toUpperCase()+'</div>'
     + '<div class="pcH"><i>Holder</i> '+playerName().replace(/[<>&]/g,'')+(firsts.length?' <i>· since</i> '+stampDate(firsts[0]):'')+'</div>'
     + '<div class="pcStats"><div><span>MAPPED COUNTRIES</span><b>'+passCount(names)+' <small>/ '+tot+'</small></b><div class="pcBar"><i style="width:'+Math.min(100,100*passCount(names)/tot)+'%'+(passCount(names)?';min-width:4px':'')+'"></i></div></div>'
-    + '<div><span>CONTINENTS</span><b>'+conts.size+' <small>/ 6</small></b><div class="pcBar"><i style="width:'+(100*conts.size/6)+'%'+(conts.size?';min-width:4px':'')+'"></i></div></div></div>';
+    + '<div><span>CONTINENTS</span><b>'+conts.size+' <small>/ 7</small></b><div class="pcBar"><i style="width:'+(100*conts.size/7)+'%'+(conts.size?';min-width:4px':'')+'"></i></div></div></div>';
   const order=(a,b)=>p[a].first<p[b].first?-1:p[a].first>p[b].first?1:a.localeCompare(b);
   const pages=CONTINENTS.map(([cn,list])=>[cn,list,names.filter(n=>contOf(n)===cn).sort(order)])
     .concat([['Elsewhere',[],names.filter(n=>contOf(n)==='Elsewhere').sort(order)]])
-    .filter(([cn,list,have])=>have.length || (cn!=='Antarctica' && cn!=='Elsewhere'));
+    .filter(([cn,list,have])=>have.length || cn!=='Elsewhere');   // all seven continent pages show, empty ones too
   $('passBody').innerHTML = (names.length?'':'<div class="ppage"><div class="ppNone" style="font-style:normal;color:#5e5546">Pin a true story inside the right country in the Daily Dig and its stamp goes in here.</div></div>')
     + pages.map(([cn,list,have])=>'<div class="ppage"><div class="ppHead"><span>'+cn.toUpperCase()+'</span><b>'+have.length+(list.length?' / '+list.length:'')+'</b></div>'
       + (have.length ? '<div class="stamps">'+have.map(n=>stampHTML(n,p[n],n===PASS_FRESH)).join('')+'</div><div class="pStories" hidden></div>' : '<div class="ppNone">No stamps yet</div>')+'</div>').join('');
