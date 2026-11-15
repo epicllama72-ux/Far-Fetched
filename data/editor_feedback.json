@@ -19,7 +19,8 @@
   "FAKES: best when about a person doing a weird crime or something strange (at least half); the rest can be other everyday absurdity. Every fake still needs one inconsistency catchable from the headline alone.",
   "FAKES: write them like the real ones (vivid, absurd, specific), never dull transactions such as splitting a bill, a fine or a hotel bill; the quiet inconsistency is in a stated number, age, date or duration.",
   "FAKES: the slip should usually be general knowledge (biology/animal facts, science myths, technology or history anachronisms, food/culture facts), checkable from the headline alone and never dependent on the hidden place; numbers, ages and dates can also be used but not dull bills or fines.",
-  "FAKE DIFFICULTY: each fake should fool 30-35% of players (called real). The builder measures every fake's fooled share from saved scores (data/fake_stats.json) and shows the writer and the judge what landed on target, too easy (<25%) or too hard (>45%)."
+  "FAKE DIFFICULTY: each fake should fool 30-35% of players (called real). The builder measures every fake's fooled share from saved scores (data/fake_stats.json) and shows the writer and the judge what landed on target, too easy (<25%) or too hard (>45%).",
+  "FAKES: the person should be unusual in the headline itself (a costume, a strange habit), so the fake is a weird story first and a slip-with-a-headline second."
  ],
  "edits": [
   {
@@ -363,6 +364,18 @@
    "before": "a village in Geordie country",
    "after": "a village in Hadrian's Wall country",
    "why": "owner went back to the original Ponteland clue"
+  },
+  {
+   "kind": "selection",
+   "before": "Antiques dealer, 58, in {} pays €9,200 for a 10th-century Viking helmet with two curved horns",
+   "after": "Burglar in {} wearing a bridal gown is caught when his 2008 crime-scene selfie hits Instagram",
+   "why": "owner chose the Instagram-selfie and 31-November fakes, each with an unusual man (bridal gown, lighthouse costume): a weird premise plus one knowledge slip"
+  },
+  {
+   "kind": "selection",
+   "before": "Office in {} installs 84 sun lamps so staff can produce vitamin C from light during winter",
+   "after": "Man dressed as a lighthouse is jailed in {} for a burglary police say happened on 31 November",
+   "why": "owner chose the Instagram-selfie and 31-November fakes, each with an unusual man (bridal gown, lighthouse costume): a weird premise plus one knowledge slip"
   }
  ]
 }
