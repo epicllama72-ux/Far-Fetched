@@ -389,6 +389,12 @@
    "before": "Burglar in {} wearing a bridal gown is caught when his 2008 crime-scene selfie hits Instagram",
    "after": "Burglar in {} wearing a bridal gown is caught when his crime-scene Instagram selfie from 2008 is unearthed",
    "why": "owner's wording for fake #5"
+  },
+  {
+   "kind": "headline",
+   "before": "Man covered in feces is jailed in {} for a burglary police say happened on 31 November",
+   "after": "Man covered in feces is jailed in {} for a bank robbery police say took place on 31 November",
+   "why": "owner wanted a different crime than burglary for fake #6 (the other fake is a burglar)"
   }
  ]
 }
