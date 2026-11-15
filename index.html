@@ -1586,7 +1586,8 @@ body.intro #ausBar{display:none}
   #dots .dot{height:12px;width:10px}
   body #card[data-truth]::after{top:-2px;right:8px;rotate:-5deg;padding:3px 5px 2px;font-size:8px}
 }
-#hudNext{display:flex;align-items:stretch;margin:0 auto 10px;width:max-content;max-width:100%;background:var(--np-card);background-image:var(--np-grain);border:1px solid var(--np-ink);color:var(--np-ink);filter:drop-shadow(3px 4px 0 rgba(0,0,0,.45));rotate:.8deg}
+#hudNext{display:none;align-items:stretch;margin:0 auto 10px;width:max-content;max-width:100%;background:var(--np-card);background-image:var(--np-grain);border:1px solid var(--np-ink);color:var(--np-ink);filter:drop-shadow(3px 4px 0 rgba(0,0,0,.45));rotate:.8deg}
+body.peek #hudNext:not([hidden]),body.sumUp #hudNext:not([hidden]){display:flex}   /* only once the dig is over, the planet has zoomed back out and the summary is up */
 #hudNext[hidden]{display:none}
 #hudNext .hnL{background:var(--np-ink);color:var(--np-card);font:7px/1 var(--px);letter-spacing:.18em;padding:0 9px;display:flex;align-items:center}
 #hudNext .hnT{font:30px/1 var(--vt);padding:3px 12px 4px;font-variant-numeric:tabular-nums;letter-spacing:.04em}
@@ -3612,7 +3613,7 @@ const FAKE_BASE = 50, FOOLED_BASE = 25, TRUE_BASE = 180, JAW_SCALE = 1000;   // 
 let FAKE_PTS = 50;
 
 function startGame(mode, kind){
-  $('hudNext').hidden=true;
+  $('hudNext').hidden=true; document.body.classList.remove('sumUp');
   if(typeof Intro!=='undefined' && Intro.planetOn()) Intro.hide(true);
   if(typeof Intro!=='undefined') setTimeout(Intro.check,60);   // a fresh start opens on the planet; a finished day shows it zoomed out   // a finished day has no ready button: drop straight to the room
   if(kind) KIND = kind;
@@ -4336,7 +4337,8 @@ function finish(restored){
   }).join('');
   if(S.kind==='blank') blankStats().then(st=>{ document.querySelectorAll('#recapList .rs').forEach(el=>{ const t=gotItText(st,+el.dataset.bi); if(t) el.textContent=t; }); });
   const daily=S.mode==='daily';
-  $('nextEd').hidden=!daily||S.kind==='blank'; $('hudNext').hidden=!(daily&&S.kind==='blank'); if(daily) runCountdown();   // Fill the Blank shows it up top, under the jaw and score boxes
+  $('nextEd').hidden=true; $('hudNext').hidden=!daily; if(daily) runCountdown();   // the countdown sits under the jaw and score boxes, and only shows once the summary is up (body.peek)
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) document.body.classList.add('sumUp');   // no zoom-out to wait for
   const others=['call','blank'].concat(POL_ON&&DAILY&&DAILY.politics&&DAILY.politics.length?['pol']:[]).filter(k=>k!==S.kind);
   const need=k=>DAILY ? (k==='blank'?Math.min(BLANK_N,(DAILY.blank||[]).length):((k==='pol'?DAILY.politics:DAILY.call)||[]).length) : (k==='blank'?BLANK_N:ROUND_LEN);
   const todo=others.find(k=>{ const s=load(saveKey(k)); return !(s && s.date===dayKey() && s.results && s.results.length>=need(k)); });
