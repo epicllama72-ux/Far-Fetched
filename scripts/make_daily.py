@@ -74,6 +74,49 @@ FEEDS += [
     ("Google News ar", _gn("غريب OR طريف OR \"واقعة غريبة\"", "ar", "EG", "EG:ar")),
     ("Google News he", _gn("מוזר OR הזוי OR משעשע", "he", "IL", "IL:he")),
 ]
+# More languages (Claude translates them). Swahili, Persian and Filipino editions are thin, so they add a few stories a day at most.
+FEEDS += [
+    ("Google News ru", _gn("странный OR курьёзный OR невероятный OR абсурдный OR \"не поверите\"", "ru", "RU", "RU:ru")),
+    ("Google News uk", _gn("курйозний OR дивний OR неймовірний OR абсурдний", "uk", "UA", "UA:uk")),
+    ("Google News hi", _gn("अजीब OR हैरान OR अनोखा OR अजब OR हैरतअंगेज", "hi", "IN", "IN:hi")),
+    ("Google News bn", _gn("অদ্ভুত OR বিস্ময়কর OR আজব OR অবিশ্বাস্য", "bn", "BD", "BD:bn")),
+    ("Google News th", _gn("แปลก OR ประหลาด OR ฮือฮา OR ไม่น่าเชื่อ", "th", "TH", "TH:th")),
+    ("Google News vi", _gn("kỳ lạ OR kỳ quặc OR hy hữu OR khó tin", "vi", "VN", "VN:vi")),
+    ("Google News cs", _gn("kuriózní OR podivný OR neuvěřitelný OR absurdní", "cs", "CZ", "CZ:cs")),
+    ("Google News hu", _gn("különös OR bizarr OR hihetetlen OR furcsa", "hu", "HU", "HU:hu")),
+    ("Google News el", _gn("περίεργο OR αλλόκοτο OR απίστευτο OR παράξενο", "el", "GR", "GR:el")),
+    ("Google News ro", _gn("ciudat OR bizar OR inedit OR incredibil", "ro", "RO", "RO:ro")),
+    ("Google News sw", _gn("ajabu OR kushangaza OR kisa cha ajabu", "sw", "TZ", "TZ:sw")),
+    ("Google News fa", _gn("عجیب OR غریب OR باورنکردنی", "fa", "IR", "IR:fa")),
+    ("Google News fil", _gn("kakaiba OR nakakagulat OR kataka-taka OR viral", "tl", "PH", "PH:tl")),
+    ("Google News no", _gn("merkelig OR bisarr OR utrolig OR spesiell", "no", "NO", "NO:no")),
+    ("Google News da", _gn("mærkelig OR bizar OR utrolig OR sjov", "da", "DK", "DK:da")),
+    ("Google News fi", _gn("outo OR kummallinen OR uskomaton OR hullunkurinen", "fi", "FI", "FI:fi")),
+]
+# Direct odd-news sections.
+FEEDS += [
+    ("Hindustan Times Trending", "https://www.hindustantimes.com/feeds/rss/trending/rssfeed.xml"),
+    ("Times of India Offbeat", "https://timesofindia.indiatimes.com/rssfeeds/2886704.cms"),
+    ("The Thaiger", "https://thethaiger.com/feed"),
+    ("The Local (Europe)", "https://www.thelocal.com/feed"),
+]
+# Outlets outside the US and UK, reached through Google News (some block direct feed requests): weird-news words keep the noise down.
+_ODDW = "weird OR bizarre OR quirky OR odd OR strange OR unusual OR baffling"
+for _site, _gl, _ceid in [
+        ("japantoday.com", "JP", "JP:en"), ("straitstimes.com", "SG", "SG:en"), ("nation.africa", "KE", "KE:en"),
+        ("news24.com", "ZA", "ZA:en"), ("dailymaverick.co.za", "ZA", "ZA:en"), ("vanguardngr.com", "NG", "NG:en"),
+        ("punchng.com", "NG", "NG:en"), ("rappler.com", "PH", "PH:en"), ("inquirer.net", "PH", "PH:en"),
+        ("bangkokpost.com", "TH", "TH:en"), ("thethaiger.com", "TH", "TH:en"), ("arabnews.com", "SA", "SA:en"),
+        ("scmp.com", "HK", "HK:en"), ("hindustantimes.com", "IN", "IN:en"), ("ndtv.com", "IN", "IN:en"),
+        ("dawn.com", "PK", "PK:en"), ("thedailystar.net", "BD", "BD:en"), ("kathmandupost.com", "NP", "NP:en"),
+        ("themoscowtimes.com", "RU", "RU:en"), ("kyivindependent.com", "UA", "UA:en"), ("mexiconewsdaily.com", "MX", "MX:en"),
+        ("batimes.com.ar", "AR", "AR:en"), ("riotimesonline.com", "BR", "BR:en"), ("jpost.com", "IL", "IL:en"),
+        ("timesofisrael.com", "IL", "IL:en"), ("dailysabah.com", "TR", "TR:en"), ("koreaherald.com", "KR", "KR:en"),
+        ("koreatimes.co.kr", "KR", "KR:en"), ("taipeitimes.com", "TW", "TW:en"), ("thejakartapost.com", "ID", "ID:en"),
+        ("vnexpress.net", "VN", "VN:en"), ("thestar.com.my", "MY", "MY:en"), ("khaleejtimes.com", "AE", "AE:en"),
+        ("graphic.com.gh", "GH", "GH:en"), ("cbc.ca", "CA", "CA:en"), ("rte.ie", "IE", "IE:en"),
+        ("nzherald.co.nz", "NZ", "NZ:en"), ("sbs.com.au", "AU", "AU:en")]:
+    FEEDS.append((f"Google News site: {_site}", _gn(f"site:{_site} {_ODDW}", f"en-{_gl}", _gl, _ceid)))
 # Worldwide net: Google News searches for odd-but-true stories from the past 30 days, one per regional edition.
 _ODD_Q = urllib.parse.quote('(bizarre OR quirky OR "strange but true" OR unusual OR unlikely OR "world record") (rescued OR escaped OR found OR wins OR discovered OR stuck OR unveiled OR spotted) when:30d')
 _ODD_Q3 = urllib.parse.quote('(arrested OR stole OR stolen OR burglar OR thief OR "pulled over" OR caught) (bizarre OR ridiculous OR hilarious OR strange OR "of all things" OR absurd) when:30d')
