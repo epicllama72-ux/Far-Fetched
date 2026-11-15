@@ -733,6 +733,28 @@
    "published": "2026-08-15",
    "daily_only": true,
    "hint": "a town near the Drava River"
+  },
+  {
+   "banked": "2026-11-15",
+   "rules": 2,
+   "theme": "wildlife-smuggling",
+   "unbelievable": 5,
+   "jargon_only": false,
+   "h": "Two Germans and a Pole are held at {}'s airport with over 3,000 tarantulas stuffed in dirty socks",
+   "place": "Lima, Peru",
+   "geocode": "Lima, Peru",
+   "lat": -12.0464,
+   "lng": -77.0428,
+   "country": "Peru",
+   "cc": "PE",
+   "clue": "Jorge Chávez airport seizure, spiders bound for Germany = Lima, Peru",
+   "clue_strength": 2,
+   "mappable": 3,
+   "src": "https://www.smithsonianmag.com/smart-news/more-than-3000-tarantulas-were-found-hidden-in-socks-during-a-major-wildlife-trafficking-bust-at-an-airport-in-lima-peru-180989854/",
+   "published": "2026-11-05",
+   "daily_only": true,
+   "allow_repeat": true,
+   "hint": "a desert capital on the Pacific"
   }
  ],
  "fake": [
