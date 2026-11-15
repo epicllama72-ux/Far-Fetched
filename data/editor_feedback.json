@@ -333,6 +333,24 @@
    "before": "Myrtle Beach detective was headline 4",
    "after": "Myrtle Beach detective moved to headline 1",
    "why": "owner wanted it to open the paper"
+  },
+  {
+   "kind": "clue",
+   "before": "the Grand Strand's mini-golf capital",
+   "after": "a self-styled beach golf capital",
+   "why": "owner asked for new clues to test (Nov 15)"
+  },
+  {
+   "kind": "clue",
+   "before": "a town near the Drava River",
+   "after": "a Pannonian-plain county town",
+   "why": "owner asked for new clues to test (Nov 15)"
+  },
+  {
+   "kind": "clue",
+   "before": "a village in Hadrian's Wall country",
+   "after": "a village in Geordie country",
+   "why": "owner asked for new clues to test (Nov 15)"
   }
  ]
 }
