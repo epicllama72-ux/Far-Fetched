@@ -4,25 +4,25 @@
  "call": [
   {
    "real": true,
-   "h": "Hundreds in {} push a 110-ton steel statue seven inches to free a man rumoured to be trapped beneath it",
-   "hint": "home of deep-dish pizza",
-   "lat": 41.8826,
-   "lng": -87.6225,
-   "place": "Chicago, Illinois",
-   "src": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNR2NXM0V0cktsZlN1VFV4bWc4akg5dXVpdmozM0oxdTZpSHNBcmtsS1RuekVLcVBJMU1sX21VZURBVmdTU0dsOVVlb0w0dGNRZXBUekZvNUlxTEhMSEFvTDlmUjN3Q2w3RXBEVnJlWktObmRReEZRMFFHNXRlbnFjVEJtQllFWDhLU3dxNmV3ck1NeV96SkVfTEVfNk12ZW04a1Uyc2hlZ1pQNnNXaTE2bdIBtgFBVV95cUxPVklrVFZFOEx6YXZFSV9BTi14eGFUU3BBbkhNeFYyNGFYTHdQLWdOSlJITmNScGNXbTZsOVpoUlUtR3k1blk4dkk4UFVNaTlmSlpBZG5qck1oamFvVF9uWnRyVDBoUTVzLXdrRHRQRGtSTC1KUWlFeTlfaWJ6STV0VHY1OTFnYnhtYXFIZUhybTRUWXRDTkRhUmszV1QwRkJXNERpUGo5TnlqMjlNSDZIVHBjVnRTZw?oc=5",
-   "published": "2026-11-09",
-   "clue": "inches and short tons = US"
+   "h": "Two Germans and a Pole are held at {}'s airport with over 3,000 tarantulas stuffed in dirty socks",
+   "hint": "a desert capital on the Pacific",
+   "lat": -12.0464,
+   "lng": -77.0428,
+   "place": "Lima, Peru",
+   "src": "https://www.smithsonianmag.com/smart-news/more-than-3000-tarantulas-were-found-hidden-in-socks-during-a-major-wildlife-trafficking-bust-at-an-airport-in-lima-peru-180989854/",
+   "published": "2026-11-05",
+   "clue": "Jorge Chávez airport seizure, spiders bound for Germany = Lima, Peru"
   },
   {
    "real": true,
-   "h": "Doctors in {} prescribe Diet Coke to a woman with a stomach mass",
-   "hint": "setting of Good Will Hunting",
-   "lat": 42.3601,
-   "lng": -71.0589,
-   "place": "Boston, Massachusetts",
-   "src": "https://www.newsnationnow.com/health/diet-coke-dissolve-stomach-mass-glp-1-patient/",
-   "published": "2026-07-08",
-   "clue": "US doctors + a GLP-1 drug case report"
+   "h": "A whole 113-year-old wooden church is loaded onto trailers and rolled across {} to escape a mine",
+   "hint": "a city north of the Arctic Circle",
+   "lat": 67.8558,
+   "lng": 20.2253,
+   "place": "Kiruna, Sweden",
+   "src": "https://www.bbc.com/news/articles/cde3xp4xlw9o",
+   "published": "2025-08-20",
+   "clue": "A wooden church moved away from an iron-ore mine = Kiruna, Sweden"
   },
   {
    "real": false,
@@ -58,14 +58,14 @@
   },
   {
    "real": true,
-   "h": "Officers shout 'fart police, fart the wood' in botched Spanish before police dog bites tourist in {}",
-   "hint": "home of Buckley Space Force Base",
-   "lat": 39.7401,
-   "lng": -104.8733,
-   "place": "Aurora, Colorado",
-   "src": "https://www.denverpost.com/2026/10/19/aurora-police-excessive-force-lawsuit-dog-bite/",
-   "published": "2026-10-23",
-   "clue": "SWAT team and a police K-9 in a US suburb"
+   "h": "Woman declared dead wakes up in her coffin minutes before her cremation at a temple in {}",
+   "hint": "a city on the Chao Phraya",
+   "lat": 13.8591,
+   "lng": 100.5217,
+   "place": "Nonthaburi, Thailand",
+   "src": "https://www.cnn.com/2025/11/24/asia/thailand-woman-alive-coffin-cremation-intl-hnk",
+   "published": "2025-11-24",
+   "clue": "Buddhist temple cremation (Wat Rat Prakhong Tham) near Bangkok = Thailand"
   }
  ],
  "blank": [
@@ -136,41 +136,37 @@
   },
   {
    "real": true,
-   "h2": "Strange sight in Upper Egypt: 30 [] on board a train",
+   "h2": "Runner finishes 21-kilometre half marathon in Jakarta wearing inflatable costume that looks like an [] carrying him",
    "ans": [
-    "crocodiles",
-    "crocodile"
+    "alien",
+    "aliens"
    ],
-   "alt": [
-    "alligators",
-    "reptiles",
-    "gators",
-    "caimans"
-   ],
-   "place": "Upper Egypt, Egypt",
-   "src": "https://news.google.com/rss/articles/CBMiogNBVV95cUxOdzJaVUhFOUlidmVKUkVaQzB6XzBoUDVweHVqMDIxdGpiVk5UOVVjU3M1T2NLTlNGZDBKM1RPemdMV2VhT05aaW9ieWF0Qy1pMHlNV1QwMmhBU1lhTnE5cmFkREVRWXFzNDU0djRrT1FZdEUwYXc0Ykw0c1FrVjFsdE80WXNUOGYzc0NHWmZiRThxY0dnWVdQREVKek9sUlpMR2dFZ0dhVjAzYWQzekZ2VElPWEFrckFaZVBuWTB4VTJpTlB0OXRlUE9CRnRXVkU3QnlRZHJnWHhfQW4tV201LWh6YWp3aDg2UDBVUEZ3Wm9tOU1GTmRaVHR4eVgwUjNNWFJGMWNPM1pCSnhCeXJrX0padmJ5OHd6VnU4bEwzS1RLNzhvdTVIUUd2Z2RwXzZSQjJIckp0YzNpdExVelZrX1NmdjFwZ2hra2JYSDFzYWhzbXdKR25nNWxXWGxBbzJ2ZWZRM3EzZXdkdFR5dG5Hc05TTGFyZTVhV3hvekdDZ2tVdUxYSUVqb3Z2UGtobndyM1cyYm9tNWptdEdrMWJZb3BR0gGnA0FVX3lxTE5sU3RPQ0JndElKWjBRU0xmWUNOQ1Y2U3FDVkNFRURfZVNCUEdmM1JORUZpRFlacHhBQ1dQbVJvUVNRQjdNN0VVX2ZfejM3Y3lCQmREM2YyTHNRNnVJZ0ZJR01yck14UXRseUhVRUdlb2NVTzZkanYwT3U0eHAzd0ktQXBHaUtid1BNTzJXT3dFUmxOYzZraC1jN2IyWF9hYk04WlhaaUNaWDU1Mml0Z1pTSWFZMFNlSUlPVlpqUXlOelBXYzB2ZFE3SGhGS1BIV0g4TUhfcHljN2oyZGRCOGo1M2JUZTVHMHp6Z1VqMTFNXzR5VnI1STJMSzcyMzdXSzBLTG11RUZCazhWeWhyUTRMQllhVjd0NEJ4N2NNUl8tTGo3VHRHTFlqTEc1aFhuaHBhRHRQVTBoSjBuRzBwTVJ2OWM1Znc5SGd5bTZiaC1iS0haUnBkTjZDWnFtM3VxVTdoYV9hZXEzeTBBbjlrMWd6bHhBanZJQjFsM1Q0dlZTQmx5LWswR29CV3hoanV4WUpZVTlXdzhTZ1VNZjYyTlhILUgzY2g0RQ?oc=5",
-   "published": "2026-10-29",
-   "vec": "SNDi9ef+5uclERIvfu0PNlU/gT+9EHD/HxD+FfnFFBRCFQM26Kn81cXWL2pf++bg/a8="
+   "alt": [],
+   "place": "Jakarta, Indonesia",
+   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPUGpoNDNpaEVvb2Uycm1UcUYxVkhXRmhOWXU1NVRNZ1YtN2JNYWhOVmNiZjRidHpJWUtwX3hTZHVkYU5UcUJSalBaWlFkYXZXWjl4c0xTNzVMWjZuRXBkaU52dmFZd1g3YUFFZmNCb0ZpS2ZRTHlkS084QjlMbTI4d2FyWVdYdWExeFE4S01hU3VuSlh1VVBjLXhxdXpnOG84b1Rja3pUd0hYZ0czYWVQTUhCWTY2UDd1MkhaQnBmM2Q?oc=5",
+   "published": "2026-10-24",
+   "vec": "VdzoPVtIBcwQBCtQV20/6hwXoSq8AOsYQJjcvX/uYKKwos1D05yjtureY1EY4ymkEug="
   },
   {
    "real": true,
-   "h2": "California sheriff's deputies find a stolen gas-station [] in a strange predicament",
+   "h2": "Man missing for years is told by the National Insurance Institute in Jerusalem, Israel to pay back []",
    "ans": [
-    "dinosaur",
-    "dinosaurs",
-    "dino",
-    "dinos"
+    "money",
+    "cash",
+    "funds"
    ],
    "alt": [
-    "statue",
-    "sculpture",
-    "mascot",
-    "brontosaurus"
+    "debt",
+    "taxes",
+    "benefits",
+    "fees",
+    "payment",
+    "fines",
+    "pension"
    ],
-   "place": "California, USA",
-   "src": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNeURuVDEwMW56WWtNMkNyUEhRU1lCQjRJN1MzLW9XNS1GU1NUSkNxN194UzBOUDduNXpseFl1QWs3LV90ZFBpRlJfSFZObHdrQmVsMVRsenVhY2pZSnAtdmE5Rm5oQ3hOeW5mQlFiTkRNWWJ3QTRqbVNSb1hzMTA4NNIBhgFBVV95cUxOcTh6V1pmNGg0QVBSUE10eUdnenhyT0daSlM1V20xT3NqMVB5akx3TlgwU0sybnc4VXQ2ZGs0VkVsTGlwR3ZqWVFqZ3ZuUjhMa1VIUXRDbjdzRGlCS2NEb0hteE96T294dHA1U3RseEktUkNYZEhtMS1VRllVX0hsLXd5eEdaQQ?oc=5",
-   "published": "2026-11-09",
-   "vec": "Uwj5GUEgvbU69u0DLkkbDCcd0znDsQrXIvCBDOW5JJYp/vUT/BQV8pWy7z9NBBbc6+U="
+   "place": "Jerusalem, Israel",
+   "src": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE93aDR0Y3FLeTU0R3ZwWlFJZnFoMXY0Y3ZXc0NFZVNKQlh6V3BlU2VFTERYeEhfTkRDYnZIMWtYLWtQLWxkd01tYnRhUF82QQ?oc=5",
+   "published": "2026-11-11"
   }
  ]
 }

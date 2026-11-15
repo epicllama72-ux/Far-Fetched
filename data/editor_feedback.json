@@ -21,7 +21,8 @@
   "FAKES: the slip should usually be general knowledge (biology/animal facts, science myths, technology or history anachronisms, food/culture facts), checkable from the headline alone and never dependent on the hidden place; numbers, ages and dates can also be used but not dull bills or fines.",
   "FAKE DIFFICULTY: each fake should fool 30-35% of players (called real). The builder measures every fake's fooled share from saved scores (data/fake_stats.json) and shows the writer and the judge what landed on target, too easy (<25%) or too hard (>45%).",
   "FAKES: the person should be unusual in the headline itself (a costume, a strange habit), so the fake is a weird story first and a slip-with-a-headline second.",
-  "BANK: the 32 hand-written fakes from Nov 10 (impossible events, animals as the joke, dull transactions) were removed from the fake bank at the owner's request."
+  "BANK: the 32 hand-written fakes from Nov 10 (impossible events, animals as the joke, dull transactions) were removed from the fake bank at the owner's request.",
+  "COUNTRIES: one story per country in a paper (Daily Dig reals). The builder swaps repeats for the best story from a new country."
  ],
  "edits": [
   {
@@ -401,6 +402,12 @@
    "before": "Man covered in feces is jailed in {} for a bank robbery police say took place on 31 November",
    "after": "Town council in {} bans red umbrellas after angry bull charges outdoor café patio",
    "why": "owner found the two Nov 15 fakes too similar (both burglar/crime with a date or time slip); swapped fake #6 for the red-umbrella bull"
+  },
+  {
+   "kind": "selection",
+   "before": "Chicago bean statue / Diet Coke / Aurora fart police (4 of 5 true stories were US)",
+   "after": "Lima tarantulas / Kiruna church / Thailand coffin",
+   "why": "owner: limit one story per country a day; the Chicago story had already been rejected once"
   }
  ]
 }

@@ -1384,6 +1384,28 @@ def top_up_blank(blank_pool, blank_src, call_pick, prior, used, vecs, need, day)
         have.add(r["h2"]); add(r)
     return added
 
+def one_per_country(call_pick, wider):
+    """The owner's rule: one story per country in a paper. Swap each repeat (weakest first, never an owner-banked 'priority' story) for the best story
+    from a country the paper doesn't have yet, searching `wider` (the whole pool, older banked stories included). Edits call_pick in place."""
+    wider = sorted({id(q): q for q in wider}.values(), key=merit, reverse=True)
+    for _ in range(len(call_pick)):
+        dup = None
+        for q in sorted(call_pick, key=merit):
+            c_ = ccode(q)
+            if c_ != "?" and c_ in {ccode(x) for x in call_pick if x is not q} and not q.get("priority"):
+                dup = q
+                break
+        if dup is None:
+            return
+        have = {ccode(x) for x in call_pick}
+        repl = next((q for q in wider if q not in call_pick and ccode(q) not in have and ccode(q) != "?" and (q.get("hint") or eff_strength(q) >= 2)), None)
+        if repl is None:
+            print(f"  WARNING: no story from a new country to replace {dup.get('h','')[:50]} ({ccode(dup)}); keeping the repeat", file=sys.stderr)
+            return
+        print(f"  one story per country: {dup.get('h','')[:50]} ({ccode(dup)}) -> {repl.get('h','')[:50]} ({ccode(repl)})", file=sys.stderr)
+        call_pick[call_pick.index(dup)] = repl
+
+
 # ---------------------------------------------------------------- main
 def main():
     ap = argparse.ArgumentParser()
@@ -1620,7 +1642,7 @@ def main():
             if strong_n(call_pick) >= MIN_STRONG or not weak:
                 break
             cc = ccode(cand)
-            if cc != "?" and sum(1 for r in call_pick if ccode(r) == cc) >= 3:
+            if cc != "?" and any(ccode(r) == cc for r in call_pick):          # one story per country: the weak pick leaves, but not for a country already in the paper
                 continue
             call_pick[call_pick.index(weak.pop(0))] = cand
         per_country = {}
@@ -1628,6 +1650,13 @@ def main():
             per_country[ccode(r)] = per_country.get(ccode(r), 0) + 1
         if strong_n(call_pick) < MIN_STRONG:
             print(f"  WARNING: only {strong_n(call_pick)} of {len(call_pick)} true stories have a fair regional clue and a sensible pin (wanted {MIN_STRONG})", file=sys.stderr)
+    # ONE STORY PER COUNTRY (owner's rule). The pick above only loosens this when the pool is short; here every repeat is swapped for the best story
+    # from a country the paper doesn't have yet, searching the wider pool (older banked stories included) before settling for a repeat.
+    wider = [q for q in (pool_all + reals + bank_old + bank_real + fresh) if fit_to_map(q) and not valid_real(q)]
+    one_per_country(call_pick, wider)
+    per_country = {}
+    for q in call_pick:
+        per_country[ccode(q)] = per_country.get(ccode(q), 0) + 1
     if not args.picks:
         sharpen(call_pick, model, src_text)
         for attempt in range(2):                      # every true story needs a hint: ask again for any that came back without one
