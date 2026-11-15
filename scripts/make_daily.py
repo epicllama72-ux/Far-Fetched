@@ -1501,7 +1501,7 @@ def main():
     bank_fake = [f for f in bank.get("fake", []) if f.get("rules", 1) >= RULES and (f.get("banked", "") >= oldest or f.get("hand")) and f.get("banked") != day and valid_fake(f)]   # hand-written fakes never expire
     prior = prior_stories(day)
     for lst, name in ((fresh, "fresh"), (bank_real, "banked"), (bank_old, "older banked")):
-        dup = [r for r in lst if seen_before(r, prior)]
+        dup = [r for r in lst if not r.get("allow_repeat") and seen_before(r, prior)]   # owner-banked stories flagged allow_repeat may run again (e.g. a Fill the Blank story now wanted for the Daily Dig)
         for r in dup:
             print(f"  drop real (already shown on an earlier day): {r.get('h')}", file=sys.stderr)
             lst.remove(r)
