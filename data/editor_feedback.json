@@ -351,6 +351,12 @@
    "before": "a village in Hadrian's Wall country",
    "after": "a village in Geordie country",
    "why": "owner asked for new clues to test (Nov 15)"
+  },
+  {
+   "kind": "clue",
+   "before": "a Pannonian-plain county town",
+   "after": "a town in the cravat's homeland",
+   "why": "owner asked for a better clue for Virovitica (Nov 15)"
   }
  ]
 }
