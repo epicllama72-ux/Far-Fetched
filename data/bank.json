@@ -755,6 +755,27 @@
    "daily_only": true,
    "allow_repeat": true,
    "hint": "a desert capital on the Pacific"
+  },
+  {
+   "banked": "2026-11-15",
+   "rules": 2,
+   "theme": "relocation",
+   "unbelievable": 4,
+   "jargon_only": false,
+   "h": "A whole 113-year-old wooden church is loaded onto trailers and rolled across {} to escape a mine",
+   "place": "Kiruna, Sweden",
+   "geocode": "Kiruna, Sweden",
+   "lat": 67.8558,
+   "lng": 20.2253,
+   "country": "Sweden",
+   "cc": "SE",
+   "clue": "A wooden church moved away from an iron-ore mine = Kiruna, Sweden",
+   "clue_strength": 2,
+   "mappable": 3,
+   "src": "https://www.bbc.com/news/articles/cde3xp4xlw9o",
+   "published": "2025-08-20",
+   "daily_only": true,
+   "hint": "a city north of the Arctic Circle"
   }
  ],
  "fake": [
