@@ -395,6 +395,12 @@
    "before": "Man covered in feces is jailed in {} for a burglary police say happened on 31 November",
    "after": "Man covered in feces is jailed in {} for a bank robbery police say took place on 31 November",
    "why": "owner wanted a different crime than burglary for fake #6 (the other fake is a burglar)"
+  },
+  {
+   "kind": "headline",
+   "before": "Man covered in feces is jailed in {} for a bank robbery police say took place on 31 November",
+   "after": "Town council in {} bans red umbrellas after angry bull charges outdoor café patio",
+   "why": "owner found the two Nov 15 fakes too similar (both burglar/crime with a date or time slip); swapped fake #6 for the red-umbrella bull"
   }
  ]
 }
