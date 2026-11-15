@@ -1553,7 +1553,7 @@ body.intro #ausBar{display:none}
 #final.news #comeBack,#final.news #replayWrap{text-align:center}
 #final.news #letters{transform:none;box-shadow:none;margin:14px 0 0;border-top:3px double #1f1b16}
 /* ---------- Top bar and counters as newsprint, to match the newspaper menu ---------- */
-.topline,.hud,#hudNext,#log{--np-paper:#ece5d1;--np-card:#f7f3e8;--np-ink:#1b1813;--np-dim:#5a5043;--np-stamp:#a8231a;--np-green:#2f6b2f;
+.topline,.hud,#hudNext,#hudTry,#log{--np-paper:#ece5d1;--np-card:#f7f3e8;--np-ink:#1b1813;--np-dim:#5a5043;--np-stamp:#a8231a;--np-green:#2f6b2f;
   --np-grain:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(60,45,20,.03) 0 1px,transparent 1px 4px)}
 .topline{background:var(--np-paper);background-image:var(--np-grain);color:var(--np-ink);text-shadow:none;border-bottom:3px double var(--np-ink);box-shadow:0 4px 0 rgba(0,0,0,.35);
   margin:-10px -16px 14px;padding:6px 12px;gap:10px;letter-spacing:0}
@@ -1588,6 +1588,10 @@ body.intro #ausBar{display:none}
 }
 #hudNext{display:none;align-items:stretch;margin:0 auto 10px;width:max-content;max-width:100%;background:var(--np-card);background-image:var(--np-grain);border:1px solid var(--np-ink);color:var(--np-ink);filter:drop-shadow(3px 4px 0 rgba(0,0,0,.45));rotate:.8deg}
 body.peek #hudNext:not([hidden]),body.sumUp #hudNext:not([hidden]){display:flex}   /* only once the dig is over, the planet has zoomed back out and the summary is up */
+#hudTry{display:none;margin:-2px auto 10px;padding:6px 10px 5px;background:var(--np-card);background-image:var(--np-grain);border:1px solid var(--np-ink);color:var(--np-stamp);font:7px/1.2 var(--px);letter-spacing:.14em;cursor:pointer;filter:drop-shadow(2px 3px 0 rgba(0,0,0,.45));rotate:-.8deg}
+#hudTry:active{transform:translate(1px,1px)}
+body.peek #hudTry:not([hidden]),body.sumUp #hudTry:not([hidden]){display:block}
+#hudTry[hidden]{display:none}
 #hudNext[hidden]{display:none}
 #hudNext .hnL{background:var(--np-ink);color:var(--np-card);font:7px/1 var(--px);letter-spacing:.18em;padding:0 9px;display:flex;align-items:center}
 #hudNext .hnT{font:30px/1 var(--vt);padding:3px 12px 4px;font-variant-numeric:tabular-nums;letter-spacing:.04em}
@@ -1829,6 +1833,7 @@ body.pinning #card #headline{font-size:23px}
     <div class="panel r"><span class="lbl">SCORE</span><span class="val sv"><span id="delta"></span><span id="score">0</span></span></div>
   </div>
   <p id="hudNext" hidden><span class="hnL">NEXT PAPER IN</span><span class="hnT" id="hnT">--:--:--</span></p>
+  <button id="hudTry" type="button" hidden>TRY FILL THE BLANK <span aria-hidden="true">→</span></button>
   <div id="log" aria-label="Headline log"><span class="lbl">YOUR HEADLINES</span><ol id="logList"></ol></div>
   </div>
 
@@ -3613,7 +3618,7 @@ const FAKE_BASE = 50, FOOLED_BASE = 25, TRUE_BASE = 180, JAW_SCALE = 1000;   // 
 let FAKE_PTS = 50;
 
 function startGame(mode, kind){
-  $('hudNext').hidden=true; document.body.classList.remove('sumUp');
+  $('hudNext').hidden=true; $('hudTry').hidden=true; document.body.classList.remove('sumUp');
   if(typeof Intro!=='undefined' && Intro.planetOn()) Intro.hide(true);
   if(typeof Intro!=='undefined') setTimeout(Intro.check,60);   // a fresh start opens on the planet; a finished day shows it zoomed out   // a finished day has no ready button: drop straight to the room
   if(kind) KIND = kind;
@@ -4344,6 +4349,7 @@ function finish(restored){
   const todo=others.find(k=>{ const s=load(saveKey(k)); return !(s && s.date===dayKey() && s.results && s.results.length>=need(k)); });
   $('comeBack').innerHTML = daily && todo ? '<button class="linkish" id="tryOther">'+modeName(todo)+' is waiting →</button>' : '';
   if(daily && todo) $('tryOther').onclick=()=>startGame('daily',todo);
+  $('hudTry').hidden=!(daily && S.kind==='call' && todo==='blank'); $('hudTry').onclick=()=>startGame('daily','blank');   // after the Dig, a nudge to the Blank if it isn't played yet
   $('final').hidden=false;
   S.finalM=+inf.m; S.finalZone=inf.zone;
   renderSummary(total,max,+inf.m);
