@@ -1,70 +1,41 @@
 {
  "real": [
   {
-   "id": 1,
-   "h": "Strange sight in {}: 30 crocodiles on board a train",
-   "h2": "Strange sight in Upper Egypt: 30 [] on board a train",
+   "id": 36,
+   "h": "Man missing for years is sent a payment demand by the national insurance office in {}",
+   "h2": "Man missing for years is told by the National Insurance Institute in Jerusalem, Israel to pay back []",
    "ans": [
-    "crocodiles",
-    "crocodile"
+    "money",
+    "cash",
+    "funds"
    ],
    "alt": [
-    "alligators",
-    "reptiles",
-    "gators",
-    "caimans"
+    "debt",
+    "taxes",
+    "benefits",
+    "fees",
+    "payment",
+    "fines",
+    "pension"
    ],
-   "place": "Upper Egypt, Egypt",
-   "geocode": "Upper Egypt, Egypt",
-   "lat": 26.0,
-   "lng": 32.0,
-   "country": "Egypt",
-   "cc": "EG",
-   "hint": "where Tutankhamun's tomb was found",
-   "clue": "Nile crocodiles on a southern line = Egypt",
+   "place": "Jerusalem, Israel",
+   "geocode": "Jerusalem, Israel",
+   "lat": 31.7788472,
+   "lng": 35.2257856,
+   "country": "Israel",
+   "cc": "IL",
+   "hint": "seat of the Knesset",
+   "clue": "national insurance institute",
    "clue_strength": 3,
    "jargon_only": false,
    "mappable": 1,
    "unbelievable": 3,
-   "theme": "reptiles",
-   "src": "https://news.google.com/rss/articles/CBMiogNBVV95cUxOdzJaVUhFOUlidmVKUkVaQzB6XzBoUDVweHVqMDIxdGpiVk5UOVVjU3M1T2NLTlNGZDBKM1RPemdMV2VhT05aaW9ieWF0Qy1pMHlNV1QwMmhBU1lhTnE5cmFkREVRWXFzNDU0djRrT1FZdEUwYXc0Ykw0c1FrVjFsdE80WXNUOGYzc0NHWmZiRThxY0dnWVdQREVKek9sUlpMR2dFZ0dhVjAzYWQzekZ2VElPWEFrckFaZVBuWTB4VTJpTlB0OXRlUE9CRnRXVkU3QnlRZHJnWHhfQW4tV201LWh6YWp3aDg2UDBVUEZ3Wm9tOU1GTmRaVHR4eVgwUjNNWFJGMWNPM1pCSnhCeXJrX0padmJ5OHd6VnU4bEwzS1RLNzhvdTVIUUd2Z2RwXzZSQjJIckp0YzNpdExVelZrX1NmdjFwZ2hra2JYSDFzYWhzbXdKR25nNWxXWGxBbzJ2ZWZRM3EzZXdkdFR5dG5Hc05TTGFyZTVhV3hvekdDZ2tVdUxYSUVqb3Z2UGtobndyM1cyYm9tNWptdEdrMWJZb3BR0gGnA0FVX3lxTE5sU3RPQ0JndElKWjBRU0xmWUNOQ1Y2U3FDVkNFRURfZVNCUEdmM1JORUZpRFlacHhBQ1dQbVJvUVNRQjdNN0VVX2ZfejM3Y3lCQmREM2YyTHNRNnVJZ0ZJR01yck14UXRseUhVRUdlb2NVTzZkanYwT3U0eHAzd0ktQXBHaUtid1BNTzJXT3dFUmxOYzZraC1jN2IyWF9hYk04WlhaaUNaWDU1Mml0Z1pTSWFZMFNlSUlPVlpqUXlOelBXYzB2ZFE3SGhGS1BIV0g4TUhfcHljN2oyZGRCOGo1M2JUZTVHMHp6Z1VqMTFNXzR5VnI1STJMSzcyMzdXSzBLTG11RUZCazhWeWhyUTRMQllhVjd0NEJ4N2NNUl8tTGo3VHRHTFlqTEc1aFhuaHBhRHRQVTBoSjBuRzBwTVJ2OWM1Znc5SGd5bTZiaC1iS0haUnBkTjZDWnFtM3VxVTdoYV9hZXEzeTBBbjlrMWd6bHhBanZJQjFsM1Q0dlZTQmx5LWswR29CV3hoanV4WUpZVTlXdzhTZ1VNZjYyTlhILUgzY2g0RQ?oc=5",
-   "published": "2026-10-29",
-   "banked": "2026-11-13",
-   "rules": 2
-  },
-  {
-   "id": 8,
-   "h": "Sheriff's deputies find a stolen gas-station dinosaur in a strange predicament near {}",
-   "h2": "California sheriff's deputies find a stolen gas-station [] in a strange predicament",
-   "ans": [
-    "dinosaur",
-    "dinosaurs",
-    "dino",
-    "dinos"
-   ],
-   "alt": [
-    "statue",
-    "sculpture",
-    "mascot",
-    "brontosaurus"
-   ],
-   "place": "California, USA",
-   "geocode": "California, USA",
-   "lat": 36.7014631,
-   "lng": -118.755997,
-   "country": "United States",
-   "cc": "US",
-   "hint": "where the 1849 Gold Rush began",
-   "clue": "Sheriff's deputies and a roadside gas-station mascot = US",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 1,
-   "unbelievable": 5,
-   "theme": "dinosaur",
-   "src": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNeURuVDEwMW56WWtNMkNyUEhRU1lCQjRJN1MzLW9XNS1GU1NUSkNxN194UzBOUDduNXpseFl1QWs3LV90ZFBpRlJfSFZObHdrQmVsMVRsenVhY2pZSnAtdmE5Rm5oQ3hOeW5mQlFiTkRNWWJ3QTRqbVNSb1hzMTA4NNIBhgFBVV95cUxOcTh6V1pmNGg0QVBSUE10eUdnenhyT0daSlM1V20xT3NqMVB5akx3TlgwU0sybnc4VXQ2ZGs0VkVsTGlwR3ZqWVFqZ3ZuUjhMa1VIUXRDbjdzRGlCS2NEb0hteE96T294dHA1U3RseEktUkNYZEhtMS1VRllVX0hsLXd5eEdaQQ?oc=5",
-   "published": "2026-11-09",
-   "banked": "2026-11-12",
-   "rules": 2
+   "theme": "bureaucracy",
+   "src": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE93aDR0Y3FLeTU0R3ZwWlFJZnFoMXY0Y3ZXc0NFZVNKQlh6V3BlU2VFTERYeEhfTkRDYnZIMWtYLWtQLWxkd01tYnRhUF82QQ?oc=5",
+   "published": "2026-11-11",
+   "banked": "2026-11-16",
+   "rules": 2,
+   "taste": 4.0
   },
   {
    "id": 20,
@@ -161,60 +132,6 @@
    "jargon_only": false
   },
   {
-   "id": 11,
-   "h": "Officers shout 'fart police, fart the wood' in botched Spanish before police dog bites tourist in {}",
-   "h2": "Aurora, Colorado officers shout 'fart police, fart the wood' in botched Spanish before police [] bites tourist",
-   "ans": [
-    "dog",
-    "dogs",
-    "k9"
-   ],
-   "alt": [
-    "canine",
-    "hound",
-    "shepherd",
-    "puppy"
-   ],
-   "place": "Aurora, Colorado",
-   "geocode": "Aurora, Colorado, USA",
-   "lat": 39.7401441,
-   "lng": -104.8733376,
-   "country": "United States",
-   "cc": "US",
-   "hint": "home of Buckley Space Force Base",
-   "clue": "SWAT team and a police K-9 in a US suburb",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 4,
-   "theme": "language",
-   "src": "https://www.denverpost.com/2026/10/19/aurora-police-excessive-force-lawsuit-dog-bite/",
-   "published": "2026-10-23",
-   "banked": "2026-11-05",
-   "rules": 2
-  },
-  {
-   "h": "Federal judge orders state to let Satanic Temple hold one-day holiday event in the Capitol rotunda in {}",
-   "place": "Des Moines, Iowa",
-   "geocode": "Des Moines, Iowa, USA",
-   "lat": 41.5868,
-   "lng": -93.625,
-   "country": "United States",
-   "cc": "US",
-   "hint": "host of the first-in-the-nation caucuses",
-   "clue": "a state Capitol rotunda, a federal judge, a US state capital",
-   "clue_strength": 3,
-   "mappable": 3,
-   "unbelievable": 3,
-   "theme": "religion",
-   "src": "https://www.nbcnews.com/news/us-news/federal-judge-orders-iowa-satanic-temple-hold-holiday-capitol-rcna607149",
-   "published": "2026-11-02",
-   "banked": "2026-11-15",
-   "rules": 2,
-   "daily_only": true,
-   "jargon_only": false
-  },
-  {
    "h": "'Are You Dead?' app for people living alone goes viral in {}",
    "hint": "land of the Great Wall",
    "lat": 35.8617,
@@ -267,7 +184,7 @@
    "cc": "AU",
    "hint": "",
    "clue": "'college' + a fundraising walkathon + an apology",
-   "clue_strength": 1,
+   "clue_strength": 2,
    "jargon_only": false,
    "mappable": 2,
    "unbelievable": 3,
@@ -309,7 +226,7 @@
    "lng": -93.8863,
    "country": "United States",
    "cc": "US",
-   "hint": "a Piney Woods community",
+   "hint": "",
    "clue": "US sheriff 'remain indoors' alert + a semitrailer",
    "clue_strength": 1,
    "jargon_only": false,
@@ -394,30 +311,199 @@
    "published": "2026-10-29",
    "daily_only": true,
    "hint": "where Napoleon's retreat began"
-  },
-  {
-   "banked": "2026-11-14",
-   "rules": 2,
-   "theme": "medical",
-   "unbelievable": 4,
-   "jargon_only": false,
-   "h": "Doctors in {} prescribe Diet Coke to a woman with a stomach mass",
-   "place": "Boston, Massachusetts",
-   "geocode": "Boston, Massachusetts, USA",
-   "lat": 42.3601,
-   "lng": -71.0589,
-   "country": "United States",
-   "cc": "US",
-   "clue": "US doctors + a GLP-1 drug case report",
-   "clue_strength": 2,
-   "mappable": 3,
-   "src": "https://www.newsnationnow.com/health/diet-coke-dissolve-stomach-mass-glp-1-patient/",
-   "published": "2026-07-08",
-   "daily_only": true,
-   "hint": "setting of Good Will Hunting"
   }
  ],
  "fake": [
+  {
+   "h": "Robber in a full suit of armour flees a bakery in {} on a Segway he bought in 1985",
+   "tell": "Segways did not exist until 2001, so nobody could have bought one in 1985.",
+   "obvious": 3,
+   "theme": "robbery",
+   "taste": 5.0,
+   "pred": 20.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Postman, 24, in an Elvis wig admits hoarding 31 years of undelivered letters in a shed in {}",
+   "tell": "A 24-year-old cannot have hoarded letters for 31 years.",
+   "obvious": 2,
+   "theme": "mail",
+   "taste": 4.0,
+   "pred": 15.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Burglar in a gorilla suit steals 48 wheels of sheep's-milk Parmesan from a deli in {}",
+   "tell": "Parmesan is made from cow's milk, not sheep's milk.",
+   "obvious": 3,
+   "theme": "cheese",
+   "taste": 5.0,
+   "pred": 30.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Thief in a lifeguard costume steals 12 bicycles in {}, then sells 15 of them online",
+   "tell": "He cannot sell more bicycles than he stole.",
+   "obvious": 2,
+   "theme": "theft",
+   "taste": 3.0,
+   "pred": 12.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Guide in {} in a polar-bear suit sells 74 tourists an Antarctic cruise to spot wild polar bears",
+   "tell": "Polar bears live in the Arctic; there are none in Antarctica.",
+   "obvious": 3,
+   "theme": "tourism",
+   "taste": 4.0,
+   "pred": 15.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Collector in a toga donates a Roman coin stamped '44 AD' to a museum in {}, which displays it",
+   "tell": "Romans never dated coins AD; that system came centuries later.",
+   "obvious": 3,
+   "theme": "museum",
+   "taste": 5.0,
+   "pred": 25.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Pub in {} gives free pints for life to 17 regulars born on 29 February 1990",
+   "tell": "1990 was not a leap year, so nobody was born on 29 February 1990.",
+   "obvious": 2,
+   "theme": "pub",
+   "taste": 4.0,
+   "pred": 15.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Farmer, 63, digging a ditch in {} finds a T. rex tooth beside an 8,740-year-old hearth",
+   "tell": "T. rex died out about 66 million years before any human hearth.",
+   "obvious": 3,
+   "theme": "fossil",
+   "taste": 4.0,
+   "pred": 14.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Burglar in a lobster costume is traced in {} after uploading his break-in to YouTube in 2003",
+   "tell": "YouTube was not founded until 2005, so no one could upload a video there in 2003.",
+   "obvious": 3,
+   "theme": "anachronism",
+   "taste": 5.0,
+   "pred": 20.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Thief in plate armour flees a 1987 bakery robbery in {} on a Segway, crashing into a fountain",
+   "tell": "The Segway was not launched until 2001, so a thief could not ride one in 1987.",
+   "obvious": 3,
+   "theme": "technology",
+   "taste": 4.0,
+   "pred": 18.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Suspect in a bear costume is cleared in {} of theft as his twin has identical fingerprints",
+   "tell": "Even identical twins have different fingerprints.",
+   "obvious": 3,
+   "theme": "biology",
+   "taste": 5.0,
+   "pred": 30.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Daredevil in a tuxedo rides a Ferris wheel in {} for 19 days, logging 4,310 35-minute laps",
+   "tell": "19 days is 27,360 minutes, which fits about 781 laps of 35 minutes, not 4,310.",
+   "obvious": 3,
+   "theme": "arithmetic",
+   "taste": 6.0,
+   "pred": 28.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Couple in beekeeper suits marry in {} on 29 February 2023, citing leap-year tradition",
+   "tell": "2023 was not a leap year, so 29 February 2023 does not exist.",
+   "obvious": 2,
+   "theme": "calendar",
+   "taste": 4.0,
+   "pred": 15.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Collector in a powdered wig pays £22,400 in {} for an 1810 photograph of the harbour",
+   "tell": "Photography was not invented until the 1820s, so no photograph from 1810 can exist.",
+   "obvious": 3,
+   "theme": "history",
+   "taste": 5.0,
+   "pred": 25.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Hiker in a Santa suit is saved in {} after rescuers warm his core with 3 shots of whisky",
+   "tell": "Alcohol widens blood vessels and speeds up heat loss, so it does not warm the body's core.",
+   "obvious": 3,
+   "theme": "myth",
+   "taste": 6.0,
+   "pred": 38.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Tourist in a Roman toga tries to pay for 6 kebabs in {} with euro banknotes printed in 1996",
+   "tell": "Euro banknotes were first printed in 1999 and entered circulation in 2002, so none exist from 1996.",
+   "obvious": 3,
+   "theme": "currency",
+   "taste": 5.0,
+   "pred": 25.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Postman, 61, retires in {} after delivering mail on a unicycle for 52 years",
+   "tell": "At 61, he would have started at age 9, far too young for a postal job.",
+   "obvious": 3,
+   "theme": "timeline",
+   "taste": 4.0,
+   "pred": 18.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Sailor in a tutu survives 12 days adrift off {} by drinking 2 litres of seawater a day",
+   "tell": "Seawater is saltier than blood, so drinking it dehydrates you faster and can kill you.",
+   "obvious": 3,
+   "theme": "survival",
+   "taste": 5.0,
+   "pred": 22.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
+  {
+   "h": "Chocolatier in {} sells milk chocolate made to a 1450 Aztec recipe",
+   "tell": "Aztecs had no dairy animals, and milk chocolate was not invented until the 1870s.",
+   "obvious": 3,
+   "theme": "chocolate",
+   "taste": 5.0,
+   "pred": 30.0,
+   "banked": "2026-11-16",
+   "rules": 2
+  },
   {
    "h": "Dealer in {} sells a ballpoint pen 'signed by Napoleon' to a retired dentist for 4,310 euros",
    "tell": "Napoleon died in 1821; ballpoint pens weren't invented until the late 1930s.",
@@ -546,31 +632,55 @@
  ],
  "pol": [
   {
-   "id": 51,
-   "h": "Every lawmaker in {} joins the government side, leaving the president with no political opponents",
+   "id": 41,
+   "h": "Parliament in {} has no opposition left after every lawmaker joins the government side",
    "place": "Yaren, Nauru",
    "geocode": "NR",
    "lat": -0.5252306,
    "lng": 166.9324426,
-   "clue": "world's smallest island republic in Micronesia, famed for phosphate rock",
-   "src": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1VaDd1Q1QyQ1Z0UHVoV2pkWjZmUnJULThkaFp1MzdJR3B5SW91amxPbTlVc2QwLURrbXl6OEJmNTdUTXhiYkpQeUxHc3ZqMGZ1MjF6VG9iT2UtTXFiU3hLY0Yxbkw5QVBFMUtXS1l4ZW1pUWN3YlkxbQ?oc=5",
+   "clue": "parliament with no opposition = a tiny Pacific island republic's capital district",
+   "src": "https://news.google.com/rss/articles/CBMiowJBVV95cUxOc3N4ZkNPQnhXMU5IUnhJS0E4WDhpVVZvc2JjMFhUbUREbDdwSWhsZFZqOVRCb04yQlNQVXlmX3dMVi1taUJ5emc5UlZyb2VwM0dEZVVrVGFrY1B5RGEtR2FTZlRRQ2ZrMHFBcnA3bnhwSDMwTHZFWURVeVFON2p4MmVHdnYzeGpkTFBlZEwzRnBtcm40Z2p1bFN4Z3h6aHdjQkdBblIxOUVoU2VKWU1mM1ZZbzJjVWtfM09KejN1TFdHOGhZSGdjZ0JFWVN1Z3lQc245MUR5Y3RQTEFZdnozbnpyWEYxZXNqN292a0xJdnZxVGhiRHluSVNCNVJsMlFITE1VWEdmTVk2SmV4ZUZmVlhzaC1HekJSY3VsQnFMSkxCa1k?oc=5",
    "published": "2026-11-13",
-   "banked": "2026-11-15"
+   "banked": "2026-11-16"
   },
   {
-   "id": 17,
-   "h": "Mayor in {} wins a tied race by drawing, and the challenger asks for a recount",
-   "place": "Spring Lake Park, Minnesota",
+   "id": 2,
+   "h": "Mayoral race in {} ends dead-even, so the winner's name is drawn from a bag",
+   "place": "Spring Lake Park, Minnesota, USA",
    "geocode": "US",
-   "lat": 45.1075,
+   "lat": 45.108,
    "lng": -93.2394,
-   "clue": "Twin Cities suburb north of Minneapolis; lots drawn to settle a tie",
-   "src": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQb2lPUXBjLXQ1SGZCX1B2a0NlWkpmdE50WTBTYzNFUlNON0VSMjVvYl9RRDh4bmR4SElJbEpIQUxoczdpZExoR0M3YzlRX3pMU0NuSVprRy11NlZzbmRsVzd2QmtwbVdFQzB0emJBcTc4Z3lLZHpWSkhCVTk0UHZvajdRSldhZ0pLZDItYzJPVjVvNDdfdjdEeWpMT3l0N012ZEJHdUlWcFZ3SmJoTGZ5QmRtdE9kYUJ1eGJCLVR0Q0dVSnI0WHpj?oc=5",
-   "published": "2026-11-10",
-   "banked": "2026-11-15"
+   "clue": "mayor + name drawn from a bag = US; a Twin Cities suburb with 'Lake' and 'Park'",
+   "src": "https://news.google.com/rss/articles/CBMibEFVX3lxTE4wZUo4eEljTnNkdzJrWWdUMUtJTzBhZEdwaFZGaEFGa2d3WUlQeTMxTDZDamFTMzRhdmNwemgwYUFYMk5wM0lOc3VobFdwaEJyVDU0M2pKNURIQ2xORGY1UzZNVmFOT0tXTHFQTQ?oc=5",
+   "published": "2026-11-14",
+   "banked": "2026-11-16"
   }
  ],
  "polfake": [
+  {
+   "h": "Man dressed as a ghost is jailed in {} for hauling 37 church bells away on one bicycle",
+   "banked": "2026-11-16"
+  },
+  {
+   "h": "Pickpocket in {} in a beekeeper suit is caught after paying a taxi in bitcoin in 1995",
+   "banked": "2026-11-16"
+  },
+  {
+   "h": "Mayor of {} schedules the annual leap-day fair for 30 February",
+   "banked": "2026-11-16"
+  },
+  {
+   "h": "Restaurateur in {} dressed as a pirate is fined for selling gluten-free bread made from wheat",
+   "banked": "2026-11-16"
+  },
+  {
+   "h": "Voter in {} in an astronaut suit casts a ballot in person after a three-day trip home from Mars",
+   "banked": "2026-11-16"
+  },
+  {
+   "h": "Treasurer, 31, in {} is jailed for skimming town funds every year since she took office in 1994",
+   "banked": "2026-11-16"
+  },
   {
    "h": "Councillors in {} approve floodlights for the town sundial so it can tell the time at night",
    "banked": "2026-11-15"
@@ -626,30 +736,6 @@
   {
    "h": "Voters in {} elect a mayor with 212 votes from a ward roll of 190 people",
    "banked": "2026-11-13"
-  },
-  {
-   "h": "Mayor of {} signs bylaw banning shadows on public benches after complaint from a retired teacher",
-   "banked": "2026-11-13"
-  },
-  {
-   "h": "Parliament in {} votes to turn clocks back 23 minutes to settle a dispute over lunch breaks",
-   "banked": "2026-11-13"
-  },
-  {
-   "h": "Candidate in {} wins a ward seat with 47 votes, all cast by residents of a different ward",
-   "banked": "2026-11-13"
-  },
-  {
-   "h": "Town council in {} votes to abolish itself, then re-forms next morning with the same seven members",
-   "banked": "2026-11-12"
-  },
-  {
-   "h": "Ballot box in {} found holding 2,413 votes in a village of 1,288 voters; result stands",
-   "banked": "2026-11-12"
-  },
-  {
-   "h": "Mayor of {} wins re-election with 4,317 votes in a town with 3,902 registered voters",
-   "banked": "2026-11-12"
   }
  ]
 }

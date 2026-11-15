@@ -1,0 +1,176 @@
+{
+ "date": "2026-11-16",
+ "generated": "2026-11-15T07:06:45+00:00",
+ "call": [
+  {
+   "real": true,
+   "h": "Hundreds in {} push a 110-ton steel statue seven inches to free a man rumoured to be trapped beneath it",
+   "hint": "home of deep-dish pizza",
+   "lat": 41.8826,
+   "lng": -87.6225,
+   "place": "Chicago, Illinois",
+   "src": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNR2NXM0V0cktsZlN1VFV4bWc4akg5dXVpdmozM0oxdTZpSHNBcmtsS1RuekVLcVBJMU1sX21VZURBVmdTU0dsOVVlb0w0dGNRZXBUekZvNUlxTEhMSEFvTDlmUjN3Q2w3RXBEVnJlWktObmRReEZRMFFHNXRlbnFjVEJtQllFWDhLU3dxNmV3ck1NeV96SkVfTEVfNk12ZW04a1Uyc2hlZ1pQNnNXaTE2bdIBtgFBVV95cUxPVklrVFZFOEx6YXZFSV9BTi14eGFUU3BBbkhNeFYyNGFYTHdQLWdOSlJITmNScGNXbTZsOVpoUlUtR3k1blk4dkk4UFVNaTlmSlpBZG5qck1oamFvVF9uWnRyVDBoUTVzLXdrRHRQRGtSTC1KUWlFeTlfaWJ6STV0VHY1OTFnYnhtYXFIZUhybTRUWXRDTkRhUmszV1QwRkJXNERpUGo5TnlqMjlNSDZIVHBjVnRTZw?oc=5",
+   "published": "2026-11-09",
+   "clue": "inches and short tons = US"
+  },
+  {
+   "real": true,
+   "h": "Doctors in {} prescribe Diet Coke to a woman with a stomach mass",
+   "hint": "setting of Good Will Hunting",
+   "lat": 42.3601,
+   "lng": -71.0589,
+   "place": "Boston, Massachusetts",
+   "src": "https://www.newsnationnow.com/health/diet-coke-dissolve-stomach-mass-glp-1-patient/",
+   "published": "2026-07-08",
+   "clue": "US doctors + a GLP-1 drug case report"
+  },
+  {
+   "real": false,
+   "h": "Pensioner in {} wins a cook-off in a medieval monk's habit with a 1290 tomato sauce recipe",
+   "tell": "Tomatoes came to Europe from the Americas after 1500, so no 1290 recipe could use them."
+  },
+  {
+   "real": true,
+   "h": "Email outage blocks a pool chlorine warning at a theme-park hotel's sauna; 40 firefighters treat 15 in {}",
+   "hint": "where painter Max Ernst was born",
+   "lat": 50.8291,
+   "lng": 6.9037,
+   "place": "Brühl, Germany",
+   "src": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9XRjlCeGN2OUhlNm5mZWRyQ3BfSW0xbEdVcUhXaC04bml4cS1VNEltN1M0V0I2Z2RqZ1YxSDVFYUIwZ3ZtQVpyZnJ1aDExZldaN3YtMHNoOGI4N3NDb0xHSUpkOG51d9IBa0FVX3lxTE5tZVMxS2ZuMWdzdTMyQXlZM3phZHh0cHBsT1FQaGtMTXZzdmZncEFUbjJYYThYdkx3aHZWUEt3bHZVS0d6WjgzT3VaZTJpbU5KU0dGak1nNE8tQU5peXFqTTVwWFVWV3pBSkpV?oc=5",
+   "published": "2026-11-15",
+   "clue": "theme-park hotel and firefighters; Rhineland"
+  },
+  {
+   "real": true,
+   "h": "Federal judge orders state to let Satanic Temple hold one-day holiday event in the Capitol rotunda in {}",
+   "hint": "host of the first-in-the-nation caucuses",
+   "lat": 41.5868,
+   "lng": -93.625,
+   "place": "Des Moines, Iowa",
+   "src": "https://www.nbcnews.com/news/us-news/federal-judge-orders-iowa-satanic-temple-hold-holiday-capitol-rcna607149",
+   "published": "2026-11-02",
+   "clue": "a state Capitol rotunda, a federal judge, a US state capital"
+  },
+  {
+   "real": false,
+   "h": "Mayor in a spacesuit unveils a 60-metre rooftop sign in {} for astronauts on the Moon to read",
+   "tell": "From the Moon, about 384,000 km away, a 60-metre sign is far too small to see, let alone read."
+  },
+  {
+   "real": true,
+   "h": "Officers shout 'fart police, fart the wood' in botched Spanish before police dog bites tourist in {}",
+   "hint": "home of Buckley Space Force Base",
+   "lat": 39.7401,
+   "lng": -104.8733,
+   "place": "Aurora, Colorado",
+   "src": "https://www.denverpost.com/2026/10/19/aurora-police-excessive-force-lawsuit-dog-bite/",
+   "published": "2026-10-23",
+   "clue": "SWAT team and a police K-9 in a US suburb"
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Woman rattling a stranger's hotel door at midnight to 'borrow the []' turns out to be the guest downstairs in Kenting, Taiwan",
+   "ans": [
+    "toilet",
+    "loo",
+    "bathroom",
+    "restroom",
+    "toilets",
+    "lavatory",
+    "washroom"
+   ],
+   "alt": [
+    "room",
+    "shower",
+    "key",
+    "phone",
+    "bed",
+    "lift"
+   ],
+   "place": "Kenting, Taiwan",
+   "src": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1LbGxyTm1VbVI4Vm5wazNoZHcxakRsdVFmM0FGMDFXQVlnRkFxaDdzTnVjQi13QUVpMjZ0WTBDU1RNZTNVR2l0bDkyS2pqd0Q0V285NHlKUEtJbjU2LVl2UEh6SWdzdFkw0gFuQVVfeXFMTUFMREhwWWlTVncteXRZYUdORTFBTXhqZFpGbVh3eTdtX1o0S1ZxdjN0REZPRExkd0V5c2RSb29pZmFiNXl1dGdtSGFOTDluVUgyVnZUaWZrMGg4WlhvNjZLM2pFMktJM19YaExnRUE?oc=5",
+   "published": "2026-11-14",
+   "vec": "+goY0u3zKeUx6dr6IzENN9tiDOFGKRMDBLbpSj8BWRrnJth/Uzg75knu9nQtL+zVLN0="
+  },
+  {
+   "real": true,
+   "h2": "Driver in Puerto Madryn, Argentina nudges the parked car in front forward with his [] to squeeze into a beachfront space",
+   "ans": [
+    "bumper",
+    "bumpers",
+    "fender"
+   ],
+   "alt": [
+    "wheel",
+    "hood",
+    "bonnet",
+    "nose"
+   ],
+   "place": "Puerto Madryn, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQUEFNRS13SWxIMWpEVjRLS3Exek9zbGhzeVpuVjNXNkFXMHVCVF9yS3JDQ1RycmxSRzA3VFlXNGg3c0NEUE54c1AwZ29NZEtlMDhFemM4VF9FYy12MHQ5aTdvbGN6VDVtUmhfVzZ2OGkzY2ZBai1zNjdLamNZSlZZZXhaVE1va3BLN3J1SFJtelVKTG1GQzB6em9Ga3RaR1JDVUNVNmNHVUQweUEtTWc?oc=5",
+   "published": "2026-11-13",
+   "vec": "wf86xNjjv5hA68zhCLwnANYQIIHoqQrWJfjRdEfxWjzyQQEfHvLFAdsRntgd4Qj5L9I="
+  },
+  {
+   "real": true,
+   "h2": "A [] on the glossy desk turns 'elections' into a ruder word on live BBC News in London, England; presenters add paper",
+   "ans": [
+    "reflection",
+    "reflections",
+    "glare"
+   ],
+   "alt": [
+    "mirror",
+    "shadow",
+    "typo",
+    "light",
+    "screen",
+    "mistake"
+   ],
+   "place": "London, England",
+   "src": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQNnR2QWE5d1ppbGZReXZpcnZoV05LQzMtSlp4ZUMyQVJFaUkxLU5NYllmQ2h3NVFHS3l1UVRxbFlBYVJjUjFfaGhEb3ptZkV6cGtxWVVQcFBRWG16YmgwclFOWmc2UWRadTUtY1B1cjljdGY5OUYwUmNkelo5MmVPZjZUTUhadW1zeVh5RDNSbUFaYmtTWjJSX0stOHVDQ3hNZl9XNjFZTVdsLTM2RE5QMnBDcmlhVjZxVWtDVjFYOU9ZV2ZSZm4tNGRvb1FYaUc2ZFJoRTBma2RGZXRVSEpqWUx3?oc=5",
+   "published": "2026-11-04",
+   "vec": "GTzP4j7wOvntNRDwBxzsGPDV8uDuGO3bRPC/LjI1fxf6rL3S+uX2CQbt1iLq+DYkCBI="
+  },
+  {
+   "real": true,
+   "h2": "Strange sight in Upper Egypt: 30 [] on board a train",
+   "ans": [
+    "crocodiles",
+    "crocodile"
+   ],
+   "alt": [
+    "alligators",
+    "reptiles",
+    "gators",
+    "caimans"
+   ],
+   "place": "Upper Egypt, Egypt",
+   "src": "https://news.google.com/rss/articles/CBMiogNBVV95cUxOdzJaVUhFOUlidmVKUkVaQzB6XzBoUDVweHVqMDIxdGpiVk5UOVVjU3M1T2NLTlNGZDBKM1RPemdMV2VhT05aaW9ieWF0Qy1pMHlNV1QwMmhBU1lhTnE5cmFkREVRWXFzNDU0djRrT1FZdEUwYXc0Ykw0c1FrVjFsdE80WXNUOGYzc0NHWmZiRThxY0dnWVdQREVKek9sUlpMR2dFZ0dhVjAzYWQzekZ2VElPWEFrckFaZVBuWTB4VTJpTlB0OXRlUE9CRnRXVkU3QnlRZHJnWHhfQW4tV201LWh6YWp3aDg2UDBVUEZ3Wm9tOU1GTmRaVHR4eVgwUjNNWFJGMWNPM1pCSnhCeXJrX0padmJ5OHd6VnU4bEwzS1RLNzhvdTVIUUd2Z2RwXzZSQjJIckp0YzNpdExVelZrX1NmdjFwZ2hra2JYSDFzYWhzbXdKR25nNWxXWGxBbzJ2ZWZRM3EzZXdkdFR5dG5Hc05TTGFyZTVhV3hvekdDZ2tVdUxYSUVqb3Z2UGtobndyM1cyYm9tNWptdEdrMWJZb3BR0gGnA0FVX3lxTE5sU3RPQ0JndElKWjBRU0xmWUNOQ1Y2U3FDVkNFRURfZVNCUEdmM1JORUZpRFlacHhBQ1dQbVJvUVNRQjdNN0VVX2ZfejM3Y3lCQmREM2YyTHNRNnVJZ0ZJR01yck14UXRseUhVRUdlb2NVTzZkanYwT3U0eHAzd0ktQXBHaUtid1BNTzJXT3dFUmxOYzZraC1jN2IyWF9hYk04WlhaaUNaWDU1Mml0Z1pTSWFZMFNlSUlPVlpqUXlOelBXYzB2ZFE3SGhGS1BIV0g4TUhfcHljN2oyZGRCOGo1M2JUZTVHMHp6Z1VqMTFNXzR5VnI1STJMSzcyMzdXSzBLTG11RUZCazhWeWhyUTRMQllhVjd0NEJ4N2NNUl8tTGo3VHRHTFlqTEc1aFhuaHBhRHRQVTBoSjBuRzBwTVJ2OWM1Znc5SGd5bTZiaC1iS0haUnBkTjZDWnFtM3VxVTdoYV9hZXEzeTBBbjlrMWd6bHhBanZJQjFsM1Q0dlZTQmx5LWswR29CV3hoanV4WUpZVTlXdzhTZ1VNZjYyTlhILUgzY2g0RQ?oc=5",
+   "published": "2026-10-29",
+   "vec": "SNDi9ef+5uclERIvfu0PNlU/gT+9EHD/HxD+FfnFFBRCFQM26Kn81cXWL2pf++bg/a8="
+  },
+  {
+   "real": true,
+   "h2": "California sheriff's deputies find a stolen gas-station [] in a strange predicament",
+   "ans": [
+    "dinosaur",
+    "dinosaurs",
+    "dino",
+    "dinos"
+   ],
+   "alt": [
+    "statue",
+    "sculpture",
+    "mascot",
+    "brontosaurus"
+   ],
+   "place": "California, USA",
+   "src": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNeURuVDEwMW56WWtNMkNyUEhRU1lCQjRJN1MzLW9XNS1GU1NUSkNxN194UzBOUDduNXpseFl1QWs3LV90ZFBpRlJfSFZObHdrQmVsMVRsenVhY2pZSnAtdmE5Rm5oQ3hOeW5mQlFiTkRNWWJ3QTRqbVNSb1hzMTA4NNIBhgFBVV95cUxOcTh6V1pmNGg0QVBSUE10eUdnenhyT0daSlM1V20xT3NqMVB5akx3TlgwU0sybnc4VXQ2ZGs0VkVsTGlwR3ZqWVFqZ3ZuUjhMa1VIUXRDbjdzRGlCS2NEb0hteE96T294dHA1U3RseEktUkNYZEhtMS1VRllVX0hsLXd5eEdaQQ?oc=5",
+   "published": "2026-11-09",
+   "vec": "Uwj5GUEgvbU69u0DLkkbDCcd0znDsQrXIvCBDOW5JJYp/vUT/BQV8pWy7z9NBBbc6+U="
+  }
+ ]
+}
