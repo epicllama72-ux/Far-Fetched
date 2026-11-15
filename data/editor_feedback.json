@@ -383,6 +383,12 @@
    "before": "Man dressed as a lighthouse is jailed in {} for a burglary police say happened on 31 November",
    "after": "Man covered in feces is jailed in {} for a burglary police say happened on 31 November",
    "why": "owner's choice of the unusual detail for fake #6"
+  },
+  {
+   "kind": "headline",
+   "before": "Burglar in {} wearing a bridal gown is caught when his 2008 crime-scene selfie hits Instagram",
+   "after": "Burglar in {} wearing a bridal gown is caught when his crime-scene Instagram selfie from 2008 is unearthed",
+   "why": "owner's wording for fake #5"
   }
  ]
 }
