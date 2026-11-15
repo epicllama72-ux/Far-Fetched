@@ -1553,7 +1553,7 @@ body.intro #ausBar{display:none}
 #final.news #comeBack,#final.news #replayWrap{text-align:center}
 #final.news #letters{transform:none;box-shadow:none;margin:14px 0 0;border-top:3px double #1f1b16}
 /* ---------- Top bar and counters as newsprint, to match the newspaper menu ---------- */
-.topline,.hud,#log{--np-paper:#ece5d1;--np-card:#f7f3e8;--np-ink:#1b1813;--np-dim:#5a5043;--np-stamp:#a8231a;--np-green:#2f6b2f;
+.topline,.hud,#hudNext,#log{--np-paper:#ece5d1;--np-card:#f7f3e8;--np-ink:#1b1813;--np-dim:#5a5043;--np-stamp:#a8231a;--np-green:#2f6b2f;
   --np-grain:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(60,45,20,.03) 0 1px,transparent 1px 4px)}
 .topline{background:var(--np-paper);background-image:var(--np-grain);color:var(--np-ink);text-shadow:none;border-bottom:3px double var(--np-ink);box-shadow:0 4px 0 rgba(0,0,0,.35);
   margin:-10px -16px 14px;padding:6px 12px;gap:10px;letter-spacing:0}
@@ -1586,6 +1586,10 @@ body.intro #ausBar{display:none}
   #dots .dot{height:12px;width:10px}
   body #card[data-truth]::after{top:-2px;right:8px;rotate:-5deg;padding:3px 5px 2px;font-size:8px}
 }
+#hudNext{display:flex;align-items:stretch;margin:0 auto 10px;width:max-content;max-width:100%;background:var(--np-card);background-image:var(--np-grain);border:1px solid var(--np-ink);color:var(--np-ink);filter:drop-shadow(3px 4px 0 rgba(0,0,0,.45));rotate:.8deg}
+#hudNext[hidden]{display:none}
+#hudNext .hnL{background:var(--np-ink);color:var(--np-card);font:7px/1 var(--px);letter-spacing:.18em;padding:0 9px;display:flex;align-items:center}
+#hudNext .hnT{font:30px/1 var(--vt);padding:3px 12px 4px;font-variant-numeric:tabular-nums;letter-spacing:.04em}
 .hud .panel{background:var(--np-card);background-image:var(--np-grain);border:1px solid var(--np-ink);clip-path:none;padding:0;min-width:0;color:var(--np-ink);filter:drop-shadow(3px 4px 0 rgba(0,0,0,.45));rotate:-1.5deg}
 .hud .panel.r{rotate:1.5deg;text-align:right}
 .hud .lbl{display:block;background:var(--np-ink);color:var(--np-card);font:7px/1 var(--px);letter-spacing:.18em;padding:5px 8px 4px;margin:0;text-align:left}
@@ -1823,6 +1827,7 @@ body.pinning #card #headline{font-size:23px}
     <div class="mid"><div id="dots"></div><p id="roundLbl">HEADLINE 1/10</p></div>
     <div class="panel r"><span class="lbl">SCORE</span><span class="val sv"><span id="delta"></span><span id="score">0</span></span></div>
   </div>
+  <p id="hudNext" hidden><span class="hnL">NEXT PAPER IN</span><span class="hnT" id="hnT">--:--:--</span></p>
   <div id="log" aria-label="Headline log"><span class="lbl">YOUR HEADLINES</span><ol id="logList"></ol></div>
   </div>
 
@@ -3607,6 +3612,7 @@ const FAKE_BASE = 50, FOOLED_BASE = 25, TRUE_BASE = 180, JAW_SCALE = 1000;   // 
 let FAKE_PTS = 50;
 
 function startGame(mode, kind){
+  $('hudNext').hidden=true;
   if(typeof Intro!=='undefined' && Intro.planetOn()) Intro.hide(true);
   if(typeof Intro!=='undefined') setTimeout(Intro.check,60);   // a fresh start opens on the planet; a finished day shows it zoomed out   // a finished day has no ready button: drop straight to the room
   if(kind) KIND = kind;
@@ -4164,14 +4170,15 @@ function renderStats(){
 let CD_T=0;
 function runCountdown(){
   clearInterval(CD_T);
-  const el=$('nextEd');
+  const el=$('nextEd'), hn=$('hnT');
   const tick=()=>{
     // a new paper comes out every midnight US Eastern
-    if(dayKey()<todayKey()){ el.textContent='A NEW EDITION IS OUT · RELOAD'; return; }
+    if(dayKey()<todayKey()){ el.textContent='A NEW EDITION IS OUT · RELOAD'; hn.textContent='OUT NOW · RELOAD'; return; }
     const o=etParts(new Date());
     const s=o ? 86400-(+o.hour*3600 + +o.minute*60 + +o.second) : 0;
-    el.textContent = s>0 ? 'NEXT EDITION '+pad(Math.floor(s/3600))+':'+pad(Math.floor(s%3600/60))+':'+pad(s%60)
-                         : 'A NEW EDITION IS OUT · RELOAD';
+    const t=pad(Math.floor(s/3600))+':'+pad(Math.floor(s%3600/60))+':'+pad(s%60);
+    el.textContent = s>0 ? 'NEXT EDITION '+t : 'A NEW EDITION IS OUT · RELOAD';
+    hn.textContent = s>0 ? t : 'OUT NOW · RELOAD';
   };
   tick(); CD_T=setInterval(tick,1000);
 }
@@ -4329,7 +4336,7 @@ function finish(restored){
   }).join('');
   if(S.kind==='blank') blankStats().then(st=>{ document.querySelectorAll('#recapList .rs').forEach(el=>{ const t=gotItText(st,+el.dataset.bi); if(t) el.textContent=t; }); });
   const daily=S.mode==='daily';
-  $('nextEd').hidden=!daily; if(daily) runCountdown();
+  $('nextEd').hidden=!daily||S.kind==='blank'; $('hudNext').hidden=!(daily&&S.kind==='blank'); if(daily) runCountdown();   // Fill the Blank shows it up top, under the jaw and score boxes
   const others=['call','blank'].concat(POL_ON&&DAILY&&DAILY.politics&&DAILY.politics.length?['pol']:[]).filter(k=>k!==S.kind);
   const need=k=>DAILY ? (k==='blank'?Math.min(BLANK_N,(DAILY.blank||[]).length):((k==='pol'?DAILY.politics:DAILY.call)||[]).length) : (k==='blank'?BLANK_N:ROUND_LEN);
   const todo=others.find(k=>{ const s=load(saveKey(k)); return !(s && s.date===dayKey() && s.results && s.results.length>=need(k)); });
