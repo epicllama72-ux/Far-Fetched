@@ -195,18 +195,6 @@
   },
   {
    "h": "Federal judge orders state to let Satanic Temple hold one-day holiday event in the Capitol rotunda in {}",
-   "h2": "Federal judge orders state to let Satanic Temple hold one-day holiday [] in the Capitol rotunda in Des Moines, Iowa",
-   "ans": [
-    "event",
-    "events"
-   ],
-   "alt": [
-    "party",
-    "festival",
-    "display",
-    "gathering",
-    "celebration"
-   ],
    "place": "Des Moines, Iowa",
    "geocode": "Des Moines, Iowa, USA",
    "lat": 41.5868,
@@ -219,9 +207,9 @@
    "mappable": 3,
    "unbelievable": 3,
    "theme": "religion",
-   "src": "https://apnews.com/article/satanic-temple-iowa-holiday-event-order-1a2ff9e67b79b249ebabc5b8aca4700d",
-   "published": "2026-11-03",
-   "banked": "2026-11-05",
+   "src": "https://www.nbcnews.com/news/us-news/federal-judge-orders-iowa-satanic-temple-hold-holiday-capitol-rcna607149",
+   "published": "2026-11-02",
+   "banked": "2026-11-15",
    "rules": 2,
    "daily_only": true,
    "jargon_only": false
