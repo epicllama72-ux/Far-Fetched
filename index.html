@@ -1059,9 +1059,34 @@ body.pinDone #mapToggle{display:block}
 #summary canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rendering:crisp-edges;background:#0b0e14;border:1px solid #232a38}
 #sumRank{margin:8px 0 2px;font:9px/1.4 var(--px);letter-spacing:.16em;color:var(--cyan);text-transform:uppercase}
 #sumRank b{font-weight:400;color:var(--accent)}
-#btnChallenge{display:block;margin:14px auto 0;padding:9px 16px;background:transparent;border:2px solid var(--accent);color:var(--accent);font:9px/1 var(--px);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;box-shadow:3px 3px 0 #000}
-#btnChallenge:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
-#btnChallenge[hidden]{display:none}
+/* Challenge your friends: create a group / I have a code / send a challenge */
+#chalBox{margin:16px 0 4px}#chalBox[hidden]{display:none}
+#chalBox .chalH{justify-content:center;margin:0 0 10px;color:var(--accent)}
+#chalBox .chalH::after,#final.news #chalBox .chalH::after{display:none}
+.chalRule{border:0;border-top:3px double #5d6577;margin:0 0 16px}.chalRule.chalEnd{margin:16px 0 0}
+.chalTwo{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+.chalCol{display:flex;flex-direction:column;align-items:center;gap:9px}
+.chalBig{all:unset;box-sizing:border-box;width:100%;text-align:center;cursor:pointer;border:2px solid var(--accent);color:var(--accent);font:9px/1.5 var(--px);letter-spacing:.08em;text-transform:uppercase;padding:12px 6px 10px;box-shadow:3px 3px 0 #000}
+.chalBig:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
+.chalBig svg{display:block;margin:0 auto 10px}
+.chalBig[aria-expanded="true"]{background:#a8231a;color:#ece5d1;border-color:#a8231a}
+.chalCode{all:unset;cursor:pointer;font:21px/1 var(--vt);color:#9aa3b5;text-decoration:underline;text-underline-offset:3px}
+.chalBig:focus-visible,.chalCode:focus-visible{outline:3px solid #ffcc4d;outline-offset:2px}
+.chalDrawer{margin-top:14px;border:2px solid #5d6577;padding:12px}.chalDrawer[hidden]{display:none}
+.chalDrawer label{display:block;font:8px/1.4 var(--px);letter-spacing:.1em;margin-bottom:8px}
+.chalDrawer p{font:19px/1.1 var(--vt);margin:8px 0 0;color:#9aa3b5}
+.chalRow{display:flex;gap:8px}
+.chalRow input{flex:1;min-width:0;font:22px var(--vt);padding:6px 8px;border:2px solid #5d6577;background:#0b0e14;color:#eef0f4;border-radius:0}
+.chalRow button{all:unset;cursor:pointer;background:#a8231a;color:#ece5d1;font:8px/1 var(--px);letter-spacing:.1em;padding:0 12px;text-transform:uppercase}
+.chalRow button:disabled{opacity:.5}
+#final.news #chalBox .chalH{color:var(--npInk)}
+#final.news .chalRule{border-top-color:var(--npInk)}
+#final.news .chalBig{background:var(--npInk);color:var(--np);border:0;box-shadow:3px 3px 0 rgba(0,0,0,.3)}
+#final.news .chalBig[aria-expanded="true"]{background:#a8231a}
+#final.news .chalCode,#final.news .chalDrawer p{color:var(--npDim)}
+#final.news .chalDrawer{border-color:var(--npInk)}#final.news .chalDrawer label{color:var(--npInk)}
+#final.news .chalRow input{background:#f6f0de;color:var(--npInk);border-color:var(--npInk)}
+
 .slbl{margin:16px 0 6px;font:8px/1 var(--px);letter-spacing:.18em;color:#9aa3b5;display:flex;gap:10px;align-items:center}
 .slbl span{color:#5d6577}
 .slbl::after{content:'';flex:1;border-top:1px dashed #2d3444}
@@ -1495,7 +1520,6 @@ body.intro #ausBar{display:none}
 #final.news #sumRank{color:var(--npInk)}#final.news #sumRank b{color:#a8231a}
 #final.news #vsLine{background:transparent;border:1px solid var(--npInk)}#final.news #vsLine .vsH{color:var(--npInk)}#final.news #vsLine .vsRow{color:var(--npInk)}#final.news #vsLine .vsRow i{background:var(--npInk)}
 #final.news #crowdTop{color:var(--npInk)}#final.news #crowdTop b{color:#a8231a}
-#final.news #btnChallenge{margin:12px auto 4px;background:var(--npInk);color:var(--np);border:0;box-shadow:3px 3px 0 rgba(0,0,0,.3)}
 #final.news #tiers li{border-bottom:1px dotted #9c917c;color:var(--npDim)}
 #final.news #tiers li b,#final.news #tiers li .tn{color:var(--npInk)}
 #final.news #tiers li .tl{color:var(--npDim)}
@@ -1873,7 +1897,17 @@ body.pinning #card #headline{font-size:23px}
       <p class="slbl">YOUR DIG <span>deeper = more points</span></p>
       <canvas id="digLog" width="320" height="190" aria-label="Points per headline"></canvas>
       <p class="npCap">Each line is one headline, dropped as far as its points went.</p>
-      <button id="btnChallenge" class="challenge" type="button" hidden>Challenge a friend</button>
+      <div id="chalBox" hidden>
+        <p class="slbl chalH">CHALLENGE YOUR FRIENDS</p>
+        <hr class="chalRule">
+        <div class="chalTwo">
+          <div class="chalCol"><button class="chalBig" id="chalGroup" type="button" aria-expanded="false" aria-controls="chalGroupBox"><svg width="45" height="24" viewBox="0 0 15 8" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="1" y="1" width="3" height="2"/><rect x="0" y="4" width="5" height="4"/><rect x="6" y="0" width="3" height="3"/><rect x="5" y="4" width="5" height="4"/><rect x="11" y="1" width="3" height="2"/><rect x="10" y="4" width="5" height="4"/></g></svg>Create a group</button><button class="chalCode" id="chalCodeBtn" type="button" aria-expanded="false" aria-controls="chalCodeBox">I have a code</button></div>
+          <div class="chalCol"><button class="chalBig" id="btnChallenge" type="button"><svg width="45" height="24" viewBox="0 0 15 8" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="1" y="1" width="13" height="1"/><rect x="2" y="2" width="11" height="1"/><rect x="3" y="3" width="9" height="1"/><rect x="4" y="4" width="7" height="1"/><rect x="5" y="5" width="5" height="1"/><rect x="6" y="6" width="3" height="1"/></g></svg><span id="chalLbl">Send a challenge</span></button></div>
+        </div>
+        <div class="chalDrawer" id="chalGroupBox" hidden><label for="chalName">NAME YOUR GROUP</label><div class="chalRow"><input id="chalName" maxlength="40" placeholder="The Smith family" autocomplete="off"><button type="button" id="chalMake">Create</button></div><p>You get a link to send. Anyone who joins shares a private board with you.</p></div>
+        <div class="chalDrawer" id="chalCodeBox" hidden><label for="chalCode">PASTE A CODE OR INVITE LINK</label><div class="chalRow"><input id="chalCode" maxlength="80" placeholder="AB12CD" autocapitalize="characters" autocomplete="off"><button type="button" id="chalJoin">Join</button></div></div>
+        <hr class="chalRule chalEnd">
+      </div>
       <p class="slbl">THE SCALE</p>
       <ol id="tiers"></ol>
     </div>
@@ -4209,7 +4243,7 @@ function paperize(cv,force){   // recolour a chart drawn for the dark screens as
 }
 function renderSummary(total,max,mineM){
   renderLetters();
-  $('btnChallenge').hidden = S.mode!=='daily';      // a challenge only makes sense on the shared daily paper
+  $('chalBox').hidden = S.mode!=='daily';      // a challenge only makes sense on the shared daily paper
   const k=tierOf(total,max), cut=TIERS.map(t=>Math.round(t.f*max/50)*50);
   $('tiers').innerHTML=TIERS.map((t,i)=>{
     const lo=cut[i], hi=i<TIERS.length-1?cut[i+1]-1:max;
@@ -4661,11 +4695,36 @@ async function challenge(){
       catch(e){ if(e && e.name==='AbortError'){ settleBar(true); return; } }
     }
     await navigator.clipboard.writeText(text);
-    btn.textContent='Copied!';
-  }catch(e){ btn.textContent='Copy failed'; }
-  setTimeout(()=>btn.textContent='Challenge a friend',1500);
+    $('chalLbl').textContent='Copied!';
+  }catch(e){ $('chalLbl').textContent='Copy failed'; }
+  setTimeout(()=>$('chalLbl').textContent='Send a challenge',1500);
 }
 $('btnChallenge').onclick=challenge;
+(function(){   // create a group or join with a code, straight from the summary; both end on that group's leaderboard
+  const drawer=(id,btn,focusId)=>{ const open=$(id).hidden; ['chalGroupBox','chalCodeBox'].forEach(x=>$(x).hidden=true); $(id).hidden=!open;
+    $('chalGroup').setAttribute('aria-expanded',String(!$('chalGroupBox').hidden)); $('chalCodeBtn').setAttribute('aria-expanded',String(!$('chalCodeBox').hidden)); if(open) $(focusId).focus(); };
+  $('chalGroup').onclick=()=>drawer('chalGroupBox','chalGroup','chalName');
+  $('chalCodeBtn').onclick=()=>drawer('chalCodeBox','chalCodeBtn','chalCode');
+  const make=async()=>{
+    const n=$('chalName').value.trim(); if(!n){ $('chalName').focus(); return; }
+    $('chalMake').disabled=true;
+    const g=await sbRpc('group_create',{p_player:playerId(),p_name:n});
+    $('chalMake').disabled=false;
+    if(!g || g.error){ showToast(g&&g.error==='too_many' ? 'You can make up to 10 groups.' : "Couldn't make the group. Try again."); return; }
+    MY_GROUPS=MY_GROUPS.filter(x=>x.code!==g.code).concat([g]); store('ff_groups',MY_GROUPS);
+    await openBoard(); renderGroupBoard(g.code);
+  };
+  $('chalMake').onclick=make; $('chalName').onkeydown=e=>{ if(e.key==='Enter') make(); };
+  const join=async()=>{
+    let v=$('chalCode').value.trim(); const m=v.match(/[?&]g=([A-Za-z0-9]+)/); if(m) v=m[1];
+    v=v.replace(/[^A-Za-z0-9]/g,'').toUpperCase(); if(!v){ $('chalCode').focus(); return; }
+    $('chalJoin').disabled=true;
+    const j=await joinGroup(v);
+    $('chalJoin').disabled=false;
+    if(j){ await openBoard(); renderGroupBoard(j.code); }
+  };
+  $('chalJoin').onclick=join; $('chalCode').onkeydown=e=>{ if(e.key==='Enter') join(); };
+})();
 function shareUrl(tag){        // tag labels where the visit came from (GoatCounter reads ?ref=): friend shares otherwise show up as "unknown"
   tag=tag||'share';
   if(S.mode!=='daily' || window.claude) return siteUrl()+(window.claude?'':'?ref='+tag);
@@ -4797,7 +4856,7 @@ async function share(){
       catch(e){ if(e && e.name==='AbortError'){ settleBar(true); return; } }
     }
     await navigator.clipboard.writeText(text);
-    btn.textContent='Copied!';
+    $('chalLbl').textContent='Copied!';
   }catch(e){ btn.textContent='Copy failed'; }
   setTimeout(()=>btn.textContent='Share ↗',1500);
   settleBar(true);
