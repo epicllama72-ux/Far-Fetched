@@ -129,19 +129,25 @@ for _name, _gl, _ceid in [("US", "US", "US:en"), ("UK", "GB", "GB:en"), ("Austra
     FEEDS.append((f"Google News odd ({_name})", f"https://news.google.com/rss/search?q={_ODD_Q}&hl=en-{_gl}&gl={_gl}&ceid={_ceid}"))
     FEEDS.append((f"Google News crime ({_name})", f"https://news.google.com/rss/search?q={_ODD_Q3}&hl=en-{_gl}&gl={_gl}&ceid={_ceid}"))
     FEEDS.append((f"Google News absurd ({_name})", f"https://news.google.com/rss/search?q={_ODD_Q2}&hl=en-{_gl}&gl={_gl}&ceid={_ceid}"))
+
+# A second, year-long pass of the worldwide odd-news searches and the language editions: the Daily Dig may use any story from the past year.
+for _n, _u in list(FEEDS):
+    if "news.google.com/rss/search" in _u and "when%3A30d" in _u and (_n.startswith("Google News odd (") or re.fullmatch(r"Google News [a-z]{2,3}(-[A-Z]{2})?", _n)):
+        FEEDS.append((_n + " (year)", _u.replace("when%3A30d", "when%3A365d")))
 POL_FEEDS = [  # Google News searches for odd local-government and election stories worldwide
     ("Google News: odd elections", "https://news.google.com/rss/search?q=" + urllib.parse.quote('(election OR candidate OR ballot) (tie OR "coin toss" OR "dog mayor" OR bizarre OR unusual) when:21d') + "&hl=en-US&gl=US&ceid=US:en"),
     ("Google News: odd councils", "https://news.google.com/rss/search?q=" + urllib.parse.quote('(council OR parliament OR lawmakers OR mayor) (bizarre OR quirky OR unusual OR "honorary mayor") when:21d') + "&hl=en-US&gl=US&ceid=US:en"),
     ("UPI Odd News", "https://rss.upi.com/news/odd_news.rss"),
 ]
-MAX_AGE_DAYS = 30
+MAX_AGE_DAYS = 365      # the Daily Dig may use any odd story from the past year; newer ones win when two are equally good (see merit and screen)
 POL_MAX_AGE_DAYS = 45
 N_POL_REAL, N_POL_FAKE = 5, 2   # Politics: 5 true + exactly 2 fakes
 N_CALL_REAL, N_CALL_FAKE, N_BLANK = 5, 2, 5   # Daily Dig: 5 true + exactly 2 fakes
 SCREEN_TOP = 50
 SCREEN_PER_COUNTRY = 7  # at most this many shortlisted stories from one country
 # how many screened candidates get their article fetched and go to the editor
-BANK_DAYS, BANK_KEEP, BANK_MAX = 30, 365, 400   # Real or Fake takes banked stories up to 30 days old; Fill the Blank any up to a year
+BANK_DAYS, BANK_KEEP, BANK_MAX = 30, 365, 1500   # fakes and politics take banked items up to 30 days old; banked real stories never expire from the Daily Dig (see DAILY_BANK_DAYS)
+DAILY_BANK_DAYS = 3650
 RULES = 2              # bump when the picking rules change: banked stories chosen under older rules are dropped   # banked stories expire after this many days; keep at most this many
 
 
@@ -468,7 +474,7 @@ def screen(cands, model, top=SCREEN_TOP):
     if len(scores) < min(len(cands), top) // 2:
         print(f"  screening returned {len(scores)} scores; using a random slice instead", file=sys.stderr)
         return cands[:top]
-    order = sorted(range(len(cands)), key=lambda i: scores.get(i, -1), reverse=True)
+    order = sorted(range(len(cands)), key=lambda i: scores.get(i, -1) - age_penalty(cands[i].get("published"), 0.5), reverse=True)   # newer wins ties
     # Spread the shortlist over the world: at most SCREEN_PER_COUNTRY stories from any one country.
     best, per = [], {}
     for i in order:
@@ -1191,12 +1197,21 @@ def map_score(r):
         return 2
 
 
+def age_penalty(published, most):
+    """A small tie-break that favours newer stories: 0 for today's news, `most` for anything a year old or older."""
+    try:
+        days = (dt.date.today() - dt.date.fromisoformat(str(published)[:10])).days
+        return most * min(max(days, 0), 365) / 365
+    except Exception:
+        return 0
+
+
 def merit(r):
     try:
         u = int(r.get("unbelievable", 2) or 2)
         curated = 3 if (r.get("daily_only") or r.get("priority")) else 0      # hand-picked by the owner
         taste = 3 * (float(r["taste"]) - 5) if r.get("taste") else 0          # the harsh second editor: +-15 swings a pick
-        return 5 * u + eff_strength(r) + 0.5 * map_score(r) + curated + 0.5 * r.get("_fresh", 0) + taste
+        return 5 * u + eff_strength(r) + 0.5 * map_score(r) + curated + 0.5 * r.get("_fresh", 0) + taste - age_penalty(r.get("published"), 1.5)
     except Exception:
         return 1
 
@@ -1554,14 +1569,15 @@ def main():
     bank_path = os.path.join(DATA, "bank.json")
     bank = json.load(open(bank_path)) if os.path.exists(bank_path) else {}
     oldest = (dt.date.fromisoformat(day) - dt.timedelta(days=BANK_DAYS)).isoformat()
+    real_oldest = (dt.date.fromisoformat(day) - dt.timedelta(days=DAILY_BANK_DAYS)).isoformat()   # banked real stories do not expire from the Daily Dig
     fresh_src = {r["src"] for r in fresh}
     held = [r for r in bank.get("real", []) if r.get("hold")]     # banked on request but not for automatic use (injury / violence): kept, never picked
-    bank_real = [r for r in bank.get("real", []) if not r.get("hold") and not r.get("blank_only") and r.get("rules", 1) >= RULES and r.get("banked", "") >= oldest and r.get("banked") != day
+    bank_real = [r for r in bank.get("real", []) if not r.get("hold") and not r.get("blank_only") and r.get("rules", 1) >= RULES and r.get("banked", "") >= real_oldest and r.get("banked") != day
                  and r.get("src") not in used and r.get("src") not in fresh_src and not valid_real(r)]
     keep_from = (dt.date.fromisoformat(day) - dt.timedelta(days=BANK_KEEP)).isoformat()
     bank_blank = [r for r in bank.get("real", []) if r.get("blank_only") and r.get("h2") and r.get("rules", 1) >= RULES and r.get("banked", "") >= keep_from
                   and r.get("src") not in used]
-    bank_old = [r for r in bank.get("real", []) if not r.get("hold") and not r.get("blank_only") and r.get("rules", 1) >= RULES and keep_from <= r.get("banked", "") < oldest
+    bank_old = [r for r in bank.get("real", []) if not r.get("hold") and not r.get("blank_only") and r.get("rules", 1) >= RULES and keep_from <= r.get("banked", "") < real_oldest
                 and r.get("src") not in used and r.get("src") not in fresh_src and r.get("h2")]
     bank_fake = [f for f in bank.get("fake", []) if f.get("rules", 1) >= RULES and (f.get("banked", "") >= oldest or f.get("hand")) and f.get("banked") != day and valid_fake(f)]   # hand-written fakes never expire
     prior = prior_stories(day)
