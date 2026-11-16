@@ -1144,6 +1144,7 @@ body.pinDone #mapToggle{display:block}
 .mkd.ok{background:var(--good)}.mkd.meh{background:#d9a441}.mkd.warm{background:#e07a3a}.mkd.no{background:var(--bad)}.mkd.fake{background:#4a8fe0}.mkd.fooled{background:#14161c;box-shadow:0 0 0 1px #ff5d73}
 #skipRecap{display:none;position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:5;width:auto;margin:0;padding:10px 22px;font-size:22px}
 body.recap #skipRecap{display:block}
+body.recap.quick #skipRecap{display:none}
 body.recap .rcol,body.recap #mapWrap,body.recap #toast,body.recap #log{visibility:hidden}
 body.recap #bar{display:none}
 #recap{margin:4px 0 8px}
@@ -2680,7 +2681,11 @@ const Scene = (function(){
       // the recap: first a quick accelerating scroll back up to the top of the room, then a slow scroll
       // down to where the jaw ended up that picks up a little speed as it goes
       const sstep=x=>x*x*(3-2*x);
-      if(t<recap.t0){
+      if(recap.quick){
+        const r=clamp((t-recap.tR)/Math.max(0.01,recap.t0-recap.tR),0,1);
+        camY=recap.from+(camMin-recap.from)*sstep(Math.pow(r,1.35));      // eases in (accelerates), then settles on the room view
+        if(r>=1 && !recap.finished){ recap.finished=true; camY=camMin; const d=recap.done; if(d) setTimeout(d,120); }
+      } else if(t<recap.t0){
         const r=clamp((t-recap.tR)/Math.max(0.01,recap.t0-recap.tR),0,1);
         camY=recap.from+(camMin-recap.from)*sstep(Math.pow(r,1.5));
       } else {
@@ -2688,7 +2693,7 @@ const Scene = (function(){
         const to=clamp(Math.max(13+target()+9,recap.maxLy+Math.ceil(70/PX))-focus*H,camMin,camMax);
         camY=camMin+(to-camMin)*e;
       }
-      if(t>=recap.t0+recap.dur && !recap.finished){ recap.finished=true; const d=recap.done; if(d) setTimeout(d,700); }
+      if(!recap.quick && t>=recap.t0+recap.dur && !recap.finished){ recap.finished=true; const d=recap.done; if(d) setTimeout(d,700); }
     } else if(browse) camY+=(browseY-camY)*(1-Math.exp(-dt*9));   // free scrolling on a finished day
     else camY+=(camFor()-camY)*(1-Math.exp(-dt*(panning?1.1:6)));
     const cy=chinY();
@@ -3455,9 +3460,15 @@ const Scene = (function(){
     recap=null; mks=[]; if(marksEl) marksEl.innerHTML='';
   }
   /* list: [{wy, html, cls}] with wy = world y of the chin after that answer. done() runs when the scroll ends. */
-  function playRecap(list,dur,done){
+  function playRecap(list,dur,done,quick){
     endRecap();
     if(reduce||!W||!list.length){ if(done) done(); return; }
+    if(quick){   // right after a finished dig: one smooth, quick, accelerating climb back up to the room, then the zoom out (no slow review)
+      const from=camY, dist=Math.abs(from-camMin);
+      if(dist<4){ camY=camMin; if(done) setTimeout(done,150); return; }
+      recap={tR:t,t0:t+clamp(0.85+dist/H*0.22,1.0,1.9),from,dur:0,done,finished:false,maxLy:0,quick:true};
+      return;
+    }
     if(!marksEl){ marksEl=document.createElement('div'); marksEl.id='marks'; document.body.appendChild(marksEl); }
     const half=11*PX, cxp=cx*PX;
     const deskW=window.innerWidth>=1100 && window.innerHeight>=600;
@@ -3624,7 +3635,7 @@ function startGame(mode, kind){
   if(kind) KIND = kind;
   try{ localStorage.setItem('ff_kind',KIND); localStorage.setItem('ff_kind_day',todayKey()); }catch(e){}
   stopTimer(); hideToast(); $('sheet').hidden=true;
-  RECAP_ON=false; document.body.classList.remove('recap','returned'); Scene.endRecap(); hideRarity();   // a pin's rarity popup must not follow the player into another mode
+  RECAP_ON=false; document.body.classList.remove('recap','returned','quick'); Scene.endRecap(); hideRarity();   // a pin's rarity popup must not follow the player into another mode
   const daily = mode === 'daily';
   const blank = KIND === 'blank', pol = KIND === 'pol';
   const r = daily ? rng(hash(todayKey()+KIND)) : Math.random;
@@ -4411,11 +4422,11 @@ function recapList(){
             html:'<b class="mp"><i class="mi">'+icon+'</i>'+(pts<0?'−'+Math.abs(pts):'+'+pts)+'</b><span class="ml">'+esc(tag)+'</span><span class="mh">'+esc(head)+'</span>'};
   }).filter(Boolean);
 }
-function endRecapUI(skipped){
+function endRecapUI(skipped,quick){
   if(!RECAP_ON) return;
-  RECAP_ON=false; Intro.hold(); document.body.classList.remove('recap');   // the summary waits until the planet has zoomed out
+  RECAP_ON=false; Intro.hold(); document.body.classList.remove('recap','quick');   // the summary waits until the planet has zoomed out
   Scene.endRecap(); Sound.play('fanfare'); aim(0.74);
-  setTimeout(()=>{ if(S && !RECAP_ON && !$('final').hidden) Intro.outro(Scene.info().zone, Scene.coreBlown()); else if(!RECAP_ON) Intro.hide(true); }, skipped?300:1400);   // zoom back out to the planet, damaged by how deep you dug
+  setTimeout(()=>{ if(S && !RECAP_ON && !$('final').hidden) Intro.outro(Scene.info().zone, Scene.coreBlown()); else if(!RECAP_ON) Intro.hide(true); }, skipped?300:quick?250:1400);   // zoom back out to the planet, damaged by how deep you dug
   if(S && S.newUnlocks && S.newUnlocks.length && !S.unlockPlayed){ S.unlockPlayed=true; setTimeout(()=>Sound.play('unlock'),500); }
 }
 function startRecap(auto){
@@ -4426,7 +4437,10 @@ function startRecap(auto){
   Intro.hold();                                     // the summary stays hidden through the replay and the zoom out
   const list=recapList();
   RECAP_ON=true; document.body.classList.add('recap'); closeMenu(); $('sheet').hidden=true;
-  Scene.playRecap(list, 5+1.9*list.length, ()=>endRecapUI());
+  if(auto){   // finishing a dig: back up to the room fast, then out to the planet. The slow review stays one tap away (Replay the dig).
+    document.body.classList.add('quick'); Sound.play('jawUp');
+    Scene.playRecap(list, 0, ()=>endRecapUI(false,true), true);
+  } else Scene.playRecap(list, 5+1.9*list.length, ()=>endRecapUI());
 }
 /* a streak lives while its last edition is today's or yesterday's, or the day before when a freeze can cover the gap */
 function streakCount(){
