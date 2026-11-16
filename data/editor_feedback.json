@@ -418,8 +418,8 @@
   {
    "kind": "headline",
    "before": "A whole 113-year-old wooden church is loaded onto trailers and rolled across {} to escape a mine",
-   "after": "A whole 113-year-old wooden church is loaded onto trailers to be moved 5 km away in {}",
-   "why": "owner: say how far it was moved instead of the mine detail (owner wrote '5 miles'; the source says 5 km, so the source's unit was kept)"
+   "after": "A whole 113-year-old wooden church is loaded onto trailers to be moved 5 kilometers away in {}",
+   "why": "owner: say how far it was moved (5 kilometers, spelled out)"
   },
   {
    "kind": "headline",
