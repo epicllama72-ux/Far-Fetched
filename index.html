@@ -4425,6 +4425,7 @@ function recapList(){
 function endRecapUI(skipped,quick){
   if(!RECAP_ON) return;
   RECAP_ON=false; Intro.hold(); document.body.classList.remove('recap','quick');   // the summary waits until the planet has zoomed out
+  if(quick && S){ Scene.browseStart(); S.returned=true; document.body.classList.add('returned'); }   // hold the camera at the room while the zoom out starts (otherwise it eases back down toward the jaw)
   Scene.endRecap(); Sound.play('fanfare'); aim(0.74);
   setTimeout(()=>{ if(S && !RECAP_ON && !$('final').hidden) Intro.outro(Scene.info().zone, Scene.coreBlown()); else if(!RECAP_ON) Intro.hide(true); }, skipped?300:quick?250:1400);   // zoom back out to the planet, damaged by how deep you dug
   if(S && S.newUnlocks && S.newUnlocks.length && !S.unlockPlayed){ S.unlockPlayed=true; setTimeout(()=>Sound.play('unlock'),500); }
