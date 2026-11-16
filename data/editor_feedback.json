@@ -426,6 +426,12 @@
    "before": "Email outage blocks a pool chlorine warning at a theme-park hotel's sauna; 40 firefighters treat 15 in {}",
    "after": "Email outage blocks a pool chlorine warning at a theme-park hotel's sauna in {}",
    "why": "owner: cut the 'firefighters treat 15' tail"
+  },
+  {
+   "kind": "headline",
+   "before": "Two Germans and a Pole are held at {}'s airport with over 3,000 tarantulas stuffed in dirty socks",
+   "after": "Two Germans and a Pole are held at the airport in {} with over 3,000 tarantulas stuffed in dirty socks",
+   "why": "owner: 'held at the airport in {}' reads better than \"{}'s airport\""
   }
  ]
 }
