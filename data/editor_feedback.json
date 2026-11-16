@@ -408,6 +408,12 @@
    "before": "Chicago bean statue / Diet Coke / Aurora fart police (4 of 5 true stories were US)",
    "after": "Lima tarantulas / Kiruna church / Thailand coffin",
    "why": "owner: limit one story per country a day; the Chicago story had already been rejected once"
+  },
+  {
+   "kind": "headline",
+   "before": "Man missing for years is told by the National Insurance Institute in Jerusalem, Israel to pay back []",
+   "after": "Man missing for years is told by the National Insurance Institute in Jerusalem to pay back []",
+   "why": "owner: drop the country name when the city already points to it (Fill the Blank)"
   }
  ]
 }
