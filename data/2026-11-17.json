@@ -15,14 +15,14 @@
   },
   {
    "real": true,
-   "h": "Police in {} leave a taped-up speaker as fake cash for phone scammers; a courier, 32, reaches into the mailbox",
-   "hint": "where Kim Dae-jung went to school",
-   "lat": 34.9103,
-   "lng": 126.4378,
-   "place": "Mokpo, South Korea",
-   "src": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBOTjA4c1NLMkE5UDgyclhzaFJTYS1Ia3NxVlh0eFRUZUY2OVRLTElEZUFTVENhRllRSnhCRllhYkJZSk9iUlNzdWlWSnRoQU9JQUQ2Wkt5WQ?oc=5",
-   "published": "2026-11-16",
-   "clue": "emergency number 112 and phone-scam culture = East Asia"
+   "h": "Two pensioners climb a traffic light pole in {} to cut the wires of sensors they call 'electronic assault weapons'",
+   "hint": "home of Damien Hirst's Verity",
+   "lat": 51.2077,
+   "lng": -4.1233,
+   "place": "Ilfracombe, Devon",
+   "src": "https://www.odditycentral.com/news/group-of-conspiracy-theorists-damage-traffic-light-sensors-they-claim-are-actually-assault-weapons.html?utm_source=rss&utm_medium=rss&utm_campaign=group-of-conspiracy-theorists-damage-traffic-light-sensors-they-claim-are-actually-assault-weapons",
+   "published": "2026-09-14",
+   "clue": "UK traffic-light sensors and two pensioners = a British coastal town"
   },
   {
    "real": false,
@@ -30,13 +30,8 @@
    "tell": "Alcohol widens blood vessels and speeds up heat loss, so it does not warm the body's core."
   },
   {
-   "real": false,
-   "h": "Daredevil in a tuxedo rides a Ferris wheel in {} for 19 days, logging 4,310 laps of 35 minutes each",
-   "tell": "19 days is 27,360 minutes, which fits about 781 laps of 35 minutes, not 4,310."
-  },
-  {
    "real": true,
-   "h": "Woman in {} fights 8 years of noisy upstairs neighbours with a steel pot and an iPad that reflect the sound",
+   "h": "Woman in {} fights 8 years of noisy upstairs neighbours with an iPad mounted on a steel pot to reflect the sound",
    "hint": "host of the annual ASEAN Expo",
    "lat": 22.8158,
    "lng": 108.318,
@@ -55,6 +50,11 @@
    "src": "https://en.wikipedia.org/wiki/Brian_Robson",
    "published": "1965-01-01",
    "clue": "Brian Robson's crate was rerouted to Los Angeles; mid-1960s, sources differ betw"
+  },
+  {
+   "real": false,
+   "h": "Daredevil in a tuxedo rides a Ferris wheel in {} for 19 days, logging 4,310 laps of 35 minutes each",
+   "tell": "19 days is 27,360 minutes, which fits about 781 laps of 35 minutes, not 4,310."
   },
   {
    "real": true,
@@ -94,28 +94,25 @@
   },
   {
    "real": true,
-   "h2": "Two [] in Ilfracombe, England climb a traffic light pole to cut wires of sensors they call 'electronic assault weapons'",
+   "h2": "Police in Mokpo, South Korea leave a taped-up [] as fake cash for phone scammers; a courier, 32, reaches into the mailbox",
    "ans": [
-    "pensioners",
-    "pensioner",
-    "retirees",
-    "seniors",
-    "oldies",
-    "elderly"
+    "speaker",
+    "speakers",
+    "loudspeaker",
+    "subwoofer"
    ],
    "alt": [
-    "couple",
-    "vandals",
-    "men",
-    "women",
-    "pranksters",
-    "activists",
-    "protesters"
+    "box",
+    "parcel",
+    "package",
+    "bag",
+    "brick",
+    "phone",
+    "radio"
    ],
-   "place": "Ilfracombe, Devon",
-   "src": "https://www.odditycentral.com/news/group-of-conspiracy-theorists-damage-traffic-light-sensors-they-claim-are-actually-assault-weapons.html?utm_source=rss&utm_medium=rss&utm_campaign=group-of-conspiracy-theorists-damage-traffic-light-sensors-they-claim-are-actually-assault-weapons",
-   "published": "2026-09-14",
-   "vec": "6woygd0a8ySnCwTWWPgW1A0bWenv9c0V6vYI1vYkPX0PLuAY98o089n+KCD9vqISCOQ="
+   "place": "Mokpo, South Korea",
+   "src": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBOTjA4c1NLMkE5UDgyclhzaFJTYS1Ia3NxVlh0eFRUZUY2OVRLTElEZUFTVENhRllRSnhCRllhYkJZSk9iUlNzdWlWSnRoQU9JQUQ2Wkt5WQ?oc=5",
+   "published": "2026-11-16"
   },
   {
    "real": true,
