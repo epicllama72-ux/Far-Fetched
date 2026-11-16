@@ -450,6 +450,12 @@
    "before": "fakes at Daily Dig positions 3 and 4 side by side",
    "after": "fakes at positions 3 and 6",
    "why": "owner: spread the two fakes out"
+  },
+  {
+   "kind": "clue",
+   "before": "host of the 1956 Summer Olympics",
+   "after": "the sports capital of the land down under",
+   "why": "owner: Melbourne's clue should read as the sports capital of the land down under"
   }
  ]
 }
