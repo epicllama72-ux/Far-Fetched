@@ -22,7 +22,8 @@
   "FAKE DIFFICULTY: each fake should fool 30-35% of players (called real). The builder measures every fake's fooled share from saved scores (data/fake_stats.json) and shows the writer and the judge what landed on target, too easy (<25%) or too hard (>45%).",
   "FAKES: the person should be unusual in the headline itself (a costume, a strange habit), so the fake is a weird story first and a slip-with-a-headline second.",
   "BANK: the 32 hand-written fakes from Nov 10 (impossible events, animals as the joke, dull transactions) were removed from the fake bank at the owner's request.",
-  "COUNTRIES: one story per country in a paper (Daily Dig reals). The builder swaps repeats for the best story from a new country."
+  "COUNTRIES: one story per country in a paper (Daily Dig reals). The builder swaps repeats for the best story from a new country.",
+  "CLUES: in every Daily Dig, two of the five real stories (the two with the weakest clues) get a slightly better-known clue than usual: something a well-read person on any continent would know, still true of the place and never naming the country, state or a neighbouring place."
  ],
  "edits": [
   {
