@@ -432,6 +432,24 @@
    "before": "Two Germans and a Pole are held at {}'s airport with over 3,000 tarantulas stuffed in dirty socks",
    "after": "Two Germans and a Pole are held at the airport in {} with over 3,000 tarantulas stuffed in dirty socks",
    "why": "owner: 'held at the airport in {}' reads better than \"{}'s airport\""
+  },
+  {
+   "kind": "selection",
+   "before": "Daily Dig 2: Mokpo fake-cash speaker; Fill the Blank 2: Ilfracombe pensioners",
+   "after": "Daily Dig 2: Ilfracombe pensioners; Fill the Blank 2: Mokpo fake-cash speaker",
+   "why": "owner swapped them (the pensioners and the traffic-light sensors read better as a Daily Dig story)"
+  },
+  {
+   "kind": "headline",
+   "before": "Woman in {} fights 8 years of noisy upstairs neighbours with a steel pot and an iPad that reflect the sound",
+   "after": "Woman in {} fights 8 years of noisy upstairs neighbours with an iPad mounted on a steel pot to reflect the sound",
+   "why": "owner: describe the device as one thing, an iPad mounted on a steel pot"
+  },
+  {
+   "kind": "order",
+   "before": "fakes at Daily Dig positions 3 and 4 side by side",
+   "after": "fakes at positions 3 and 6",
+   "why": "owner: spread the two fakes out"
   }
  ]
 }
