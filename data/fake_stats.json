@@ -266,7 +266,7 @@
    "i": 2,
    "h": "Alpine village in {} introduces mandatory yodel licences to curb avalanche-triggering noise",
    "tell": "A human voice can't trigger an avalanche.",
-   "n": 1916,
+   "n": 1919,
    "pct": 35.1
   },
   {
@@ -274,24 +274,40 @@
    "i": 6,
    "h": "Retired captain, 68, fined in {} for teaching little penguins to steal tourists' sunglasses",
    "tell": "Little penguins come ashore only after dark, when nobody wears sunglasses.",
-   "n": 1916,
-   "pct": 31.9
+   "n": 1919,
+   "pct": 32.0
   },
   {
    "day": "2026-11-15",
    "i": 4,
    "h": "Burglar in {} wearing a bridal gown is caught when his crime-scene Instagram selfie from 2008 is unearthed",
    "tell": "Instagram didn't launch until 2010.",
-   "n": 102,
-   "pct": 36.3
+   "n": 1526,
+   "pct": 37.4
   },
   {
    "day": "2026-11-15",
    "i": 5,
    "h": "Town council in {} bans red umbrellas after angry bull charges outdoor café patio",
    "tell": "Bulls are red-green colour-blind; they react to movement, not the colour red.",
-   "n": 102,
-   "pct": 63.7
+   "n": 1526,
+   "pct": 59.1
+  },
+  {
+   "day": "2026-11-16",
+   "i": 2,
+   "h": "Pensioner in {} wins a cook-off in a medieval monk's habit with a 1290 tomato sauce recipe",
+   "tell": "Tomatoes came to Europe from the Americas after 1500, so no 1290 recipe could use them.",
+   "n": 130,
+   "pct": 33.1
+  },
+  {
+   "day": "2026-11-16",
+   "i": 5,
+   "h": "Mayor in a spacesuit unveils a 60-metre rooftop sign in {} for astronauts on the Moon to read",
+   "tell": "From the Moon, about 384,000 km away, a 60-metre sign is far too small to see, let alone read.",
+   "n": 130,
+   "pct": 23.1
   }
  ]
 }

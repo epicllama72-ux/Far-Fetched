@@ -1,172 +1,179 @@
 {
- "date": "2026-11-16",
- "generated": "2026-11-15T07:06:45+00:00",
+ "date": "2026-11-17",
+ "generated": "2026-11-16T07:12:12+00:00",
  "call": [
   {
    "real": true,
-   "h": "Two Germans and a Pole are held at {}'s airport with over 3,000 tarantulas stuffed in dirty socks",
-   "hint": "a desert capital on the Pacific",
-   "lat": -12.0464,
-   "lng": -77.0428,
-   "place": "Lima, Peru",
-   "src": "https://www.smithsonianmag.com/smart-news/more-than-3000-tarantulas-were-found-hidden-in-socks-during-a-major-wildlife-trafficking-bust-at-an-airport-in-lima-peru-180989854/",
-   "published": "2026-11-05",
-   "clue": "Jorge Chávez airport seizure, spiders bound for Germany = Lima, Peru"
+   "h": "Hundreds in {} push a giant mirror-steel sculpture seven inches left to free a man who isn't inside it",
+   "hint": "setting of The Blues Brothers",
+   "lat": 41.8826,
+   "lng": -87.6225,
+   "place": "Chicago, Illinois",
+   "src": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOOC1JaE5fZHVaMjRrTGdJSUROYU1NRnFsLVVPbHB0bHJzVlZvVWgyTGt5ZmVzcGpHaTJ1S2hRXzJlLUpjejdveDdBQTIxWGl2SE5udnRXTHNzOWxuUHBmdUNsRWl2eDZwQ1JpWmFPV0x3OFZ5LVg3dUQySnJqazhubktjNnZiWUNYaWRoSGVVN2FWc2lCb0U3cHZvNDN3eHJFWVpIQ24tVmlmamo2X1prSnF3bnlpUjlqamlzbUVyX1pLVndfejEzVFdVWGc4Uk81Y3NNcXhsd3k5bEZsdUlOUE1jZmpHZ9IB6wFBVV95cUxOaXZEOVJfbEtib2tieHF3Umx1bXRneTZBcHFGY21CTzdKM0QxZ24ycjNoRFg0Q2pDd0xpRFNXSE5yNkttQlhVSTRmUXZEVTFWM3B4WmtYb0R1OWtTS2l4bjZtdTY3Vk55U3ltXzB4YUlCc3pkYUNCY3cyOEtxLVhKdU5fQUZQT1pOZjBnaDktOVNzQjNDX0lQWTBtSk45ci1reEEteEdfLUltRUoyaGJERWc4eGZaamxIaFhoVllCb3RSeXRsV25mNGg0NmR5ZUhNdUZRaU1xTXpieXhHaDVzdjQ4dlpvZEJBUVRv?oc=5",
+   "published": "2026-11-10",
+   "clue": "inches (imperial units) = US"
   },
   {
    "real": true,
-   "h": "A whole 113-year-old wooden church is loaded onto trailers to be moved 5 kilometers away in {}",
-   "hint": "a city north of the Arctic Circle",
-   "lat": 67.8558,
-   "lng": 20.2253,
-   "place": "Kiruna, Sweden",
-   "src": "https://www.bbc.com/news/articles/cde3xp4xlw9o",
-   "published": "2025-08-20",
-   "clue": "A wooden church moved away from an iron-ore mine = Kiruna, Sweden"
+   "h": "Police in {} leave a taped-up speaker as fake cash for phone scammers; a courier, 32, reaches into the mailbox",
+   "hint": "where Kim Dae-jung went to school",
+   "lat": 34.9103,
+   "lng": 126.4378,
+   "place": "Mokpo, South Korea",
+   "src": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBOTjA4c1NLMkE5UDgyclhzaFJTYS1Ia3NxVlh0eFRUZUY2OVRLTElEZUFTVENhRllRSnhCRllhYkJZSk9iUlNzdWlWSnRoQU9JQUQ2Wkt5WQ?oc=5",
+   "published": "2026-11-16",
+   "clue": "emergency number 112 and phone-scam culture = East Asia"
   },
   {
    "real": false,
-   "h": "Pensioner in {} wins a cook-off in a medieval monk's habit with a 1290 tomato sauce recipe",
-   "tell": "Tomatoes came to Europe from the Americas after 1500, so no 1290 recipe could use them."
+   "h": "Hiker in a Santa suit is saved in {} after rescuers warm his core with 3 shots of whisky",
+   "tell": "Alcohol widens blood vessels and speeds up heat loss, so it does not warm the body's core."
+  },
+  {
+   "real": false,
+   "h": "Daredevil in a tuxedo rides a Ferris wheel in {} for 19 days, logging 4,310 laps of 35 minutes each",
+   "tell": "19 days is 27,360 minutes, which fits about 781 laps of 35 minutes, not 4,310."
   },
   {
    "real": true,
-   "h": "Email outage blocks a pool chlorine warning at a theme-park hotel's sauna in {}",
-   "hint": "where painter Max Ernst was born",
-   "lat": 50.8291,
-   "lng": 6.9037,
-   "place": "Brühl, Germany",
-   "src": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9XRjlCeGN2OUhlNm5mZWRyQ3BfSW0xbEdVcUhXaC04bml4cS1VNEltN1M0V0I2Z2RqZ1YxSDVFYUIwZ3ZtQVpyZnJ1aDExZldaN3YtMHNoOGI4N3NDb0xHSUpkOG51d9IBa0FVX3lxTE5tZVMxS2ZuMWdzdTMyQXlZM3phZHh0cHBsT1FQaGtMTXZzdmZncEFUbjJYYThYdkx3aHZWUEt3bHZVS0d6WjgzT3VaZTJpbU5KU0dGak1nNE8tQU5peXFqTTVwWFVWV3pBSkpV?oc=5",
+   "h": "Woman in {} fights 8 years of noisy upstairs neighbours with a steel pot and an iPad that reflect the sound",
+   "hint": "host of the annual ASEAN Expo",
+   "lat": 22.8158,
+   "lng": 108.318,
+   "place": "Nanning, Guangxi",
+   "src": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFBsSi1wQldWNXdfMkhMRWE4QnV0Y1NaVENIUktkQVN5TWczQVpUOFptOTVKaVBldjZGOS15dnB0UWZjOEdmQW56d000WW0?oc=5",
+   "published": "2026-11-16",
+   "clue": "apartment block life and a family-run business = East Asia"
+  },
+  {
+   "real": true,
+   "h": "Homesick 19-year-old worker in {} has himself nailed into a crate to fly home as air cargo and ends up in Los Angeles",
+   "hint": "host of the 1956 Summer Olympics",
+   "lat": -37.8136,
+   "lng": 144.9631,
+   "place": "Melbourne, Victoria",
+   "src": "https://en.wikipedia.org/wiki/Brian_Robson",
+   "published": "1965-01-01",
+   "clue": "Brian Robson's crate was rerouted to Los Angeles; mid-1960s, sources differ betw"
+  },
+  {
+   "real": true,
+   "h": "Volunteers in {} beat 200 eggs for a giant omelette in a new cement mixer fitted with ten forks",
+   "hint": "a village in Puy lentil country",
+   "lat": 45.1851,
+   "lng": 4.2169,
+   "place": "Lapte, Haute-Loire",
+   "src": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQWVJSTWdXelE3UTVsZlctNlBfS3pxaVltMTAyeUdnMkFzM1RvcFRiYm9uQWJkV21jbk04UmVWUHVfdFhHVG1DYTlLaFhweGdVYXFNQmM3ZXRyWXljWlFaa0tpbGx5MldiR09GbkkxRmdhU2hYQkIydFdJVzFLX3B3bDZkRjdzMEdQTk1HcHhBSzg0TUJteTZkXzhoeFRYb05LZkJjSjlSMS1YMG44cFh1aF9Qa0tHaWxNTGVPWGQ0bUxfT0NtT1U2NzNn?oc=5",
    "published": "2026-11-15",
-   "clue": "theme-park hotel sauna and a chlorine warning; Rhineland"
-  },
-  {
-   "real": true,
-   "h": "Federal judge orders state to let Satanic Temple hold one-day holiday event in the Capitol rotunda in {}",
-   "hint": "host of the first-in-the-nation caucuses",
-   "lat": 41.5868,
-   "lng": -93.625,
-   "place": "Des Moines, Iowa",
-   "src": "https://www.nbcnews.com/news/us-news/federal-judge-orders-iowa-satanic-temple-hold-holiday-capitol-rcna607149",
-   "published": "2026-11-02",
-   "clue": "a state Capitol rotunda, a federal judge, a US state capital"
-  },
-  {
-   "real": false,
-   "h": "Mayor in a spacesuit unveils a 60-metre rooftop sign in {} for astronauts on the Moon to read",
-   "tell": "From the Moon, about 384,000 km away, a 60-metre sign is far too small to see, let alone read."
-  },
-  {
-   "real": true,
-   "h": "Woman declared dead wakes up in her coffin minutes before her cremation at a temple in {}",
-   "hint": "a city on the Chao Phraya",
-   "lat": 13.8591,
-   "lng": 100.5217,
-   "place": "Nonthaburi, Thailand",
-   "src": "https://www.cnn.com/2025/11/24/asia/thailand-woman-alive-coffin-cremation-intl-hnk",
-   "published": "2025-11-24",
-   "clue": "Buddhist temple cremation (Wat Rat Prakhong Tham) near Bangkok = Thailand"
+   "clue": "association dinner with oeufs; European village club culture"
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "Woman rattling a stranger's hotel door at midnight to 'borrow the []' turns out to be the guest downstairs in Kenting, Taiwan",
+   "h2": "Two men, 26 and 50, caught by the national guard stealing [] with poles and two sacks in Sesimbra, Portugal",
    "ans": [
-    "toilet",
-    "loo",
-    "bathroom",
-    "restroom",
-    "toilets",
-    "lavatory",
-    "washroom"
+    "pinecones",
+    "pinecone",
+    "cones",
+    "cone"
    ],
    "alt": [
-    "room",
-    "shower",
-    "key",
-    "phone",
-    "bed",
-    "lift"
+    "pinenuts",
+    "nuts",
+    "acorns",
+    "chestnuts",
+    "mushrooms",
+    "olives",
+    "oranges"
    ],
-   "place": "Kenting, Taiwan",
-   "src": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1LbGxyTm1VbVI4Vm5wazNoZHcxakRsdVFmM0FGMDFXQVlnRkFxaDdzTnVjQi13QUVpMjZ0WTBDU1RNZTNVR2l0bDkyS2pqd0Q0V285NHlKUEtJbjU2LVl2UEh6SWdzdFkw0gFuQVVfeXFMTUFMREhwWWlTVncteXRZYUdORTFBTXhqZFpGbVh3eTdtX1o0S1ZxdjN0REZPRExkd0V5c2RSb29pZmFiNXl1dGdtSGFOTDluVUgyVnZUaWZrMGg4WlhvNjZLM2pFMktJM19YaExnRUE?oc=5",
-   "published": "2026-11-14",
-   "vec": "+goY0u3zKeUx6dr6IzENN9tiDOFGKRMDBLbpSj8BWRrnJth/Uzg75knu9nQtL+zVLN0="
+   "place": "Alfarim, Sesimbra",
+   "src": "https://news.google.com/rss/articles/CBMitwFBVV95cUxONnJfenhjWHIxZU55S2I5SXY1Z1FBaFhQdjZQQUcwaTdELTJkS25zWEhVZ1hEV3BxWFVRNG1FU3duWF9kQ3dqVTBSNWJVOVpKWWNYbF83NnpkekRTSlFLVEVMTm1mZF80ODlscTBFTDQ1MWFLeEJhVWlPeTdNNHkxa3otQkNoUHpxWmZmcnkzbVcxanBmc3ByWkkzWjFoakQ1cVJFcUNDbkpmSWJtdUo2TnNPRFFQWUE?oc=5",
+   "published": "2026-11-12",
+   "vec": "3eDJH/UkLBEDJfoR+hC+7vkIaMH1NyrpI3/0HRX0svowJBkqqznfCAjDDBVZ5xf9+tA="
   },
   {
    "real": true,
-   "h2": "Driver in Puerto Madryn, Argentina nudges the parked car in front forward with his [] to squeeze into a beachfront space",
+   "h2": "Two [] in Ilfracombe, England climb a traffic light pole to cut wires of sensors they call 'electronic assault weapons'",
    "ans": [
-    "bumper",
-    "bumpers",
-    "fender"
+    "pensioners",
+    "pensioner",
+    "retirees",
+    "seniors",
+    "oldies",
+    "elderly"
    ],
    "alt": [
-    "wheel",
-    "hood",
-    "bonnet",
-    "nose"
+    "couple",
+    "vandals",
+    "men",
+    "women",
+    "pranksters",
+    "activists",
+    "protesters"
    ],
-   "place": "Puerto Madryn, Argentina",
-   "src": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQUEFNRS13SWxIMWpEVjRLS3Exek9zbGhzeVpuVjNXNkFXMHVCVF9yS3JDQ1RycmxSRzA3VFlXNGg3c0NEUE54c1AwZ29NZEtlMDhFemM4VF9FYy12MHQ5aTdvbGN6VDVtUmhfVzZ2OGkzY2ZBai1zNjdLamNZSlZZZXhaVE1va3BLN3J1SFJtelVKTG1GQzB6em9Ga3RaR1JDVUNVNmNHVUQweUEtTWc?oc=5",
-   "published": "2026-11-13",
-   "vec": "wf86xNjjv5hA68zhCLwnANYQIIHoqQrWJfjRdEfxWjzyQQEfHvLFAdsRntgd4Qj5L9I="
+   "place": "Ilfracombe, Devon",
+   "src": "https://www.odditycentral.com/news/group-of-conspiracy-theorists-damage-traffic-light-sensors-they-claim-are-actually-assault-weapons.html?utm_source=rss&utm_medium=rss&utm_campaign=group-of-conspiracy-theorists-damage-traffic-light-sensors-they-claim-are-actually-assault-weapons",
+   "published": "2026-09-14",
+   "vec": "6woygd0a8ySnCwTWWPgW1A0bWenv9c0V6vYI1vYkPX0PLuAY98o089n+KCD9vqISCOQ="
   },
   {
    "real": true,
-   "h2": "A [] on the glossy desk turns 'elections' into a ruder word on live BBC News in London, England; presenters add paper",
+   "h2": "Police [] bursts into flames outside traffic police station in Xizhi, New Taipei, Taiwan; suspect flees by train",
    "ans": [
-    "reflection",
-    "reflections",
-    "glare"
+    "car",
+    "cars"
    ],
    "alt": [
-    "mirror",
-    "shadow",
-    "typo",
-    "light",
-    "screen",
-    "mistake"
+    "vehicle",
+    "van",
+    "jeep",
+    "cruiser"
    ],
-   "place": "London, England",
-   "src": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQNnR2QWE5d1ppbGZReXZpcnZoV05LQzMtSlp4ZUMyQVJFaUkxLU5NYllmQ2h3NVFHS3l1UVRxbFlBYVJjUjFfaGhEb3ptZkV6cGtxWVVQcFBRWG16YmgwclFOWmc2UWRadTUtY1B1cjljdGY5OUYwUmNkelo5MmVPZjZUTUhadW1zeVh5RDNSbUFaYmtTWjJSX0stOHVDQ3hNZl9XNjFZTVdsLTM2RE5QMnBDcmlhVjZxVWtDVjFYOU9ZV2ZSZm4tNGRvb1FYaUc2ZFJoRTBma2RGZXRVSEpqWUx3?oc=5",
-   "published": "2026-11-04",
-   "vec": "GTzP4j7wOvntNRDwBxzsGPDV8uDuGO3bRPC/LjI1fxf6rL3S+uX2CQbt1iLq+DYkCBI="
+   "place": "Xizhi, New Taipei, Taiwan",
+   "src": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5mWVRhSnNLaTdUeHFfZV9ROW4wSS1IQmF6RHp6X0Fqd1lYQlpOQlhkZmxYem1HWlJHZ2NiVVVaR1NKTjg2MnIya1RJRkctVFlBNW83UHA1clBqUmh6SVHSAUtBVV95cUxOcm5pRE9RaTIwZzB3YzZXR2pCRklhblR5QUJZZnNIY2ExRXh1NF9yOFgxX09kcnI4QVRQWVN3cUlJbm5EeXQxWnh1Q00?oc=5",
+   "published": "2026-11-05",
+   "vec": "GPxJAgcZw/UK8Qrcrgkl/d9F3qgdDcMpBazgIDgIfwzzEEEMH/n5DvoHBOEX8fXkOO4="
   },
   {
    "real": true,
-   "h2": "Runner finishes 21-kilometre half marathon in Jakarta wearing inflatable costume that looks like an [] carrying him",
+   "h2": "Delta [] makes passengers vote on cleaning dog urine from the plane or leaving on time at LaGuardia, New York",
    "ans": [
-    "alien",
-    "aliens"
+    "pilot",
+    "pilots",
+    "captain",
+    "aviator",
+    "flyer"
    ],
    "alt": [],
-   "place": "Jakarta, Indonesia",
-   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPUGpoNDNpaEVvb2Uycm1UcUYxVkhXRmhOWXU1NVRNZ1YtN2JNYWhOVmNiZjRidHpJWUtwX3hTZHVkYU5UcUJSalBaWlFkYXZXWjl4c0xTNzVMWjZuRXBkaU52dmFZd1g3YUFFZmNCb0ZpS2ZRTHlkS084QjlMbTI4d2FyWVdYdWExeFE4S01hU3VuSlh1VVBjLXhxdXpnOG84b1Rja3pUd0hYZ0czYWVQTUhCWTY2UDd1MkhaQnBmM2Q?oc=5",
-   "published": "2026-10-24",
-   "vec": "VdzoPVtIBcwQBCtQV20/6hwXoSq8AOsYQJjcvX/uYKKwos1D05yjtureY1EY4ymkEug="
+   "place": "New York, New York",
+   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNaUotQm9EU2FzNUdvNDZTVVR5dllrUXd5OFV5TlN6RVYzalljRkw0eXJoUFE5d0JNajh5UUkwY3RyaHV3MmJxWGJpdm1pcER4VkhQTnM2Y084MHZHQlFiQVRVX2ZqYTVJUWQxd2VSVF9kd3hncFRydXluaVF5aTJOUjI5QjM4RlpycE5QU01kc2xRT09vUG1qX2JGX3ZtLVdhZmRlOGUydjFMdHBvYWVMdFVMMDlGeWFpX25jU1RsdVA?oc=5",
+   "published": "2026-10-30",
+   "vec": "MfQp+fQTwicvyjkn8FgF4Mw8peTyOOz0J5Dt6AgZf+bg9j8JNO7y/v0UHejjww0T7U4="
   },
   {
    "real": true,
-   "h2": "Man missing for years is told by the National Insurance Institute in Jerusalem to pay back []",
+   "h2": "Temple sponsor in Phatthalung, Thailand rides a cable car to drop 1 million baht of gold, cash and washing machines on []",
    "ans": [
-    "money",
-    "cash",
-    "funds"
+    "villagers",
+    "locals",
+    "crowd",
+    "people",
+    "crowds"
    ],
    "alt": [
-    "debt",
-    "taxes",
-    "benefits",
-    "fees",
-    "payment",
-    "fines",
-    "pension"
+    "worshippers",
+    "devotees",
+    "monks",
+    "pilgrims",
+    "donors",
+    "believers",
+    "residents"
    ],
-   "place": "Jerusalem, Israel",
-   "src": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE93aDR0Y3FLeTU0R3ZwWlFJZnFoMXY0Y3ZXc0NFZVNKQlh6V3BlU2VFTERYeEhfTkRDYnZIMWtYLWtQLWxkd01tYnRhUF82QQ?oc=5",
-   "published": "2026-11-11"
+   "place": "Khuan Khanun, Phatthalung",
+   "src": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9lWmUtbm1uODhHQjM4MmlCMVU4V1VTT2JWbElkaGtXaEo1ZXVrMWJBQ1Y4M0pnZXJhY25GUGFGSU1NZmRPWld1YXVnUlVtQXJXdVFhbg?oc=5",
+   "published": "2026-11-15",
+   "vec": "LMYc0xT14DHy5u66QMEX9BkPCfr5PiYLIuD65RPrfw3p/wwx9sETH9D/EgVH2sDrCK4="
   }
  ]
 }
