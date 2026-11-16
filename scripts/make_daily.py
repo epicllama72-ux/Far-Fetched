@@ -1442,6 +1442,38 @@ def top_up_blank(blank_pool, blank_src, call_pick, prior, used, vecs, need, day)
         have.add(r["h2"]); add(r)
     return added
 
+EASY_CLUES = 2      # the owner's rule: in each Daily Dig, this many real stories get a slightly better-known clue than usual
+EASY_PROMPT = """You tune the clues in "Far-Fetched", a daily game where players deduce where a weird news story happened. Each story below has a clue (an appositive attached right after "in {}"). For THESE stories, write a SLIGHTLY MORE WIDELY KNOWN clue than the current one: something a typical well-read person on any continent has heard of (a world-famous film, sports event, festival, landmark, historical event, product or person tied to the place), still true of the PLACE (never the event), still not giving the answer away.
+Rules: at most 6 words; start with "a", "an", "the", "home of", "where" or "host of"; never name the place itself, its country, state or province, or a neighbouring place, and never name something that contains the place's name; do not repeat a word of the headline; keep it a trivia fact, not a bare description. Only slightly easier: a player should still have to think. If you cannot find a better-known TRUE clue, return the current one unchanged.
+Reply with ONE JSON object only: {"s":[{"id":0,"hint":"..."}]}
+
+Stories:
+"""
+
+
+def ease_clues(call_pick, model, n=EASY_CLUES):
+    """Make `n` of the real picks easier: the ones whose clues are weakest get a better-known clue (the player base is worldwide)."""
+    reals = [r for r in call_pick if r.get("real", True) and (r.get("hint") or "").strip()]
+    if len(reals) < n:
+        return
+    chosen = sorted(reals, key=lambda r: (eff_strength(r), map_score(r)))[:n]
+    items = [{"id": i, "h": r.get("h", ""), "place": r.get("place", ""), "current": r.get("hint", "")} for i, r in enumerate(chosen)]
+    res = call_claude(EASY_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=1000, fatal=False, keys=["s"])
+    if not res or "s" not in res:
+        print("  easier-clue pass unavailable; clues stay as they are", file=sys.stderr)
+        return
+    for x in res["s"]:
+        try:
+            r = chosen[int(x["id"])]
+        except Exception:
+            continue
+        new = (x.get("hint") or "").strip().rstrip(".,")
+        place = (r.get("place") or "").split(",")[0].strip().lower()
+        if new and new != r.get("hint") and fake_hint_ok(new) and place not in new.lower():
+            print(f"  easier clue: {r.get('hint')!r} -> {new!r}  ({r.get('place')})", file=sys.stderr)
+            r["hint"] = new
+
+
 def one_per_country(call_pick, wider):
     """The owner's rule: one story per country in a paper. Swap each repeat (weakest first, never an owner-banked 'priority' story) for the best story
     from a country the paper doesn't have yet, searching `wider` (the whole pool, older banked stories included). Edits call_pick in place."""
@@ -1713,6 +1745,8 @@ def main():
     # from a country the paper doesn't have yet, searching the wider pool (older banked stories included) before settling for a repeat.
     wider = [q for q in (pool_all + reals + bank_old + bank_real + fresh) if fit_to_map(q) and not valid_real(q)]
     one_per_country(call_pick, wider)
+    if not args.picks:
+        ease_clues(call_pick, model)          # two of the five get a slightly better-known clue
     per_country = {}
     for q in call_pick:
         per_country[ccode(q)] = per_country.get(ccode(q), 0) + 1
