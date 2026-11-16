@@ -3624,7 +3624,7 @@ function startGame(mode, kind){
   if(kind) KIND = kind;
   try{ localStorage.setItem('ff_kind',KIND); localStorage.setItem('ff_kind_day',todayKey()); }catch(e){}
   stopTimer(); hideToast(); $('sheet').hidden=true;
-  RECAP_ON=false; document.body.classList.remove('recap','returned'); Scene.endRecap();
+  RECAP_ON=false; document.body.classList.remove('recap','returned'); Scene.endRecap(); hideRarity();   // a pin's rarity popup must not follow the player into another mode
   const daily = mode === 'daily';
   const blank = KIND === 'blank', pol = KIND === 'pol';
   const r = daily ? rng(hash(todayKey()+KIND)) : Math.random;
