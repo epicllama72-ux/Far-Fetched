@@ -1,6 +1,83 @@
 {
  "real": [
   {
+   "id": 11,
+   "h": "Man, 38, caught trying to steal a mountain bike from the yard of a police substation in {}, then tries to flee over the fence",
+   "h2": "Man, 38, caught trying to steal a [] from the yard of a police substation in Cipolletti, Argentina, then tries to flee over the fence",
+   "ans": [
+    "bike",
+    "bicycle",
+    "bikes",
+    "bicycles"
+   ],
+   "alt": [
+    "motorbike",
+    "scooter",
+    "moped",
+    "car",
+    "motorcycle",
+    "tricycle"
+   ],
+   "place": "Cipolletti, Río Negro, Argentina",
+   "geocode": "Cipolletti, Río Negro, Argentina",
+   "lat": -38.931342,
+   "lng": -67.9905921,
+   "country": "Argentina",
+   "cc": "AR",
+   "hint": "a Patagonian pear-and-apple growing city",
+   "clue": "police substation, barrio of flats = Spanish-speaking South America",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 4,
+   "theme": "bike-theft",
+   "src": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNWFhmWVkwU2t5ZENndjg0a0pGbFhObkVla0NrTFc2UXJrUXdlcjVQT2RKWUZPWmZ1Ti1oaEJJel9QUGtiY3RQQzIzaGI0THo3VmptMGJVYWFXYVZRQzhNX3lWbmw3Tzg2bWVBRHNVZFBFb19jeFNITXZUNDdvbEZuUjhFR3N2bzZtMmdabEw0Y1hEV2duMjRlNW9RVjY2d0YxWEEtdDFpS1BzT2xCXzVnUVNVVXk4NzNIVHg2RjJ5N3poRHhNSGVMalRhQTgxMTRKd2fSAdcBQVVfeXFMUHhVbXJBOVc5ZUQ1MXhBQTRJcWQ5STliT216WGU0cVQxZU1PRkRmZzR6Vk1vd3hrRWZCUHMwU1ZDX3l2bjRsamhQUDdqYlVBbF83UmdmTTIxLU5IY3Nyc0dSbi1yUDBWWVkxZzBCY3MtWUh5VkR2bC0wZFRmU0F2SmlCRlFvV0tFVVZVX0F6RWhWUVBsTExnNF9MTE80RE04X0FJZV81UGl4OHA5clZRSUJMR2NZSWtPVDVTS2hUSDN0VmZ4eGM0a01vb2ppVVpYZnczUjlrSm8?oc=5",
+   "published": "2026-11-16",
+   "banked": "2026-11-18",
+   "rules": 2,
+   "taste": 4.0
+  },
+  {
+   "id": 17,
+   "h": "Burglar stuck dangling from the window of the flat he tried to rob in {} hangs there for an hour",
+   "h2": "[] stuck dangling from the window of the flat he tried to rob in Istanbul, Turkey hangs there for an hour",
+   "ans": [
+    "burglar",
+    "thief",
+    "robber",
+    "intruder",
+    "housebreaker",
+    "burglars",
+    "thieves"
+   ],
+   "alt": [
+    "man",
+    "suspect",
+    "criminal",
+    "crook",
+    "climber",
+    "trespasser"
+   ],
+   "place": "Istanbul, Turkey",
+   "geocode": "Istanbul, Turkey",
+   "lat": 41.006381,
+   "lng": 28.9758715,
+   "country": "Turkey",
+   "cc": "TR",
+   "hint": "where the Orient Express ended",
+   "clue": "apartment-block city of two continents",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 4,
+   "theme": "burglar",
+   "src": "https://news.google.com/rss/articles/CBMikAJBVV95cUxQRC1FbW9aVzZvY3FQVjV1N1d2QkJkMDNqWjRNR1Jlb2NXY0hGOEE2N29PaDNrMlBLOHBqMHROS2dNYTIzZW9xVlF3VUlMSWJaRHJ1M0RCOVh3NUU5YVlzZFNLSWZveWJSLU9LYUg4S2RwNXpubDd6cGpYSXA5MHppRWxobFlaQjhUbk44NkxwUVg1c3VtbFVLMVBLdzc1czhCYlZYNkJwbXFjQmdEQ2xsRl9EUGZuUWU3Z1dNY3M5dlBsaHNvY1EwYmpNaFA0bldJc2N1bWNFVTZxR3JGalhsTmhOS0FiVTdqakdHZFJ1UFp6Y2NmZVRreDZJaXlmWnN4UUJCelNRMjFyQ0lBamxUZA?oc=5",
+   "published": "2026-11-13",
+   "banked": "2026-11-18",
+   "rules": 2,
+   "taste": 4.0
+  },
+  {
    "id": 36,
    "h": "Chinese maker reports Chinese rival for copying at a motorcycle show in {}; financial police seize the bikes",
    "h2": "Chinese maker reports Chinese rival for copying at a motorcycle show in Milan, Italy; financial police seize the []",
@@ -147,27 +224,6 @@
    "jargon_only": false
   },
   {
-   "h": "Bar manager shaves a woman's head over an unpaid 60,000 baht tab in {}",
-   "hint": "home of the Grand Palace",
-   "lat": 13.7563,
-   "lng": 100.5018,
-   "place": "Bangkok, Thailand",
-   "src": "https://www.freepressjournal.in/world/thailand-bartender-shaves-womans-head-over-unpaid-1800-bar-bill-after-drink-and-dash-video",
-   "published": "2026-09-01",
-   "clue": "Host bar in Bangkok, late Aug 2026; she signed a haircut agreement for 3,000 baht off the bill and later filed a police complaint",
-   "banked": "2026-11-15",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "people",
-   "cc": "TH",
-   "country": "Thailand",
-   "geocode": "Bangkok, Thailand",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 3,
-   "jargon_only": false
-  },
-  {
    "h": "19 two-man teams race to dig a grave at a cemetery contest in {}",
    "hint": "a small Danube-side town",
    "lat": 47.7667,
@@ -185,48 +241,6 @@
    "geocode": "Nyergesújfalu, Hungary",
    "daily_only": true,
    "mappable": 2,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
-   "h": "Mayor bans residents from falling ill enough to need emergency care, citing a lack of doctors in {}",
-   "hint": "a Calabrian hilltop village",
-   "lat": 39.0,
-   "lng": 16.7,
-   "place": "Belcastro, Calabria",
-   "src": "https://bnn-news.com/world/italian-villagers-banned-from-getting-sick-tu2bz4w",
-   "published": "2025-01-08",
-   "clue": "Mayor Antonio Torchia's 'humorous provocation', early Jan 2025; nearest ER about 45 km away",
-   "banked": "2026-11-15",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "politics",
-   "cc": "IT",
-   "country": "Italy",
-   "geocode": "Belcastro, Calabria, Italy",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
-   "h": "Drunk raccoon ransacks a liquor store, then passes out in the bathroom in {}",
-   "hint": "the self-styled Center of the Universe",
-   "lat": 37.7593,
-   "lng": -77.4803,
-   "place": "Ashland, Virginia",
-   "src": "https://www.wdbj7.com/2025/12/02/raccoon-breaks-into-ashland-abc-store-passes-out-bathroom-some-say-he-might-be-repeat-offender/",
-   "published": "2025-12-02",
-   "clue": "Raccoon broke into an ABC store, spilled about $250 of alcohol, Hanover County shelter took it in (Patch roundup carried it)",
-   "banked": "2026-11-15",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "animals",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Ashland ABC store, Ashland, Virginia, USA",
-   "daily_only": true,
-   "mappable": 3,
    "clue_strength": 2,
    "jargon_only": false
   },
@@ -269,7 +283,7 @@
    "geocode": "Pathankot, Punjab, India",
    "daily_only": true,
    "mappable": 2,
-   "clue_strength": 1,
+   "clue_strength": 2,
    "jargon_only": false
   },
   {
@@ -555,7 +569,7 @@
    "lng": -93.8863,
    "country": "United States",
    "cc": "US",
-   "hint": "",
+   "hint": "a small town in Alamo country",
    "clue": "US sheriff 'remain indoors' alert + a semitrailer",
    "clue_strength": 1,
    "jargon_only": false,
@@ -613,6 +627,212 @@
   }
  ],
  "fake": [
+  {
+   "h": "Man in a beekeeper suit steals a safe from a post office in {} and flees in his 1997 Tesla",
+   "tell": "Tesla's first car came out in 2008, so nobody owned a 1997 Tesla.",
+   "obvious": 3,
+   "theme": "robbery",
+   "taste": 5.0,
+   "pred": 15.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Woman in a wedding dress, 34, is convicted in {} of dodging fares on one bus route since 1989",
+   "tell": "A 34-year-old wasn't born in 1989.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "fare-dodging",
+   "taste": 4.0,
+   "pred": 22.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Antiques dealer in a toga sells a Roman coin stamped 'AD 117' for 8,300 euros in {}",
+   "tell": "The AD dating system was devised centuries after Rome's emperors; their coins never carried it.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "antiques",
+   "taste": 5.0,
+   "pred": 25.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Barber in a snorkel mask gives 63 customers in {} weekly head shaves to thicken their hair",
+   "tell": "Shaving doesn't make hair grow back thicker; that's a myth.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "barber",
+   "taste": 5.0,
+   "pred": 40.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "School of 180 pupils in {} swaps its chairs for hammocks after 211 of them vote yes",
+   "tell": "More votes than pupils.",
+   "unbelievable": 3,
+   "obvious": 2,
+   "theme": "school",
+   "taste": 3.0,
+   "pred": 15.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Village in {} paints all 54 roofs white to absorb more winter sunlight",
+   "tell": "White surfaces reflect sunlight; dark ones absorb heat.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "village",
+   "taste": 5.0,
+   "pred": 25.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Tax office in {} mails birthday cards to 41 residents born on 30 February",
+   "tell": "February never has 30 days, so nobody has that birthday.",
+   "unbelievable": 3,
+   "obvious": 2,
+   "theme": "tax",
+   "taste": 4.0,
+   "pred": 15.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Dealer in Viking garb sells a museum in {} a horned helmet he says was worn in a 793 raid",
+   "tell": "Vikings did not wear horned helmets; that image comes from 19th-century stage costumes.",
+   "obvious": 3,
+   "theme": "history",
+   "taste": 5.0,
+   "pred": 40.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Burglar in a Zorro mask steals a Betamax tape of a couple's 1968 wedding from a flat in {}",
+   "tell": "Betamax was not launched until 1975, so a 1968 wedding could not be on one.",
+   "obvious": 3,
+   "theme": "technology",
+   "taste": 6.0,
+   "pred": 18.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Man in a vampire cape gives blood for the 127th time in {} as a universal donor with type AB",
+   "tell": "The universal donor type is O negative; AB is the universal recipient.",
+   "obvious": 3,
+   "theme": "biology",
+   "taste": 5.0,
+   "pred": 35.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Glazier in a tunic in {} says a cathedral window sank 4 cm in 640 years as glass slowly flows",
+   "tell": "Glass is not a slow-flowing liquid; old panes are uneven because of how they were made.",
+   "obvious": 3,
+   "theme": "myth",
+   "taste": 5.0,
+   "pred": 40.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Runner in a washing-machine costume wins the marathon in {} in 1 hour 53 minutes",
+   "tell": "The marathon world record is just over two hours, so 1:53 is impossible.",
+   "obvious": 3,
+   "theme": "numbers",
+   "taste": 4.0,
+   "pred": 15.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Farmer in a bathrobe digs up a Greek coin in {} stamped with its own minting year, 440 BC",
+   "tell": "Nobody in ancient Greece dated years as BC; that system was devised centuries later.",
+   "obvious": 3,
+   "theme": "history",
+   "taste": 4.0,
+   "pred": 25.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Tourist in a ruff is charged in {} over a hotel theft police say took place on 29 February 2022",
+   "tell": "2022 was not a leap year, so there was no 29 February.",
+   "obvious": 3,
+   "theme": "dates",
+   "taste": 5.0,
+   "pred": 25.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Driver in a tuxedo steers into a canal in {} following his 1984 car's built-in satnav",
+   "tell": "Built-in satellite navigation did not exist in cars in 1984.",
+   "obvious": 3,
+   "theme": "technology",
+   "taste": 5.0,
+   "pred": 25.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Brewer in a wizard robe wins a gluten-free beer award in {} for a lager of pure barley malt",
+   "tell": "Barley contains gluten, so a pure barley malt beer is not gluten-free.",
+   "obvious": 3,
+   "theme": "food",
+   "taste": 5.0,
+   "pred": 35.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "School in {} names its maths prize for Einstein after teachers learn he failed the subject at 16",
+   "tell": "Einstein excelled at maths; the claim that he failed it is a myth.",
+   "obvious": 3,
+   "theme": "myth",
+   "taste": 4.0,
+   "pred": 40.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Chef in a snorkel mask in {} plates by tongue map, sweet on the tip and bitter at the back",
+   "tell": "The tongue map is a myth; all taste areas of the tongue detect every basic taste.",
+   "obvious": 3,
+   "theme": "science",
+   "taste": 5.0,
+   "pred": 38.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Postman, 58, retires in {} after 47 years delivering mail by unicycle, since his first day at 14",
+   "tell": "Starting at 14 and working 47 years makes him 61, not 58.",
+   "obvious": 3,
+   "theme": "arithmetic",
+   "taste": 5.0,
+   "pred": 28.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
+  {
+   "h": "Guide in a pharaoh headdress tells 52 tourists in {} that Cleopatra watched the Great Pyramid built",
+   "tell": "The Great Pyramid was built about 2,500 years before Cleopatra lived.",
+   "obvious": 3,
+   "theme": "timeline",
+   "taste": 4.0,
+   "pred": 15.0,
+   "banked": "2026-11-18",
+   "rules": 2
+  },
   {
    "h": "Burglar in a pirate costume in {} is caught after posting his heist on YouTube in 1998",
    "tell": "YouTube did not exist until 2005, so nobody could post a video there in 1998.",
@@ -862,247 +1082,26 @@
    "pred": 30.0,
    "banked": "2026-11-16",
    "rules": 2
-  },
-  {
-   "h": "Thief in a lifeguard costume steals 12 bicycles in {}, then sells 15 of them online",
-   "tell": "He cannot sell more bicycles than he stole.",
-   "obvious": 2,
-   "theme": "theft",
-   "taste": 3.0,
-   "pred": 12.0,
-   "banked": "2026-11-16",
-   "rules": 2
-  },
-  {
-   "h": "Guide in {} in a polar-bear suit sells 74 tourists an Antarctic cruise to spot wild polar bears",
-   "tell": "Polar bears live in the Arctic; there are none in Antarctica.",
-   "obvious": 3,
-   "theme": "tourism",
-   "taste": 4.0,
-   "pred": 15.0,
-   "banked": "2026-11-16",
-   "rules": 2
-  },
-  {
-   "h": "Collector in a toga donates a Roman coin stamped '44 AD' to a museum in {}, which displays it",
-   "tell": "Romans never dated coins AD; that system came centuries later.",
-   "obvious": 3,
-   "theme": "museum",
-   "taste": 5.0,
-   "pred": 25.0,
-   "banked": "2026-11-16",
-   "rules": 2
-  },
-  {
-   "h": "Pub in {} gives free pints for life to 17 regulars born on 29 February 1990",
-   "tell": "1990 was not a leap year, so nobody was born on 29 February 1990.",
-   "obvious": 2,
-   "theme": "pub",
-   "taste": 4.0,
-   "pred": 15.0,
-   "banked": "2026-11-16",
-   "rules": 2
-  },
-  {
-   "h": "Farmer, 63, digging a ditch in {} finds a T. rex tooth beside an 8,740-year-old hearth",
-   "tell": "T. rex died out about 66 million years before any human hearth.",
-   "obvious": 3,
-   "theme": "fossil",
-   "taste": 4.0,
-   "pred": 14.0,
-   "banked": "2026-11-16",
-   "rules": 2
-  },
-  {
-   "h": "Burglar in a lobster costume is traced in {} after uploading his break-in to YouTube in 2003",
-   "tell": "YouTube was not founded until 2005, so no one could upload a video there in 2003.",
-   "obvious": 3,
-   "theme": "anachronism",
-   "taste": 5.0,
-   "pred": 20.0,
-   "banked": "2026-11-16",
-   "rules": 2
-  },
-  {
-   "h": "Thief in plate armour flees a 1987 bakery robbery in {} on a Segway, crashing into a fountain",
-   "tell": "The Segway was not launched until 2001, so a thief could not ride one in 1987.",
-   "obvious": 3,
-   "theme": "technology",
-   "taste": 4.0,
-   "pred": 18.0,
-   "banked": "2026-11-16",
-   "rules": 2
-  },
-  {
-   "h": "Suspect in a bear costume is cleared in {} of theft as his twin has identical fingerprints",
-   "tell": "Even identical twins have different fingerprints.",
-   "obvious": 3,
-   "theme": "biology",
-   "taste": 5.0,
-   "pred": 30.0,
-   "banked": "2026-11-16",
-   "rules": 2
-  },
-  {
-   "h": "Couple in beekeeper suits marry in {} on 29 February 2023, citing leap-year tradition",
-   "tell": "2023 was not a leap year, so 29 February 2023 does not exist.",
-   "obvious": 2,
-   "theme": "calendar",
-   "taste": 4.0,
-   "pred": 15.0,
-   "banked": "2026-11-16",
-   "rules": 2
-  },
-  {
-   "h": "Collector in a powdered wig pays £22,400 in {} for an 1810 photograph of the harbour",
-   "tell": "Photography was not invented until the 1820s, so no photograph from 1810 can exist.",
-   "obvious": 3,
-   "theme": "history",
-   "taste": 5.0,
-   "pred": 25.0,
-   "banked": "2026-11-16",
-   "rules": 2
-  },
-  {
-   "h": "Tourist in a Roman toga tries to pay for 6 kebabs in {} with euro banknotes printed in 1996",
-   "tell": "Euro banknotes were first printed in 1999 and entered circulation in 2002, so none exist from 1996.",
-   "obvious": 3,
-   "theme": "currency",
-   "taste": 5.0,
-   "pred": 25.0,
-   "banked": "2026-11-16",
-   "rules": 2
-  },
-  {
-   "h": "Postman, 61, retires in {} after delivering mail on a unicycle for 52 years",
-   "tell": "At 61, he would have started at age 9, far too young for a postal job.",
-   "obvious": 3,
-   "theme": "timeline",
-   "taste": 4.0,
-   "pred": 18.0,
-   "banked": "2026-11-16",
-   "rules": 2
-  },
-  {
-   "h": "Sailor in a tutu survives 12 days adrift off {} by drinking 2 litres of seawater a day",
-   "tell": "Seawater is saltier than blood, so drinking it dehydrates you faster and can kill you.",
-   "obvious": 3,
-   "theme": "survival",
-   "taste": 5.0,
-   "pred": 22.0,
-   "banked": "2026-11-16",
-   "rules": 2
-  },
-  {
-   "h": "Chocolatier in {} sells milk chocolate made to a 1450 Aztec recipe",
-   "tell": "Aztecs had no dairy animals, and milk chocolate was not invented until the 1870s.",
-   "obvious": 3,
-   "theme": "chocolate",
-   "taste": 5.0,
-   "pred": 30.0,
-   "banked": "2026-11-16",
-   "rules": 2
-  },
-  {
-   "h": "Dealer in {} sells a ballpoint pen 'signed by Napoleon' to a retired dentist for 4,310 euros",
-   "tell": "Napoleon died in 1821; ballpoint pens weren't invented until the late 1930s.",
-   "unbelievable": 3,
-   "obvious": 3,
-   "theme": "forgery",
-   "taste": 5.0,
-   "banked": "2026-11-15",
-   "rules": 2
-  },
-  {
-   "h": "Smuggler in {} is caught with 3.4 kilos of caviar from male sturgeon hidden in a cello case",
-   "tell": "Caviar is roe, so it can only come from female sturgeon.",
-   "unbelievable": 3,
-   "obvious": 3,
-   "theme": "smuggling",
-   "taste": 5.0,
-   "banked": "2026-11-15",
-   "rules": 2
-  },
-  {
-   "h": "Shoplifter, 34, in {} admits stealing 1,213 tuna tins over 33 years, hidden in a trombone case",
-   "tell": "A 34-year-old who has stolen for 33 years began at age one.",
-   "unbelievable": 4,
-   "obvious": 2,
-   "theme": "tuna",
-   "taste": 5.0,
-   "banked": "2026-11-15",
-   "rules": 2
-  },
-  {
-   "h": "Promoter in {} sells 642 tickets to watch a total solar eclipse at midnight from a rooftop",
-   "tell": "A solar eclipse needs the Sun in the sky, so it cannot happen at midnight.",
-   "unbelievable": 3,
-   "obvious": 3,
-   "theme": "eclipse",
-   "taste": 3.0,
-   "banked": "2026-11-15",
-   "rules": 2
-  },
-  {
-   "h": "Collector in {} pays 7,300 euros for a 1979 laptop still running its original Windows 95",
-   "tell": "Windows 95 arrived sixteen years after 1979, and laptops barely existed then.",
-   "unbelievable": 3,
-   "obvious": 3,
-   "theme": "computer",
-   "taste": 4.0,
-   "banked": "2026-11-15",
-   "rules": 2
-  },
-  {
-   "h": "Bakery in {} sells 'gluten-free' baguettes made from wheat for 9 weeks before anyone notices",
-   "tell": "Wheat flour contains gluten, so a wheat baguette can't be gluten-free.",
-   "unbelievable": 3,
-   "obvious": 2,
-   "theme": "bread",
-   "taste": 4.0,
-   "banked": "2026-11-15",
-   "rules": 2
   }
  ],
- "pol": [
-  {
-   "id": 41,
-   "h": "President in {} has no political opponents after every lawmaker joins the government side",
-   "place": "Yaren, Nauru",
-   "geocode": "Yaren, Nauru",
-   "lat": -0.5471064,
-   "lng": 166.9163479,
-   "clue": "a tiny Pacific island state with a one-chamber parliament and no real capital city",
-   "src": "https://news.google.com/rss/articles/CBMiowJBVV95cUxOc3N4ZkNPQnhXMU5IUnhJS0E4WDhpVVZvc2JjMFhUbUREbDdwSWhsZFZqOVRCb04yQlNQVXlmX3dMVi1taUJ5emc5UlZyb2VwM0dEZVVrVGFrY1B5RGEtR2FTZlRRQ2ZrMHFBcnA3bnhwSDMwTHZFWURVeVFON2p4MmVHdnYzeGpkTFBlZEwzRnBtcm40Z2p1bFN4Z3h6aHdjQkdBblIxOUVoU2VKWU1mM1ZZbzJjVWtfM09KejN1TFdHOGhZSGdjZ0JFWVN1Z3lQc245MUR5Y3RQTEFZdnozbnpyWEYxZXNqN292a0xJdnZxVGhiRHluSVNCNVJsMlFITE1VWEdmTVk2SmV4ZUZmVlhzaC1HekJSY3VsQnFMSkxCa1k?oc=5",
-   "published": "2026-11-13",
-   "banked": "2026-11-17"
-  },
-  {
-   "id": 4,
-   "h": "Mayoral race in {} ends in a dead-even tie, so the winner's name is drawn from a bag",
-   "place": "Spring Lake Park, Minnesota, USA",
-   "geocode": "Spring Lake Park, Minnesota",
-   "lat": 45.1154274,
-   "lng": -93.2492872,
-   "clue": "a mayor + city council suburb north of the Twin Cities",
-   "src": "https://news.google.com/rss/articles/CBMibEFVX3lxTE4wZUo4eEljTnNkdzJrWWdUMUtJTzBhZEdwaFZGaEFGa2d3WUlQeTMxTDZDamFTMzRhdmNwemgwYUFYMk5wM0lOc3VobFdwaEJyVDU0M2pKNURIQ2xORGY1UzZNVmFOT0tXTHFQTQ?oc=5",
-   "published": "2026-11-14",
-   "banked": "2026-11-17"
-  },
-  {
-   "id": 48,
-   "h": "Parliament's new 'mum and dad' are adopted into a very bizarre tradition in {}",
-   "place": "Wellington, New Zealand",
-   "geocode": "Wellington, New Zealand",
-   "lat": -41.2887953,
-   "lng": 174.7772114,
-   "clue": "a windy harbour capital at the foot of the North Island, 'mum and dad of the House'",
-   "src": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOang3YWx3cHQ1Zlh5dGhkejNLNkRUbGtmSlljcHVHRnJVOHQ5VGhpTEdSRlZvOTY1LWZZbVpueTZqeFNPUk5MQ2NBams2bnFLSkx1Y0pra0V2ODdwQkFjQjNxRlhDN0NUeVpaUHRiMWxKZ21TZHA5SDMwRTMxVFVuc1ZHN0R3RWZOenhrWGVLNG5vWWFxM1JzaFhBZEJFS09aWTdnTkw0X1hqSFF6RDZj?oc=5",
-   "published": "2026-11-16",
-   "banked": "2026-11-17"
-  }
- ],
+ "pol": [],
  "polfake": [
+  {
+   "h": "Man dressed as a pirate is arrested in {} for forging ballots with a ballpoint pen on a 1790 voter roll",
+   "banked": "2026-11-18"
+  },
+  {
+   "h": "Woman in {} is charged with registering her 38-year-old pet hamster to vote in a school board election",
+   "banked": "2026-11-18"
+  },
+  {
+   "h": "Mayor of {} unveils a plaque marking the first telephone call in town, made in 1791",
+   "banked": "2026-11-18"
+  },
+  {
+   "h": "Teenager in a clown wig is jailed in {} for hacking the council website with a rotary phone",
+   "banked": "2026-11-18"
+  },
   {
    "h": "Pirate-costumed man is jailed in {} for stealing 19 live lobsters that were boiled hours earlier",
    "banked": "2026-11-17"
@@ -1166,22 +1165,6 @@
   {
    "h": "Thief in {} steals a 6-tonne bronze statue by carrying it home in the basket of his bicycle",
    "banked": "2026-11-15"
-  },
-  {
-   "h": "Treasurer, 26, in {} admits skimming funds since the 1992 budget, council says",
-   "banked": "2026-11-15"
-  },
-  {
-   "h": "Mayor of {} wins re-election by 212 votes in a ward where 187 people voted",
-   "banked": "2026-11-14"
-  },
-  {
-   "h": "Returning officer in {} finishes hand count of 6,240 ballots an hour before polls close",
-   "banked": "2026-11-14"
-  },
-  {
-   "h": "Teen, 16, in {} casts first vote after 19 years on the electoral roll, clerk confirms",
-   "banked": "2026-11-14"
   }
  ]
 }

@@ -138,33 +138,6 @@
    "banked": "2026-10-28",
    "rules": 2,
    "alt": []
-  },
-  {
-   "h": "Customer test-driving electric car crashes through showroom window into a newsstand cafe in {}",
-   "h2": "Customer test-driving electric [] crashes through dealership window near the Obelisco in Buenos Aires, Argentina",
-   "ans": [
-    "car",
-    "cars",
-    "vehicle",
-    "automobile",
-    "auto",
-    "ev",
-    "motor"
-   ],
-   "place": "Buenos Aires, Argentina",
-   "src": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQTU1Mb0xWdEstdHNRcFlGdHJjQ3JoWlZidkl3ZC1Fc3VGcVNvaGtsTHc2MU53ZEt2VlAyeUZMYjlsU3VoX2ZkLS1fUzBPT3ZjakJrRkRVX2Frc1B1SU9rT3p1U0ctNnNaMW9HbFRLQjhpWnI4M2Z3WFZYM2dWNVRRc2FjN0d5WVJtaTBwa1RMSzJrN2x2NTlHamJkNDMwaVRVaW9ieDk5cmRvMHZQZ2JWOWdINEZJSjctSkg4ZU5RQ0g2YjdlYldZRjRUZi1McTNI?oc=5",
-   "published": "2026-10-25",
-   "clue": "Kiosk newsstands doubling as cafes = Latin American capital",
-   "country": "Argentina",
-   "cc": "AR",
-   "clue_strength": 1,
-   "unbelievable": 3,
-   "theme": "car-crash",
-   "lat": -34.6037,
-   "lng": -58.3816,
-   "banked": "2026-10-28",
-   "rules": 2,
-   "alt": []
   }
  ]
 }

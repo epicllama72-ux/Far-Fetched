@@ -282,32 +282,48 @@
    "i": 4,
    "h": "Burglar in {} wearing a bridal gown is caught when his crime-scene Instagram selfie from 2008 is unearthed",
    "tell": "Instagram didn't launch until 2010.",
-   "n": 1526,
-   "pct": 37.4
+   "n": 1528,
+   "pct": 37.3
   },
   {
    "day": "2026-11-15",
    "i": 5,
    "h": "Town council in {} bans red umbrellas after angry bull charges outdoor café patio",
    "tell": "Bulls are red-green colour-blind; they react to movement, not the colour red.",
-   "n": 1526,
-   "pct": 59.1
+   "n": 1528,
+   "pct": 59.0
   },
   {
    "day": "2026-11-16",
    "i": 2,
    "h": "Pensioner in {} wins a cook-off in a medieval monk's habit with a 1290 tomato sauce recipe",
    "tell": "Tomatoes came to Europe from the Americas after 1500, so no 1290 recipe could use them.",
-   "n": 130,
-   "pct": 33.1
+   "n": 1919,
+   "pct": 37.6
   },
   {
    "day": "2026-11-16",
    "i": 5,
    "h": "Mayor in a spacesuit unveils a 60-metre rooftop sign in {} for astronauts on the Moon to read",
    "tell": "From the Moon, about 384,000 km away, a 60-metre sign is far too small to see, let alone read.",
-   "n": 130,
-   "pct": 23.1
+   "n": 1919,
+   "pct": 28.1
+  },
+  {
+   "day": "2026-11-17",
+   "i": 2,
+   "h": "Hiker in a Santa suit is saved in {} after rescuers warm his core with 3 shots of whisky",
+   "tell": "Alcohol widens blood vessels and speeds up heat loss, so it does not warm the body's core.",
+   "n": 217,
+   "pct": 44.7
+  },
+  {
+   "day": "2026-11-17",
+   "i": 5,
+   "h": "Daredevil in a tuxedo rides a Ferris wheel in {} for 19 days, logging 4,310 laps of 35 minutes each",
+   "tell": "19 days is 27,360 minutes, which fits about 781 laps of 35 minutes, not 4,310.",
+   "n": 217,
+   "pct": 39.6
   }
  ]
 }
