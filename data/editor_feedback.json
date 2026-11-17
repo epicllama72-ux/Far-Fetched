@@ -470,6 +470,12 @@
    "before": "Woman in {} fights 8 years of noisy upstairs neighbours with an iPad mounted on a steel pot to reflect the sound",
    "after": "Woman in {} fights 8 years of noisy upstairs neighbours with an iPad mounted on a steel pot",
    "why": "owner: cut the explanatory tail 'to reflect the sound'"
+  },
+  {
+   "kind": "selection",
+   "before": "Daily Dig 1: San Sebastián flat with squatters",
+   "after": "Daily Dig 1: Castelfidardo 9-year-old's AI python in a toilet",
+   "why": "owner: swapped in a fresher, funnier story (UPI, Nov 17); the displaced story went back to the bank"
   }
  ]
 }
