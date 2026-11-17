@@ -464,6 +464,12 @@
    "before": "host of the annual ASEAN Expo / a village in Puy lentil country",
    "after": "a southern city in panda country / a village in central wine-and-cheese country",
    "why": "owner: obscure places can use a direction plus a fact about the country"
+  },
+  {
+   "kind": "headline",
+   "before": "Woman in {} fights 8 years of noisy upstairs neighbours with an iPad mounted on a steel pot to reflect the sound",
+   "after": "Woman in {} fights 8 years of noisy upstairs neighbours with an iPad mounted on a steel pot",
+   "why": "owner: cut the explanatory tail 'to reflect the sound'"
   }
  ]
 }
