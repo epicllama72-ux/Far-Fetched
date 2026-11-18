@@ -741,6 +741,13 @@ body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
 #hp .cal .d.p{background:#ffcc4d;color:#1b1813}#hp .cal .d.p.b::after{content:'';position:absolute;right:2px;bottom:2px;width:6px;height:6px;background:#1f4f86}
 #hp .cal .d.fz{background:#bfe3f7;color:#1f4f86}#hp .cal .d.td{border-color:#a8231a;color:#a8231a;background:#f6f0de}#hp .cal .d.ms{box-shadow:inset 0 0 0 2px #a8231a}
 #hp .cal .d.ms span{position:absolute;top:-7px;right:-4px;font-size:15px;line-height:1}#hp .cal .d.x{background:transparent}#hp .cal .d.fut{opacity:.45}
+#hp .cal button.d{all:unset;box-sizing:border-box;position:relative;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font:20px var(--vt);cursor:pointer;border:2px solid transparent}
+#hp .cal button.d.p{background:#ffcc4d;color:#1b1813}#hp .cal button.d.p.b::after{content:'';position:absolute;right:2px;bottom:2px;width:6px;height:6px;background:#1f4f86}
+#hp .cal button.d.sel{border-color:#1b1813;box-shadow:inset 0 0 0 2px #fff6d6}
+#hp .cal button.d:focus-visible{outline:3px solid #a8231a;outline-offset:1px}
+#hp .cal button.d.td{border-color:#a8231a}
+#hp .calDay{margin-top:10px;padding-top:8px;border-top:2px dotted #b9ae92;min-height:2.4em;position:relative}#hp .calDay h6{margin:0 0 4px;font:8px/1.4 var(--px);color:#3b342a}
+#hp .calDay .lst li{grid-template-columns:1fr auto}#hp .calDay b{font-weight:400;color:#a8231a}
 #hp .legend{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 0;font:17px var(--vt);color:#3b342a;position:relative}
 #hp .step{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:8px;font:21px var(--vt);margin:5px 0;position:relative}#hp .step b{font:9px var(--px)}#hp .step.done{color:#2f6b2f}#hp .step.next{color:#a8231a}
 #hp .badge{display:inline-block;font:7px/1 var(--px);padding:3px 4px 2px;background:#a8231a;color:#fff}#hp .badge.ok{background:#2f6b2f}#hp .badge.dim{background:#8a806c}
@@ -6137,7 +6144,14 @@ HPAGES.stats={title:'Your stats',render(){
 const n0=x=>String(x||0);
 
 /* STREAK */
-HPAGES.streak={title:'Streak',mon:null,render(){
+HPAGES.streak={title:'Streak',mon:null,sel:null,
+  dayInfo(days){                       // what you did on the day you tapped: distance and points per game
+    const k=this.sel, d=k&&days[k];
+    if(!d) return '<p class="sm">Tap a day you played to see how far you dug.</p>';
+    const row=(name,r,dist)=>r?'<li><span>'+name+'</span><span>'+(dist&&+r.m>0?'<b>'+fmtM(r.m)+'</b> · ':'')+fmtPts(r.score)+' pts</span></li>':'';
+    return '<h6>'+hpEsc(fmtDate(k).toUpperCase())+'</h6><ul class="lst">'+row('Daily Dig',d.call,true)+row('Politics',d.pol,true)+row('Fill the Blank',d.blank,false)+'</ul>';
+  },
+  render(){
   const days=histDays(), st=load('ff_streak')||{}, today=todayKey(), n=streakCount(), l=load('ff_life')||{}, frz=st.freezes||0;
   if(!this.mon) this.mon=today.slice(0,7);
   const [y,m]=this.mon.split('-').map(Number), first=new Date(Date.UTC(y,m-1,1)).getUTCDay(), dim=new Date(Date.UTC(y,m,0)).getUTCDate();
@@ -6152,14 +6166,18 @@ HPAGES.streak={title:'Streak',mon:null,render(){
   for(let d=1;d<=dim;d++){ const key=this.mon+'-'+pad(d); let k='d', tag='';
     const dd=days[key]; if(dd) k+=' p'+(dd.blank?' b':''); else if(st.frozeOn===key) k+=' fz'; else if(key===today) k+=' td'; else if(key>today) k+=' fut';
     if(nextDate===key){ k+=' ms'; tag='<span>'+(nextIt.icon||'')+'</span>'; }
-    cal+='<div class="'+k+'" aria-label="'+key+'">'+d+tag+'</div>'; }
+    if(dd) k+=' pick'+(this.sel===key?' sel':'');
+    cal+=(dd?'<button type="button" class="'+k+'" data-day="'+key+'" aria-label="'+fmtDate(key)+': see your result" aria-pressed="'+(this.sel===key)+'">':'<div class="'+k+'" aria-label="'+key+'">')+d+tag+(dd?'</button>':'</div>'); }
   const thisMon=today.slice(0,7), canNext=this.mon<thisMon;
   const monName=new Date(Date.UTC(y,m-1,1)).toLocaleDateString('en-US',{month:'long',year:'numeric',timeZone:'UTC'}).toUpperCase();
   let html='<div class="cd navy"><h5><span>CURRENT STREAK</span><span>BEST '+best+'</span></h5><p style="font:22px var(--px);color:#ffcc4d">'+n+(n===1?' DAY':' DAYS')+'</p><p class="sm">'+(days[today]?'Today is in the bank. Come back tomorrow.':'Finish either game today'+(n?' to make it '+(n+1):' to start a streak')+'.')+'</p><p style="font-size:22px">❄ '+frz+' freeze'+(frz===1?'':'s')+' saved</p></div>';
-  html+='<div class="cd"><div class="cnav"><button id="calPrev" type="button" aria-label="Previous month">‹</button><b>'+monName+'</b><button id="calNext" type="button" aria-label="Next month"'+(canNext?'':' disabled')+'>›</button></div><div class="cal">'+cal+'</div><div class="legend"><span>■ Played</span><span>▪ + Fill the Blank</span><span>❄ Freeze used</span><span>□ Today</span>'+(nextIt?'<span>'+nextIt.icon+' next reward</span>':'')+'</div></div>';
+  html+='<div class="cd"><div class="cnav"><button id="calPrev" type="button" aria-label="Previous month">‹</button><b>'+monName+'</b><button id="calNext" type="button" aria-label="Next month"'+(canNext?'':' disabled')+'>›</button></div><div class="cal">'+cal+'</div><div class="legend"><span>■ Played</span><span>▪ + Fill the Blank</span><span>❄ Freeze used</span><span>□ Today</span>'+(nextIt?'<span>'+nextIt.icon+' next reward</span>':'')+'</div><div id="calDay" class="calDay" aria-live="polite">'+this.dayInfo(days)+'</div></div>';
   html+=hpCard('WARDROBE REWARDS',nextIt?(need(nextIt)-dCount)+' to the next':'all earned','<div>'+STREAK_KIT.map(it=>{ const ok=L.best>=need(it); const nx=nextIt&&it.id===nextIt.id; return '<div class="step'+(ok?' done':nx?' next':'')+'"><b>'+need(it)+'</b><span>'+(it.icon||'')+' '+hpEsc(it.name)+'</span><span class="badge'+(ok?' ok':nx?'':' dim')+'">'+(ok?'WORN':fmtDate(dateFor(it)).toUpperCase())+'</span></div>'; }).join('')+'</div><p class="sm" style="margin-top:8px">Rewards count Daily Dig days in a row. You wear a new item the moment you earn it; change it in the Wardrobe. A free streak freeze also arrives every 7 days of streak (you can hold 2) and covers one missed day.</p>');
   html+='<button class="b2 ghost" id="stWard" type="button">Open wardrobe</button>';
   $('hpBody').innerHTML=html;
+  document.querySelectorAll('#hpBody .cal .d.pick').forEach(b=>b.onclick=()=>{ const k=b.dataset.day; HPAGES.streak.sel=(HPAGES.streak.sel===k?null:k);
+    document.querySelectorAll('#hpBody .cal .d.pick').forEach(x=>{ const on=x.dataset.day===HPAGES.streak.sel; x.classList.toggle('sel',on); x.setAttribute('aria-pressed',on); });
+    $('calDay').innerHTML=HPAGES.streak.dayInfo(histDays()); try{ Sound.play('menu'); }catch(e){} });
   $('calPrev').onclick=()=>{ const t=new Date(Date.UTC(y,m-2,1)); HPAGES.streak.mon=t.getUTCFullYear()+'-'+pad(t.getUTCMonth()+1); HPAGES.streak.render(); };
   $('calNext').onclick=()=>{ const t=new Date(Date.UTC(y,m,1)); HPAGES.streak.mon=t.getUTCFullYear()+'-'+pad(t.getUTCMonth()+1); HPAGES.streak.render(); };
   $('stWard').onclick=()=>{ hpClose(); openWardrobe(); };
