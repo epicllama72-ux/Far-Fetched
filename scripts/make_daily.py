@@ -1452,6 +1452,31 @@ Stories:
 """
 
 
+_CLUE_TAIL = re.compile(r"[\s,;:+=&\-\u2013]+$")
+_CLUE_DANGLE = {"a", "an", "the", "and", "or", "of", "to", "by", "in", "on", "at", "for", "with", "that", "about", "between", "from", "as", "is", "was", "were", "are", "near", "than"}
+def clean_clue(c, n=80):
+    """The clue is shown to the player after the reveal, so it must never end mid-word or mid-phrase: a long one is cut at its last
+    ';', ',' (not the one inside 3,000), ' = ' or ' + ', else at a word, then any dangling 'and/of/the...' is dropped."""
+    c = " ".join((c or "").split())
+    if len(c) <= n:
+        return c
+    cut = c[:n]
+    def brk(x):
+        i = cut.rfind(x)
+        while x == "," and i > 0 and i + 1 < len(cut) and cut[i - 1].isdigit() and cut[i + 1].isdigit():
+            i = cut.rfind(x, 0, i)
+        return i
+    best = max(brk(x) for x in (";", ",", " = ", " + "))
+    cut = cut[:best] if best >= 20 else cut[:cut.rfind(" ")]
+    cut = _CLUE_TAIL.sub("", cut)
+    while True:
+        w = cut.rsplit(" ", 1)
+        if len(w) == 2 and w[1].lower().strip(".,;:'\"") in _CLUE_DANGLE:
+            cut = _CLUE_TAIL.sub("", w[0])
+        else:
+            break
+    return cut
+
 def ease_clues(call_pick, model, n=EASY_CLUES):
     """Make `n` of the real picks easier: the ones whose clues are weakest get a better-known clue (the player base is worldwide)."""
     reals = [r for r in call_pick if r.get("real", True) and (r.get("hint") or "").strip()]
@@ -1823,7 +1848,7 @@ def main():
 
     def real_call(r):
         return {"real": True, "h": r["h"], "hint": (r.get("hint") or "")[:70], "lat": round(float(r["lat"]), 4), "lng": round(float(r["lng"]), 4),
-                "place": r["place"], "src": r["src"], "published": r["published"], "clue": (r.get("clue") or "")[:80]}
+                "place": r["place"], "src": r["src"], "published": r["published"], "clue": clean_clue(r.get("clue") or "")}
 
     def real_blank(r):
         out = {"real": True, "h2": r["h2"], "ans": r["ans"], "alt": r.get("alt") or [], "place": r["place"], "src": r["src"],

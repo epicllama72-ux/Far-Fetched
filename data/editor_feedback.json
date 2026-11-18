@@ -27,7 +27,8 @@
   "CLUES: for an obscure place with no regional trivia hook, a direction plus a famous fact about the country (never naming it) is a good clue: 'a town in the south of panda country', 'a village in central wine-and-cheese country'.",
   "CLUES: for an obscure place a famous fact about its STATE or region (never naming it) plus a compass push works well: 'a town in the east of Pocahontas's state', 'a village in the north of ...'.",
   "FAKES: never formulaic. They are NOT all '[person] in a [costume] does [thing] in {}'. Fakes can be about anything (objects, places, institutions, discoveries, rules, records, events), with varied sentence shapes and {} positions; at most one per set is a person described by their clothing. Each still copies the real stories' deadpan, specific, numbered style and carries one quiet inconsistency checkable from the headline.",
-  "FAKES: the same high bar as the real stories. A fake must be interesting enough that it would earn a place in the game if it were real; dull surveys, studies, statistics or bland incidents are out however clever the slip."
+  "FAKES: the same high bar as the real stories. A fake must be interesting enough that it would earn a place in the game if it were real; dull surveys, studies, statistics or bland incidents are out however clever the slip.",
+  "Reveal clues must never end mid-word or mid-phrase: scripts/make_daily.py now cuts an overlong clue at its last ';' / ',' / ' = ' / ' + ' (else a whole word) and drops dangling words; 22 existing truncated clues in data/ were repaired."
  ],
  "edits": [
   {
@@ -545,6 +546,12 @@
    "before": "a village in Nollywood's homeland",
    "after": "a village in the home of Nollywood, the 2nd-largest continent's film hub",
    "why": "owner: few players know Nollywood, so the clue must also place it by continent; pair a niche term with the continent's rank or a well-known fact"
+  },
+  {
+   "kind": "clue-cleanup",
+   "before": "clues hard-cut at 80 characters (e.g. '...haircut agreement for 3,000 bah')",
+   "after": "clean_clue() in the builder; existing papers and practice.json repaired",
+   "why": "critic review found clues ending mid-word in the reveal"
   }
  ]
 }
