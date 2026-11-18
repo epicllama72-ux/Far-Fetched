@@ -5913,6 +5913,7 @@ window.addEventListener('resize',()=>settleBar()); window.addEventListener('orie
 document.addEventListener('focusout',()=>setTimeout(liftBar,50));
 
 $('btnStart').onclick=()=>{
+  homeFold();
   const begin=()=>{ if(S.kind==='blank') startBlankRound(); else startCallRound(); };
   if(Intro.diving()) return;                        // already on the way down
   if(Intro.active()){ $('btnStart').disabled=true; Intro.go(()=>{ $('btnStart').disabled=false; begin(); }); return; }
@@ -6083,6 +6084,17 @@ document.querySelectorAll('#homeBtns .ht').forEach(b=>b.onclick=()=>{
   if(k==='passport'){ openPassport(); return; }
   hpOpen(k);
 });
+
+
+/* the home buttons fold up and vanish the moment the game starts; they come back with the next title screen */
+function homeFold(){
+  const el=$('homeBtns'); if(!el || getComputedStyle(el).display==='none' || el.dataset.folded) return;
+  el.dataset.folded='1'; el.style.overflow='hidden'; el.style.height=el.offsetHeight+'px'; el.style.transformOrigin='top center';
+  void el.offsetHeight;
+  el.style.transition='height .22s ease-in, margin-top .22s ease-in, opacity .18s ease-in, transform .22s ease-in';
+  el.style.height='0'; el.style.marginTop='0'; el.style.opacity='0'; el.style.transform='scaleY(.4)';
+}
+function homeUnfold(){ const el=$('homeBtns'); if(!el || !el.dataset.folded) return; delete el.dataset.folded; ['overflow','height','transformOrigin','transition','marginTop','opacity','transform'].forEach(p=>el.style[p]=''); }
 
 /* STATS */
 HPAGES.stats={title:'Your stats',render(){
@@ -6611,8 +6623,8 @@ const Intro=(function(){
     const top=$('introTop'), narrow=innerWidth<1100;
     const tb=top.hidden ? 120 : top.getBoundingClientRect().bottom;
     const bar=$('bar'), bb=narrow && bar && bar.getClientRects().length ? bar.getBoundingClientRect().top : innerHeight-16;   // a fixed bar has no offsetParent, so test that it is drawn instead
-    const room=Math.max(80,bb-tb-16);
-    const Rpx=Math.min(innerWidth*(narrow?0.42:0.3), room/2-(narrow?0:14)), eyPx=tb+6+Rpx;   // tucked right under How to play
+    const room=Math.max(80,bb-tb-8);
+    const Rpx=Math.min(innerWidth*(narrow?0.45:0.3), room/2-(narrow?0:14)), eyPx=tb+6+Rpx;   // tucked right under How to play
     IP={R:Rpx/PX, ey:eyPx/PX};
   }
   const idlePos=()=>IP || {R:Math.min(w,h)*0.32, ey:h*0.6};
@@ -6635,6 +6647,7 @@ const Intro=(function(){
     introText();
     t.style.top=Math.round(bar ? bar.getBoundingClientRect().bottom+8 : 66)+'px';   // straight under the top bar: the counters are hidden until the game starts
     t.hidden=false; document.body.classList.add('introIdle');
+    if(typeof homeUnfold==='function') homeUnfold();
     layoutIdle();
     requestAnimationFrame(()=>t.classList.add('on'));
   }
