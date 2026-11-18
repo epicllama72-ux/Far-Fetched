@@ -4254,6 +4254,7 @@ function next(){
 }
 
 /* ---------- Results, history and the reason to come back ---------- */
+function totalM(){ const h=load('ff_hist')||{}; return Object.keys(h).reduce((a,k)=>/:(call|pol)$/.test(k)?a+(+h[k].m||0):a,0); }   // every metre dug, all dig modes added up
 function bestM(){ const b=load('ff_best'); return b&&b.m?b.m:0; }
 function renderStats(){
   const h=load('ff_hist')||{}, vals=Object.values(h);
@@ -6089,7 +6090,7 @@ function blankDone(){ const s=load('ff_blank'); return s && s.date===dayKey() &&
 function updateHome(){
   try{
     const bm=bestM(), days=histDays(), n=streakCount(), bd=blankDone(), u=window.Cloud&&Cloud.user&&Cloud.user();
-    $('hStats').textContent = bm ? fmtM(bm) : '';
+    const tm=totalM(); $('hStats').textContent = tm ? fmtM(tm) : '';
     $('hStreak').textContent = n ? n+(n>1?' days':' day') : 'start one';
     const hb=(load('ff_hist')||{})[dayKey()+':blank'];
     $('hBlank').textContent = bd ? (hb?fmtPts(hb.score):'done') : BLANK_N+' words';
@@ -6130,7 +6131,8 @@ HPAGES.stats={title:'Your stats',render(){
   let html='<div class="cd navy"><h5><span>PRESS CARD</span><span>NO. FF-'+hpEsc(String(playerId()).replace(/[^a-z0-9]/gi,'').slice(0,6).toUpperCase())+'</span></h5>'
     +'<div id="nm1"><p style="font:12px var(--px);color:#fff">'+nm+'</p><p class="sm">'+(first?'Playing since '+fmtDate(first)+' · ':'')+days+' day'+(days===1?'':'s')+' played</p><button class="chg" id="nmEdit" type="button">✎ CHANGE NAME</button></div>'
     +'<div id="nm2" style="display:none"><p class="sm" style="font:8px var(--px);letter-spacing:.12em;color:#e3bd62">YOUR NAME</p><div class="rowin"><input id="nmIn" type="text" maxlength="24" value="'+nm+'" aria-label="Your name"><button class="b2" id="nmSave" type="button" style="margin:0">Save</button></div><p class="sm">Up to 24 letters. Shown on the standings and in your groups.</p></div>'
-    +'<div class="g2" style="margin-top:10px"><div class="kv"><b>'+(best.m?fmtM(best.m):'—')+'</b><small>best dig</small></div><div class="kv"><b>'+(avg?fmtM(avg):'—')+'</b><small>average dig</small></div><div class="kv"><b>'+rank+'</b><small>best rank</small></div><div class="kv"><b>'+passCount(names)+' / '+passTotal()+'</b><small>countries mapped</small></div></div></div>';
+    +'<div class="kv" style="margin-top:10px;text-align:center"><b style="font-size:1.5em">'+(totalM()?fmtM(totalM()):'—')+'</b><small>total distance dug</small></div>'
+    +'<div class="g2" style="margin-top:8px"><div class="kv"><b>'+(best.m?fmtM(best.m):'—')+'</b><small>best dig</small></div><div class="kv"><b>'+(avg?fmtM(avg):'—')+'</b><small>average dig</small></div><div class="kv"><b>'+rank+'</b><small>best rank</small></div><div class="kv"><b>'+passCount(names)+' / '+passTotal()+'</b><small>countries mapped</small></div></div></div>';
   html+=hpCard('LAST '+Math.max(last.length,1)+' DIGS','',last.length?'<div class="spark">'+last.map(k=>'<i style="height:'+Math.round(100*h[k].m/mx)+'%" title="'+k.split(':')[0]+'"></i>').join('')+'</div><p class="sm" style="margin-top:6px">Deepest '+fmtM(best.m||0)+'. Taller bars are deeper digs.</p>':'<p class="sm">Finish a Daily Dig to start your chart.</p>');
   html+=hpCard('PINS AND CALLS','',  '<div class="g2"><div class="kv"><b>'+(l.pins||0)+'</b><small>pins landed</small></div><div class="kv"><b>'+(l.catches||0)+'</b><small>fakes caught</small></div></div>');
   html+=hpCard('FILL THE BLANK',blanks.length+' played','<div class="g2"><div class="kv"><b>'+(blanks.length?fmtPts(blanks.reduce((a,k)=>Math.max(a,h[k].score||0),0)):'—')+'</b><small>best score</small></div><div class="kv"><b>'+blanks.length+'</b><small>days played</small></div></div>');
@@ -6139,7 +6141,7 @@ HPAGES.stats={title:'Your stats',render(){
   $('nmEdit').onclick=()=>{ $('nm1').style.display='none'; $('nm2').style.display='block'; $('nmIn').focus(); $('nmIn').select(); };
   const save=()=>{ store('ff_name',$('nmIn').value.replace(/[<>]/g,'').trim().slice(0,24)); try{ syncName(true); }catch(e){} HPAGES.stats.render(); };
   $('nmSave').onclick=save; $('nmIn').onkeydown=e=>{ if(e.key==='Enter') save(); };
-  $('stShare').onclick=async()=>{ const text='My Far-Fetched stats: best dig '+(best.m?fmtM(best.m):'—')+', '+n0(passCount(names))+' countries mapped, '+streakCount()+'-day streak\n'+shareUrl('stats'); try{ if(navigator.share){ await navigator.share({text}); return; } await navigator.clipboard.writeText(text); $('stShare').textContent='Copied!'; }catch(e){} };
+  $('stShare').onclick=async()=>{ const text='My Far-Fetched stats: '+(totalM()?fmtM(totalM())+' dug in total, ':'')+'best dig '+(best.m?fmtM(best.m):'—')+', '+n0(passCount(names))+' countries mapped, '+streakCount()+'-day streak\n'+shareUrl('stats'); try{ if(navigator.share){ await navigator.share({text}); return; } await navigator.clipboard.writeText(text); $('stShare').textContent='Copied!'; }catch(e){} };
 }};
 const n0=x=>String(x||0);
 
