@@ -701,15 +701,15 @@ svg.leaflet-image-layer.leaflet-interactive path {
 #summary #digLog,#final.news #digLog,#summary #sumCurve,#final.news #sumCurve{image-rendering:auto}   /* the summary's blanket pixelated rule made these two charts stair-step */
 
 /* home buttons under I'M READY, and the full pages they open */
-#homeBtns{display:none;flex-direction:column;gap:6px;margin-top:0}   /* the ready button's lowest point (its rest position) touches the tiles */
+#homeBtns{display:none;flex-direction:column;gap:5px;margin-top:0}   /* the ready button's lowest point (its rest position) touches the tiles */
 body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
-#homeBtns .hr{display:flex;gap:6px}
-#homeBtns .ht{all:unset;box-sizing:border-box;flex:1 1 0;min-width:0;cursor:pointer;text-align:center;background:#141821;border:2px solid #2a2f3b;padding:7px 2px 6px;position:relative;box-shadow:2px 2px 0 #000;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+#homeBtns .hr{display:flex;gap:5px}
+#homeBtns .ht{all:unset;box-sizing:border-box;flex:1 1 0;min-width:0;cursor:pointer;text-align:center;background:#141821;border:2px solid #2a2f3b;padding:4px 2px 4px;position:relative;box-shadow:2px 2px 0 #000;min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
 #homeBtns .ht[hidden]{display:none}
 #homeBtns .ht:active{transform:translate(1px,1px);box-shadow:1px 1px 0 #000}
 #homeBtns .ht:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-#homeBtns svg{width:18px;height:18px;color:var(--cyan)}
-#homeBtns .blk{font:8px/18px var(--px);color:var(--accent);height:18px}
+#homeBtns svg{width:15px;height:15px;color:var(--cyan)}
+#homeBtns .blk{font:8px/15px var(--px);color:var(--accent);height:15px}
 #homeBtns .ht.hot{border-color:var(--cyan);background:#10202c}
 #homeBtns .hn{font:6px/1.35 var(--px);letter-spacing:.05em;color:#c8cfdd;text-transform:uppercase}
 #homeBtns .hs{font:17px/1 var(--vt);color:var(--accent)}
@@ -741,14 +741,24 @@ body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
 #hp .cal .d.p{background:#ffcc4d;color:#1b1813}#hp .cal .d.p.b::after{content:'';position:absolute;right:2px;bottom:2px;width:6px;height:6px;background:#1f4f86}
 #hp .cal .d.fz{background:#bfe3f7;color:#1f4f86}#hp .cal .d.td{border-color:#a8231a;color:#a8231a;background:#f6f0de}#hp .cal .d.ms{box-shadow:inset 0 0 0 2px #a8231a}
 #hp .cal .d.ms span{position:absolute;top:-7px;right:-4px;font-size:15px;line-height:1}#hp .cal .d.x{background:transparent}#hp .cal .d.fut{opacity:.45}
+#hp .cal button.d{all:unset;box-sizing:border-box;position:relative;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font:20px var(--vt);cursor:pointer;border:2px solid transparent}
+#hp .cal button.d.p{background:#ffcc4d;color:#1b1813}#hp .cal button.d.p.b::after{content:'';position:absolute;right:2px;bottom:2px;width:6px;height:6px;background:#1f4f86}
+#hp .cal button.d.sel{border-color:#1b1813;box-shadow:inset 0 0 0 2px #fff6d6}
+#hp .cal button.d:focus-visible{outline:3px solid #a8231a;outline-offset:1px}
+#hp .cal button.d.td{border-color:#a8231a}
+#hp .calDay{margin-top:10px;padding-top:8px;border-top:2px dotted #b9ae92;min-height:2.4em;position:relative}#hp .calDay h6{margin:0 0 4px;font:8px/1.4 var(--px);color:#3b342a}
+#hp .calDay .lst li{grid-template-columns:1fr auto}#hp .calDay b{font-weight:400;color:#a8231a}
 #hp .legend{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 0;font:17px var(--vt);color:#3b342a;position:relative}
 #hp .step{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:8px;font:21px var(--vt);margin:5px 0;position:relative}#hp .step b{font:9px var(--px)}#hp .step.done{color:#2f6b2f}#hp .step.next{color:#a8231a}
 #hp .badge{display:inline-block;font:7px/1 var(--px);padding:3px 4px 2px;background:#a8231a;color:#fff}#hp .badge.ok{background:#2f6b2f}#hp .badge.dim{background:#8a806c}
 #hp .word{display:flex;gap:5px;justify-content:center;margin:8px 0 4px;position:relative}#hp .word i{width:26px;height:30px;border:2px solid #1b1813;background:#f6f0de;font:14px/26px var(--px);font-style:normal;text-align:center}#hp .word i.k{background:#1b1813;color:#ffcc4d}
 #hp input[type=text]{font:22px var(--vt);padding:6px 8px;border:2px solid #1b1813;background:#f6f0de;color:#1b1813;min-width:0;width:100%;box-sizing:border-box}
 #hp .rowin{display:grid;grid-template-columns:1fr auto;gap:8px;position:relative}#hp .rowin .b2{margin:0;padding:0 14px;width:auto}
-#hp .gbtn{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;background:#fff;border:2px solid #dadce0;color:#3c4043;font:500 15px Arial,sans-serif}
-#hp .gbtn b{display:inline-block;width:20px;height:20px;border-radius:3px;background:conic-gradient(#ea4335 0 25%,#fbbc05 0 50%,#34a853 0 75%,#4285f4 0)}
+#hp .acG{min-height:44px}
+#hp .gbtn{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:44px;padding:0 14px;background:#fff;border:1px solid #dadce0;border-radius:4px;color:#3c4043;font:500 15px/1 Roboto,Arial,sans-serif;box-shadow:0 1px 2px rgba(0,0,0,.3)}
+#hp .gbtn svg{width:18px;height:18px;flex:none}
+#hp .gbtn:hover{background:#f7f8f8}#hp .gbtn:active{background:#eceff1}
+#hp .gbtn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 #hp .hint{color:#aab6d6;font:18px/1.1 var(--vt);margin:8px 0}
 #hp .chg{all:unset;cursor:pointer;margin-top:8px;font:7px/1 var(--px);letter-spacing:.12em;color:#ffcc4d;border-bottom:1px solid #ffcc4d;padding-bottom:3px;position:relative}
 </style>
@@ -2019,7 +2029,7 @@ body.pinning #card #headline{font-size:23px}
   <section id="gsi" hidden aria-label="Sign in">
     <div class="gIn" role="dialog" aria-modal="true">
       <div class="gTop"><h2>SIGN IN</h2><button id="gsiClose" type="button" aria-label="Close">×</button></div>
-      <p class="gWhy">Save your streak, passport and wardrobe, and carry them to any device.</p>
+      <p class="gWhy">Save your streak, stats, passport and wardrobe, and carry them to any device. Your name and a unique ID are all the game reads.</p>
       <div id="gsiBtn" class="gBtn"></div>
       <p id="gsiMsg" class="gMsg" aria-live="polite"></p>
       <button id="gsiOld" class="gOld" type="button">Button not working? Sign in another way</button>
@@ -4135,7 +4145,7 @@ function submitGuess(timedOut){
   const cName = cOk ? (countryName(cTrue) || String(st.place||'').split(',').pop().trim()) : '';
   const newStamp = cOk && S.mode==='daily' && S.kind==='call' ? stampPassport(cName, {d:dayKey(), h:String(st.h||'').replace('{}',st.place||'').slice(0,160), pl:String(st.place||'').slice(0,60), src:st.src||''}) : false;   // only today's Daily Dig earns stamps (not practice or back issues)   // the passport collects every country pinned right
   if(newStamp) setTimeout(()=>Sound.play('unlock'),350);
-  S.cur.pinPts = pts; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
+  S.cur.pinPts = pts; S.cur.cOk = !!cOk; S.cur.dist = d; S.cur.pinSec = sec; S.score += pts;
   S.cur.pin = guessLL ? [Math.round(guessLL.lat*100)/100, Math.round((((guessLL.lng+540)%360)-180)*100)/100] : null;   // saved with the answers so other players can see where people pinned
   const holdMap = !isDesk() && !!guessLL;   // phones: the map shrinks first, then the jaw drops
   Sound.play('lock',Math.min(1,pts/(PK*(PIN_PTS+COUNTRY_PTS))));
@@ -4244,6 +4254,7 @@ function next(){
 }
 
 /* ---------- Results, history and the reason to come back ---------- */
+function totalM(){ const h=load('ff_hist')||{}; return Object.keys(h).reduce((a,k)=>/:(call|pol)$/.test(k)?a+(+h[k].m||0):a,0); }   // every metre dug, all dig modes added up
 function bestM(){ const b=load('ff_best'); return b&&b.m?b.m:0; }
 function renderStats(){
   const h=load('ff_hist')||{}, vals=Object.values(h);
@@ -4455,6 +4466,7 @@ function finish(restored){
     if(+inf.m>bestM()){ store('ff_best',{m:+inf.m,zone:inf.zone}); }
     Scene.setBest(bestM());
     if(S.kind==='call'){ updateLife(inf); claimUnlocks(); }   // the Dig Kit is earned in Daily Dig only
+    if(S.kind==='blank'){ const l=load('ff_life')||{}; l.bexact=(l.bexact||0)+S.results.filter(x=>x.exact).length; l.bwords=(l.bwords||0)+S.results.length; store('ff_life',l); }   // exact words typed, out of every word played
   }
   if(daily) postScore({kind:S.kind, m:+inf.m, score:total, zone:inf.zone, ans:answersOf(S.results)});
   if(restored){
@@ -4567,6 +4579,8 @@ function updateLife(inf){
   l.best=Math.max(l.best||0,l.dCount||0);
   l.pins=(l.pins||0)+S.results.filter(x=>x.pinPts>0).length;
   l.catches=(l.catches||0)+S.results.filter(x=>x.real===false && x.callOk).length;
+  l.fooled=(l.fooled||0)+S.results.filter(x=>x.real===false && !x.callOk).length;   // fakes you fell for
+  l.cpins=(l.cpins||0)+S.results.filter(x=>x.cOk).length;                            // pins in the right country
   l.zmax=Math.max(l.zmax||0, ZONE_ORDER.indexOf(inf.zone)+1);
   if(Scene.coreBlown()) l.cblown=1;   // the Core trophy needs the core to actually blow, not just the layer reached
   store('ff_life',l);
@@ -4880,11 +4894,13 @@ function loadIssues(){
 }
 const BACK_FREE=5;    // back issues on offer: the most recent 5 earlier papers. Every older paper stays stored (data/*.json, issues.json) for later.
 const backWindow=()=>ISSUES.filter(x=>x && x.date && x.date<dayKey()).sort((a,b)=>a.date<b.date?1:-1).slice(0,BACK_FREE);
+/* a past paper counts as played if it was played live (the history) or later as a back issue; the live result wins */
+function backResult(date,kind){ const h=(load('ff_hist')||{})[date+':'+kind]; if(h) return Object.assign({live:true},h); return load('ff_back:'+date+':'+kind); }
 function renderIssues(){
   const past=backWindow();
   $('mBack').hidden=!past.length;
   $('backList').innerHTML=past.map(x=>{
-    const done=load('ff_back:'+x.date+':call');
+    const done=backResult(x.date,'call');
     return '<button data-d="'+x.date+'">#'+issueNumber(x.date)+' · '+fmtDate(x.date)+(done?' <small>✓ '+fmtM(done.m)+'</small>':'')+'</button>';
   }).join('');
   $('backList').querySelectorAll('button').forEach(b=>b.onclick=()=>openBackIssue(b.dataset.d));
@@ -5041,7 +5057,7 @@ const Cloud=(function(){
       const w=a.last===b.last ? ((a.count||0)>=(b.count||0)?a:b) : (later(a.last,b.last)?a:b), o=w===a?b:a;
       const count = o.last && o.last===prevDay(w.last) ? Math.max(w.count||0,(o.count||0)+1) : (w.count||0);
       return Object.assign({},w,{count, freezes:Math.max(a.freezes||0,b.freezes||0)}); }
-    if(k==='ff_life'){ const w=later(a.dLast,b.dLast)?a:b, o=w===a?b:a, dCount=o.dLast && o.dLast===prevDay(w.dLast) ? Math.max(w.dCount||0,(o.dCount||0)+1) : (w.dCount||0); return Object.assign({},w,{dCount,best:Math.max(a.best||0,b.best||0),pins:Math.max(a.pins||0,b.pins||0),catches:Math.max(a.catches||0,b.catches||0),zmax:Math.max(a.zmax||0,b.zmax||0),cblown:(a.cblown||b.cblown)?1:0}); }
+    if(k==='ff_life'){ const w=later(a.dLast,b.dLast)?a:b, o=w===a?b:a, dCount=o.dLast && o.dLast===prevDay(w.dLast) ? Math.max(w.dCount||0,(o.dCount||0)+1) : (w.dCount||0); return Object.assign({},w,{dCount,best:Math.max(a.best||0,b.best||0),pins:Math.max(a.pins||0,b.pins||0),catches:Math.max(a.catches||0,b.catches||0),fooled:Math.max(a.fooled||0,b.fooled||0),bexact:Math.max(a.bexact||0,b.bexact||0),bwords:Math.max(a.bwords||0,b.bwords||0),cpins:Math.max(a.cpins||0,b.cpins||0),zmax:Math.max(a.zmax||0,b.zmax||0),cblown:(a.cblown||b.cblown)?1:0}); }
     if(k==='ff_kit') return {eq:Object.keys(a.eq||{}).length?a.eq:(b.eq||{}), seen:[...new Set([].concat(b.seen||[],a.seen||[]))]};
     if(k==='ff_invites') return Math.max(+a||0,+b||0);
     if(k==='ff_name') return a||b;
@@ -5104,6 +5120,7 @@ const Cloud=(function(){
   function setUser(u){
     const was=user&&user.id; user=u||null; armOut=0; render(); try{ renderNpPass(); }catch(e){}
     if(user && was!==user.id){ ready=true; pull(); }
+    try{ if(HP_ID==='account') HPAGES.account.render(); updateHome(); }catch(e){}   // the Account page flips to its signed-in view straight away
   }
   /* Sign-in: Google's own button inside a small sheet; its ID token goes straight to Supabase, so Google's screen shows the game, not the Supabase address. */
   const GOOGLE_CLIENT='170775693360-aijpdj39sh7a5eoe81mkrskl7tamh1c2.apps.googleusercontent.com';
@@ -5128,6 +5145,17 @@ const Cloud=(function(){
     try{ await client(); await sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}}); }
     catch(e){ $('acctSub').textContent='sign-in isn\'t available right now'; }
   }
+  /* The real Google button, drawn straight into a page (the Account page) so signing in is one tap, with no second sheet. */
+  async function mountButton(host,w){
+    try{
+      await Promise.all([client(), gsiLib()]);
+      const n=await gsiNonce(); gsiRaw=n.raw;
+      google.accounts.id.initialize({client_id:GOOGLE_CLIENT, callback:gsiCallback, nonce:n.hashed, use_fedcm_for_prompt:true});
+      const box=document.createElement('div'); box.style.cssText='display:flex;justify-content:center';
+      google.accounts.id.renderButton(box,{type:'standard',theme:'outline',size:'large',text:'continue_with',shape:'rectangular',logo_alignment:'left',width:Math.min(400,Math.max(200,w||300))});
+      host.innerHTML=''; host.appendChild(box); return true;
+    }catch(e){ return false; }
+  }
   async function signIn(){
     setStatus(''); $('gsiMsg').textContent=''; $('gsi').hidden=false;
     try{
@@ -5135,7 +5163,7 @@ const Cloud=(function(){
       const n=await gsiNonce(); gsiRaw=n.raw;
       google.accounts.id.initialize({client_id:GOOGLE_CLIENT, callback:gsiCallback, nonce:n.hashed, use_fedcm_for_prompt:true});
       const host=$('gsiBtn'); host.innerHTML='';
-      google.accounts.id.renderButton(host,{type:'standard',theme:'filled_black',size:'large',text:'continue_with',shape:'rectangular',width:Math.min(320,Math.max(200,innerWidth-60))});
+      google.accounts.id.renderButton(host,{type:'standard',theme:'outline',size:'large',text:'continue_with',shape:'rectangular',logo_alignment:'left',width:Math.min(400,Math.max(200,Math.min(480,innerWidth)-28))});
     }catch(e){ $('gsiMsg').textContent='Google\'s button couldn\'t load. Use the link below.'; }
   }
   $('gsiClose').onclick=()=>{ $('gsi').hidden=true; };
@@ -5160,7 +5188,7 @@ const Cloud=(function(){
     clearTimeout(armOut); armOut=0; signOut();
   };
   render(); boot();
-  return {user:()=>user, push, mergeKey, signIn, signOut};
+  return {user:()=>user, push, mergeKey, signIn, signOut, mountButton};
 })();
 window.Cloud=Cloud;
 async function sbRpc(fn,body){
@@ -6067,7 +6095,7 @@ function blankDone(){ const s=load('ff_blank'); return s && s.date===dayKey() &&
 function updateHome(){
   try{
     const bm=bestM(), days=histDays(), n=streakCount(), bd=blankDone(), u=window.Cloud&&Cloud.user&&Cloud.user();
-    $('hStats').textContent = bm ? fmtM(bm) : '';
+    const tm=totalM(); $('hStats').textContent = tm ? fmtM(tm) : '';
     $('hStreak').textContent = n ? n+(n>1?' days':' day') : 'start one';
     const hb=(load('ff_hist')||{})[dayKey()+':blank'];
     $('hBlank').textContent = bd ? (hb?fmtPts(hb.score):'done') : BLANK_N+' words';
@@ -6108,21 +6136,29 @@ HPAGES.stats={title:'Your stats',render(){
   let html='<div class="cd navy"><h5><span>PRESS CARD</span><span>NO. FF-'+hpEsc(String(playerId()).replace(/[^a-z0-9]/gi,'').slice(0,6).toUpperCase())+'</span></h5>'
     +'<div id="nm1"><p style="font:12px var(--px);color:#fff">'+nm+'</p><p class="sm">'+(first?'Playing since '+fmtDate(first)+' · ':'')+days+' day'+(days===1?'':'s')+' played</p><button class="chg" id="nmEdit" type="button">✎ CHANGE NAME</button></div>'
     +'<div id="nm2" style="display:none"><p class="sm" style="font:8px var(--px);letter-spacing:.12em;color:#e3bd62">YOUR NAME</p><div class="rowin"><input id="nmIn" type="text" maxlength="24" value="'+nm+'" aria-label="Your name"><button class="b2" id="nmSave" type="button" style="margin:0">Save</button></div><p class="sm">Up to 24 letters. Shown on the standings and in your groups.</p></div>'
-    +'<div class="g2" style="margin-top:10px"><div class="kv"><b>'+(best.m?fmtM(best.m):'—')+'</b><small>best dig</small></div><div class="kv"><b>'+(avg?fmtM(avg):'—')+'</b><small>average dig</small></div><div class="kv"><b>'+rank+'</b><small>best rank</small></div><div class="kv"><b>'+passCount(names)+' / '+passTotal()+'</b><small>countries mapped</small></div></div></div>';
+    +'<div class="kv" style="margin-top:10px;text-align:center"><b style="font-size:1.5em">'+(totalM()?fmtM(totalM()):'—')+'</b><small>total distance dug</small></div>'
+    +'<div class="g2" style="margin-top:8px"><div class="kv"><b>'+(best.m?fmtM(best.m):'—')+'</b><small>best dig</small></div><div class="kv"><b>'+(avg?fmtM(avg):'—')+'</b><small>average dig</small></div><div class="kv"><b>'+rank+'</b><small>best rank</small></div><div class="kv"><b>'+passCount(names)+' / '+passTotal()+'</b><small>countries mapped</small></div></div></div>';
   html+=hpCard('LAST '+Math.max(last.length,1)+' DIGS','',last.length?'<div class="spark">'+last.map(k=>'<i style="height:'+Math.round(100*h[k].m/mx)+'%" title="'+k.split(':')[0]+'"></i>').join('')+'</div><p class="sm" style="margin-top:6px">Deepest '+fmtM(best.m||0)+'. Taller bars are deeper digs.</p>':'<p class="sm">Finish a Daily Dig to start your chart.</p>');
-  html+=hpCard('PINS AND CALLS','',  '<div class="g2"><div class="kv"><b>'+(l.pins||0)+'</b><small>pins landed</small></div><div class="kv"><b>'+(l.catches||0)+'</b><small>fakes caught</small></div></div>');
-  html+=hpCard('FILL THE BLANK',blanks.length+' played','<div class="g2"><div class="kv"><b>'+(blanks.length?fmtPts(blanks.reduce((a,k)=>Math.max(a,h[k].score||0),0)):'—')+'</b><small>best score</small></div><div class="kv"><b>'+blanks.length+'</b><small>days played</small></div></div>');
+  html+=hpCard('PINS AND CALLS','',  '<div class="g2"><div class="kv"><b>'+(l.pins||0)+'</b><small>pins landed</small></div><div class="kv"><b>'+(l.catches||0)+'</b><small>fakes caught</small></div><div class="kv"><b>'+Math.max(l.cpins||0,passCount(names))+'</b><small>right country pins</small></div><div class="kv"><b>'+(l.fooled||0)+'</b><small>times fooled</small></div></div>');
+  html+=hpCard('FILL THE BLANK',blanks.length+' played','<div class="g2"><div class="kv"><b>'+(blanks.length?fmtPts(blanks.reduce((a,k)=>Math.max(a,h[k].score||0),0)):'—')+'</b><small>best score</small></div><div class="kv"><b>'+(blanks.length?fmtPts(Math.round(blanks.reduce((a,k)=>a+(h[k].score||0),0)/blanks.length)):'—')+'</b><small>average score</small></div><div class="kv"><b>'+(l.bexact||0)+'</b><small>exact words'+(l.bwords?' · of '+l.bwords:'')+'</small></div><div class="kv"><b>'+blanks.length+'</b><small>days played</small></div></div>');
   html+='<button class="b2" id="stShare" type="button">Share my stats</button>';
   $('hpBody').innerHTML=html;
   $('nmEdit').onclick=()=>{ $('nm1').style.display='none'; $('nm2').style.display='block'; $('nmIn').focus(); $('nmIn').select(); };
   const save=()=>{ store('ff_name',$('nmIn').value.replace(/[<>]/g,'').trim().slice(0,24)); try{ syncName(true); }catch(e){} HPAGES.stats.render(); };
   $('nmSave').onclick=save; $('nmIn').onkeydown=e=>{ if(e.key==='Enter') save(); };
-  $('stShare').onclick=async()=>{ const text='My Far-Fetched stats: best dig '+(best.m?fmtM(best.m):'—')+', '+n0(passCount(names))+' countries mapped, '+streakCount()+'-day streak\n'+shareUrl('stats'); try{ if(navigator.share){ await navigator.share({text}); return; } await navigator.clipboard.writeText(text); $('stShare').textContent='Copied!'; }catch(e){} };
+  $('stShare').onclick=async()=>{ const text='My Far-Fetched stats: '+(totalM()?fmtM(totalM())+' dug in total, ':'')+'best dig '+(best.m?fmtM(best.m):'—')+', '+n0(passCount(names))+' countries mapped, '+streakCount()+'-day streak\n'+shareUrl('stats'); try{ if(navigator.share){ await navigator.share({text}); return; } await navigator.clipboard.writeText(text); $('stShare').textContent='Copied!'; }catch(e){} };
 }};
 const n0=x=>String(x||0);
 
 /* STREAK */
-HPAGES.streak={title:'Streak',mon:null,render(){
+HPAGES.streak={title:'Streak',mon:null,sel:null,
+  dayInfo(days){                       // what you did on the day you tapped: distance and points per game
+    const k=this.sel, d=k&&days[k];
+    if(!d) return '<p class="sm">Tap a day you played to see how far you dug.</p>';
+    const row=(name,r,dist)=>r?'<li><span>'+name+'</span><span>'+(dist&&+r.m>0?'<b>'+fmtM(r.m)+'</b> · ':'')+fmtPts(r.score)+' pts</span></li>':'';
+    return '<h6>'+hpEsc(fmtDate(k).toUpperCase())+'</h6><ul class="lst">'+row('Daily Dig',d.call,true)+row('Politics',d.pol,true)+row('Fill the Blank',d.blank,false)+'</ul>';
+  },
+  render(){
   const days=histDays(), st=load('ff_streak')||{}, today=todayKey(), n=streakCount(), l=load('ff_life')||{}, frz=st.freezes||0;
   if(!this.mon) this.mon=today.slice(0,7);
   const [y,m]=this.mon.split('-').map(Number), first=new Date(Date.UTC(y,m-1,1)).getUTCDay(), dim=new Date(Date.UTC(y,m,0)).getUTCDate();
@@ -6137,14 +6173,18 @@ HPAGES.streak={title:'Streak',mon:null,render(){
   for(let d=1;d<=dim;d++){ const key=this.mon+'-'+pad(d); let k='d', tag='';
     const dd=days[key]; if(dd) k+=' p'+(dd.blank?' b':''); else if(st.frozeOn===key) k+=' fz'; else if(key===today) k+=' td'; else if(key>today) k+=' fut';
     if(nextDate===key){ k+=' ms'; tag='<span>'+(nextIt.icon||'')+'</span>'; }
-    cal+='<div class="'+k+'" aria-label="'+key+'">'+d+tag+'</div>'; }
+    if(dd) k+=' pick'+(this.sel===key?' sel':'');
+    cal+=(dd?'<button type="button" class="'+k+'" data-day="'+key+'" aria-label="'+fmtDate(key)+': see your result" aria-pressed="'+(this.sel===key)+'">':'<div class="'+k+'" aria-label="'+key+'">')+d+tag+(dd?'</button>':'</div>'); }
   const thisMon=today.slice(0,7), canNext=this.mon<thisMon;
   const monName=new Date(Date.UTC(y,m-1,1)).toLocaleDateString('en-US',{month:'long',year:'numeric',timeZone:'UTC'}).toUpperCase();
   let html='<div class="cd navy"><h5><span>CURRENT STREAK</span><span>BEST '+best+'</span></h5><p style="font:22px var(--px);color:#ffcc4d">'+n+(n===1?' DAY':' DAYS')+'</p><p class="sm">'+(days[today]?'Today is in the bank. Come back tomorrow.':'Finish either game today'+(n?' to make it '+(n+1):' to start a streak')+'.')+'</p><p style="font-size:22px">❄ '+frz+' freeze'+(frz===1?'':'s')+' saved</p></div>';
-  html+='<div class="cd"><div class="cnav"><button id="calPrev" type="button" aria-label="Previous month">‹</button><b>'+monName+'</b><button id="calNext" type="button" aria-label="Next month"'+(canNext?'':' disabled')+'>›</button></div><div class="cal">'+cal+'</div><div class="legend"><span>■ Played</span><span>▪ + Fill the Blank</span><span>❄ Freeze used</span><span>□ Today</span>'+(nextIt?'<span>'+nextIt.icon+' next reward</span>':'')+'</div></div>';
+  html+='<div class="cd"><div class="cnav"><button id="calPrev" type="button" aria-label="Previous month">‹</button><b>'+monName+'</b><button id="calNext" type="button" aria-label="Next month"'+(canNext?'':' disabled')+'>›</button></div><div class="cal">'+cal+'</div><div class="legend"><span>■ Played</span><span>▪ + Fill the Blank</span><span>❄ Freeze used</span><span>□ Today</span>'+(nextIt?'<span>'+nextIt.icon+' next reward</span>':'')+'</div><div id="calDay" class="calDay" aria-live="polite">'+this.dayInfo(days)+'</div></div>';
   html+=hpCard('WARDROBE REWARDS',nextIt?(need(nextIt)-dCount)+' to the next':'all earned','<div>'+STREAK_KIT.map(it=>{ const ok=L.best>=need(it); const nx=nextIt&&it.id===nextIt.id; return '<div class="step'+(ok?' done':nx?' next':'')+'"><b>'+need(it)+'</b><span>'+(it.icon||'')+' '+hpEsc(it.name)+'</span><span class="badge'+(ok?' ok':nx?'':' dim')+'">'+(ok?'WORN':fmtDate(dateFor(it)).toUpperCase())+'</span></div>'; }).join('')+'</div><p class="sm" style="margin-top:8px">Rewards count Daily Dig days in a row. You wear a new item the moment you earn it; change it in the Wardrobe. A free streak freeze also arrives every 7 days of streak (you can hold 2) and covers one missed day.</p>');
   html+='<button class="b2 ghost" id="stWard" type="button">Open wardrobe</button>';
   $('hpBody').innerHTML=html;
+  document.querySelectorAll('#hpBody .cal .d.pick').forEach(b=>b.onclick=()=>{ const k=b.dataset.day; HPAGES.streak.sel=(HPAGES.streak.sel===k?null:k);
+    document.querySelectorAll('#hpBody .cal .d.pick').forEach(x=>{ const on=x.dataset.day===HPAGES.streak.sel; x.classList.toggle('sel',on); x.setAttribute('aria-pressed',on); });
+    $('calDay').innerHTML=HPAGES.streak.dayInfo(histDays()); try{ Sound.play('menu'); }catch(e){} });
   $('calPrev').onclick=()=>{ const t=new Date(Date.UTC(y,m-2,1)); HPAGES.streak.mon=t.getUTCFullYear()+'-'+pad(t.getUTCMonth()+1); HPAGES.streak.render(); };
   $('calNext').onclick=()=>{ const t=new Date(Date.UTC(y,m,1)); HPAGES.streak.mon=t.getUTCFullYear()+'-'+pad(t.getUTCMonth()+1); HPAGES.streak.render(); };
   $('stWard').onclick=()=>{ hpClose(); openWardrobe(); };
@@ -6178,13 +6218,14 @@ HPAGES.blank={title:'Fill the Blank',render(){
 HPAGES.account={title:'Account',render(){
   const u=window.Cloud&&Cloud.user&&Cloud.user();
   if(!u){
-    $('hpBody').innerHTML=hpCard('SAVE YOUR STREAK','','<p>Your streak, passport and groups live on this device only. Sign in and they follow you to any phone or browser.</p><ul class="lst"><li><span>✓</span><span>Streak and freezes saved</span><span></span></li><li><span>✓</span><span>Passport and best digs saved</span><span></span></li><li><span>✓</span><span>Groups and standings on every device</span><span></span></li></ul>')
-      +'<button class="gbtn" id="acIn" type="button"><b></b>Sign in with Google</button><p class="hint">You can keep playing without an account. The game only reads your name and a unique ID.</p>';
+    $('hpBody').innerHTML=hpCard('SAVE YOUR STREAK','','<p>Your streak, passport and groups live on this device only. Sign in and they follow you to any phone or browser.</p><ul class="lst"><li><span>✓</span><span>Streak and freezes saved</span><span></span></li><li><span>✓</span><span>Stats and score history saved</span><span></span></li><li><span>✓</span><span>Passport and best digs saved</span><span></span></li><li><span>✓</span><span>Groups and standings on every device</span><span></span></li></ul>')
+      +'<div id="acG" class="acG"><button class="gbtn" id="acIn" type="button"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.6z"/><path fill="#FBBC05" d="M10.5 28.7a14.5 14.5 0 0 1 0-9.4l-7.9-6.1a24 24 0 0 0 0 21.6l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg><span>Continue with Google</span></button></div><p class="hint">You can keep playing without an account. The game only reads your name and a unique ID.</p>';
     $('acIn').onclick=()=>{ if(window.Cloud) Cloud.signIn(); };
+    if(window.Cloud&&Cloud.mountButton) Cloud.mountButton($('acG'),$('acG').clientWidth);   // swaps in Google's own button when it loads; the one above stays as the fallback
   } else {
     const mail=String(u.email||''), at=mail.indexOf('@'), shown=at>0?mail.slice(0,Math.min(3,at))+'···'+mail.slice(at):'';
     $('hpBody').innerHTML='<div class="cd navy"><h5><span>SIGNED IN</span><span>GOOGLE</span></h5><p style="font:12px var(--px);color:#fff">'+hpEsc(playerName())+'</p>'+(shown?'<p class="sm">'+hpEsc(shown)+'</p>':'')+'</div>'
-      +hpCard('SYNCED','','<ul class="lst"><li><span>✓</span><span>Streak · '+streakCount()+' day'+(streakCount()===1?'':'s')+'</span><span></span></li><li><span>✓</span><span>Passport · '+passCount(Object.keys(passport()))+' countries</span><span></span></li><li><span>✓</span><span>'+((MY_GROUPS&&MY_GROUPS.length)||0)+' groups</span><span></span></li></ul><p class="sm">Change your name on the Stats page.</p>')
+      +hpCard('SYNCED','','<ul class="lst"><li><span>✓</span><span>Stats · '+Object.keys(load('ff_hist')||{}).length+' scores</span><span></span></li><li><span>✓</span><span>Streak · '+streakCount()+' day'+(streakCount()===1?'':'s')+'</span><span></span></li><li><span>✓</span><span>Passport · '+passCount(Object.keys(passport()))+' countries</span><span></span></li><li><span>✓</span><span>'+((MY_GROUPS&&MY_GROUPS.length)||0)+' groups</span><span></span></li></ul><p class="sm">Change your name on the Stats page.</p>')
       +'<button class="b2 ghost" id="acOut" type="button">Sign out</button>';
     $('acOut').onclick=async()=>{ try{ await Cloud.signOut(); }catch(e){} HPAGES.account.render(); updateHome(); };
   }
@@ -6192,9 +6233,9 @@ HPAGES.account={title:'Account',render(){
 
 /* BACK ISSUES */
 HPAGES.back={title:'Back issues',render(){
-  const w=backWindow(); const st=(d,k)=>load('ff_back:'+d+':'+k);
+  const w=backWindow(); const st=(d,k)=>backResult(d,k);
   $('hpBody').innerHTML=hpCard('','','<p class="sm">The last '+BACK_FREE+' papers stay open. Back issues don\'t count toward your streak or the standings.</p>')
-    +w.map(x=>{ const c=st(x.date,'call'), b=st(x.date,'blank'); const cell=(k,name,r)=>'<div><p>'+name+'</p><p class="sm">'+(r?'Played · '+fmtPts(r.score)+' pts':'Not played')+'</p><button class="b2'+(r?' ghost':'')+'" data-d="'+x.date+'" data-k="'+k+'" type="button" style="margin-top:4px;'+(r?'':'')+'">'+(r?'Replay':'Play')+'</button></div>'; return hpCard(fmtDate(x.date).toUpperCase(),'No. '+issueNumber(x.date),'<div class="g2">'+cell('call','Daily Dig',c)+cell('blank','Fill the Blank',b)+'</div>'); }).join('')
+    +w.map(x=>{ const c=st(x.date,'call'), b=st(x.date,'blank'); const cell=(k,name,r)=>'<div><p>'+name+'</p><p class="sm">'+(r?(r.live?'Played live · ':'Played · ')+(k!=='blank'&&+r.m>0?fmtM(r.m)+' · ':'')+fmtPts(r.score)+' pts':'Not played')+'</p><button class="b2'+(r?' ghost':'')+'" data-d="'+x.date+'" data-k="'+k+'" type="button" style="margin-top:4px;'+(r?'':'')+'">'+(r?'Replay':'Play')+'</button></div>'; return hpCard(fmtDate(x.date).toUpperCase(),'No. '+issueNumber(x.date),'<div class="g2">'+cell('call','Daily Dig',c)+cell('blank','Fill the Blank',b)+'</div>'); }).join('')
     +hpCard('OLDER ISSUES','','<p class="sm">Every earlier story is in Practice, with nothing counting.</p>');
   document.querySelectorAll('#hpBody button[data-d]').forEach(b=>{ if(b.classList.contains('ghost')){ b.style.color='#1b1813'; } b.onclick=()=>{ KIND=b.dataset.k; hpClose(); openBackIssue(b.dataset.d); }; });
 }};
@@ -6624,7 +6665,7 @@ const Intro=(function(){
     const tb=top.hidden ? 120 : top.getBoundingClientRect().bottom;
     const bar=$('bar'), bb=narrow && bar && bar.getClientRects().length ? bar.getBoundingClientRect().top : innerHeight-16;   // a fixed bar has no offsetParent, so test that it is drawn instead
     const GAP=11, room=Math.max(80,bb-tb-GAP-2);
-    const Rpx=Math.min(innerWidth*(narrow?0.49:0.3), room/2-(narrow?0:14)), eyPx=tb+GAP+Rpx;   // tucked right under How to play
+    const Rpx=Math.min(innerWidth*(narrow?0.49:0.3), room/2-(narrow?0:14)), eyPx=tb+GAP+Math.max(0,(room-2*Rpx)/2)+Rpx;   // spare height (planet limited by width) is split above and below, so the earth sits centred   // tucked right under How to play
     IP={R:Rpx/PX, ey:eyPx/PX};
   }
   const idlePos=()=>IP || {R:Math.min(w,h)*0.32, ey:h*0.6};
