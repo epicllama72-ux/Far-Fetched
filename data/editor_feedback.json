@@ -24,7 +24,8 @@
   "BANK: the 32 hand-written fakes from Nov 10 (impossible events, animals as the joke, dull transactions) were removed from the fake bank at the owner's request.",
   "COUNTRIES: one story per country in a paper (Daily Dig reals). The builder swaps repeats for the best story from a new country.",
   "CLUES: in every Daily Dig, two of the five real stories (the two with the weakest clues) get a slightly better-known clue than usual: something a well-read person on any continent would know, still true of the place and never naming the country, state or a neighbouring place.",
-  "CLUES: for an obscure place with no regional trivia hook, a direction plus a famous fact about the country (never naming it) is a good clue: 'a town in the south of panda country', 'a village in central wine-and-cheese country'."
+  "CLUES: for an obscure place with no regional trivia hook, a direction plus a famous fact about the country (never naming it) is a good clue: 'a town in the south of panda country', 'a village in central wine-and-cheese country'.",
+  "CLUES: for an obscure place a famous fact about its STATE or region (never naming it) plus a compass push works well: 'a town in the east of Pocahontas's state', 'a village in the north of ...'."
  ],
  "edits": [
   {
@@ -494,6 +495,12 @@
    "before": "the self-styled Center of the Universe",
    "after": "the self-styled Center of the Universe, in Pocahontas country",
    "why": "owner: add a fact a global audience knows (Pocahontas)"
+  },
+  {
+   "kind": "clue",
+   "before": "the self-styled Center of the Universe, in Pocahontas country",
+   "after": "a town in the east of Pocahontas's state",
+   "why": "owner: for an obscure place use a well-known fact about the state (never naming it) plus a north/south/east/west push"
   }
  ]
 }
