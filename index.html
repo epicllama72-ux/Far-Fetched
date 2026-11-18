@@ -1061,11 +1061,10 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #globeBox .gctl{position:absolute;right:0;top:0;display:grid;gap:6px;justify-items:end}
 #globeBox button,#mapGlobe{all:unset;cursor:pointer;background:#0d0f14;color:var(--accent);font:17px/1 var(--vt);min-width:38px;height:38px;padding:0 9px;box-sizing:border-box;display:grid;place-items:center;box-shadow:0 0 0 2px #000,0 0 0 4px #2a2f3b}
 #globeBox button:focus-visible,#mapGlobe:focus-visible{outline:3px solid #fff}
-body.pinned #mapWrap.globeOn #map{height:104px;min-height:104px}
+body.pinned #mapWrap.globeOn #map{height:124px;min-height:124px}
 #mapWrap.globeRes #globeFlat{display:none}
 #mapWrap.swapOff #globeFlat,#mapWrap.swapOff #mapGlobe{display:none!important}   /* once a pin is down, no switching between globe and flat map until the next map */
-body.pinned #mapWrap.globeRes .gctl,body.pinned #mapWrap.globeRes #globeHome,body.pinned #mapWrap.globeRes #globeRead{display:none}
-body.pinned #mapWrap.globeRes #globeBox{background:#05060b;box-shadow:0 0 0 3px var(--accent),0 0 0 6px #000;overflow:hidden}
+body.pinned #mapWrap.globeRes .gctl,body.pinned #mapWrap.globeRes #globeHome,body.pinned #mapWrap.globeRes #globeRead{display:none!important}
 #globeBox #globeHome{position:absolute;left:0;bottom:0;z-index:3}
 #globeBox .gctl{z-index:3}
 #globeRead{position:absolute;right:0;bottom:2px;font:15px/1 var(--vt);color:#9fb0d4;background:rgba(5,6,11,.7);padding:3px 6px;pointer-events:none}#globeRead b{color:var(--accent);font-weight:400}
@@ -4222,7 +4221,7 @@ const GlobePin=(()=>{
       ctx.lineJoin='round'; ctx.lineWidth=1; ctx.strokeStyle='rgba(240,247,255,.62)'; ctx.beginPath(); data.countries.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke();
       if(zoom>=2.2 && !interacting){ ctx.strokeStyle='rgba(240,247,255,.34)'; ctx.setLineDash([2,3]); ctx.beginPath(); data.states.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke(); ctx.setLineDash([]); }
     }
-    if(!interacting||zoom<2.5) drawLabels(cx,cy,R);
+    if((!interacting||zoom<2.5) && !(locked&&H<140)) drawLabels(cx,cy,R);      // the little round globe carries no place names, just YOU and REAL
     crowd.forEach(([la,ln,col])=>{ const v=vec(la,ln); if(!visPt(v)) return; const q=scr(v,cx,cy,R); ctx.fillStyle=col; ctx.globalAlpha=.9; ctx.strokeStyle='#0b0e14'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(q[0],q[1],3.5,0,7); ctx.fill(); ctx.globalAlpha=1; ctx.stroke(); });
     if(locked&&target&&pin){      // the miss, as a dashed arc along the surface
       const a=vec(pin[1],pin[0]), b=vec(target[1],target[0]), th=Math.acos(Math.max(-1,Math.min(1,dot(a,b)))), st=Math.max(2,Math.ceil(th/.03));
@@ -4272,6 +4271,11 @@ const GlobePin=(()=>{
     flyTo(mlo,mla,Math.max(1,Math.min(12,Rn/R0)),ms);
   }
   let lastT=0;
+  function mini(ms){       // the little round globe at the bottom: the whole planet, turned so your pin and the real spot are both on view
+    if(!target) return; const t=vec(target[1],target[0]); let m=t;
+    if(pin){ const a=vec(pin[1],pin[0]); m=[a[0]+t[0],a[1]+t[1],a[2]+t[2]]; const h=Math.hypot(m[0],m[1],m[2]); m=h<1e-3?t:[m[0]/h,m[1]/h,m[2]/h]; }
+    flyTo(Math.atan2(m[1],m[0])/D2R,Math.asin(Math.max(-1,Math.min(1,m[2])))/D2R,1,ms);
+  }
   function loop(now){ if(!on){ raf=0; return; }
     if(anim) anim(now);
     if(inertia){ const dt=lastT?Math.min(40,now-lastT):16; setView(lon+vel[0]*dt,lat+vel[1]*dt,zoom); const f=Math.exp(-dt/330); vel=[vel[0]*f,vel[1]*f]; if(Math.hypot(vel[0],vel[1])*(R0*zoom)/(180/Math.PI)<.012) inertia=false; }
@@ -4321,7 +4325,7 @@ const GlobePin=(()=>{
     $('globeFlat').onclick=()=>swap(false); $('mapGlobe').onclick=()=>swap(true);
     window.addEventListener('resize',()=>{ if(on) sizeBox(); });
     if(window.ResizeObserver){ ro=new ResizeObserver(()=>{ if(!on) return;
-        if(locked){ const Rpx=R0*zoom; anim=null; sizeBox(Rpx); clearTimeout(fitT); fitT=setTimeout(()=>{ if(on&&locked) fit(380); },170); }   // the panel shrinks in steps: hold the picture steady, then ease to the final framing
+        if(locked){ const Rpx=R0*zoom; anim=null; sizeBox(Rpx); clearTimeout(fitT); fitT=setTimeout(()=>{ if(on&&locked){ if(document.body.classList.contains('pinned')) mini(420); else fit(380); } },170); }   // the panel shrinks in steps: hold the picture steady, then ease to the final framing
         else sizeBox(); }); ro.observe($('map')); }
     $('map').appendChild($('mapGlobe')); L.DomEvent.disableClickPropagation($('mapGlobe'));
   }
@@ -4509,7 +4513,7 @@ function submitGuess(timedOut){
       document.body.classList.add('pinned','pinDone');
       setTimeout(()=>{ map.invalidateSize(); if(guessLL) map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.5),{maxZoom:4.5,animate:false}); else map.setView(actual,5,{animate:false}); aim(); releaseJaw(); },420);
     }
-  },650);
+  },GlobePin.active()?2700:650);      // globe: stay big a moment longer, showing your pin against the real spot, then shrink to the little round globe
 }
 
 /* how many other players today's fake fooled, in the popup where a pin shows "Closer than X%" */
