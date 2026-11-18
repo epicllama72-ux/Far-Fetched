@@ -1924,7 +1924,7 @@ body.pinning #card #headline{font-size:23px}
   <div class="hr">
     <button type="button" class="ht" data-h="stats"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="4" width="2" height="3"/><rect x="2" y="2" width="2" height="5"/><rect x="4" y="0" width="2" height="7"/></g></svg><span class="hn">Stats</span><span class="hs" id="hStats"></span></button>
     <button type="button" class="ht" data-h="streak"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true" style="color:#ff8a3d"><g fill="currentColor"><rect x="3" y="0" width="1" height="1"/><rect x="2" y="1" width="2" height="2"/><rect x="4" y="2" width="1" height="2"/><rect x="1" y="3" width="4" height="3"/><rect x="2" y="6" width="2" height="1"/></g></svg><span class="hn">Streak</span><span class="hs" id="hStreak"></span></button>
-    <button type="button" class="ht hot" data-h="blank"><span class="blk" aria-hidden="true">[ ? ]</span><span class="hn">Fill the blank</span><span class="hs" id="hBlank"></span></button>
+    <button type="button" class="ht hot" data-h="blank" id="hBlankTile"><span class="blk" aria-hidden="true" id="hBlankIc">[ ? ]</span><span class="hn" id="hBlankNm">Fill the blank</span><span class="hs" id="hBlank"></span></button>
     <button type="button" class="ht" data-h="account"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="1" width="3" height="3"/><rect x="3" y="2" width="4" height="1"/><rect x="5" y="3" width="1" height="2"/></g></svg><span class="hn" id="hAcctN">Sign in</span><span class="hdot" id="hAcctDot">SAVE</span></button>
   </div>
   <div class="hr">
@@ -6103,7 +6103,11 @@ function updateHome(){
     const tm=totalM(); $('hStats').textContent = tm ? fmtM(tm) : '';
     $('hStreak').textContent = n ? n+(n>1?' days':' day') : 'start one';
     const hb=(load('ff_hist')||{})[dayKey()+':blank'];
-    $('hBlank').textContent = bd ? (hb?fmtPts(hb.score):'done') : BLANK_N+' words';
+    const inBlank = (typeof S!=='undefined' && S ? S.kind : KIND)==='blank', tile=$('hBlankTile');   // on the Fill the Blank start screen this tile offers the Daily Dig instead
+    tile.dataset.h = inBlank ? 'dig' : 'blank'; $('hBlankIc').textContent = inBlank ? '[ ▼ ]' : '[ ? ]'; $('hBlankNm').textContent = inBlank ? 'Daily Dig' : 'Fill the blank';
+    const dh=(load('ff_hist')||{})[dayKey()+':call'];
+    if(inBlank) $('hBlank').textContent = dh ? fmtM(dh.m) : '7 stories';
+    else $('hBlank').textContent = bd ? (hb?fmtPts(hb.score):'done') : BLANK_N+' words';
     $('hAcctN').textContent = u ? 'Account' : 'Sign in'; $('hAcctDot').textContent = u ? '' : 'SAVE';
     $('hGroups').textContent = (MY_GROUPS&&MY_GROUPS.length)||'';
     { const names=Object.keys(passport()); $('hPass').textContent = passCount(names)+' / '+passTotal(); }
@@ -6115,6 +6119,7 @@ document.querySelectorAll('#homeBtns .ht').forEach(b=>b.onclick=()=>{
   const k=b.dataset.h;
   if(k==='board'){ try{ Sound.play('menu'); }catch(e){} openBoard(); return; }
   if(k==='passport'){ openPassport(); return; }
+  if(k==='dig'){ try{ Sound.play('menu'); }catch(e){} startGame(S&&S.mode==='practice'?'practice':'daily','call'); return; }
   hpOpen(k);
 });
 
