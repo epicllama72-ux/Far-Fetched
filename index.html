@@ -699,6 +699,57 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 #sumCurve{image-rendering:auto}
 #summary #digLog,#final.news #digLog,#summary #sumCurve,#final.news #sumCurve{image-rendering:auto}   /* the summary's blanket pixelated rule made these two charts stair-step */
+
+/* home buttons under I'M READY, and the full pages they open */
+#homeBtns{display:none;grid-template-columns:repeat(12,1fr);gap:6px;margin-top:12px}
+body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:grid}
+#homeBtns .ht{grid-column:span 3;all:unset;box-sizing:border-box;grid-column:span 3;cursor:pointer;text-align:center;background:#141821;border:2px solid #2a2f3b;padding:7px 2px 6px;position:relative;box-shadow:2px 2px 0 #000;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+#homeBtns .ht:nth-child(n+5){grid-column:span 4}
+#homeBtns .ht:active{transform:translate(1px,1px);box-shadow:1px 1px 0 #000}
+#homeBtns .ht:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+#homeBtns svg{width:18px;height:18px;color:var(--cyan)}
+#homeBtns .blk{font:8px/18px var(--px);color:var(--accent);height:18px}
+#homeBtns .ht.hot{border-color:var(--cyan);background:#10202c}
+#homeBtns .hn{font:6px/1.35 var(--px);letter-spacing:.05em;color:#c8cfdd;text-transform:uppercase}
+#homeBtns .hs{font:17px/1 var(--vt);color:var(--accent)}
+#homeBtns .hdot{position:absolute;top:-5px;right:-4px;background:#a8231a;color:#fff;font:6px/1 var(--px);padding:3px 4px 2px}
+#homeBtns .hdot:empty{display:none}
+#hp{position:fixed;inset:0;z-index:31;background:rgba(5,6,10,.85);display:flex;align-items:stretch;justify-content:center}
+#hp[hidden]{display:none}
+#hp .sheetIn{width:min(560px,100%);height:100%;max-height:none;overflow:auto;background:#0f1522;background-image:var(--scan);padding:14px max(14px,env(safe-area-inset-left,0px)) calc(28px + env(safe-area-inset-bottom,0px))}
+#hp .kicker{color:#ff7aa0}
+#hpClose{width:34px;height:34px;padding:0;font:20px/1 var(--vt);background:#f7f3e8;color:#1b1813;border:2px solid #1b1813;box-shadow:2px 2px 0 #000;cursor:pointer}
+#hp .cd{background:#f7f3e8;color:#1b1813;padding:12px 12px 13px;margin-bottom:12px;box-shadow:3px 3px 0 #000;position:relative}
+#hp .cd::before{content:'';position:absolute;inset:4px;border:1px dashed rgba(27,24,19,.3);pointer-events:none}
+#hp .cd h5{font:8px/1.3 var(--px);letter-spacing:.14em;margin:0 0 8px;display:flex;justify-content:space-between;position:relative}
+#hp .cd p{font:21px/1.05 var(--vt);color:#3b342a;margin:4px 0;position:relative}#hp .cd p.sm{font-size:18px;color:#5a5043}
+#hp .navy{background:#18233d;color:#eef0f4;box-shadow:0 0 0 2px #4a5f94,3px 3px 0 #000}#hp .navy h5{color:#e3bd62}#hp .navy p{color:#cdd6ee}#hp .navy p.sm{color:#aab6d6}
+#hp .navy::before{border-color:rgba(227,189,98,.35)}
+#hp .g2{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:relative}
+#hp .kv{border-top:3px double #1b1813;padding-top:6px}#hp .kv b{display:block;font:14px/1.2 var(--px)}#hp .kv small{font:17px var(--vt);color:#5a5043}
+#hp .navy .kv{border-color:#4a5f94}#hp .navy .kv b{color:var(--accent)}#hp .navy .kv small{color:#aab6d6}
+#hp .b2{all:unset;box-sizing:border-box;display:block;width:100%;text-align:center;cursor:pointer;background:#1b1813;color:#f7f3e8;font:9px/1.5 var(--px);letter-spacing:.1em;text-transform:uppercase;padding:12px 6px 10px;box-shadow:3px 3px 0 rgba(0,0,0,.35);margin-top:10px;position:relative}
+#hp .b2.red{background:#a8231a}#hp .b2.ghost{background:transparent;color:#1b1813;box-shadow:none;border:2px solid #1b1813}
+#hp .page-b{margin-bottom:12px}#hp>.sheetIn>#hpBody>.b2.ghost,#hp #hpBody>.g2>.b2.ghost{color:#f7f3e8;border-color:#f7f3e8}
+#hp .lst{list-style:none;padding:0;margin:0;position:relative}#hp .lst li{display:grid;grid-template-columns:26px 1fr auto;gap:8px;align-items:center;padding:7px 0;border-bottom:1px dotted #9c917c;font:21px var(--vt)}#hp .lst li:last-child{border:0}
+#hp .lst .rk{font:9px var(--px)}#hp .lst small{font-size:17px;color:#6b6252}#hp .lst b{font-weight:400;color:#a8231a}
+#hp .spark{display:flex;align-items:flex-end;gap:4px;height:64px;position:relative}#hp .spark i{flex:1;background:#a8231a;min-height:3px}
+#hp .cnav{display:flex;align-items:center;justify-content:space-between;margin:2px 0 8px;position:relative}#hp .cnav b{font:8px var(--px);letter-spacing:.1em}#hp .cnav button{all:unset;cursor:pointer;font:22px var(--vt);padding:0 10px;color:#1b1813}#hp .cnav button:disabled{opacity:.3;cursor:default}
+#hp .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;position:relative}#hp .cal .w{font:7px var(--px);text-align:center;color:#6b6252;padding-bottom:2px}
+#hp .cal .d{position:relative;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font:20px var(--vt);color:#8a806c;background:#e8e1cd;border:2px solid transparent}
+#hp .cal .d.p{background:#ffcc4d;color:#1b1813}#hp .cal .d.p.b::after{content:'';position:absolute;right:2px;bottom:2px;width:6px;height:6px;background:#1f4f86}
+#hp .cal .d.fz{background:#bfe3f7;color:#1f4f86}#hp .cal .d.td{border-color:#a8231a;color:#a8231a;background:#f6f0de}#hp .cal .d.ms{box-shadow:inset 0 0 0 2px #a8231a}
+#hp .cal .d.ms span{position:absolute;top:-7px;right:-4px;font-size:15px;line-height:1}#hp .cal .d.x{background:transparent}#hp .cal .d.fut{opacity:.45}
+#hp .legend{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 0;font:17px var(--vt);color:#3b342a;position:relative}
+#hp .step{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:8px;font:21px var(--vt);margin:5px 0;position:relative}#hp .step b{font:9px var(--px)}#hp .step.done{color:#2f6b2f}#hp .step.next{color:#a8231a}
+#hp .badge{display:inline-block;font:7px/1 var(--px);padding:3px 4px 2px;background:#a8231a;color:#fff}#hp .badge.ok{background:#2f6b2f}#hp .badge.dim{background:#8a806c}
+#hp .word{display:flex;gap:5px;justify-content:center;margin:8px 0 4px;position:relative}#hp .word i{width:26px;height:30px;border:2px solid #1b1813;background:#f6f0de;font:14px/26px var(--px);font-style:normal;text-align:center}#hp .word i.k{background:#1b1813;color:#ffcc4d}
+#hp input[type=text]{font:22px var(--vt);padding:6px 8px;border:2px solid #1b1813;background:#f6f0de;color:#1b1813;min-width:0;width:100%;box-sizing:border-box}
+#hp .rowin{display:grid;grid-template-columns:1fr auto;gap:8px;position:relative}#hp .rowin .b2{margin:0;padding:0 14px;width:auto}
+#hp .gbtn{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;background:#fff;border:2px solid #dadce0;color:#3c4043;font:500 15px Arial,sans-serif}
+#hp .gbtn b{display:inline-block;width:20px;height:20px;border-radius:3px;background:conic-gradient(#ea4335 0 25%,#fbbc05 0 50%,#34a853 0 75%,#4285f4 0)}
+#hp .hint{color:#aab6d6;font:18px/1.1 var(--vt);margin:8px 0}
+#hp .chg{all:unset;cursor:pointer;margin-top:8px;font:7px/1 var(--px);letter-spacing:.12em;color:#ffcc4d;border-bottom:1px solid #ffcc4d;padding-bottom:3px;position:relative}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1854,6 +1905,15 @@ body.pinning #card #headline{font-size:23px}
     <button id="btnFake">FAKE</button>
   </div>
   <button class="primary" id="btnStart" hidden>Start</button>
+  <div id="homeBtns" role="group" aria-label="Quick links">
+    <button type="button" class="ht" data-h="stats"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="4" width="2" height="3"/><rect x="2" y="2" width="2" height="5"/><rect x="4" y="0" width="2" height="7"/></g></svg><span class="hn">Stats</span><span class="hs" id="hStats"></span></button>
+    <button type="button" class="ht" data-h="streak"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true" style="color:#ff8a3d"><g fill="currentColor"><rect x="3" y="0" width="1" height="1"/><rect x="2" y="1" width="2" height="2"/><rect x="4" y="2" width="1" height="2"/><rect x="1" y="3" width="4" height="3"/><rect x="2" y="6" width="2" height="1"/></g></svg><span class="hn">Streak</span><span class="hs" id="hStreak"></span></button>
+    <button type="button" class="ht hot" data-h="blank"><span class="blk" aria-hidden="true">[ ? ]</span><span class="hn">Fill the blank</span><span class="hs" id="hBlank"></span></button>
+    <button type="button" class="ht" data-h="account"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="1" width="3" height="3"/><rect x="3" y="2" width="4" height="1"/><rect x="5" y="3" width="1" height="2"/></g></svg><span class="hn" id="hAcctN">Sign in</span><span class="hdot" id="hAcctDot">SAVE</span></button>
+    <button type="button" class="ht" data-h="back" id="hBack"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="0" width="5" height="1"/><rect x="1" y="2" width="5" height="1"/><rect x="2" y="4" width="5" height="1"/></g></svg><span class="hn">Back issues</span></button>
+    <button type="button" class="ht" data-h="board"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="1" y="0" width="5" height="1"/><rect x="1" y="1" width="5" height="3"/><rect x="0" y="1" width="1" height="2"/><rect x="6" y="1" width="1" height="2"/><rect x="3" y="4" width="1" height="2"/><rect x="2" y="6" width="3" height="1"/></g></svg><span class="hn">Standings</span></button>
+    <button type="button" class="ht" data-h="groups"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="1" width="2" height="2"/><rect x="0" y="3" width="3" height="3"/><rect x="3" y="0" width="2" height="2"/><rect x="3" y="2" width="3" height="4"/></g></svg><span class="hn">Groups</span><span class="hs" id="hGroups"></span></button>
+  </div>
   <button class="primary" id="btnNext" hidden>Next</button>
   <div id="blankBar" hidden>
     <form id="guessForm" autocomplete="off">
@@ -1984,6 +2044,7 @@ body.pinning #card #headline{font-size:23px}
       <section class="wNotice" aria-label="Notices"><h3>NOTICES</h3><p id="wardNote"></p><div class="wFreeze" id="wardFreeze" aria-hidden="true"></div></section>
     </div>
   </section>
+  <section id="hp" hidden aria-label="Page"><div class="sheetIn"><div class="sheetTop"><p class="kicker" id="hpKicker"></p><button id="hpClose" aria-label="Close">×</button></div><div id="hpBody"></div></div></section>
   <section id="passport" hidden aria-label="Passport">
     <div class="sheetIn">
       <div class="sheetTop"><p class="kicker">Passport</p><button id="passClose" aria-label="Close">×</button></div>
@@ -3808,6 +3869,7 @@ function setBar(which){
   $('btnNext').hidden = which!=='next';
   $('blankBar').hidden = which!=='guess';
   $('endBtns').hidden = which!=='end';
+  if(typeof updateHome==='function') updateHome();
 }
 
 const isDesk=()=>matchMedia('(min-width:1100px) and (min-height:600px)').matches;
@@ -5091,7 +5153,7 @@ const Cloud=(function(){
     clearTimeout(armOut); armOut=0; signOut();
   };
   render(); boot();
-  return {user:()=>user, push, mergeKey, signIn};
+  return {user:()=>user, push, mergeKey, signIn, signOut};
 })();
 window.Cloud=Cloud;
 async function sbRpc(fn,body){
@@ -5965,8 +6027,8 @@ async function deskBoard(){   // the top two and you, from the small leaderboard
 
 document.addEventListener('click',e=>{ if(e.target.closest&&e.target.closest('#wardrobe,#passport,#sheet,#about,#a2hs,#gsi')) return; closeMenu(); });   // a click inside a sheet opened from the menu leaves the menu open behind it
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){ if(RECAP_ON) endRecapUI(true); const top=['gsi','a2hs','about','passport','wardrobe','sheet'].find(id=>$(id)&&!$(id).hidden);   // Escape peels off the sheet on top first, then the menu
-    if(top){ if(top==='wardrobe') closeWardrobe(); else if(top==='passport') closePassport(); else if(top==='sheet') closeSheet(); else if(top==='about') closeAbout(); else $(top).hidden=true; return; }
+  if(e.key==='Escape'){ if(RECAP_ON) endRecapUI(true); const top=['gsi','a2hs','about','passport','wardrobe','sheet','hp'].find(id=>$(id)&&!$(id).hidden);   // Escape peels off the sheet on top first, then the menu
+    if(top){ if(top==='hp') hpClose(); else if(top==='wardrobe') closeWardrobe(); else if(top==='passport') closePassport(); else if(top==='sheet') closeSheet(); else if(top==='about') closeAbout(); else $(top).hidden=true; return; }
     closeMenu(); return; }
   if(e.metaKey||e.ctrlKey||e.altKey) return;
   const t=e.target; if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA')) return;
@@ -5980,6 +6042,158 @@ document.addEventListener('keydown',e=>{
 });
 $('mCall').onclick=()=>startGame('daily','call');
 $('mBlank').onclick=()=>startGame('daily','blank');
+
+/* ---------- Home buttons and the full pages they open ---------- */
+const HPAGES={};
+const hpEsc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const hpCard=(l,r,inner,cls)=>'<div class="cd'+(cls?' '+cls:'')+'"><h5><span>'+l+'</span><span>'+(r||'')+'</span></h5>'+inner+'</div>';
+const addDays=(d,n)=>{ const p=d.split('-').map(Number); return keyOf(new Date(Date.UTC(p[0],p[1]-1,p[2]+n,12))); };
+function hpOpen(id){ const r=HPAGES[id]; if(!r) return; try{ Sound.play('menu'); }catch(e){} $('hp').hidden=false; $('hpKicker').textContent=r.title; HP_ID=id; r.render(); $('hp').querySelector('.sheetIn').scrollTop=0; }
+let HP_ID=null;
+function hpClose(){ $('hp').hidden=true; HP_ID=null; updateHome(); }
+$('hpClose').onclick=hpClose;
+function histDays(){ const h=load('ff_hist')||{}, days={}; Object.keys(h).forEach(k=>{ const p=k.split(':'); (days[p[0]]=days[p[0]]||{})[p[1]]=h[k]; }); return days; }
+function secsToEdition(){ const o=etParts(new Date()); return o ? 86400-(+o.hour*3600 + +o.minute*60 + +o.second) : 0; }
+function hmsOf(s){ return pad(Math.floor(s/3600))+':'+pad(Math.floor(s%3600/60))+':'+pad(s%60); }
+function blankDone(){ const s=load('ff_blank'); return s && s.date===dayKey() && s.results && s.results.length>=BLANK_N ? s : null; }
+function updateHome(){
+  try{
+    const bm=bestM(), days=histDays(), n=streakCount(), bd=blankDone(), u=window.Cloud&&Cloud.user&&Cloud.user();
+    $('hStats').textContent = bm ? fmtM(bm) : '';
+    $('hStreak').textContent = n ? n+(n>1?' days':' day') : 'start one';
+    const hb=(load('ff_hist')||{})[dayKey()+':blank'];
+    $('hBlank').textContent = bd ? (hb?fmtPts(hb.score):'done') : BLANK_N+' words';
+    $('hAcctN').textContent = u ? 'Account' : 'Sign in'; $('hAcctDot').textContent = u ? '' : 'SAVE';
+    $('hGroups').textContent = (MY_GROUPS&&MY_GROUPS.length)||'';
+    $('hBack').hidden = !(typeof ISSUES!=='undefined' && backWindow().length);
+  }catch(e){}
+}
+document.querySelectorAll('#homeBtns .ht').forEach(b=>b.onclick=()=>{
+  const k=b.dataset.h;
+  if(k==='board'){ try{ Sound.play('menu'); }catch(e){} openBoard(); return; }
+  hpOpen(k);
+});
+
+/* STATS */
+HPAGES.stats={title:'Your stats',render(){
+  const h=load('ff_hist')||{}, l=load('ff_life')||{}, best=load('ff_best')||{}, keys=Object.keys(h);
+  const calls=keys.filter(k=>k.endsWith(':call')).sort(), blanks=keys.filter(k=>k.endsWith(':blank'));
+  const avg=calls.length?calls.reduce((a,k)=>a+h[k].m,0)/calls.length:0, topScore=calls.reduce((a,k)=>Math.max(a,h[k].score||0),0);
+  const rank=calls.length?TIERS[tierOf(topScore,1000)].name:'—', days=new Set(keys.map(k=>k.split(':')[0])).size;
+  const p=passport(), names=Object.keys(p), last=calls.slice(-14), mx=Math.max(1,...last.map(k=>h[k].m));
+  const first=Object.keys(histDays()).sort()[0];
+  const nm=hpEsc(playerName());
+  let html='<div class="cd navy"><h5><span>PRESS CARD</span><span>NO. FF-'+hpEsc(String(playerId()).replace(/[^a-z0-9]/gi,'').slice(0,6).toUpperCase())+'</span></h5>'
+    +'<div id="nm1"><p style="font:12px var(--px);color:#fff">'+nm+'</p><p class="sm">'+(first?'Playing since '+fmtDate(first)+' · ':'')+days+' day'+(days===1?'':'s')+' played</p><button class="chg" id="nmEdit" type="button">✎ CHANGE NAME</button></div>'
+    +'<div id="nm2" style="display:none"><p class="sm" style="font:8px var(--px);letter-spacing:.12em;color:#e3bd62">YOUR NAME</p><div class="rowin"><input id="nmIn" type="text" maxlength="24" value="'+nm+'" aria-label="Your name"><button class="b2" id="nmSave" type="button" style="margin:0">Save</button></div><p class="sm">Up to 24 letters. Shown on the standings and in your groups.</p></div>'
+    +'<div class="g2" style="margin-top:10px"><div class="kv"><b>'+(best.m?fmtM(best.m):'—')+'</b><small>best dig</small></div><div class="kv"><b>'+(avg?fmtM(avg):'—')+'</b><small>average dig</small></div><div class="kv"><b>'+rank+'</b><small>best rank</small></div><div class="kv"><b>'+passCount(names)+' / '+passTotal()+'</b><small>countries mapped</small></div></div></div>';
+  html+=hpCard('LAST '+Math.max(last.length,1)+' DIGS','',last.length?'<div class="spark">'+last.map(k=>'<i style="height:'+Math.round(100*h[k].m/mx)+'%" title="'+k.split(':')[0]+'"></i>').join('')+'</div><p class="sm" style="margin-top:6px">Deepest '+fmtM(best.m||0)+'. Taller bars are deeper digs.</p>':'<p class="sm">Finish a Daily Dig to start your chart.</p>');
+  html+=hpCard('PINS AND CALLS','',  '<div class="g2"><div class="kv"><b>'+(l.pins||0)+'</b><small>pins landed</small></div><div class="kv"><b>'+(l.catches||0)+'</b><small>fakes caught</small></div></div>');
+  html+=hpCard('FILL THE BLANK',blanks.length+' played','<div class="g2"><div class="kv"><b>'+(blanks.length?fmtPts(blanks.reduce((a,k)=>Math.max(a,h[k].score||0),0)):'—')+'</b><small>best score</small></div><div class="kv"><b>'+blanks.length+'</b><small>days played</small></div></div>');
+  html+='<button class="b2" id="stShare" type="button">Share my stats</button>';
+  $('hpBody').innerHTML=html;
+  $('nmEdit').onclick=()=>{ $('nm1').style.display='none'; $('nm2').style.display='block'; $('nmIn').focus(); $('nmIn').select(); };
+  const save=()=>{ store('ff_name',$('nmIn').value.replace(/[<>]/g,'').trim().slice(0,24)); try{ syncName(true); }catch(e){} HPAGES.stats.render(); };
+  $('nmSave').onclick=save; $('nmIn').onkeydown=e=>{ if(e.key==='Enter') save(); };
+  $('stShare').onclick=async()=>{ const text='My Far-Fetched stats: best dig '+(best.m?fmtM(best.m):'—')+', '+n0(passCount(names))+' countries mapped, '+streakCount()+'-day streak\n'+shareUrl('stats'); try{ if(navigator.share){ await navigator.share({text}); return; } await navigator.clipboard.writeText(text); $('stShare').textContent='Copied!'; }catch(e){} };
+}};
+const n0=x=>String(x||0);
+
+/* STREAK */
+HPAGES.streak={title:'Streak',mon:null,render(){
+  const days=histDays(), st=load('ff_streak')||{}, today=todayKey(), n=streakCount(), l=load('ff_life')||{}, frz=st.freezes||0;
+  if(!this.mon) this.mon=today.slice(0,7);
+  const [y,m]=this.mon.split('-').map(Number), first=new Date(Date.UTC(y,m-1,1)).getUTCDay(), dim=new Date(Date.UTC(y,m,0)).getUTCDate();
+  const ds=Object.keys(days).sort(); let best=0,run=0,prev=null; ds.forEach(d=>{ run=(prev&&prevDay(d)===prev)?run+1:1; best=Math.max(best,run); prev=d; }); best=Math.max(best,n);
+  // the next wardrobe reward: the kit counts Daily Dig days in a row
+  const dLast=l.dLast, dCount=(dLast===today||dLast===prevDay(today))?(l.dCount||0):0, L=lifeNow();
+  const STREAK_KIT=KIT.filter(it=>/-day streak/.test(it.need||'')); const need=it=>parseInt(it.need,10);
+  const nextIt=STREAK_KIT.find(it=>L.best<need(it));
+  const dateFor=it=>{ const left=need(it)-dCount; return dLast===today?addDays(today,left):dLast===prevDay(today)?addDays(today,left-1):addDays(today,need(it)-1); };
+  const nextDate=nextIt?dateFor(nextIt):null;
+  let cal=''; ['S','M','T','W','T','F','S'].forEach(x=>cal+='<div class="w">'+x+'</div>'); for(let i=0;i<first;i++) cal+='<div class="d x"></div>';
+  for(let d=1;d<=dim;d++){ const key=this.mon+'-'+pad(d); let k='d', tag='';
+    const dd=days[key]; if(dd) k+=' p'+(dd.blank?' b':''); else if(st.frozeOn===key) k+=' fz'; else if(key===today) k+=' td'; else if(key>today) k+=' fut';
+    if(nextDate===key){ k+=' ms'; tag='<span>'+(nextIt.icon||'')+'</span>'; }
+    cal+='<div class="'+k+'" aria-label="'+key+'">'+d+tag+'</div>'; }
+  const thisMon=today.slice(0,7), canNext=this.mon<thisMon;
+  const monName=new Date(Date.UTC(y,m-1,1)).toLocaleDateString('en-US',{month:'long',year:'numeric',timeZone:'UTC'}).toUpperCase();
+  let html='<div class="cd navy"><h5><span>CURRENT STREAK</span><span>BEST '+best+'</span></h5><p style="font:22px var(--px);color:#ffcc4d">'+n+(n===1?' DAY':' DAYS')+'</p><p class="sm">'+(days[today]?'Today is in the bank. Come back tomorrow.':'Finish either game today'+(n?' to make it '+(n+1):' to start a streak')+'.')+'</p><p style="font-size:22px">❄ '+frz+' freeze'+(frz===1?'':'s')+' saved</p></div>';
+  html+='<div class="cd"><div class="cnav"><button id="calPrev" type="button" aria-label="Previous month">‹</button><b>'+monName+'</b><button id="calNext" type="button" aria-label="Next month"'+(canNext?'':' disabled')+'>›</button></div><div class="cal">'+cal+'</div><div class="legend"><span>■ Played</span><span>▪ + Fill the Blank</span><span>❄ Freeze used</span><span>□ Today</span>'+(nextIt?'<span>'+nextIt.icon+' next reward</span>':'')+'</div></div>';
+  html+=hpCard('WARDROBE REWARDS',nextIt?(need(nextIt)-dCount)+' to the next':'all earned','<div>'+STREAK_KIT.map(it=>{ const ok=L.best>=need(it); const nx=nextIt&&it.id===nextIt.id; return '<div class="step'+(ok?' done':nx?' next':'')+'"><b>'+need(it)+'</b><span>'+(it.icon||'')+' '+hpEsc(it.name)+'</span><span class="badge'+(ok?' ok':nx?'':' dim')+'">'+(ok?'WORN':fmtDate(dateFor(it)).toUpperCase())+'</span></div>'; }).join('')+'</div><p class="sm" style="margin-top:8px">Rewards count Daily Dig days in a row. You wear a new item the moment you earn it; change it in the Wardrobe. A free streak freeze also arrives every 7 days of streak (you can hold 2) and covers one missed day.</p>');
+  html+='<button class="b2 ghost" id="stWard" type="button">Open wardrobe</button>';
+  $('hpBody').innerHTML=html;
+  $('calPrev').onclick=()=>{ const t=new Date(Date.UTC(y,m-2,1)); HPAGES.streak.mon=t.getUTCFullYear()+'-'+pad(t.getUTCMonth()+1); HPAGES.streak.render(); };
+  $('calNext').onclick=()=>{ const t=new Date(Date.UTC(y,m,1)); HPAGES.streak.mon=t.getUTCFullYear()+'-'+pad(t.getUTCMonth()+1); HPAGES.streak.render(); };
+  $('stWard').onclick=()=>{ hpClose(); openWardrobe(); };
+}};
+
+/* FILL THE BLANK */
+let BP_T=0;
+HPAGES.blank={title:'Fill the Blank',render(){
+  clearInterval(BP_T);
+  const done=blankDone(), hb=(load('ff_hist')||{})[dayKey()+':blank'], rounds=(DAILY&&DAILY.blank)||[];
+  if(!done){
+    const ex=rounds[0];
+    $('hpBody').innerHTML=hpCard("TODAY'S BLANK",'NO. '+dayNumber(),'<p class="sm">Each headline is missing one word. Type it before the clock runs out.</p><div class="word"><i>P</i><i>I</i><i>L</i><i class="k">?</i><i>T</i></div>'+(ex?'<p class="sm" style="text-align:center">'+hpEsc(String(ex.h2||'').replace('[]','[ ? ]')).slice(0,110)+'…</p>':''))
+      +hpCard('HOW IT WORKS','','<p>▸ '+BLANK_N+' headlines, '+BLANK_SECS+' seconds each</p><p>▸ Warmer or colder tells you how close you are</p><p>▸ An exact word scores the most; near misses still score</p><p>▸ Faster is worth more</p>')
+      +'<button class="b2 red" id="bpStart" type="button">Start Fill the Blank</button>';
+    $('bpStart').onclick=()=>{ hpClose(); startGame('daily','blank'); };
+    return;
+  }
+  let rows=done.results.map((x,i)=>{ const st=rounds[i]||{}; return '<li><span class="rk">'+(i+1)+'</span><span>'+hpEsc((st.ans&&st.ans[0])||'?')+' <small>you: '+hpEsc(x.callWord||'—')+'</small></span><b data-i="'+i+'"></b></li>'; }).join('');
+  $('hpBody').innerHTML='<div class="cd navy"><h5><span>YOU FINISHED</span><span>NO. '+dayNumber()+'</span></h5><p style="font:22px var(--px);color:#ffcc4d">'+(hb?fmtPts(hb.score):'—')+' / 1000</p><p class="sm" id="bpRank"></p></div>'
+    +hpCard('YOUR ANSWERS','% who got it','<ul class="lst">'+rows+'</ul>')
+    +'<div class="g2"><button class="b2" id="bpBoard" type="button">Standings</button><button class="b2 ghost" id="bpTry" type="button">Daily Dig</button></div>'
+    +hpCard('NEXT PAPER IN','','<p style="font:22px var(--px)" id="bpCd">'+hmsOf(secsToEdition())+'</p>');
+  $('bpBoard').onclick=()=>{ hpClose(); openBoard('blank'); }; $('bpTry').onclick=()=>{ hpClose(); startGame('daily','call'); };
+  BP_T=setInterval(()=>{ const e=$('bpCd'); if(!e){ clearInterval(BP_T); return; } e.textContent=hmsOf(secsToEdition()); },1000);
+  sbRpc('blank_stats',{p_day:dayKey(),p_player:playerId()}).then(r=>{ if(!Array.isArray(r)) return; document.querySelectorAll('#hpBody b[data-i]').forEach(b=>{ const x=r[+b.dataset.i], n=x?+x.n||0:0; if(n>=3) b.textContent=Math.round(100*(+x.e||0)/n)+'%'; }); });
+  sbRpc('board',{p_day:dayKey(),p_kind:'blank',p_player:playerId()}).then(j=>{ if(j&&j.me&&$('bpRank')) $('bpRank').textContent='Rank '+j.me.rank+' today'; });
+}};
+
+/* ACCOUNT */
+HPAGES.account={title:'Account',render(){
+  const u=window.Cloud&&Cloud.user&&Cloud.user();
+  if(!u){
+    $('hpBody').innerHTML=hpCard('SAVE YOUR STREAK','','<p>Your streak, passport and groups live on this device only. Sign in and they follow you to any phone or browser.</p><ul class="lst"><li><span>✓</span><span>Streak and freezes saved</span><span></span></li><li><span>✓</span><span>Passport and best digs saved</span><span></span></li><li><span>✓</span><span>Groups and standings on every device</span><span></span></li></ul>')
+      +'<button class="gbtn" id="acIn" type="button"><b></b>Sign in with Google</button><p class="hint">You can keep playing without an account. The game only reads your name and a unique ID.</p>';
+    $('acIn').onclick=()=>{ if(window.Cloud) Cloud.signIn(); };
+  } else {
+    const mail=String(u.email||''), at=mail.indexOf('@'), shown=at>0?mail.slice(0,Math.min(3,at))+'···'+mail.slice(at):'';
+    $('hpBody').innerHTML='<div class="cd navy"><h5><span>SIGNED IN</span><span>GOOGLE</span></h5><p style="font:12px var(--px);color:#fff">'+hpEsc(playerName())+'</p>'+(shown?'<p class="sm">'+hpEsc(shown)+'</p>':'')+'</div>'
+      +hpCard('SYNCED','','<ul class="lst"><li><span>✓</span><span>Streak · '+streakCount()+' day'+(streakCount()===1?'':'s')+'</span><span></span></li><li><span>✓</span><span>Passport · '+passCount(Object.keys(passport()))+' countries</span><span></span></li><li><span>✓</span><span>'+((MY_GROUPS&&MY_GROUPS.length)||0)+' groups</span><span></span></li></ul><p class="sm">Change your name on the Stats page.</p>')
+      +'<button class="b2 ghost" id="acOut" type="button">Sign out</button>';
+    $('acOut').onclick=async()=>{ try{ await Cloud.signOut(); }catch(e){} HPAGES.account.render(); updateHome(); };
+  }
+}};
+
+/* BACK ISSUES */
+HPAGES.back={title:'Back issues',render(){
+  const w=backWindow(); const st=(d,k)=>load('ff_back:'+d+':'+k);
+  $('hpBody').innerHTML=hpCard('','','<p class="sm">The last '+BACK_FREE+' papers stay open. Back issues don\'t count toward your streak or the standings.</p>')
+    +w.map(x=>{ const c=st(x.date,'call'), b=st(x.date,'blank'); const cell=(k,name,r)=>'<div><p>'+name+'</p><p class="sm">'+(r?'Played · '+fmtPts(r.score)+' pts':'Not played')+'</p><button class="b2'+(r?' ghost':'')+'" data-d="'+x.date+'" data-k="'+k+'" type="button" style="margin-top:4px;'+(r?'':'')+'">'+(r?'Replay':'Play')+'</button></div>'; return hpCard(fmtDate(x.date).toUpperCase(),'No. '+issueNumber(x.date),'<div class="g2">'+cell('call','Daily Dig',c)+cell('blank','Fill the Blank',b)+'</div>'); }).join('')
+    +hpCard('OLDER ISSUES','','<p class="sm">Every earlier story is in Practice, with nothing counting.</p>');
+  document.querySelectorAll('#hpBody button[data-d]').forEach(b=>{ if(b.classList.contains('ghost')){ b.style.color='#1b1813'; } b.onclick=()=>{ KIND=b.dataset.k; hpClose(); openBackIssue(b.dataset.d); }; });
+}};
+
+/* GROUPS */
+HPAGES.groups={title:'My groups',render(){
+  const draw=()=>{
+    const gs=MY_GROUPS||[];
+    $('hpBody').innerHTML=(sbOn()?'':'<div class="cd"><p class="sm">Groups need the online leaderboard, which isn\'t available right now.</p></div>')
+      +gs.map(g=>hpCard(hpEsc(g.name).toUpperCase(),'CODE '+hpEsc(g.code),'<p class="sm">'+(g.members?g.members+' member'+(g.members==1?'':'s'):'')+'</p><div class="g2"><button class="b2" data-o="'+hpEsc(g.code)+'" type="button">Standings</button><button class="b2 ghost" data-i="'+hpEsc(g.code)+'" type="button" style="color:#1b1813">Invite ↗</button></div>')).join('')
+      +hpCard('NEW GROUP',gs.length+' OF 10','<div class="rowin"><input id="gpName" type="text" maxlength="40" placeholder="The Smith family" aria-label="Group name"><button class="b2" id="gpMake" type="button">Create</button></div><h5 style="margin-top:14px"><span>I HAVE A CODE</span></h5><div class="rowin"><input id="gpCode" type="text" maxlength="80" placeholder="AB12CD or invite link" autocapitalize="characters" autocomplete="off" aria-label="Group code"><button class="b2" id="gpJoin" type="button">Join</button></div>');
+    document.querySelectorAll('#hpBody [data-o]').forEach(b=>b.onclick=async()=>{ const c=b.dataset.o; hpClose(); await openBoard(); renderGroupBoard(c); });
+    document.querySelectorAll('#hpBody [data-i]').forEach(b=>b.onclick=async()=>{ const g=gs.find(x=>x.code===b.dataset.i); if(!g) return; const url=groupUrl(g.code), text=groupInviteText(g); try{ if(navigator.share){ await navigator.share({title:'Join a group',text,url}); return; } await navigator.clipboard.writeText(text+' '+url); b.textContent='Copied!'; }catch(e){} });
+    $('gpMake').onclick=async()=>{ const n=$('gpName').value.trim(); if(!n){ $('gpName').focus(); return; } const g=await sbRpc('group_create',{p_player:playerId(),p_name:n});
+      if(!g||g.error){ showToast(g&&g.error==='too_many'?'You can make up to 10 groups.':"Couldn't make the group. Try again."); return; }
+      MY_GROUPS=MY_GROUPS.filter(x=>x.code!==g.code).concat([g]); store('ff_groups',MY_GROUPS); draw(); };
+    $('gpJoin').onclick=async()=>{ let v=$('gpCode').value.trim(); const m=v.match(/[?&]g=([A-Za-z0-9]+)/); if(m) v=m[1]; v=v.replace(/[^A-Za-z0-9]/g,'').toUpperCase(); if(!v){ $('gpCode').focus(); return; } const j=await joinGroup(v); if(j) draw(); };
+  };
+  draw(); refreshGroups().then(()=>{ if(HP_ID==='groups') draw(); });
+}};
+
 $('mPol').onclick=()=>{ if(POL_ON) startGame('daily','pol'); };
 $('mPractice').onclick=()=>{ const l=$('practiceList'); l.hidden=!l.hidden; $('mPractice').setAttribute('aria-expanded',String(!l.hidden)); Sound.play('menu'); $('backList').hidden=true; $('howBox').hidden=true; l.querySelectorAll('button').forEach(b=>b.classList.toggle('on',S&&S.mode==='practice'&&b.dataset.k===S.kind)); };
 $('practiceList').querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(!b.disabled) startGame('practice',b.dataset.k); });
