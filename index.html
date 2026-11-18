@@ -701,10 +701,11 @@ svg.leaflet-image-layer.leaflet-interactive path {
 #summary #digLog,#final.news #digLog,#summary #sumCurve,#final.news #sumCurve{image-rendering:auto}   /* the summary's blanket pixelated rule made these two charts stair-step */
 
 /* home buttons under I'M READY, and the full pages they open */
-#homeBtns{display:none;grid-template-columns:repeat(12,1fr);gap:6px;margin-top:12px}
-body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:grid}
-#homeBtns .ht{grid-column:span 3;all:unset;box-sizing:border-box;grid-column:span 3;cursor:pointer;text-align:center;background:#141821;border:2px solid #2a2f3b;padding:7px 2px 6px;position:relative;box-shadow:2px 2px 0 #000;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
-#homeBtns .ht:nth-child(n+5){grid-column:span 4}
+#homeBtns{display:none;flex-direction:column;gap:6px;margin-top:12px}
+body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
+#homeBtns .hr{display:flex;gap:6px}
+#homeBtns .ht{all:unset;box-sizing:border-box;flex:1 1 0;min-width:0;cursor:pointer;text-align:center;background:#141821;border:2px solid #2a2f3b;padding:7px 2px 6px;position:relative;box-shadow:2px 2px 0 #000;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+#homeBtns .ht[hidden]{display:none}
 #homeBtns .ht:active{transform:translate(1px,1px);box-shadow:1px 1px 0 #000}
 #homeBtns .ht:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 #homeBtns svg{width:18px;height:18px;color:var(--cyan)}
@@ -784,7 +785,7 @@ body.planetview #final,body.planetview #bar,body.planetview #comeBack,body.plane
 @media (min-width:1100px){#introTop{width:min(440px,calc(100vw - 32px))} #introTop .it{font-size:34px}}
 /* desktop only: the opening Start button sits in the right column level with the middle of the planet, clear of the title and text above it */
 @media (min-width:1100px) and (min-height:600px){ body.introIdle .rcol #bar{margin:calc(50vh - 120px) 0 0 auto;width:min(340px,100%)} }
-#introLine{margin:14px 0 10px;font:23px/1.15 var(--vt);color:#eef0f4;text-shadow:2px 2px 0 #05060c}
+#introLine{margin:3px 0 8px;font:23px/1.15 var(--vt);color:#eef0f4;text-shadow:2px 2px 0 #05060c}
 #introStamp{width:fit-content;margin:2px auto 4px;padding:7px 12px 6px;border:3px solid #ff4d5e;outline:2px solid #ff4d5e;outline-offset:2px;color:#ff4d5e;font:11px/1 var(--px);letter-spacing:.2em;text-transform:uppercase;text-align:center;background:rgba(255,77,94,.08);transform:rotate(-3deg);text-shadow:1px 1px 0 #05060c;display:flex;align-items:center;gap:9px;animation:stampIn .45s steps(4) both}
 #introStamp svg{width:18px;height:18px;shape-rendering:crispEdges;flex:none}
 @keyframes stampIn{from{transform:rotate(-3deg) scale(1.9);opacity:0}to{transform:rotate(-3deg) scale(1);opacity:1}}
@@ -1906,14 +1907,19 @@ body.pinning #card #headline{font-size:23px}
   </div>
   <button class="primary" id="btnStart" hidden>Start</button>
   <div id="homeBtns" role="group" aria-label="Quick links">
+  <div class="hr">
     <button type="button" class="ht" data-h="stats"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="4" width="2" height="3"/><rect x="2" y="2" width="2" height="5"/><rect x="4" y="0" width="2" height="7"/></g></svg><span class="hn">Stats</span><span class="hs" id="hStats"></span></button>
     <button type="button" class="ht" data-h="streak"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true" style="color:#ff8a3d"><g fill="currentColor"><rect x="3" y="0" width="1" height="1"/><rect x="2" y="1" width="2" height="2"/><rect x="4" y="2" width="1" height="2"/><rect x="1" y="3" width="4" height="3"/><rect x="2" y="6" width="2" height="1"/></g></svg><span class="hn">Streak</span><span class="hs" id="hStreak"></span></button>
     <button type="button" class="ht hot" data-h="blank"><span class="blk" aria-hidden="true">[ ? ]</span><span class="hn">Fill the blank</span><span class="hs" id="hBlank"></span></button>
     <button type="button" class="ht" data-h="account"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="1" width="3" height="3"/><rect x="3" y="2" width="4" height="1"/><rect x="5" y="3" width="1" height="2"/></g></svg><span class="hn" id="hAcctN">Sign in</span><span class="hdot" id="hAcctDot">SAVE</span></button>
+  </div>
+  <div class="hr">
+    <button type="button" class="ht" data-h="passport"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="1" y="0" width="5" height="7"/><rect x="2" y="1" width="3" height="3" style="fill:#141821"/><rect x="3" y="2" width="1" height="1"/><rect x="2" y="5" width="3" height="1" style="fill:#141821"/></g></svg><span class="hn">Passport</span><span class="hs" id="hPass"></span></button>
     <button type="button" class="ht" data-h="back" id="hBack"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="0" width="5" height="1"/><rect x="1" y="2" width="5" height="1"/><rect x="2" y="4" width="5" height="1"/></g></svg><span class="hn">Back issues</span></button>
     <button type="button" class="ht" data-h="board"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="1" y="0" width="5" height="1"/><rect x="1" y="1" width="5" height="3"/><rect x="0" y="1" width="1" height="2"/><rect x="6" y="1" width="1" height="2"/><rect x="3" y="4" width="1" height="2"/><rect x="2" y="6" width="3" height="1"/></g></svg><span class="hn">Standings</span></button>
     <button type="button" class="ht" data-h="groups"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="1" width="2" height="2"/><rect x="0" y="3" width="3" height="3"/><rect x="3" y="0" width="2" height="2"/><rect x="3" y="2" width="3" height="4"/></g></svg><span class="hn">Groups</span><span class="hs" id="hGroups"></span></button>
   </div>
+</div>
   <button class="primary" id="btnNext" hidden>Next</button>
   <div id="blankBar" hidden>
     <form id="guessForm" autocomplete="off">
@@ -4882,6 +4888,7 @@ function renderIssues(){
     return '<button data-d="'+x.date+'">#'+issueNumber(x.date)+' · '+fmtDate(x.date)+(done?' <small>✓ '+fmtM(done.m)+'</small>':'')+'</button>';
   }).join('');
   $('backList').querySelectorAll('button').forEach(b=>b.onclick=()=>openBackIssue(b.dataset.d));
+  if(typeof updateHome==='function') updateHome();
 }
 let BACK=null;
 async function openBackIssue(date){
@@ -6065,12 +6072,15 @@ function updateHome(){
     $('hBlank').textContent = bd ? (hb?fmtPts(hb.score):'done') : BLANK_N+' words';
     $('hAcctN').textContent = u ? 'Account' : 'Sign in'; $('hAcctDot').textContent = u ? '' : 'SAVE';
     $('hGroups').textContent = (MY_GROUPS&&MY_GROUPS.length)||'';
+    { const names=Object.keys(passport()); $('hPass').textContent = passCount(names)+' / '+passTotal(); }
     $('hBack').hidden = !(typeof ISSUES!=='undefined' && backWindow().length);
+    requestAnimationFrame(()=>{ try{ if(typeof Intro!=='undefined' && Intro.relayout) Intro.relayout(); }catch(e){} });   // the bar grew or shrank: re-seat the planet between the text and the buttons
   }catch(e){}
 }
 document.querySelectorAll('#homeBtns .ht').forEach(b=>b.onclick=()=>{
   const k=b.dataset.h;
   if(k==='board'){ try{ Sound.play('menu'); }catch(e){} openBoard(); return; }
+  if(k==='passport'){ openPassport(); return; }
   hpOpen(k);
 });
 
@@ -6600,9 +6610,9 @@ const Intro=(function(){
   function layoutIdle(){
     const top=$('introTop'), narrow=innerWidth<1100;
     const tb=top.hidden ? 120 : top.getBoundingClientRect().bottom;
-    const bar=$('bar'), bb=narrow && bar && bar.offsetParent ? bar.getBoundingClientRect().top : innerHeight-16;
+    const bar=$('bar'), bb=narrow && bar && bar.getClientRects().length ? bar.getBoundingClientRect().top : innerHeight-16;   // a fixed bar has no offsetParent, so test that it is drawn instead
     const room=Math.max(80,bb-tb-16);
-    const Rpx=Math.min(innerWidth*(narrow?0.42:0.3), room/2-(narrow?0:14)), eyPx=tb+14+Rpx;   // tucked right under How to play
+    const Rpx=Math.min(innerWidth*(narrow?0.42:0.3), room/2-(narrow?0:14)), eyPx=tb+6+Rpx;   // tucked right under How to play
     IP={R:Rpx/PX, ey:eyPx/PX};
   }
   const idlePos=()=>IP || {R:Math.min(w,h)*0.32, ey:h*0.6};
@@ -6623,7 +6633,7 @@ const Intro=(function(){
   function titleOn(){                   // the game's name, the day's line and "how to play" above the turning planet
     const t=$('introTop'), bar=document.querySelector('.topline');
     introText();
-    t.style.top=Math.round(bar ? bar.getBoundingClientRect().bottom+18 : 76)+'px';   // straight under the top bar: the counters are hidden until the game starts
+    t.style.top=Math.round(bar ? bar.getBoundingClientRect().bottom+8 : 66)+'px';   // straight under the top bar: the counters are hidden until the game starts
     t.hidden=false; document.body.classList.add('introIdle');
     layoutIdle();
     requestAnimationFrame(()=>t.classList.add('on'));
@@ -6699,7 +6709,7 @@ const Intro=(function(){
       if(!on) show(); else { tgt=spot(); titleOn(); }
     } else if(on && mode==='idle') hide();
   }
-  return {show,hide,go,outro,planet,planetOn:()=>on&&(mode==='end'||mode==='out'),active:()=>on,diving:()=>mode==='dive',check, hold:()=>{ if(!reduce) document.body.classList.add('planetview'); }};
+  return {relayout:()=>{ if(on && mode==='idle') layoutIdle(); },show,hide,go,outro,planet,planetOn:()=>on&&(mode==='end'||mode==='out'),active:()=>on,diving:()=>mode==='dive',check, hold:()=>{ if(!reduce) document.body.classList.add('planetview'); }};
 })();
 
 function setAusBar(m){                                  // share of the way to the Australia breakthrough
