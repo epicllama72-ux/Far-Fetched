@@ -1779,6 +1779,8 @@ body.peek #hudTry:not([hidden]),body.sumUp #hudTry:not([hidden]){display:block}
 #card .clue{color:#a8231a}
 #card .fakeplace{color:#5a5043}
 #card .redact{background:#1b1813;box-shadow:none}
+.redact.blen{background:none!important;box-shadow:none!important;display:inline-flex;gap:2px;align-items:stretch;height:.8em;vertical-align:-.05em}
+.redact.blen i{display:block;width:.5em;background:#000}#card .redact.blen i{background:#1b1813}.redact.blen b{display:block;width:.4em}.redact.blen u{text-decoration:none;color:inherit;line-height:.8em;align-self:center}
 #card .storyLink{color:#1f4f86;font-size:17px}
 #card #speed .trk{height:8px;background:transparent;box-shadow:0 0 0 2px #1b1813}
 #card #speed i{background:repeating-linear-gradient(90deg,#1b1813 0 6px,transparent 6px 8px)}
@@ -2363,8 +2365,9 @@ function shiftFC(g,dx){   // shift any GeoJSON (collection, feature or bare geom
   if(g.type==='Feature') return {type:'Feature',properties:g.properties,geometry:geom(g.geometry)};
   return geom(g);
 }
-const PIN_MIN = 20;   // any pin that is placed earns at least this many distance points, however far off
-function pinPoints(d){return Math.max(Math.round(PK*PIN_MIN), Math.round(PK*PIN_PTS*Math.exp(-Math.max(0,d-100)/2400)));}  // ≤100 km 110 · 400 km 97 · 1000 km 76 · 1500 km 61 · 2500 km 40 · floor of 20 from about 4,190 km (of 110)
+const PIN_MIN = 40, PIN_MIN_FAR = 30, FAR_KM = 5000;   // any pin that is placed earns at least 40 distance points, or 30 if it lands 5,000 km or more away
+const pinFloor=d=>Math.round(PK*(d>=FAR_KM?PIN_MIN_FAR:PIN_MIN));
+function pinPoints(d){return Math.max(pinFloor(d), Math.round(PK*PIN_PTS*Math.exp(-Math.max(0,d-100)/2400)));}  // ≤100 km 110 · 400 km 97 · 1000 km 76 · 1500 km 61 · 2500 km 40 · floor of 40 (30 from 5,000 km out), of 110
 /* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
 const PIN_SECS=20;                 // the pin has a 20 s limit, but taking longer no longer costs distance points
 function pinMult(){ return 1; }
@@ -4138,7 +4141,7 @@ function submitGuess(timedOut){
   const d = guessLL ? km(guessLL.lat,guessLL.lng,st.lat,st.lng) : null;
   let pts = guessLL ? Math.round(pinPoints(d)*mult) : 0;
   if(!S.cur.callOk) pts = Math.round(pts*0.75);
-  if(guessLL) pts = Math.max(Math.round(PK*PIN_MIN), pts);      // the minimum holds after a wrong call too
+  if(guessLL) pts = Math.max(pinFloor(d), pts);      // the minimum holds after a wrong call too
   const distPts = pts;                                  // distance points alone, for the breakdown
   const bonus = guessLL ? Math.round(pinBonus(d)*(S.cur.callOk?1:0.75)) : 0;   // a wrong call still earns it, at the same 75% credit as the pin
   pts += bonus; S.cur.pinBonus = bonus;
@@ -4287,9 +4290,9 @@ function runCountdown(){
 const TIERS=[   // the same ranks as the pin popups, lowest to highest
   {f:0,    icon:'rock',    color:'#ffffff', name:'Rock-Dweller', line:'Come out from under there. It\'s a big world.'},
   {f:0.35, icon:'news',    color:'#4da6ff', name:'Skimmer',      line:'You read the headline. Mostly.'},
-  {f:0.55, icon:'tv',      color:'#ff4d5e', name:'Pundit',       line:'You\'d do great on cable news.'},
-  {f:0.70, icon:'capitol', color:'#b56bff', name:'Statesman',    line:'A short trip from correct.'},
-  {f:0.85, icon:'globe',   color:'#ffd23f', name:'Globalist',    line:'Were you there? Be honest.'}];
+  {f:0.50, icon:'tv',      color:'#ff4d5e', name:'Pundit',       line:'You\'d do great on cable news.'},
+  {f:0.60, icon:'capitol', color:'#b56bff', name:'Statesman',    line:'A short trip from correct.'},
+  {f:0.70, icon:'globe',   color:'#ffd23f', name:'Globalist',    line:'Were you there? Be honest.'}];
 function tierOf(total,max){ let k=0; TIERS.forEach((t,i)=>{ if(total>=Math.round(t.f*max/50)*50) k=i; }); return k; }
 /* Letters to the editor: feedback after a Daily Dig, saved in the Supabase "feedback" table (scripts/supabase_feedback.sql) */
 function renderLetters(){
@@ -5724,8 +5727,8 @@ function blankPts(c,tl,n){
 function heat(c){ return c>=1?'EXACT':c>=0.72?'ON FIRE':c>=0.55?'HOT':c>=0.38?'WARM':c>=0.2?'COOL':'COLD'; }
 
 function blankHTML(st,reveal){
-  const w = 70 + (hash(st.h2) % 60);
-  const bar = '<span class="redact" role="img" aria-label="word hidden" style="width:'+w+'px"></span>';
+  const word=String(st.ans[0]||''), n=word.replace(/[^\p{L}\p{N}]/gu,'').length;   // one block per letter, so the length is a clue
+  const bar = '<span class="redact blen" role="img" aria-label="word hidden, '+n+' letters">'+[...word].map(ch=>/[\p{L}\p{N}]/u.test(ch)?'<i></i>':ch===' '?'<b></b>':'<u>'+ch+'</u>').join('')+'</span>';
   return st.h2.replace('[]', reveal ? '<span class="reveal">'+st.ans[0]+'</span>' : bar);
 }
 /* how many other players found each Fill the Blank word today (one small request, kept for the session) */
@@ -6155,7 +6158,7 @@ HPAGES.stats={title:'Your stats',render(){
     +'<div id="nm2" style="display:none"><p class="sm" style="font:8px var(--px);letter-spacing:.12em;color:#e3bd62">YOUR NAME</p><div class="rowin"><input id="nmIn" type="text" maxlength="24" value="'+nm+'" aria-label="Your name"><button class="b2" id="nmSave" type="button" style="margin:0">Save</button></div><p class="sm">Up to 24 letters. Shown on the standings and in your groups.</p></div>'
     +'<div class="kv" style="margin-top:10px;text-align:center"><b style="font-size:1.5em">'+(totalM()?fmtM(totalM()):'—')+'</b><small>total distance dug</small></div>'
     +'<div class="g2" style="margin-top:8px"><div class="kv"><b>'+(best.m?fmtM(best.m):'—')+'</b><small>best dig</small></div><div class="kv"><b>'+(avg?fmtM(avg):'—')+'</b><small>average dig</small></div><div class="kv"><b>'+rank+'</b><small>best rank</small></div><div class="kv"><b>'+passCount(names)+' / '+passTotal()+'</b><small>countries mapped</small></div></div></div>';
-  html+=hpCard('LAST '+Math.max(last.length,1)+' DIGS','',last.length?'<div class="sparkW"><div class="sparkY"><span>'+fmtM(mx)+'</span><span>'+fmtM(mx/2)+'</span><span>0</span></div><div class="spark">'+last.map(k=>'<i style="height:'+Math.round(100*h[k].m/mx)+'%" title="'+fmtDate(k.split(':')[0])+' · '+fmtM(h[k].m)+'"></i>').join('')+'</div></div><div class="sparkX"><span>'+fmtDate(last[0].split(':')[0])+'</span><span>'+(last.length>1?fmtDate(last[last.length-1].split(':')[0]):'')+'</span></div><p class="sm" style="margin-top:6px">Deepest '+fmtM(best.m||0)+'. Taller bars are deeper digs.</p>':'<p class="sm">Finish a Daily Dig to start your chart.</p>');
+  html+=hpCard(last.length===0?'YOUR DIGS':last.length===1?'LAST DIG':'LAST '+last.length+' DIGS','',last.length?'<div class="sparkW"><div class="sparkY"><span>'+fmtM(mx)+'</span><span>'+fmtM(mx/2)+'</span><span>0</span></div><div class="spark">'+last.map(k=>'<i style="height:'+Math.round(100*h[k].m/mx)+'%" title="'+fmtDate(k.split(':')[0])+' · '+fmtM(h[k].m)+'"></i>').join('')+'</div></div><div class="sparkX"><span>'+fmtDate(last[0].split(':')[0])+'</span><span>'+(last.length>1?fmtDate(last[last.length-1].split(':')[0]):'')+'</span></div><p class="sm" style="margin-top:6px">Deepest '+fmtM(best.m||0)+'. Taller bars are deeper digs.</p>':'<p class="sm">Finish a Daily Dig to start your chart.</p>');
   html+=hpCard('PINS AND CALLS','',  '<div class="g2"><div class="kv"><b>'+(l.pins||0)+'</b><small>pins landed</small></div><div class="kv"><b>'+(l.catches||0)+'</b><small>fakes caught</small></div><div class="kv"><b>'+Math.max(l.cpins||0,passCount(names))+'</b><small>right country pins</small></div><div class="kv"><b>'+(l.fooled||0)+'</b><small>times fooled</small></div></div>');
   { const r=l.rar||{}, tiers=[['om','OMNISCIENT','#2bb8c8',' within '+OMNI_KM+' km'],...RARITY.map(t=>[t[5],t[1],t[5]==='rk'?'#8a8d99':t[2],t[0]===Infinity?' farther out':' within '+t[0]+' km'])], tot=tiers.reduce((a,t)=>a+(r[t[0]]||0),0), mxr=Math.max(1,...tiers.map(t=>r[t[0]]||0));
     html+=hpCard('PINS BY RARITY',tot+' counted','<div class="rar">'+tiers.map(t=>{ const n=r[t[0]]||0; return '<div class="rr"><span class="rn" title="'+t[1]+t[3]+'">'+t[1]+'<small>'+t[3].trim()+'</small></span><span class="rb"><i style="width:'+Math.round(100*n/mxr)+'%;background:'+t[2]+'"></i></span><b>'+n+'</b></div>'; }).join('')+'</div><p class="sm" style="margin-top:6px">'+(tot?'Every pin you drop in the Daily Dig, by how close it landed.':'Fills in from your next Daily Dig.')+'</p>'); }
