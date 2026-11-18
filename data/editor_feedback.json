@@ -512,7 +512,7 @@
   {
    "kind": "fake",
    "before": "Fraudster in a silk robe sells 52 'Han dynasty fortune cookies' to collectors in {}",
-   "after": "Man in a pirate hat robs a bank in {} with a toy cutlass, flees 9 km by unicycle in 4 minutes",
+   "after": "All 61 church windows surveyed in {} are thicker at the bottom, as the glass has flowed down",
    "why": "owner wanted a better fake that copies the real stories' format (a person, a vivid concrete chain with numbers, deadpan) with one quiet inconsistency checkable from the headline: here the arithmetic of a unicycle getaway"
   },
   {
@@ -520,6 +520,12 @@
    "before": "Man in a pirate hat robs a bank in {}... / Twin brothers in matching tutus walk free in {}...",
    "after": "(varied shapes and subjects)",
    "why": "owner: the fakes read as the same 'blank in a blank does blank' template; they can be about anything"
+  },
+  {
+   "kind": "fake",
+   "before": "Man in a pirate hat robs a bank in {} with a toy cutlass, flees 9 km by unicycle in 4 minutes",
+   "after": "All 61 church windows surveyed in {} are thicker at the bottom, as the glass has flowed down",
+   "why": "owner: the pirate-hat fake was the old 'person in a costume' formula; rewritten about an object/survey with a science-myth slip (glass does not flow)"
   }
  ]
 }

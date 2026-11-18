@@ -48,8 +48,8 @@
   },
   {
    "real": false,
-   "h": "Man in a pirate hat robs a bank in {} with a toy cutlass, flees 9 km by unicycle in 4 minutes",
-   "tell": "A unicycle can't do 9 km in 4 minutes: that is 135 km/h."
+   "h": "All 61 church windows surveyed in {} are thicker at the bottom, as the glass has flowed down",
+   "tell": "Glass is not a slow-flowing liquid; old panes were simply uneven when they were made."
   },
   {
    "real": true,
