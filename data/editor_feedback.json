@@ -26,7 +26,8 @@
   "CLUES: in every Daily Dig, two of the five real stories (the two with the weakest clues) get a slightly better-known clue than usual: something a well-read person on any continent would know, still true of the place and never naming the country, state or a neighbouring place.",
   "CLUES: for an obscure place with no regional trivia hook, a direction plus a famous fact about the country (never naming it) is a good clue: 'a town in the south of panda country', 'a village in central wine-and-cheese country'.",
   "CLUES: for an obscure place a famous fact about its STATE or region (never naming it) plus a compass push works well: 'a town in the east of Pocahontas's state', 'a village in the north of ...'.",
-  "FAKES: never formulaic. They are NOT all '[person] in a [costume] does [thing] in {}'. Fakes can be about anything (objects, places, institutions, discoveries, rules, records, events), with varied sentence shapes and {} positions; at most one per set is a person described by their clothing. Each still copies the real stories' deadpan, specific, numbered style and carries one quiet inconsistency checkable from the headline."
+  "FAKES: never formulaic. They are NOT all '[person] in a [costume] does [thing] in {}'. Fakes can be about anything (objects, places, institutions, discoveries, rules, records, events), with varied sentence shapes and {} positions; at most one per set is a person described by their clothing. Each still copies the real stories' deadpan, specific, numbered style and carries one quiet inconsistency checkable from the headline.",
+  "FAKES: the same high bar as the real stories. A fake must be interesting enough that it would earn a place in the game if it were real; dull surveys, studies, statistics or bland incidents are out however clever the slip."
  ],
  "edits": [
   {
@@ -526,6 +527,18 @@
    "before": "Man in a pirate hat robs a bank in {} with a toy cutlass, flees 9 km by unicycle in 4 minutes",
    "after": "All 61 church windows surveyed in {} are thicker at the bottom, as the glass has flowed down",
    "why": "owner: the pirate-hat fake was the old 'person in a costume' formula; rewritten about an object/survey with a science-myth slip (glass does not flow)"
+  },
+  {
+   "kind": "fake-style",
+   "before": "All 61 church windows surveyed in {} are thicker at the bottom, as the glass has flowed down",
+   "after": "(a fake must be something we would run if it were real)",
+   "why": "owner: fakes should be interesting enough to be put in the game if they were real; we have a high bar for real stories"
+  },
+  {
+   "kind": "fake",
+   "before": "All 61 church windows surveyed in {} are thicker at the bottom, as the glass has flowed down",
+   "after": "Couple, both 98, marry in {} after a 79-year engagement that began on 29 February 1947",
+   "why": "the window-glass survey would be too dull to run as a real story; replaced by a heartwarming long engagement with a calendar slip (no 29 February in 1947)"
   }
  ]
 }

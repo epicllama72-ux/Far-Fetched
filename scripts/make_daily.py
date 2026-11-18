@@ -242,6 +242,7 @@ TASTE = """WHAT MAKES A GREAT STORY (the owner's taste, learned from swapping do
  - Spread over the world; at most 3 of 16 from any one country; no two stories of the same kind."""
 
 FAKE_GUIDE = """WHAT MAKES A GOOD FAKE (the owner's taste):
+ - HIGH BAR: a fake must be interesting enough that, if it were TRUE, it would earn a place among our real stories. We pick real stories very harshly (vivid, funny, hard to believe, something you would repeat to a friend), and fakes must clear the same bar. Before keeping a fake ask: would the owner pick this as a real story? A dull survey, study, statistic, notice, minor mishap or bland incident fails, however clever its slip. Throw those away and write something better.
  - Fakes can be about ANYTHING: a person, a group, a town, a company, a discovery, an object, a building, a rule, a vote, a record, a festival, a shipment, a school, a museum. Do NOT force a person doing a crime, and NEVER fall back on the template "[Man/Woman/Person] in a [costume/outfit] does [something] in {}": use that shape at most once in a whole set, and describe a person by their job, age, relationship or what they did, not by what they are wearing.
  - Vary the SENTENCE SHAPE, not just the topic. Open with different kinds of subject (a place, an object, a number, an institution, a time, a question's answer), put the {} at the start, middle or end, mix short and long, active and passive, one clause and two. A set of fakes must not read like the same sentence with the nouns swapped. Look at the real stories listed and the examples below: they are all built differently.
  - Write it the way the REAL stories read: a vivid, absurd, specific story (a baffling plan, an odd object, a dumb getaway, a ridiculous excuse), not an everyday transaction. Splitting a bill, a fine, a receipt, a hotel bill or a speed limit are dull and NOT worthy.
@@ -1291,7 +1292,7 @@ def fake_calibration():
 
 JUDGE_PROMPT = """You are a sharp, slightly cynical newspaper editor choosing what to print in "Far-Fetched", a daily game of weird true news and invented fakes.
 
-Score every item 1-10 for "would a reader repeat this to a friend?" Be harsh: most items deserve 3-6. 9-10 is rare (a story or fake that makes you laugh out loud on first read). Items that are merely odd, a chase or crash, a rare animal, a quiet record, a bland mishap, or a fake with no catchable slip score 1-4.
+Score every item 1-10 for "would a reader repeat this to a friend?" Be harsh: most items deserve 3-6. 9-10 is rare (a story or fake that makes you laugh out loud on first read). Items that are merely odd, a chase or crash, a rare animal, a quiet record, a bland mishap, or a fake with no catchable slip score 1-4. Hold FAKES to the same bar as true stories: ask whether the headline would deserve a place in the game if it were real. A fake that would be too dull to run as a true story (a bland study, survey, statistic or minor incident) scores 1-4 even if its slip is perfect.
 "r" items are TRUE stories (judge the story and its funniest detail). "f" items are INVENTED headlines (judge funniness AND whether a careful reader could catch one slip from the headline alone; a fake whose slip is missing, hidden or unfair scores 1-4).
 
 """ + "{taste}\n\n" + """""" + "{calib}\n\n" + """For every "f" item also predict the percentage of players (0-100) who would call it real and be fooled, using the measured results above as your guide. Reply with ONE JSON object only: {"r":[[id,score],...],"f":[[id,score,predicted_fooled_percent],...]} covering every id.
@@ -1328,7 +1329,7 @@ def taste_judge(reals, fakes, model):
 
 FAKE_WRITER_PROMPT = """You write the invented headlines for "Far-Fetched", a daily game where players decide whether a deadpan wire-style headline (place hidden as {}) is real or fake. The true stories already in today's paper are listed so you match their tone, length and kind of detail but NEVER copy their topics.
 
-Write 14 fakes aimed at the target below. Each has {} exactly once, is at most 95 characters, and carries a "tell": one sentence explaining the single slip that proves it fake (the slip must be visible in the headline alone).
+Write 14 fakes aimed at the target below. Every one must be a story we would be glad to run if it were TRUE: the same high bar as the real stories (vivid, funny, hard to believe). Drop and replace any that would be too dull to run as a real story. Each has {} exactly once, is at most 95 characters, and carries a "tell": one sentence explaining the single slip that proves it fake (the slip must be visible in the headline alone).
 
 """ + "{guide}\n\n{calib}\n\n" + """Variety: different settings, different countries' currencies and units, different kinds of slip (biology or animal fact, science myth, anachronism, food or culture fact, arithmetic, timeline). No two fakes may open with the same words. No two fakes may share a sentence shape or the same kind of subject; at most one fake may be a person described by their clothing; the rest can be about anything (objects, places, institutions, discoveries, rules, records, events). If the set reads like "blank in a blank does blank", rewrite it. No quotes, puns, round numbers, "exactly", official reactions, or animals as the main joke.
 
@@ -1835,7 +1836,7 @@ def main():
     fake_target = min(5.0, sum(real_u) / len(real_u) + 0.5)        # fakes sound a notch more far-fetched than today's true stories
     def fake_rank(f):
         try:
-            return abs(float(f.get("obvious", 2.5)) - 2.5) + 0.6 * abs(float(f.get("unbelievable", fake_target)) - fake_target) - 0.6 * (float(f.get("taste", 5)) - 5) + 0.06 * (abs(float(f["pred"]) - sum(FAKE_TARGET) / 2) if f.get("pred") is not None else 0)
+            return abs(float(f.get("obvious", 2.5)) - 2.5) + 0.6 * abs(float(f.get("unbelievable", fake_target)) - fake_target) - 1.0 * (float(f.get("taste", 5)) - 5) + 0.06 * (abs(float(f["pred"]) - sum(FAKE_TARGET) / 2) if f.get("pred") is not None else 0)
         except Exception:
             return 1.0
     chosen_fakes = pick_fakes(fakes, call_real, day, N_CALL_FAKE, lambda f: fake_rank(f) + (0 if f.get("banked") == day or f.get("hand") else 0.3))   # the owner's hand-written fakes compete with fresh ones
