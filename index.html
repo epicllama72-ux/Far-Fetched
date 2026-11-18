@@ -1061,6 +1061,10 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #globeBox .gctl{position:absolute;right:0;top:0;display:grid;gap:6px;justify-items:end}
 #globeBox button,#mapGlobe{all:unset;cursor:pointer;background:#0d0f14;color:var(--accent);font:17px/1 var(--vt);min-width:38px;height:38px;padding:0 9px;box-sizing:border-box;display:grid;place-items:center;box-shadow:0 0 0 2px #000,0 0 0 4px #2a2f3b}
 #globeBox button:focus-visible,#mapGlobe:focus-visible{outline:3px solid #fff}
+body.pinned #mapWrap.globeOn #map{height:104px;min-height:104px}
+#mapWrap.globeRes #globeFlat{display:none}
+body.pinned #mapWrap.globeRes .gctl,body.pinned #mapWrap.globeRes #globeHome,body.pinned #mapWrap.globeRes #globeRead{display:none}
+body.pinned #mapWrap.globeRes #globeBox{background:#05060b;box-shadow:0 0 0 3px var(--accent),0 0 0 6px #000;overflow:hidden}
 #globeHome{position:absolute;left:0;bottom:0}
 #globeRead{position:absolute;right:0;bottom:2px;font:15px/1 var(--vt);color:#9fb0d4;background:rgba(5,6,11,.7);padding:3px 6px;pointer-events:none}#globeRead b{color:var(--accent);font-weight:400}
 #mapGlobe{position:absolute;right:8px;top:8px;z-index:900}#mapGlobe[hidden]{display:none}
@@ -3968,7 +3972,7 @@ function firstGame(){ return !load('ff_coached') && !Object.keys(load('ff_hist')
 function showRound(shown,quiet,gate){
   document.body.classList.remove('answered');
   S.phase = gate ? 'ready' : 'call'; guessLL=null;
-  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone');
+  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone'); GlobePin.hide();
   $('blankUI').hidden=true; $('card').hidden=false; $('storyLink').hidden=true; hideHint();
   const st = S.rounds[S.i];
   delete $('card').dataset.truth;   // the REAL / FAKE stamp goes on once the headline is answered
@@ -4064,21 +4068,44 @@ function squareIcon(fill){
   return L.divIcon({className:'pinsq',html:'<i style="background:'+fill+'"></i>',iconSize:[14,14],iconAnchor:[7,7]});
 }
 /* ---------- Globe pin: a spinning, zoomable globe that floats over the game while you place the pin ----------
-   Drag to spin, pinch or scroll to zoom, tap to drop the pin. It draws the same country, state and lake outlines as the flat map
-   with a small orthographic projection (no library). Points on the far side are pushed to the rim, so land never fills the wrong side.
-   The flat map is still underneath: the pin is written to guessLL, so LOCK IN and the result view work exactly as before. */
+   Drag to spin, pinch or scroll to zoom, tap to drop the pin. The planet is painted in the same chunky pixels as the title-screen Earth
+   (real colours: green land, tan deserts, white ice, blue sea) from the game's own country, state and lake outlines, with crisp borders and
+   names on top. There is no library: a small orthographic projection pushes far-side points to the rim so land never fills the wrong side.
+   After LOCK IN the globe stays, flies to your pin and the real spot, then shrinks to the strip at the bottom with everyone else's pins;
+   "Expand globe" opens it back up. The flat map is still underneath: the pin is written to guessLL so scoring is untouched. */
 const GlobePin=(()=>{
-  const D2R=Math.PI/180, TAU=Math.PI*2;
+  const D2R=Math.PI/180, TAU=Math.PI*2, PS=3;       // PS: screen pixels per chunky planet pixel
   const SEAS=[['PACIFIC OCEAN',0,-150],['PACIFIC OCEAN',-10,-120],['ATLANTIC OCEAN',15,-35],['ATLANTIC OCEAN',-25,-15],['INDIAN OCEAN',-15,80],['ARCTIC OCEAN',84,10],['SOUTHERN OCEAN',-64,40]];
   const CONT=[['NORTH AMERICA',46,-102],['SOUTH AMERICA',-14,-60],['EUROPE',52,16],['AFRICA',6,20],['ASIA',46,92],['OCEANIA',-24,134],['ANTARCTICA',-80,20]];
+  const hx=h=>[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)], pal=a=>a.map(hx);
+  const OCEAN=pal(['#0f2f5a','#184b88','#2565ad','#3a86cc']), LANDC=pal(['#244d27','#356f37','#4b8f45','#69ad55']), DESERT=pal(['#6b5a33','#8f7a45','#b39a5a','#cdb676']),
+        ICE=pal(['#8fa1b5','#b9c8d8','#dde6ee','#ffffff']), TROP=pal(['#123a1c','#1b5527','#287233','#3c8f44']), BOREAL=pal(['#1b3a2a','#295034','#366a41','#4a8553']),
+        TUNDRA=pal(['#4d5b44','#66775a','#8a9a78','#a9b896']), HIGH=pal(['#5a5240','#7a7058','#9a8f72','#b7ab8c']), RIM=hx('#6fc3ff');
+  /* where the big biomes are: [lat, lon, half-height°, half-width°] */
+  const DESERTS=[[23,10,10,30],[24,45,9,14],[34,56,5,9],[42,104,6,16],[39,84,4,9],[27,71,4,6],[-25,133,10,18],[-24,19,7,8],[31,-110,6,8],[-23,-69,6,3],[8,46,5,5],[40,-116,4,6],[-44,-69,6,5],[31,3,4,9]];
+  const HIGHS=[[33,88,6,13]], TROPS=[[-4,-62,10,13],[0,22,7,10],[1,112,9,25],[8,-76,4,5]];
+  const ell=(e,la,lo)=>{ let dl=lo-e[1]; if(dl>180) dl-=360; else if(dl<-180) dl+=360; const a=(la-e[0])/e[2], b=dl/e[3]; return a*a+b*b; };
+  function biome(la,lo){
+    if(la<-62||la>78) return ICE;
+    if(la>=60&&lo>-73&&lo<-11) return ICE;                       // Greenland's ice sheet
+    const n=Math.sin(lo*.37+la*.21)*.2+Math.sin(la*.53-lo*.17)*.15;
+    for(let i=0;i<HIGHS.length;i++) if(ell(HIGHS[i],la,lo)<1+n) return HIGH;
+    for(let i=0;i<DESERTS.length;i++) if(ell(DESERTS[i],la,lo)<1+n) return DESERT;
+    if(la>66) return TUNDRA;
+    for(let i=0;i<TROPS.length;i++) if(ell(TROPS[i],la,lo)<1+n) return TROP;
+    if(la>52) return BOREAL;
+    return LANDC;
+  }
   let cv=null,ctx=null,box=null,W=0,H=0,DPR=1,R0=0,lon=-35,lat=18,zoom=1,dirty=false,on=false,raf=0,anim=null,inertia=false,vel=[0,0],interacting=false;
-  let data=null,pin=null,ev=[0,0,0],nv=[0,0,0],cv3=[0,0,0],XS=null,YS=null,ZS=null,labelsV=null;
-  const ptrs=new Map(); let moved=0,downT=0,lastMove=0,pinchD=0;
+  let data=null,pin=null,target=null,locked=false,crowd=[],ev=[0,0,0],nv=[0,0,0],cv3=[0,0,0],XS=null,YS=null,ZS=null,labelsV=null,pc=null;
+  let lo=null,lctx=null,mk=null,mctx=null,img=null;
+  const ptrs=new Map(); let moved=0,downT=0,lastMove=0,pinchD=0,ro=null;
   const $=id=>document.getElementById(id);
-  const vec=(la,lo)=>{ const p=la*D2R,l=lo*D2R,cp=Math.cos(p); return [cp*Math.cos(l),cp*Math.sin(l),Math.sin(p)]; };
+  const vec=(la,lo_)=>{ const p=la*D2R,l=lo_*D2R,cp=Math.cos(p); return [cp*Math.cos(l),cp*Math.sin(l),Math.sin(p)]; };
   const clampLat=v=>Math.max(-88,Math.min(88,v));
+  const dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
   function build(){
-    const w=WORLD_ALL; if(!w||data) return !!data;
+    const w=WORLD_ALL; if(!w) return false; if(data) return true;
     let maxLen=0;
     const pack=ring=>{ const a=new Float32Array(ring.length*3); for(let i=0;i<ring.length;i++){ const v=vec(ring[i][1],ring[i][0]); a[i*3]=v[0]; a[i*3+1]=v[1]; a[i*3+2]=v[2]; } if(ring.length>maxLen) maxLen=ring.length; return a; };
     const collect=fc=>{ const out=[]; if(!fc) return out;
@@ -4091,7 +4118,7 @@ const GlobePin=(()=>{
       (fc.type==='FeatureCollection'?fc.features:[fc]).forEach(f=>add(f.type==='Feature'?f.geometry:f)); return out; };
     data={countries:collect(w.countries),states:collect(w.states),lakes:collect(w.lakes)};
     XS=new Float32Array(maxLen+2); YS=new Float32Array(maxLen+2); ZS=new Float32Array(maxLen+2);
-    labelsV={c:COUNTRY_LABELS.map(([n,la,lo])=>[n,vec(la,lo)]),k:CAPITALS.map(([n,la,lo])=>[n,vec(la,lo)]),s:SEAS.map(([n,la,lo])=>[n,vec(la,lo)]),t:CONT.map(([n,la,lo])=>[n,vec(la,lo)])};
+    labelsV={c:COUNTRY_LABELS.map(([n,la,lo_])=>[n,vec(la,lo_)]),k:CAPITALS.map(([n,la,lo_])=>[n,vec(la,lo_)]),s:SEAS.map(([n,la,lo_])=>[n,vec(la,lo_)]),t:CONT.map(([n,la,lo_])=>[n,vec(la,lo_)])};
     return true;
   }
   function basis(){ const p=lat*D2R,l=lon*D2R; cv3=[Math.cos(p)*Math.cos(l),Math.cos(p)*Math.sin(l),Math.sin(p)]; ev=[-Math.sin(l),Math.cos(l),0]; nv=[-Math.sin(p)*Math.cos(l),-Math.sin(p)*Math.sin(l),Math.cos(p)]; }
@@ -4099,81 +4126,126 @@ const GlobePin=(()=>{
     for(let i=0;i<m;i++){ const x=a[i*3],y=a[i*3+1],z=a[i*3+2]; XS[i]=x*ev[0]+y*ev[1]+z*ev[2]; YS[i]=x*nv[0]+y*nv[1]+z*nv[2]; const d=x*cv3[0]+y*cv3[1]+z*cv3[2]; ZS[i]=d; if(d>0) any=true; }
     return any; }
   const cross=(ax,ay,az,bx,by,bz)=>{ const t=az/(az-bz), X=ax+(bx-ax)*t, Y=ay+(by-ay)*t, h=Math.hypot(X,Y)||1; return [X/h,Y/h]; };
-  function arcTo(cx,cy,R,a1,a2){ let da=a2-a1; while(da>Math.PI) da-=TAU; while(da<-Math.PI) da+=TAU; const st=Math.max(1,Math.ceil(Math.abs(da)/.12)); for(let s=1;s<=st;s++){ const an=a1+da*s/st; ctx.lineTo(cx+R*Math.cos(an),cy-R*Math.sin(an)); } }
-  function addRing(a,cx,cy,R){      // one closed outline, with the hidden stretches following the rim
+  function arcTo(cx,cy,R,a1,a2){ let da=a2-a1; while(da>Math.PI) da-=TAU; while(da<-Math.PI) da+=TAU; const st=Math.max(1,Math.ceil(Math.abs(da)/.12)); for(let s=1;s<=st;s++){ const an=a1+da*s/st; pc.lineTo(cx+R*Math.cos(an),cy-R*Math.sin(an)); } }
+  function addRing(a,cx,cy,R){      // one closed outline (for fills): hidden stretches follow the rim
     const m=a.length/3; if(m<3||!project(a,m)) return;
     let px=0,py=0,pz=0;
     for(let k=0;k<=m;k++){ const i=k%m, x=XS[i], y=YS[i], z=ZS[i];
-      if(k===0){ if(z>0) ctx.moveTo(cx+R*x,cy-R*y); else { const h=Math.hypot(x,y)||1; ctx.moveTo(cx+R*x/h,cy-R*y/h); } }
+      if(k===0){ if(z>0) pc.moveTo(cx+R*x,cy-R*y); else { const h=Math.hypot(x,y)||1; pc.moveTo(cx+R*x/h,cy-R*y/h); } }
       else if(z>0){
-        if(pz>0) ctx.lineTo(cx+R*x,cy-R*y);
-        else { const C=cross(px,py,pz,x,y,z); arcTo(cx,cy,R,Math.atan2(py,px),Math.atan2(C[1],C[0])); ctx.lineTo(cx+R*C[0],cy-R*C[1]); ctx.lineTo(cx+R*x,cy-R*y); }
+        if(pz>0) pc.lineTo(cx+R*x,cy-R*y);
+        else { const C=cross(px,py,pz,x,y,z); arcTo(cx,cy,R,Math.atan2(py,px),Math.atan2(C[1],C[0])); pc.lineTo(cx+R*C[0],cy-R*C[1]); pc.lineTo(cx+R*x,cy-R*y); }
       } else {
-        if(pz>0){ const C=cross(px,py,pz,x,y,z); ctx.lineTo(cx+R*C[0],cy-R*C[1]); arcTo(cx,cy,R,Math.atan2(C[1],C[0]),Math.atan2(y,x)); }
+        if(pz>0){ const C=cross(px,py,pz,x,y,z); pc.lineTo(cx+R*C[0],cy-R*C[1]); arcTo(cx,cy,R,Math.atan2(C[1],C[0]),Math.atan2(y,x)); }
         else arcTo(cx,cy,R,Math.atan2(py,px),Math.atan2(y,x));
       }
       px=x; py=y; pz=z; }
-    ctx.closePath();
+    pc.closePath();
   }
   function addLine(a,cx,cy,R){      // an open line: only the part on this side
     const m=a.length/3; if(m<2||!project(a,m)) return;
     for(let i=0;i<m;i++){ const x=XS[i],y=YS[i],z=ZS[i];
-      if(i===0){ if(z>0) ctx.moveTo(cx+R*x,cy-R*y); continue; }
+      if(i===0){ if(z>0) pc.moveTo(cx+R*x,cy-R*y); continue; }
       const px=XS[i-1],py=YS[i-1],pz=ZS[i-1];
-      if(z>0){ if(pz>0) ctx.lineTo(cx+R*x,cy-R*y); else { const C=cross(px,py,pz,x,y,z); ctx.moveTo(cx+R*C[0],cy-R*C[1]); ctx.lineTo(cx+R*x,cy-R*y); } }
-      else if(pz>0){ const C=cross(px,py,pz,x,y,z); ctx.lineTo(cx+R*C[0],cy-R*C[1]); }
+      if(z>0){ if(pz>0) pc.lineTo(cx+R*x,cy-R*y); else { const C=cross(px,py,pz,x,y,z); pc.moveTo(cx+R*C[0],cy-R*C[1]); pc.lineTo(cx+R*x,cy-R*y); } }
+      else if(pz>0){ const C=cross(px,py,pz,x,y,z); pc.lineTo(cx+R*C[0],cy-R*C[1]); }
     }
   }
   const kmPerPx=()=>6371/(R0*zoom);
   const fmtKm=k=>k>=10?Math.round(k)+' km':k>=1?k.toFixed(1)+' km':Math.round(k*1000)+' m';
+  /* the planet, painted in chunky pixels: land mask from the real outlines, then colour, light and dither per pixel (as on the title screen) */
+  function paintPlanet(cx,cy,R){
+    const lw=Math.max(1,Math.ceil(W/PS)), lh=Math.max(1,Math.ceil(H/PS));
+    if(!lo){ lo=document.createElement('canvas'); lctx=lo.getContext('2d'); mk=document.createElement('canvas'); mctx=mk.getContext('2d',{willReadFrequently:true}); }
+    if(lo.width!==lw||lo.height!==lh){ lo.width=lw; lo.height=lh; mk.width=lw; mk.height=lh; img=lctx.createImageData(lw,lh); }
+    mctx.setTransform(1,0,0,1,0,0); mctx.clearRect(0,0,lw,lh); mctx.globalCompositeOperation='source-over'; mctx.fillStyle='#fff'; pc=mctx;
+    if(data){ mctx.beginPath(); data.countries.forEach(a=>addRing(a,cx/PS,cy/PS,R/PS)); mctx.fill();
+      if(data.lakes.length){ mctx.globalCompositeOperation='destination-out'; mctx.beginPath(); data.lakes.forEach(a=>addRing(a,cx/PS,cy/PS,R/PS)); mctx.fill(); mctx.globalCompositeOperation='source-over'; } }
+    const md=mctx.getImageData(0,0,lw,lh).data, d=img.data, rr=R/PS, ox=cx/PS, oy=cy/PS;
+    for(let y=0;y<lh;y++) for(let x=0;x<lw;x++){
+      const i=(y*lw+x)*4, sx=(x+.5-ox)/rr, sy=-(y+.5-oy)/rr, r2=sx*sx+sy*sy;
+      if(r2>1.1){ d[i+3]=0; continue; }
+      if(r2>1){ if((x+y)&1){ d[i]=RIM[0]; d[i+1]=RIM[1]; d[i+2]=RIM[2]; d[i+3]=255; } else d[i+3]=0; continue; }
+      const sz=Math.sqrt(1-r2), X=sx*ev[0]+sy*nv[0]+sz*cv3[0], Y=sx*ev[1]+sy*nv[1]+sz*cv3[1], Z=sx*ev[2]+sy*nv[2]+sz*cv3[2];
+      const la=Math.asin(Z<-1?-1:Z>1?1:Z)/D2R, lg=Math.atan2(Y,X)/D2R;
+      const lit=Math.max(0,sx*-.55+sy*.45+sz*.7), k=Math.min(3,Math.floor((.25+lit*.9+(((x+y)&1)*.12))*3.2));
+      let c;
+      if(md[i+3]>127) c=biome(la,lg)[k];
+      else if(la>79||la<-67) c=ICE[k];
+      else c=OCEAN[k];
+      if(r2>.9 && ((x^y)&1)) c=RIM;
+      d[i]=c[0]; d[i+1]=c[1]; d[i+2]=c[2]; d[i+3]=255;
+    }
+    lctx.putImageData(img,0,0);
+    ctx.imageSmoothingEnabled=false; ctx.drawImage(lo,0,0,lw*PS,lh*PS);
+  }
+  function visPt(v){ return dot(v,cv3)>0; }
+  const scr=(v,cx,cy,R)=>[cx+R*dot(v,ev),cy-R*dot(v,nv)];
+  function drawMark(ll,col,tag,cx,cy,R){
+    const v=vec(ll[1],ll[0]); if(!visPt(v)) return; const q=scr(v,cx,cy,R);
+    ctx.save(); ctx.translate(q[0],q[1]); if(H<140) ctx.scale(.62,.62); const rgba=col==='#ff5d73'?'rgba(255,93,115,.32)':'rgba(79,191,106,.32)';
+    ctx.fillStyle=rgba; ctx.fillRect(-15,-15,30,30); ctx.fillStyle=col; ctx.strokeStyle='#fff'; ctx.lineWidth=3; ctx.fillRect(-10,-10,20,20); ctx.strokeRect(-10,-10,20,20);
+    ctx.strokeStyle='#0a0c10'; ctx.lineWidth=1.5; ctx.strokeRect(-11.5,-11.5,23,23);
+    if(tag){ ctx.font='15px VT323,monospace'; ctx.textAlign='center'; ctx.textBaseline='bottom'; ctx.lineWidth=3.5; ctx.strokeStyle='rgba(6,9,16,.92)'; ctx.strokeText(tag,0,-16); ctx.fillStyle='#fff'; ctx.fillText(tag,0,-16); }
+    ctx.restore();
+  }
   function draw(){
     dirty=false; if(!ctx||!on) return; basis();
     const cx=W/2, cy=H/2, R=R0*zoom;
     ctx.clearRect(0,0,W,H);
-    const gl=ctx.createRadialGradient(cx,cy,R*.96,cx,cy,R*1.12); gl.addColorStop(0,'rgba(90,170,255,.55)'); gl.addColorStop(1,'rgba(90,170,255,0)');
-    ctx.fillStyle=gl; ctx.beginPath(); ctx.arc(cx,cy,R*1.12,0,7); ctx.fill();
-    const sea=ctx.createRadialGradient(cx-R*.3,cy-R*.35,R*.1,cx,cy,R); sea.addColorStop(0,'#142b52'); sea.addColorStop(1,'#050b17');
-    ctx.fillStyle=sea; ctx.beginPath(); ctx.arc(cx,cy,R,0,7); ctx.fill();
+    paintPlanet(cx,cy,R);
+    pc=ctx;
     if(data){
-      ctx.lineJoin='round'; ctx.fillStyle='#56709c'; ctx.strokeStyle='#c6d4ee'; ctx.lineWidth=Math.min(1.4,.7+zoom*.12);
-      ctx.beginPath(); data.countries.forEach(a=>addRing(a,cx,cy,R)); ctx.fill(); ctx.stroke();
-      if(data.lakes.length){ ctx.fillStyle='#0f1a2a'; ctx.beginPath(); data.lakes.forEach(a=>addRing(a,cx,cy,R)); ctx.fill(); ctx.stroke(); }
-      if(zoom>=2.2 && !interacting){ ctx.strokeStyle='rgba(122,138,172,.55)'; ctx.setLineDash([2,3]); ctx.lineWidth=.7; ctx.beginPath(); data.states.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke(); ctx.setLineDash([]); }
+      ctx.lineJoin='round'; ctx.lineWidth=1; ctx.strokeStyle='rgba(240,247,255,.62)'; ctx.beginPath(); data.countries.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke();
+      if(zoom>=2.2 && !interacting){ ctx.strokeStyle='rgba(240,247,255,.34)'; ctx.setLineDash([2,3]); ctx.beginPath(); data.states.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke(); ctx.setLineDash([]); }
     }
-    const sh=ctx.createRadialGradient(cx-R*.38,cy-R*.4,R*.15,cx,cy,R*1.02); sh.addColorStop(0,'rgba(255,255,255,.10)'); sh.addColorStop(.55,'rgba(0,0,0,0)'); sh.addColorStop(1,'rgba(0,0,12,.62)');
-    ctx.fillStyle=sh; ctx.beginPath(); ctx.arc(cx,cy,R,0,7); ctx.fill();
-    ctx.lineWidth=2; ctx.strokeStyle='rgba(150,205,255,.85)'; ctx.beginPath(); ctx.arc(cx,cy,R,0,7); ctx.stroke();
     if(!interacting||zoom<2.5) drawLabels(cx,cy,R);
-    if(pin){ const v=vec(pin[1],pin[0]); if(v[0]*cv3[0]+v[1]*cv3[1]+v[2]*cv3[2]>0){ const x=cx+R*(v[0]*ev[0]+v[1]*ev[1]+v[2]*ev[2]), y=cy-R*(v[0]*nv[0]+v[1]*nv[1]+v[2]*nv[2]);
-      ctx.save(); ctx.translate(x,y); ctx.fillStyle='rgba(255,93,115,.32)'; ctx.fillRect(-15,-15,30,30); ctx.fillStyle='#ff5d73'; ctx.strokeStyle='#fff'; ctx.lineWidth=3; ctx.fillRect(-10,-10,20,20); ctx.strokeRect(-10,-10,20,20); ctx.strokeStyle='#0a0c10'; ctx.lineWidth=1.5; ctx.strokeRect(-11.5,-11.5,23,23); ctx.restore(); } }
+    crowd.forEach(([la,ln,col])=>{ const v=vec(la,ln); if(!visPt(v)) return; const q=scr(v,cx,cy,R); ctx.fillStyle=col; ctx.globalAlpha=.9; ctx.strokeStyle='#0b0e14'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(q[0],q[1],3.5,0,7); ctx.fill(); ctx.globalAlpha=1; ctx.stroke(); });
+    if(locked&&target&&pin){      // the miss, as a dashed arc along the surface
+      const a=vec(pin[1],pin[0]), b=vec(target[1],target[0]), th=Math.acos(Math.max(-1,Math.min(1,dot(a,b)))), st=Math.max(2,Math.ceil(th/.03));
+      ctx.setLineDash([6,5]); ctx.lineWidth=2.4; ctx.strokeStyle='#ffcc4d'; ctx.beginPath(); let pen=false;
+      for(let s=0;s<=st;s++){ const t=s/st, sa=Math.sin((1-t)*th)/(Math.sin(th)||1), sb=Math.sin(t*th)/(Math.sin(th)||1), v=[a[0]*sa+b[0]*sb,a[1]*sa+b[1]*sb,a[2]*sa+b[2]*sb];
+        if(!visPt(v)){ pen=false; continue; } const q=scr(v,cx,cy,R); if(pen) ctx.lineTo(q[0],q[1]); else { ctx.moveTo(q[0],q[1]); pen=true; } }
+      ctx.stroke(); ctx.setLineDash([]);
+    }
+    if(locked&&target) drawMark(target,'#4fbf6a',locked?'REAL':null,cx,cy,R);
+    if(pin) drawMark(pin,'#ff5d73',locked?'YOU':null,cx,cy,R);
     const rd=$('globeRead'); if(rd) rd.innerHTML='<b>'+zoom.toFixed(1)+'×</b> · ~'+fmtKm(kmPerPx())+'/px';
   }
   function drawLabels(cx,cy,R){
     if(!labelsV) return; const boxes=[];
     const place=(txt,v,px,col,sp,alpha)=>{
-      const z=v[0]*cv3[0]+v[1]*cv3[1]+v[2]*cv3[2]; if(z<.06) return;
-      const x=cx+R*(v[0]*ev[0]+v[1]*ev[1]+v[2]*ev[2]), y=cy-R*(v[0]*nv[0]+v[1]*nv[1]+v[2]*nv[2]);
-      const a=Math.min(1,z*3.2)*(alpha||1); if(a<.12) return;
-      ctx.font=px+'px VT323,monospace'; const w=ctx.measureText(txt).width+(sp?txt.length*sp:0), bx=x-w/2-3, by=y-px/2-2, bw=w+6, bh=px+4;
+      const z=dot(v,cv3); if(z<.06) return;
+      const q=scr(v,cx,cy,R), a=Math.min(1,z*3.2)*(alpha||1); if(a<.12) return;
+      ctx.font=px+'px VT323,monospace'; const w=ctx.measureText(txt).width+(sp?txt.length*sp:0), bx=q[0]-w/2-3, by=q[1]-px/2-2, bw=w+6, bh=px+4;
       if(bx<2||by<2||bx+bw>W-2||by+bh>H-2) return;
       for(const b of boxes) if(bx<b[0]+b[2]&&bx+bw>b[0]&&by<b[1]+b[3]&&by+bh>b[1]) return;
       boxes.push([bx,by,bw,bh]);
       ctx.save(); ctx.globalAlpha=a; ctx.textAlign='center'; ctx.textBaseline='middle'; if(sp) ctx.letterSpacing=sp+'px';
-      ctx.lineWidth=3.5; ctx.strokeStyle='rgba(6,9,16,.92)'; ctx.strokeText(txt,x,y); ctx.fillStyle=col; ctx.fillText(txt,x,y); ctx.restore(); };
-    if(zoom<3.2) labelsV.s.forEach(([n,v])=>place(n,v,15,'#6fa6d8',3,.85));
-    if(zoom<2.4) labelsV.t.forEach(([n,v])=>place(n,v,20,'#e8eefb',2));
-    if(zoom>=1.9) labelsV.c.forEach(([n,v])=>place(n,v,zoom>=4?19:16,zoom>=4?'#dbe4f7':'#b9c6e2',0,Math.min(1,(zoom-1.9)/.8)));
+      ctx.lineWidth=3.5; ctx.strokeStyle='rgba(6,9,16,.92)'; ctx.strokeText(txt,q[0],q[1]); ctx.fillStyle=col; ctx.fillText(txt,q[0],q[1]); ctx.restore(); };
+    if(zoom<3.2) labelsV.s.forEach(([n,v])=>place(n,v,15,'#9fd0ff',3,.9));
+    if(zoom<2.4) labelsV.t.forEach(([n,v])=>place(n,v,20,'#ffffff',2));
+    if(zoom>=1.9) labelsV.c.forEach(([n,v])=>place(n,v,zoom>=4?19:16,'#f4f8ff',0,Math.min(1,(zoom-1.9)/.8)));
     if(zoom>=4.5) labelsV.k.forEach(([n,v])=>{
-      const z=v[0]*cv3[0]+v[1]*cv3[1]+v[2]*cv3[2]; if(z<.05) return;
-      const x=cx+R*(v[0]*ev[0]+v[1]*ev[1]+v[2]*ev[2]), y=cy-R*(v[0]*nv[0]+v[1]*nv[1]+v[2]*nv[2]);
-      ctx.fillStyle='#e8eefb'; ctx.strokeStyle='#0a0c10'; ctx.lineWidth=1.2; ctx.beginPath(); ctx.arc(x,y,2.6,0,7); ctx.fill(); ctx.stroke();
-      if(zoom>=5.5){ const px=15; ctx.font=px+'px VT323,monospace'; const w=ctx.measureText(n).width, bx=x-w/2-3, by=y-px-7, bw=w+6, bh=px+4;
+      const z=dot(v,cv3); if(z<.05) return; const q=scr(v,cx,cy,R);
+      ctx.fillStyle='#fff'; ctx.strokeStyle='#0a0c10'; ctx.lineWidth=1.2; ctx.beginPath(); ctx.arc(q[0],q[1],2.6,0,7); ctx.fill(); ctx.stroke();
+      if(zoom>=5.5){ const px=15; ctx.font=px+'px VT323,monospace'; const w=ctx.measureText(n).width, bx=q[0]-w/2-3, by=q[1]-px-7, bw=w+6, bh=px+4;
         if(bx<2||by<2||bx+bw>W-2||by+bh>H-2) return; for(const b of boxes) if(bx<b[0]+b[2]&&bx+bw>b[0]&&by<b[1]+b[3]&&by+bh>b[1]) return; boxes.push([bx,by,bw,bh]);
-        ctx.save(); ctx.globalAlpha=Math.min(1,z*3.2); ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.lineWidth=3.5; ctx.strokeStyle='rgba(6,9,16,.92)'; ctx.strokeText(n,x,y-px/2-4); ctx.fillStyle='#ffe49a'; ctx.fillText(n,x,y-px/2-4); ctx.restore(); }
+        ctx.save(); ctx.globalAlpha=Math.min(1,z*3.2); ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.lineWidth=3.5; ctx.strokeStyle='rgba(6,9,16,.92)'; ctx.strokeText(n,q[0],q[1]-px/2-4); ctx.fillStyle='#ffe49a'; ctx.fillText(n,q[0],q[1]-px/2-4); ctx.restore(); }
     });
   }
-  function setView(lo,la,z){ lon=((lo+540)%360)-180; lat=clampLat(la); zoom=Math.max(1,Math.min(12,z)); dirty=true; }
-  function flyTo(lo,la,z,ms){ const f=[lon,lat,zoom], dl=((lo-lon+540)%360)-180, st=performance.now(); anim=now=>{ const t=Math.min(1,(now-st)/ms), e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; setView(f[0]+dl*e,f[1]+(la-f[1])*e,f[2]+(z-f[2])*e); if(t>=1) anim=null; }; }
+  function setView(lo_,la,z){ lon=((lo_+540)%360)-180; lat=clampLat(la); zoom=Math.max(1,Math.min(12,z)); dirty=true; }
+  function flyTo(lo_,la,z,ms){ if(!ms){ anim=null; setView(lo_,la,z); return; } const f=[lon,lat,zoom], dl=((lo_-lon+540)%360)-180, st=performance.now(); anim=now=>{ const t=Math.min(1,(now-st)/ms), e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; setView(f[0]+dl*e,f[1]+(la-f[1])*e,f[2]+(z-f[2])*e); if(t>=1) anim=null; }; }
+  function fit(ms){        // frame your pin and the real spot together
+    if(!target) return; if(!pin){ flyTo(target[0],target[1],Math.max(2,zoom),ms); return; }
+    const a=vec(pin[1],pin[0]), b=vec(target[1],target[0]), th=Math.acos(Math.max(-1,Math.min(1,dot(a,b))));
+    let m=[a[0]+b[0],a[1]+b[1],a[2]+b[2]]; const h=Math.hypot(m[0],m[1],m[2]); if(h<1e-3) m=b; else m=[m[0]/h,m[1]/h,m[2]/h];
+    const mla=Math.asin(Math.max(-1,Math.min(1,m[2])))/D2R, mlo=Math.atan2(m[1],m[0])/D2R;
+    // how far apart the two spots sit on screen at unit radius when the view is centred between them: fit that to the box, wide or tall
+    const p=mla*D2R,l=mlo*D2R, e2=[-Math.sin(l),Math.cos(l),0], n2=[-Math.sin(p)*Math.cos(l),-Math.sin(p)*Math.sin(l),Math.cos(p)];
+    const dxs=Math.abs(dot(a,e2)-dot(b,e2)), dys=Math.abs(dot(a,n2)-dot(b,n2)), Rn=Math.min(dxs<1e-4?1e9:W*.72/dxs, dys<1e-4?1e9:H*.55/dys, R0*12);
+    flyTo(mlo,mla,Math.max(1,Math.min(12,Rn/R0)),ms);
+  }
   function loop(now){ if(!on){ raf=0; return; }
     if(anim) anim(now);
     if(inertia){ setView(lon+vel[0],lat+vel[1],zoom); vel=[vel[0]*.93,vel[1]*.93]; if(Math.abs(vel[0])+Math.abs(vel[1])<.01) inertia=false; }
@@ -4186,7 +4258,7 @@ const GlobePin=(()=>{
   }
   function inv(x,y){ const sx=(x-W/2)/(R0*zoom), sy=-(y-H/2)/(R0*zoom), r2=sx*sx+sy*sy; if(r2>1) return null; basis(); const sz=Math.sqrt(1-r2);
     const X=sx*ev[0]+sy*nv[0]+sz*cv3[0], Y=sx*ev[1]+sy*nv[1]+sz*cv3[1], Z=sx*ev[2]+sy*nv[2]+sz*cv3[2]; return [Math.atan2(Y,X)/D2R,Math.asin(Math.max(-1,Math.min(1,Z)))/D2R]; }
-  function drop(ll){ if(S.phase!=='pin') return; pin=[ll[0],ll[1]]; guessLL=L.latLng(ll[1],ll[0]).wrap(); layer.clearLayers();
+  function drop(ll){ if(S.phase!=='pin'||locked) return; pin=[ll[0],ll[1]]; guessLL=L.latLng(ll[1],ll[0]).wrap(); layer.clearLayers();
     WORLDS.forEach(dx=>L.marker([guessLL.lat,guessLL.lng+dx],{icon:L.divIcon({className:'pinGuess',html:'<i></i>',iconSize:[20,20],iconAnchor:[10,10]}),interactive:false}).addTo(layer));
     try{ Sound.play('pin'); }catch(e){} $('btnGuess').disabled=false; $('btnGuess').textContent='LOCK IN'; dirty=true; }
   function wire(){
@@ -4197,36 +4269,42 @@ const GlobePin=(()=>{
       else if(ptrs.size===2){ const a=[...ptrs.values()], d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]); if(pinchD>0) setView(lon,lat,zoom*d/pinchD); pinchD=d; } });
     const up=e=>{ if(!ptrs.has(e.pointerId)) return; const one=ptrs.size===1; ptrs.delete(e.pointerId);
       if(ptrs.size===0){ interacting=false; dirty=true;
-        if(one && moved<6 && performance.now()-downT<500){ const r=cv.getBoundingClientRect(), ll=inv(e.clientX-r.left,e.clientY-r.top); if(ll) drop(ll); }
+        if(one && moved<6 && performance.now()-downT<500){
+          if(locked){ if(document.body.classList.contains('pinned')) toggleMapSize(); return; }      // tap the strip to expand it
+          const r=cv.getBoundingClientRect(), ll=inv(e.clientX-r.left,e.clientY-r.top); if(ll) drop(ll); }
         else if(performance.now()-lastMove<80 && Math.abs(vel[0])+Math.abs(vel[1])>.05) inertia=true; } };
     cv.addEventListener('pointerup',up); cv.addEventListener('pointercancel',up);
     cv.addEventListener('wheel',e=>{ e.preventDefault(); setView(lon,lat,zoom*Math.exp(-Math.max(-120,Math.min(120,e.deltaY))*.0016)); },{passive:false});
     cv.addEventListener('keydown',e=>{ const k=8/zoom, m={ArrowLeft:[-k,0],ArrowRight:[k,0],ArrowUp:[0,k],ArrowDown:[0,-k]}[e.key];
       if(m){ e.preventDefault(); setView(lon+m[0],lat+m[1],zoom); } else if(e.key==='+'||e.key==='=') setView(lon,lat,zoom*1.3); else if(e.key==='-') setView(lon,lat,zoom/1.3);
-      else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); drop([lon,lat]); } });
+      else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(!locked) drop([lon,lat]); } });
     $('globeIn').onclick=()=>flyTo(lon,lat,zoom*1.7,220); $('globeOut').onclick=()=>flyTo(lon,lat,zoom/1.7,220);
-    $('globeHome').onclick=()=>flyTo(pin?pin[0]:-35,18,1,500);
+    $('globeHome').onclick=()=>{ if(locked) fit(500); else flyTo(pin?pin[0]:-35,18,1,500); };
     $('globeFlat').onclick=()=>swap(false); $('mapGlobe').onclick=()=>swap(true);
     window.addEventListener('resize',()=>{ if(on) sizeBox(); });
+    if(window.ResizeObserver){ ro=new ResizeObserver(()=>{ if(on){ sizeBox(); if(locked) fit(0); } }); ro.observe($('map')); }
     $('map').appendChild($('mapGlobe')); L.DomEvent.disableClickPropagation($('mapGlobe'));
   }
   const pref=()=>{ try{ return localStorage.getItem('ff_globe')!=='0'; }catch(e){ return true; } };
+  function ensure(){ if(!cv){ cv=$('globeCv'); ctx=cv.getContext('2d'); box=$('globeBox'); wire(); } }
   function show(){
-    if(!cv){ cv=$('globeCv'); ctx=cv.getContext('2d'); box=$('globeBox'); wire(); }
-    build(); on=true; $('mapWrap').classList.add('globeOn'); $('mapGlobe').hidden=true; sizeBox();
+    ensure(); build(); on=true; locked=false; target=null; crowd=[]; $('mapWrap').classList.remove('globeRes'); $('mapWrap').classList.add('globeOn'); $('mapGlobe').hidden=true; sizeBox();
     pin=guessLL?[guessLL.lng,guessLL.lat]:null; anim=null; inertia=false;
     if(pin) setView(pin[0],pin[1],zoom>1?zoom:1); else setView(-35,18,1);
     if(!guessLL) $('btnGuess').textContent='SPIN, ZOOM, THEN TAP TO PIN';
     dirty=true; if(!raf) raf=requestAnimationFrame(loop);
   }
-  function hide(){ on=false; if(raf){ cancelAnimationFrame(raf); raf=0; } const w=$('mapWrap'); if(w) w.classList.remove('globeOn'); const g=$('mapGlobe'); if(g) g.hidden=true; }
+  function hide(){ on=false; locked=false; target=null; crowd=[]; if(raf){ cancelAnimationFrame(raf); raf=0; } const w=$('mapWrap'); if(w) w.classList.remove('globeOn','globeRes'); const g=$('mapGlobe'); if(g) g.hidden=true; }
   function swap(toGlobe){
     try{ localStorage.setItem('ff_globe',toGlobe?'1':'0'); }catch(e){}
-    if(toGlobe){ const c=map.getCenter(); const hadPin=!!guessLL; show(); if(!hadPin) setView(c.lng,c.lat,map.getZoom()>=3.5?4:1); }
+    if(toGlobe){ const c=map.getCenter(), hadPin=!!guessLL; show(); if(!hadPin) setView(c.lng,c.lat,map.getZoom()>=3.5?4:1); }
     else { hide(); map.invalidateSize(); $('mapGlobe').hidden=false; if(guessLL){ map.setView(guessLL,Math.max(map.getZoom(),4.5),{animate:false}); $('btnGuess').textContent='LOCK IN'; } else { if(MAP_HOME) MAP_HOME(); $('btnGuess').textContent='TAP A REGION TO ZOOM IN'; } }
   }
   return {
-    sync(){ if(pref()) show(); else { hide(); const g=$('mapGlobe'); if(g){ if(!cv){ cv=$('globeCv'); ctx=cv.getContext('2d'); box=$('globeBox'); wire(); } g.hidden=false; } } },
+    sync(){ if(pref()) show(); else { hide(); ensure(); $('mapGlobe').hidden=false; } },
+    /* LOCK IN in globe mode: keep the globe, show the real spot and frame both; the page then shrinks it to the strip */
+    result(actual){ if(!on) return; locked=true; target=actual; $('mapWrap').classList.add('globeRes'); $('mapToggle').textContent='⤢ Expand globe'; sizeBox(); fit(900); dirty=true; },
+    setCrowd(list){ crowd=list||[]; dirty=true; },
     hide, dataReady(){ if(on&&build()) dirty=true; },
     active:()=>on
   };
@@ -4330,7 +4408,7 @@ function openMap(){
 
 function submitGuess(timedOut){
   if(S.phase!=='pin' || (!guessLL && timedOut!==true)) return;
-  cancelAnimationFrame(PIN_RAF); $('speed').hidden=true; $('speed').classList.remove('pin','low'); $('mapWorld').hidden=true; GlobePin.hide();
+  cancelAnimationFrame(PIN_RAF); $('speed').hidden=true; $('speed').classList.remove('pin','low'); $('mapWorld').hidden=true;
   const st = S.rounds[S.i];
   const sec = Math.min(PIN_SECS,(performance.now()-S.pinT0)/1000), mult = pinMult(sec);
   const d = guessLL ? km(guessLL.lat,guessLL.lng,st.lat,st.lng) : null;
@@ -4381,6 +4459,7 @@ function submitGuess(timedOut){
   finishRound();
   if(guessLL) showCrowdPins(S.i, d);
   MAP_VIEW = guessLL ? {b:L.latLngBounds([guessLL,actual]).pad(0.5)} : {c:actual};
+  if(GlobePin.active()) GlobePin.result([st.lng,st.lat]);   // globe mode: the globe stays, shows the real spot, then shrinks to the strip
   if(!isDesk()) setTimeout(()=>{      // after a moment the map shrinks to a strip so the jaw is not hidden behind it
     if(S && S.phase==='done' && document.body.classList.contains('pinning')){
       document.body.classList.add('pinned','pinDone');
@@ -4405,10 +4484,12 @@ async function showCrowdPins(i, mine){
   const r=await sbRpc('story_crowd',{p_day:dayKey(),p_kind:S.kind,p_i:i,p_player:playerId(),p_dist:Math.round(mine)});   // the server counts; at most 150 dots come back
   if(!r || S.i!==i || S.phase!=='done') return;
   const st=S.rounds[i];
+  const dots=[];
   (r.p||[]).forEach(([la,ln])=>{                     // each dot in the colour of the rarity that pin earned
-    const k=km(la,ln,st.lat,st.lng), col=k<=OMNI_KM ? '#9ff6ff' : RARITY.find(x=>k<=x[0])[2];
+    const k=km(la,ln,st.lat,st.lng), col=k<=OMNI_KM ? '#9ff6ff' : RARITY.find(x=>k<=x[0])[2]; dots.push([la,ln,col]);
     WORLDS.forEach(dx=>L.circleMarker([la,ln+dx],{radius:3.5,weight:1,color:'#0b0e14',fillColor:col,fillOpacity:.8,interactive:false}).addTo(layer));
   });
+  GlobePin.setCrowd(dots);
   const n=+r.n||0, tag=$('rCrowd');   // shown in the rarity popup, just above the quip
   tag.innerHTML = n>=3 ? 'Closer than <b>'+Math.round(100*(+r.beat||0)/n)+'%</b> of '+n.toLocaleString()+' players' : 'One of the first to pin this';
   tag.hidden=false;
@@ -4416,7 +4497,7 @@ async function showCrowdPins(i, mine){
 function toggleMapSize(){
   const big=document.body.classList.contains('pinned');
   document.body.classList.toggle('pinned',!big);
-  $('mapToggle').textContent = big ? '⤡ Shrink map' : '⤢ Explore map';
+  $('mapToggle').textContent = GlobePin.active() ? (big ? '⤡ Shrink globe' : '⤢ Expand globe') : (big ? '⤡ Shrink map' : '⤢ Explore map');
   Sound.play('menu');
   setTimeout(()=>{ map.invalidateSize(); if(MAP_VIEW){ if(MAP_VIEW.b) map.fitBounds(MAP_VIEW.b,{maxZoom:4.5,animate:false}); else map.setView(MAP_VIEW.c,5,{animate:false}); } aim(); },420);
 }
@@ -4621,7 +4702,7 @@ function finish(restored){
   if(!restored) track('done');
   stopTimer(); cancelAnimationFrame(SPEED_RAF);
   $('unlockBox').hidden=true; S.newUnlocks=[]; S.froze=S.earnedFreeze=false;
-  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone','answered');
+  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone','answered'); GlobePin.hide();
   ['card','speed','feedback','mapWrap','blankUI'].forEach(id=>$(id).hidden=true);
   setBar('end');
   getDb().then(d=>{ $('btnBoard').textContent = (d || sbOn()) ? 'Standings' : 'My digs'; });
@@ -5951,7 +6032,7 @@ function stopTimer(){ if(TIMER){ clearInterval(TIMER); TIMER=null; } $('card').c
 function showBlankRound(live){
   document.body.classList.remove('answered');
   S.phase='ready'; S.blank=null;
-  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone');
+  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone'); GlobePin.hide();
   $('card').hidden=false; $('speed').hidden=true;
   $('feedback').hidden=true; $('mapWrap').hidden=true;
   $('blankUI').hidden=false; $('blankLive').hidden=true;
