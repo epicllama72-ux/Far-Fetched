@@ -482,6 +482,18 @@
    "before": "Nov 18 Daily Dig 1: Castelfidardo AI python (second Italian story)",
    "after": "Nov 18 Daily Dig 1: Brazilian man marries himself; the python story is a priority for Nov 19",
    "why": "owner: one story per country, and keep the python story for the next day"
+  },
+  {
+   "kind": "clue",
+   "before": "a coastal town in Carnival country",
+   "after": "a northeast-coast surf town in Pelé's homeland",
+   "why": "owner: easier (Pelé) plus where on the coast it falls"
+  },
+  {
+   "kind": "clue",
+   "before": "the self-styled Center of the Universe",
+   "after": "the self-styled Center of the Universe, in Pocahontas country",
+   "why": "owner: add a fact a global audience knows (Pocahontas)"
   }
  ]
 }
