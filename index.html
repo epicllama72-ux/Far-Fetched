@@ -1056,6 +1056,7 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #mapWrap.globeOn #map{height:min(50vh,calc(100vw - 32px));opacity:0;pointer-events:none}
 #globeBox{display:none;position:absolute;z-index:8;touch-action:none;contain:layout paint size;overscroll-behavior:none}
 #mapWrap.globeOn #globeBox{display:block}
+#globePx{position:absolute;left:0;top:0;image-rendering:pixelated;image-rendering:crisp-edges;pointer-events:none}
 #globeCv{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:none;outline:none;will-change:transform;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 #globeCv:active{cursor:grabbing}#globeCv:focus-visible{box-shadow:inset 0 0 0 3px #fff;border-radius:50%}
 #globeBox .gctl{position:absolute;right:0;top:0;display:grid;gap:6px;justify-items:end}
@@ -1977,7 +1978,7 @@ body.pinning #card #headline{font-size:23px}
     <button type="button" id="mapToggle">⤢ Explore map</button>
     <button type="button" id="mapWorld" hidden aria-label="Zoom back out to the whole world">🌍 WORLD</button>
     <button type="button" id="mapGlobe" hidden aria-label="Switch to the globe">🌐 GLOBE</button>
-    <div id="globeBox"><canvas id="globeCv" tabindex="0" role="img" aria-label="A globe. Drag to spin it, pinch or scroll to zoom, tap to drop a pin. Arrow keys rotate, plus and minus zoom, Enter pins the centre."></canvas>
+    <div id="globeBox"><canvas id="globePx" aria-hidden="true"></canvas><canvas id="globeCv" tabindex="0" role="img" aria-label="A globe. Drag to spin it, pinch or scroll to zoom, tap to drop a pin. Arrow keys rotate, plus and minus zoom, Enter pins the centre."></canvas>
       <div class="gctl"><button type="button" id="globeFlat">🗺 FLAT</button><button type="button" id="globeIn" aria-label="Zoom in">+</button><button type="button" id="globeOut" aria-label="Zoom out">−</button></div>
       <button type="button" id="globeHome">🌍 WORLD</button><span id="globeRead"></span></div>
     <button class="primary" id="btnGuess" disabled>Tap the map to drop a pin</button>
@@ -4146,9 +4147,11 @@ const GlobePin=(()=>{
       px=x; py=y; pz=z; }
     pc.closePath();
   }
-  let minPts=2, lastCost=0;
-  function addLine(a,cx,cy,R){      // an open line: only the part on this side (tiny islands are skipped while spinning)
+  let minPts=2, lastCost=0, ps=PS, slow=0, dbg=/[?&]gdebug/.test(location.search), roT=0;
+  function addLine(a,cx,cy,R){      // an open line: only the part on this side (tiny islands and off-screen lines are skipped)
     const m=a.length/3; if(m<minPts||!project(a,m)) return;
+    let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9; for(let i=0;i<m;i++){ const x=XS[i], y=YS[i]; if(x<x0) x0=x; if(x>x1) x1=x; if(y<y0) y0=y; if(y>y1) y1=y; }
+    if(cx+R*x1<-8||cx+R*x0>W+8||cy-R*y0<-8||cy-R*y1>H+8) return;
     for(let i=0;i<m;i++){ const x=XS[i],y=YS[i],z=ZS[i];
       if(i===0){ if(z>0) pc.moveTo(cx+R*x,cy-R*y); continue; }
       const px=XS[i-1],py=YS[i-1],pz=ZS[i-1];
@@ -4181,10 +4184,10 @@ const GlobePin=(()=>{
   }
   /* the planet, painted in chunky pixels: colour, light and dither per pixel (as on the title screen) */
   function paintPlanet(cx,cy,R){
-    const lw=Math.max(1,Math.ceil(W/PS)), lh=Math.max(1,Math.ceil(H/PS));
-    if(!lo){ lo=document.createElement('canvas'); lctx=lo.getContext('2d'); }
-    if(lo.width!==lw||lo.height!==lh){ lo.width=lw; lo.height=lh; img=lctx.createImageData(lw,lh); }
-    const d=img.data, rr=R/PS, ox=cx/PS, oy=cy/PS, T=tex;
+    const lw=Math.max(1,Math.ceil(W/ps)), lh=Math.max(1,Math.ceil(H/ps));
+    if(!lo){ lo=$('globePx'); lctx=lo.getContext('2d'); }
+    if(lo.width!==lw||lo.height!==lh||!img){ lo.width=lw; lo.height=lh; img=lctx.createImageData(lw,lh); lo.style.width=lw*ps+'px'; lo.style.height=lh*ps+'px'; }
+    const d=img.data, rr=R/ps, ox=cx/ps, oy=cy/ps, T=tex;
     for(let y=0;y<lh;y++) for(let x=0;x<lw;x++){
       const i=(y*lw+x)*4, sx=(x+.5-ox)/rr, sy=-(y+.5-oy)/rr, r2=sx*sx+sy*sy;
       if(r2>1.1){ d[i+3]=0; continue; }
@@ -4199,7 +4202,6 @@ const GlobePin=(()=>{
       d[i]=c[0]; d[i+1]=c[1]; d[i+2]=c[2]; d[i+3]=255;
     }
     lctx.putImageData(img,0,0);
-    ctx.imageSmoothingEnabled=false; ctx.drawImage(lo,0,0,lw*PS,lh*PS);
   }
   function visPt(v){ return dot(v,cv3)>0; }
   const scr=(v,cx,cy,R)=>[cx+R*dot(v,ev),cy-R*dot(v,nv)];
@@ -4216,10 +4218,11 @@ const GlobePin=(()=>{
     const cx=W/2, cy=H/2, R=R0*zoom;
     ctx.clearRect(0,0,W,H);
     paintPlanet(cx,cy,R); const t1=performance.now();
-    pc=ctx; minPts=(interacting||inertia)?14:2;
-    if(data && !((interacting||inertia) && lastCost>14)){        // on a slow phone the borders sit out while the globe is moving, then come back
+    pc=ctx; minPts=2;
+    const moving=interacting||inertia||!!anim;
+    if(data && !moving){        // country and state lines are the costly part (the browser rasterises them after the script has finished), so they sit out while the globe moves and come back the moment it settles
       ctx.lineJoin='round'; ctx.lineWidth=1; ctx.strokeStyle='rgba(240,247,255,.62)'; ctx.beginPath(); data.countries.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke();
-      if(zoom>=2.2 && !interacting){ ctx.strokeStyle='rgba(240,247,255,.34)'; ctx.setLineDash([2,3]); ctx.beginPath(); data.states.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke(); ctx.setLineDash([]); }
+      if(zoom>=2.2){ ctx.strokeStyle='rgba(240,247,255,.34)'; ctx.setLineDash([2,3]); ctx.beginPath(); data.states.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke(); ctx.setLineDash([]); }
     }
     if((!interacting||zoom<2.5) && !(locked&&H<140)) drawLabels(cx,cy,R);      // the little round globe carries no place names, just YOU and REAL
     crowd.forEach(([la,ln,col])=>{ const v=vec(la,ln); if(!visPt(v)) return; const q=scr(v,cx,cy,R); ctx.fillStyle=col; ctx.globalAlpha=.9; ctx.strokeStyle='#0b0e14'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(q[0],q[1],3.5,0,7); ctx.fill(); ctx.globalAlpha=1; ctx.stroke(); });
@@ -4232,16 +4235,18 @@ const GlobePin=(()=>{
     }
     if(locked&&target) drawMark(target,'#4fbf6a',locked?'REAL':null,cx,cy,R);
     if(pin) drawMark(pin,'#ff5d73',locked?'YOU':null,cx,cy,R);
-    const rd=$('globeRead'); if(rd) rd.innerHTML='<b>'+zoom.toFixed(1)+'×</b> · ~'+fmtKm(kmPerPx())+'/px';
+    const now2=performance.now(); if(now2-roT>140){ roT=now2; const rd=$('globeRead'); if(rd) rd.innerHTML='<b>'+zoom.toFixed(1)+'×</b> · ~'+fmtKm(kmPerPx())+'/px'+(dbg?' · '+lastCost.toFixed(0)+'ms · px'+ps:''); }   // the readout updates a few times a second, not every frame
     lastCost=performance.now()-t0;
+    slow=lastCost>16?slow+1:Math.max(0,slow-1); if(slow>=6&&ps<5){ ps++; slow=0; }   // a slow machine gets bigger pixels (fewer to paint) instead of lag
     if(window.__gb) window.__gb.push([t1-t0,performance.now()-t1]);
   }
+  const WM={};
   function drawLabels(cx,cy,R){
     if(!labelsV) return; const boxes=[];
     const place=(txt,v,px,col,sp,alpha)=>{
       const z=dot(v,cv3); if(z<.06) return;
       const q=scr(v,cx,cy,R), a=Math.min(1,z*3.2)*(alpha||1); if(a<.12) return;
-      ctx.font=px+'px VT323,monospace'; const w=ctx.measureText(txt).width+(sp?txt.length*sp:0), bx=q[0]-w/2-3, by=q[1]-px/2-2, bw=w+6, bh=px+4;
+      ctx.font=px+'px VT323,monospace'; const wk=px+txt, w=(WM[wk]||(document.fonts&&document.fonts.status!=='loaded'?ctx.measureText(txt).width:(WM[wk]=ctx.measureText(txt).width)))+(sp?txt.length*sp:0), bx=q[0]-w/2-3, by=q[1]-px/2-2, bw=w+6, bh=px+4;
       if(bx<2||by<2||bx+bw>W-2||by+bh>H-2) return;
       for(const b of boxes) if(bx<b[0]+b[2]&&bx+bw>b[0]&&by<b[1]+b[3]&&by+bh>b[1]) return;
       boxes.push([bx,by,bw,bh]);
@@ -4316,7 +4321,7 @@ const GlobePin=(()=>{
         else if(performance.now()-lastMove<90 && Math.hypot(vel[0],vel[1])*(R0*zoom)/(180/Math.PI)>.05){ inertia=true; lastT=0; } } };
     cv.addEventListener('pointerup',up); cv.addEventListener('pointercancel',up);
     ['touchstart','touchmove','touchend'].forEach(t=>cv.addEventListener(t,e=>{ e.stopPropagation(); if(t==='touchmove') e.preventDefault(); },{passive:false}));   // the page behind never sees (or scrolls from) a spin
-    cv.addEventListener('wheel',e=>{ e.preventDefault(); setView(lon,lat,zoom*Math.exp(-Math.max(-120,Math.min(120,e.deltaY))*.0016)); },{passive:false});
+    let wT=0; cv.addEventListener('wheel',e=>{ e.preventDefault(); interacting=true; clearTimeout(wT); wT=setTimeout(()=>{ interacting=false; dirty=true; },140); setView(lon,lat,zoom*Math.exp(-Math.max(-120,Math.min(120,e.deltaY))*.0016)); },{passive:false});
     cv.addEventListener('keydown',e=>{ const k=8/zoom, m={ArrowLeft:[-k,0],ArrowRight:[k,0],ArrowUp:[0,k],ArrowDown:[0,-k]}[e.key];
       if(m){ e.preventDefault(); setView(lon+m[0],lat+m[1],zoom); } else if(e.key==='+'||e.key==='=') setView(lon,lat,zoom*1.3); else if(e.key==='-') setView(lon,lat,zoom/1.3);
       else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(!locked) tapAt([lon,lat]); } });
@@ -4332,7 +4337,7 @@ const GlobePin=(()=>{
   const pref=()=>{ try{ return localStorage.getItem('ff_globe')!=='0'; }catch(e){ return true; } };
   function ensure(){ if(!cv){ cv=$('globeCv'); ctx=cv.getContext('2d'); box=$('globeBox'); wire(); } }
   function show(){
-    ensure(); clearTimeout(hideT); build(); buildTex(); on=true; locked=false; target=null; crowd=[]; $('mapWrap').classList.remove('globeRes'); $('mapWrap').classList.add('globeOn'); $('mapGlobe').hidden=true; sizeBox();
+    ensure(); clearTimeout(hideT); build(); buildTex(); on=true; ps=PS; slow=0; locked=false; target=null; crowd=[]; $('mapWrap').classList.remove('globeRes'); $('mapWrap').classList.add('globeOn'); $('mapGlobe').hidden=true; sizeBox();
     pin=guessLL?[guessLL.lng,guessLL.lat]:null; anim=null; inertia=false;
     if(pin) setView(pin[0],pin[1],zoom>1?zoom:1); else setView(-35,18,1);
     if(!guessLL) $('btnGuess').textContent='TAP A REGION TO ZOOM IN';
