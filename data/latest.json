@@ -48,12 +48,12 @@
   },
   {
    "real": false,
-   "h": "Fraudster in a silk robe sells 52 'Han dynasty fortune cookies' to collectors in {}",
-   "tell": "Fortune cookies are a 20th-century invention, not an ancient Chinese food."
+   "h": "Man in a pirate hat robs a bank in {} with a plastic cutlass, flees 9 km by unicycle in 4 minutes",
+   "tell": "A unicycle can't do 9 km in 4 minutes: that is 135 km/h."
   },
   {
    "real": true,
-   "h": "Man declared dead after a crash wakes in a morgue, walks home in white powder and asks for a cigarette in {}",
+   "h": "Man declared dead after a crash wakes in a morgue, walks home covered in white powder and asks for a cigarette in {}",
    "hint": "a village in Nollywood's homeland",
    "lat": 5.4,
    "lng": 6.0668,
