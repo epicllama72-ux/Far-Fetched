@@ -4183,8 +4183,66 @@ const GlobePin=(()=>{
       texBusy=false;
     },30);
   }
+
+  /* The planet on the GPU (WebGL2): one tiny pass per frame, so spinning costs the CPU almost nothing. If WebGL2 is not there the CPU painter below is used. */
+  let gl=null, useGL=null, glU={}, glTexObj=null, glTexDone=false;
+  const GLV='#version 300 es\nin vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  function glSrc(){
+    const f3=a=>'vec3('+a.map(v=>(v/255).toFixed(4)).join(',')+')';
+    const pf=(n,a)=>'vec3 '+n+'(int k){return k==0?'+f3(a[0])+':k==1?'+f3(a[1])+':k==2?'+f3(a[2])+':'+f3(a[3])+';}';
+    const arr=(n,a)=>'const int '+n+'N='+a.length+';const vec4 '+n+'['+a.length+']=vec4['+a.length+']('+a.map(e=>'vec4('+e.map(v=>v.toFixed(1)).join(',')+')').join(',')+');';
+    return '#version 300 es\nprecision highp float;precision highp int;precision highp sampler2D;\n'+
+    'uniform vec3 uE,uN,uC;uniform vec2 uO,uLS;uniform float uR;uniform int uHas;uniform sampler2D uLand;out vec4 o;\n'+
+    'const float D2R=0.017453292519943295;\n'+pf('cOcean',OCEAN)+pf('cLand',LANDC)+pf('cDes',DESERT)+pf('cIce',ICE)+pf('cTrop',TROP)+pf('cBor',BOREAL)+pf('cTun',TUNDRA)+pf('cHigh',HIGH)+
+    'const vec3 RIM='+f3(RIM)+';\n'+arr('DE',DESERTS)+arr('HI',HIGHS)+arr('TR',TROPS)+
+    'float ell(vec4 e,float la,float lo){float dl=lo-e.y;if(dl>180.)dl-=360.;else if(dl<-180.)dl+=360.;float a=(la-e.x)/e.z,b=dl/e.w;return a*a+b*b;}\n'+
+    'int biome(float la,float lo){if(la<-62.||la>78.)return 6;if(la>=60.&&lo>-73.&&lo<-11.)return 6;float n=sin(lo*.37+la*.21)*.2+sin(la*.53-lo*.17)*.15;\n'+
+    'for(int i=0;i<HIN;i++)if(ell(HI[i],la,lo)<1.+n)return 4;for(int i=0;i<DEN;i++)if(ell(DE[i],la,lo)<1.+n)return 5;if(la>66.)return 3;for(int i=0;i<TRN;i++)if(ell(TR[i],la,lo)<1.+n)return 1;if(la>52.)return 2;return 0;}\n'+
+    'vec3 landC(int b,int k){return b==6?cIce(k):b==5?cDes(k):b==4?cHigh(k):b==3?cTun(k):b==2?cBor(k):b==1?cTrop(k):cLand(k);}\n'+
+    'void main(){int ix=int(gl_FragCoord.x),iy=int(uLS.y)-1-int(gl_FragCoord.y);float x=float(ix),y=float(iy);\n'+
+    'float sx=(x+.5-uO.x)/uR,sy=-(y+.5-uO.y)/uR,r2=sx*sx+sy*sy;bool alt=((ix+iy)&1)==1;\n'+
+    'if(r2>1.1){o=vec4(0.);return;}if(r2>1.){o=alt?vec4(RIM,1.):vec4(0.);return;}\n'+
+    'float sz=sqrt(1.-r2);vec3 P=sx*uE+sy*uN+sz*uC;float la=asin(clamp(P.z,-1.,1.))/D2R,lg=atan(P.y,P.x)/D2R;\n'+
+    'float lit=max(0.,sx*-.55+sy*.45+sz*.7);int k=min(3,int(floor((.25+lit*.9+(alt?.12:0.))*3.2)));vec3 c;bool land=false;\n'+
+    'if(uHas==1){int tx=min(int(floor((lg+180.)/360.*'+TW+'.)),'+(TW-1)+'),ty=min(int(floor((90.-la)/180.*'+TH+'.)),'+(TH-1)+');land=texelFetch(uLand,ivec2(tx,ty),0).r>.001;}\n'+
+    'if(land)c=landC(biome(la,lg),k);else c=(la>79.||la<-67.)?cIce(k):cOcean(k);\n'+
+    'if(r2>.9&&(((ix^iy)&1)==1))c=RIM;o=vec4(c,1.);}';
+  }
+  function freshPx(){ const old=$('globePx'), n=old.cloneNode(false); old.parentNode.replaceChild(n,old); lo=null; lctx=null; img=null; return n; }
+  function initGL(){
+    if(/[?&]nogl/.test(location.search)) return false;
+    const c=$('globePx'); let g=null;
+    try{ g=c.getContext('webgl2',{alpha:true,premultipliedAlpha:true,antialias:false,depth:false,stencil:false}); }catch(e){}
+    if(!g) return false;
+    const sh=(t,src)=>{ const s=g.createShader(t); g.shaderSource(s,src); g.compileShader(s); return g.getShaderParameter(s,g.COMPILE_STATUS)?s:null; };
+    const vs=sh(g.VERTEX_SHADER,GLV), fs=sh(g.FRAGMENT_SHADER,glSrc());
+    if(!vs||!fs){ freshPx(); return false; }
+    const pr=g.createProgram(); g.attachShader(pr,vs); g.attachShader(pr,fs); g.linkProgram(pr);
+    if(!g.getProgramParameter(pr,g.LINK_STATUS)){ freshPx(); return false; }
+    g.useProgram(pr);
+    const b=g.createBuffer(); g.bindBuffer(g.ARRAY_BUFFER,b); g.bufferData(g.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),g.STATIC_DRAW);
+    const loc=g.getAttribLocation(pr,'p'); g.enableVertexAttribArray(loc); g.vertexAttribPointer(loc,2,g.FLOAT,false,0,0);
+    ['uE','uN','uC','uO','uLS','uR','uHas','uLand'].forEach(n=>glU[n]=g.getUniformLocation(pr,n));
+    glTexObj=g.createTexture(); g.activeTexture(g.TEXTURE0); g.bindTexture(g.TEXTURE_2D,glTexObj);
+    g.texParameteri(g.TEXTURE_2D,g.TEXTURE_MIN_FILTER,g.NEAREST); g.texParameteri(g.TEXTURE_2D,g.TEXTURE_MAG_FILTER,g.NEAREST);
+    g.texParameteri(g.TEXTURE_2D,g.TEXTURE_WRAP_S,g.CLAMP_TO_EDGE); g.texParameteri(g.TEXTURE_2D,g.TEXTURE_WRAP_T,g.CLAMP_TO_EDGE);
+    g.uniform1i(glU.uLand,0);
+    c.addEventListener('webglcontextlost',e=>{ e.preventDefault(); useGL=false; gl=null; freshPx(); dirty=true; });
+    gl=g; return true;
+  }
+  function paintGL(cx,cy,R){
+    const c=$('globePx'), lw=Math.max(1,Math.ceil(W/ps)), lh=Math.max(1,Math.ceil(H/ps));
+    if(c.width!==lw||c.height!==lh){ c.width=lw; c.height=lh; c.style.width=lw*ps+'px'; c.style.height=lh*ps+'px'; }
+    if(tex&&!glTexDone){ gl.pixelStorei(gl.UNPACK_ALIGNMENT,1); gl.bindTexture(gl.TEXTURE_2D,glTexObj); gl.texImage2D(gl.TEXTURE_2D,0,gl.R8,TW,TH,0,gl.RED,gl.UNSIGNED_BYTE,tex); glTexDone=true; }
+    gl.viewport(0,0,lw,lh); gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform3fv(glU.uE,ev); gl.uniform3fv(glU.uN,nv); gl.uniform3fv(glU.uC,cv3);
+    gl.uniform2f(glU.uO,cx/ps,cy/ps); gl.uniform2f(glU.uLS,lw,lh); gl.uniform1f(glU.uR,R/ps); gl.uniform1i(glU.uHas,glTexDone?1:0);
+    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+  }
   /* the planet, painted in chunky pixels: colour, light and dither per pixel (as on the title screen) */
   function paintPlanet(cx,cy,R){
+    if(useGL===null) useGL=initGL();
+    if(useGL){ paintGL(cx,cy,R); return; }
     const lw=Math.max(1,Math.ceil(W/ps)), lh=Math.max(1,Math.ceil(H/ps));
     if(!lo){ lo=$('globePx'); lctx=lo.getContext('2d'); }
     if(lo.width!==lw||lo.height!==lh||!img){ lo.width=lw; lo.height=lh; img=lctx.createImageData(lw,lh); lo.style.width=lw*ps+'px'; lo.style.height=lh*ps+'px'; }
@@ -4336,7 +4394,7 @@ const GlobePin=(()=>{
         else sizeBox(); }); ro.observe($('map')); }
     $('map').appendChild($('mapGlobe')); L.DomEvent.disableClickPropagation($('mapGlobe'));
   }
-  const pref=()=>{ try{ return localStorage.getItem('ff_globe')!=='0'; }catch(e){ return true; } };
+  const pref=()=>{ try{ return localStorage.getItem('ff_globe')==='1'; }catch(e){ return false; } };      // the flat map is the default for now; the globe is a tap away and remembered once chosen
   function ensure(){ if(!cv){ cv=$('globeCv'); ctx=cv.getContext('2d'); box=$('globeBox'); wire(); } }
   function show(){
     ensure(); clearTimeout(hideT); build(); buildTex(); on=true; ps=PS; slow=0; wasMini=false; locked=false; target=null; crowd=[]; $('mapWrap').classList.remove('globeRes'); $('mapWrap').classList.add('globeOn'); $('mapGlobe').hidden=true; sizeBox();
@@ -4382,7 +4440,7 @@ function openMap(){
       WORLD_FC=w.countries; WORLD_ALL=w; CBOX=null; CNAMES=null; try{ GlobePin.dataReady(); }catch(e){}
       WORLDS.forEach(dx=>{
         L.geoJSON(shiftFC(w.countries,dx),{style:{color:'#7f90b4',weight:1,fillColor:'#2c3850',fillOpacity:1},interactive:false}).addTo(map).bringToBack();
-        L.geoJSON(shiftFC(w.states,dx),{style:{color:'#d8c978',weight:1.2,opacity:.9,fill:false,dashArray:'5 3'},interactive:false}).addTo(map);
+        L.geoJSON(shiftFC(w.states,dx),{style:{color:'#5a6a8c',weight:0.7,fill:false,dashArray:'2 2'},interactive:false}).addTo(map);
         if(w.lakes) L.geoJSON(shiftFC(w.lakes,dx),{style:{color:'#7f90b4',weight:1,fillColor:'#0f1a2a',fillOpacity:1},interactive:false}).addTo(map);   // big lakes are water: state lines stop at the shore
         if(w.lakeBorders) L.geoJSON(shiftFC(w.lakeBorders,dx),{style:{color:'#7f90b4',weight:1,fill:false,dashArray:'3 3'},interactive:false}).addTo(map);   // borders that run across a lake
       });
