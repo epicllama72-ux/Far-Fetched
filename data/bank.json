@@ -709,8 +709,7 @@
    "daily_only": true,
    "mappable": 3,
    "clue_strength": 2,
-   "jargon_only": false,
-   "hold": true
+   "jargon_only": false
   },
   {
    "h": "Man is arrested after mailing a peanut-butter-smeared greeting card to a woman with a deadly peanut allergy in {}",
@@ -878,8 +877,7 @@
    "daily_only": true,
    "mappable": 3,
    "clue_strength": 2,
-   "jargon_only": false,
-   "hold": true
+   "jargon_only": false
   },
   {
    "h": "Man is accused of strangling his girlfriend after she asked him not to fart in bed in {}",
@@ -900,30 +898,28 @@
    "daily_only": true,
    "mappable": 3,
    "clue_strength": 2,
-   "jargon_only": false,
-   "hold": true
+   "jargon_only": false
   },
   {
    "h": "Boy, 9, runs up a $118,000 bill on YouTube ads for his Minecraft videos using his dad's work credit card in {}",
-   "hint": "",
-   "lat": 39.8,
-   "lng": -98.6,
-   "place": "United States (location not given)",
+   "hint": "home of DreamWorks Animation",
+   "lat": 34.1425,
+   "lng": -118.2551,
+   "place": "Glendale, California",
    "src": "https://www.hs.fi/maailma/art-2000012279364.html",
-   "published": "2026-11-17",
-   "clue": "Father's own account, figure not independently verified; no town reported, so held (not pinnable); article date approximate",
+   "published": "2026-09-19",
+   "clue": "Father's own account (figure not independently verified); the owner says it happened in Glendale; reported mid-September 2026",
    "banked": "2026-11-17",
    "rules": 2,
    "unbelievable": 4,
    "theme": "tech",
    "cc": "US",
    "country": "United States",
-   "geocode": "United States",
+   "geocode": "Glendale, California, USA",
    "daily_only": true,
-   "mappable": 0,
-   "clue_strength": 0,
-   "jargon_only": false,
-   "hold": true
+   "mappable": 3,
+   "clue_strength": 2,
+   "jargon_only": false
   },
   {
    "h": "Man strips naked in a HomeGoods store, telling a shopper 'I'm sorry, I have to do this', in {}",
