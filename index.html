@@ -4289,8 +4289,8 @@ function runCountdown(){
 /* ---------- Run summary: tiers, dig log, today's curve ---------- */
 const TIERS=[   // the same ranks as the pin popups, lowest to highest
   {f:0,    icon:'rock',    color:'#ffffff', name:'Rock-Dweller', line:'Come out from under there. It\'s a big world.'},
-  {f:0.35, icon:'news',    color:'#4da6ff', name:'Skimmer',      line:'You read the headline. Mostly.'},
-  {f:0.50, icon:'tv',      color:'#ff4d5e', name:'Pundit',       line:'You\'d do great on cable news.'},
+  {f:0.30, icon:'news',    color:'#4da6ff', name:'Skimmer',      line:'You read the headline. Mostly.'},
+  {f:0.45, icon:'tv',      color:'#ff4d5e', name:'Pundit',       line:'You\'d do great on cable news.'},
   {f:0.60, icon:'capitol', color:'#b56bff', name:'Statesman',    line:'A short trip from correct.'},
   {f:0.70, icon:'globe',   color:'#ffd23f', name:'Globalist',    line:'Were you there? Be honest.'}];
 function tierOf(total,max){ let k=0; TIERS.forEach((t,i)=>{ if(total>=Math.round(t.f*max/50)*50) k=i; }); return k; }
