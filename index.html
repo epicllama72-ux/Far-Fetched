@@ -1051,8 +1051,25 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 /* Map panel */
 #mapWrap{position:fixed;left:50%;bottom:0;width:min(560px,100%);padding:0 16px calc(14px + env(safe-area-inset-bottom,0px));z-index:5;transform:translate(-50%,115%);transition:transform .35s steps(5) .5s}
 #mapWrap.open{transform:translate(-50%,0)}
-#map{height:min(30vh,260px);min-height:160px;transition:height .35s steps(5);border:3px solid var(--accent);margin-bottom:10px;background:#0f1a2a;box-shadow:0 0 0 3px var(--ink),6px 6px 0 3px var(--ink)}
+#map{height:min(38vh,340px);min-height:190px;transition:height .35s steps(5);border:3px solid var(--accent);margin-bottom:10px;background:#0f1a2a;box-shadow:0 0 0 3px var(--ink),6px 6px 0 3px var(--ink)}
 #mapWrap .primary{margin:0 3px;width:calc(100% - 6px)}
+#mapWrap.globeOn #map{height:min(50vh,calc(100vw - 32px));opacity:0;pointer-events:none}
+#globeBox{display:none;position:absolute;z-index:8;touch-action:none;contain:layout paint size;overscroll-behavior:none}
+#mapWrap.globeOn #globeBox{display:block}
+#globeCv{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:none;outline:none;will-change:transform;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+#globeCv:active{cursor:grabbing}#globeCv:focus-visible{box-shadow:inset 0 0 0 3px #fff;border-radius:50%}
+#globeBox .gctl{position:absolute;right:0;top:0;display:grid;gap:6px;justify-items:end}
+#globeBox button,#mapGlobe{all:unset;cursor:pointer;background:#0d0f14;color:var(--accent);font:17px/1 var(--vt);min-width:38px;height:38px;padding:0 9px;box-sizing:border-box;display:grid;place-items:center;box-shadow:0 0 0 2px #000,0 0 0 4px #2a2f3b}
+#globeBox button:focus-visible,#mapGlobe:focus-visible{outline:3px solid #fff}
+body.pinned #mapWrap.globeOn #map{height:104px;min-height:104px}
+#mapWrap.globeRes #globeFlat{display:none}
+body.pinned #mapWrap.globeRes .gctl,body.pinned #mapWrap.globeRes #globeHome,body.pinned #mapWrap.globeRes #globeRead{display:none}
+body.pinned #mapWrap.globeRes #globeBox{background:#05060b;box-shadow:0 0 0 3px var(--accent),0 0 0 6px #000;overflow:hidden}
+#globeBox #globeHome{position:absolute;left:0;bottom:0;z-index:3}
+#globeBox .gctl{z-index:3}
+#globeRead{position:absolute;right:0;bottom:2px;font:15px/1 var(--vt);color:#9fb0d4;background:rgba(5,6,11,.7);padding:3px 6px;pointer-events:none}#globeRead b{color:var(--accent);font-weight:400}
+#mapGlobe{position:absolute;right:8px;top:8px;z-index:900}#mapGlobe[hidden]{display:none}
+#mapWorld{position:absolute;left:8px;bottom:8px;z-index:900;font:17px/1 var(--vt);padding:6px 9px;background:var(--panel);color:var(--accent);box-shadow:0 0 0 2px var(--ink);border:0;cursor:pointer}#mapWorld[hidden]{display:none}
 #mapToggle{display:none;position:absolute;top:10px;right:24px;z-index:500;font:18px/1 var(--vt);padding:7px 10px;background:var(--panel);color:var(--accent);box-shadow:0 0 0 2px var(--ink)}
 body.pinDone #mapToggle{display:block}
 
@@ -1172,6 +1189,7 @@ body.pinDone #mapToggle{display:block}
 #letters{margin:20px 4px 6px;padding:12px 14px 12px;background:#efe8d6;background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.035) 0 1px,transparent 1px 3px);color:#1f1b16;border-top:4px double #1f1b16;border-bottom:4px double #1f1b16;box-shadow:4px 5px 0 rgba(0,0,0,.45);transform:rotate(-.4deg)}
 #letters .ltMast{font:10px/1.2 var(--px);letter-spacing:.14em;text-align:center;padding-bottom:6px;border-bottom:2px solid #1f1b16}
 #letters .ltSub{font:16px/1.2 var(--vt);text-align:center;margin:5px 0 9px;color:#5a5144;letter-spacing:.04em}
+#letters #ltGrass{margin:8px 0 0;font:19px/1.15 var(--vt);color:#a8231a;text-align:center}#letters #ltGrass[hidden]{display:none}
 #letters .ltTicks{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;margin-bottom:10px}
 #letters label{display:flex;align-items:center;gap:8px;font:19px/1.1 var(--vt);cursor:pointer;user-select:none}
 #letters label input{position:absolute;opacity:0;pointer-events:none}
@@ -1243,6 +1261,7 @@ body.recap #bar{display:none}
 .dot.fooled,.sq.fooled{background:#14161c;box-shadow:0 0 0 1px #ff5d73}
 #map{position:relative}
 #map::after{content:'';position:absolute;inset:0;background:var(--scan);pointer-events:none;z-index:500}
+.pinGuess i{display:block;width:20px;height:20px;background:#ff5d73;border:3px solid #fff;box-shadow:0 0 0 2px var(--ink),0 0 0 7px rgba(255,93,115,.35)}   /* the pin you drop: big enough to find under a thumb */
 .pinsq i{display:block;width:14px;height:14px;border:2px solid var(--ink);box-shadow:0 0 0 1px #fff}
 #toast{position:fixed;left:50%;top:126px;transform:translateX(-50%);z-index:6;font:10px/1 var(--px);letter-spacing:.18em;color:var(--accent);background:#0d0f14;border:2px solid var(--accent);padding:8px 10px;pointer-events:none;white-space:nowrap}
 #toast.go{animation:toast 3.6s steps(6) forwards}
@@ -1956,6 +1975,11 @@ body.pinning #card #headline{font-size:23px}
   <div id="mapWrap" hidden>
     <div id="map"></div>
     <button type="button" id="mapToggle">⤢ Explore map</button>
+    <button type="button" id="mapWorld" hidden aria-label="Zoom back out to the whole world">🌍 WORLD</button>
+    <button type="button" id="mapGlobe" hidden aria-label="Switch to the globe">🌐 GLOBE</button>
+    <div id="globeBox"><canvas id="globeCv" tabindex="0" role="img" aria-label="A globe. Drag to spin it, pinch or scroll to zoom, tap to drop a pin. Arrow keys rotate, plus and minus zoom, Enter pins the centre."></canvas>
+      <div class="gctl"><button type="button" id="globeFlat">🗺 FLAT</button><button type="button" id="globeIn" aria-label="Zoom in">+</button><button type="button" id="globeOut" aria-label="Zoom out">−</button></div>
+      <button type="button" id="globeHome">🌍 WORLD</button><span id="globeRead"></span></div>
     <button class="primary" id="btnGuess" disabled>Tap the map to drop a pin</button>
     <button class="primary" id="btnNext2" hidden>Next</button>
   </div>
@@ -2022,6 +2046,7 @@ body.pinning #card #headline{font-size:23px}
       <textarea id="ltMsg" maxlength="1000" rows="3" placeholder="Dear Editor, ..."></textarea>
       <div class="ltFoot"><small>Anonymous &middot; only the editor reads these<br>Found a weird story? Submit it here with a source!</small><button id="ltSend" type="button" disabled>SEND</button></div>
       <p id="ltThanks" hidden>Thanks! Your letter reached the editor's desk.</p>
+      <p id="ltGrass" hidden role="alert">Touch grass. This box is for feedback about the game, so try again without the abuse.</p>
     </section>
   </section>
   </div>
@@ -2324,7 +2349,7 @@ const CAPITALS=[
 ['Ottawa',45.42,-75.7],['Washington D.C.',38.9,-77.04],['Mexico City',19.43,-99.13],['Guatemala City',14.63,-90.51],['Havana',23.11,-82.37],['Tegucigalpa',14.07,-87.19],['Managua',12.13,-86.25],['San José',9.93,-84.08],['Panama City',8.98,-79.52],['San Salvador',13.69,-89.22],['Belmopan',17.25,-88.77],['Kingston',17.97,-76.79],['Port-au-Prince',18.54,-72.34],['Santo Domingo',18.49,-69.93],['Nassau',25.05,-77.35],['Bogotá',4.71,-74.07],['Caracas',10.48,-66.9],['Quito',-0.18,-78.47],['Lima',-12.05,-77.04],['La Paz',-16.5,-68.15],['Brasília',-15.79,-47.88],['Asunción',-25.26,-57.58],['Santiago',-33.45,-70.67],['Buenos Aires',-34.6,-58.38],['Montevideo',-34.9,-56.16],['Georgetown',6.8,-58.16],['Paramaribo',5.85,-55.2],['Reykjavík',64.15,-21.94],['Dublin',53.35,-6.26],['London',51.51,-0.13],['Lisbon',38.72,-9.14],['Madrid',40.42,-3.7],['Paris',48.86,2.35],['Brussels',50.85,4.35],['Amsterdam',52.37,4.9],['Luxembourg',49.61,6.13],['Berlin',52.52,13.4],['Bern',46.95,7.45],['Vaduz',47.14,9.52],['Rome',41.9,12.5],['Vienna',48.21,16.37],['Prague',50.08,14.44],['Warsaw',52.23,21.01],['Copenhagen',55.68,12.57],['Oslo',59.91,10.75],['Stockholm',59.33,18.07],['Helsinki',60.17,24.94],['Tallinn',59.44,24.75],['Riga',56.95,24.11],['Vilnius',54.69,25.28],['Minsk',53.9,27.57],['Kyiv',50.45,30.52],['Chișinău',47.01,28.86],['Bucharest',44.43,26.1],['Sofia',42.7,23.32],['Belgrade',44.79,20.45],['Zagreb',45.81,15.98],['Ljubljana',46.06,14.51],['Sarajevo',43.86,18.41],['Podgorica',42.44,19.26],['Skopje',42.0,21.43],['Tirana',41.33,19.82],['Pristina',42.67,21.17],['Athens',37.98,23.73],['Budapest',47.5,19.04],['Bratislava',48.15,17.11],['Valletta',35.9,14.51],['Nicosia',35.19,33.38],['Ankara',39.93,32.86],['Moscow',55.76,37.62],['Tbilisi',41.72,44.79],['Yerevan',40.18,44.51],['Baku',40.41,49.87],['Astana',51.17,71.43],['Tashkent',41.3,69.24],['Ashgabat',37.96,58.33],['Bishkek',42.87,74.59],['Dushanbe',38.56,68.77],['Kabul',34.53,69.17],['Tehran',35.69,51.39],['Baghdad',33.31,44.37],['Damascus',33.51,36.29],['Beirut',33.89,35.5],['Jerusalem',31.77,35.22],['Amman',31.95,35.93],['Riyadh',24.71,46.68],['Kuwait City',29.38,47.99],['Manama',26.23,50.59],['Doha',25.29,51.53],['Abu Dhabi',24.45,54.38],['Muscat',23.59,58.41],['Sana\'a',15.37,44.19],['Islamabad',33.69,73.06],['New Delhi',28.61,77.21],['Kathmandu',27.72,85.32],['Thimphu',27.47,89.64],['Dhaka',23.81,90.41],['Colombo',6.93,79.86],['Malé',4.18,73.51],['Naypyidaw',19.76,96.08],['Bangkok',13.76,100.5],['Vientiane',17.97,102.63],['Hanoi',21.03,105.85],['Phnom Penh',11.56,104.93],['Kuala Lumpur',3.14,101.69],['Singapore',1.35,103.82],['Jakarta',-6.21,106.85],['Dili',-8.56,125.57],['Bandar Seri Begawan',4.94,114.95],['Manila',14.6,120.98],['Beijing',39.9,116.4],['Taipei',25.03,121.56],['Seoul',37.57,126.98],['Pyongyang',39.04,125.76],['Tokyo',35.68,139.69],['Ulaanbaatar',47.89,106.91],['Rabat',34.02,-6.84],['Algiers',36.75,3.06],['Tunis',36.81,10.18],['Tripoli',32.89,13.19],['Cairo',30.04,31.24],['Khartoum',15.5,32.56],['Juba',4.85,31.58],['Nouakchott',18.08,-15.98],['Dakar',14.72,-17.47],['Banjul',13.45,-16.58],['Bissau',11.86,-15.6],['Conakry',9.64,-13.58],['Freetown',8.48,-13.23],['Monrovia',6.3,-10.8],['Yamoussoukro',6.82,-5.28],['Accra',5.6,-0.19],['Lomé',6.13,1.22],['Porto-Novo',6.5,2.63],['Abuja',9.08,7.4],['Bamako',12.64,-8.0],['Ouagadougou',12.37,-1.52],['Niamey',13.51,2.11],['N\'Djamena',12.13,15.06],['Yaoundé',3.85,11.5],['Bangui',4.36,18.56],['Malabo',3.75,8.78],['Libreville',0.39,9.45],['Brazzaville',-4.27,15.28],['Kinshasa',-4.44,15.27],['Luanda',-8.84,13.23],['Kampala',0.35,32.58],['Nairobi',-1.29,36.82],['Kigali',-1.95,30.06],['Gitega',-3.43,29.93],['Dodoma',-6.16,35.75],['Addis Ababa',9.03,38.74],['Asmara',15.32,38.93],['Djibouti',11.59,43.15],['Mogadishu',2.05,45.32],['Lusaka',-15.39,28.32],['Lilongwe',-13.96,33.79],['Harare',-17.83,31.05],['Maputo',-25.97,32.57],['Gaborone',-24.65,25.91],['Windhoek',-22.56,17.08],['Pretoria',-25.75,28.19],['Cape Town',-33.92,18.42],['Maseru',-29.31,27.48],['Mbabane',-26.31,31.14],['Antananarivo',-18.88,47.51],['Port Louis',-20.16,57.5],['Canberra',-35.28,149.13],['Wellington',-41.29,174.78],['Port Moresby',-9.44,147.18],['Suva',-18.14,178.44],['Honiara',-9.43,159.95],['Port Vila',-17.73,168.32],['Port of Spain',10.66,-61.51],['Andorra la Vella',42.51,1.52],['Nuuk',64.18,-51.72],['Nuku\'alofa',-21.14,-175.2],['Apia',-13.83,-171.76]];
 const WORLDS=[-360,0,360];
 /* which country a point is in, from the same outlines the map draws (so the pin and the story are judged alike) */
-let WORLD_FC=null, CBOX=null, CNAMES=null;
+let WORLD_FC=null, WORLD_ALL=null, CBOX=null, CNAMES=null;
 function polysOf(f){ const g=f.geometry; return !g ? [] : g.type==='MultiPolygon' ? g.coordinates : g.type==='Polygon' ? [g.coordinates] : []; }
 function inRing(x,y,r){ let c=false; for(let i=0,j=r.length-1;i<r.length;j=i++){ const [x1,y1]=r[i],[x2,y2]=r[j]; if((y1>y)!==(y2>y) && x<(x2-x1)*(y-y1)/(y2-y1)+x1) c=!c; } return c; }
 function countryAt(lat,lng,snapKm){
@@ -2368,8 +2393,8 @@ function shiftFC(g,dx){   // shift any GeoJSON (collection, feature or bare geom
 const PIN_MIN = 40, PIN_MIN_FAR = 30, FAR_KM = 5000;   // any pin that is placed earns at least 40 distance points, or 30 if it lands 5,000 km or more away
 const pinFloor=d=>Math.round(PK*(d>=FAR_KM?PIN_MIN_FAR:PIN_MIN));
 function pinPoints(d){return Math.max(pinFloor(d), Math.round(PK*PIN_PTS*Math.exp(-Math.max(0,d-100)/2400)));}  // ≤100 km 110 · 400 km 97 · 1000 km 76 · 1500 km 61 · 2500 km 40 · floor of 40 (30 from 5,000 km out), of 110
-/* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
-const PIN_SECS=20;                 // the pin has a 20 s limit, but taking longer no longer costs distance points
+/* The pin has 30 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
+const PIN_SECS=30;                 // the pin has a 30 s limit, but taking longer no longer costs distance points
 function pinMult(){ return 1; }
 /* Bonus by the pin's rarity: Globalist +20, Statesman +15, Pundit +10, Skimmer +5, Rock-Dweller 0. Time no longer matters. */
 const PIN_BONUS=20, BONUS_SHARE=[1,0.75,0.5,0.25,0];
@@ -3948,7 +3973,7 @@ function firstGame(){ return !load('ff_coached') && !Object.keys(load('ff_hist')
 function showRound(shown,quiet,gate){
   document.body.classList.remove('answered');
   S.phase = gate ? 'ready' : 'call'; guessLL=null;
-  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone');
+  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone'); GlobePin.hide();
   $('blankUI').hidden=true; $('card').hidden=false; $('storyLink').hidden=true; hideHint();
   const st = S.rounds[S.i];
   delete $('card').dataset.truth;   // the REAL / FAKE stamp goes on once the headline is answered
@@ -4043,6 +4068,293 @@ function wireWhy(fb){
 function squareIcon(fill){
   return L.divIcon({className:'pinsq',html:'<i style="background:'+fill+'"></i>',iconSize:[14,14],iconAnchor:[7,7]});
 }
+/* ---------- Globe pin: a spinning, zoomable globe that floats over the game while you place the pin ----------
+   Drag to spin, pinch or scroll to zoom, tap to drop the pin. The planet is painted in the same chunky pixels as the title-screen Earth
+   (real colours: green land, tan deserts, white ice, blue sea) from the game's own country, state and lake outlines, with crisp borders and
+   names on top. There is no library: a small orthographic projection pushes far-side points to the rim so land never fills the wrong side.
+   After LOCK IN the globe stays, flies to your pin and the real spot, then shrinks to the strip at the bottom with everyone else's pins;
+   "Expand globe" opens it back up. The flat map is still underneath: the pin is written to guessLL so scoring is untouched. */
+const GlobePin=(()=>{
+  const D2R=Math.PI/180, TAU=Math.PI*2, PS=3;       // PS: screen pixels per chunky planet pixel
+  const SEAS=[['PACIFIC OCEAN',0,-150],['PACIFIC OCEAN',-10,-120],['ATLANTIC OCEAN',15,-35],['ATLANTIC OCEAN',-25,-15],['INDIAN OCEAN',-15,80],['ARCTIC OCEAN',84,10],['SOUTHERN OCEAN',-64,40]];
+  const CONT=[['NORTH AMERICA',46,-102],['SOUTH AMERICA',-14,-60],['EUROPE',52,16],['AFRICA',6,20],['ASIA',46,92],['OCEANIA',-24,134],['ANTARCTICA',-80,20]];
+  const hx=h=>[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)], pal=a=>a.map(hx);
+  const OCEAN=pal(['#0f2f5a','#184b88','#2565ad','#3a86cc']), LANDC=pal(['#244d27','#356f37','#4b8f45','#69ad55']), DESERT=pal(['#6b5a33','#8f7a45','#b39a5a','#cdb676']),
+        ICE=pal(['#8fa1b5','#b9c8d8','#dde6ee','#ffffff']), TROP=pal(['#123a1c','#1b5527','#287233','#3c8f44']), BOREAL=pal(['#1b3a2a','#295034','#366a41','#4a8553']),
+        TUNDRA=pal(['#4d5b44','#66775a','#8a9a78','#a9b896']), HIGH=pal(['#5a5240','#7a7058','#9a8f72','#b7ab8c']), RIM=hx('#6fc3ff');
+  /* where the big biomes are: [lat, lon, half-height°, half-width°] */
+  const DESERTS=[[23,10,10,30],[24,45,9,14],[34,56,5,9],[42,104,6,16],[39,84,4,9],[27,71,4,6],[-25,133,10,18],[-24,19,7,8],[31,-110,6,8],[-23,-69,6,3],[8,46,5,5],[40,-116,4,6],[-44,-69,6,5],[31,3,4,9]];
+  const HIGHS=[[33,88,6,13]], TROPS=[[-4,-62,10,13],[0,22,7,10],[1,112,9,25],[8,-76,4,5]];
+  const ell=(e,la,lo)=>{ let dl=lo-e[1]; if(dl>180) dl-=360; else if(dl<-180) dl+=360; const a=(la-e[0])/e[2], b=dl/e[3]; return a*a+b*b; };
+  function biome(la,lo){
+    if(la<-62||la>78) return ICE;
+    if(la>=60&&lo>-73&&lo<-11) return ICE;                       // Greenland's ice sheet
+    const n=Math.sin(lo*.37+la*.21)*.2+Math.sin(la*.53-lo*.17)*.15;
+    for(let i=0;i<HIGHS.length;i++) if(ell(HIGHS[i],la,lo)<1+n) return HIGH;
+    for(let i=0;i<DESERTS.length;i++) if(ell(DESERTS[i],la,lo)<1+n) return DESERT;
+    if(la>66) return TUNDRA;
+    for(let i=0;i<TROPS.length;i++) if(ell(TROPS[i],la,lo)<1+n) return TROP;
+    if(la>52) return BOREAL;
+    return LANDC;
+  }
+  let cv=null,ctx=null,box=null,W=0,H=0,DPR=1,R0=0,lon=-35,lat=18,zoom=1,dirty=false,on=false,raf=0,anim=null,inertia=false,vel=[0,0],interacting=false;
+  let data=null,pin=null,target=null,locked=false,crowd=[],ev=[0,0,0],nv=[0,0,0],cv3=[0,0,0],XS=null,YS=null,ZS=null,labelsV=null,pc=null;
+  let lo=null,lctx=null,img=null;
+  const ptrs=new Map(); let moved=0,downT=0,lastMove=0,pinchD=0,ro=null;
+  const $=id=>document.getElementById(id);
+  const vec=(la,lo_)=>{ const p=la*D2R,l=lo_*D2R,cp=Math.cos(p); return [cp*Math.cos(l),cp*Math.sin(l),Math.sin(p)]; };
+  const clampLat=v=>Math.max(-88,Math.min(88,v));
+  const dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
+  function build(){
+    const w=WORLD_ALL; if(!w) return false; if(data) return true;
+    let maxLen=0;
+    const pack=ring=>{ const a=new Float32Array(ring.length*3); for(let i=0;i<ring.length;i++){ const v=vec(ring[i][1],ring[i][0]); a[i*3]=v[0]; a[i*3+1]=v[1]; a[i*3+2]=v[2]; } if(ring.length>maxLen) maxLen=ring.length;
+      let mx=0,my=0,mz=0; for(let i=0;i<ring.length;i++){ mx+=a[i*3]; my+=a[i*3+1]; mz+=a[i*3+2]; } const h=Math.hypot(mx,my,mz);
+      if(h>1e-6){ mx/=h; my/=h; mz/=h; let mn=1; for(let i=0;i<ring.length;i++){ const d=a[i*3]*mx+a[i*3+1]*my+a[i*3+2]*mz; if(d<mn) mn=d; } a.c=[mx,my,mz,Math.sqrt(Math.max(0,1-mn*mn))]; }   // a cap around the ring: when it is wholly on the far side it is skipped
+      return a; };
+    const collect=fc=>{ const out=[]; if(!fc) return out;
+      const add=g=>{ if(!g) return; const t=g.type;
+        if(t==='Polygon') g.coordinates.forEach(r=>out.push(pack(r)));
+        else if(t==='MultiPolygon') g.coordinates.forEach(p=>p.forEach(r=>out.push(pack(r))));
+        else if(t==='LineString') out.push(pack(g.coordinates));
+        else if(t==='MultiLineString') g.coordinates.forEach(r=>out.push(pack(r)));
+        else if(t==='GeometryCollection') g.geometries.forEach(add); };
+      (fc.type==='FeatureCollection'?fc.features:[fc]).forEach(f=>add(f.type==='Feature'?f.geometry:f)); return out; };
+    data={countries:collect(w.countries),states:collect(w.states),lakes:collect(w.lakes)};
+    XS=new Float32Array(maxLen+2); YS=new Float32Array(maxLen+2); ZS=new Float32Array(maxLen+2);
+    labelsV={c:COUNTRY_LABELS.map(([n,la,lo_])=>[n,vec(la,lo_)]),k:CAPITALS.map(([n,la,lo_])=>[n,vec(la,lo_)]),s:SEAS.map(([n,la,lo_])=>[n,vec(la,lo_)]),t:CONT.map(([n,la,lo_])=>[n,vec(la,lo_)])};
+    return true;
+  }
+  function basis(){ const p=lat*D2R,l=lon*D2R; cv3=[Math.cos(p)*Math.cos(l),Math.cos(p)*Math.sin(l),Math.sin(p)]; ev=[-Math.sin(l),Math.cos(l),0]; nv=[-Math.sin(p)*Math.cos(l),-Math.sin(p)*Math.sin(l),Math.cos(p)]; }
+  function project(a,m){ let any=false; if(a.c && a.c[0]*cv3[0]+a.c[1]*cv3[1]+a.c[2]*cv3[2] < -a.c[3]-.02) return false;
+    for(let i=0;i<m;i++){ const x=a[i*3],y=a[i*3+1],z=a[i*3+2]; XS[i]=x*ev[0]+y*ev[1]+z*ev[2]; YS[i]=x*nv[0]+y*nv[1]+z*nv[2]; const d=x*cv3[0]+y*cv3[1]+z*cv3[2]; ZS[i]=d; if(d>0) any=true; }
+    return any; }
+  const cross=(ax,ay,az,bx,by,bz)=>{ const t=az/(az-bz), X=ax+(bx-ax)*t, Y=ay+(by-ay)*t, h=Math.hypot(X,Y)||1; return [X/h,Y/h]; };
+  function arcTo(cx,cy,R,a1,a2){ let da=a2-a1; while(da>Math.PI) da-=TAU; while(da<-Math.PI) da+=TAU; const st=Math.max(1,Math.ceil(Math.abs(da)/.12)); for(let s=1;s<=st;s++){ const an=a1+da*s/st; pc.lineTo(cx+R*Math.cos(an),cy-R*Math.sin(an)); } }
+  function addRing(a,cx,cy,R){      // one closed outline (for fills): hidden stretches follow the rim
+    const m=a.length/3; if(m<3||!project(a,m)) return;
+    let px=0,py=0,pz=0;
+    for(let k=0;k<=m;k++){ const i=k%m, x=XS[i], y=YS[i], z=ZS[i];
+      if(k===0){ if(z>0) pc.moveTo(cx+R*x,cy-R*y); else { const h=Math.hypot(x,y)||1; pc.moveTo(cx+R*x/h,cy-R*y/h); } }
+      else if(z>0){
+        if(pz>0) pc.lineTo(cx+R*x,cy-R*y);
+        else { const C=cross(px,py,pz,x,y,z); arcTo(cx,cy,R,Math.atan2(py,px),Math.atan2(C[1],C[0])); pc.lineTo(cx+R*C[0],cy-R*C[1]); pc.lineTo(cx+R*x,cy-R*y); }
+      } else {
+        if(pz>0){ const C=cross(px,py,pz,x,y,z); pc.lineTo(cx+R*C[0],cy-R*C[1]); arcTo(cx,cy,R,Math.atan2(C[1],C[0]),Math.atan2(y,x)); }
+        else arcTo(cx,cy,R,Math.atan2(py,px),Math.atan2(y,x));
+      }
+      px=x; py=y; pz=z; }
+    pc.closePath();
+  }
+  let minPts=2, lastCost=0;
+  function addLine(a,cx,cy,R){      // an open line: only the part on this side (tiny islands are skipped while spinning)
+    const m=a.length/3; if(m<minPts||!project(a,m)) return;
+    for(let i=0;i<m;i++){ const x=XS[i],y=YS[i],z=ZS[i];
+      if(i===0){ if(z>0) pc.moveTo(cx+R*x,cy-R*y); continue; }
+      const px=XS[i-1],py=YS[i-1],pz=ZS[i-1];
+      if(z>0){ if(pz>0) pc.lineTo(cx+R*x,cy-R*y); else { const C=cross(px,py,pz,x,y,z); pc.moveTo(cx+R*C[0],cy-R*C[1]); pc.lineTo(cx+R*x,cy-R*y); } }
+      else if(pz>0){ const C=cross(px,py,pz,x,y,z); pc.lineTo(cx+R*C[0],cy-R*C[1]); }
+    }
+  }
+  const kmPerPx=()=>6371/(R0*zoom);
+  const fmtKm=k=>k>=10?Math.round(k)+' km':k>=1?k.toFixed(1)+' km':Math.round(k*1000)+' m';
+  /* The land/sea mask is drawn ONCE from the real outlines into a 3072x1536 world texture, so spinning only has to look pixels up
+     (re-drawing every country on every frame is what made the first version slow). */
+  const TW=3072, TH=1536; let tex=null, texBusy=false;
+  function buildTex(){
+    if(tex||texBusy||!WORLD_ALL) return; texBusy=true;
+    setTimeout(()=>{
+      try{
+        const c=document.createElement('canvas'); c.width=TW; c.height=TH; const g=c.getContext('2d',{willReadFrequently:true});
+        const X=l=>(l+180)/360*TW, Y=l=>(90-l)/180*TH;
+        const trace=(fc,off)=>{ g.beginPath(); const ring=r=>{ r.forEach((p,i)=>i?g.lineTo(X(p[0]+off),Y(p[1])):g.moveTo(X(p[0]+off),Y(p[1]))); g.closePath(); };
+          const add=gm=>{ if(!gm) return; const t=gm.type; if(t==='Polygon') gm.coordinates.forEach(ring); else if(t==='MultiPolygon') gm.coordinates.forEach(p=>p.forEach(ring)); else if(t==='GeometryCollection') gm.geometries.forEach(add); };
+          (fc.type==='FeatureCollection'?fc.features:[fc]).forEach(f=>add(f.type==='Feature'?f.geometry:f)); };
+        g.fillStyle='#fff';
+        [-360,0,360].forEach(off=>{ trace(WORLD_ALL.countries,off); g.fill(); });
+        if(WORLD_ALL.lakes){ g.globalCompositeOperation='destination-out'; [-360,0,360].forEach(off=>{ trace(WORLD_ALL.lakes,off); g.fill(); }); }
+        const d=g.getImageData(0,0,TW,TH).data, t=new Uint8Array(TW*TH); for(let i=0;i<t.length;i++) t[i]=d[i*4+3]>127?1:0;
+        tex=t; c.width=c.height=0; dirty=true;
+      }catch(e){ tex=null; }
+      texBusy=false;
+    },30);
+  }
+  /* the planet, painted in chunky pixels: colour, light and dither per pixel (as on the title screen) */
+  function paintPlanet(cx,cy,R){
+    const lw=Math.max(1,Math.ceil(W/PS)), lh=Math.max(1,Math.ceil(H/PS));
+    if(!lo){ lo=document.createElement('canvas'); lctx=lo.getContext('2d'); }
+    if(lo.width!==lw||lo.height!==lh){ lo.width=lw; lo.height=lh; img=lctx.createImageData(lw,lh); }
+    const d=img.data, rr=R/PS, ox=cx/PS, oy=cy/PS, T=tex;
+    for(let y=0;y<lh;y++) for(let x=0;x<lw;x++){
+      const i=(y*lw+x)*4, sx=(x+.5-ox)/rr, sy=-(y+.5-oy)/rr, r2=sx*sx+sy*sy;
+      if(r2>1.1){ d[i+3]=0; continue; }
+      if(r2>1){ if((x+y)&1){ d[i]=RIM[0]; d[i+1]=RIM[1]; d[i+2]=RIM[2]; d[i+3]=255; } else d[i+3]=0; continue; }
+      const sz=Math.sqrt(1-r2), X=sx*ev[0]+sy*nv[0]+sz*cv3[0], Y=sx*ev[1]+sy*nv[1]+sz*cv3[1], Z=sx*ev[2]+sy*nv[2]+sz*cv3[2];
+      const la=Math.asin(Z<-1?-1:Z>1?1:Z)/D2R, lg=Math.atan2(Y,X)/D2R;
+      const lit=Math.max(0,sx*-.55+sy*.45+sz*.7), k=Math.min(3,Math.floor((.25+lit*.9+(((x+y)&1)*.12))*3.2));
+      let c;
+      if(T){ let tx=Math.floor((lg+180)/360*TW), ty=Math.floor((90-la)/180*TH); if(tx>=TW) tx=TW-1; if(ty>=TH) ty=TH-1; c=T[ty*TW+tx]?biome(la,lg)[k]:(la>79||la<-67?ICE[k]:OCEAN[k]); }
+      else c=la>79||la<-67?ICE[k]:OCEAN[k];
+      if(r2>.9 && ((x^y)&1)) c=RIM;
+      d[i]=c[0]; d[i+1]=c[1]; d[i+2]=c[2]; d[i+3]=255;
+    }
+    lctx.putImageData(img,0,0);
+    ctx.imageSmoothingEnabled=false; ctx.drawImage(lo,0,0,lw*PS,lh*PS);
+  }
+  function visPt(v){ return dot(v,cv3)>0; }
+  const scr=(v,cx,cy,R)=>[cx+R*dot(v,ev),cy-R*dot(v,nv)];
+  function drawMark(ll,col,tag,cx,cy,R){
+    const v=vec(ll[1],ll[0]); if(!visPt(v)) return; const q=scr(v,cx,cy,R);
+    ctx.save(); ctx.translate(q[0],q[1]); if(H<140) ctx.scale(.62,.62); const rgba=col==='#ff5d73'?'rgba(255,93,115,.32)':'rgba(79,191,106,.32)';
+    ctx.fillStyle=rgba; ctx.fillRect(-15,-15,30,30); ctx.fillStyle=col; ctx.strokeStyle='#fff'; ctx.lineWidth=3; ctx.fillRect(-10,-10,20,20); ctx.strokeRect(-10,-10,20,20);
+    ctx.strokeStyle='#0a0c10'; ctx.lineWidth=1.5; ctx.strokeRect(-11.5,-11.5,23,23);
+    if(tag){ ctx.font='15px VT323,monospace'; ctx.textAlign='center'; ctx.textBaseline='bottom'; ctx.lineWidth=3.5; ctx.strokeStyle='rgba(6,9,16,.92)'; ctx.strokeText(tag,0,-16); ctx.fillStyle='#fff'; ctx.fillText(tag,0,-16); }
+    ctx.restore();
+  }
+  function draw(){
+    dirty=false; if(!ctx||!on) return; const t0=performance.now(); basis();
+    const cx=W/2, cy=H/2, R=R0*zoom;
+    ctx.clearRect(0,0,W,H);
+    paintPlanet(cx,cy,R); const t1=performance.now();
+    pc=ctx; minPts=(interacting||inertia)?14:2;
+    if(data && !((interacting||inertia) && lastCost>14)){        // on a slow phone the borders sit out while the globe is moving, then come back
+      ctx.lineJoin='round'; ctx.lineWidth=1; ctx.strokeStyle='rgba(240,247,255,.62)'; ctx.beginPath(); data.countries.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke();
+      if(zoom>=2.2 && !interacting){ ctx.strokeStyle='rgba(240,247,255,.34)'; ctx.setLineDash([2,3]); ctx.beginPath(); data.states.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke(); ctx.setLineDash([]); }
+    }
+    if(!interacting||zoom<2.5) drawLabels(cx,cy,R);
+    crowd.forEach(([la,ln,col])=>{ const v=vec(la,ln); if(!visPt(v)) return; const q=scr(v,cx,cy,R); ctx.fillStyle=col; ctx.globalAlpha=.9; ctx.strokeStyle='#0b0e14'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(q[0],q[1],3.5,0,7); ctx.fill(); ctx.globalAlpha=1; ctx.stroke(); });
+    if(locked&&target&&pin){      // the miss, as a dashed arc along the surface
+      const a=vec(pin[1],pin[0]), b=vec(target[1],target[0]), th=Math.acos(Math.max(-1,Math.min(1,dot(a,b)))), st=Math.max(2,Math.ceil(th/.03));
+      ctx.setLineDash([6,5]); ctx.lineWidth=2.4; ctx.strokeStyle='#ffcc4d'; ctx.beginPath(); let pen=false;
+      for(let s=0;s<=st;s++){ const t=s/st, sa=Math.sin((1-t)*th)/(Math.sin(th)||1), sb=Math.sin(t*th)/(Math.sin(th)||1), v=[a[0]*sa+b[0]*sb,a[1]*sa+b[1]*sb,a[2]*sa+b[2]*sb];
+        if(!visPt(v)){ pen=false; continue; } const q=scr(v,cx,cy,R); if(pen) ctx.lineTo(q[0],q[1]); else { ctx.moveTo(q[0],q[1]); pen=true; } }
+      ctx.stroke(); ctx.setLineDash([]);
+    }
+    if(locked&&target) drawMark(target,'#4fbf6a',locked?'REAL':null,cx,cy,R);
+    if(pin) drawMark(pin,'#ff5d73',locked?'YOU':null,cx,cy,R);
+    const rd=$('globeRead'); if(rd) rd.innerHTML='<b>'+zoom.toFixed(1)+'×</b> · ~'+fmtKm(kmPerPx())+'/px';
+    lastCost=performance.now()-t0;
+    if(window.__gb) window.__gb.push([t1-t0,performance.now()-t1]);
+  }
+  function drawLabels(cx,cy,R){
+    if(!labelsV) return; const boxes=[];
+    const place=(txt,v,px,col,sp,alpha)=>{
+      const z=dot(v,cv3); if(z<.06) return;
+      const q=scr(v,cx,cy,R), a=Math.min(1,z*3.2)*(alpha||1); if(a<.12) return;
+      ctx.font=px+'px VT323,monospace'; const w=ctx.measureText(txt).width+(sp?txt.length*sp:0), bx=q[0]-w/2-3, by=q[1]-px/2-2, bw=w+6, bh=px+4;
+      if(bx<2||by<2||bx+bw>W-2||by+bh>H-2) return;
+      for(const b of boxes) if(bx<b[0]+b[2]&&bx+bw>b[0]&&by<b[1]+b[3]&&by+bh>b[1]) return;
+      boxes.push([bx,by,bw,bh]);
+      ctx.save(); ctx.globalAlpha=a; ctx.textAlign='center'; ctx.textBaseline='middle'; if(sp) ctx.letterSpacing=sp+'px';
+      ctx.lineWidth=3.5; ctx.strokeStyle='rgba(6,9,16,.92)'; ctx.strokeText(txt,q[0],q[1]); ctx.fillStyle=col; ctx.fillText(txt,q[0],q[1]); ctx.restore(); };
+    if(zoom<3.2) labelsV.s.forEach(([n,v])=>place(n,v,15,'#9fd0ff',3,.9));
+    if(zoom<2.4) labelsV.t.forEach(([n,v])=>place(n,v,20,'#ffffff',2));
+    if(zoom>=1.9) labelsV.c.forEach(([n,v])=>place(n,v,zoom>=4?19:16,'#f4f8ff',0,Math.min(1,(zoom-1.9)/.8)));
+    if(zoom>=4.5) labelsV.k.forEach(([n,v])=>{
+      const z=dot(v,cv3); if(z<.05) return; const q=scr(v,cx,cy,R);
+      ctx.fillStyle='#fff'; ctx.strokeStyle='#0a0c10'; ctx.lineWidth=1.2; ctx.beginPath(); ctx.arc(q[0],q[1],2.6,0,7); ctx.fill(); ctx.stroke();
+      if(zoom>=5.5){ const px=15; ctx.font=px+'px VT323,monospace'; const w=ctx.measureText(n).width, bx=q[0]-w/2-3, by=q[1]-px-7, bw=w+6, bh=px+4;
+        if(bx<2||by<2||bx+bw>W-2||by+bh>H-2) return; for(const b of boxes) if(bx<b[0]+b[2]&&bx+bw>b[0]&&by<b[1]+b[3]&&by+bh>b[1]) return; boxes.push([bx,by,bw,bh]);
+        ctx.save(); ctx.globalAlpha=Math.min(1,z*3.2); ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.lineWidth=3.5; ctx.strokeStyle='rgba(6,9,16,.92)'; ctx.strokeText(n,q[0],q[1]-px/2-4); ctx.fillStyle='#ffe49a'; ctx.fillText(n,q[0],q[1]-px/2-4); ctx.restore(); }
+    });
+  }
+  function setView(lo_,la,z){ lon=((lo_+540)%360)-180; lat=clampLat(la); zoom=Math.max(1,Math.min(12,z)); dirty=true; }
+  function flyTo(lo_,la,z,ms){ if(!ms){ anim=null; setView(lo_,la,z); return; } const f=[lon,lat,zoom], dl=((lo_-lon+540)%360)-180, st=performance.now(); anim=now=>{ const t=Math.min(1,(now-st)/ms), e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2; setView(f[0]+dl*e,f[1]+(la-f[1])*e,f[2]+(z-f[2])*e); if(t>=1) anim=null; }; }
+  function fit(ms){        // frame your pin and the real spot together
+    if(!target) return; if(!pin){ flyTo(target[0],target[1],Math.max(2,zoom),ms); return; }
+    const a=vec(pin[1],pin[0]), b=vec(target[1],target[0]), th=Math.acos(Math.max(-1,Math.min(1,dot(a,b))));
+    let m=[a[0]+b[0],a[1]+b[1],a[2]+b[2]]; const h=Math.hypot(m[0],m[1],m[2]); if(h<1e-3) m=b; else m=[m[0]/h,m[1]/h,m[2]/h];
+    const mla=Math.asin(Math.max(-1,Math.min(1,m[2])))/D2R, mlo=Math.atan2(m[1],m[0])/D2R;
+    // how far apart the two spots sit on screen at unit radius when the view is centred between them: fit that to the box, wide or tall
+    const p=mla*D2R,l=mlo*D2R, e2=[-Math.sin(l),Math.cos(l),0], n2=[-Math.sin(p)*Math.cos(l),-Math.sin(p)*Math.sin(l),Math.cos(p)];
+    const dxs=Math.abs(dot(a,e2)-dot(b,e2)), dys=Math.abs(dot(a,n2)-dot(b,n2)), Rn=Math.min(dxs<1e-4?1e9:W*.72/dxs, dys<1e-4?1e9:H*.55/dys, R0*12);
+    flyTo(mlo,mla,Math.max(1,Math.min(12,Rn/R0)),ms);
+  }
+  let lastT=0;
+  function loop(now){ if(!on){ raf=0; return; }
+    if(anim) anim(now);
+    if(inertia){ const dt=lastT?Math.min(40,now-lastT):16; setView(lon+vel[0]*dt,lat+vel[1]*dt,zoom); const f=Math.exp(-dt/330); vel=[vel[0]*f,vel[1]*f]; if(Math.hypot(vel[0],vel[1])*(R0*zoom)/(180/Math.PI)<.012) inertia=false; }
+    lastT=inertia?now:0;
+    if(dirty) draw(); raf=requestAnimationFrame(loop); }
+  function sizeBox(keepPx){
+    const m=$('map'); if(!m||!box) return;
+    box.style.left=m.offsetLeft+'px'; box.style.top=m.offsetTop+'px'; box.style.width=m.offsetWidth+'px'; box.style.height=m.offsetHeight+'px';
+    const r=box.getBoundingClientRect(), nd=Math.min(2,window.devicePixelRatio||1), cw=Math.max(1,Math.round(r.width*nd)), ch=Math.max(1,Math.round(r.height*nd));
+    W=r.width; H=r.height; DPR=nd; R0=Math.min(W,H)/2*.92;
+    if(keepPx) zoom=Math.max(.2,Math.min(12,keepPx/R0));     // while the panel changes size the planet keeps its on-screen size; only the window crops it
+    if(cv.width!==cw||cv.height!==ch){ cv.width=cw; cv.height=ch; }      // resizing a canvas wipes it, so repaint in the same breath
+    ctx.setTransform(DPR,0,0,DPR,0,0); dirty=true; if(on) draw();
+  }
+  function inv(x,y){ const sx=(x-W/2)/(R0*zoom), sy=-(y-H/2)/(R0*zoom), r2=sx*sx+sy*sy; if(r2>1) return null; basis(); const sz=Math.sqrt(1-r2);
+    const X=sx*ev[0]+sy*nv[0]+sz*cv3[0], Y=sx*ev[1]+sy*nv[1]+sz*cv3[1], Z=sx*ev[2]+sy*nv[2]+sz*cv3[2]; return [Math.atan2(Y,X)/D2R,Math.asin(Math.max(-1,Math.min(1,Z)))/D2R]; }
+  function drop(ll){ if(S.phase!=='pin'||locked) return; pin=[ll[0],ll[1]]; guessLL=L.latLng(ll[1],ll[0]).wrap(); layer.clearLayers();
+    WORLDS.forEach(dx=>L.marker([guessLL.lat,guessLL.lng+dx],{icon:L.divIcon({className:'pinGuess',html:'<i></i>',iconSize:[20,20],iconAnchor:[10,10]}),interactive:false}).addTo(layer));
+    try{ Sound.play('pin'); }catch(e){} $('btnGuess').disabled=false; $('btnGuess').textContent='LOCK IN'; dirty=true; }
+  /* like the flat map: the first tap on a region zooms in, the next one drops the pin */
+  function tapAt(ll){
+    if(S.phase!=='pin'||locked||anim) return;
+    if(zoom<3.5){ flyTo(ll[0],ll[1],5,450); try{ Sound.play('menu'); }catch(e){} if(!guessLL) $('btnGuess').textContent='NOW DROP YOUR PIN'; return; }
+    drop(ll);
+  }
+  function wire(){
+    cv.addEventListener('pointerdown',e=>{ cv.setPointerCapture(e.pointerId); ptrs.set(e.pointerId,[e.clientX,e.clientY]); anim=null; inertia=false;
+      if(ptrs.size===1){ moved=0; downT=performance.now(); lastMove=downT; vel=[0,0]; } else { const a=[...ptrs.values()]; pinchD=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]); moved=99; } interacting=true; });
+    cv.addEventListener('pointermove',e=>{ if(!ptrs.has(e.pointerId)) return; const p=ptrs.get(e.pointerId), dx=e.clientX-p[0], dy=e.clientY-p[1]; ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+      if(ptrs.size===1){ moved+=Math.hypot(dx,dy); if(moved<5) return; const k=(180/Math.PI)/(R0*zoom), now=performance.now(), dt=Math.max(4,now-lastMove); setView(lon-dx*k,lat+dy*k,zoom);
+        vel=[vel[0]*.6+(-dx*k/dt)*.4, vel[1]*.6+(dy*k/dt)*.4]; lastMove=now; }   // smoothed speed in degrees per millisecond, so a flick feels the same on any frame rate
+      else if(ptrs.size===2){ const a=[...ptrs.values()], d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]); if(pinchD>0) setView(lon,lat,zoom*d/pinchD); pinchD=d; } });
+    const up=e=>{ if(!ptrs.has(e.pointerId)) return; const one=ptrs.size===1; ptrs.delete(e.pointerId);
+      if(ptrs.size===0){ interacting=false; dirty=true;
+        if(one && moved<6 && performance.now()-downT<500){
+          if(locked){ if(document.body.classList.contains('pinned')) toggleMapSize(); return; }      // tap the strip to expand it
+          const r=cv.getBoundingClientRect(), ll=inv(e.clientX-r.left,e.clientY-r.top); if(ll) tapAt(ll); }
+        else if(performance.now()-lastMove<90 && Math.hypot(vel[0],vel[1])*(R0*zoom)/(180/Math.PI)>.05){ inertia=true; lastT=0; } } };
+    cv.addEventListener('pointerup',up); cv.addEventListener('pointercancel',up);
+    ['touchstart','touchmove','touchend'].forEach(t=>cv.addEventListener(t,e=>{ e.stopPropagation(); if(t==='touchmove') e.preventDefault(); },{passive:false}));   // the page behind never sees (or scrolls from) a spin
+    cv.addEventListener('wheel',e=>{ e.preventDefault(); setView(lon,lat,zoom*Math.exp(-Math.max(-120,Math.min(120,e.deltaY))*.0016)); },{passive:false});
+    cv.addEventListener('keydown',e=>{ const k=8/zoom, m={ArrowLeft:[-k,0],ArrowRight:[k,0],ArrowUp:[0,k],ArrowDown:[0,-k]}[e.key];
+      if(m){ e.preventDefault(); setView(lon+m[0],lat+m[1],zoom); } else if(e.key==='+'||e.key==='=') setView(lon,lat,zoom*1.3); else if(e.key==='-') setView(lon,lat,zoom/1.3);
+      else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(!locked) tapAt([lon,lat]); } });
+    $('globeIn').onclick=()=>flyTo(lon,lat,zoom*1.7,220); $('globeOut').onclick=()=>flyTo(lon,lat,zoom/1.7,220);
+    $('globeHome').onclick=()=>{ if(locked) fit(500); else { flyTo(pin?pin[0]:-35,18,1,500); if(!guessLL) $('btnGuess').textContent='TAP A REGION TO ZOOM IN'; } };
+    $('globeFlat').onclick=()=>swap(false); $('mapGlobe').onclick=()=>swap(true);
+    window.addEventListener('resize',()=>{ if(on) sizeBox(); });
+    if(window.ResizeObserver){ ro=new ResizeObserver(()=>{ if(!on) return;
+        if(locked){ const Rpx=R0*zoom; anim=null; sizeBox(Rpx); clearTimeout(fitT); fitT=setTimeout(()=>{ if(on&&locked) fit(380); },170); }   // the panel shrinks in steps: hold the picture steady, then ease to the final framing
+        else sizeBox(); }); ro.observe($('map')); }
+    $('map').appendChild($('mapGlobe')); L.DomEvent.disableClickPropagation($('mapGlobe'));
+  }
+  const pref=()=>{ try{ return localStorage.getItem('ff_globe')!=='0'; }catch(e){ return true; } };
+  function ensure(){ if(!cv){ cv=$('globeCv'); ctx=cv.getContext('2d'); box=$('globeBox'); wire(); } }
+  function show(){
+    ensure(); clearTimeout(hideT); build(); buildTex(); on=true; locked=false; target=null; crowd=[]; $('mapWrap').classList.remove('globeRes'); $('mapWrap').classList.add('globeOn'); $('mapGlobe').hidden=true; sizeBox();
+    pin=guessLL?[guessLL.lng,guessLL.lat]:null; anim=null; inertia=false;
+    if(pin) setView(pin[0],pin[1],zoom>1?zoom:1); else setView(-35,18,1);
+    if(!guessLL) $('btnGuess').textContent='TAP A REGION TO ZOOM IN';
+    dirty=true; draw(); if(!raf) raf=requestAnimationFrame(loop);
+  }
+  let hideT=0, fitT=0;
+  /* hide(): the globe stops drawing but its last frame stays up while the map panel slides away, then the classes go (hide(true) is immediate) */
+  function hide(now){ on=false; locked=false; target=null; crowd=[]; clearTimeout(fitT); if(raf){ cancelAnimationFrame(raf); raf=0; } clearTimeout(hideT);
+    const end=()=>{ const w=$('mapWrap'); if(w) w.classList.remove('globeOn','globeRes'); const g=$('mapGlobe'); if(g) g.hidden=true; };
+    if(now===true) end(); else hideT=setTimeout(end,1000); }
+  function swap(toGlobe){
+    try{ localStorage.setItem('ff_globe',toGlobe?'1':'0'); }catch(e){}
+    if(toGlobe){ const c=map.getCenter(), hadPin=!!guessLL; show(); if(!hadPin) setView(c.lng,c.lat,map.getZoom()>=3.5?4:1); }
+    else { hide(true); map.invalidateSize(); $('mapGlobe').hidden=false; if(guessLL){ map.setView(guessLL,Math.max(map.getZoom(),4.5),{animate:false}); $('btnGuess').textContent='LOCK IN'; } else { if(MAP_HOME) MAP_HOME(); $('btnGuess').textContent='TAP A REGION TO ZOOM IN'; } }
+  }
+  return {
+    sync(){ if(pref()) show(); else { hide(true); ensure(); $('mapGlobe').hidden=false; } },
+    /* LOCK IN in globe mode: keep the globe, show the real spot and frame both; the page then shrinks it to the strip */
+    result(actual){ if(!on) return; locked=true; target=actual; $('mapWrap').classList.add('globeRes'); $('mapToggle').textContent='⤢ Expand globe'; sizeBox(); fit(900); dirty=true; },
+    setCrowd(list){ crowd=list||[]; dirty=true; },
+    hide, dataReady(){ if(build()){ buildTex(); dirty=true; } },
+    active:()=>on
+  };
+})();
+
+let MAP_HOME=null;
+function syncWorldBtn(){ const b=$('mapWorld'); if(b) b.hidden=!(S && S.phase==='pin' && map && map.getZoom()>=3.5); }
 function openMap(){
   S.phase='pin';
   $('btnNext2').hidden=true;
@@ -4053,9 +4365,9 @@ function openMap(){
     map = L.map('map',{zoomControl:window.innerWidth>=700,   // on phones the +/- buttons sat on top of Alaska and BC (taps there did nothing); tap-to-zoom and pinch cover it
                        worldCopyJump:true,minZoom:1.5,maxZoom:8,zoomSnap:0.5,renderer:L.canvas({padding:1}),   // draw a full screen of land beyond each edge so panning while zoomed in never shows blank margins
                        inertia:true,inertiaDeceleration:2200,attributionControl:false,
-                       maxBounds:[[-85,-540],[78,540]],maxBoundsViscosity:1});   // the world repeats sideways: scroll past Alaska and Asia appears
+                       maxBounds:[[-85,-540],[85,540]],maxBoundsViscosity:1});   // the world repeats sideways: scroll past Alaska and Asia appears
     fetch('world.pack.json').then(r=>r.json()).then(unpackWorld).then(w=>{
-      WORLD_FC=w.countries; CBOX=null; CNAMES=null;
+      WORLD_FC=w.countries; WORLD_ALL=w; CBOX=null; CNAMES=null; try{ GlobePin.dataReady(); }catch(e){}
       WORLDS.forEach(dx=>{
         L.geoJSON(shiftFC(w.countries,dx),{style:{color:'#7f90b4',weight:1,fillColor:'#2c3850',fillOpacity:1},interactive:false}).addTo(map).bringToBack();
         L.geoJSON(shiftFC(w.states,dx),{style:{color:'#5a6a8c',weight:0.7,fill:false,dashArray:'2 2'},interactive:false}).addTo(map);
@@ -4069,6 +4381,9 @@ function openMap(){
     COUNTRY_LABELS.forEach(([n,la,ln])=>WORLDS.forEach(dx=>L.marker([la,ln+dx],{icon:L.divIcon({className:'',html:'<span class="cname">'+n+'</span>',iconSize:[0,0]}),interactive:false,keyboard:false}).addTo(names)));
     const syncNames=()=>{ const on=map.getZoom()>=3.5; if(on&&!map.hasLayer(names)) names.addTo(map); else if(!on&&map.hasLayer(names)) map.removeLayer(names); };
     map.on('zoomend',syncNames); syncNames();
+    map.on('zoomend',syncWorldBtn);
+    $('map').appendChild($('mapWorld')); L.DomEvent.disableClickPropagation($('mapWorld'));   // lives inside the map, bottom left, clear of the LOCK IN bar
+    $('mapWorld').onclick=()=>{ if(MAP_HOME) MAP_HOME(); if(!guessLL){ $('btnGuess').textContent='TAP A REGION TO ZOOM IN'; } syncWorldBtn(); try{ Sound.play('menu'); }catch(e){} };
     // capital cities: a dot from zoom 4.5 and a name from zoom 5.5. The dots are built the first time they are needed and drawn on the canvas;
     // only the names inside the current view become elements, so nothing is added to loading time or to panning.
     const capDots=L.layerGroup(), capLabels=L.layerGroup(); let capBuilt=false;
@@ -4099,7 +4414,7 @@ function openMap(){
       }
       guessLL = e.latlng.wrap();
       layer.clearLayers();
-      WORLDS.forEach(dx=>L.marker([guessLL.lat,guessLL.lng+dx],{icon:squareIcon('#ff5d73'),interactive:false}).addTo(layer));
+      WORLDS.forEach(dx=>L.marker([guessLL.lat,guessLL.lng+dx],{icon:L.divIcon({className:'pinGuess',html:'<i></i>',iconSize:[20,20],iconAnchor:[10,10]}),interactive:false}).addTo(layer));
       Sound.play('pin');
       $('btnGuess').disabled=false;
       $('btnGuess').textContent='LOCK IN';
@@ -4117,12 +4432,12 @@ function openMap(){
   if(S.cur.pinWall) go();
   else { const cs=getComputedStyle($('mapWrap')); setTimeout(go, Math.max(0,(parseFloat(cs.transitionDuration)||0)+(parseFloat(cs.transitionDelay)||0))*1000+80); }
   runPinTimer();
-  const homeView=()=>{
+  const homeView=MAP_HOME=()=>{
     map.invalidateSize();
     const w=map.getSize().x;
     if(w<520){                                   // narrow maps: show (nearly) the whole inhabited world across the width
       map.setMinZoom(0.5);
-      map.setView([30,-5],w<440?0.5:1,{animate:false});
+      map.fitBounds([[-58,-180],[84,180]],{animate:false,maxZoom:w<440?0.5:1});   // the whole inhabited world, from the Antarctic Peninsula up to the top of Greenland
     } else { map.setMinZoom(1.5); map.setView([25,10],1.5,{animate:false}); }
   };
   homeView();
@@ -4131,11 +4446,12 @@ function openMap(){
   $('btnGuess').disabled=true;
   $('btnGuess').hidden=false;
   $('btnGuess').textContent='TAP A REGION TO ZOOM IN';
+  GlobePin.sync();    // the globe floats over the map unless the player picked the flat map
 }
 
 function submitGuess(timedOut){
   if(S.phase!=='pin' || (!guessLL && timedOut!==true)) return;
-  cancelAnimationFrame(PIN_RAF); $('speed').hidden=true; $('speed').classList.remove('pin','low');
+  cancelAnimationFrame(PIN_RAF); $('speed').hidden=true; $('speed').classList.remove('pin','low'); $('mapWorld').hidden=true;
   const st = S.rounds[S.i];
   const sec = Math.min(PIN_SECS,(performance.now()-S.pinT0)/1000), mult = pinMult(sec);
   const d = guessLL ? km(guessLL.lat,guessLL.lng,st.lat,st.lng) : null;
@@ -4186,6 +4502,7 @@ function submitGuess(timedOut){
   finishRound();
   if(guessLL) showCrowdPins(S.i, d);
   MAP_VIEW = guessLL ? {b:L.latLngBounds([guessLL,actual]).pad(0.5)} : {c:actual};
+  if(GlobePin.active()) GlobePin.result([st.lng,st.lat]);   // globe mode: the globe stays, shows the real spot, then shrinks to the strip
   if(!isDesk()) setTimeout(()=>{      // after a moment the map shrinks to a strip so the jaw is not hidden behind it
     if(S && S.phase==='done' && document.body.classList.contains('pinning')){
       document.body.classList.add('pinned','pinDone');
@@ -4210,10 +4527,12 @@ async function showCrowdPins(i, mine){
   const r=await sbRpc('story_crowd',{p_day:dayKey(),p_kind:S.kind,p_i:i,p_player:playerId(),p_dist:Math.round(mine)});   // the server counts; at most 150 dots come back
   if(!r || S.i!==i || S.phase!=='done') return;
   const st=S.rounds[i];
+  const dots=[];
   (r.p||[]).forEach(([la,ln])=>{                     // each dot in the colour of the rarity that pin earned
-    const k=km(la,ln,st.lat,st.lng), col=k<=OMNI_KM ? '#9ff6ff' : RARITY.find(x=>k<=x[0])[2];
+    const k=km(la,ln,st.lat,st.lng), col=k<=OMNI_KM ? '#9ff6ff' : RARITY.find(x=>k<=x[0])[2]; dots.push([la,ln,col]);
     WORLDS.forEach(dx=>L.circleMarker([la,ln+dx],{radius:3.5,weight:1,color:'#0b0e14',fillColor:col,fillOpacity:.8,interactive:false}).addTo(layer));
   });
+  GlobePin.setCrowd(dots);
   const n=+r.n||0, tag=$('rCrowd');   // shown in the rarity popup, just above the quip
   tag.innerHTML = n>=3 ? 'Closer than <b>'+Math.round(100*(+r.beat||0)/n)+'%</b> of '+n.toLocaleString()+' players' : 'One of the first to pin this';
   tag.hidden=false;
@@ -4221,7 +4540,7 @@ async function showCrowdPins(i, mine){
 function toggleMapSize(){
   const big=document.body.classList.contains('pinned');
   document.body.classList.toggle('pinned',!big);
-  $('mapToggle').textContent = big ? '⤡ Shrink map' : '⤢ Explore map';
+  $('mapToggle').textContent = GlobePin.active() ? (big ? '⤡ Shrink globe' : '⤢ Expand globe') : (big ? '⤡ Shrink map' : '⤢ Explore map');
   Sound.play('menu');
   setTimeout(()=>{ map.invalidateSize(); if(MAP_VIEW){ if(MAP_VIEW.b) map.fitBounds(MAP_VIEW.b,{maxZoom:4.5,animate:false}); else map.setView(MAP_VIEW.c,5,{animate:false}); } aim(); },420);
 }
@@ -4295,6 +4614,15 @@ const TIERS=[   // the same ranks as the pin popups, lowest to highest
   {f:0.70, icon:'globe',   color:'#ffd23f', name:'Globalist',    line:'Were you there? Be honest.'}];
 function tierOf(total,max){ let k=0; TIERS.forEach((t,i)=>{ if(total>=Math.round(t.f*max/50)*50) k=i; }); return k; }
 /* Letters to the editor: feedback after a Daily Dig, saved in the Supabase "feedback" table (scripts/supabase_feedback.sql) */
+/* The letters box turns away slurs. The word list is kept base64-encoded so the code does not spell them out. Text is lower-cased, de-leeted
+   and de-accented; long slurs are caught even with spaces or dots between the letters, short ones only as whole words. */
+const BAD_LONG=atob('bmlnZ2VyLGZhZ2dvdCx0cmFubnk=').split(','), BAD_SHORT=atob('bmlnZ2Esa2lrZSxzcGljLHdldGJhY2s=').split(',');
+function isAbusive(t){
+  const n=String(t||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[@4]/g,'a').replace(/[3]/g,'e').replace(/[10!|]/g,m=>m==='0'?'o':'i').replace(/\$/g,'s').replace(/5/g,'s');
+  const rx=w=>w.split('').map(c=>c+'+').join(''), squashed=n.replace(/[^a-z]/g,''), words=n.replace(/[^a-z]+/g,' ').split(' ');   // letters may be stretched (niiigger)
+  if(BAD_LONG.some(w=>new RegExp(rx(w)).test(squashed))) return true;
+  return words.some(x=>BAD_SHORT.some(w=>new RegExp('^'+rx(w)+'s?$').test(x)));
+}
 function renderLetters(){
   const box=$('letters'), key='ff_fb:'+dayKey()+':'+S.kind, sent=!!load(key);
   box.hidden = S.mode!=='daily' || !sbOn();
@@ -4305,6 +4633,8 @@ function renderLetters(){
   ticks.forEach(c=>{ c.checked=false; c.disabled=sent; c.onchange=()=>{ if(c.checked) ticks.forEach(o=>{ if((CLASH[c.value]||[]).includes(o.value)) o.checked=false; }); ready(); }; }); msg.value=''; msg.disabled=sent; msg.oninput=ready;
   $('ltThanks').hidden=!sent; btn.textContent=sent?'SENT':'SEND'; ready();
   btn.onclick=async()=>{
+    if(isAbusive(msg.value)){ $('ltGrass').hidden=false; return; }   // nothing is sent
+    $('ltGrass').hidden=true;
     btn.disabled=true; btn.textContent='SENDING';
     const body={player:playerId(), day:dayKey(), kind:S.kind, score:Math.round(S.total||0), tags:ticks.filter(c=>c.checked).map(c=>c.value), message:msg.value.trim().slice(0,1000)||null};
     let ok=false;
@@ -4415,7 +4745,7 @@ function finish(restored){
   if(!restored) track('done');
   stopTimer(); cancelAnimationFrame(SPEED_RAF);
   $('unlockBox').hidden=true; S.newUnlocks=[]; S.froze=S.earnedFreeze=false;
-  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone','answered');
+  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone','answered'); GlobePin.hide();
   ['card','speed','feedback','mapWrap','blankUI'].forEach(id=>$(id).hidden=true);
   setBar('end');
   getDb().then(d=>{ $('btnBoard').textContent = (d || sbOn()) ? 'Standings' : 'My digs'; });
@@ -5745,7 +6075,7 @@ function stopTimer(){ if(TIMER){ clearInterval(TIMER); TIMER=null; } $('card').c
 function showBlankRound(live){
   document.body.classList.remove('answered');
   S.phase='ready'; S.blank=null;
-  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone');
+  $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone'); GlobePin.hide();
   $('card').hidden=false; $('speed').hidden=true;
   $('feedback').hidden=true; $('mapWrap').hidden=true;
   $('blankUI').hidden=false; $('blankLive').hidden=true;
@@ -6702,7 +7032,7 @@ const Intro=(function(){
     else{ st.hidden=true; st.textContent=''; }
     $('introHowText').innerHTML = (blank
       ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how close it is: <b>cold, cool, warm, hot, on fire</b>, or exact. Spelling slips are fixed for you.</li><li>You have <b>30 seconds</b> per headline. The exact word scores the most, however fast you find it.</li><li>Every point drops his jaw a little further.</li></ol>'
-      : '<ol><li>Read the headline. The place is <b>left out</b>.</li><li>Call it <b>REAL</b> or <b>FAKE</b>. Quick answers score more. Once you have called it, a <b>clue</b> about where it happened is added to the headline.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin where you think it happened, then <b>LOCK IN</b>. You get 20 seconds: closer and faster scores more.</li><li>Every point drops his jaw.</li></ol>')
+      : '<ol><li>Read the headline. The place is <b>left out</b>.</li><li>Call it <b>REAL</b> or <b>FAKE</b>. Quick answers score more. Once you have called it, a <b>clue</b> about where it happened is added to the headline.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin where you think it happened, then <b>LOCK IN</b>. You get 30 seconds: closer scores more.</li><li>Every point drops his jaw.</li></ol>')
       + '<p class="sc">'+$('howText').innerHTML+'</p>';
   }
   function titleOn(){                   // the game's name, the day's line and "how to play" above the turning planet
