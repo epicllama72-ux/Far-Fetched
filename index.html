@@ -1054,9 +1054,9 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #map{height:min(38vh,340px);min-height:190px;transition:height .35s steps(5);border:3px solid var(--accent);margin-bottom:10px;background:#0f1a2a;box-shadow:0 0 0 3px var(--ink),6px 6px 0 3px var(--ink)}
 #mapWrap .primary{margin:0 3px;width:calc(100% - 6px)}
 #mapWrap.globeOn #map{height:min(50vh,calc(100vw - 32px));opacity:0;pointer-events:none}
-#globeBox{display:none;position:absolute;z-index:8;touch-action:none}
+#globeBox{display:none;position:absolute;z-index:8;touch-action:none;contain:layout paint size;overscroll-behavior:none}
 #mapWrap.globeOn #globeBox{display:block}
-#globeCv{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:none;outline:none}
+#globeCv{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:none;outline:none;will-change:transform;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 #globeCv:active{cursor:grabbing}#globeCv:focus-visible{box-shadow:inset 0 0 0 3px #fff;border-radius:50%}
 #globeBox .gctl{position:absolute;right:0;top:0;display:grid;gap:6px;justify-items:end}
 #globeBox button,#mapGlobe{all:unset;cursor:pointer;background:#0d0f14;color:var(--accent);font:17px/1 var(--vt);min-width:38px;height:38px;padding:0 9px;box-sizing:border-box;display:grid;place-items:center;box-shadow:0 0 0 2px #000,0 0 0 4px #2a2f3b}
@@ -4098,7 +4098,7 @@ const GlobePin=(()=>{
   }
   let cv=null,ctx=null,box=null,W=0,H=0,DPR=1,R0=0,lon=-35,lat=18,zoom=1,dirty=false,on=false,raf=0,anim=null,inertia=false,vel=[0,0],interacting=false;
   let data=null,pin=null,target=null,locked=false,crowd=[],ev=[0,0,0],nv=[0,0,0],cv3=[0,0,0],XS=null,YS=null,ZS=null,labelsV=null,pc=null;
-  let lo=null,lctx=null,mk=null,mctx=null,img=null;
+  let lo=null,lctx=null,img=null;
   const ptrs=new Map(); let moved=0,downT=0,lastMove=0,pinchD=0,ro=null;
   const $=id=>document.getElementById(id);
   const vec=(la,lo_)=>{ const p=la*D2R,l=lo_*D2R,cp=Math.cos(p); return [cp*Math.cos(l),cp*Math.sin(l),Math.sin(p)]; };
@@ -4107,7 +4107,10 @@ const GlobePin=(()=>{
   function build(){
     const w=WORLD_ALL; if(!w) return false; if(data) return true;
     let maxLen=0;
-    const pack=ring=>{ const a=new Float32Array(ring.length*3); for(let i=0;i<ring.length;i++){ const v=vec(ring[i][1],ring[i][0]); a[i*3]=v[0]; a[i*3+1]=v[1]; a[i*3+2]=v[2]; } if(ring.length>maxLen) maxLen=ring.length; return a; };
+    const pack=ring=>{ const a=new Float32Array(ring.length*3); for(let i=0;i<ring.length;i++){ const v=vec(ring[i][1],ring[i][0]); a[i*3]=v[0]; a[i*3+1]=v[1]; a[i*3+2]=v[2]; } if(ring.length>maxLen) maxLen=ring.length;
+      let mx=0,my=0,mz=0; for(let i=0;i<ring.length;i++){ mx+=a[i*3]; my+=a[i*3+1]; mz+=a[i*3+2]; } const h=Math.hypot(mx,my,mz);
+      if(h>1e-6){ mx/=h; my/=h; mz/=h; let mn=1; for(let i=0;i<ring.length;i++){ const d=a[i*3]*mx+a[i*3+1]*my+a[i*3+2]*mz; if(d<mn) mn=d; } a.c=[mx,my,mz,Math.sqrt(Math.max(0,1-mn*mn))]; }   // a cap around the ring: when it is wholly on the far side it is skipped
+      return a; };
     const collect=fc=>{ const out=[]; if(!fc) return out;
       const add=g=>{ if(!g) return; const t=g.type;
         if(t==='Polygon') g.coordinates.forEach(r=>out.push(pack(r)));
@@ -4122,7 +4125,7 @@ const GlobePin=(()=>{
     return true;
   }
   function basis(){ const p=lat*D2R,l=lon*D2R; cv3=[Math.cos(p)*Math.cos(l),Math.cos(p)*Math.sin(l),Math.sin(p)]; ev=[-Math.sin(l),Math.cos(l),0]; nv=[-Math.sin(p)*Math.cos(l),-Math.sin(p)*Math.sin(l),Math.cos(p)]; }
-  function project(a,m){ let any=false;
+  function project(a,m){ let any=false; if(a.c && a.c[0]*cv3[0]+a.c[1]*cv3[1]+a.c[2]*cv3[2] < -a.c[3]-.02) return false;
     for(let i=0;i<m;i++){ const x=a[i*3],y=a[i*3+1],z=a[i*3+2]; XS[i]=x*ev[0]+y*ev[1]+z*ev[2]; YS[i]=x*nv[0]+y*nv[1]+z*nv[2]; const d=x*cv3[0]+y*cv3[1]+z*cv3[2]; ZS[i]=d; if(d>0) any=true; }
     return any; }
   const cross=(ax,ay,az,bx,by,bz)=>{ const t=az/(az-bz), X=ax+(bx-ax)*t, Y=ay+(by-ay)*t, h=Math.hypot(X,Y)||1; return [X/h,Y/h]; };
@@ -4142,8 +4145,9 @@ const GlobePin=(()=>{
       px=x; py=y; pz=z; }
     pc.closePath();
   }
-  function addLine(a,cx,cy,R){      // an open line: only the part on this side
-    const m=a.length/3; if(m<2||!project(a,m)) return;
+  let minPts=2, lastCost=0;
+  function addLine(a,cx,cy,R){      // an open line: only the part on this side (tiny islands are skipped while spinning)
+    const m=a.length/3; if(m<minPts||!project(a,m)) return;
     for(let i=0;i<m;i++){ const x=XS[i],y=YS[i],z=ZS[i];
       if(i===0){ if(z>0) pc.moveTo(cx+R*x,cy-R*y); continue; }
       const px=XS[i-1],py=YS[i-1],pz=ZS[i-1];
@@ -4153,15 +4157,33 @@ const GlobePin=(()=>{
   }
   const kmPerPx=()=>6371/(R0*zoom);
   const fmtKm=k=>k>=10?Math.round(k)+' km':k>=1?k.toFixed(1)+' km':Math.round(k*1000)+' m';
-  /* the planet, painted in chunky pixels: land mask from the real outlines, then colour, light and dither per pixel (as on the title screen) */
+  /* The land/sea mask is drawn ONCE from the real outlines into a 3072x1536 world texture, so spinning only has to look pixels up
+     (re-drawing every country on every frame is what made the first version slow). */
+  const TW=3072, TH=1536; let tex=null, texBusy=false;
+  function buildTex(){
+    if(tex||texBusy||!WORLD_ALL) return; texBusy=true;
+    setTimeout(()=>{
+      try{
+        const c=document.createElement('canvas'); c.width=TW; c.height=TH; const g=c.getContext('2d',{willReadFrequently:true});
+        const X=l=>(l+180)/360*TW, Y=l=>(90-l)/180*TH;
+        const trace=(fc,off)=>{ g.beginPath(); const ring=r=>{ r.forEach((p,i)=>i?g.lineTo(X(p[0]+off),Y(p[1])):g.moveTo(X(p[0]+off),Y(p[1]))); g.closePath(); };
+          const add=gm=>{ if(!gm) return; const t=gm.type; if(t==='Polygon') gm.coordinates.forEach(ring); else if(t==='MultiPolygon') gm.coordinates.forEach(p=>p.forEach(ring)); else if(t==='GeometryCollection') gm.geometries.forEach(add); };
+          (fc.type==='FeatureCollection'?fc.features:[fc]).forEach(f=>add(f.type==='Feature'?f.geometry:f)); };
+        g.fillStyle='#fff';
+        [-360,0,360].forEach(off=>{ trace(WORLD_ALL.countries,off); g.fill(); });
+        if(WORLD_ALL.lakes){ g.globalCompositeOperation='destination-out'; [-360,0,360].forEach(off=>{ trace(WORLD_ALL.lakes,off); g.fill(); }); }
+        const d=g.getImageData(0,0,TW,TH).data, t=new Uint8Array(TW*TH); for(let i=0;i<t.length;i++) t[i]=d[i*4+3]>127?1:0;
+        tex=t; c.width=c.height=0; dirty=true;
+      }catch(e){ tex=null; }
+      texBusy=false;
+    },30);
+  }
+  /* the planet, painted in chunky pixels: colour, light and dither per pixel (as on the title screen) */
   function paintPlanet(cx,cy,R){
     const lw=Math.max(1,Math.ceil(W/PS)), lh=Math.max(1,Math.ceil(H/PS));
-    if(!lo){ lo=document.createElement('canvas'); lctx=lo.getContext('2d'); mk=document.createElement('canvas'); mctx=mk.getContext('2d',{willReadFrequently:true}); }
-    if(lo.width!==lw||lo.height!==lh){ lo.width=lw; lo.height=lh; mk.width=lw; mk.height=lh; img=lctx.createImageData(lw,lh); }
-    mctx.setTransform(1,0,0,1,0,0); mctx.clearRect(0,0,lw,lh); mctx.globalCompositeOperation='source-over'; mctx.fillStyle='#fff'; pc=mctx;
-    if(data){ mctx.beginPath(); data.countries.forEach(a=>addRing(a,cx/PS,cy/PS,R/PS)); mctx.fill();
-      if(data.lakes.length){ mctx.globalCompositeOperation='destination-out'; mctx.beginPath(); data.lakes.forEach(a=>addRing(a,cx/PS,cy/PS,R/PS)); mctx.fill(); mctx.globalCompositeOperation='source-over'; } }
-    const md=mctx.getImageData(0,0,lw,lh).data, d=img.data, rr=R/PS, ox=cx/PS, oy=cy/PS;
+    if(!lo){ lo=document.createElement('canvas'); lctx=lo.getContext('2d'); }
+    if(lo.width!==lw||lo.height!==lh){ lo.width=lw; lo.height=lh; img=lctx.createImageData(lw,lh); }
+    const d=img.data, rr=R/PS, ox=cx/PS, oy=cy/PS, T=tex;
     for(let y=0;y<lh;y++) for(let x=0;x<lw;x++){
       const i=(y*lw+x)*4, sx=(x+.5-ox)/rr, sy=-(y+.5-oy)/rr, r2=sx*sx+sy*sy;
       if(r2>1.1){ d[i+3]=0; continue; }
@@ -4170,9 +4192,8 @@ const GlobePin=(()=>{
       const la=Math.asin(Z<-1?-1:Z>1?1:Z)/D2R, lg=Math.atan2(Y,X)/D2R;
       const lit=Math.max(0,sx*-.55+sy*.45+sz*.7), k=Math.min(3,Math.floor((.25+lit*.9+(((x+y)&1)*.12))*3.2));
       let c;
-      if(md[i+3]>127) c=biome(la,lg)[k];
-      else if(la>79||la<-67) c=ICE[k];
-      else c=OCEAN[k];
+      if(T){ let tx=Math.floor((lg+180)/360*TW), ty=Math.floor((90-la)/180*TH); if(tx>=TW) tx=TW-1; if(ty>=TH) ty=TH-1; c=T[ty*TW+tx]?biome(la,lg)[k]:(la>79||la<-67?ICE[k]:OCEAN[k]); }
+      else c=la>79||la<-67?ICE[k]:OCEAN[k];
       if(r2>.9 && ((x^y)&1)) c=RIM;
       d[i]=c[0]; d[i+1]=c[1]; d[i+2]=c[2]; d[i+3]=255;
     }
@@ -4190,12 +4211,12 @@ const GlobePin=(()=>{
     ctx.restore();
   }
   function draw(){
-    dirty=false; if(!ctx||!on) return; basis();
+    dirty=false; if(!ctx||!on) return; const t0=performance.now(); basis();
     const cx=W/2, cy=H/2, R=R0*zoom;
     ctx.clearRect(0,0,W,H);
-    paintPlanet(cx,cy,R);
-    pc=ctx;
-    if(data){
+    paintPlanet(cx,cy,R); const t1=performance.now();
+    pc=ctx; minPts=(interacting||inertia)?14:2;
+    if(data && !((interacting||inertia) && lastCost>14)){        // on a slow phone the borders sit out while the globe is moving, then come back
       ctx.lineJoin='round'; ctx.lineWidth=1; ctx.strokeStyle='rgba(240,247,255,.62)'; ctx.beginPath(); data.countries.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke();
       if(zoom>=2.2 && !interacting){ ctx.strokeStyle='rgba(240,247,255,.34)'; ctx.setLineDash([2,3]); ctx.beginPath(); data.states.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke(); ctx.setLineDash([]); }
     }
@@ -4211,6 +4232,8 @@ const GlobePin=(()=>{
     if(locked&&target) drawMark(target,'#4fbf6a',locked?'REAL':null,cx,cy,R);
     if(pin) drawMark(pin,'#ff5d73',locked?'YOU':null,cx,cy,R);
     const rd=$('globeRead'); if(rd) rd.innerHTML='<b>'+zoom.toFixed(1)+'×</b> · ~'+fmtKm(kmPerPx())+'/px';
+    lastCost=performance.now()-t0;
+    if(window.__gb) window.__gb.push([t1-t0,performance.now()-t1]);
   }
   function drawLabels(cx,cy,R){
     if(!labelsV) return; const boxes=[];
@@ -4246,9 +4269,11 @@ const GlobePin=(()=>{
     const dxs=Math.abs(dot(a,e2)-dot(b,e2)), dys=Math.abs(dot(a,n2)-dot(b,n2)), Rn=Math.min(dxs<1e-4?1e9:W*.72/dxs, dys<1e-4?1e9:H*.55/dys, R0*12);
     flyTo(mlo,mla,Math.max(1,Math.min(12,Rn/R0)),ms);
   }
+  let lastT=0;
   function loop(now){ if(!on){ raf=0; return; }
     if(anim) anim(now);
-    if(inertia){ setView(lon+vel[0],lat+vel[1],zoom); vel=[vel[0]*.93,vel[1]*.93]; if(Math.abs(vel[0])+Math.abs(vel[1])<.01) inertia=false; }
+    if(inertia){ const dt=lastT?Math.min(40,now-lastT):16; setView(lon+vel[0]*dt,lat+vel[1]*dt,zoom); const f=Math.exp(-dt/330); vel=[vel[0]*f,vel[1]*f]; if(Math.hypot(vel[0],vel[1])*(R0*zoom)/(180/Math.PI)<.012) inertia=false; }
+    lastT=inertia?now:0;
     if(dirty) draw(); raf=requestAnimationFrame(loop); }
   function sizeBox(){
     const m=$('map'); if(!m||!box) return;
@@ -4269,17 +4294,19 @@ const GlobePin=(()=>{
   }
   function wire(){
     cv.addEventListener('pointerdown',e=>{ cv.setPointerCapture(e.pointerId); ptrs.set(e.pointerId,[e.clientX,e.clientY]); anim=null; inertia=false;
-      if(ptrs.size===1){ moved=0; downT=performance.now(); vel=[0,0]; } else { const a=[...ptrs.values()]; pinchD=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]); moved=99; } interacting=true; });
+      if(ptrs.size===1){ moved=0; downT=performance.now(); lastMove=downT; vel=[0,0]; } else { const a=[...ptrs.values()]; pinchD=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]); moved=99; } interacting=true; });
     cv.addEventListener('pointermove',e=>{ if(!ptrs.has(e.pointerId)) return; const p=ptrs.get(e.pointerId), dx=e.clientX-p[0], dy=e.clientY-p[1]; ptrs.set(e.pointerId,[e.clientX,e.clientY]);
-      if(ptrs.size===1){ moved+=Math.hypot(dx,dy); if(moved<5) return; const k=(180/Math.PI)/(R0*zoom); setView(lon-dx*k,lat+dy*k,zoom); vel=[-dx*k,dy*k]; lastMove=performance.now(); }
+      if(ptrs.size===1){ moved+=Math.hypot(dx,dy); if(moved<5) return; const k=(180/Math.PI)/(R0*zoom), now=performance.now(), dt=Math.max(4,now-lastMove); setView(lon-dx*k,lat+dy*k,zoom);
+        vel=[vel[0]*.6+(-dx*k/dt)*.4, vel[1]*.6+(dy*k/dt)*.4]; lastMove=now; }   // smoothed speed in degrees per millisecond, so a flick feels the same on any frame rate
       else if(ptrs.size===2){ const a=[...ptrs.values()], d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]); if(pinchD>0) setView(lon,lat,zoom*d/pinchD); pinchD=d; } });
     const up=e=>{ if(!ptrs.has(e.pointerId)) return; const one=ptrs.size===1; ptrs.delete(e.pointerId);
       if(ptrs.size===0){ interacting=false; dirty=true;
         if(one && moved<6 && performance.now()-downT<500){
           if(locked){ if(document.body.classList.contains('pinned')) toggleMapSize(); return; }      // tap the strip to expand it
           const r=cv.getBoundingClientRect(), ll=inv(e.clientX-r.left,e.clientY-r.top); if(ll) tapAt(ll); }
-        else if(performance.now()-lastMove<80 && Math.abs(vel[0])+Math.abs(vel[1])>.05) inertia=true; } };
+        else if(performance.now()-lastMove<90 && Math.hypot(vel[0],vel[1])*(R0*zoom)/(180/Math.PI)>.05){ inertia=true; lastT=0; } } };
     cv.addEventListener('pointerup',up); cv.addEventListener('pointercancel',up);
+    ['touchstart','touchmove','touchend'].forEach(t=>cv.addEventListener(t,e=>{ e.stopPropagation(); if(t==='touchmove') e.preventDefault(); },{passive:false}));   // the page behind never sees (or scrolls from) a spin
     cv.addEventListener('wheel',e=>{ e.preventDefault(); setView(lon,lat,zoom*Math.exp(-Math.max(-120,Math.min(120,e.deltaY))*.0016)); },{passive:false});
     cv.addEventListener('keydown',e=>{ const k=8/zoom, m={ArrowLeft:[-k,0],ArrowRight:[k,0],ArrowUp:[0,k],ArrowDown:[0,-k]}[e.key];
       if(m){ e.preventDefault(); setView(lon+m[0],lat+m[1],zoom); } else if(e.key==='+'||e.key==='=') setView(lon,lat,zoom*1.3); else if(e.key==='-') setView(lon,lat,zoom/1.3);
@@ -4294,7 +4321,7 @@ const GlobePin=(()=>{
   const pref=()=>{ try{ return localStorage.getItem('ff_globe')!=='0'; }catch(e){ return true; } };
   function ensure(){ if(!cv){ cv=$('globeCv'); ctx=cv.getContext('2d'); box=$('globeBox'); wire(); } }
   function show(){
-    ensure(); build(); on=true; locked=false; target=null; crowd=[]; $('mapWrap').classList.remove('globeRes'); $('mapWrap').classList.add('globeOn'); $('mapGlobe').hidden=true; sizeBox();
+    ensure(); build(); buildTex(); on=true; locked=false; target=null; crowd=[]; $('mapWrap').classList.remove('globeRes'); $('mapWrap').classList.add('globeOn'); $('mapGlobe').hidden=true; sizeBox();
     pin=guessLL?[guessLL.lng,guessLL.lat]:null; anim=null; inertia=false;
     if(pin) setView(pin[0],pin[1],zoom>1?zoom:1); else setView(-35,18,1);
     if(!guessLL) $('btnGuess').textContent='TAP A REGION TO ZOOM IN';
@@ -4311,7 +4338,7 @@ const GlobePin=(()=>{
     /* LOCK IN in globe mode: keep the globe, show the real spot and frame both; the page then shrinks it to the strip */
     result(actual){ if(!on) return; locked=true; target=actual; $('mapWrap').classList.add('globeRes'); $('mapToggle').textContent='⤢ Expand globe'; sizeBox(); fit(900); dirty=true; },
     setCrowd(list){ crowd=list||[]; dirty=true; },
-    hide, dataReady(){ if(on&&build()) dirty=true; },
+    hide, dataReady(){ if(build()){ buildTex(); dirty=true; } },
     active:()=>on
   };
 })();
