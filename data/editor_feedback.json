@@ -539,6 +539,12 @@
    "before": "All 61 church windows surveyed in {} are thicker at the bottom, as the glass has flowed down",
    "after": "Couple, both 98, marry in {} after a 79-year engagement that began on 29 February 1947",
    "why": "the window-glass survey would be too dull to run as a real story; replaced by a heartwarming long engagement with a calendar slip (no 29 February in 1947)"
+  },
+  {
+   "kind": "hint",
+   "before": "a village in Nollywood's homeland",
+   "after": "a village in the home of Nollywood, the 2nd-largest continent's film hub",
+   "why": "owner: few players know Nollywood, so the clue must also place it by continent; pair a niche term with the continent's rank or a well-known fact"
   }
  ]
 }
