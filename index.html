@@ -701,15 +701,15 @@ svg.leaflet-image-layer.leaflet-interactive path {
 #summary #digLog,#final.news #digLog,#summary #sumCurve,#final.news #sumCurve{image-rendering:auto}   /* the summary's blanket pixelated rule made these two charts stair-step */
 
 /* home buttons under I'M READY, and the full pages they open */
-#homeBtns{display:none;flex-direction:column;gap:6px;margin-top:0}   /* the ready button's lowest point (its rest position) touches the tiles */
+#homeBtns{display:none;flex-direction:column;gap:5px;margin-top:0}   /* the ready button's lowest point (its rest position) touches the tiles */
 body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
-#homeBtns .hr{display:flex;gap:6px}
-#homeBtns .ht{all:unset;box-sizing:border-box;flex:1 1 0;min-width:0;cursor:pointer;text-align:center;background:#141821;border:2px solid #2a2f3b;padding:7px 2px 6px;position:relative;box-shadow:2px 2px 0 #000;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+#homeBtns .hr{display:flex;gap:5px}
+#homeBtns .ht{all:unset;box-sizing:border-box;flex:1 1 0;min-width:0;cursor:pointer;text-align:center;background:#141821;border:2px solid #2a2f3b;padding:4px 2px 4px;position:relative;box-shadow:2px 2px 0 #000;min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
 #homeBtns .ht[hidden]{display:none}
 #homeBtns .ht:active{transform:translate(1px,1px);box-shadow:1px 1px 0 #000}
 #homeBtns .ht:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-#homeBtns svg{width:18px;height:18px;color:var(--cyan)}
-#homeBtns .blk{font:8px/18px var(--px);color:var(--accent);height:18px}
+#homeBtns svg{width:15px;height:15px;color:var(--cyan)}
+#homeBtns .blk{font:8px/15px var(--px);color:var(--accent);height:15px}
 #homeBtns .ht.hot{border-color:var(--cyan);background:#10202c}
 #homeBtns .hn{font:6px/1.35 var(--px);letter-spacing:.05em;color:#c8cfdd;text-transform:uppercase}
 #homeBtns .hs{font:17px/1 var(--vt);color:var(--accent)}
@@ -6624,7 +6624,7 @@ const Intro=(function(){
     const tb=top.hidden ? 120 : top.getBoundingClientRect().bottom;
     const bar=$('bar'), bb=narrow && bar && bar.getClientRects().length ? bar.getBoundingClientRect().top : innerHeight-16;   // a fixed bar has no offsetParent, so test that it is drawn instead
     const GAP=11, room=Math.max(80,bb-tb-GAP-2);
-    const Rpx=Math.min(innerWidth*(narrow?0.49:0.3), room/2-(narrow?0:14)), eyPx=tb+GAP+Rpx;   // tucked right under How to play
+    const Rpx=Math.min(innerWidth*(narrow?0.49:0.3), room/2-(narrow?0:14)), eyPx=tb+GAP+Math.max(0,(room-2*Rpx)/2)+Rpx;   // spare height (planet limited by width) is split above and below, so the earth sits centred   // tucked right under How to play
     IP={R:Rpx/PX, ey:eyPx/PX};
   }
   const idlePos=()=>IP || {R:Math.min(w,h)*0.32, ey:h*0.6};
