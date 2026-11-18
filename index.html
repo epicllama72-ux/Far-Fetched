@@ -4894,11 +4894,13 @@ function loadIssues(){
 }
 const BACK_FREE=5;    // back issues on offer: the most recent 5 earlier papers. Every older paper stays stored (data/*.json, issues.json) for later.
 const backWindow=()=>ISSUES.filter(x=>x && x.date && x.date<dayKey()).sort((a,b)=>a.date<b.date?1:-1).slice(0,BACK_FREE);
+/* a past paper counts as played if it was played live (the history) or later as a back issue; the live result wins */
+function backResult(date,kind){ const h=(load('ff_hist')||{})[date+':'+kind]; if(h) return Object.assign({live:true},h); return load('ff_back:'+date+':'+kind); }
 function renderIssues(){
   const past=backWindow();
   $('mBack').hidden=!past.length;
   $('backList').innerHTML=past.map(x=>{
-    const done=load('ff_back:'+x.date+':call');
+    const done=backResult(x.date,'call');
     return '<button data-d="'+x.date+'">#'+issueNumber(x.date)+' · '+fmtDate(x.date)+(done?' <small>✓ '+fmtM(done.m)+'</small>':'')+'</button>';
   }).join('');
   $('backList').querySelectorAll('button').forEach(b=>b.onclick=()=>openBackIssue(b.dataset.d));
@@ -6231,9 +6233,9 @@ HPAGES.account={title:'Account',render(){
 
 /* BACK ISSUES */
 HPAGES.back={title:'Back issues',render(){
-  const w=backWindow(); const st=(d,k)=>load('ff_back:'+d+':'+k);
+  const w=backWindow(); const st=(d,k)=>backResult(d,k);
   $('hpBody').innerHTML=hpCard('','','<p class="sm">The last '+BACK_FREE+' papers stay open. Back issues don\'t count toward your streak or the standings.</p>')
-    +w.map(x=>{ const c=st(x.date,'call'), b=st(x.date,'blank'); const cell=(k,name,r)=>'<div><p>'+name+'</p><p class="sm">'+(r?'Played · '+fmtPts(r.score)+' pts':'Not played')+'</p><button class="b2'+(r?' ghost':'')+'" data-d="'+x.date+'" data-k="'+k+'" type="button" style="margin-top:4px;'+(r?'':'')+'">'+(r?'Replay':'Play')+'</button></div>'; return hpCard(fmtDate(x.date).toUpperCase(),'No. '+issueNumber(x.date),'<div class="g2">'+cell('call','Daily Dig',c)+cell('blank','Fill the Blank',b)+'</div>'); }).join('')
+    +w.map(x=>{ const c=st(x.date,'call'), b=st(x.date,'blank'); const cell=(k,name,r)=>'<div><p>'+name+'</p><p class="sm">'+(r?(r.live?'Played live · ':'Played · ')+(k!=='blank'&&+r.m>0?fmtM(r.m)+' · ':'')+fmtPts(r.score)+' pts':'Not played')+'</p><button class="b2'+(r?' ghost':'')+'" data-d="'+x.date+'" data-k="'+k+'" type="button" style="margin-top:4px;'+(r?'':'')+'">'+(r?'Replay':'Play')+'</button></div>'; return hpCard(fmtDate(x.date).toUpperCase(),'No. '+issueNumber(x.date),'<div class="g2">'+cell('call','Daily Dig',c)+cell('blank','Fill the Blank',b)+'</div>'); }).join('')
     +hpCard('OLDER ISSUES','','<p class="sm">Every earlier story is in Practice, with nothing counting.</p>');
   document.querySelectorAll('#hpBody button[data-d]').forEach(b=>{ if(b.classList.contains('ghost')){ b.style.color='#1b1813'; } b.onclick=()=>{ KIND=b.dataset.k; hpClose(); openBackIssue(b.dataset.d); }; });
 }};
