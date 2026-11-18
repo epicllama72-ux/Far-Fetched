@@ -698,7 +698,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 
 #sumCurve{image-rendering:auto}
-#summary #digLog,#final.news #digLog{image-rendering:auto}
+#summary #digLog,#final.news #digLog,#summary #sumCurve,#final.news #sumCurve{image-rendering:auto}   /* the summary's blanket pixelated rule made these two charts stair-step */
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -5278,7 +5278,7 @@ async function loadBoard(kind){
 function drawCurve(rows, mine, cvEl){
   /* Bell curve of today's dig depths in ink on newsprint: a smoothed curve with a red wash under it, a red YOU line ending in a dot on the curve,
      and "YOU" standing where its tick number would be. Depths are in metres in the data; the chart is in kilometres. */
-  const cv=cvEl||$('curve'), K=2;
+  const cv=cvEl||$('curve'), K=Math.min(4,Math.max(2,Math.ceil(window.devicePixelRatio||2)));   // draw at the screen's own pixel density so the browser never has to stretch the picture
   if(!cv.dataset.w0){ cv.dataset.w0=cv.width; cv.dataset.h0=cv.height; }
   const W=cv.width=+cv.dataset.w0*K, H=cv.height=+cv.dataset.h0*K, g=cv.getContext('2d');
   const INK='#1b1813', RED='#a8231a', DIM='#5a5043', GRID='rgba(27,24,19,.14)';
