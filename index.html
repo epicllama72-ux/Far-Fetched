@@ -4276,11 +4276,12 @@ const GlobePin=(()=>{
     if(inertia){ const dt=lastT?Math.min(40,now-lastT):16; setView(lon+vel[0]*dt,lat+vel[1]*dt,zoom); const f=Math.exp(-dt/330); vel=[vel[0]*f,vel[1]*f]; if(Math.hypot(vel[0],vel[1])*(R0*zoom)/(180/Math.PI)<.012) inertia=false; }
     lastT=inertia?now:0;
     if(dirty) draw(); raf=requestAnimationFrame(loop); }
-  function sizeBox(){
+  function sizeBox(keepPx){
     const m=$('map'); if(!m||!box) return;
     box.style.left=m.offsetLeft+'px'; box.style.top=m.offsetTop+'px'; box.style.width=m.offsetWidth+'px'; box.style.height=m.offsetHeight+'px';
     const r=box.getBoundingClientRect(), nd=Math.min(2,window.devicePixelRatio||1), cw=Math.max(1,Math.round(r.width*nd)), ch=Math.max(1,Math.round(r.height*nd));
     W=r.width; H=r.height; DPR=nd; R0=Math.min(W,H)/2*.92;
+    if(keepPx) zoom=Math.max(.2,Math.min(12,keepPx/R0));     // while the panel changes size the planet keeps its on-screen size; only the window crops it
     if(cv.width!==cw||cv.height!==ch){ cv.width=cw; cv.height=ch; }      // resizing a canvas wipes it, so repaint in the same breath
     ctx.setTransform(DPR,0,0,DPR,0,0); dirty=true; if(on) draw();
   }
@@ -4318,7 +4319,9 @@ const GlobePin=(()=>{
     $('globeHome').onclick=()=>{ if(locked) fit(500); else { flyTo(pin?pin[0]:-35,18,1,500); if(!guessLL) $('btnGuess').textContent='TAP A REGION TO ZOOM IN'; } };
     $('globeFlat').onclick=()=>swap(false); $('mapGlobe').onclick=()=>swap(true);
     window.addEventListener('resize',()=>{ if(on) sizeBox(); });
-    if(window.ResizeObserver){ ro=new ResizeObserver(()=>{ if(on){ sizeBox(); if(locked) fit(0); } }); ro.observe($('map')); }
+    if(window.ResizeObserver){ ro=new ResizeObserver(()=>{ if(!on) return;
+        if(locked){ const Rpx=R0*zoom; anim=null; sizeBox(Rpx); clearTimeout(fitT); fitT=setTimeout(()=>{ if(on&&locked) fit(380); },170); }   // the panel shrinks in steps: hold the picture steady, then ease to the final framing
+        else sizeBox(); }); ro.observe($('map')); }
     $('map').appendChild($('mapGlobe')); L.DomEvent.disableClickPropagation($('mapGlobe'));
   }
   const pref=()=>{ try{ return localStorage.getItem('ff_globe')!=='0'; }catch(e){ return true; } };
@@ -4330,9 +4333,9 @@ const GlobePin=(()=>{
     if(!guessLL) $('btnGuess').textContent='TAP A REGION TO ZOOM IN';
     dirty=true; draw(); if(!raf) raf=requestAnimationFrame(loop);
   }
-  let hideT=0;
+  let hideT=0, fitT=0;
   /* hide(): the globe stops drawing but its last frame stays up while the map panel slides away, then the classes go (hide(true) is immediate) */
-  function hide(now){ on=false; locked=false; target=null; crowd=[]; if(raf){ cancelAnimationFrame(raf); raf=0; } clearTimeout(hideT);
+  function hide(now){ on=false; locked=false; target=null; crowd=[]; clearTimeout(fitT); if(raf){ cancelAnimationFrame(raf); raf=0; } clearTimeout(hideT);
     const end=()=>{ const w=$('mapWrap'); if(w) w.classList.remove('globeOn','globeRes'); const g=$('mapGlobe'); if(g) g.hidden=true; };
     if(now===true) end(); else hideT=setTimeout(end,1000); }
   function swap(toGlobe){
