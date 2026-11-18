@@ -4520,7 +4520,7 @@ function submitGuess(timedOut){
       document.body.classList.add('pinned','pinDone');
       setTimeout(()=>{ map.invalidateSize(); if(guessLL) map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.5),{maxZoom:4.5,animate:false}); else map.setView(actual,5,{animate:false}); aim(); releaseJaw(); },420);
     }
-  },GlobePin.active()?2700:650);      // globe: stay big a moment longer, showing your pin against the real spot, then shrink to the little round globe
+  },GlobePin.active()?1350:650);      // globe: stay big a moment longer, showing your pin against the real spot, then shrink to the little round globe
 }
 
 /* how many other players today's fake fooled, in the popup where a pin shows "Closer than X%" */
