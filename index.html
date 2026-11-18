@@ -4251,7 +4251,7 @@ function next(){
   clearDelta();   // the gain goes when the next headline comes
   if(S.holdJaw){ clearTimeout(S._holdT); S.holdJaw=false; S.holdSound=false; S.pendPop=null; Scene.setJaw(jawPoints()*S.jawK); }   // moved on before the jaw was let go
   S.i++;
-  if(S.i<S.rounds.length) Sound.play('flip');
+  if(S.i<S.rounds.length){ Sound.play('flip'); track('r'+(S.i+1)); }
   window.scrollTo({top:0});
   if(S.i>=S.rounds.length) finish(false); else if(S.kind==='blank') showBlankRound(); else showRound();
 }
@@ -4409,6 +4409,7 @@ function drawDigLog(){
 }
 
 function finish(restored){
+  if(!restored) track('done');
   stopTimer(); cancelAnimationFrame(SPEED_RAF);
   $('unlockBox').hidden=true; S.newUnlocks=[]; S.froze=S.earnedFreeze=false;
   $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone','answered');
@@ -5944,8 +5945,20 @@ window.addEventListener('pageshow',()=>settleBar(true)); window.addEventListener
 window.addEventListener('resize',()=>settleBar()); window.addEventListener('orientationchange',()=>settleBar(true));
 document.addEventListener('focusout',()=>setTimeout(liftBar,50));
 
+/* start-to-finish funnel: GoatCounter events like "play/daily/call/r1" (first headline reached), "r2".."r7", "done". Each fires once per player per day, mode and step. */
+function track(step){
+  try{
+    if(!S || !window.goatcounter || !window.goatcounter.count) return;
+    const path='play/'+S.mode+'/'+S.kind+'/'+step, key=dayKey()+':'+path;
+    let seen; try{ seen=JSON.parse(localStorage.getItem('ff_trk')||'{}'); }catch(e){ seen={}; }
+    if(seen[key]) return;
+    Object.keys(seen).forEach(k=>{ if(k.slice(0,10)!==dayKey()) delete seen[k]; }); seen[key]=1;
+    try{ localStorage.setItem('ff_trk',JSON.stringify(seen)); }catch(e){}
+    window.goatcounter.count({path:path,title:path,event:true});
+  }catch(e){}
+}
 $('btnStart').onclick=()=>{
-  homeFold();
+  homeFold(); if(S && S.i===0 && !S.results.length) track('r1');
   const begin=()=>{ if(S.kind==='blank') startBlankRound(); else startCallRound(); };
   if(Intro.diving()) return;                        // already on the way down
   if(Intro.active()){ $('btnStart').disabled=true; Intro.go(()=>{ $('btnStart').disabled=false; begin(); }); return; }
