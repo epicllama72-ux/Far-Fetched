@@ -1063,6 +1063,7 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #globeBox button:focus-visible,#mapGlobe:focus-visible{outline:3px solid #fff}
 body.pinned #mapWrap.globeOn #map{height:104px;min-height:104px}
 #mapWrap.globeRes #globeFlat{display:none}
+#mapWrap.swapOff #globeFlat,#mapWrap.swapOff #mapGlobe{display:none!important}   /* once a pin is down, no switching between globe and flat map until the next map */
 body.pinned #mapWrap.globeRes .gctl,body.pinned #mapWrap.globeRes #globeHome,body.pinned #mapWrap.globeRes #globeRead{display:none}
 body.pinned #mapWrap.globeRes #globeBox{background:#05060b;box-shadow:0 0 0 3px var(--accent),0 0 0 6px #000;overflow:hidden}
 #globeBox #globeHome{position:absolute;left:0;bottom:0;z-index:3}
@@ -4287,7 +4288,7 @@ const GlobePin=(()=>{
   }
   function inv(x,y){ const sx=(x-W/2)/(R0*zoom), sy=-(y-H/2)/(R0*zoom), r2=sx*sx+sy*sy; if(r2>1) return null; basis(); const sz=Math.sqrt(1-r2);
     const X=sx*ev[0]+sy*nv[0]+sz*cv3[0], Y=sx*ev[1]+sy*nv[1]+sz*cv3[1], Z=sx*ev[2]+sy*nv[2]+sz*cv3[2]; return [Math.atan2(Y,X)/D2R,Math.asin(Math.max(-1,Math.min(1,Z)))/D2R]; }
-  function drop(ll){ if(S.phase!=='pin'||locked) return; pin=[ll[0],ll[1]]; guessLL=L.latLng(ll[1],ll[0]).wrap(); layer.clearLayers();
+  function drop(ll){ if(S.phase!=='pin'||locked) return; pin=[ll[0],ll[1]]; guessLL=L.latLng(ll[1],ll[0]).wrap(); $('mapWrap').classList.add('swapOff'); layer.clearLayers();
     WORLDS.forEach(dx=>L.marker([guessLL.lat,guessLL.lng+dx],{icon:L.divIcon({className:'pinGuess',html:'<i></i>',iconSize:[20,20],iconAnchor:[10,10]}),interactive:false}).addTo(layer));
     try{ Sound.play('pin'); }catch(e){} $('btnGuess').disabled=false; $('btnGuess').textContent='LOCK IN'; dirty=true; }
   /* like the flat map: the first tap on a region zooms in, the next one drops the pin */
@@ -4344,7 +4345,7 @@ const GlobePin=(()=>{
     else { hide(true); map.invalidateSize(); $('mapGlobe').hidden=false; if(guessLL){ map.setView(guessLL,Math.max(map.getZoom(),4.5),{animate:false}); $('btnGuess').textContent='LOCK IN'; } else { if(MAP_HOME) MAP_HOME(); $('btnGuess').textContent='TAP A REGION TO ZOOM IN'; } }
   }
   return {
-    sync(){ if(pref()) show(); else { hide(true); ensure(); $('mapGlobe').hidden=false; } },
+    sync(){ $('mapWrap').classList.remove('swapOff'); if(pref()) show(); else { hide(true); ensure(); $('mapGlobe').hidden=false; } },
     /* LOCK IN in globe mode: keep the globe, show the real spot and frame both; the page then shrinks it to the strip */
     result(actual){ if(!on) return; locked=true; target=actual; $('mapWrap').classList.add('globeRes'); $('mapToggle').textContent='⤢ Expand globe'; sizeBox(); fit(900); dirty=true; },
     setCrowd(list){ crowd=list||[]; dirty=true; },
@@ -4412,7 +4413,7 @@ function openMap(){
         $('btnGuess').textContent='NOW DROP YOUR PIN';
         return;
       }
-      guessLL = e.latlng.wrap();
+      guessLL = e.latlng.wrap(); $('mapWrap').classList.add('swapOff');
       layer.clearLayers();
       WORLDS.forEach(dx=>L.marker([guessLL.lat,guessLL.lng+dx],{icon:L.divIcon({className:'pinGuess',html:'<i></i>',iconSize:[20,20],iconAnchor:[10,10]}),interactive:false}).addTo(layer));
       Sound.play('pin');
