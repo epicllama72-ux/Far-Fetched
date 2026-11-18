@@ -298,15 +298,15 @@
    "i": 2,
    "h": "Pensioner in {} wins a cook-off in a medieval monk's habit with a 1290 tomato sauce recipe",
    "tell": "Tomatoes came to Europe from the Americas after 1500, so no 1290 recipe could use them.",
-   "n": 1919,
-   "pct": 37.6
+   "n": 1920,
+   "pct": 37.7
   },
   {
    "day": "2026-11-16",
    "i": 5,
    "h": "Mayor in a spacesuit unveils a 60-metre rooftop sign in {} for astronauts on the Moon to read",
    "tell": "From the Moon, about 384,000 km away, a 60-metre sign is far too small to see, let alone read.",
-   "n": 1919,
+   "n": 1920,
    "pct": 28.1
   },
   {
@@ -314,16 +314,32 @@
    "i": 2,
    "h": "Hiker in a Santa suit is saved in {} after rescuers warm his core with 3 shots of whisky",
    "tell": "Alcohol widens blood vessels and speeds up heat loss, so it does not warm the body's core.",
-   "n": 217,
-   "pct": 44.7
+   "n": 2232,
+   "pct": 46.9
   },
   {
    "day": "2026-11-17",
    "i": 5,
    "h": "Daredevil in a tuxedo rides a Ferris wheel in {} for 19 days, logging 4,310 laps of 35 minutes each",
    "tell": "19 days is 27,360 minutes, which fits about 781 laps of 35 minutes, not 4,310.",
-   "n": 217,
-   "pct": 39.6
+   "n": 2232,
+   "pct": 37.5
+  },
+  {
+   "day": "2026-11-18",
+   "i": 4,
+   "h": "Couple, both 98, marry in {} after a 79-year engagement that began on 29 February 1947",
+   "tell": "1947 was not a leap year, so there was no 29 February that year.",
+   "n": 170,
+   "pct": 59.4
+  },
+  {
+   "day": "2026-11-18",
+   "i": 6,
+   "h": "Twin brothers in matching tutus walk free in {} as police find their fingerprints are identical",
+   "tell": "Even identical twins have different fingerprints.",
+   "n": 170,
+   "pct": 28.8
   }
  ]
 }
