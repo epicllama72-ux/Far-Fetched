@@ -511,7 +511,7 @@
   {
    "kind": "fake",
    "before": "Fraudster in a silk robe sells 52 'Han dynasty fortune cookies' to collectors in {}",
-   "after": "Man in a pirate hat robs a bank in {} with a plastic cutlass, flees 9 km by unicycle in 4 minutes",
+   "after": "Man in a pirate hat robs a bank in {} with a toy cutlass, flees 9 km by unicycle in 4 minutes",
    "why": "owner wanted a better fake that copies the real stories' format (a person, a vivid concrete chain with numbers, deadpan) with one quiet inconsistency checkable from the headline: here the arithmetic of a unicycle getaway"
   }
  ]
