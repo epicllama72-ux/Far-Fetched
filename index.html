@@ -1065,7 +1065,8 @@ body.pinned #mapWrap.globeOn #map{height:104px;min-height:104px}
 #mapWrap.globeRes #globeFlat{display:none}
 body.pinned #mapWrap.globeRes .gctl,body.pinned #mapWrap.globeRes #globeHome,body.pinned #mapWrap.globeRes #globeRead{display:none}
 body.pinned #mapWrap.globeRes #globeBox{background:#05060b;box-shadow:0 0 0 3px var(--accent),0 0 0 6px #000;overflow:hidden}
-#globeHome{position:absolute;left:0;bottom:0}
+#globeBox #globeHome{position:absolute;left:0;bottom:0;z-index:3}
+#globeBox .gctl{z-index:3}
 #globeRead{position:absolute;right:0;bottom:2px;font:15px/1 var(--vt);color:#9fb0d4;background:rgba(5,6,11,.7);padding:3px 6px;pointer-events:none}#globeRead b{color:var(--accent);font-weight:400}
 #mapGlobe{position:absolute;right:8px;top:8px;z-index:900}#mapGlobe[hidden]{display:none}
 #mapWorld{position:absolute;left:8px;bottom:8px;z-index:900;font:17px/1 var(--vt);padding:6px 9px;background:var(--panel);color:var(--accent);box-shadow:0 0 0 2px var(--ink);border:0;cursor:pointer}#mapWorld[hidden]{display:none}
@@ -4278,8 +4279,10 @@ const GlobePin=(()=>{
   function sizeBox(){
     const m=$('map'); if(!m||!box) return;
     box.style.left=m.offsetLeft+'px'; box.style.top=m.offsetTop+'px'; box.style.width=m.offsetWidth+'px'; box.style.height=m.offsetHeight+'px';
-    const r=box.getBoundingClientRect(); W=r.width; H=r.height; DPR=Math.min(2,window.devicePixelRatio||1);
-    cv.width=Math.max(1,Math.round(W*DPR)); cv.height=Math.max(1,Math.round(H*DPR)); ctx.setTransform(DPR,0,0,DPR,0,0); R0=Math.min(W,H)/2*.92; dirty=true;
+    const r=box.getBoundingClientRect(), nd=Math.min(2,window.devicePixelRatio||1), cw=Math.max(1,Math.round(r.width*nd)), ch=Math.max(1,Math.round(r.height*nd));
+    W=r.width; H=r.height; DPR=nd; R0=Math.min(W,H)/2*.92;
+    if(cv.width!==cw||cv.height!==ch){ cv.width=cw; cv.height=ch; }      // resizing a canvas wipes it, so repaint in the same breath
+    ctx.setTransform(DPR,0,0,DPR,0,0); dirty=true; if(on) draw();
   }
   function inv(x,y){ const sx=(x-W/2)/(R0*zoom), sy=-(y-H/2)/(R0*zoom), r2=sx*sx+sy*sy; if(r2>1) return null; basis(); const sz=Math.sqrt(1-r2);
     const X=sx*ev[0]+sy*nv[0]+sz*cv3[0], Y=sx*ev[1]+sy*nv[1]+sz*cv3[1], Z=sx*ev[2]+sy*nv[2]+sz*cv3[2]; return [Math.atan2(Y,X)/D2R,Math.asin(Math.max(-1,Math.min(1,Z)))/D2R]; }
@@ -4321,20 +4324,24 @@ const GlobePin=(()=>{
   const pref=()=>{ try{ return localStorage.getItem('ff_globe')!=='0'; }catch(e){ return true; } };
   function ensure(){ if(!cv){ cv=$('globeCv'); ctx=cv.getContext('2d'); box=$('globeBox'); wire(); } }
   function show(){
-    ensure(); build(); buildTex(); on=true; locked=false; target=null; crowd=[]; $('mapWrap').classList.remove('globeRes'); $('mapWrap').classList.add('globeOn'); $('mapGlobe').hidden=true; sizeBox();
+    ensure(); clearTimeout(hideT); build(); buildTex(); on=true; locked=false; target=null; crowd=[]; $('mapWrap').classList.remove('globeRes'); $('mapWrap').classList.add('globeOn'); $('mapGlobe').hidden=true; sizeBox();
     pin=guessLL?[guessLL.lng,guessLL.lat]:null; anim=null; inertia=false;
     if(pin) setView(pin[0],pin[1],zoom>1?zoom:1); else setView(-35,18,1);
     if(!guessLL) $('btnGuess').textContent='TAP A REGION TO ZOOM IN';
-    dirty=true; if(!raf) raf=requestAnimationFrame(loop);
+    dirty=true; draw(); if(!raf) raf=requestAnimationFrame(loop);
   }
-  function hide(){ on=false; locked=false; target=null; crowd=[]; if(raf){ cancelAnimationFrame(raf); raf=0; } const w=$('mapWrap'); if(w) w.classList.remove('globeOn','globeRes'); const g=$('mapGlobe'); if(g) g.hidden=true; }
+  let hideT=0;
+  /* hide(): the globe stops drawing but its last frame stays up while the map panel slides away, then the classes go (hide(true) is immediate) */
+  function hide(now){ on=false; locked=false; target=null; crowd=[]; if(raf){ cancelAnimationFrame(raf); raf=0; } clearTimeout(hideT);
+    const end=()=>{ const w=$('mapWrap'); if(w) w.classList.remove('globeOn','globeRes'); const g=$('mapGlobe'); if(g) g.hidden=true; };
+    if(now===true) end(); else hideT=setTimeout(end,1000); }
   function swap(toGlobe){
     try{ localStorage.setItem('ff_globe',toGlobe?'1':'0'); }catch(e){}
     if(toGlobe){ const c=map.getCenter(), hadPin=!!guessLL; show(); if(!hadPin) setView(c.lng,c.lat,map.getZoom()>=3.5?4:1); }
-    else { hide(); map.invalidateSize(); $('mapGlobe').hidden=false; if(guessLL){ map.setView(guessLL,Math.max(map.getZoom(),4.5),{animate:false}); $('btnGuess').textContent='LOCK IN'; } else { if(MAP_HOME) MAP_HOME(); $('btnGuess').textContent='TAP A REGION TO ZOOM IN'; } }
+    else { hide(true); map.invalidateSize(); $('mapGlobe').hidden=false; if(guessLL){ map.setView(guessLL,Math.max(map.getZoom(),4.5),{animate:false}); $('btnGuess').textContent='LOCK IN'; } else { if(MAP_HOME) MAP_HOME(); $('btnGuess').textContent='TAP A REGION TO ZOOM IN'; } }
   }
   return {
-    sync(){ if(pref()) show(); else { hide(); ensure(); $('mapGlobe').hidden=false; } },
+    sync(){ if(pref()) show(); else { hide(true); ensure(); $('mapGlobe').hidden=false; } },
     /* LOCK IN in globe mode: keep the globe, show the real spot and frame both; the page then shrinks it to the strip */
     result(actual){ if(!on) return; locked=true; target=actual; $('mapWrap').classList.add('globeRes'); $('mapToggle').textContent='⤢ Expand globe'; sizeBox(); fit(900); dirty=true; },
     setCrowd(list){ crowd=list||[]; dirty=true; },
