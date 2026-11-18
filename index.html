@@ -1056,15 +1056,16 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #mapWrap.globeOn #map{height:min(50vh,calc(100vw - 32px));opacity:0;pointer-events:none}
 #globeBox{display:none;position:absolute;z-index:8;touch-action:none;contain:layout paint size;overscroll-behavior:none}
 #mapWrap.globeOn #globeBox{display:block}
+#globePx{position:absolute;left:0;top:0;image-rendering:pixelated;image-rendering:crisp-edges;pointer-events:none}
 #globeCv{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:none;outline:none;will-change:transform;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 #globeCv:active{cursor:grabbing}#globeCv:focus-visible{box-shadow:inset 0 0 0 3px #fff;border-radius:50%}
 #globeBox .gctl{position:absolute;right:0;top:0;display:grid;gap:6px;justify-items:end}
 #globeBox button,#mapGlobe{all:unset;cursor:pointer;background:#0d0f14;color:var(--accent);font:17px/1 var(--vt);min-width:38px;height:38px;padding:0 9px;box-sizing:border-box;display:grid;place-items:center;box-shadow:0 0 0 2px #000,0 0 0 4px #2a2f3b}
 #globeBox button:focus-visible,#mapGlobe:focus-visible{outline:3px solid #fff}
-body.pinned #mapWrap.globeOn #map{height:104px;min-height:104px}
+body.pinned #mapWrap.globeOn #map{height:124px;min-height:124px}
 #mapWrap.globeRes #globeFlat{display:none}
-body.pinned #mapWrap.globeRes .gctl,body.pinned #mapWrap.globeRes #globeHome,body.pinned #mapWrap.globeRes #globeRead{display:none}
-body.pinned #mapWrap.globeRes #globeBox{background:#05060b;box-shadow:0 0 0 3px var(--accent),0 0 0 6px #000;overflow:hidden}
+#mapWrap.swapOff #globeFlat,#mapWrap.swapOff #mapGlobe{display:none!important}   /* once a pin is down, no switching between globe and flat map until the next map */
+body.pinned #mapWrap.globeRes .gctl,body.pinned #mapWrap.globeRes #globeHome,body.pinned #mapWrap.globeRes #globeRead{display:none!important}
 #globeBox #globeHome{position:absolute;left:0;bottom:0;z-index:3}
 #globeBox .gctl{z-index:3}
 #globeRead{position:absolute;right:0;bottom:2px;font:15px/1 var(--vt);color:#9fb0d4;background:rgba(5,6,11,.7);padding:3px 6px;pointer-events:none}#globeRead b{color:var(--accent);font-weight:400}
@@ -1977,7 +1978,7 @@ body.pinning #card #headline{font-size:23px}
     <button type="button" id="mapToggle">⤢ Explore map</button>
     <button type="button" id="mapWorld" hidden aria-label="Zoom back out to the whole world">🌍 WORLD</button>
     <button type="button" id="mapGlobe" hidden aria-label="Switch to the globe">🌐 GLOBE</button>
-    <div id="globeBox"><canvas id="globeCv" tabindex="0" role="img" aria-label="A globe. Drag to spin it, pinch or scroll to zoom, tap to drop a pin. Arrow keys rotate, plus and minus zoom, Enter pins the centre."></canvas>
+    <div id="globeBox"><canvas id="globePx" aria-hidden="true"></canvas><canvas id="globeCv" tabindex="0" role="img" aria-label="A globe. Drag to spin it, pinch or scroll to zoom, tap to drop a pin. Arrow keys rotate, plus and minus zoom, Enter pins the centre."></canvas>
       <div class="gctl"><button type="button" id="globeFlat">🗺 FLAT</button><button type="button" id="globeIn" aria-label="Zoom in">+</button><button type="button" id="globeOut" aria-label="Zoom out">−</button></div>
       <button type="button" id="globeHome">🌍 WORLD</button><span id="globeRead"></span></div>
     <button class="primary" id="btnGuess" disabled>Tap the map to drop a pin</button>
@@ -3949,8 +3950,8 @@ function jawPoints(){
   list.forEach(x=>{ p+=(x.callPts||0)+(x.pinPts||0); });   // every point moves the jaw the same amount; lost points pull it up
   return Math.max(0,p);
 }
-/* Time to read first (2 s + 0.5 s per word), then −5 points a second, floor 60. */
-function readGrace(st){ return 2+0.5*(st.h||'').split(/\s+/).length; }
+/* Time to read first (2 s + 0.75 s per word), then −5 points a second, floor 60. */
+function readGrace(st){ return 2+0.75*(st.h||'').split(/\s+/).length; }
 function speedPts(sec,st){ return Math.round(PK*CALL_PTS*Math.max(0.6,Math.min(1,1-(sec-readGrace(st))/20))); }
 let SPEED_RAF=0;
 function runSpeed(){
@@ -4146,9 +4147,11 @@ const GlobePin=(()=>{
       px=x; py=y; pz=z; }
     pc.closePath();
   }
-  let minPts=2, lastCost=0;
-  function addLine(a,cx,cy,R){      // an open line: only the part on this side (tiny islands are skipped while spinning)
+  let minPts=2, lastCost=0, ps=PS, slow=0, dbg=/[?&]gdebug/.test(location.search), roT=0;
+  function addLine(a,cx,cy,R){      // an open line: only the part on this side (tiny islands and off-screen lines are skipped)
     const m=a.length/3; if(m<minPts||!project(a,m)) return;
+    let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9; for(let i=0;i<m;i++){ const x=XS[i], y=YS[i]; if(x<x0) x0=x; if(x>x1) x1=x; if(y<y0) y0=y; if(y>y1) y1=y; }
+    if(cx+R*x1<-8||cx+R*x0>W+8||cy-R*y0<-8||cy-R*y1>H+8) return;
     for(let i=0;i<m;i++){ const x=XS[i],y=YS[i],z=ZS[i];
       if(i===0){ if(z>0) pc.moveTo(cx+R*x,cy-R*y); continue; }
       const px=XS[i-1],py=YS[i-1],pz=ZS[i-1];
@@ -4181,10 +4184,10 @@ const GlobePin=(()=>{
   }
   /* the planet, painted in chunky pixels: colour, light and dither per pixel (as on the title screen) */
   function paintPlanet(cx,cy,R){
-    const lw=Math.max(1,Math.ceil(W/PS)), lh=Math.max(1,Math.ceil(H/PS));
-    if(!lo){ lo=document.createElement('canvas'); lctx=lo.getContext('2d'); }
-    if(lo.width!==lw||lo.height!==lh){ lo.width=lw; lo.height=lh; img=lctx.createImageData(lw,lh); }
-    const d=img.data, rr=R/PS, ox=cx/PS, oy=cy/PS, T=tex;
+    const lw=Math.max(1,Math.ceil(W/ps)), lh=Math.max(1,Math.ceil(H/ps));
+    if(!lo){ lo=$('globePx'); lctx=lo.getContext('2d'); }
+    if(lo.width!==lw||lo.height!==lh||!img){ lo.width=lw; lo.height=lh; img=lctx.createImageData(lw,lh); lo.style.width=lw*ps+'px'; lo.style.height=lh*ps+'px'; }
+    const d=img.data, rr=R/ps, ox=cx/ps, oy=cy/ps, T=tex;
     for(let y=0;y<lh;y++) for(let x=0;x<lw;x++){
       const i=(y*lw+x)*4, sx=(x+.5-ox)/rr, sy=-(y+.5-oy)/rr, r2=sx*sx+sy*sy;
       if(r2>1.1){ d[i+3]=0; continue; }
@@ -4199,7 +4202,6 @@ const GlobePin=(()=>{
       d[i]=c[0]; d[i+1]=c[1]; d[i+2]=c[2]; d[i+3]=255;
     }
     lctx.putImageData(img,0,0);
-    ctx.imageSmoothingEnabled=false; ctx.drawImage(lo,0,0,lw*PS,lh*PS);
   }
   function visPt(v){ return dot(v,cv3)>0; }
   const scr=(v,cx,cy,R)=>[cx+R*dot(v,ev),cy-R*dot(v,nv)];
@@ -4216,12 +4218,13 @@ const GlobePin=(()=>{
     const cx=W/2, cy=H/2, R=R0*zoom;
     ctx.clearRect(0,0,W,H);
     paintPlanet(cx,cy,R); const t1=performance.now();
-    pc=ctx; minPts=(interacting||inertia)?14:2;
-    if(data && !((interacting||inertia) && lastCost>14)){        // on a slow phone the borders sit out while the globe is moving, then come back
+    pc=ctx; minPts=2;
+    const moving=interacting||inertia||!!anim;
+    if(data && !moving){        // country and state lines are the costly part (the browser rasterises them after the script has finished), so they sit out while the globe moves and come back the moment it settles
       ctx.lineJoin='round'; ctx.lineWidth=1; ctx.strokeStyle='rgba(240,247,255,.62)'; ctx.beginPath(); data.countries.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke();
-      if(zoom>=2.2 && !interacting){ ctx.strokeStyle='rgba(240,247,255,.34)'; ctx.setLineDash([2,3]); ctx.beginPath(); data.states.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke(); ctx.setLineDash([]); }
+      if(zoom>=2.2){ ctx.strokeStyle='rgba(240,247,255,.34)'; ctx.setLineDash([2,3]); ctx.beginPath(); data.states.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke(); ctx.setLineDash([]); }
     }
-    if(!interacting||zoom<2.5) drawLabels(cx,cy,R);
+    if((!interacting||zoom<2.5) && !(locked&&H<140)) drawLabels(cx,cy,R);      // the little round globe carries no place names, just YOU and REAL
     crowd.forEach(([la,ln,col])=>{ const v=vec(la,ln); if(!visPt(v)) return; const q=scr(v,cx,cy,R); ctx.fillStyle=col; ctx.globalAlpha=.9; ctx.strokeStyle='#0b0e14'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(q[0],q[1],3.5,0,7); ctx.fill(); ctx.globalAlpha=1; ctx.stroke(); });
     if(locked&&target&&pin){      // the miss, as a dashed arc along the surface
       const a=vec(pin[1],pin[0]), b=vec(target[1],target[0]), th=Math.acos(Math.max(-1,Math.min(1,dot(a,b)))), st=Math.max(2,Math.ceil(th/.03));
@@ -4232,16 +4235,18 @@ const GlobePin=(()=>{
     }
     if(locked&&target) drawMark(target,'#4fbf6a',locked?'REAL':null,cx,cy,R);
     if(pin) drawMark(pin,'#ff5d73',locked?'YOU':null,cx,cy,R);
-    const rd=$('globeRead'); if(rd) rd.innerHTML='<b>'+zoom.toFixed(1)+'×</b> · ~'+fmtKm(kmPerPx())+'/px';
+    const now2=performance.now(); if(now2-roT>140){ roT=now2; const rd=$('globeRead'); if(rd) rd.innerHTML='<b>'+zoom.toFixed(1)+'×</b> · ~'+fmtKm(kmPerPx())+'/px'+(dbg?' · '+lastCost.toFixed(0)+'ms · px'+ps:''); }   // the readout updates a few times a second, not every frame
     lastCost=performance.now()-t0;
+    slow=lastCost>16?slow+1:Math.max(0,slow-1); if(slow>=6&&ps<5){ ps++; slow=0; }   // a slow machine gets bigger pixels (fewer to paint) instead of lag
     if(window.__gb) window.__gb.push([t1-t0,performance.now()-t1]);
   }
+  const WM={};
   function drawLabels(cx,cy,R){
     if(!labelsV) return; const boxes=[];
     const place=(txt,v,px,col,sp,alpha)=>{
       const z=dot(v,cv3); if(z<.06) return;
       const q=scr(v,cx,cy,R), a=Math.min(1,z*3.2)*(alpha||1); if(a<.12) return;
-      ctx.font=px+'px VT323,monospace'; const w=ctx.measureText(txt).width+(sp?txt.length*sp:0), bx=q[0]-w/2-3, by=q[1]-px/2-2, bw=w+6, bh=px+4;
+      ctx.font=px+'px VT323,monospace'; const wk=px+txt, w=(WM[wk]||(document.fonts&&document.fonts.status!=='loaded'?ctx.measureText(txt).width:(WM[wk]=ctx.measureText(txt).width)))+(sp?txt.length*sp:0), bx=q[0]-w/2-3, by=q[1]-px/2-2, bw=w+6, bh=px+4;
       if(bx<2||by<2||bx+bw>W-2||by+bh>H-2) return;
       for(const b of boxes) if(bx<b[0]+b[2]&&bx+bw>b[0]&&by<b[1]+b[3]&&by+bh>b[1]) return;
       boxes.push([bx,by,bw,bh]);
@@ -4271,6 +4276,11 @@ const GlobePin=(()=>{
     flyTo(mlo,mla,Math.max(1,Math.min(12,Rn/R0)),ms);
   }
   let lastT=0;
+  function mini(ms){       // the little round globe at the bottom: the whole planet, turned so your pin and the real spot are both on view
+    if(!target) return; const t=vec(target[1],target[0]); let m=t;
+    if(pin){ const a=vec(pin[1],pin[0]); m=[a[0]+t[0],a[1]+t[1],a[2]+t[2]]; const h=Math.hypot(m[0],m[1],m[2]); m=h<1e-3?t:[m[0]/h,m[1]/h,m[2]/h]; }
+    flyTo(Math.atan2(m[1],m[0])/D2R,Math.asin(Math.max(-1,Math.min(1,m[2])))/D2R,1,ms);
+  }
   function loop(now){ if(!on){ raf=0; return; }
     if(anim) anim(now);
     if(inertia){ const dt=lastT?Math.min(40,now-lastT):16; setView(lon+vel[0]*dt,lat+vel[1]*dt,zoom); const f=Math.exp(-dt/330); vel=[vel[0]*f,vel[1]*f]; if(Math.hypot(vel[0],vel[1])*(R0*zoom)/(180/Math.PI)<.012) inertia=false; }
@@ -4287,7 +4297,7 @@ const GlobePin=(()=>{
   }
   function inv(x,y){ const sx=(x-W/2)/(R0*zoom), sy=-(y-H/2)/(R0*zoom), r2=sx*sx+sy*sy; if(r2>1) return null; basis(); const sz=Math.sqrt(1-r2);
     const X=sx*ev[0]+sy*nv[0]+sz*cv3[0], Y=sx*ev[1]+sy*nv[1]+sz*cv3[1], Z=sx*ev[2]+sy*nv[2]+sz*cv3[2]; return [Math.atan2(Y,X)/D2R,Math.asin(Math.max(-1,Math.min(1,Z)))/D2R]; }
-  function drop(ll){ if(S.phase!=='pin'||locked) return; pin=[ll[0],ll[1]]; guessLL=L.latLng(ll[1],ll[0]).wrap(); layer.clearLayers();
+  function drop(ll){ if(S.phase!=='pin'||locked) return; pin=[ll[0],ll[1]]; guessLL=L.latLng(ll[1],ll[0]).wrap(); $('mapWrap').classList.add('swapOff'); layer.clearLayers();
     WORLDS.forEach(dx=>L.marker([guessLL.lat,guessLL.lng+dx],{icon:L.divIcon({className:'pinGuess',html:'<i></i>',iconSize:[20,20],iconAnchor:[10,10]}),interactive:false}).addTo(layer));
     try{ Sound.play('pin'); }catch(e){} $('btnGuess').disabled=false; $('btnGuess').textContent='LOCK IN'; dirty=true; }
   /* like the flat map: the first tap on a region zooms in, the next one drops the pin */
@@ -4311,7 +4321,7 @@ const GlobePin=(()=>{
         else if(performance.now()-lastMove<90 && Math.hypot(vel[0],vel[1])*(R0*zoom)/(180/Math.PI)>.05){ inertia=true; lastT=0; } } };
     cv.addEventListener('pointerup',up); cv.addEventListener('pointercancel',up);
     ['touchstart','touchmove','touchend'].forEach(t=>cv.addEventListener(t,e=>{ e.stopPropagation(); if(t==='touchmove') e.preventDefault(); },{passive:false}));   // the page behind never sees (or scrolls from) a spin
-    cv.addEventListener('wheel',e=>{ e.preventDefault(); setView(lon,lat,zoom*Math.exp(-Math.max(-120,Math.min(120,e.deltaY))*.0016)); },{passive:false});
+    let wT=0; cv.addEventListener('wheel',e=>{ e.preventDefault(); interacting=true; clearTimeout(wT); wT=setTimeout(()=>{ interacting=false; dirty=true; },140); setView(lon,lat,zoom*Math.exp(-Math.max(-120,Math.min(120,e.deltaY))*.0016)); },{passive:false});
     cv.addEventListener('keydown',e=>{ const k=8/zoom, m={ArrowLeft:[-k,0],ArrowRight:[k,0],ArrowUp:[0,k],ArrowDown:[0,-k]}[e.key];
       if(m){ e.preventDefault(); setView(lon+m[0],lat+m[1],zoom); } else if(e.key==='+'||e.key==='=') setView(lon,lat,zoom*1.3); else if(e.key==='-') setView(lon,lat,zoom/1.3);
       else if(e.key==='Enter'||e.key===' '){ e.preventDefault(); if(!locked) tapAt([lon,lat]); } });
@@ -4320,14 +4330,14 @@ const GlobePin=(()=>{
     $('globeFlat').onclick=()=>swap(false); $('mapGlobe').onclick=()=>swap(true);
     window.addEventListener('resize',()=>{ if(on) sizeBox(); });
     if(window.ResizeObserver){ ro=new ResizeObserver(()=>{ if(!on) return;
-        if(locked){ const Rpx=R0*zoom; anim=null; sizeBox(Rpx); clearTimeout(fitT); fitT=setTimeout(()=>{ if(on&&locked) fit(380); },170); }   // the panel shrinks in steps: hold the picture steady, then ease to the final framing
+        if(locked){ const Rpx=R0*zoom; anim=null; sizeBox(Rpx); clearTimeout(fitT); fitT=setTimeout(()=>{ if(on&&locked){ if(document.body.classList.contains('pinned')) mini(420); else fit(380); } },170); }   // the panel shrinks in steps: hold the picture steady, then ease to the final framing
         else sizeBox(); }); ro.observe($('map')); }
     $('map').appendChild($('mapGlobe')); L.DomEvent.disableClickPropagation($('mapGlobe'));
   }
   const pref=()=>{ try{ return localStorage.getItem('ff_globe')!=='0'; }catch(e){ return true; } };
   function ensure(){ if(!cv){ cv=$('globeCv'); ctx=cv.getContext('2d'); box=$('globeBox'); wire(); } }
   function show(){
-    ensure(); clearTimeout(hideT); build(); buildTex(); on=true; locked=false; target=null; crowd=[]; $('mapWrap').classList.remove('globeRes'); $('mapWrap').classList.add('globeOn'); $('mapGlobe').hidden=true; sizeBox();
+    ensure(); clearTimeout(hideT); build(); buildTex(); on=true; ps=PS; slow=0; locked=false; target=null; crowd=[]; $('mapWrap').classList.remove('globeRes'); $('mapWrap').classList.add('globeOn'); $('mapGlobe').hidden=true; sizeBox();
     pin=guessLL?[guessLL.lng,guessLL.lat]:null; anim=null; inertia=false;
     if(pin) setView(pin[0],pin[1],zoom>1?zoom:1); else setView(-35,18,1);
     if(!guessLL) $('btnGuess').textContent='TAP A REGION TO ZOOM IN';
@@ -4344,7 +4354,7 @@ const GlobePin=(()=>{
     else { hide(true); map.invalidateSize(); $('mapGlobe').hidden=false; if(guessLL){ map.setView(guessLL,Math.max(map.getZoom(),4.5),{animate:false}); $('btnGuess').textContent='LOCK IN'; } else { if(MAP_HOME) MAP_HOME(); $('btnGuess').textContent='TAP A REGION TO ZOOM IN'; } }
   }
   return {
-    sync(){ if(pref()) show(); else { hide(true); ensure(); $('mapGlobe').hidden=false; } },
+    sync(){ $('mapWrap').classList.remove('swapOff'); if(pref()) show(); else { hide(true); ensure(); $('mapGlobe').hidden=false; } },
     /* LOCK IN in globe mode: keep the globe, show the real spot and frame both; the page then shrinks it to the strip */
     result(actual){ if(!on) return; locked=true; target=actual; $('mapWrap').classList.add('globeRes'); $('mapToggle').textContent='⤢ Expand globe'; sizeBox(); fit(900); dirty=true; },
     setCrowd(list){ crowd=list||[]; dirty=true; },
@@ -4412,7 +4422,7 @@ function openMap(){
         $('btnGuess').textContent='NOW DROP YOUR PIN';
         return;
       }
-      guessLL = e.latlng.wrap();
+      guessLL = e.latlng.wrap(); $('mapWrap').classList.add('swapOff');
       layer.clearLayers();
       WORLDS.forEach(dx=>L.marker([guessLL.lat,guessLL.lng+dx],{icon:L.divIcon({className:'pinGuess',html:'<i></i>',iconSize:[20,20],iconAnchor:[10,10]}),interactive:false}).addTo(layer));
       Sound.play('pin');
@@ -4508,7 +4518,7 @@ function submitGuess(timedOut){
       document.body.classList.add('pinned','pinDone');
       setTimeout(()=>{ map.invalidateSize(); if(guessLL) map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.5),{maxZoom:4.5,animate:false}); else map.setView(actual,5,{animate:false}); aim(); releaseJaw(); },420);
     }
-  },650);
+  },GlobePin.active()?2700:650);      // globe: stay big a moment longer, showing your pin against the real spot, then shrink to the little round globe
 }
 
 /* how many other players today's fake fooled, in the popup where a pin shows "Closer than X%" */
