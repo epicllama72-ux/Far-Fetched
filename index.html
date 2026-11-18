@@ -4466,6 +4466,7 @@ function finish(restored){
     if(+inf.m>bestM()){ store('ff_best',{m:+inf.m,zone:inf.zone}); }
     Scene.setBest(bestM());
     if(S.kind==='call'){ updateLife(inf); claimUnlocks(); }   // the Dig Kit is earned in Daily Dig only
+    if(S.kind==='blank'){ const l=load('ff_life')||{}; l.bexact=(l.bexact||0)+S.results.filter(x=>x.exact).length; l.bwords=(l.bwords||0)+S.results.length; store('ff_life',l); }   // exact words typed, out of every word played
   }
   if(daily) postScore({kind:S.kind, m:+inf.m, score:total, zone:inf.zone, ans:answersOf(S.results)});
   if(restored){
@@ -5054,7 +5055,7 @@ const Cloud=(function(){
       const w=a.last===b.last ? ((a.count||0)>=(b.count||0)?a:b) : (later(a.last,b.last)?a:b), o=w===a?b:a;
       const count = o.last && o.last===prevDay(w.last) ? Math.max(w.count||0,(o.count||0)+1) : (w.count||0);
       return Object.assign({},w,{count, freezes:Math.max(a.freezes||0,b.freezes||0)}); }
-    if(k==='ff_life'){ const w=later(a.dLast,b.dLast)?a:b, o=w===a?b:a, dCount=o.dLast && o.dLast===prevDay(w.dLast) ? Math.max(w.dCount||0,(o.dCount||0)+1) : (w.dCount||0); return Object.assign({},w,{dCount,best:Math.max(a.best||0,b.best||0),pins:Math.max(a.pins||0,b.pins||0),catches:Math.max(a.catches||0,b.catches||0),fooled:Math.max(a.fooled||0,b.fooled||0),cpins:Math.max(a.cpins||0,b.cpins||0),zmax:Math.max(a.zmax||0,b.zmax||0),cblown:(a.cblown||b.cblown)?1:0}); }
+    if(k==='ff_life'){ const w=later(a.dLast,b.dLast)?a:b, o=w===a?b:a, dCount=o.dLast && o.dLast===prevDay(w.dLast) ? Math.max(w.dCount||0,(o.dCount||0)+1) : (w.dCount||0); return Object.assign({},w,{dCount,best:Math.max(a.best||0,b.best||0),pins:Math.max(a.pins||0,b.pins||0),catches:Math.max(a.catches||0,b.catches||0),fooled:Math.max(a.fooled||0,b.fooled||0),bexact:Math.max(a.bexact||0,b.bexact||0),bwords:Math.max(a.bwords||0,b.bwords||0),cpins:Math.max(a.cpins||0,b.cpins||0),zmax:Math.max(a.zmax||0,b.zmax||0),cblown:(a.cblown||b.cblown)?1:0}); }
     if(k==='ff_kit') return {eq:Object.keys(a.eq||{}).length?a.eq:(b.eq||{}), seen:[...new Set([].concat(b.seen||[],a.seen||[]))]};
     if(k==='ff_invites') return Math.max(+a||0,+b||0);
     if(k==='ff_name') return a||b;
@@ -6137,7 +6138,7 @@ HPAGES.stats={title:'Your stats',render(){
     +'<div class="g2" style="margin-top:8px"><div class="kv"><b>'+(best.m?fmtM(best.m):'—')+'</b><small>best dig</small></div><div class="kv"><b>'+(avg?fmtM(avg):'—')+'</b><small>average dig</small></div><div class="kv"><b>'+rank+'</b><small>best rank</small></div><div class="kv"><b>'+passCount(names)+' / '+passTotal()+'</b><small>countries mapped</small></div></div></div>';
   html+=hpCard('LAST '+Math.max(last.length,1)+' DIGS','',last.length?'<div class="spark">'+last.map(k=>'<i style="height:'+Math.round(100*h[k].m/mx)+'%" title="'+k.split(':')[0]+'"></i>').join('')+'</div><p class="sm" style="margin-top:6px">Deepest '+fmtM(best.m||0)+'. Taller bars are deeper digs.</p>':'<p class="sm">Finish a Daily Dig to start your chart.</p>');
   html+=hpCard('PINS AND CALLS','',  '<div class="g2"><div class="kv"><b>'+(l.pins||0)+'</b><small>pins landed</small></div><div class="kv"><b>'+(l.catches||0)+'</b><small>fakes caught</small></div><div class="kv"><b>'+Math.max(l.cpins||0,passCount(names))+'</b><small>right country pins</small></div><div class="kv"><b>'+(l.fooled||0)+'</b><small>times fooled</small></div></div>');
-  html+=hpCard('FILL THE BLANK',blanks.length+' played','<div class="g2"><div class="kv"><b>'+(blanks.length?fmtPts(blanks.reduce((a,k)=>Math.max(a,h[k].score||0),0)):'—')+'</b><small>best score</small></div><div class="kv"><b>'+blanks.length+'</b><small>days played</small></div></div>');
+  html+=hpCard('FILL THE BLANK',blanks.length+' played','<div class="g2"><div class="kv"><b>'+(blanks.length?fmtPts(blanks.reduce((a,k)=>Math.max(a,h[k].score||0),0)):'—')+'</b><small>best score</small></div><div class="kv"><b>'+(blanks.length?fmtPts(Math.round(blanks.reduce((a,k)=>a+(h[k].score||0),0)/blanks.length)):'—')+'</b><small>average score</small></div><div class="kv"><b>'+(l.bexact||0)+'</b><small>exact words'+(l.bwords?' · of '+l.bwords:'')+'</small></div><div class="kv"><b>'+blanks.length+'</b><small>days played</small></div></div>');
   html+='<button class="b2" id="stShare" type="button">Share my stats</button>';
   $('hpBody').innerHTML=html;
   $('nmEdit').onclick=()=>{ $('nm1').style.display='none'; $('nm2').style.display='block'; $('nmIn').focus(); $('nmIn').select(); };
