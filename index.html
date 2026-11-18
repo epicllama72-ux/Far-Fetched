@@ -4223,7 +4223,7 @@ const GlobePin=(()=>{
     const moving=interacting||inertia||!!anim;
     if(data && !moving){        // country and state lines are the costly part (the browser rasterises them after the script has finished), so they sit out while the globe moves and come back the moment it settles
       ctx.lineJoin='round'; ctx.lineWidth=1; ctx.strokeStyle='rgba(240,247,255,.62)'; ctx.beginPath(); data.countries.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke();
-      if(zoom>=2.2){ ctx.strokeStyle='rgba(240,247,255,.34)'; ctx.setLineDash([2,3]); ctx.beginPath(); data.states.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke(); ctx.setLineDash([]); }
+      if(zoom>=1.5){ ctx.strokeStyle='rgba(255,240,170,.9)'; ctx.lineWidth=zoom>=3?1.7:1.3; ctx.setLineDash([5,3]); ctx.beginPath(); data.states.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke(); ctx.setLineDash([]); ctx.lineWidth=1; }   // the US state lines: a warm yellow, clearly stronger than the country lines
     }
     if((!interacting||zoom<2.5) && !(locked&&H<140)) drawLabels(cx,cy,R);      // the little round globe carries no place names, just YOU and REAL
     crowd.forEach(([la,ln,col])=>{ const v=vec(la,ln); if(!visPt(v)) return; const q=scr(v,cx,cy,R); ctx.fillStyle=col; ctx.globalAlpha=.9; ctx.strokeStyle='#0b0e14'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(q[0],q[1],3.5,0,7); ctx.fill(); ctx.globalAlpha=1; ctx.stroke(); });
@@ -4382,7 +4382,7 @@ function openMap(){
       WORLD_FC=w.countries; WORLD_ALL=w; CBOX=null; CNAMES=null; try{ GlobePin.dataReady(); }catch(e){}
       WORLDS.forEach(dx=>{
         L.geoJSON(shiftFC(w.countries,dx),{style:{color:'#7f90b4',weight:1,fillColor:'#2c3850',fillOpacity:1},interactive:false}).addTo(map).bringToBack();
-        L.geoJSON(shiftFC(w.states,dx),{style:{color:'#5a6a8c',weight:0.7,fill:false,dashArray:'2 2'},interactive:false}).addTo(map);
+        L.geoJSON(shiftFC(w.states,dx),{style:{color:'#d8c978',weight:1.2,opacity:.9,fill:false,dashArray:'5 3'},interactive:false}).addTo(map);
         if(w.lakes) L.geoJSON(shiftFC(w.lakes,dx),{style:{color:'#7f90b4',weight:1,fillColor:'#0f1a2a',fillOpacity:1},interactive:false}).addTo(map);   // big lakes are water: state lines stop at the shore
         if(w.lakeBorders) L.geoJSON(shiftFC(w.lakeBorders,dx),{style:{color:'#7f90b4',weight:1,fill:false,dashArray:'3 3'},interactive:false}).addTo(map);   // borders that run across a lake
       });
