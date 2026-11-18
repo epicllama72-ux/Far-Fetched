@@ -1051,8 +1051,9 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 /* Map panel */
 #mapWrap{position:fixed;left:50%;bottom:0;width:min(560px,100%);padding:0 16px calc(14px + env(safe-area-inset-bottom,0px));z-index:5;transform:translate(-50%,115%);transition:transform .35s steps(5) .5s}
 #mapWrap.open{transform:translate(-50%,0)}
-#map{height:min(30vh,260px);min-height:160px;transition:height .35s steps(5);border:3px solid var(--accent);margin-bottom:10px;background:#0f1a2a;box-shadow:0 0 0 3px var(--ink),6px 6px 0 3px var(--ink)}
+#map{height:min(38vh,340px);min-height:190px;transition:height .35s steps(5);border:3px solid var(--accent);margin-bottom:10px;background:#0f1a2a;box-shadow:0 0 0 3px var(--ink),6px 6px 0 3px var(--ink)}
 #mapWrap .primary{margin:0 3px;width:calc(100% - 6px)}
+#mapWorld{position:absolute;left:8px;bottom:8px;z-index:900;font:17px/1 var(--vt);padding:6px 9px;background:var(--panel);color:var(--accent);box-shadow:0 0 0 2px var(--ink);border:0;cursor:pointer}#mapWorld[hidden]{display:none}
 #mapToggle{display:none;position:absolute;top:10px;right:24px;z-index:500;font:18px/1 var(--vt);padding:7px 10px;background:var(--panel);color:var(--accent);box-shadow:0 0 0 2px var(--ink)}
 body.pinDone #mapToggle{display:block}
 
@@ -1243,6 +1244,7 @@ body.recap #bar{display:none}
 .dot.fooled,.sq.fooled{background:#14161c;box-shadow:0 0 0 1px #ff5d73}
 #map{position:relative}
 #map::after{content:'';position:absolute;inset:0;background:var(--scan);pointer-events:none;z-index:500}
+.pinGuess i{display:block;width:20px;height:20px;background:#ff5d73;border:3px solid #fff;box-shadow:0 0 0 2px var(--ink),0 0 0 7px rgba(255,93,115,.35)}   /* the pin you drop: big enough to find under a thumb */
 .pinsq i{display:block;width:14px;height:14px;border:2px solid var(--ink);box-shadow:0 0 0 1px #fff}
 #toast{position:fixed;left:50%;top:126px;transform:translateX(-50%);z-index:6;font:10px/1 var(--px);letter-spacing:.18em;color:var(--accent);background:#0d0f14;border:2px solid var(--accent);padding:8px 10px;pointer-events:none;white-space:nowrap}
 #toast.go{animation:toast 3.6s steps(6) forwards}
@@ -1956,6 +1958,7 @@ body.pinning #card #headline{font-size:23px}
   <div id="mapWrap" hidden>
     <div id="map"></div>
     <button type="button" id="mapToggle">⤢ Explore map</button>
+    <button type="button" id="mapWorld" hidden aria-label="Zoom back out to the whole world">🌍 WORLD</button>
     <button class="primary" id="btnGuess" disabled>Tap the map to drop a pin</button>
     <button class="primary" id="btnNext2" hidden>Next</button>
   </div>
@@ -2368,8 +2371,8 @@ function shiftFC(g,dx){   // shift any GeoJSON (collection, feature or bare geom
 const PIN_MIN = 40, PIN_MIN_FAR = 30, FAR_KM = 5000;   // any pin that is placed earns at least 40 distance points, or 30 if it lands 5,000 km or more away
 const pinFloor=d=>Math.round(PK*(d>=FAR_KM?PIN_MIN_FAR:PIN_MIN));
 function pinPoints(d){return Math.max(pinFloor(d), Math.round(PK*PIN_PTS*Math.exp(-Math.max(0,d-100)/2400)));}  // ≤100 km 110 · 400 km 97 · 1000 km 76 · 1500 km 61 · 2500 km 40 · floor of 40 (30 from 5,000 km out), of 110
-/* The pin has 20 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
-const PIN_SECS=20;                 // the pin has a 20 s limit, but taking longer no longer costs distance points
+/* The pin has 30 seconds, which start once the map is open. Full points for 12, then 5% of the max per second, floor 60%. */
+const PIN_SECS=30;                 // the pin has a 30 s limit, but taking longer no longer costs distance points
 function pinMult(){ return 1; }
 /* Bonus by the pin's rarity: Globalist +20, Statesman +15, Pundit +10, Skimmer +5, Rock-Dweller 0. Time no longer matters. */
 const PIN_BONUS=20, BONUS_SHARE=[1,0.75,0.5,0.25,0];
@@ -4043,6 +4046,8 @@ function wireWhy(fb){
 function squareIcon(fill){
   return L.divIcon({className:'pinsq',html:'<i style="background:'+fill+'"></i>',iconSize:[14,14],iconAnchor:[7,7]});
 }
+let MAP_HOME=null;
+function syncWorldBtn(){ const b=$('mapWorld'); if(b) b.hidden=!(S && S.phase==='pin' && map && map.getZoom()>=3.5); }
 function openMap(){
   S.phase='pin';
   $('btnNext2').hidden=true;
@@ -4069,6 +4074,9 @@ function openMap(){
     COUNTRY_LABELS.forEach(([n,la,ln])=>WORLDS.forEach(dx=>L.marker([la,ln+dx],{icon:L.divIcon({className:'',html:'<span class="cname">'+n+'</span>',iconSize:[0,0]}),interactive:false,keyboard:false}).addTo(names)));
     const syncNames=()=>{ const on=map.getZoom()>=3.5; if(on&&!map.hasLayer(names)) names.addTo(map); else if(!on&&map.hasLayer(names)) map.removeLayer(names); };
     map.on('zoomend',syncNames); syncNames();
+    map.on('zoomend',syncWorldBtn);
+    $('map').appendChild($('mapWorld')); L.DomEvent.disableClickPropagation($('mapWorld'));   // lives inside the map, bottom left, clear of the LOCK IN bar
+    $('mapWorld').onclick=()=>{ if(MAP_HOME) MAP_HOME(); if(!guessLL){ $('btnGuess').textContent='TAP A REGION TO ZOOM IN'; } syncWorldBtn(); try{ Sound.play('menu'); }catch(e){} };
     // capital cities: a dot from zoom 4.5 and a name from zoom 5.5. The dots are built the first time they are needed and drawn on the canvas;
     // only the names inside the current view become elements, so nothing is added to loading time or to panning.
     const capDots=L.layerGroup(), capLabels=L.layerGroup(); let capBuilt=false;
@@ -4099,7 +4107,7 @@ function openMap(){
       }
       guessLL = e.latlng.wrap();
       layer.clearLayers();
-      WORLDS.forEach(dx=>L.marker([guessLL.lat,guessLL.lng+dx],{icon:squareIcon('#ff5d73'),interactive:false}).addTo(layer));
+      WORLDS.forEach(dx=>L.marker([guessLL.lat,guessLL.lng+dx],{icon:L.divIcon({className:'pinGuess',html:'<i></i>',iconSize:[20,20],iconAnchor:[10,10]}),interactive:false}).addTo(layer));
       Sound.play('pin');
       $('btnGuess').disabled=false;
       $('btnGuess').textContent='LOCK IN';
@@ -4117,7 +4125,7 @@ function openMap(){
   if(S.cur.pinWall) go();
   else { const cs=getComputedStyle($('mapWrap')); setTimeout(go, Math.max(0,(parseFloat(cs.transitionDuration)||0)+(parseFloat(cs.transitionDelay)||0))*1000+80); }
   runPinTimer();
-  const homeView=()=>{
+  const homeView=MAP_HOME=()=>{
     map.invalidateSize();
     const w=map.getSize().x;
     if(w<520){                                   // narrow maps: show (nearly) the whole inhabited world across the width
@@ -4135,7 +4143,7 @@ function openMap(){
 
 function submitGuess(timedOut){
   if(S.phase!=='pin' || (!guessLL && timedOut!==true)) return;
-  cancelAnimationFrame(PIN_RAF); $('speed').hidden=true; $('speed').classList.remove('pin','low');
+  cancelAnimationFrame(PIN_RAF); $('speed').hidden=true; $('speed').classList.remove('pin','low'); $('mapWorld').hidden=true;
   const st = S.rounds[S.i];
   const sec = Math.min(PIN_SECS,(performance.now()-S.pinT0)/1000), mult = pinMult(sec);
   const d = guessLL ? km(guessLL.lat,guessLL.lng,st.lat,st.lng) : null;
@@ -6702,7 +6710,7 @@ const Intro=(function(){
     else{ st.hidden=true; st.textContent=''; }
     $('introHowText').innerHTML = (blank
       ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how close it is: <b>cold, cool, warm, hot, on fire</b>, or exact. Spelling slips are fixed for you.</li><li>You have <b>30 seconds</b> per headline. The exact word scores the most, however fast you find it.</li><li>Every point drops his jaw a little further.</li></ol>'
-      : '<ol><li>Read the headline. The place is <b>left out</b>.</li><li>Call it <b>REAL</b> or <b>FAKE</b>. Quick answers score more. Once you have called it, a <b>clue</b> about where it happened is added to the headline.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin where you think it happened, then <b>LOCK IN</b>. You get 20 seconds: closer and faster scores more.</li><li>Every point drops his jaw.</li></ol>')
+      : '<ol><li>Read the headline. The place is <b>left out</b>.</li><li>Call it <b>REAL</b> or <b>FAKE</b>. Quick answers score more. Once you have called it, a <b>clue</b> about where it happened is added to the headline.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin where you think it happened, then <b>LOCK IN</b>. You get 30 seconds: closer scores more.</li><li>Every point drops his jaw.</li></ol>')
       + '<p class="sc">'+$('howText').innerHTML+'</p>';
   }
   function titleOn(){                   // the game's name, the day's line and "how to play" above the turning planet
