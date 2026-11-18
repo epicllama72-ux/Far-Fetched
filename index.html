@@ -1172,6 +1172,7 @@ body.pinDone #mapToggle{display:block}
 #letters{margin:20px 4px 6px;padding:12px 14px 12px;background:#efe8d6;background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.035) 0 1px,transparent 1px 3px);color:#1f1b16;border-top:4px double #1f1b16;border-bottom:4px double #1f1b16;box-shadow:4px 5px 0 rgba(0,0,0,.45);transform:rotate(-.4deg)}
 #letters .ltMast{font:10px/1.2 var(--px);letter-spacing:.14em;text-align:center;padding-bottom:6px;border-bottom:2px solid #1f1b16}
 #letters .ltSub{font:16px/1.2 var(--vt);text-align:center;margin:5px 0 9px;color:#5a5144;letter-spacing:.04em}
+#letters #ltGrass{margin:8px 0 0;font:19px/1.15 var(--vt);color:#a8231a;text-align:center}#letters #ltGrass[hidden]{display:none}
 #letters .ltTicks{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;margin-bottom:10px}
 #letters label{display:flex;align-items:center;gap:8px;font:19px/1.1 var(--vt);cursor:pointer;user-select:none}
 #letters label input{position:absolute;opacity:0;pointer-events:none}
@@ -2022,6 +2023,7 @@ body.pinning #card #headline{font-size:23px}
       <textarea id="ltMsg" maxlength="1000" rows="3" placeholder="Dear Editor, ..."></textarea>
       <div class="ltFoot"><small>Anonymous &middot; only the editor reads these<br>Found a weird story? Submit it here with a source!</small><button id="ltSend" type="button" disabled>SEND</button></div>
       <p id="ltThanks" hidden>Thanks! Your letter reached the editor's desk.</p>
+      <p id="ltGrass" hidden role="alert">Touch grass. This box is for feedback about the game, so try again without the abuse.</p>
     </section>
   </section>
   </div>
@@ -4295,6 +4297,15 @@ const TIERS=[   // the same ranks as the pin popups, lowest to highest
   {f:0.70, icon:'globe',   color:'#ffd23f', name:'Globalist',    line:'Were you there? Be honest.'}];
 function tierOf(total,max){ let k=0; TIERS.forEach((t,i)=>{ if(total>=Math.round(t.f*max/50)*50) k=i; }); return k; }
 /* Letters to the editor: feedback after a Daily Dig, saved in the Supabase "feedback" table (scripts/supabase_feedback.sql) */
+/* The letters box turns away slurs. The word list is kept base64-encoded so the code does not spell them out. Text is lower-cased, de-leeted
+   and de-accented; long slurs are caught even with spaces or dots between the letters, short ones only as whole words. */
+const BAD_LONG=atob('bmlnZ2VyLGZhZ2dvdCx0cmFubnk=').split(','), BAD_SHORT=atob('bmlnZ2Esa2lrZSxzcGljLHdldGJhY2s=').split(',');
+function isAbusive(t){
+  const n=String(t||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[@4]/g,'a').replace(/[3]/g,'e').replace(/[10!|]/g,m=>m==='0'?'o':'i').replace(/\$/g,'s').replace(/5/g,'s');
+  const rx=w=>w.split('').map(c=>c+'+').join(''), squashed=n.replace(/[^a-z]/g,''), words=n.replace(/[^a-z]+/g,' ').split(' ');   // letters may be stretched (niiigger)
+  if(BAD_LONG.some(w=>new RegExp(rx(w)).test(squashed))) return true;
+  return words.some(x=>BAD_SHORT.some(w=>new RegExp('^'+rx(w)+'s?$').test(x)));
+}
 function renderLetters(){
   const box=$('letters'), key='ff_fb:'+dayKey()+':'+S.kind, sent=!!load(key);
   box.hidden = S.mode!=='daily' || !sbOn();
@@ -4305,6 +4316,8 @@ function renderLetters(){
   ticks.forEach(c=>{ c.checked=false; c.disabled=sent; c.onchange=()=>{ if(c.checked) ticks.forEach(o=>{ if((CLASH[c.value]||[]).includes(o.value)) o.checked=false; }); ready(); }; }); msg.value=''; msg.disabled=sent; msg.oninput=ready;
   $('ltThanks').hidden=!sent; btn.textContent=sent?'SENT':'SEND'; ready();
   btn.onclick=async()=>{
+    if(isAbusive(msg.value)){ $('ltGrass').hidden=false; return; }   // nothing is sent
+    $('ltGrass').hidden=true;
     btn.disabled=true; btn.textContent='SENDING';
     const body={player:playerId(), day:dayKey(), kind:S.kind, score:Math.round(S.total||0), tags:ticks.filter(c=>c.checked).map(c=>c.value), message:msg.value.trim().slice(0,1000)||null};
     let ok=false;
