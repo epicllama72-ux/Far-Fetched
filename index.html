@@ -4167,6 +4167,29 @@ const GlobePin=(()=>{
   const TW=3072, TH=1536; let tex=null, texBusy=false;
   function buildTex(){
     if(tex||texBusy||!WORLD_ALL) return; texBusy=true;
+    // the raster goes to a Web Worker (OffscreenCanvas) so the page never freezes for it; without those, it runs on the main thread in one go
+    if(window.OffscreenCanvas&&window.Worker&&!/[?&]nowk/.test(location.search)){
+      try{
+        const rings=fc=>{ const out=[]; if(!fc) return out; const add=gm=>{ if(!gm) return; const t=gm.type; if(t==='Polygon') gm.coordinates.forEach(r=>out.push(r)); else if(t==='MultiPolygon') gm.coordinates.forEach(p=>p.forEach(r=>out.push(r))); else if(t==='GeometryCollection') gm.geometries.forEach(add); };
+          (fc.type==='FeatureCollection'?fc.features:[fc]).forEach(f=>add(f.type==='Feature'?f.geometry:f)); return out; };
+        const cr=rings(WORLD_ALL.countries), lr=rings(WORLD_ALL.lakes), n=1+cr.reduce((a,r)=>a+1+2*r.length,0)+1+lr.reduce((a,r)=>a+1+2*r.length,0), f=new Float32Array(n); let i=0;
+        [cr,lr].forEach(list=>{ f[i++]=list.length; list.forEach(r=>{ f[i++]=r.length; r.forEach(p=>{ f[i++]=p[0]; f[i++]=p[1]; }); }); });
+        const src='onmessage=e=>{const f=e.data.f,TW=e.data.TW,TH=e.data.TH;let i=0;const c=new OffscreenCanvas(TW,TH),g=c.getContext("2d",{willReadFrequently:true});const X=l=>(l+180)/360*TW,Y=l=>(90-l)/180*TH;'+
+          'const read=()=>{const n=f[i++],r=[];for(let k=0;k<n;k++){const len=f[i++];r.push([i,len]);i+=len*2;}return r;};'+
+          'const trace=(rs,o)=>{g.beginPath();rs.forEach(([s,len])=>{for(let j=0;j<len;j++){const x=X(f[s+j*2]+o),y=Y(f[s+j*2+1]);j?g.lineTo(x,y):g.moveTo(x,y);}g.closePath();});};'+
+          'const cr=read(),lr=read();g.fillStyle="#fff";[-360,0,360].forEach(o=>{trace(cr,o);g.fill();});'+
+          'if(lr.length){g.globalCompositeOperation="destination-out";[-360,0,360].forEach(o=>{trace(lr,o);g.fill();});}'+
+          'const d=g.getImageData(0,0,TW,TH).data,t=new Uint8Array(TW*TH);for(let q=0;q<t.length;q++)t[q]=d[q*4+3]>127?1:0;postMessage(t.buffer,[t.buffer]);};';
+        const url=URL.createObjectURL(new Blob([src],{type:'text/javascript'})), wk=new Worker(url);
+        wk.onmessage=e=>{ tex=new Uint8Array(e.data); texBusy=false; dirty=true; wk.terminate(); URL.revokeObjectURL(url); };
+        wk.onerror=()=>{ wk.terminate(); URL.revokeObjectURL(url); texBusy=false; texMain(); };
+        wk.postMessage({f,TW,TH},[f.buffer]); return;
+      }catch(e){ texBusy=false; }
+    }
+    texMain();
+  }
+  function texMain(){
+    if(tex||texBusy||!WORLD_ALL) return; texBusy=true;
     setTimeout(()=>{
       try{
         const c=document.createElement('canvas'); c.width=TW; c.height=TH; const g=c.getContext('2d',{willReadFrequently:true});
@@ -4183,7 +4206,6 @@ const GlobePin=(()=>{
       texBusy=false;
     },30);
   }
-
   /* The planet on the GPU (WebGL2): one tiny pass per frame, so spinning costs the CPU almost nothing. If WebGL2 is not there the CPU painter below is used. */
   let gl=null, useGL=null, glU={}, glTexObj=null, glTexDone=false;
   const GLV='#version 300 es\nin vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
@@ -4418,7 +4440,7 @@ const GlobePin=(()=>{
     /* LOCK IN in globe mode: keep the globe, show the real spot and frame both; the page then shrinks it to the strip */
     result(actual){ if(!on) return; locked=true; target=actual; $('mapWrap').classList.add('globeRes'); $('mapToggle').textContent='⤢ Expand globe'; sizeBox(); fit(900); dirty=true; },
     setCrowd(list){ crowd=list||[]; dirty=true; },
-    hide, dataReady(){ if(build()){ buildTex(); dirty=true; } },
+    hide, dataReady(){ if(on||pref()){ if(build()){ buildTex(); dirty=true; } } },      // flat-map players pay nothing for the globe
     active:()=>on
   };
 })();
@@ -4573,7 +4595,7 @@ function submitGuess(timedOut){
   if(guessLL) showCrowdPins(S.i, d);
   MAP_VIEW = guessLL ? {b:L.latLngBounds([guessLL,actual]).pad(0.5)} : {c:actual};
   if(GlobePin.active()) GlobePin.result([st.lng,st.lat]);   // globe mode: the globe stays, shows the real spot, then shrinks to the strip
-  if(!isDesk()) setTimeout(()=>{      // after a moment the map shrinks to a strip so the jaw is not hidden behind it
+  if(!isDesk()||GlobePin.active()) setTimeout(()=>{      // after a moment the map shrinks to a strip so the jaw is not hidden behind it (the globe does this on desktop too)
     if(S && S.phase==='done' && document.body.classList.contains('pinning')){
       document.body.classList.add('pinned','pinDone');
       setTimeout(()=>{ map.invalidateSize(); if(guessLL) map.fitBounds(L.latLngBounds([guessLL,actual]).pad(0.5),{maxZoom:4.5,animate:false}); else map.setView(actual,5,{animate:false}); aim(); releaseJaw(); },420);
