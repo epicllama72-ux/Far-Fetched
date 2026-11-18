@@ -701,7 +701,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 #summary #digLog,#final.news #digLog,#summary #sumCurve,#final.news #sumCurve{image-rendering:auto}   /* the summary's blanket pixelated rule made these two charts stair-step */
 
 /* home buttons under I'M READY, and the full pages they open */
-#homeBtns{display:none;flex-direction:column;gap:6px;margin-top:12px}
+#homeBtns{display:none;flex-direction:column;gap:6px;margin-top:0}   /* the ready button's lowest point (its rest position) touches the tiles */
 body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
 #homeBtns .hr{display:flex;gap:6px}
 #homeBtns .ht{all:unset;box-sizing:border-box;flex:1 1 0;min-width:0;cursor:pointer;text-align:center;background:#141821;border:2px solid #2a2f3b;padding:7px 2px 6px;position:relative;box-shadow:2px 2px 0 #000;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
@@ -6623,8 +6623,8 @@ const Intro=(function(){
     const top=$('introTop'), narrow=innerWidth<1100;
     const tb=top.hidden ? 120 : top.getBoundingClientRect().bottom;
     const bar=$('bar'), bb=narrow && bar && bar.getClientRects().length ? bar.getBoundingClientRect().top : innerHeight-16;   // a fixed bar has no offsetParent, so test that it is drawn instead
-    const room=Math.max(80,bb-tb-8);
-    const Rpx=Math.min(innerWidth*(narrow?0.45:0.3), room/2-(narrow?0:14)), eyPx=tb+6+Rpx;   // tucked right under How to play
+    const room=Math.max(80,bb-tb-4);
+    const Rpx=Math.min(innerWidth*(narrow?0.5:0.3), room/2-(narrow?0:14)), eyPx=tb+6+Rpx;   // tucked right under How to play
     IP={R:Rpx/PX, ey:eyPx/PX};
   }
   const idlePos=()=>IP || {R:Math.min(w,h)*0.32, ey:h*0.6};
