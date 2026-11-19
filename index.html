@@ -4182,7 +4182,7 @@ const GlobePin=(()=>{
       px=x; py=y; pz=z; }
     pc.closePath();
   }
-  let bakeLines=false, minPts=2, lastCost=0, ps=PS, slow=0, dbg=/[?&]gdebug/.test(location.search), roT=0;
+  let psd=0, bakeLines=false, minPts=2, lastCost=0, ps=PS, slow=0, dbg=/[?&]gdebug/.test(location.search), roT=0;
   function addLine(a,cx,cy,R){      // an open line: only the part on this side (tiny islands and off-screen lines are skipped)
     const m=a.length/3; if(m<minPts||!project(a,m)) return;
     let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9; for(let i=0;i<m;i++){ const x=XS[i], y=YS[i]; if(x<x0) x0=x; if(x>x1) x1=x; if(y<y0) y0=y; if(y>y1) y1=y; }
@@ -4371,7 +4371,7 @@ const GlobePin=(()=>{
     if(pin) drawMark(pin,'#ff5d73',locked?'YOU':null,cx,cy,R);
     const now2=performance.now(); if(now2-roT>140){ roT=now2; const rd=$('globeRead'); if(rd) rd.innerHTML='<b>'+zoom.toFixed(1)+'×</b> · ~'+fmtKm(kmPerPx())+'/px'+(dbg?' · '+lastCost.toFixed(0)+'ms · px'+ps:''); }   // the readout updates a few times a second, not every frame
     lastCost=performance.now()-t0;
-    slow=lastCost>16?slow+1:Math.max(0,slow-1); if(slow>=6&&ps<5){ ps++; slow=0; }   // a slow machine gets bigger pixels (fewer to paint) instead of lag
+    slow=lastCost>16?slow+1:Math.max(0,slow-1); if(slow>=6&&psd<Math.round(5*(window.devicePixelRatio||1))){ psd+=Math.max(1,Math.round(window.devicePixelRatio||1)); ps=psd/(window.devicePixelRatio||1); slow=0; }   // a slow machine gets bigger pixels (fewer to paint) instead of lag
     if(window.__gb) window.__gb.push([t1-t0,performance.now()-t1]);
   }
   const WM={};
@@ -4427,6 +4427,7 @@ const GlobePin=(()=>{
     box.style.left=r.left+'px'; box.style.top=r.top+'px'; box.style.width=r.w+'px'; box.style.height=r.h+'px';
     const nd=Math.min(2,window.devicePixelRatio||1), cw=Math.max(1,Math.round(r.w*nd)), ch=Math.max(1,Math.round(r.h*nd));
     W=r.w; H=r.h; DPR=nd; R0=Math.min(W,H)/2*.92; if(forceR) zoom=Math.max(.2,forceR/R0);
+    { const rd=window.devicePixelRatio||1; if(!psd) psd=Math.max(3,Math.round(3*rd)); ps=psd/rd; }   // a planet pixel is a whole number of device pixels (at 125% or 150% screen scaling 3 CSS px would be uneven and shimmer)
     if(cv.width!==cw||cv.height!==ch){ cv.width=cw; cv.height=ch; }
     ctx.setTransform(DPR,0,0,DPR,0,0); boxRect=r; dirty=true; if(on) draw();
   }
@@ -4488,7 +4489,7 @@ const GlobePin=(()=>{
   const pref=()=>{ try{ return localStorage.getItem('ff_globe')==='1'; }catch(e){ return false; } };      // the flat map is the default for now; the globe is a tap away and remembered once chosen
   function ensure(){ if(!cv){ cv=$('globeCv'); ctx=cv.getContext('2d'); box=$('globeBox'); wire(); } }
   function show(){
-    ensure(); clearTimeout(hideT); build(); buildTex(); on=true; ps=PS; slow=0; wasMini=false; locked=false; target=null; crowd=[]; $('mapWrap').classList.remove('globeRes'); $('mapWrap').classList.add('globeOn'); $('mapGlobe').hidden=true; sizeBox();
+    ensure(); clearTimeout(hideT); build(); buildTex(); on=true; psd=0; slow=0; wasMini=false; locked=false; target=null; crowd=[]; $('mapWrap').classList.remove('globeRes'); $('mapWrap').classList.add('globeOn'); $('mapGlobe').hidden=true; sizeBox();
     pin=guessLL?[guessLL.lng,guessLL.lat]:null; anim=null; inertia=false;
     if(pin) setView(pin[0],pin[1],zoom>1?zoom:1); else setView(-35,18,1);
     if(!guessLL) $('btnGuess').textContent='TAP A REGION TO ZOOM IN';

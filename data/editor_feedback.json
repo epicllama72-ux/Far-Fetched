@@ -29,7 +29,8 @@
   "FAKES: never formulaic. They are NOT all '[person] in a [costume] does [thing] in {}'. Fakes can be about anything (objects, places, institutions, discoveries, rules, records, events), with varied sentence shapes and {} positions; at most one per set is a person described by their clothing. Each still copies the real stories' deadpan, specific, numbered style and carries one quiet inconsistency checkable from the headline.",
   "FAKES: the same high bar as the real stories. A fake must be interesting enough that it would earn a place in the game if it were real; dull surveys, studies, statistics or bland incidents are out however clever the slip.",
   "Reveal clues must never end mid-word or mid-phrase: scripts/make_daily.py now cuts an overlong clue at its last ';' / ',' / ' = ' / ' + ' (else a whole word) and drops dangling words; 22 existing truncated clues in data/ were repaired.",
-  "HINTS: the owner wants hints a global audience can use. Prefer a world-famous landmark or fact plus a compass direction over local trivia: 'a borough south of Big Ben' beat 'birthplace of supermodel Kate Moss'; 'a northwest city in Troy's homeland' beat 'where the 1999 Marmara quake struck'; 'a suburb of the Civil War's first-shots city' beat 'the setting of Porgy and Bess'. Never name the country, state or province or its adjective. Skip hints that need local knowledge (a regional quake, a model's hometown, an opera's setting); a place's own city may be pointed to through its most famous event or landmark."
+  "HINTS: the owner wants hints a global audience can use. Prefer a world-famous landmark or fact plus a compass direction over local trivia: 'a borough south of Big Ben' beat 'birthplace of supermodel Kate Moss'; 'a northwest city in Troy's homeland' beat 'where the 1999 Marmara quake struck'; 'a suburb of the Civil War's first-shots city' beat 'the setting of Porgy and Bess'. Never name the country, state or province or its adjective. Skip hints that need local knowledge (a regional quake, a model's hometown, an opera's setting); a place's own city may be pointed to through its most famous event or landmark.",
+  "FAKES: write them in the same plain voice as the real stories, not as engineered puzzles. Don't pile up exact quantities (litres, percentages, counts like '58 litres of 4% shandy' or '8,640 drone bees sting him 212 times'); one natural detail and one catchable slip is enough. The real stories read like a news wire about a person doing something odd."
  ],
  "edits": [
   {
@@ -574,6 +575,18 @@
    "before": "the setting of Porgy and Bess",
    "after": "a suburb of the Civil War's first-shots city",
    "why": "owner (Nov 19): hints should lean on world-famous landmarks or events plus a direction, not local trivia"
+  },
+  {
+   "kind": "fake",
+   "before": "Flames from 58 litres of 4% shandy singe the ceiling as a chef flambés a trifle in {}",
+   "after": "Chef sets restaurant ceiling alight flambéing a trifle with shandy in {}, evacuating 11 diners",
+   "why": "owner (Nov 19): the fakes read as engineered next to the real stories; reworded in the plain voice, slip kept"
+  },
+  {
+   "kind": "fake",
+   "before": "Burglar flees a shed in {} after 8,640 drone bees sting him 212 times, says the beekeeper, 61",
+   "after": "Burglar flees beekeeper's shed in {} after drone bees sting him more than 200 times, owner says",
+   "why": "owner (Nov 19): the fakes read as engineered next to the real stories; reworded in the plain voice, slip kept"
   }
  ]
 }
