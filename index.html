@@ -1082,7 +1082,7 @@ button:disabled,button:disabled:active{background:#2a2e38;color:#7d8494;cursor:d
 #mapWrap.open{transform:translate(-50%,0)}
 #map{height:min(38vh,340px);min-height:190px;transition:height .35s steps(5);border:3px solid var(--accent);margin-bottom:10px;background:#0f1a2a;box-shadow:0 0 0 3px var(--ink),6px 6px 0 3px var(--ink)}
 #mapWrap .primary{margin:0 3px;width:calc(100% - 6px)}
-#mapWrap.globeOn #map{height:min(50vh,calc(100vw - 32px));opacity:0;pointer-events:none}
+#mapWrap.globeOn #map{height:min(50vh,calc(100vw - 32px));opacity:0;pointer-events:none;transition:none}   /* the globe animates its own resize; the panel just jumps */
 #globeBox{display:none;position:absolute;z-index:8;touch-action:none;contain:layout paint size;overscroll-behavior:none}
 #mapWrap.globeOn #globeBox{display:block}
 #globePx{position:absolute;left:0;top:0;image-rendering:pixelated;image-rendering:crisp-edges;pointer-events:none}
@@ -4421,14 +4421,30 @@ const GlobePin=(()=>{
     if(inertia){ const dt=lastT?Math.min(40,now-lastT):16; setView(lon+vel[0]*dt,lat+vel[1]*dt,zoom); const f=Math.exp(-dt/330); vel=[vel[0]*f,vel[1]*f]; if(Math.hypot(vel[0],vel[1])*(R0*zoom)/(180/Math.PI)<.012) inertia=false; }
     lastT=inertia?now:0;
     if(dirty) draw(); raf=requestAnimationFrame(loop); }
-  function sizeBox(keepPx){
-    const m=$('map'); if(!m||!box) return;
-    box.style.left=m.offsetLeft+'px'; box.style.top=m.offsetTop+'px'; box.style.width=m.offsetWidth+'px'; box.style.height=m.offsetHeight+'px';
-    const r=box.getBoundingClientRect(), nd=Math.min(2,window.devicePixelRatio||1), cw=Math.max(1,Math.round(r.width*nd)), ch=Math.max(1,Math.round(r.height*nd));
-    W=r.width; H=r.height; DPR=nd; R0=Math.min(W,H)/2*.92;
-    if(keepPx) zoom=Math.max(.2,Math.min(12,keepPx/R0));     // while the panel changes size the planet keeps its on-screen size; only the window crops it
-    if(cv.width!==cw||cv.height!==ch){ cv.width=cw; cv.height=ch; }      // resizing a canvas wipes it, so repaint in the same breath
-    ctx.setTransform(DPR,0,0,DPR,0,0); dirty=true; if(on) draw();
+  /* the box follows the map panel; applyBox places it (and repaints in the same breath, since resizing a canvas wipes it) */
+  let boxRect={left:0,top:0,w:0,h:0}, forceR=0, resizing=false;
+  function applyBox(r){
+    box.style.left=r.left+'px'; box.style.top=r.top+'px'; box.style.width=r.w+'px'; box.style.height=r.h+'px';
+    const nd=Math.min(2,window.devicePixelRatio||1), cw=Math.max(1,Math.round(r.w*nd)), ch=Math.max(1,Math.round(r.h*nd));
+    W=r.w; H=r.h; DPR=nd; R0=Math.min(W,H)/2*.92; if(forceR) zoom=Math.max(.2,forceR/R0);
+    if(cv.width!==cw||cv.height!==ch){ cv.width=cw; cv.height=ch; }
+    ctx.setTransform(DPR,0,0,DPR,0,0); boxRect=r; dirty=true; if(on) draw();
+  }
+  const mapRect=()=>{ const m=$('map'); return {left:m.offsetLeft,top:m.offsetTop,w:m.offsetWidth,h:m.offsetHeight}; };
+  function sizeBox(){ const m=$('map'); if(!m||!box) return; applyBox(mapRect()); }
+  function midLL(){ const t=vec(target[1],target[0]); let m=t; if(pin){ const a=vec(pin[1],pin[0]); m=[a[0]+t[0],a[1]+t[1],a[2]+t[2]]; const h=Math.hypot(m[0],m[1],m[2]); m=h<1e-3?t:[m[0]/h,m[1]/h,m[2]/h]; } return [Math.atan2(m[1],m[0])/D2R,Math.asin(Math.max(-1,Math.min(1,m[2])))/D2R]; }
+  /* expanding or shrinking: the box, the planet's size and its turn all ease together, so it is one smooth motion every time */
+  function animResize(){
+    const to=mapRect(), from=Object.assign({},boxRect), Rf=R0*zoom, ll0=[lon,lat], ll1=midLL(), dl=((ll1[0]-lon+540)%360)-180, t0=performance.now(), dur=460, Rto=Math.min(to.w,to.h)/2*.92;
+    resizing=true; inertia=false;
+    anim=now=>{
+      const t=Math.min(1,(now-t0)/dur), e=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+      lon=((ll0[0]+dl*e+540)%360)-180; lat=ll0[1]+(ll1[1]-ll0[1])*e;
+      forceR=Rf+(Rto-Rf)*e;
+      applyBox({left:from.left+(to.left-from.left)*e,top:from.top+(to.top-from.top)*e,w:from.w+(to.w-from.w)*e,h:from.h+(to.h-from.h)*e});
+      if(t>=1){ anim=null; resizing=false; forceR=Rto; sizeBox(); forceR=0; zoom=1; dirty=true; }
+      else forceR=0;
+    };
   }
   function inv(x,y){ const sx=(x-W/2)/(R0*zoom), sy=-(y-H/2)/(R0*zoom), r2=sx*sx+sy*sy; if(r2>1) return null; basis(); const sz=Math.sqrt(1-r2);
     const X=sx*ev[0]+sy*nv[0]+sz*cv3[0], Y=sx*ev[1]+sy*nv[1]+sz*cv3[1], Z=sx*ev[2]+sy*nv[2]+sz*cv3[2]; return [Math.atan2(Y,X)/D2R,Math.asin(Math.max(-1,Math.min(1,Z)))/D2R]; }
@@ -4442,7 +4458,7 @@ const GlobePin=(()=>{
     drop(ll);
   }
   function wire(){
-    cv.addEventListener('pointerdown',e=>{ cv.setPointerCapture(e.pointerId); ptrs.set(e.pointerId,[e.clientX,e.clientY]); anim=null; inertia=false;
+    cv.addEventListener('pointerdown',e=>{ cv.setPointerCapture(e.pointerId); ptrs.set(e.pointerId,[e.clientX,e.clientY]); if(!resizing) anim=null; inertia=false;
       if(ptrs.size===1){ moved=0; downT=performance.now(); lastMove=downT; vel=[0,0]; } else { const a=[...ptrs.values()]; pinchD=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]); moved=99; } interacting=true; });
     cv.addEventListener('pointermove',e=>{ if(!ptrs.has(e.pointerId)) return; const p=ptrs.get(e.pointerId), dx=e.clientX-p[0], dy=e.clientY-p[1]; ptrs.set(e.pointerId,[e.clientX,e.clientY]);
       if(ptrs.size===1){ moved+=Math.hypot(dx,dy); if(moved<5) return; const k=(180/Math.PI)/(R0*zoom), now=performance.now(), dt=Math.max(4,now-lastMove); setView(lon-dx*k,lat+dy*k,zoom);
@@ -4465,7 +4481,7 @@ const GlobePin=(()=>{
     $('globeFlat').onclick=()=>swap(false); $('mapGlobe').onclick=()=>swap(true);
     window.addEventListener('resize',()=>{ if(on) sizeBox(); });
     if(window.ResizeObserver){ ro=new ResizeObserver(()=>{ if(!on) return;
-        if(locked){ const Rpx=R0*zoom; anim=null; sizeBox(Rpx); clearTimeout(fitT); fitT=setTimeout(()=>{ if(on&&locked){ if(document.body.classList.contains('pinned')) mini(420); else if(wasMini) mini(420); else fit(380); } },170); }   // expanding from the little globe opens on the whole planet, not zoomed on the pin   // the panel shrinks in steps: hold the picture steady, then ease to the final framing
+        if(locked){ const to=mapRect(); if(Math.abs(to.h-boxRect.h)>20||Math.abs(to.top-boxRect.top)>20) animResize(); else if(!resizing) sizeBox(); }
         else sizeBox(); }); ro.observe($('map')); }
     $('map').appendChild($('mapGlobe')); L.DomEvent.disableClickPropagation($('mapGlobe'));
   }
@@ -4480,7 +4496,7 @@ const GlobePin=(()=>{
   }
   let hideT=0, fitT=0;
   /* hide(): the globe stops drawing but its last frame stays up while the map panel slides away, then the classes go (hide(true) is immediate) */
-  function hide(now){ on=false; locked=false; target=null; crowd=[]; wasMini=false; clearTimeout(fitT); if(raf){ cancelAnimationFrame(raf); raf=0; } clearTimeout(hideT);
+  function hide(now){ on=false; locked=false; resizing=false; target=null; crowd=[]; wasMini=false; clearTimeout(fitT); if(raf){ cancelAnimationFrame(raf); raf=0; } clearTimeout(hideT);
     const end=()=>{ const w=$('mapWrap'); if(w) w.classList.remove('globeOn','globeRes'); const g=$('mapGlobe'); if(g) g.hidden=true; };
     if(now===true) end(); else hideT=setTimeout(end,1000); }
   function swap(toGlobe){
