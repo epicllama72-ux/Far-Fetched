@@ -3774,6 +3774,7 @@ const FAKE_BASE = 50, FOOLED_BASE = 25, TRUE_BASE = 180, JAW_SCALE = 1000;   // 
 let FAKE_PTS = 50;
 
 function startGame(mode, kind){
+  GlobePin.tryApply();   // a 'try it' game borrows the other pin method for this one game only
   $('hudNext').hidden=true; $('hudTry').hidden=true; document.body.classList.remove('sumUp');
   if(typeof Intro!=='undefined' && Intro.planetOn()) Intro.hide(true);
   if(typeof Intro!=='undefined') setTimeout(Intro.check,60);   // a fresh start opens on the planet; a finished day shows it zoomed out   // a finished day has no ready button: drop straight to the room
@@ -4487,7 +4488,8 @@ const GlobePin=(()=>{
         else sizeBox(); }); ro.observe($('map')); }
     $('map').appendChild($('mapGlobe')); L.DomEvent.disableClickPropagation($('mapGlobe'));
   }
-  const pref=()=>{ try{ return localStorage.getItem('ff_globe')==='1'; }catch(e){ return false; } };      // the flat map is the default for now; the globe is a tap away and remembered once chosen
+  let tryNext=null, tryMode=null;      // 'Try it' from the Account page: one practice game on the chosen method, without touching the saved choice
+  const pref=()=>{ if(tryMode!==null) return tryMode; try{ return localStorage.getItem('ff_globe')==='1'; }catch(e){ return false; } };      // the flat map is the default for now; the globe is a tap away and remembered once chosen
   function ensure(){ if(!cv){ cv=$('globeCv'); ctx=cv.getContext('2d'); box=$('globeBox'); wire(); } }
   function show(){
     ensure(); clearTimeout(hideT); build(); buildTex(); on=true; psd=0; slow=0; wasMini=false; locked=false; target=null; crowd=[]; $('mapWrap').classList.remove('globeRes'); $('mapWrap').classList.add('globeOn'); $('mapGlobe').hidden=true; sizeBox();
@@ -4502,7 +4504,7 @@ const GlobePin=(()=>{
     const end=()=>{ const w=$('mapWrap'); if(w) w.classList.remove('globeOn','globeRes'); const g=$('mapGlobe'); if(g) g.hidden=true; };
     if(now===true) end(); else hideT=setTimeout(end,1000); }
   function swap(toGlobe){
-    try{ localStorage.setItem('ff_globe',toGlobe?'1':'0'); }catch(e){}
+    if(tryMode!==null) tryMode=toGlobe; else { try{ localStorage.setItem('ff_globe',toGlobe?'1':'0'); }catch(e){} }
     gcEvent('pinmode/switch/'+(toGlobe?'globe':'flat')); gcEvent('pinmode/used/'+(toGlobe?'globe':'flat'));
     if(toGlobe){ const c=map.getCenter(), hadPin=!!guessLL; show(); if(!hadPin) setView(c.lng,c.lat,map.getZoom()>=3.5?4:1); }
     else { hide(true); map.invalidateSize(); $('mapGlobe').hidden=false; if(guessLL){ map.setView(guessLL,Math.max(map.getZoom(),4.5),{animate:false}); $('btnGuess').textContent='LOCK IN'; } else { if(MAP_HOME) MAP_HOME(); $('btnGuess').textContent='TAP A REGION TO ZOOM IN'; } }
@@ -4512,7 +4514,8 @@ const GlobePin=(()=>{
     /* LOCK IN in globe mode: keep the globe, show the real spot and frame both; the page then shrinks it to the strip */
     result(actual){ if(!on) return; locked=true; target=actual; $('mapWrap').classList.add('globeRes'); $('mapToggle').textContent='⤢ Expand globe'; sizeBox(); fit(900); dirty=true; },
     setCrowd(list){ crowd=list||[]; dirty=true; },
-    pref, setPref(v){ try{ localStorage.setItem('ff_globe',v?'1':'0'); }catch(e){} gcEvent('pinmode/set/'+(v?'globe':'flat')); },
+    pref, tryOnce(v){ tryNext=v; }, tryApply(){ tryMode=tryNext; tryNext=null; },
+    setPref(v){ try{ localStorage.setItem('ff_globe',v?'1':'0'); }catch(e){} gcEvent('pinmode/set/'+(v?'globe':'flat')); },
     hide, dataReady(){ if(on||pref()){ if(build()){ buildTex(); dirty=true; } } },      // flat-map players pay nothing for the globe
     active:()=>on
   };
@@ -6753,8 +6756,9 @@ HPAGES.blank={title:'Fill the Blank',render(){
 
 /* ACCOUNT */
 /* the Account page lets players choose how they pin (globe or flat map); the map's own button still switches it mid-game */
-const pinCard=()=>{ const g=GlobePin.pref(); return hpCard('HOW YOU PIN','','<p class="sm">You can now drop your pin on a globe instead of a flat map. The globe spins and zooms: tap a region to zoom in, then tap again to place your pin.</p><p class="sm">Try both. The button on the map switches between them at any time, even mid-game. Then choose below which one every headline opens on. Your choice is saved on this device.</p><div class="g2 pcRow" role="group" aria-label="Pin on"><button class="b2'+(g?'':' ghost')+'" id="pcGlobe" type="button" aria-pressed="'+g+'">🌐 Globe</button><button class="b2'+(g?' ghost':'')+'" id="pcFlat" type="button" aria-pressed="'+(!g)+'">🗺 Flat map</button></div>'); };
-const pinWire=()=>{ const set=v=>{ GlobePin.setPref(v); HPAGES.account.render(); }; $('pcGlobe').onclick=()=>set(true); $('pcFlat').onclick=()=>set(false); };
+const pinCard=()=>{ const g=GlobePin.pref(); return hpCard('HOW YOU PIN','','<p class="sm">You can now drop your pin on a globe instead of a flat map. The globe spins and zooms: tap a region to zoom in, then tap again to place your pin.</p><p class="sm">Try both. The button on the map switches between them at any time, even mid-game. Then choose below which one every headline opens on. Your choice is saved on this device.</p><div class="g2 pcRow" role="group" aria-label="Pin on"><button class="b2'+(g?'':' ghost')+'" id="pcGlobe" type="button" aria-pressed="'+g+'">🌐 Globe</button><button class="b2'+(g?' ghost':'')+'" id="pcFlat" type="button" aria-pressed="'+(!g)+'">🗺 Flat map</button></div><p class="sm">Or take one for a spin first, in a practice game that doesn\'t count and leaves your choice as it is:</p><div class="g2 pcRow" role="group" aria-label="Try it"><button class="b2 ghost" id="pcTryG" type="button">Try the globe</button><button class="b2 ghost" id="pcTryF" type="button">Try the map</button></div>'); };
+const pinWire=()=>{ const set=v=>{ GlobePin.setPref(v); HPAGES.account.render(); }; $('pcGlobe').onclick=()=>set(true); $('pcFlat').onclick=()=>set(false);
+  const tryIt=v=>{ gcEvent('pinmode/try/'+(v?'globe':'flat')); GlobePin.tryOnce(v); hpClose(); startGame('practice','call'); }; $('pcTryG').onclick=()=>tryIt(true); $('pcTryF').onclick=()=>tryIt(false); };
 HPAGES.account={title:'Account',render(){
   const u=window.Cloud&&Cloud.user&&Cloud.user();
   if(!u){
