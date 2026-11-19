@@ -718,6 +718,14 @@ body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
 #homeBtns .ht.hot{border-color:var(--cyan);background:#10202c}
 #homeBtns .hn{font:6px/1.35 var(--px);letter-spacing:.05em;color:#c8cfdd;text-transform:uppercase}
 #homeBtns .hs{font:17px/1 var(--vt);color:var(--accent)}
+/* Standings and Sign in borrow the menu's look: a card with a red pushpin, and the business card with the ink FF logo */
+#homeBtns .ht.cardt{background:#f7f3e8;border:1px solid #1b1813}
+#homeBtns .ht.cardt .hn{color:#1b1813}
+#homeBtns .ht.cardt .hs{color:#5a5043;font-size:16px}
+#homeBtns .pin{width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#e5594d,#a8231a 60%,#5f130e);box-shadow:1px 2px 0 rgba(0,0,0,.35);flex:none;margin-bottom:2px}
+#homeBtns .ffl{width:15px;height:15px;background:#1b1813;color:#f7f3e8;display:grid;place-items:center;font:6px/1 var(--px);flex:none}
+#homeBtns .hr:nth-child(2) .ffl{width:14px;height:14px}
+#homeBtns .hr:nth-child(2) .pin{margin-bottom:0}
 #homeBtns .hdot{position:absolute;top:-5px;right:-4px;background:#a8231a;color:#fff;font:6px/1 var(--px);padding:3px 4px 2px}
 #homeBtns .hdot:empty{display:none}
 #hp{position:fixed;inset:0;z-index:31;background:rgba(5,6,10,.85);display:flex;align-items:stretch;justify-content:center}
@@ -1952,12 +1960,12 @@ body.pinning #card #headline{font-size:23px}
     <button type="button" class="ht" data-h="stats"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="4" width="2" height="3"/><rect x="2" y="2" width="2" height="5"/><rect x="4" y="0" width="2" height="7"/></g></svg><span class="hn">Stats</span><span class="hs" id="hStats"></span></button>
     <button type="button" class="ht" data-h="streak"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true" style="color:#ff8a3d"><g fill="currentColor"><rect x="3" y="0" width="1" height="1"/><rect x="2" y="1" width="2" height="2"/><rect x="4" y="2" width="1" height="2"/><rect x="1" y="3" width="4" height="3"/><rect x="2" y="6" width="2" height="1"/></g></svg><span class="hn">Streak</span><span class="hs" id="hStreak"></span></button>
     <button type="button" class="ht hot" data-h="blank"><span class="blk" aria-hidden="true">[ ? ]</span><span class="hn">Fill the blank</span><span class="hs" id="hBlank"></span></button>
-    <button type="button" class="ht" data-h="account"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="1" width="3" height="3"/><rect x="3" y="2" width="4" height="1"/><rect x="5" y="3" width="1" height="2"/></g></svg><span class="hn" id="hAcctN">Sign in</span><span class="hdot" id="hAcctDot">SAVE</span></button>
+    <button type="button" class="ht cardt" data-h="board"><span class="pin" aria-hidden="true"></span><span class="hn">Standings</span><span class="hs">best digs</span></button>
   </div>
   <div class="hr">
     <button type="button" class="ht" data-h="passport"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="1" y="0" width="5" height="7"/><rect x="2" y="1" width="3" height="3" style="fill:#141821"/><rect x="3" y="2" width="1" height="1"/><rect x="2" y="5" width="3" height="1" style="fill:#141821"/></g></svg><span class="hn">Passport</span><span class="hs" id="hPass"></span></button>
     <button type="button" class="ht" data-h="back" id="hBack"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="0" width="5" height="1"/><rect x="1" y="2" width="5" height="1"/><rect x="2" y="4" width="5" height="1"/></g></svg><span class="hn">Back issues</span></button>
-    <button type="button" class="ht" data-h="board"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="1" y="0" width="5" height="1"/><rect x="1" y="1" width="5" height="3"/><rect x="0" y="1" width="1" height="2"/><rect x="6" y="1" width="1" height="2"/><rect x="3" y="4" width="1" height="2"/><rect x="2" y="6" width="3" height="1"/></g></svg><span class="hn">Standings</span></button>
+    <button type="button" class="ht cardt" data-h="account"><span class="ffl" aria-hidden="true">FF</span><span class="hn" id="hAcctN">Sign in</span><span class="hdot" id="hAcctDot">SAVE</span></button>
     <button type="button" class="ht" data-h="groups"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="1" width="2" height="2"/><rect x="0" y="3" width="3" height="3"/><rect x="3" y="0" width="2" height="2"/><rect x="3" y="2" width="3" height="4"/></g></svg><span class="hn">Groups</span><span class="hs" id="hGroups"></span></button>
   </div>
 </div>
