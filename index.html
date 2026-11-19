@@ -6611,7 +6611,7 @@ const hpEsc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;
 const hpCard=(l,r,inner,cls)=>'<div class="cd'+(cls?' '+cls:'')+'"><h5><span>'+l+'</span><span>'+(r||'')+'</span></h5>'+inner+'</div>';
 const addDays=(d,n)=>{ const p=d.split('-').map(Number); return keyOf(new Date(Date.UTC(p[0],p[1]-1,p[2]+n,12))); };
 /* the notice over the earth: shown once per device, from Nov 20; ?pinnote forces it for a look */
-const PIN_NOTE_FROM='2026-11-20';
+const PIN_NOTE_FROM='2026-11-19';
 function pinNoteDone(){ try{ localStorage.setItem('ff_pinnote','1'); }catch(e){} const n=$('pinNote'); if(n) n.hidden=true; }
 function maybePinNote(){
   const force=/[?&]pinnote/.test(location.search); let seen=false; try{ seen=localStorage.getItem('ff_pinnote')==='1'; }catch(e){ seen=true; }
