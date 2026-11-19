@@ -26,8 +26,8 @@
   },
   {
    "real": false,
-   "h": "Flames from 58 litres of 4% shandy singe the ceiling as a chef flambés a trifle in {}",
-   "tell": "Drinks of 4% alcohol are too weak to catch fire; flambé needs spirits of roughly 40%."
+   "h": "Chef sets restaurant ceiling alight flambéing a trifle with shandy in {}, evacuating 11 diners",
+   "tell": "Shandy is only a few percent alcohol, far too weak to catch fire; flambé needs spirits of roughly 40%."
   },
   {
    "real": true,
@@ -42,7 +42,7 @@
   },
   {
    "real": false,
-   "h": "Burglar flees a shed in {} after 8,640 drone bees sting him 212 times, says the beekeeper, 61",
+   "h": "Burglar flees beekeeper's shed in {} after drone bees sting him more than 200 times, owner says",
    "tell": "Drone bees are male and have no stinger, so they cannot sting anyone."
   },
   {
