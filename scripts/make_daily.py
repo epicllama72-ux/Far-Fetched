@@ -587,6 +587,8 @@ For each story give a "hint": a SHORT noun phrase of AT MOST 6 WORDS, starting w
 
 If the story already has a "hint" that is true, short, fits those rules and is a trivia clue (media, politics, history, sport or food/culture, not bare geography or a landmark description), keep it unchanged. Replace geography hints with a trivia type, and make the hints in this batch a mix of types: media for up to 3 stories, every other type at most once. If it is false, doubtful, names the place, its country, state or province or a neighbouring place, only states where the place lies, or is about the event, replace it. The headline itself stays as it is.
 
+Prefer a hint built on a WORLD-FAMOUS landmark, event or fact plus a compass direction over local trivia, for a global audience: "a borough south of Big Ben" beats "birthplace of supermodel Kate Moss"; "a northwest city in Troy's homeland" beats "where the 1999 Marmara quake struck"; "a suburb of the Civil War's first-shots city" beats "the setting of Porgy and Bess". Never name the country, state or province or its adjective.
+
 Then rate the headline PLUS hint as the player will have them when they pin:
 - "clue_strength": 0-3. 3 = strongly points to a region; 2 = a fair hint a well-read general player could use; 1 = a weak hint; 0 = could be anywhere, or the hint is misleading.
 - "jargon_only": true when the only help is a local term or acronym a general player would not know.
