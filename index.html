@@ -4422,21 +4422,22 @@ const GlobePin=(()=>{
     lastT=inertia?now:0;
     if(dirty) draw(); raf=requestAnimationFrame(loop); }
   /* the box follows the map panel; applyBox places it (and repaints in the same breath, since resizing a canvas wipes it) */
-  let boxRect={left:0,top:0,w:0,h:0}, forceR=0, resizing=false;
+  let boxRect={left:0,top:0,w:0,h:0}, forceR=0, resizing=false, wrapTop=0;
   function applyBox(r){
     box.style.left=r.left+'px'; box.style.top=r.top+'px'; box.style.width=r.w+'px'; box.style.height=r.h+'px';
     const nd=Math.min(2,window.devicePixelRatio||1), cw=Math.max(1,Math.round(r.w*nd)), ch=Math.max(1,Math.round(r.h*nd));
     W=r.w; H=r.h; DPR=nd; R0=Math.min(W,H)/2*.92; if(forceR) zoom=Math.max(.2,forceR/R0);
     { const rd=window.devicePixelRatio||1; if(!psd) psd=Math.max(3,Math.round(3*rd)); ps=psd/rd; }   // a planet pixel is a whole number of device pixels (at 125% or 150% screen scaling 3 CSS px would be uneven and shimmer)
     if(cv.width!==cw||cv.height!==ch){ cv.width=cw; cv.height=ch; }
-    ctx.setTransform(DPR,0,0,DPR,0,0); boxRect=r; dirty=true; if(on) draw();
+    ctx.setTransform(DPR,0,0,DPR,0,0); boxRect=r; dirty=true; if(!resizing){ const w=$('mapWrap'); if(w) wrapTop=w.getBoundingClientRect().top; } if(on) draw();
   }
   const mapRect=()=>{ const m=$('map'); return {left:m.offsetLeft,top:m.offsetTop,w:m.offsetWidth,h:m.offsetHeight}; };
   function sizeBox(){ const m=$('map'); if(!m||!box) return; applyBox(mapRect()); }
   function midLL(){ const t=vec(target[1],target[0]); let m=t; if(pin){ const a=vec(pin[1],pin[0]); m=[a[0]+t[0],a[1]+t[1],a[2]+t[2]]; const h=Math.hypot(m[0],m[1],m[2]); m=h<1e-3?t:[m[0]/h,m[1]/h,m[2]/h]; } return [Math.atan2(m[1],m[0])/D2R,Math.asin(Math.max(-1,Math.min(1,m[2])))/D2R]; }
   /* expanding or shrinking: the box, the planet's size and its turn all ease together, so it is one smooth motion every time */
   function animResize(){
-    const to=mapRect(), from=Object.assign({},boxRect), Rf=R0*zoom, ll0=[lon,lat], ll1=midLL(), dl=((ll1[0]-lon+540)%360)-180, t0=performance.now(), dur=460, Rto=Math.min(to.w,to.h)/2*.92;
+    const to=mapRect(), from=Object.assign({},boxRect), wt=$('mapWrap').getBoundingClientRect().top, Rf=R0*zoom, ll0=[lon,lat], ll1=midLL(), dl=((ll1[0]-lon+540)%360)-180, t0=performance.now(), dur=460, Rto=Math.min(to.w,to.h)/2*.92;
+    from.top+=wrapTop-wt;   // the panel has already jumped to its new size; start the globe from where it was on screen, not from the panel's new corner
     resizing=true; inertia=false;
     anim=now=>{
       const t=Math.min(1,(now-t0)/dur), e=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
