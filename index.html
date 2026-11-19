@@ -706,6 +706,11 @@ body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
 #homeBtns .hr{display:flex;gap:5px}
 #homeBtns .ht{all:unset;box-sizing:border-box;flex:1 1 0;min-width:0;cursor:pointer;text-align:center;background:#141821;border:2px solid #2a2f3b;padding:4px 2px 4px;position:relative;box-shadow:2px 2px 0 #000;min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
 #homeBtns .ht[hidden]{display:none}
+/* the second row is half the height of the first: icon and name sit side by side */
+#homeBtns .hr:nth-child(2) .ht{min-height:34px;flex:1 1 auto;flex-direction:row;gap:4px;padding:2px 3px}
+#homeBtns .hr:nth-child(2) svg{width:11px;height:11px;flex:none}
+#homeBtns .hr:nth-child(2) .hn{font-size:5.5px;line-height:1.25;white-space:nowrap;letter-spacing:0}
+#homeBtns .hr:nth-child(2) .hs{font-size:15px;white-space:nowrap}
 #homeBtns .ht:active{transform:translate(1px,1px);box-shadow:1px 1px 0 #000}
 #homeBtns .ht:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 #homeBtns svg{width:15px;height:15px;color:var(--cyan)}
@@ -713,8 +718,32 @@ body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
 #homeBtns .ht.hot{border-color:var(--cyan);background:#10202c}
 #homeBtns .hn{font:6px/1.35 var(--px);letter-spacing:.05em;color:#c8cfdd;text-transform:uppercase}
 #homeBtns .hs{font:17px/1 var(--vt);color:var(--accent)}
+/* newspaper index look: ink tiles, each with its page (A1 to B4) */
+#homeBtns{gap:0}
+#homeBtns .hr{margin-bottom:5px}#homeBtns .hr:last-child{margin-bottom:0}
+#homeBtns .ht{background:#1b1813;border:2px solid #e9e0c6;padding-top:8px}
+#homeBtns svg{color:#e9e0c6}
+#homeBtns .hn{color:#e9e0c6}#homeBtns .hs,#homeBtns .blk{color:#ffcc4d}
+#homeBtns .ht.hot{border-color:#ff7a8a;background:#2a1313}
+#homeBtns .ht::before{position:absolute;left:3px;top:2px;font:5px/1 var(--px);color:#ff7a8a;letter-spacing:.08em}
+#homeBtns .hr:nth-child(1) .ht:nth-child(1)::before{content:'A1'}#homeBtns .hr:nth-child(1) .ht:nth-child(2)::before{content:'A2'}#homeBtns .hr:nth-child(1) .ht:nth-child(3)::before{content:'A3'}#homeBtns .hr:nth-child(1) .ht:nth-child(4)::before{content:'A4'}
+#homeBtns .hr:nth-child(2) .ht:nth-child(1)::before{content:'B1'}#homeBtns .hr:nth-child(2) .ht:nth-child(2)::before{content:'B2'}#homeBtns .hr:nth-child(2) .ht:nth-child(3)::before{content:'B3'}#homeBtns .hr:nth-child(2) .ht:nth-child(4)::before{content:'B4'}
+#homeBtns .hr:nth-child(2) .ht{padding-top:2px}
+#homeBtns .hr:nth-child(2) .ht::before{top:1px}
 #homeBtns .hdot{position:absolute;top:-5px;right:-4px;background:#a8231a;color:#fff;font:6px/1 var(--px);padding:3px 4px 2px}
 #homeBtns .hdot:empty{display:none}
+/* one-time notice over the earth: pin on the globe or the map */
+#pinNote{position:fixed;left:50%;top:46%;z-index:26;width:min(238px,calc(100vw - 48px));transform:translate(-50%,-50%) rotate(-1.2deg);animation:pnIn .35s steps(5) both}
+@keyframes pnIn{from{opacity:0;transform:translate(-50%,-44%) rotate(-3deg)}to{opacity:1;transform:translate(-50%,-50%) rotate(-1.2deg)}}
+@media (prefers-reduced-motion:reduce){#pinNote{animation:none}}
+#pinNote[hidden]{display:none}
+#pinNote .pnIn{background:#ece5d1;background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px);color:#1b1813;border:3px solid #a8231a;box-shadow:0 0 0 2px #ece5d1,0 0 0 4px #1b1813,5px 6px 0 4px rgba(0,0,0,.45);padding:11px 11px 9px;text-align:left}
+#pinNote p{margin:0 0 6px;font:18px/1.1 var(--vt)}#pinNote b{font-weight:400;color:#a8231a}
+#pinNote .pnBtns{display:flex;gap:6px;margin-top:4px}
+#pinNote .pnBtns button{all:unset;box-sizing:border-box;cursor:pointer;flex:1;text-align:center;font:6px/1 var(--px);padding:8px 4px 7px;letter-spacing:.06em;white-space:nowrap}
+#pinNote #pnAcct{background:#1b1813;color:#f7f3e8;box-shadow:2px 2px 0 rgba(0,0,0,.35)}#pinNote #pnOk{border:2px solid #1b1813;padding:6px 4px 5px;flex:0 0 auto;padding-left:9px;padding-right:9px}
+#pinNote .pnBtns button:focus-visible{outline:3px solid #a8231a;outline-offset:2px}
+#hp .pcRow .b2{height:44px;margin:0;display:flex;align-items:center;justify-content:center;padding:0 6px}
 #hp{position:fixed;inset:0;z-index:31;background:rgba(5,6,10,.85);display:flex;align-items:stretch;justify-content:center}
 #hp[hidden]{display:none}
 #hp .sheetIn{width:min(560px,100%);height:100%;max-height:none;overflow:auto;background:#0f1522;background-image:var(--scan);padding:14px max(14px,env(safe-area-inset-left,0px)) calc(28px + env(safe-area-inset-bottom,0px))}
@@ -1947,12 +1976,12 @@ body.pinning #card #headline{font-size:23px}
     <button type="button" class="ht" data-h="stats"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="4" width="2" height="3"/><rect x="2" y="2" width="2" height="5"/><rect x="4" y="0" width="2" height="7"/></g></svg><span class="hn">Stats</span><span class="hs" id="hStats"></span></button>
     <button type="button" class="ht" data-h="streak"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true" style="color:#ff8a3d"><g fill="currentColor"><rect x="3" y="0" width="1" height="1"/><rect x="2" y="1" width="2" height="2"/><rect x="4" y="2" width="1" height="2"/><rect x="1" y="3" width="4" height="3"/><rect x="2" y="6" width="2" height="1"/></g></svg><span class="hn">Streak</span><span class="hs" id="hStreak"></span></button>
     <button type="button" class="ht hot" data-h="blank"><span class="blk" aria-hidden="true">[ ? ]</span><span class="hn">Fill the blank</span><span class="hs" id="hBlank"></span></button>
-    <button type="button" class="ht" data-h="account"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="1" width="3" height="3"/><rect x="3" y="2" width="4" height="1"/><rect x="5" y="3" width="1" height="2"/></g></svg><span class="hn" id="hAcctN">Sign in</span><span class="hdot" id="hAcctDot">SAVE</span></button>
+    <button type="button" class="ht" data-h="board"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="1" y="0" width="5" height="1"/><rect x="1" y="1" width="5" height="3"/><rect x="0" y="1" width="1" height="2"/><rect x="6" y="1" width="1" height="2"/><rect x="3" y="4" width="1" height="2"/><rect x="2" y="6" width="3" height="1"/></g></svg><span class="hn">Standings</span></button>
   </div>
   <div class="hr">
     <button type="button" class="ht" data-h="passport"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="1" y="0" width="5" height="7"/><rect x="2" y="1" width="3" height="3" style="fill:#141821"/><rect x="3" y="2" width="1" height="1"/><rect x="2" y="5" width="3" height="1" style="fill:#141821"/></g></svg><span class="hn">Passport</span><span class="hs" id="hPass"></span></button>
     <button type="button" class="ht" data-h="back" id="hBack"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="0" width="5" height="1"/><rect x="1" y="2" width="5" height="1"/><rect x="2" y="4" width="5" height="1"/></g></svg><span class="hn">Back issues</span></button>
-    <button type="button" class="ht" data-h="board"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="1" y="0" width="5" height="1"/><rect x="1" y="1" width="5" height="3"/><rect x="0" y="1" width="1" height="2"/><rect x="6" y="1" width="1" height="2"/><rect x="3" y="4" width="1" height="2"/><rect x="2" y="6" width="3" height="1"/></g></svg><span class="hn">Standings</span></button>
+    <button type="button" class="ht" data-h="account"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="1" width="3" height="3"/><rect x="3" y="2" width="4" height="1"/><rect x="5" y="3" width="1" height="2"/></g></svg><span class="hn" id="hAcctN">Sign in</span><span class="hdot" id="hAcctDot">SAVE</span></button>
     <button type="button" class="ht" data-h="groups"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="1" width="2" height="2"/><rect x="0" y="3" width="3" height="3"/><rect x="3" y="0" width="2" height="2"/><rect x="3" y="2" width="3" height="4"/></g></svg><span class="hn">Groups</span><span class="hs" id="hGroups"></span></button>
   </div>
 </div>
@@ -2092,7 +2121,12 @@ body.pinning #card #headline{font-size:23px}
       <section class="wNotice" aria-label="Notices"><h3>NOTICES</h3><p id="wardNote"></p><div class="wFreeze" id="wardFreeze" aria-hidden="true"></div></section>
     </div>
   </section>
-  <section id="hp" hidden aria-label="Page"><div class="sheetIn"><div class="sheetTop"><p class="kicker" id="hpKicker"></p><button id="hpClose" aria-label="Close">×</button></div><div id="hpBody"></div></div></section>
+  <section id="pinNote" hidden role="dialog" aria-label="New: pin on a globe">
+  <div class="pnIn"><p>You can now drop your pin on a globe instead of a map.</p>
+    <p>Try it and make your choice now by clicking <b>Sign In</b> (or <b>Account</b>).</p>
+    <div class="pnBtns"><button id="pnAcct" type="button">OPEN ACCOUNT</button><button id="pnOk" type="button">GOT IT</button></div></div>
+</section>
+<section id="hp" hidden aria-label="Page"><div class="sheetIn"><div class="sheetTop"><p class="kicker" id="hpKicker"></p><button id="hpClose" aria-label="Close">×</button></div><div id="hpBody"></div></div></section>
   <section id="passport" hidden aria-label="Passport">
     <div class="sheetIn">
       <div class="sheetTop"><p class="kicker">Passport</p><button id="passClose" aria-label="Close">×</button></div>
@@ -4148,7 +4182,7 @@ const GlobePin=(()=>{
       px=x; py=y; pz=z; }
     pc.closePath();
   }
-  let minPts=2, lastCost=0, ps=PS, slow=0, dbg=/[?&]gdebug/.test(location.search), roT=0;
+  let bakeLines=false, minPts=2, lastCost=0, ps=PS, slow=0, dbg=/[?&]gdebug/.test(location.search), roT=0;
   function addLine(a,cx,cy,R){      // an open line: only the part on this side (tiny islands and off-screen lines are skipped)
     const m=a.length/3; if(m<minPts||!project(a,m)) return;
     let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9; for(let i=0;i<m;i++){ const x=XS[i], y=YS[i]; if(x<x0) x0=x; if(x>x1) x1=x; if(y<y0) y0=y; if(y>y1) y1=y; }
@@ -4164,7 +4198,7 @@ const GlobePin=(()=>{
   const fmtKm=k=>k>=10?Math.round(k)+' km':k>=1?k.toFixed(1)+' km':Math.round(k*1000)+' m';
   /* The land/sea mask is drawn ONCE from the real outlines into a 3072x1536 world texture, so spinning only has to look pixels up
      (re-drawing every country on every frame is what made the first version slow). */
-  const TW=3072, TH=1536; let tex=null, texBusy=false;
+  const TW=3072, TH=1536; let tex=null, texBusy=false, bordLv=null;   // bordLv: country lines (bit 1) and US state lines (bit 2), max-pooled into 6 levels so a line stays one chunky pixel wide at any zoom
   function buildTex(){
     if(tex||texBusy||!WORLD_ALL) return; texBusy=true;
     // the raster goes to a Web Worker (OffscreenCanvas) so the page never freezes for it; without those, it runs on the main thread in one go
@@ -4172,16 +4206,26 @@ const GlobePin=(()=>{
       try{
         const rings=fc=>{ const out=[]; if(!fc) return out; const add=gm=>{ if(!gm) return; const t=gm.type; if(t==='Polygon') gm.coordinates.forEach(r=>out.push(r)); else if(t==='MultiPolygon') gm.coordinates.forEach(p=>p.forEach(r=>out.push(r))); else if(t==='GeometryCollection') gm.geometries.forEach(add); };
           (fc.type==='FeatureCollection'?fc.features:[fc]).forEach(f=>add(f.type==='Feature'?f.geometry:f)); return out; };
-        const cr=rings(WORLD_ALL.countries), lr=rings(WORLD_ALL.lakes), n=1+cr.reduce((a,r)=>a+1+2*r.length,0)+1+lr.reduce((a,r)=>a+1+2*r.length,0), f=new Float32Array(n); let i=0;
-        [cr,lr].forEach(list=>{ f[i++]=list.length; list.forEach(r=>{ f[i++]=r.length; r.forEach(p=>{ f[i++]=p[0]; f[i++]=p[1]; }); }); });
+        const lines=fc=>{ const out=[]; if(!fc) return out; const add=gm=>{ if(!gm) return; const t=gm.type; if(t==='LineString') out.push(gm.coordinates); else if(t==='MultiLineString') gm.coordinates.forEach(r=>out.push(r)); else if(t==='GeometryCollection') gm.geometries.forEach(add); };
+          (fc.type==='FeatureCollection'?fc.features:[fc]).forEach(f=>add(f.type==='Feature'?f.geometry:f)); return out; };
+        const cr=rings(WORLD_ALL.countries), lr=rings(WORLD_ALL.lakes), sl=lines(WORLD_ALL.states), lists=[cr,lr,sl];
+        const n=lists.reduce((q,l)=>q+1+l.reduce((a,r)=>a+1+2*r.length,0),0), f=new Float32Array(n); let i=0;
+        lists.forEach(list=>{ f[i++]=list.length; list.forEach(r=>{ f[i++]=r.length; r.forEach(p=>{ f[i++]=p[0]; f[i++]=p[1]; }); }); });
         const src='onmessage=e=>{const f=e.data.f,TW=e.data.TW,TH=e.data.TH;let i=0;const c=new OffscreenCanvas(TW,TH),g=c.getContext("2d",{willReadFrequently:true});const X=l=>(l+180)/360*TW,Y=l=>(90-l)/180*TH;'+
           'const read=()=>{const n=f[i++],r=[];for(let k=0;k<n;k++){const len=f[i++];r.push([i,len]);i+=len*2;}return r;};'+
-          'const trace=(rs,o)=>{g.beginPath();rs.forEach(([s,len])=>{for(let j=0;j<len;j++){const x=X(f[s+j*2]+o),y=Y(f[s+j*2+1]);j?g.lineTo(x,y):g.moveTo(x,y);}g.closePath();});};'+
-          'const cr=read(),lr=read();g.fillStyle="#fff";[-360,0,360].forEach(o=>{trace(cr,o);g.fill();});'+
-          'if(lr.length){g.globalCompositeOperation="destination-out";[-360,0,360].forEach(o=>{trace(lr,o);g.fill();});}'+
-          'const d=g.getImageData(0,0,TW,TH).data,t=new Uint8Array(TW*TH);for(let q=0;q<t.length;q++)t[q]=d[q*4+3]>127?1:0;postMessage(t.buffer,[t.buffer]);};';
+          'const trace=(rs,o,close)=>{g.beginPath();rs.forEach(([s,len])=>{for(let j=0;j<len;j++){const x=X(f[s+j*2]+o),y=Y(f[s+j*2+1]);j?g.lineTo(x,y):g.moveTo(x,y);}if(close)g.closePath();});};'+
+          'const cr=read(),lr=read(),sl=read();g.fillStyle="#fff";[-360,0,360].forEach(o=>{trace(cr,o,1);g.fill();});'+
+          'if(lr.length){g.globalCompositeOperation="destination-out";[-360,0,360].forEach(o=>{trace(lr,o,1);g.fill();});g.globalCompositeOperation="source-over";}'+
+          'const grab=()=>{const d=g.getImageData(0,0,TW,TH).data,t=new Uint8Array(TW*TH);for(let q=0;q<t.length;q++)t[q]=d[q*4+3]>60?1:0;return t;};'+
+          'const land=grab();'+
+          'const ec=new OffscreenCanvas(TW,TH),hh=ec.getContext("2d"),sx=new OffscreenCanvas(TW,TH),u=sx.getContext("2d");hh.drawImage(c,0,0);u.fillStyle="#fff";u.fillRect(0,0,TW,TH);u.globalCompositeOperation="destination-out";u.drawImage(c,0,0);hh.globalCompositeOperation="destination-out";[[-2,0],[2,0],[0,-2],[0,2],[-2,-2],[2,2],[-2,2],[2,-2]].forEach(([a,b])=>hh.drawImage(sx,a,b));'+
+          'g.clearRect(0,0,TW,TH);g.strokeStyle="#fff";g.lineWidth=1.5;g.lineJoin="round";[-360,0,360].forEach(o=>{trace(cr,o,1);g.stroke();});g.globalCompositeOperation="destination-in";g.drawImage(ec,0,0);g.globalCompositeOperation="source-over";const bc=grab();'+
+          'g.clearRect(0,0,TW,TH);g.lineWidth=1.8;[-360,0,360].forEach(o=>{trace(sl,o,0);g.stroke();});g.globalCompositeOperation="destination-in";g.drawImage(ec,0,0);g.globalCompositeOperation="source-over";const bs=grab();'+
+          'const b=new Uint8Array(TW*TH);for(let q=0;q<b.length;q++)b[q]=bc[q]|(bs[q]<<1);'+
+          'const lv=[b];let w=TW,h=TH,cur=b;for(let k=1;k<=5;k++){const nw=w>>1,nh=h>>1,nx=new Uint8Array(nw*nh);for(let y=0;y<nh;y++)for(let x=0;x<nw;x++){const a=y*2*w+x*2;nx[y*nw+x]=cur[a]|cur[a+1]|cur[a+w]|cur[a+w+1];}lv.push(nx);cur=nx;w=nw;h=nh;}'+
+          'postMessage({land:land.buffer,lv:lv.map(x=>x.buffer)},[land.buffer].concat(lv.map(x=>x.buffer)));};';
         const url=URL.createObjectURL(new Blob([src],{type:'text/javascript'})), wk=new Worker(url);
-        wk.onmessage=e=>{ tex=new Uint8Array(e.data); texBusy=false; dirty=true; wk.terminate(); URL.revokeObjectURL(url); };
+        wk.onmessage=e=>{ tex=new Uint8Array(e.data.land); bordLv=e.data.lv.map(x=>new Uint8Array(x)); texBusy=false; dirty=true; wk.terminate(); URL.revokeObjectURL(url); };
         wk.onerror=()=>{ wk.terminate(); URL.revokeObjectURL(url); texBusy=false; texMain(); };
         wk.postMessage({f,TW,TH},[f.buffer]); return;
       }catch(e){ texBusy=false; }
@@ -4207,14 +4251,14 @@ const GlobePin=(()=>{
     },30);
   }
   /* The planet on the GPU (WebGL2): one tiny pass per frame, so spinning costs the CPU almost nothing. If WebGL2 is not there the CPU painter below is used. */
-  let gl=null, useGL=null, glU={}, glTexObj=null, glTexDone=false;
+  let gl=null, useGL=null, glU={}, glTexObj=null, glTexDone=false, glBordTex=null, glBordDone=false;
   const GLV='#version 300 es\nin vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
   function glSrc(){
     const f3=a=>'vec3('+a.map(v=>(v/255).toFixed(4)).join(',')+')';
     const pf=(n,a)=>'vec3 '+n+'(int k){return k==0?'+f3(a[0])+':k==1?'+f3(a[1])+':k==2?'+f3(a[2])+':'+f3(a[3])+';}';
     const arr=(n,a)=>'const int '+n+'N='+a.length+';const vec4 '+n+'['+a.length+']=vec4['+a.length+']('+a.map(e=>'vec4('+e.map(v=>v.toFixed(1)).join(',')+')').join(',')+');';
     return '#version 300 es\nprecision highp float;precision highp int;precision highp sampler2D;\n'+
-    'uniform vec3 uE,uN,uC;uniform vec2 uO,uLS;uniform float uR;uniform int uHas;uniform sampler2D uLand;out vec4 o;\n'+
+    'uniform vec3 uE,uN,uC;uniform vec2 uO,uLS;uniform float uR;uniform int uHas;uniform sampler2D uLand;uniform sampler2D uBord;uniform float uBake,uSt,uZ;out vec4 o;\n'+
     'const float D2R=0.017453292519943295;\n'+pf('cOcean',OCEAN)+pf('cLand',LANDC)+pf('cDes',DESERT)+pf('cIce',ICE)+pf('cTrop',TROP)+pf('cBor',BOREAL)+pf('cTun',TUNDRA)+pf('cHigh',HIGH)+
     'const vec3 RIM='+f3(RIM)+';\n'+arr('DE',DESERTS)+arr('HI',HIGHS)+arr('TR',TROPS)+
     'float ell(vec4 e,float la,float lo){float dl=lo-e.y;if(dl>180.)dl-=360.;else if(dl<-180.)dl+=360.;float a=(la-e.x)/e.z,b=dl/e.w;return a*a+b*b;}\n'+
@@ -4223,12 +4267,14 @@ const GlobePin=(()=>{
     'vec3 landC(int b,int k){return b==6?cIce(k):b==5?cDes(k):b==4?cHigh(k):b==3?cTun(k):b==2?cBor(k):b==1?cTrop(k):cLand(k);}\n'+
     'void main(){int ix=int(gl_FragCoord.x),iy=int(uLS.y)-1-int(gl_FragCoord.y);float x=float(ix),y=float(iy);\n'+
     'float sx=(x+.5-uO.x)/uR,sy=-(y+.5-uO.y)/uR,r2=sx*sx+sy*sy;bool alt=((ix+iy)&1)==1;\n'+
-    'if(r2>1.1){o=vec4(0.);return;}if(r2>1.){o=alt?vec4(RIM,1.):vec4(0.);return;}\n'+
+    'if(r2>1.1||(r2>1.&&uZ>1.8)){o=vec4(0.);return;}if(r2>1.){o=alt?vec4(RIM,1.):vec4(0.);return;}\n'+
     'float sz=sqrt(1.-r2);vec3 P=sx*uE+sy*uN+sz*uC;float la=asin(clamp(P.z,-1.,1.))/D2R,lg=atan(P.y,P.x)/D2R;\n'+
-    'float lit=max(0.,sx*-.55+sy*.45+sz*.7);int k=min(3,int(floor((.25+lit*.9+(alt?.12:0.))*3.2)));vec3 c;bool land=false;\n'+
+    'float lit=max(0.,sx*-.55+sy*.45+sz*.7);int k=min(3,int(floor((.25+lit*.9+(alt?.12:0.))*3.2)));if(uZ>1.8)k=2;vec3 c;bool land=false;\n'+
     'if(uHas==1){int tx=min(int(floor((lg+180.)/360.*'+TW+'.)),'+(TW-1)+'),ty=min(int(floor((90.-la)/180.*'+TH+'.)),'+(TH-1)+');land=texelFetch(uLand,ivec2(tx,ty),0).r>.001;}\n'+
     'if(land)c=landC(biome(la,lg),k);else c=(la>79.||la<-67.)?cIce(k):cOcean(k);\n'+
-    'if(r2>.9&&(((ix^iy)&1)==1))c=RIM;o=vec4(c,1.);}';
+    'if(uBake>.5){float f=(6371./uR)/13.05;int lod=int(clamp(floor(log2(max(f,1.))),0.,5.));int tx=min(int(floor((lg+180.)/360.*'+TW+'.)),'+(TW-1)+'),ty=min(int(floor((90.-la)/180.*'+TH+'.)),'+(TH-1)+');\n'+
+    'int bv=int(texelFetch(uBord,ivec2(tx>>lod,ty>>lod),lod).r*255.+.5);if((bv&1)!=0)c=mix(c,vec3(.94,.97,1.),.5);int ls=max(lod-1,0);int sv=int(texelFetch(uBord,ivec2(tx>>ls,ty>>ls),ls).r*255.+.5);if((sv&2)!=0&&uSt>.5)c=mix(c,vec3(1.,.94,.67),.85);}\n'+
+    'if(r2>.9&&uZ<=1.8&&(((ix^iy)&1)==1))c=RIM;o=vec4(c,1.);}';
   }
   function freshPx(){ const old=$('globePx'), n=old.cloneNode(false); old.parentNode.replaceChild(n,old); lo=null; lctx=null; img=null; return n; }
   function initGL(){
@@ -4244,19 +4290,24 @@ const GlobePin=(()=>{
     g.useProgram(pr);
     const b=g.createBuffer(); g.bindBuffer(g.ARRAY_BUFFER,b); g.bufferData(g.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),g.STATIC_DRAW);
     const loc=g.getAttribLocation(pr,'p'); g.enableVertexAttribArray(loc); g.vertexAttribPointer(loc,2,g.FLOAT,false,0,0);
-    ['uE','uN','uC','uO','uLS','uR','uHas','uLand'].forEach(n=>glU[n]=g.getUniformLocation(pr,n));
+    ['uE','uN','uC','uO','uLS','uR','uHas','uLand','uBord','uBake','uSt','uZ'].forEach(n=>glU[n]=g.getUniformLocation(pr,n));
     glTexObj=g.createTexture(); g.activeTexture(g.TEXTURE0); g.bindTexture(g.TEXTURE_2D,glTexObj);
     g.texParameteri(g.TEXTURE_2D,g.TEXTURE_MIN_FILTER,g.NEAREST); g.texParameteri(g.TEXTURE_2D,g.TEXTURE_MAG_FILTER,g.NEAREST);
     g.texParameteri(g.TEXTURE_2D,g.TEXTURE_WRAP_S,g.CLAMP_TO_EDGE); g.texParameteri(g.TEXTURE_2D,g.TEXTURE_WRAP_T,g.CLAMP_TO_EDGE);
-    g.uniform1i(glU.uLand,0);
+    g.uniform1i(glU.uLand,0); g.uniform1i(glU.uBord,1);
+    glBordTex=g.createTexture(); g.activeTexture(g.TEXTURE1); g.bindTexture(g.TEXTURE_2D,glBordTex);
+    g.texParameteri(g.TEXTURE_2D,g.TEXTURE_MIN_FILTER,g.NEAREST_MIPMAP_NEAREST); g.texParameteri(g.TEXTURE_2D,g.TEXTURE_MAG_FILTER,g.NEAREST);
+    g.texParameteri(g.TEXTURE_2D,g.TEXTURE_WRAP_S,g.CLAMP_TO_EDGE); g.texParameteri(g.TEXTURE_2D,g.TEXTURE_WRAP_T,g.CLAMP_TO_EDGE); g.texParameteri(g.TEXTURE_2D,g.TEXTURE_MAX_LEVEL,5); g.activeTexture(g.TEXTURE0);
     c.addEventListener('webglcontextlost',e=>{ e.preventDefault(); useGL=false; gl=null; freshPx(); dirty=true; });
     gl=g; return true;
   }
-  function paintGL(cx,cy,R){
+  function paintGL(cx,cy,R,bake){
     const c=$('globePx'), lw=Math.max(1,Math.ceil(W/ps)), lh=Math.max(1,Math.ceil(H/ps));
     if(c.width!==lw||c.height!==lh){ c.width=lw; c.height=lh; c.style.width=lw*ps+'px'; c.style.height=lh*ps+'px'; }
     if(tex&&!glTexDone){ gl.pixelStorei(gl.UNPACK_ALIGNMENT,1); gl.bindTexture(gl.TEXTURE_2D,glTexObj); gl.texImage2D(gl.TEXTURE_2D,0,gl.R8,TW,TH,0,gl.RED,gl.UNSIGNED_BYTE,tex); glTexDone=true; }
+    if(bordLv&&!glBordDone){ gl.pixelStorei(gl.UNPACK_ALIGNMENT,1); gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D,glBordTex); bordLv.forEach((b,k)=>gl.texImage2D(gl.TEXTURE_2D,k,gl.R8,TW>>k,TH>>k,0,gl.RED,gl.UNSIGNED_BYTE,b)); gl.activeTexture(gl.TEXTURE0); glBordDone=true; }
     gl.viewport(0,0,lw,lh); gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform1f(glU.uBake,(bake&&glBordDone)?1:0); gl.uniform1f(glU.uSt,zoom>=1.5?1:0); gl.uniform1f(glU.uZ,zoom);
     gl.uniform3fv(glU.uE,ev); gl.uniform3fv(glU.uN,nv); gl.uniform3fv(glU.uC,cv3);
     gl.uniform2f(glU.uO,cx/ps,cy/ps); gl.uniform2f(glU.uLS,lw,lh); gl.uniform1f(glU.uR,R/ps); gl.uniform1i(glU.uHas,glTexDone?1:0);
     gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
@@ -4264,22 +4315,22 @@ const GlobePin=(()=>{
   /* the planet, painted in chunky pixels: colour, light and dither per pixel (as on the title screen) */
   function paintPlanet(cx,cy,R){
     if(useGL===null) useGL=initGL();
-    if(useGL){ paintGL(cx,cy,R); return; }
+    if(useGL){ paintGL(cx,cy,R,bakeLines); return; }
     const lw=Math.max(1,Math.ceil(W/ps)), lh=Math.max(1,Math.ceil(H/ps));
     if(!lo){ lo=$('globePx'); lctx=lo.getContext('2d'); }
     if(lo.width!==lw||lo.height!==lh||!img){ lo.width=lw; lo.height=lh; img=lctx.createImageData(lw,lh); lo.style.width=lw*ps+'px'; lo.style.height=lh*ps+'px'; }
     const d=img.data, rr=R/ps, ox=cx/ps, oy=cy/ps, T=tex;
     for(let y=0;y<lh;y++) for(let x=0;x<lw;x++){
       const i=(y*lw+x)*4, sx=(x+.5-ox)/rr, sy=-(y+.5-oy)/rr, r2=sx*sx+sy*sy;
-      if(r2>1.1){ d[i+3]=0; continue; }
+      if(r2>1.1||(r2>1&&zoom>1.8)){ d[i+3]=0; continue; }
       if(r2>1){ if((x+y)&1){ d[i]=RIM[0]; d[i+1]=RIM[1]; d[i+2]=RIM[2]; d[i+3]=255; } else d[i+3]=0; continue; }
       const sz=Math.sqrt(1-r2), X=sx*ev[0]+sy*nv[0]+sz*cv3[0], Y=sx*ev[1]+sy*nv[1]+sz*cv3[1], Z=sx*ev[2]+sy*nv[2]+sz*cv3[2];
       const la=Math.asin(Z<-1?-1:Z>1?1:Z)/D2R, lg=Math.atan2(Y,X)/D2R;
-      const lit=Math.max(0,sx*-.55+sy*.45+sz*.7), k=Math.min(3,Math.floor((.25+lit*.9+(((x+y)&1)*.12))*3.2));
+      const lit=Math.max(0,sx*-.55+sy*.45+sz*.7), k=zoom>1.8?2:Math.min(3,Math.floor((.25+lit*.9+(((x+y)&1)*.12))*3.2));
       let c;
       if(T){ let tx=Math.floor((lg+180)/360*TW), ty=Math.floor((90-la)/180*TH); if(tx>=TW) tx=TW-1; if(ty>=TH) ty=TH-1; c=T[ty*TW+tx]?biome(la,lg)[k]:(la>79||la<-67?ICE[k]:OCEAN[k]); }
       else c=la>79||la<-67?ICE[k]:OCEAN[k];
-      if(r2>.9 && ((x^y)&1)) c=RIM;
+      if(r2>.9 && zoom<=1.8 && ((x^y)&1)) c=RIM;
       d[i]=c[0]; d[i+1]=c[1]; d[i+2]=c[2]; d[i+3]=255;
     }
     lctx.putImageData(img,0,0);
@@ -4298,14 +4349,16 @@ const GlobePin=(()=>{
     dirty=false; if(!ctx||!on) return; const t0=performance.now(); basis();
     const cx=W/2, cy=H/2, R=R0*zoom;
     ctx.clearRect(0,0,W,H);
+    const moving=interacting||inertia||!!anim, bakedOK=useGL===true&&!!bordLv; bakeLines=bakedOK&&(moving||zoom<2.5);
     paintPlanet(cx,cy,R); const t1=performance.now();
     pc=ctx; minPts=2;
-    const moving=interacting||inertia||!!anim;
-    if(data && !moving){        // country and state lines are the costly part (the browser rasterises them after the script has finished), so they sit out while the globe moves and come back the moment it settles
+    // Borders: with the GPU planet they are baked into it (a chunky pixel wide, free to spin), and the sharp vector lines are drawn on top only when it is settled and zoomed in.
+    // Without that, the vector lines are the costly part, so they sit out while the globe moves and come back the moment it settles.
+    if(data && !moving && (!bakedOK||zoom>=2.5)){
       ctx.lineJoin='round'; ctx.lineWidth=1; ctx.strokeStyle='rgba(240,247,255,.62)'; ctx.beginPath(); data.countries.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke();
       if(zoom>=1.5){ ctx.strokeStyle='rgba(255,240,170,.9)'; ctx.lineWidth=zoom>=3?1.7:1.3; ctx.setLineDash([5,3]); ctx.beginPath(); data.states.forEach(a=>addLine(a,cx,cy,R)); ctx.stroke(); ctx.setLineDash([]); ctx.lineWidth=1; }   // the US state lines: a warm yellow, clearly stronger than the country lines
     }
-    if((!interacting||zoom<2.5) && !(locked&&H<140)) drawLabels(cx,cy,R);      // the little round globe carries no place names, just YOU and REAL
+    if(!(locked&&H<140)) drawLabels(cx,cy,R);      // names stay up while the globe moves      // the little round globe carries no place names, just YOU and REAL
     crowd.forEach(([la,ln,col])=>{ const v=vec(la,ln); if(!visPt(v)) return; const q=scr(v,cx,cy,R); ctx.fillStyle=col; ctx.globalAlpha=.9; ctx.strokeStyle='#0b0e14'; ctx.lineWidth=1; ctx.beginPath(); ctx.arc(q[0],q[1],3.5,0,7); ctx.fill(); ctx.globalAlpha=1; ctx.stroke(); });
     if(locked&&target&&pin){      // the miss, as a dashed arc along the surface
       const a=vec(pin[1],pin[0]), b=vec(target[1],target[0]), th=Math.acos(Math.max(-1,Math.min(1,dot(a,b)))), st=Math.max(2,Math.ceil(th/.03));
@@ -4432,14 +4485,16 @@ const GlobePin=(()=>{
     if(now===true) end(); else hideT=setTimeout(end,1000); }
   function swap(toGlobe){
     try{ localStorage.setItem('ff_globe',toGlobe?'1':'0'); }catch(e){}
+    gcEvent('pinmode/switch/'+(toGlobe?'globe':'flat')); gcEvent('pinmode/used/'+(toGlobe?'globe':'flat'));
     if(toGlobe){ const c=map.getCenter(), hadPin=!!guessLL; show(); if(!hadPin) setView(c.lng,c.lat,map.getZoom()>=3.5?4:1); }
     else { hide(true); map.invalidateSize(); $('mapGlobe').hidden=false; if(guessLL){ map.setView(guessLL,Math.max(map.getZoom(),4.5),{animate:false}); $('btnGuess').textContent='LOCK IN'; } else { if(MAP_HOME) MAP_HOME(); $('btnGuess').textContent='TAP A REGION TO ZOOM IN'; } }
   }
   return {
-    sync(){ $('mapWrap').classList.remove('swapOff'); if(pref()) show(); else { hide(true); ensure(); $('mapGlobe').hidden=false; } },
+    sync(){ $('mapWrap').classList.remove('swapOff'); gcEvent('pinmode/used/'+(pref()?'globe':'flat')); if(pref()) show(); else { hide(true); ensure(); $('mapGlobe').hidden=false; } },
     /* LOCK IN in globe mode: keep the globe, show the real spot and frame both; the page then shrinks it to the strip */
     result(actual){ if(!on) return; locked=true; target=actual; $('mapWrap').classList.add('globeRes'); $('mapToggle').textContent='⤢ Expand globe'; sizeBox(); fit(900); dirty=true; },
     setCrowd(list){ crowd=list||[]; dirty=true; },
+    pref, setPref(v){ try{ localStorage.setItem('ff_globe',v?'1':'0'); }catch(e){} gcEvent('pinmode/set/'+(v?'globe':'flat')); },
     hide, dataReady(){ if(on||pref()){ if(build()){ buildTex(); dirty=true; } } },      // flat-map players pay nothing for the globe
     active:()=>on
   };
@@ -6370,6 +6425,17 @@ window.addEventListener('pageshow',()=>settleBar(true)); window.addEventListener
 window.addEventListener('resize',()=>settleBar()); window.addEventListener('orientationchange',()=>settleBar(true));
 document.addEventListener('focusout',()=>setTimeout(liftBar,50));
 
+/* how many choose each way of pinning: GoatCounter events "pinmode/set/globe|flat" (the Account setting), "pinmode/switch/..." (the button on the map) and "pinmode/used/..." (the map a player was actually shown); each once per player per day */
+function gcEvent(path){
+  try{
+    if(!window.goatcounter||!window.goatcounter.count) return;
+    let seen; try{ seen=JSON.parse(localStorage.getItem('ff_trk')||'{}'); }catch(e){ seen={}; }
+    const day=todayKey(), key=day+':'+path; if(seen[key]) return;
+    Object.keys(seen).forEach(k=>{ if(k.slice(0,10)!==day) delete seen[k]; }); seen[key]=1;
+    try{ localStorage.setItem('ff_trk',JSON.stringify(seen)); }catch(e){}
+    window.goatcounter.count({path:path,title:path,event:true});
+  }catch(e){}
+}
 /* start-to-finish funnel: GoatCounter events like "play/daily/call/r1" (first headline reached), "r2".."r7", "done". Each fires once per player per day, mode and step. */
 function track(step){
   try{
@@ -6383,7 +6449,7 @@ function track(step){
   }catch(e){}
 }
 $('btnStart').onclick=()=>{
-  homeFold(); if(S && S.i===0 && !S.results.length) track('r1');
+  homeFold(); if(!$('pinNote').hidden) pinNoteDone(); if(S && S.i===0 && !S.results.length) track('r1');
   const begin=()=>{ if(S.kind==='blank') startBlankRound(); else startCallRound(); };
   if(Intro.diving()) return;                        // already on the way down
   if(Intro.active()){ $('btnStart').disabled=true; Intro.go(()=>{ $('btnStart').disabled=false; begin(); }); return; }
@@ -6526,7 +6592,16 @@ const HPAGES={};
 const hpEsc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const hpCard=(l,r,inner,cls)=>'<div class="cd'+(cls?' '+cls:'')+'"><h5><span>'+l+'</span><span>'+(r||'')+'</span></h5>'+inner+'</div>';
 const addDays=(d,n)=>{ const p=d.split('-').map(Number); return keyOf(new Date(Date.UTC(p[0],p[1]-1,p[2]+n,12))); };
-function hpOpen(id){ const r=HPAGES[id]; if(!r) return; try{ Sound.play('menu'); }catch(e){} $('hp').hidden=false; $('hpKicker').textContent=r.title; HP_ID=id; r.render(); $('hp').querySelector('.sheetIn').scrollTop=0; }
+/* the notice over the earth: shown once per device, from Nov 20; ?pinnote forces it for a look */
+const PIN_NOTE_FROM='2026-11-20';
+function pinNoteDone(){ try{ localStorage.setItem('ff_pinnote','1'); }catch(e){} const n=$('pinNote'); if(n) n.hidden=true; }
+function maybePinNote(){
+  const force=/[?&]pinnote/.test(location.search); let seen=false; try{ seen=localStorage.getItem('ff_pinnote')==='1'; }catch(e){ seen=true; }
+  if(!force && (seen || todayKey()<PIN_NOTE_FROM)) return;
+  setTimeout(()=>{ if(document.body.classList.contains('introIdle') && $('hp').hidden && $('menu').hidden) $('pinNote').hidden=false; },700);
+}
+$('pnOk').onclick=pinNoteDone; $('pnAcct').onclick=()=>{ pinNoteDone(); hpOpen('account'); };
+function hpOpen(id){ const r=HPAGES[id]; if(!r) return; if(id==='account' && !$('pinNote').hidden) pinNoteDone(); try{ Sound.play('menu'); }catch(e){} $('hp').hidden=false; $('hpKicker').textContent=r.title; HP_ID=id; r.render(); $('hp').querySelector('.sheetIn').scrollTop=0; }
 let HP_ID=null;
 function hpClose(){ $('hp').hidden=true; HP_ID=null; updateHome(); }
 $('hpClose').onclick=hpClose;
@@ -6543,7 +6618,7 @@ function updateHome(){
     $('hBlank').textContent = bd ? (hb?fmtPts(hb.score):'done') : BLANK_N+' words';
     $('hAcctN').textContent = u ? 'Account' : 'Sign in'; $('hAcctDot').textContent = u ? '' : 'SAVE';
     $('hGroups').textContent = (MY_GROUPS&&MY_GROUPS.length)||'';
-    { const names=Object.keys(passport()); $('hPass').textContent = passCount(names)+' / '+passTotal(); }
+    { const names=Object.keys(passport()); $('hPass').textContent = passCount(names)+'/'+passTotal(); }
     $('hBack').hidden = !(typeof ISSUES!=='undefined' && backWindow().length);
     requestAnimationFrame(()=>{ try{ if(typeof Intro!=='undefined' && Intro.relayout) Intro.relayout(); }catch(e){} });   // the bar grew or shrank: re-seat the planet between the text and the buttons
   }catch(e){}
@@ -6659,19 +6734,25 @@ HPAGES.blank={title:'Fill the Blank',render(){
 }};
 
 /* ACCOUNT */
+/* the Account page lets players choose how they pin (globe or flat map); the map's own button still switches it mid-game */
+const pinCard=()=>{ const g=GlobePin.pref(); return hpCard('HOW YOU PIN','','<p class="sm">You can now drop your pin on a globe instead of a flat map. The globe spins and zooms: tap a region to zoom in, then tap again to place your pin.</p><p class="sm">Try both. The button on the map switches between them at any time, even mid-game. Then choose below which one every headline opens on. Your choice is saved on this device.</p><div class="g2 pcRow" role="group" aria-label="Pin on"><button class="b2'+(g?'':' ghost')+'" id="pcGlobe" type="button" aria-pressed="'+g+'">🌐 Globe</button><button class="b2'+(g?' ghost':'')+'" id="pcFlat" type="button" aria-pressed="'+(!g)+'">🗺 Flat map</button></div>'); };
+const pinWire=()=>{ const set=v=>{ GlobePin.setPref(v); HPAGES.account.render(); }; $('pcGlobe').onclick=()=>set(true); $('pcFlat').onclick=()=>set(false); };
 HPAGES.account={title:'Account',render(){
   const u=window.Cloud&&Cloud.user&&Cloud.user();
   if(!u){
     $('hpBody').innerHTML=hpCard('SAVE YOUR STREAK','','<p>Your streak, passport and groups live on this device only. Sign in and they follow you to any phone or browser.</p><ul class="lst"><li><span>✓</span><span>Streak and freezes saved</span><span></span></li><li><span>✓</span><span>Stats and score history saved</span><span></span></li><li><span>✓</span><span>Passport and best digs saved</span><span></span></li><li><span>✓</span><span>Groups and standings on every device</span><span></span></li></ul>')
-      +'<div id="acG" class="acG"><button class="gbtn" id="acIn" type="button"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.6z"/><path fill="#FBBC05" d="M10.5 28.7a14.5 14.5 0 0 1 0-9.4l-7.9-6.1a24 24 0 0 0 0 21.6l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg><span>Continue with Google</span></button></div><p class="hint">You can keep playing without an account. The game only reads your name and a unique ID.</p>';
+      +'<div id="acG" class="acG"><button class="gbtn" id="acIn" type="button"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.6z"/><path fill="#FBBC05" d="M10.5 28.7a14.5 14.5 0 0 1 0-9.4l-7.9-6.1a24 24 0 0 0 0 21.6l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg><span>Continue with Google</span></button></div><p class="hint">You can keep playing without an account. The game only reads your name and a unique ID.</p>'+pinCard();
+    pinWire();
     $('acIn').onclick=()=>{ if(window.Cloud) Cloud.signIn(); };
     if(window.Cloud&&Cloud.mountButton) Cloud.mountButton($('acG'),$('acG').clientWidth);   // swaps in Google's own button when it loads; the one above stays as the fallback
   } else {
     const mail=String(u.email||''), at=mail.indexOf('@'), shown=at>0?mail.slice(0,Math.min(3,at))+'···'+mail.slice(at):'';
     $('hpBody').innerHTML='<div class="cd navy"><h5><span>SIGNED IN</span><span>GOOGLE</span></h5><p style="font:12px var(--px);color:#fff">'+hpEsc(playerName())+'</p>'+(shown?'<p class="sm">'+hpEsc(shown)+'</p>':'')+'</div>'
+      +pinCard()
       +hpCard('SYNCED','','<ul class="lst"><li><span>✓</span><span>Stats · '+Object.keys(load('ff_hist')||{}).length+' scores</span><span></span></li><li><span>✓</span><span>Streak · '+streakCount()+' day'+(streakCount()===1?'':'s')+'</span><span></span></li><li><span>✓</span><span>Passport · '+passCount(Object.keys(passport()))+' countries</span><span></span></li><li><span>✓</span><span>'+((MY_GROUPS&&MY_GROUPS.length)||0)+' groups</span><span></span></li></ul><p class="sm">Change your name on the Stats page.</p>')
       +'<button class="b2 ghost" id="acOut" type="button">Sign out</button>';
     $('acOut').onclick=async()=>{ try{ await Cloud.signOut(); }catch(e){} HPAGES.account.render(); updateHome(); };
+    pinWire();
   }
 }};
 
@@ -7134,6 +7215,7 @@ const Intro=(function(){
     t.hidden=false; document.body.classList.add('introIdle');
     if(typeof homeUnfold==='function') homeUnfold();
     layoutIdle();
+    if(typeof maybePinNote==='function') maybePinNote();
     requestAnimationFrame(()=>t.classList.add('on'));
   }
   function titleOff(keepCard){ const t=$('introTop'); t.classList.remove('on'); $('introHow').open=false; if(!keepCard) document.body.classList.remove('introIdle'); setTimeout(()=>{ if(!t.classList.contains('on')) t.hidden=true; },520); }
