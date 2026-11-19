@@ -1,42 +1,39 @@
 {
  "real": [
   {
-   "id": 20,
-   "h": "Sheep on the run for 45 days is finally lassoed by a 13-year-old cowgirl on horseback in {}",
-   "h2": "[] on the run for 45 days is finally lassoed by a 13-year-old cowgirl on horseback in Ohio, USA",
+   "id": 17,
+   "h": "Family walks off a plane in {} and forgets their 7-year-old son on board; the pilot radios the tower",
+   "h2": "Family walks off a plane in Porto Alegre, Brazil and forgets their 7-year-old [] on board; the pilot radios the tower",
    "ans": [
-    "sheep",
-    "lamb",
-    "ewe",
-    "ram",
-    "lambs"
+    "son",
+    "boy",
+    "child",
+    "kid"
    ],
    "alt": [
-    "goat",
-    "cow",
-    "calf",
-    "animal",
-    "pig",
-    "horse"
+    "daughter",
+    "toddler",
+    "baby",
+    "youngster"
    ],
-   "place": "Ohio, USA",
-   "geocode": "Ohio, USA",
-   "lat": 40.2253569,
-   "lng": -82.6881395,
-   "country": "United States",
-   "cc": "US",
-   "hint": "",
-   "clue": "cowgirl with a lasso = US farmland",
+   "place": "Porto Alegre, Brazil",
+   "geocode": "Porto Alegre, Rio Grande do Sul, Brazil",
+   "lat": -30.1009166,
+   "lng": -51.1887882,
+   "country": "Brazil",
+   "cc": "BR",
+   "hint": "where the World Social Forum began",
+   "clue": "",
    "clue_strength": 2,
    "jargon_only": false,
-   "mappable": 1,
+   "mappable": 3,
    "unbelievable": 3,
-   "theme": "escaped-animal",
-   "src": "https://www.upi.com/Odd_News/2026/11/13/sheep-wadsworth-ohio-lassoed/6691794592131/",
-   "published": "2026-11-13",
-   "banked": "2026-11-19",
+   "theme": "forgetful",
+   "src": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNdlRDVm84ZWpOY3BHdXFNNVNKYnV0NTdMckZsWFh5MzlxMEh0cWs1blFkdzVGZ2xzOTRLWHVGQnlpRkF4aEdrRzBsdU5kd0QyS0QwaGFTc1lEVTl3WWo5Skc5OGxmd0VpWG0xemhkSFBNZnFEdUNTV2JYV0dMdHAteEtVNXUyM1dfZ2Vhak5uUnloOXE2ZVJNT2F4eXh2RHNTTTFmQjYwZ1k3MmpXNTBYMTJTT1dsbVHSAbwBQVVfeXFMTU8wMzdxS3ZyOFdRUmpUbmFXTHI0YXFLdWllanVtRkpseW5SNU5EbFp0Zm9BODJmRjlWRndTVFFsZ281Rlc2aFJ5eE01UFJQcWlPWk96UmZwZ2Jtc2xNZ2FseWhKcFNPdE00T0xZV1FsMUp2MzFucG5pczlSOXdTMkl3NENNcHAyX0g1SWp1NllQZE0tQUltNFVPRkpKY3hsZ2VsSlExaGFYN1lTYVh3LUExMldoRV8xaXpwVkk?oc=5",
+   "published": "2026-11-15",
+   "banked": "2026-11-20",
    "rules": 2,
-   "taste": 4.0
+   "taste": 6.0
   },
   {
    "id": 11,
@@ -71,46 +68,6 @@
    "theme": "bike-theft",
    "src": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNWFhmWVkwU2t5ZENndjg0a0pGbFhObkVla0NrTFc2UXJrUXdlcjVQT2RKWUZPWmZ1Ti1oaEJJel9QUGtiY3RQQzIzaGI0THo3VmptMGJVYWFXYVZRQzhNX3lWbmw3Tzg2bWVBRHNVZFBFb19jeFNITXZUNDdvbEZuUjhFR3N2bzZtMmdabEw0Y1hEV2duMjRlNW9RVjY2d0YxWEEtdDFpS1BzT2xCXzVnUVNVVXk4NzNIVHg2RjJ5N3poRHhNSGVMalRhQTgxMTRKd2fSAdcBQVVfeXFMUHhVbXJBOVc5ZUQ1MXhBQTRJcWQ5STliT216WGU0cVQxZU1PRkRmZzR6Vk1vd3hrRWZCUHMwU1ZDX3l2bjRsamhQUDdqYlVBbF83UmdmTTIxLU5IY3Nyc0dSbi1yUDBWWVkxZzBCY3MtWUh5VkR2bC0wZFRmU0F2SmlCRlFvV0tFVVZVX0F6RWhWUVBsTExnNF9MTE80RE04X0FJZV81UGl4OHA5clZRSUJMR2NZSWtPVDVTS2hUSDN0VmZ4eGM0a01vb2ppVVpYZnczUjlrSm8?oc=5",
    "published": "2026-11-16",
-   "banked": "2026-11-18",
-   "rules": 2,
-   "taste": 4.0
-  },
-  {
-   "id": 17,
-   "h": "Burglar stuck dangling from the window of the flat he tried to rob in {} hangs there for an hour",
-   "h2": "[] stuck dangling from the window of the flat he tried to rob in Istanbul, Turkey hangs there for an hour",
-   "ans": [
-    "burglar",
-    "thief",
-    "robber",
-    "intruder",
-    "housebreaker",
-    "burglars",
-    "thieves"
-   ],
-   "alt": [
-    "man",
-    "suspect",
-    "criminal",
-    "crook",
-    "climber",
-    "trespasser"
-   ],
-   "place": "Istanbul, Turkey",
-   "geocode": "Istanbul, Turkey",
-   "lat": 41.006381,
-   "lng": 28.9758715,
-   "country": "Turkey",
-   "cc": "TR",
-   "hint": "where the Orient Express ended",
-   "clue": "apartment-block city of two continents",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 4,
-   "theme": "burglar",
-   "src": "https://news.google.com/rss/articles/CBMikAJBVV95cUxQRC1FbW9aVzZvY3FQVjV1N1d2QkJkMDNqWjRNR1Jlb2NXY0hGOEE2N29PaDNrMlBLOHBqMHROS2dNYTIzZW9xVlF3VUlMSWJaRHJ1M0RCOVh3NUU5YVlzZFNLSWZveWJSLU9LYUg4S2RwNXpubDd6cGpYSXA5MHppRWxobFlaQjhUbk44NkxwUVg1c3VtbFVLMVBLdzc1czhCYlZYNkJwbXFjQmdEQ2xsRl9EUGZuUWU3Z1dNY3M5dlBsaHNvY1EwYmpNaFA0bldJc2N1bWNFVTZxR3JGalhsTmhOS0FiVTdqakdHZFJ1UFp6Y2NmZVRreDZJaXlmWnN4UUJCelNRMjFyQ0lBamxUZA?oc=5",
-   "published": "2026-11-13",
    "banked": "2026-11-18",
    "rules": 2,
    "taste": 4.0
@@ -158,69 +115,6 @@
    "jargon_only": false
   },
   {
-   "h": "Prime minister's office summons the telecom secretary after 129 betting sites were blocked on forged court orders in {}",
-   "hint": "home of the Red Fort",
-   "lat": 28.6139,
-   "lng": 77.209,
-   "place": "New Delhi, India",
-   "src": "https://www.aol.com/articles/modi-summons-telecom-secretary-over-080225000.html",
-   "published": "2026-11-14",
-   "clue": "Reuters: forged High Court orders emailed by people posing as lawyers; ministry inquiry started",
-   "banked": "2026-11-17",
-   "rules": 2,
-   "unbelievable": 3,
-   "theme": "politics",
-   "cc": "IN",
-   "country": "India",
-   "geocode": "New Delhi, India",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
-   "h": "Town in {} seeks a state of crisis over 1,000 roaming cattle that belong to the government's own food agency",
-   "hint": "a town in Mother Teresa's homeland",
-   "lat": 42.2017,
-   "lng": 22.3317,
-   "place": "Kriva Palanka, North Macedonia",
-   "src": "https://apnews.com/article/north-macedonia-cows-property-damage-cattle-809e9b326030b57eb88f5aa00e44cba2",
-   "published": "2026-11-13",
-   "clue": "Mayor Sasko Mitovski wants a 30-day crisis declaration; herd grew from 400 to 1,000+; owned by the Food and Veterinary Agency since 2024",
-   "banked": "2026-11-17",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "animals",
-   "cc": "MK",
-   "country": "North Macedonia",
-   "geocode": "Kriva Palanka, North Macedonia",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
-   "h": "Dozens protest outside an insurance company's headquarters against its yellow mascot 'Liberty Biberty' in {}",
-   "hint": "site of the 1773 Tea Party",
-   "lat": 42.3601,
-   "lng": -71.0589,
-   "place": "Boston, Massachusetts",
-   "src": "https://abcnews.com/video/137679045/",
-   "published": "2026-10-25",
-   "clue": "Organised by a 19-year-old YouTuber after his rant went viral; a counter-protester came dressed as the mascot",
-   "banked": "2026-11-17",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "people",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Liberty Mutual headquarters, Boston, Massachusetts, USA",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 3,
-   "jargon_only": false
-  },
-  {
    "h": "Man says declining his cocaine was 'offensive to his culture' before shooting up a neighbour's apartment in {}",
    "hint": "home of the Barrett-Jackson car auctions",
    "lat": 33.4942,
@@ -257,6 +151,90 @@
    "cc": "US",
    "country": "United States",
    "geocode": "Glendale, California, USA",
+   "daily_only": true,
+   "mappable": 3,
+   "clue_strength": 2,
+   "jargon_only": false
+  },
+  {
+   "h": "Professional cornhole player, a quadruple amputee, is arrested for murder after a shooting in a car in {}",
+   "hint": "a town in Chesapeake blue-crab country",
+   "lat": 38.5293,
+   "lng": -76.9753,
+   "place": "La Plata, Maryland",
+   "src": "https://www.npr.org/2026/03/24/nx-s1-5759259/cornhole-amputee-dayton-webber-murder-arrest",
+   "published": "2026-03-24",
+   "clue": "Dayton Webber, 27, charged after a fatal shooting on 22 March 2026; arrested in Virginia (violent: held, not auto-picked)",
+   "banked": "2026-11-17",
+   "rules": 2,
+   "unbelievable": 4,
+   "theme": "crime",
+   "cc": "US",
+   "country": "United States",
+   "geocode": "La Plata, Maryland, USA",
+   "daily_only": true,
+   "mappable": 3,
+   "clue_strength": 2,
+   "jargon_only": false
+  },
+  {
+   "h": "Man is arrested after mailing a peanut-butter-smeared greeting card to a woman with a deadly peanut allergy in {}",
+   "hint": "",
+   "lat": 26.1276,
+   "lng": -80.2331,
+   "place": "Plantation, Florida",
+   "src": "https://www.cbsnews.com/miami/news/florida-broward-man-peanut-butter-card-allergy-arrest-plantation/",
+   "published": "2026-11-15",
+   "clue": "Card mailed 14 Aug 2025; arrest 13 Nov 2026 by Plantation police; no injury reported",
+   "banked": "2026-11-17",
+   "rules": 2,
+   "unbelievable": 4,
+   "theme": "crime",
+   "cc": "US",
+   "country": "United States",
+   "geocode": "Plantation, Florida, USA",
+   "daily_only": true,
+   "mappable": 3,
+   "clue_strength": 2,
+   "jargon_only": false
+  },
+  {
+   "h": "Man is accused of strangling his girlfriend after she asked him not to fart in bed in {}",
+   "hint": "a Gulf-coast city in key-lime-pie country",
+   "lat": 27.9095,
+   "lng": -82.7873,
+   "place": "Largo, Florida",
+   "src": "https://www.mystateline.com/news/national/florida-man-choked-girlfriend/",
+   "published": "2026-09-22",
+   "clue": "Arrest affidavit, third-degree felony (violent: held, not auto-picked)",
+   "banked": "2026-11-17",
+   "rules": 2,
+   "unbelievable": 4,
+   "theme": "crime",
+   "cc": "US",
+   "country": "United States",
+   "geocode": "Largo, Florida, USA",
+   "daily_only": true,
+   "mappable": 3,
+   "clue_strength": 2,
+   "jargon_only": false
+  },
+  {
+   "h": "Man strips naked in a HomeGoods store, telling a shopper 'I'm sorry, I have to do this', in {}",
+   "hint": "",
+   "lat": 26.5629,
+   "lng": -81.9495,
+   "place": "Cape Coral, Florida",
+   "src": "https://www.gulfcoastnewsnow.com/article/florida-man-naked-stripping-homegoods-cape-coral/73643014",
+   "published": "2026-09-08",
+   "clue": "Billy Thomas, 43, charged with indecent exposure on 7 Sept 2026; police found his shoes and underwear by the entrance",
+   "banked": "2026-11-17",
+   "rules": 2,
+   "unbelievable": 4,
+   "theme": "people",
+   "cc": "US",
+   "country": "United States",
+   "geocode": "Cape Coral, Florida, USA",
    "daily_only": true,
    "mappable": 3,
    "clue_strength": 2,
@@ -304,48 +282,6 @@
    "taste": 4.0
   },
   {
-   "h": "Professional cornhole player, a quadruple amputee, is arrested for murder after a shooting in a car in {}",
-   "hint": "",
-   "lat": 38.5293,
-   "lng": -76.9753,
-   "place": "La Plata, Maryland",
-   "src": "https://www.npr.org/2026/03/24/nx-s1-5759259/cornhole-amputee-dayton-webber-murder-arrest",
-   "published": "2026-03-24",
-   "clue": "Dayton Webber, 27, charged after a fatal shooting on 22 March 2026; arrested in Virginia (violent: held, not auto-picked)",
-   "banked": "2026-11-17",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "crime",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "La Plata, Maryland, USA",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 0,
-   "jargon_only": false
-  },
-  {
-   "h": "Man is arrested after mailing a peanut-butter-smeared greeting card to a woman with a deadly peanut allergy in {}",
-   "hint": "",
-   "lat": 26.1276,
-   "lng": -80.2331,
-   "place": "Plantation, Florida",
-   "src": "https://www.cbsnews.com/miami/news/florida-broward-man-peanut-butter-card-allergy-arrest-plantation/",
-   "published": "2026-11-15",
-   "clue": "Card mailed 14 Aug 2025; arrest 13 Nov 2026 by Plantation police; no injury reported",
-   "banked": "2026-11-17",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "crime",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Plantation, Florida, USA",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 0,
-   "jargon_only": false
-  },
-  {
    "h": "About 83,000 workers ask for time off to play GTA 6 on release day, a payroll firm says, in {}",
    "hint": "the homeland of the Beatles",
    "lat": 54.0,
@@ -364,48 +300,6 @@
    "daily_only": true,
    "mappable": 1,
    "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
-   "h": "Man is accused of strangling his girlfriend after she asked him not to fart in bed in {}",
-   "hint": "",
-   "lat": 27.9095,
-   "lng": -82.7873,
-   "place": "Largo, Florida",
-   "src": "https://www.mystateline.com/news/national/florida-man-choked-girlfriend/",
-   "published": "2026-09-22",
-   "clue": "Arrest affidavit, third-degree felony (violent: held, not auto-picked)",
-   "banked": "2026-11-17",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "crime",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Largo, Florida, USA",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 0,
-   "jargon_only": false
-  },
-  {
-   "h": "Man strips naked in a HomeGoods store, telling a shopper 'I'm sorry, I have to do this', in {}",
-   "hint": "",
-   "lat": 26.5629,
-   "lng": -81.9495,
-   "place": "Cape Coral, Florida",
-   "src": "https://www.gulfcoastnewsnow.com/article/florida-man-naked-stripping-homegoods-cape-coral/73643014",
-   "published": "2026-09-08",
-   "clue": "Billy Thomas, 43, charged with indecent exposure on 7 Sept 2026; police found his shoes and underwear by the entrance",
-   "banked": "2026-11-17",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "people",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Cape Coral, Florida, USA",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 0,
    "jargon_only": false
   },
   {
@@ -514,27 +408,6 @@
    "jargon_only": false
   },
   {
-   "h": "19 two-man teams race to dig a grave at a cemetery contest in {}",
-   "hint": "a small Danube-side town",
-   "lat": 47.7667,
-   "lng": 18.55,
-   "place": "Nyergesújfalu, Hungary",
-   "src": "https://apnews.com/article/grave-digging-contest-hungary-funerals-6e8dd952bec0d1a244eb0194a397d2bf",
-   "published": "2026-09-05",
-   "clue": "Hungarian cemetery-maintainers' contest on 5 Sept 2026; winners dug 1.6 m deep in 1h21",
-   "banked": "2026-11-15",
-   "rules": 2,
-   "unbelievable": 3,
-   "theme": "odd news",
-   "cc": "HU",
-   "country": "Hungary",
-   "geocode": "Nyergesújfalu, Hungary",
-   "daily_only": true,
-   "mappable": 2,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
    "h": "Police log a pigeon carrying an Urdu message and a phone number as a suspected spy near the border in {}",
    "hint": "",
    "lat": 32.2643,
@@ -614,8 +487,8 @@
    "country": "Slovakia",
    "geocode": "Komárno, Slovakia",
    "daily_only": true,
-   "mappable": 2,
-   "clue_strength": 1,
+   "mappable": 3,
+   "clue_strength": 2,
    "jargon_only": false
   },
   {
@@ -897,6 +770,94 @@
  ],
  "fake": [
   {
+   "h": "Forger in {} sells collectors 9 love letters supposedly from Napoleon, all written in ballpoint pen",
+   "tell": "Ballpoint pens arrived in the 1930s; Napoleon died in 1821.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "forgery",
+   "taste": 4.0,
+   "pred": 15.0,
+   "banked": "2026-11-20",
+   "rules": 2
+  },
+  {
+   "h": "Customs officers in {} find 21 gold watches stitched inside a smuggler's camel hump",
+   "tell": "A camel's hump is a lump of fat, not a hollow space.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "smuggling",
+   "taste": 5.0,
+   "pred": 25.0,
+   "banked": "2026-11-20",
+   "rules": 2
+  },
+  {
+   "h": "Prankster, 24, confesses to filling the town fountain with foam every Easter since 1999 in {}",
+   "tell": "A 24-year-old wasn't born in 1999, so he couldn't have started then.",
+   "unbelievable": 3,
+   "obvious": 2,
+   "theme": "prank",
+   "taste": 3.0,
+   "pred": 18.0,
+   "banked": "2026-11-20",
+   "rules": 2
+  },
+  {
+   "h": "Farmer ploughing in {} turns up a horned Viking helmet and wears it to the pub for 3 weeks",
+   "tell": "Vikings never wore horned helmets; that's a later myth.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "treasure",
+   "taste": 4.0,
+   "pred": 20.0,
+   "banked": "2026-11-20",
+   "rules": 2
+  },
+  {
+   "h": "Diver in {} raises a 1912 liner's safe and finds a USB stick of letters inside",
+   "tell": "USB sticks didn't exist until around 2000, long after 1912.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "discovery",
+   "taste": 4.0,
+   "pred": 12.0,
+   "banked": "2026-11-20",
+   "rules": 2
+  },
+  {
+   "h": "Bakery robber in {} flees on a mobility scooter at 74 km/h, leaving 3 police cars behind",
+   "tell": "Mobility scooters top out around 8 to 15 km/h, nowhere near 74.",
+   "unbelievable": 4,
+   "obvious": 2,
+   "theme": "robbery",
+   "taste": 4.0,
+   "pred": 12.0,
+   "banked": "2026-11-20",
+   "rules": 2
+  },
+  {
+   "h": "Dairy farmer in {} milks his 14 prize bulls at dawn to fill 37 churns for a cheese fair",
+   "tell": "Bulls are male and don't produce milk.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "dairy",
+   "taste": 2.0,
+   "pred": 5.0,
+   "banked": "2026-11-20",
+   "rules": 2
+  },
+  {
+   "h": "Student in {} skips a maths exam with a doctor's note dated 31 April, signed by his uncle",
+   "tell": "April has only 30 days, so a 31 April note is obviously forged.",
+   "unbelievable": 3,
+   "obvious": 2,
+   "theme": "excuse",
+   "taste": 3.0,
+   "pred": 15.0,
+   "banked": "2026-11-20",
+   "rules": 2
+  },
+  {
    "h": "Bank robber who fled on a Segway in 1989 is arrested in {} after 37 years",
    "tell": "The Segway wasn't invented until 2001, so nobody could flee on one in 1989.",
    "obvious": 2,
@@ -1043,16 +1004,6 @@
    "theme": "toy",
    "taste": 5.0,
    "pred": 22.0,
-   "banked": "2026-11-19",
-   "rules": 2
-  },
-  {
-   "h": "Magnets dragged across a lake in {} recover 214 gold bars from a 1944 plane wreck",
-   "tell": "Gold is not magnetic, so magnets cannot pull up gold bars.",
-   "obvious": 3,
-   "theme": "treasure",
-   "taste": 5.0,
-   "pred": 30.0,
    "banked": "2026-11-19",
    "rules": 2
   },
@@ -1243,16 +1194,6 @@
    "rules": 2
   },
   {
-   "h": "Brewer in a wizard robe wins a gluten-free beer award in {} for a lager of pure barley malt",
-   "tell": "Barley contains gluten, so a pure barley malt beer is not gluten-free.",
-   "obvious": 3,
-   "theme": "food",
-   "taste": 5.0,
-   "pred": 35.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
    "h": "School in {} names its maths prize for Einstein after teachers learn he failed the subject at 16",
    "tell": "Einstein excelled at maths; the claim that he failed it is a myth.",
    "obvious": 3,
@@ -1291,83 +1232,59 @@
    "pred": 15.0,
    "banked": "2026-11-18",
    "rules": 2
-  },
-  {
-   "h": "Burglar in a pirate costume in {} is caught after posting his heist on YouTube in 1998",
-   "tell": "YouTube did not exist until 2005, so nobody could post a video there in 1998.",
-   "obvious": 3,
-   "theme": "burglary",
-   "taste": 4.0,
-   "pred": 15.0,
-   "banked": "2026-11-17",
-   "rules": 2
-  },
-  {
-   "h": "Pensioner, 66, in a powdered wig is convicted in {} of stealing a church organ in 1951",
-   "tell": "A 66-year-old today was not born in 1951, so he could not have committed the theft.",
-   "obvious": 3,
-   "theme": "organ",
-   "taste": 4.0,
-   "pred": 18.0,
-   "banked": "2026-11-17",
-   "rules": 2
-  },
-  {
-   "h": "Student in a cape eats 87 carrots a day in {} for night vision, then cycles into a fish stall",
-   "tell": "Carrots do not improve night vision; that is a wartime propaganda myth.",
-   "obvious": 2,
-   "theme": "carrots",
-   "taste": 5.0,
-   "pred": 25.0,
-   "banked": "2026-11-17",
-   "rules": 2
-  },
-  {
-   "h": "Collector in a space helmet pays €4,100 in {} for a vinyl of an explosion recorded on the Moon",
-   "tell": "The Moon has no air, so sound cannot travel and no explosion could be heard or recorded.",
-   "obvious": 3,
-   "theme": "vinyl",
-   "taste": 5.0,
-   "pred": 20.0,
-   "banked": "2026-11-17",
-   "rules": 2
-  },
-  {
-   "h": "Thief in a nun's habit steals 12 bicycles at a station in {} and sells 15 online",
-   "tell": "He cannot sell more bicycles than the 12 he stole.",
-   "obvious": 2,
-   "theme": "bicycles",
-   "taste": 3.0,
-   "pred": 8.0,
-   "banked": "2026-11-17",
-   "rules": 2
-  },
-  {
-   "h": "Mayor in a panda suit bakes 2,310 fortune cookies in {} to mark their 940-year-old Chinese tradition",
-   "tell": "Fortune cookies were invented in early 20th-century California or Japan, not in medieval China.",
-   "obvious": 3,
-   "theme": "cookies",
-   "taste": 5.0,
-   "pred": 30.0,
-   "banked": "2026-11-17",
-   "rules": 2
   }
  ],
  "pol": [
   {
-   "id": 16,
-   "h": "Candidate in {} pulls an 'elected' slip of paper from a container to settle a tied election",
+   "id": 17,
+   "h": "Candidate in {} pulls a paper marked 'elected' from a container to settle an election tie",
    "place": "Kalamazoo County, Michigan",
    "geocode": "Kalamazoo County, Michigan, USA",
    "lat": 42.2494968,
    "lng": -85.5372797,
-   "clue": "county of a Glenn Miller swing song, in a Great Lakes state; lots broke the tie",
+   "clue": "Kalamazoo of the big-band song, in the southwest of the mitten-shaped Great Lakes state",
    "src": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNNm9DSUpuWFBWQ29zOV96YnhJbmc5SERJM2FJekNFRHFLb3J2NlRsWlVXdGxOekxDZlVJRVVQSEljbzUwcWJLcFY5OThFS0s0MldoSzhPckNIaFFqNlJGZG5xc2ZyTWZsZEp1Z282X2xTejh3VUZ1Y0VYTGxyVWhrR1BwYWV4ZlVubXFqSnFzOXJCaFpYaHZHYnI5ZUNzSWhkQVdvRm1nTlpPN19taU40VEV0YlczWnFWM21QVXJpaw?oc=5",
    "published": "2026-11-17",
-   "banked": "2026-11-19"
+   "banked": "2026-11-20"
+  },
+  {
+   "id": 56,
+   "h": "Municipality of {} to have a rotating mayor under new coalition deal",
+   "place": "Ladismith, Kannaland, South Africa",
+   "geocode": "Ladismith, Western Cape, South Africa",
+   "lat": -33.492222,
+   "lng": 21.266667,
+   "clue": "a Little Karoo ostrich-country municipality; mayor swaps seats under a coalition deal",
+   "src": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOeVBVLWZoTjdYWENULThzVXFuYy1CaU9Pc1hjdGdJdmt3c3BORDB2ZWk1N0FFXzVxRVRJWmVPX0UxZlQ2UFZmQXB2VEUwbkhEbV9XMWxYNXpNeTEtNl85SDNlNzJmb0l0aWJpaWREOWQ1YWtZREhIcXVKc0U5azdTQm9LbmhQV0w5QUJBWk96d0ZUa3VBeElycHRJWURSVWs?oc=5",
+   "published": "2026-11-18",
+   "banked": "2026-11-20"
   }
  ],
  "polfake": [
+  {
+   "h": "Armoured robber flees a pharmacy in {} on a Segway built in 1950",
+   "banked": "2026-11-20"
+  },
+  {
+   "h": "Voter cycles 412 km to a polling station in {} and arrives in under three hours",
+   "banked": "2026-11-20"
+  },
+  {
+   "h": "Con man in {} sells the town council 'moon-grown' tomatoes, said to be harvested from lunar soil in 1958",
+   "banked": "2026-11-20"
+  },
+  {
+   "h": "Teenage mayor, 17, sworn in at {}, has served on the town council for 31 years, officials say",
+   "banked": "2026-11-20"
+  },
+  {
+   "h": "Town hall in {} serves a 'medieval' 13th-century banquet of potatoes, tomatoes and chocolate",
+   "banked": "2026-11-20"
+  },
+  {
+   "h": "Councillors in {} stay awake for all 19 days of a budget meeting, with no sleep, minutes show",
+   "banked": "2026-11-20"
+  },
   {
    "h": "Clerk jailed in {} for forging 38 ballot papers using the emoji key of a 1962 typewriter",
    "banked": "2026-11-19"
@@ -1423,30 +1340,6 @@
   {
    "h": "Parliament in {} votes to make the tomato officially a vegetable after botanists find it grows underground",
    "banked": "2026-11-17"
-  },
-  {
-   "h": "Man in a Napoleon hat is jailed in {} for forging 38 ballots using a typewriter's emoji key",
-   "banked": "2026-11-17"
-  },
-  {
-   "h": "Streetlights in {} are switched off for 17 nights so residents can see the far side of the Moon",
-   "banked": "2026-11-17"
-  },
-  {
-   "h": "Man dressed as a ghost is jailed in {} for hauling 37 church bells away on one bicycle",
-   "banked": "2026-11-16"
-  },
-  {
-   "h": "Pickpocket in {} in a beekeeper suit is caught after paying a taxi in bitcoin in 1995",
-   "banked": "2026-11-16"
-  },
-  {
-   "h": "Mayor of {} schedules the annual leap-day fair for 30 February",
-   "banked": "2026-11-16"
-  },
-  {
-   "h": "Restaurateur in {} dressed as a pirate is fined for selling gluten-free bread made from wheat",
-   "banked": "2026-11-16"
   }
  ]
 }

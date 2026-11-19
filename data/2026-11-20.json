@@ -1,0 +1,175 @@
+{
+ "date": "2026-11-20",
+ "generated": "2026-11-19T07:51:46+00:00",
+ "call": [
+  {
+   "real": true,
+   "h": "Rotten bread left outside a condo in {} until covered in ants leads police to a 2 million baht drug ring",
+   "hint": "setting of The Hangover Part II",
+   "lat": 13.738,
+   "lng": 100.6446,
+   "place": "Bangkok, Thailand",
+   "src": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQMnFlamRMV1JqbHduNjc1QVJ1a3c4bVV1TUVUN0hGaGJmNUp1WE9RSTFMS21MNnMxaXlvbWx4QkJzY2hoZzh0T0RrYjd6TDdmSUdSdHRHMGdQQllXeFBUQUU3V1VHZ1ZaLWtDRUFSN2JEZ00wcTYtY1h5d3gzelNqUUdXNm90VUN4dVY2TklRVDl4RDhLNTJVQw?oc=5",
+   "published": "2026-11-09",
+   "clue": "baht = Thailand"
+  },
+  {
+   "real": true,
+   "h": "Prime minister's office summons the telecom secretary after 129 betting sites were blocked on forged court orders in {}",
+   "hint": "capital of the world's largest democracy",
+   "lat": 28.6139,
+   "lng": 77.209,
+   "place": "New Delhi, India",
+   "src": "https://www.aol.com/articles/modi-summons-telecom-secretary-over-080225000.html",
+   "published": "2026-11-14",
+   "clue": "Reuters: forged High Court orders emailed by people posing as lawyers"
+  },
+  {
+   "real": true,
+   "h": "Dozens protest outside an insurance company's headquarters against its yellow mascot 'Liberty Biberty' in {}",
+   "hint": "where colonists dumped tea in 1773",
+   "lat": 42.3601,
+   "lng": -71.0589,
+   "place": "Boston, Massachusetts",
+   "src": "https://abcnews.com/video/137679045/",
+   "published": "2026-10-25",
+   "clue": "Organised by a 19-year-old YouTuber after his rant went viral"
+  },
+  {
+   "real": false,
+   "h": "Magnets dragged across a lake in {} recover 214 gold bars from a 1944 plane wreck",
+   "tell": "Gold is not magnetic, so magnets cannot pull up gold bars."
+  },
+  {
+   "real": true,
+   "h": "19 two-man teams race to dig a grave at a cemetery contest in {}",
+   "hint": "a Danube town in goulash country",
+   "lat": 47.7667,
+   "lng": 18.55,
+   "place": "Nyergesújfalu, Hungary",
+   "src": "https://apnews.com/article/grave-digging-contest-hungary-funerals-6e8dd952bec0d1a244eb0194a397d2bf",
+   "published": "2026-09-05",
+   "clue": "Hungarian cemetery-maintainers' contest on 5 Sept 2026"
+  },
+  {
+   "real": false,
+   "h": "Brewer in a wizard robe wins a gluten-free beer award in {} for a lager of pure barley malt",
+   "tell": "Barley contains gluten, so a pure barley malt beer is not gluten-free."
+  },
+  {
+   "real": true,
+   "h": "Town in {} seeks a state of crisis over 1,000 roaming cattle that belong to the government's own food agency",
+   "hint": "a town in Mother Teresa's homeland",
+   "lat": 42.2017,
+   "lng": 22.3317,
+   "place": "Kriva Palanka, North Macedonia",
+   "src": "https://apnews.com/article/north-macedonia-cows-property-damage-cattle-809e9b326030b57eb88f5aa00e44cba2",
+   "published": "2026-11-13",
+   "clue": "Mayor Sasko Mitovski wants a 30-day crisis declaration; herd grew from 400 to 1"
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Man earns 100,000 yuan a month from two [] in Shenzhen, China where customers pay to be gently scratched",
+   "ans": [
+    "salons",
+    "salon",
+    "parlours",
+    "parlors"
+   ],
+   "alt": [
+    "spas",
+    "shops",
+    "clinics",
+    "studios",
+    "stores"
+   ],
+   "place": "Shenzhen, China",
+   "src": "https://www.odditycentral.com/news/entrepreneur-opens-unique-salons-where-customers-relax-by-being-gently-scratched.html?utm_source=rss&utm_medium=rss&utm_campaign=entrepreneur-opens-unique-salons-where-customers-relax-by-being-gently-scratched",
+   "published": "2026-09-18",
+   "vec": "CjqW6Nbx89cBKvifBRcDJ9P9TMlZRv0+hTKBGAHrIEgGB98f1nUwGBX7H28/zu6v/NQ="
+  },
+  {
+   "real": true,
+   "h2": "Man, 29, in Nagpur, India makes 37 lakh rupees of fake notes on a colour [] to 'manifest' wealth",
+   "ans": [
+    "printer",
+    "printers"
+   ],
+   "alt": [
+    "scanner",
+    "copier",
+    "machine",
+    "press"
+   ],
+   "place": "Nagpur, Maharashtra",
+   "src": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNZlQ4Sm9UVFdwNW9qbEg3dmZNV2hXUXZXaDhfcGVQQ05hTTAxamk1dWFmNkkzdGpfOTh3ckwtTV9pNlNqWFJqRmlGZmVTY21hSlBGRGJmcGlVTXF1XzZrSHRPVlBqS1F6QWV3NzU5akxGNjhlSmcwT1lIcnFieWZsSFZvUmhEUzhyaVliYy1sczQzWFdRRThMcFJfV3FDbkdOX21vNFB3YmxUNGRzUGNYVjhFdUxlcDjSAcQBQVVfeXFMTjRhLWZEWkFlbGpJYmdzNTAtbkd6cGpMaGRFZGZaSjc4b3VKSUpta19aSllwaG1tdjlZZkJ4cU1qNFZQVkhWU1Mwd2RnMURaTXBvMy1yN1V1YlZ2aVA4cEhMNjVlbjVzdWtrOC1MalJXd29tbUoxNEJaYTlzZ3I1bExjR0swODZjZEcwNGNISVdldmJ4VEZGRHZjSnBmY2tLNC1ablhmUjBQYTFjd3ZGanZscHZncTJCT0lDSWh1VTUyZGdBZA?oc=5",
+   "published": "2026-10-27",
+   "vec": "9OY35RHt3cL3Ay4kB/zy/aUhAMUg3tQh+sjW+SIFId70BgIK5DoS7n8m+wvvHSr8A/8="
+  },
+  {
+   "real": true,
+   "h2": "[] on the run for 45 days is finally lassoed by a 13-year-old cowgirl on horseback in Ohio, USA",
+   "ans": [
+    "sheep",
+    "lamb",
+    "ewe",
+    "ram",
+    "lambs"
+   ],
+   "alt": [
+    "goat",
+    "cow",
+    "calf",
+    "animal",
+    "pig",
+    "horse"
+   ],
+   "place": "Ohio, USA",
+   "src": "https://www.upi.com/Odd_News/2026/11/13/sheep-wadsworth-ohio-lassoed/6691794592131/",
+   "published": "2026-11-13",
+   "vec": "HavctCJtjrdx1DPQf6QmM0soqPzg2yAeONjnCSPcYgsHUfEL+g0JCugD3Shw793X68c="
+  },
+  {
+   "real": true,
+   "h2": "National team [] is sacked after his two wives brawl at a seaside resort bar in El Alamein, Egypt, and the video goes viral",
+   "ans": [
+    "coach",
+    "manager",
+    "boss"
+   ],
+   "alt": [
+    "trainer",
+    "captain",
+    "player",
+    "president",
+    "striker"
+   ],
+   "place": "El Alamein, Egypt",
+   "src": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPMFZ1NWZRc0hLY0Y3VkVmUTJVeDl2RmNOaDFicVRwVkVkQTNIbDA4X1dneW1WTkZZOXl5V3FrVjZ0MjJqZHhyWmk2Q3Z2NldNWHBRM2szMzcxelRJTUY1ajNDUFF3ZU5URlJfWVFTdTJGTFNWTTc3NEFlUGhMOHRlelFuMDc5ZHVmNUFWbl91elRZdnVralJzVkJ4TVpIVzZ2TDBUbHJ1MUNfRy1QXzBTTjFZMFpHUGcyZ3JoRlhxbVNmdF9Eb0hwRTRYSXfSAdIBQVVfeXFMT0JIRUFDLTVlcnNWbkxEckFQM2RrNS1peU9fUXRKZERnYjhMbVluUGZ2cXU3dXZvaWtoaXBfdEtCRWFxaDFfc3A4WmF4MUNmUERLQjZJYi03dXh4UC1IeGpQMGsxLVRkZWM5eUswVlhPUU9uR1dlSi1BZUg2aDZQVndrRGMzZ1Q4TEJMZUJNOS1yTU5GOTJjTFpvSmFENkl3TFg5RXBTbU9HOUpmbXF2UV9rWnoyRUVITXh2VHZqS1E5d3Byc19zVlZwcXRCUlZ4aVRn?oc=5",
+   "published": "2026-11-15",
+   "vec": "uhvpD/HXnSOizj49pdZCCxMxyeiBDvH3EJ4VFebyZTj76hkmFjcm7fEg0PEhH/Y79Sw="
+  },
+  {
+   "real": true,
+   "h2": "Alarm raised over a man 'unable to leave the sea' in Comodoro Rivadavia, Argentina, but he is calmly fishing from a []",
+   "ans": [
+    "kayak",
+    "kayaks",
+    "canoe"
+   ],
+   "alt": [
+    "boat",
+    "raft",
+    "dinghy",
+    "paddleboard",
+    "board"
+   ],
+   "place": "Comodoro Rivadavia, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPZ3RXVnp4c280a1JqRjRaVFZZR3RFODBXc01QZ1owOVNKbHBIX05DU2k0X0V3NzNDTTlRejRja0NRZ1hxUDVpTDg5R3dGbVl6NnpuZ2hWdTdfNzZIYkJScWN5R3lvRVE4bjNQQ3Bic0MzVVVrb2NSOHZtTzB1RnFDMnFVemxXYkx0ZlhIRU1BX2dsbDEtQzd4Uklwb0VZSTFRWXhubHNMU0cwQ21wMUd0emRIMm9SOXpHb0duX0JxQ09DVnlWaXJMTnVMTTM3OV9HUzZWOGE1c0R0ZF95dk5pUnhwWU41cEQxVHNCeS03SzFsUWJ0RmVFNC15TQ?oc=5",
+   "published": "2026-11-17",
+   "vec": "+FP0VbQH5yEyzff6+iEk2hIl28UKDfooMBXu7vndGBzsfwsBBgvzAhLBPUAMnC7Z/dY="
+  }
+ ]
+}

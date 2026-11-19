@@ -1,175 +1,175 @@
 {
- "date": "2026-11-19",
- "generated": "2026-11-18T07:53:31+00:00",
+ "date": "2026-11-20",
+ "generated": "2026-11-19T07:51:46+00:00",
  "call": [
   {
    "real": true,
-   "h": "9-year-old sparks 48-hour snake hunt in {} after fooling firefighters with an AI python in a toilet",
-   "hint": "home of the accordion industry",
-   "lat": 43.4659,
-   "lng": 13.5516,
-   "place": "Castelfidardo, Marche",
-   "src": "https://www.yahoo.com/news/world/articles/python-panic-sparked-9-olds-164154463.html",
-   "published": "2026-11-17",
-   "clue": "Osimo firefighters and a CITES wildlife unit searched a flat for a snake"
+   "h": "Rotten bread left outside a condo in {} until covered in ants leads police to a 2 million baht drug ring",
+   "hint": "setting of The Hangover Part II",
+   "lat": 13.738,
+   "lng": 100.6446,
+   "place": "Bangkok, Thailand",
+   "src": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQMnFlamRMV1JqbHduNjc1QVJ1a3c4bVV1TUVUN0hGaGJmNUp1WE9RSTFMS21MNnMxaXlvbWx4QkJzY2hoZzh0T0RrYjd6TDdmSUdSdHRHMGdQQllXeFBUQUU3V1VHZ1ZaLWtDRUFSN2JEZ00wcTYtY1h5d3gzelNqUUdXNm90VUN4dVY2TklRVDl4RDhLNTJVQw?oc=5",
+   "published": "2026-11-09",
+   "clue": "baht = Thailand"
   },
   {
    "real": true,
-   "h": "Around 100 runners to complete a marathon of 17 laps inside a Swedish furniture store in {}",
-   "hint": "a borough south of Big Ben",
-   "lat": 51.3737,
-   "lng": -0.1003,
-   "place": "Croydon, London",
-   "src": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQMGQzN3JVQWlNMDlZczVyTHZteDdFNlNZWnhJLTFpbHg0eDU1UXZKOEc0S3JyUVVtSUROQTFiZFpyLWcwZzQ4M25HbUNWUXJabFFKQlVIQ1RUdmRFRmVBMEU1cFBQR2FuZ09LZkVCaXUyRmVScHpabWV4cDNnOFlsY3FFYkgxR2xfaUtQZ096UHdVWnRaRVJYa0ViZEl2d1pYSllvMmFmMGU1eDVUaTlUV2FjVWN4Z0hFUE50X1ltMkkwcGlLTXMwSENBbmtMMXBWbVhqUUF2RFgxemNocUc1Ylp30gHvAUFVX3lxTFBqZDhTZUlDN3NsczlFcUNPR0pIcjBsM2paaEtjVnhtOUVvVUpWMF9GYzIwVWstV0xySUVzdXQ4R3hGb2ZfX1k3UmxkcTI0RzJ2ZmRwSlJ2U2tHUmZGcUNiSWx0WnZWYVZ4b3FOV0prWEtxeWh0VmthWXBYZEtvamZwNUdjQWtPay1SU3JMcHZ6aHRZbnpXeXdNNzBscTZLaEVpcG9RYUt5YjlLTjZTakw0X2ljUDVSdEhORVVYY3N6aHJTdVczMEtCVmFCazQ1YVZUdHdqMVdxWUVMdTVaUXpURjZPNF9zVDZTNWdiNFFn?oc=5",
-   "published": "2026-11-10",
-   "clue": "a London borough; the store sits in south London"
+   "h": "Prime minister's office summons the telecom secretary after 129 betting sites were blocked on forged court orders in {}",
+   "hint": "capital of the world's largest democracy",
+   "lat": 28.6139,
+   "lng": 77.209,
+   "place": "New Delhi, India",
+   "src": "https://www.aol.com/articles/modi-summons-telecom-secretary-over-080225000.html",
+   "published": "2026-11-14",
+   "clue": "Reuters: forged High Court orders emailed by people posing as lawyers"
+  },
+  {
+   "real": true,
+   "h": "Dozens protest outside an insurance company's headquarters against its yellow mascot 'Liberty Biberty' in {}",
+   "hint": "where colonists dumped tea in 1773",
+   "lat": 42.3601,
+   "lng": -71.0589,
+   "place": "Boston, Massachusetts",
+   "src": "https://abcnews.com/video/137679045/",
+   "published": "2026-10-25",
+   "clue": "Organised by a 19-year-old YouTuber after his rant went viral"
   },
   {
    "real": false,
-   "h": "Chef sets restaurant ceiling alight flambéing a trifle with shandy in {}, evacuating 11 diners",
-   "tell": "Shandy is only a few percent alcohol, far too weak to catch fire; flambé needs spirits of roughly 40%."
+   "h": "Magnets dragged across a lake in {} recover 214 gold bars from a 1944 plane wreck",
+   "tell": "Gold is not magnetic, so magnets cannot pull up gold bars."
   },
   {
    "real": true,
-   "h": "Police officer joins a foot chase by hopping on a tractor loaded with cabbages in {}",
-   "hint": "a northwest city in Troy's homeland",
-   "lat": 40.7755,
-   "lng": 30.402,
-   "place": "Adapazarı, Sakarya, Turkey",
-   "src": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOVGtvYVBWZDdBX1FBVUVwcjJkMGVKVFhsNzlzVlZFWE4yY1pCQWZ4Qm16UDFiR1JCNVhkeGYxUzNrRV8xX2hxcldtZ3ptY016X0piSk5tdXRadGNEX3g0aE1jNmM3THJDNGY1S3JYRnNpMDlPNWpFLUlaaERYSUlSbEFQV1JtQkd0X1VOdDNYRVBmTE05Z1FFN3RZQkoxYzF6WFgzd0VZdHJRbVFvYmhr?oc=5",
-   "published": "2026-11-16",
-   "clue": "cabbage trailer, patrol 'dolphin' police = Turkey"
+   "h": "19 two-man teams race to dig a grave at a cemetery contest in {}",
+   "hint": "a Danube town in goulash country",
+   "lat": 47.7667,
+   "lng": 18.55,
+   "place": "Nyergesújfalu, Hungary",
+   "src": "https://apnews.com/article/grave-digging-contest-hungary-funerals-6e8dd952bec0d1a244eb0194a397d2bf",
+   "published": "2026-09-05",
+   "clue": "Hungarian cemetery-maintainers' contest on 5 Sept 2026"
   },
   {
    "real": false,
-   "h": "Burglar flees beekeeper's shed in {} after drone bees sting him more than 200 times, owner says",
-   "tell": "Drone bees are male and have no stinger, so they cannot sting anyone."
+   "h": "Brewer in a wizard robe wins a gluten-free beer award in {} for a lager of pure barley malt",
+   "tell": "Barley contains gluten, so a pure barley malt beer is not gluten-free."
   },
   {
    "real": true,
-   "h": "Burglar caught lying on the floor of the shop he smashed into is jailed for four months within 48 hours in {}",
-   "hint": "birthplace of Pope Francis",
-   "lat": -34.6291,
-   "lng": -58.4635,
-   "place": "Flores, Buenos Aires, Argentina",
-   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOc0V6WW9CYmlaY3V5SmdnTkJKZktnT19wS0c4MmI5Y3g1NmlMRG54VFQ0QUlmVjB1Rnk0NnFQbmVMZ0xONTJJaVl4ZlNnX0tIX3BrU0t6VDYwZHBvQnFpX0xtVVRLTHBjLTRfclJ5SlVHRVduazd3Qmtra2VGbTdocGQybTFQd2pWRVJsRTlaMTA2eTlqX01GUXZkTjBtc0FVTDBmREJ2S0xsM1h6aGl3RFcxQ1MwM0lQM19BWV91MnfSAcYBQVVfeXFMT0g1c2hnYkpONUQ3S2VQUFFqYUhvN05SSXNLLXdKYm1qZTlqMm1kMUhUYi1pSzVBcTllbEp5WXZQcEcyTDhBdk1pR2k3aWNVNEFpSEFOMFNwV1NpX3RjaW02R2YxTWhRVmxYZU5DeWNma0NzbUl5WXFUaHVnUURqdm9mYkdTdTE3NVVpQVo1SWk2Q0hCc0NNamhVbmR5dXhCbXBueS0tZDVmVGhjS2F0eXc5WU9TaVcxWWFQZmpvQW9yTUhDU2xn?oc=5",
-   "published": "2026-11-17",
-   "clue": "city police and an abbreviated trial = Spanish-speaking South America"
-  },
-  {
-   "real": true,
-   "h": "Father is arrested for leaving his sleeping 6-year-old to hold his place in line for Pokémon cards at a Target in {}",
-   "hint": "a suburb of the Civil War's first-shots city",
-   "lat": 32.7895,
-   "lng": -80.0603,
-   "place": "West Ashley, Charleston, South Carolina",
-   "src": "https://www.vice.com/en/article/south-carolina-man-arrested-after-allegedly-leaving-6-year-old-daughter-to-hold-his-spot-in-line-for-pokemon-cards/",
-   "published": "2026-11-07",
-   "clue": "John-Michael Dooley, 35; found about 2:30 am on 6 Nov 2026; child unhurt"
+   "h": "Town in {} seeks a state of crisis over 1,000 roaming cattle that belong to the government's own food agency",
+   "hint": "a town in Mother Teresa's homeland",
+   "lat": 42.2017,
+   "lng": 22.3317,
+   "place": "Kriva Palanka, North Macedonia",
+   "src": "https://apnews.com/article/north-macedonia-cows-property-damage-cattle-809e9b326030b57eb88f5aa00e44cba2",
+   "published": "2026-11-13",
+   "clue": "Mayor Sasko Mitovski wants a 30-day crisis declaration; herd grew from 400 to 1"
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "YouTuber's ₹15-crore showroom heist via scaffolding and a lift shaft is solved by his arm [] in Madurai, India",
+   "h2": "Man earns 100,000 yuan a month from two [] in Shenzhen, China where customers pay to be gently scratched",
    "ans": [
-    "tattoo",
-    "tattoos"
+    "salons",
+    "salon",
+    "parlours",
+    "parlors"
    ],
    "alt": [
-    "scar",
-    "birthmark",
-    "mark",
-    "ring",
-    "watch",
-    "bracelet"
+    "spas",
+    "shops",
+    "clinics",
+    "studios",
+    "stores"
    ],
-   "place": "Madurai, Tamil Nadu",
-   "src": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPR3BtdTVOM1JDOE04TmdlLVMwM3pHZ2RNejdFbTE3b1VTLUlsd2UwM0lCWC1fUlFsQmx4Y1c0NGpxZldVR3ZGU1M5dzBoaVUyOWU0bjdyc1VxT1o1WXY0Ulpjcjl6dVdGQjRxOU04R0JQS0dWUXZidGtPZzNTZ2h5ZzJOX09hRjhUajUtSEFDaHQyUnFxVnlIR1dJOUwtbW0tS1VlSDRDczZMcmI0SGxYN043NF80ZU1Gb28wTlc3TGlqUmJ3aFNqekJlX2F2eG9zd1JmTEd0X09Pbjd1R3hjZlpyLXExQdIB6wFBVV95cUxQOW5ERWNsU3FfdWdPeGMtaDU3cVV6U3hNQnE4SVVwY1BocHNlRGtUSU04NjY0NVh2VHpvOF9CN3p4LXR0RnN4Y21Qd1E5dll1YlRkX3J6a3lWQ19vbXZEQXRiZVNCY3l1S09Td3lEek14b3VEdGk0MnhwMmcxeUtpcmtMSlM4N2ZhRV9mYWJfVDRsNzFxcUZIa0hZcU1YTXVTVkhpMFMweXFJb2R6QTlKbll3YWtXVFV4Snk1d0ExdVpnSm9aVkxoQ0dQMGFMTERVMzd3cUhiTEQybmRkYVQxM19ORWZpSHFhN25B?oc=5",
-   "published": "2026-11-17",
-   "vec": "7Aa+/x0o8+IgEEAHIz8GKbwV6P0EE7v2zcidMQuBPQsMCbtnSuwk5TAKyTIpzR7A6dc="
+   "place": "Shenzhen, China",
+   "src": "https://www.odditycentral.com/news/entrepreneur-opens-unique-salons-where-customers-relax-by-being-gently-scratched.html?utm_source=rss&utm_medium=rss&utm_campaign=entrepreneur-opens-unique-salons-where-customers-relax-by-being-gently-scratched",
+   "published": "2026-09-18",
+   "vec": "CjqW6Nbx89cBKvifBRcDJ9P9TMlZRv0+hTKBGAHrIEgGB98f1nUwGBX7H28/zu6v/NQ="
   },
   {
    "real": true,
-   "h2": "A '[]' hired to fix pipes locks a couple out and rents their home's rooms to strangers for over two years in San Diego, California",
+   "h2": "Man, 29, in Nagpur, India makes 37 lakh rupees of fake notes on a colour [] to 'manifest' wealth",
    "ans": [
-    "plumber",
-    "plumbers"
+    "printer",
+    "printers"
    ],
    "alt": [
-    "handyman",
-    "contractor",
-    "builder",
-    "repairman",
-    "tradesman",
-    "electrician",
-    "carpenter"
+    "scanner",
+    "copier",
+    "machine",
+    "press"
    ],
-   "place": "San Diego, California",
-   "src": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9CV3VJcjhZcDZtMHN3SXUtQktwU0RTb1VUMmczeWdZSGZ2YkEwLVhBM0JYak9kbk9fMjV3UnhCMGkxVjdyTldUT2RGTjVlTTZxWU9MS1h2NXlTd3d3STZUQXpLcmlnTEVkSXJnZmdicUtIQzg?oc=5",
+   "place": "Nagpur, Maharashtra",
+   "src": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNZlQ4Sm9UVFdwNW9qbEg3dmZNV2hXUXZXaDhfcGVQQ05hTTAxamk1dWFmNkkzdGpfOTh3ckwtTV9pNlNqWFJqRmlGZmVTY21hSlBGRGJmcGlVTXF1XzZrSHRPVlBqS1F6QWV3NzU5akxGNjhlSmcwT1lIcnFieWZsSFZvUmhEUzhyaVliYy1sczQzWFdRRThMcFJfV3FDbkdOX21vNFB3YmxUNGRzUGNYVjhFdUxlcDjSAcQBQVVfeXFMTjRhLWZEWkFlbGpJYmdzNTAtbkd6cGpMaGRFZGZaSjc4b3VKSUpta19aSllwaG1tdjlZZkJ4cU1qNFZQVkhWU1Mwd2RnMURaTXBvMy1yN1V1YlZ2aVA4cEhMNjVlbjVzdWtrOC1MalJXd29tbUoxNEJaYTlzZ3I1bExjR0swODZjZEcwNGNISVdldmJ4VEZGRHZjSnBmY2tLNC1ablhmUjBQYTFjd3ZGanZscHZncTJCT0lDSWh1VTUyZGdBZA?oc=5",
+   "published": "2026-10-27",
+   "vec": "9OY35RHt3cL3Ay4kB/zy/aUhAMUg3tQh+sjW+SIFId70BgIK5DoS7n8m+wvvHSr8A/8="
+  },
+  {
+   "real": true,
+   "h2": "[] on the run for 45 days is finally lassoed by a 13-year-old cowgirl on horseback in Ohio, USA",
+   "ans": [
+    "sheep",
+    "lamb",
+    "ewe",
+    "ram",
+    "lambs"
+   ],
+   "alt": [
+    "goat",
+    "cow",
+    "calf",
+    "animal",
+    "pig",
+    "horse"
+   ],
+   "place": "Ohio, USA",
+   "src": "https://www.upi.com/Odd_News/2026/11/13/sheep-wadsworth-ohio-lassoed/6691794592131/",
+   "published": "2026-11-13",
+   "vec": "HavctCJtjrdx1DPQf6QmM0soqPzg2yAeONjnCSPcYgsHUfEL+g0JCugD3Shw793X68c="
+  },
+  {
+   "real": true,
+   "h2": "National team [] is sacked after his two wives brawl at a seaside resort bar in El Alamein, Egypt, and the video goes viral",
+   "ans": [
+    "coach",
+    "manager",
+    "boss"
+   ],
+   "alt": [
+    "trainer",
+    "captain",
+    "player",
+    "president",
+    "striker"
+   ],
+   "place": "El Alamein, Egypt",
+   "src": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPMFZ1NWZRc0hLY0Y3VkVmUTJVeDl2RmNOaDFicVRwVkVkQTNIbDA4X1dneW1WTkZZOXl5V3FrVjZ0MjJqZHhyWmk2Q3Z2NldNWHBRM2szMzcxelRJTUY1ajNDUFF3ZU5URlJfWVFTdTJGTFNWTTc3NEFlUGhMOHRlelFuMDc5ZHVmNUFWbl91elRZdnVralJzVkJ4TVpIVzZ2TDBUbHJ1MUNfRy1QXzBTTjFZMFpHUGcyZ3JoRlhxbVNmdF9Eb0hwRTRYSXfSAdIBQVVfeXFMT0JIRUFDLTVlcnNWbkxEckFQM2RrNS1peU9fUXRKZERnYjhMbVluUGZ2cXU3dXZvaWtoaXBfdEtCRWFxaDFfc3A4WmF4MUNmUERLQjZJYi03dXh4UC1IeGpQMGsxLVRkZWM5eUswVlhPUU9uR1dlSi1BZUg2aDZQVndrRGMzZ1Q4TEJMZUJNOS1yTU5GOTJjTFpvSmFENkl3TFg5RXBTbU9HOUpmbXF2UV9rWnoyRUVITXh2VHZqS1E5d3Byc19zVlZwcXRCUlZ4aVRn?oc=5",
    "published": "2026-11-15",
-   "vec": "wfI6qAUWuh20AQMeQjYV6tt/Nw3u57UvOJHq+UYL1+q/JBJJ9itj7RIvzSMX+fsQOCE="
+   "vec": "uhvpD/HXnSOizj49pdZCCxMxyeiBDvH3EJ4VFebyZTj76hkmFjcm7fEg0PEhH/Y79Sw="
   },
   {
    "real": true,
-   "h2": "[] ice cream is the new flavour in the highlands of Lake Sebu, Philippines",
+   "h2": "Alarm raised over a man 'unable to leave the sea' in Comodoro Rivadavia, Argentina, but he is calmly fishing from a []",
    "ans": [
-    "tilapia",
-    "fish"
+    "kayak",
+    "kayaks",
+    "canoe"
    ],
    "alt": [
-    "salmon",
-    "tuna",
-    "shrimp",
-    "seafood",
-    "catfish",
-    "sardine"
+    "boat",
+    "raft",
+    "dinghy",
+    "paddleboard",
+    "board"
    ],
-   "place": "Lake Sebu, South Cotabato, Philippines",
-   "src": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNTEIzN2Z1bFhyVE5DQkVPNDFhUXJ1WTdGOENkR1JqN3BJUk5VRWhmNlJzekdqSWJBcHNZV3B4RHRwLThpV1hKWEZrQkdDMFdCLWc0UVdrR2dfbllERzk0eHpoVGE5OUQ5ZldPWnlFVXFYZlJpUjd6bEpBRUdkNXJBY0NuTVRScTZxeVpmMVo4eGFTN3BW0gGaAUFVX3lxTE00X05KdmxuOC1KbTJkX3dIcHJvSm5kUW8wbEVBY29DTU11ckVPT3ptUmhuSFl5M19qeDNzM3ZhV0RqSUNuQUhSVFJLZF85bTVZMFlQQVZqdFVKS0VKYm9rd2lUTHpFN3RCRm94WEJCemdLeXk1QkJPM21aWXczMUExNEtKSUVhdmY4VG1aQUd2UTZmeUN6WkJZaWc?oc=5",
-   "published": "2026-10-26",
-   "vec": "J9zUCNco++tCCxY3f/Xm7x0nEADnwT4JKhspJ/reEg4xUens4QDs9vMEE+wc8uT4/As="
-  },
-  {
-   "real": true,
-   "h2": "Broadcaster's drama chief splits his [] open at a morning-drama star announcement in Tokyo, Japan, and reporters laugh",
-   "ans": [
-    "jacket",
-    "suit",
-    "blazer",
-    "coat"
-   ],
-   "alt": [
-    "shirt",
-    "trousers",
-    "pants",
-    "tie",
-    "trouser"
-   ],
-   "place": "Tokyo, Japan",
-   "src": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPd09ZcXhoc0dXUkVwZExpQTRaWEZBTW91Y2FzWWlxX3dIUjl2MmRNRUVDWE1QT2F1S2pKbGZ4N1I1VEF0OUw4UmJpVlI3aUQ0NmxrYW5kXzg3OF80ckVVMTl2M3ZMaGNPOURKQ0dpa0VnWFVhZGJSUGE3eGc2X0xoUUdvZ2hwSV9YNmJlZVJ3?oc=5",
+   "place": "Comodoro Rivadavia, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPZ3RXVnp4c280a1JqRjRaVFZZR3RFODBXc01QZ1owOVNKbHBIX05DU2k0X0V3NzNDTTlRejRja0NRZ1hxUDVpTDg5R3dGbVl6NnpuZ2hWdTdfNzZIYkJScWN5R3lvRVE4bjNQQ3Bic0MzVVVrb2NSOHZtTzB1RnFDMnFVemxXYkx0ZlhIRU1BX2dsbDEtQzd4Uklwb0VZSTFRWXhubHNMU0cwQ21wMUd0emRIMm9SOXpHb0duX0JxQ09DVnlWaXJMTnVMTTM3OV9HUzZWOGE1c0R0ZF95dk5pUnhwWU41cEQxVHNCeS03SzFsUWJ0RmVFNC15TQ?oc=5",
    "published": "2026-11-17",
-   "vec": "rSDV6hAO17/9sQL47CEKD7ny56DSJQPDwryqf0DJRAHbRBAuExXbzi8VDwUXrijD+vs="
-  },
-  {
-   "real": true,
-   "h2": "Woman, 61, tosses four [] at a plane for safe travel as she boards, delaying the flight by about an hour in Hubei, China",
-   "ans": [
-    "coins",
-    "coin"
-   ],
-   "alt": [
-    "money",
-    "notes",
-    "cash",
-    "rice",
-    "tokens",
-    "banknotes"
-   ],
-   "place": "Hubei, China",
-   "src": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE03TzY0Z1FPN3gzY1dDRE5oUDVkcmozTVVoZ1QwdmplSlNRNHFaTUpIQlQ4TTZSM0lGaUtaWjR2ejdhR0Z0Y0x0MXM2dW1ia2RPY1V5cThMNA?oc=5",
-   "published": "2026-11-18",
-   "vec": "4BoH5DL0/eTLCQxDVe5OE+3ez9ZIihy86+HDDRLaTdEZOQcdHw3M6in4LBb6DecI84E="
+   "vec": "+FP0VbQH5yEyzff6+iEk2hIl28UKDfooMBXu7vndGBzsfwsBBgvzAhLBPUAMnC7Z/dY="
   }
  ]
 }

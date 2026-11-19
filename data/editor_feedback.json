@@ -587,6 +587,12 @@
    "before": "Burglar flees a shed in {} after 8,640 drone bees sting him 212 times, says the beekeeper, 61",
    "after": "Burglar flees beekeeper's shed in {} after drone bees sting him more than 200 times, owner says",
    "why": "owner (Nov 19): the fakes read as engineered next to the real stories; reworded in the plain voice, slip kept"
+  },
+  {
+   "kind": "blank",
+   "before": "YouTuber's ₹15-crore showroom heist via scaffolding and a lift shaft is solved by his arm [] in Madurai, India",
+   "after": "YouTuber robs a ₹15-crore showroom in Madurai, India, via scaffolding and a lift shaft, but police identify him by the [] on his arm",
+   "why": "owner (Nov 19): a player said the first fill-in-the-blank was unreadable. Keep one plain clause order (who did what, then the twist) with the blank in a natural noun slot; don't stack a possessive, a method and a 'solved by' clause."
   }
  ]
 }
