@@ -1,175 +1,177 @@
 {
- "date": "2026-11-20",
- "generated": "2026-11-19T07:51:46+00:00",
+ "date": "2026-11-21",
+ "generated": "2026-11-20T07:41:36+00:00",
  "call": [
   {
    "real": true,
-   "h": "Rotten bread left outside a condo in {} until covered in ants leads police to a 2 million baht drug ring",
-   "hint": "the world's most-visited city",
-   "lat": 13.738,
-   "lng": 100.6446,
-   "place": "Bangkok, Thailand",
-   "src": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQMnFlamRMV1JqbHduNjc1QVJ1a3c4bVV1TUVUN0hGaGJmNUp1WE9RSTFMS21MNnMxaXlvbWx4QkJzY2hoZzh0T0RrYjd6TDdmSUdSdHRHMGdQQllXeFBUQUU3V1VHZ1ZaLWtDRUFSN2JEZ00wcTYtY1h5d3gzelNqUUdXNm90VUN4dVY2TklRVDl4RDhLNTJVQw?oc=5",
-   "published": "2026-11-09",
-   "clue": "baht = Thailand"
+   "h": "Nurse spots the pale skin of a fake silicone arm on a man seeking a Covid pass at a vaccine clinic in {}",
+   "hint": "a Piedmontese fine-wool town",
+   "lat": 45.5663,
+   "lng": 8.0535,
+   "place": "Biella, Italy",
+   "src": "https://www.theguardian.com/world/2021/dec/03/italian-man-tries-to-dodge-covid-vaccine-wearing-fake-arm",
+   "published": "2021-12-03",
+   "clue": "Nurse Filippa Bua noticed the arm's lighter colour"
+  },
+  {
+   "real": false,
+   "h": "Postman, 58, retires in {} after 47 years delivering mail by unicycle, since his first day at 14",
+   "tell": "Starting at 14 and working 47 years makes him 61, not 58."
+  },
+  {
+   "real": false,
+   "h": "Chef in a snorkel mask in {} plates by tongue map, sweet on the tip and bitter at the back",
+   "tell": "The tongue map is a myth; all taste areas of the tongue detect every basic taste."
   },
   {
    "real": true,
-   "h": "Prime minister's office in {} summons the telecom secretary after 129 betting sites were blocked on forged court orders",
-   "hint": "capital of the world's largest democracy",
+   "h": "Air Force wing commander, honey-trapped by a woman on social media, is arrested for leaking defence secrets in {}",
+   "hint": "",
    "lat": 28.6139,
    "lng": 77.209,
    "place": "New Delhi, India",
-   "src": "https://www.aol.com/articles/modi-summons-telecom-secretary-over-080225000.html",
-   "published": "2026-11-14",
-   "clue": "Reuters: forged High Court orders emailed by people posing as lawyers"
+   "src": "https://indianexpress.com/article/india/indian-air-force-officer-arrest-pakistan-spy-war-plans-leak-official-secrets-act-10960907/",
+   "published": "2026-08-08",
+   "clue": "Arrested around 30-31 May 2026 under the Official Secrets Act"
   },
   {
    "real": true,
-   "h": "Dozens protest outside an insurance company's headquarters against its yellow mascot 'Liberty Biberty' in {}",
-   "hint": "where colonists dumped tea in 1773",
-   "lat": 42.3601,
-   "lng": -71.0589,
-   "place": "Boston, Massachusetts",
-   "src": "https://abcnews.com/video/137679045/",
-   "published": "2026-10-25",
-   "clue": "Organised by a 19-year-old YouTuber after his rant went viral"
-  },
-  {
-   "real": false,
-   "h": "Magnets dragged across a lake in {} recover dozens of gold bars from a 1944 plane wreck",
-   "tell": "Gold is not magnetic, so magnets cannot pull up gold bars."
+   "h": "Goalkeeper's volley from his own goal area knocks the referee to the ground within 2 minutes of an international in {}",
+   "hint": "where the Rubik's Cube was invented",
+   "lat": 47.4818,
+   "lng": 19.1449,
+   "place": "Budapest, Hungary",
+   "src": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNYU9tRkVlNmJvWHNNMV8taXJ1UUlfbDZlM3p5RHZTeFBKRHgzN3J1YmlPX2xZRkt1OEduY3NaaDBNSzdBVW1IeFliUDV5Nk05QkNFdHpuSHZyN2FiNGZuVXhVemJQQ2Q4U2k1dExycXA3aTUtaFpUSlc4UXQ4am1ZN2kwT3F0UUZrdmI0aF9rWXpPNFA5TkZ1OEhoTjI5QlA0NXN6NzNNNUptZTE1NDF6dFZidUtEb0hVaHhJdG5VRTRxU0h6Y3N5Qzh5SXhKemhNRENlNDdCOWZoZDVYMC1z0gHkAUFVX3lxTFBoVlRFRzJlMFlycnM0Mk54R3U4U2RnSjRtbkdWMGh6NEFfUlZBUHBBeVF3UnBMek1OYlQteG1mZlg1NnFqd01pSVpwWTVWVDh5U0QwZGNPVk1RQWpCaUVMbkJkNExmN2ZkUU84NXp5dWw5OWZaRG8zSG5CX2YzSmYyQ2p0c0daVzlKV0k4blh4ajVHLVJTLTFvUDJVSThPV3huejBxX0VYaXNPa2o3OWVURUdNUTlpU2o5SnpDd2JieV8xT3RwNi12dEpLSGZjQUhJNVhmd2haeUI2QU5Vb2Q5dG1sOA?oc=5",
+   "published": "2026-11-17",
+   "clue": "national-team football fixture in a European capital"
   },
   {
    "real": true,
-   "h": "19 two-man teams race to dig a grave at a cemetery contest in {}",
-   "hint": "a northwest Danube town in goulash country",
-   "lat": 47.7667,
-   "lng": 18.55,
-   "place": "Nyergesújfalu, Hungary",
-   "src": "https://apnews.com/article/grave-digging-contest-hungary-funerals-6e8dd952bec0d1a244eb0194a397d2bf",
-   "published": "2026-09-05",
-   "clue": "Hungarian cemetery-maintainers' contest on 5 Sept 2026"
-  },
-  {
-   "real": false,
-   "h": "Brewer in a wizard robe wins a gluten-free beer award in {} for a lager of pure barley malt",
-   "tell": "Barley contains gluten, so a pure barley malt beer is not gluten-free."
+   "h": "Passengers wait two hours in {} for bags coated in brown goo they feared was feces; it was peanut butter",
+   "hint": "host of the 1996 Olympics",
+   "lat": 33.7545,
+   "lng": -84.3898,
+   "place": "Atlanta, Georgia",
+   "src": "https://www.hindustantimes.com/trending/us/american-airlines-passengers-find-luggage-covered-in-peanut-butter-after-2-hour-wait-101795158332153.html",
+   "published": "2026-11-20",
+   "clue": "US spelling 'feces' and peanut butter = United States"
   },
   {
    "real": true,
-   "h": "Town in {} seeks a state of crisis over 1,000 roaming cattle that belong to the government's own food agency",
-   "hint": "a northeast town in Mother Teresa's homeland",
-   "lat": 42.2017,
-   "lng": 22.3317,
-   "place": "Kriva Palanka, North Macedonia",
-   "src": "https://apnews.com/article/north-macedonia-cows-property-damage-cattle-809e9b326030b57eb88f5aa00e44cba2",
-   "published": "2026-11-13",
-   "clue": "Mayor Sasko Mitovski wants a 30-day crisis declaration; herd grew from 400 to 1"
+   "h": "Tax exam topper in {} admits cheating with AI, a camera hidden in correction tape and a hacked calculator",
+   "hint": "the home of Gangnam Style",
+   "lat": 37.5667,
+   "lng": 126.9783,
+   "place": "Seoul, South Korea",
+   "src": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFAwOVFTLXliOHdyUl9FZEhLZzJFWS1Qak96YlNHS3BGM05SajZsZzBkNUdYcmdweW9sem53R3FodVc2VDU0bzJMVG43Tjh4Z202d1YxckxR?oc=5",
+   "published": "2026-11-18",
+   "clue": "professional-licence exam cheating scandal; East Asian exam culture"
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "Man earns 100,000 yuan a month from two [] in Shenzhen, China, where customers pay to be gently scratched",
+   "h2": "Revellers who raided a pastry lab at dawn for eggs, [] and Grand Marnier are tried 4 years later in Cahors, France",
    "ans": [
-    "salons",
-    "salon",
-    "parlours",
-    "parlors"
+    "chocolate",
+    "chocolates"
    ],
    "alt": [
-    "spas",
-    "shops",
-    "clinics",
-    "studios",
-    "stores"
+    "flour",
+    "sugar",
+    "butter",
+    "cream",
+    "milk",
+    "rum",
+    "cake"
    ],
-   "place": "Shenzhen, China",
-   "src": "https://www.odditycentral.com/news/entrepreneur-opens-unique-salons-where-customers-relax-by-being-gently-scratched.html?utm_source=rss&utm_medium=rss&utm_campaign=entrepreneur-opens-unique-salons-where-customers-relax-by-being-gently-scratched",
-   "published": "2026-09-18",
-   "vec": "CjqW6Nbx89cBKvifBRcDJ9P9TMlZRv0+hTKBGAHrIEgGB98f1nUwGBX7H28/zu6v/NQ="
+   "place": "Cahors, France",
+   "src": "https://news.google.com/rss/articles/CBMioAJBVV95cUxQUXpGZ2tPdlpCSWtuSFlBY1N2Y2NsZkdIOWhaWWU4czdKNUZMQm8yOEwtQVpCMjQ0X3J6Q25LeUFyVk5LelozaENoRXlCMUYwWnZWR3ZGSjdHU1RLUTRTRXl6Q3hFRHVqNUthNVY5Ukg5NExjVFJRS1FNWTdQOEtucTgtdllFMHU2empfdjUwekNfd3BYYzJyR2Vaa2VBazF2ZVZ4QnFLREFQbXp1TEF3UnVfR2dqZC1GUmRPQUk5SkVZNjhMR0NLU2lhcEUwa0VIN0VDUGJOdUE2RC1zaXNCek9yeXdtQjhQZm01S2NNSjRKRjNGeTllbDZQY0tka3JDX1ZJaWF4WmllOU5ZV25xNDR0ZGlEc1ZRU0tGbnJQb1A?oc=5",
+   "published": "2026-11-20",
+   "vec": "Byu7Gjpnzuj7PQ3uWTE6Huga+IE19UYe2w2OTWDnW/ukafPhu0py10YN8+A5bfnT8ds="
   },
   {
    "real": true,
-   "h2": "Man, 29, in Nagpur, India makes 37 lakh rupees of fake notes on a colour [] to 'manifest' wealth",
+   "h2": "Man in Taiwan gets five months in jail after his robot [], switched on by app, records his wife's affair",
    "ans": [
-    "printer",
-    "printers"
+    "vacuum",
+    "vacuums",
+    "hoover",
+    "hoovers"
    ],
    "alt": [
-    "scanner",
-    "copier",
-    "machine",
-    "press"
+    "cleaner",
+    "camera",
+    "mop",
+    "drone",
+    "speaker"
    ],
-   "place": "Nagpur, Maharashtra",
-   "src": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNZlQ4Sm9UVFdwNW9qbEg3dmZNV2hXUXZXaDhfcGVQQ05hTTAxamk1dWFmNkkzdGpfOTh3ckwtTV9pNlNqWFJqRmlGZmVTY21hSlBGRGJmcGlVTXF1XzZrSHRPVlBqS1F6QWV3NzU5akxGNjhlSmcwT1lIcnFieWZsSFZvUmhEUzhyaVliYy1sczQzWFdRRThMcFJfV3FDbkdOX21vNFB3YmxUNGRzUGNYVjhFdUxlcDjSAcQBQVVfeXFMTjRhLWZEWkFlbGpJYmdzNTAtbkd6cGpMaGRFZGZaSjc4b3VKSUpta19aSllwaG1tdjlZZkJ4cU1qNFZQVkhWU1Mwd2RnMURaTXBvMy1yN1V1YlZ2aVA4cEhMNjVlbjVzdWtrOC1MalJXd29tbUoxNEJaYTlzZ3I1bExjR0swODZjZEcwNGNISVdldmJ4VEZGRHZjSnBmY2tLNC1ablhmUjBQYTFjd3ZGanZscHZncTJCT0lDSWh1VTUyZGdBZA?oc=5",
-   "published": "2026-10-27",
-   "vec": "9OY35RHt3cL3Ay4kB/zy/aUhAMUg3tQh+sjW+SIFId70BgIK5DoS7n8m+wvvHSr8A/8="
+   "place": "Taiwan",
+   "src": "https://www.odditycentral.com/news/man-gets-jail-time-for-using-robot-vacuum-to-record-cheating-wife.html?utm_source=rss&utm_medium=rss&utm_campaign=man-gets-jail-time-for-using-robot-vacuum-to-record-cheating-wife",
+   "published": "2026-08-28",
+   "vec": "JeNT7ucYVO8UCyEK9ErQdBQyC5436vnkAcrSH191f+Ku8d8yChc+Nigqw07uMAfs8sk="
   },
   {
    "real": true,
-   "h2": "[] on the run for 45 days is finally lassoed by a 13-year-old cowgirl on horseback in Ohio, USA",
+   "h2": "Thief in Tainan, Taiwan hauls a typhoon-felled rooftop water [] to a scrap yard by bicycle cart and nets 540 dollars",
    "ans": [
-    "sheep",
-    "lamb",
-    "ewe",
-    "ram",
-    "lambs"
+    "tank",
+    "tanks",
+    "tower",
+    "towers"
    ],
    "alt": [
-    "goat",
+    "barrel",
+    "drum",
+    "heater",
+    "pipe",
+    "container",
+    "cistern"
+   ],
+   "place": "Anping, Tainan, Taiwan",
+   "src": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE93UUFsZ2JyTFBUMHhCZExCUl9ieFBZMTlwUk15OGw2cFJNc3M4cUgxbExkdzl0SnJwRmVwaWV0ZnNJSEhtVER2cQ?oc=5",
+   "published": "2026-11-20",
+   "vec": "CfNKv/kD9ugSsArV6UCl/yZOq9se/QTP7qzXNx8qf9XqDPc3HAkmFy/eDNxDBf8TBQM="
+  },
+  {
+   "real": true,
+   "h2": "Three-horned, three-eyed [], hidden in a forest by villagers as bad luck, finds a home at a temple in Suwannakhuha, Thailand, drawing crowds",
+   "ans": [
+    "bull",
+    "bulls",
+    "ox"
+   ],
+   "alt": [
     "cow",
+    "cattle",
     "calf",
-    "animal",
-    "pig",
-    "horse"
+    "buffalo",
+    "steer"
    ],
-   "place": "Ohio, USA",
-   "src": "https://www.upi.com/Odd_News/2026/11/13/sheep-wadsworth-ohio-lassoed/6691794592131/",
-   "published": "2026-11-13",
-   "vec": "HavctCJtjrdx1DPQf6QmM0soqPzg2yAeONjnCSPcYgsHUfEL+g0JCugD3Shw793X68c="
+   "place": "Suwannakhuha, Nong Bua Lamphu, Thailand",
+   "src": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE55YVhEOXp6ZjF0MzEwSTJsZkpHSjMxU2puVUJfNkQ3VUI1SDFLYWhyMjdpYXBacHVEelhvbDk5YllnQjgtTmt2TE80VDBHcHVRM0lvbklDd0ZENVQ5dVE?oc=5",
+   "published": "2026-11-18",
+   "vec": "BwHo6hAa0OAM+yMjyt0i6hcTgcrWs+caA6zgAPb2QgzwRPrEAN0N/e32zhxE3xzGJu8="
   },
   {
    "real": true,
-   "h2": "National team [] is sacked after his two wives brawl at a seaside resort bar in El Alamein, Egypt, and the video goes viral",
+   "h2": "Family walks off a plane in Porto Alegre, Brazil and forgets their 7-year-old [] on board; the pilot radios the tower",
    "ans": [
-    "coach",
-    "manager",
-    "boss"
+    "son",
+    "boy",
+    "child",
+    "kid"
    ],
    "alt": [
-    "trainer",
-    "captain",
-    "player",
-    "president",
-    "striker"
+    "daughter",
+    "toddler",
+    "baby",
+    "youngster"
    ],
-   "place": "El Alamein, Egypt",
-   "src": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPMFZ1NWZRc0hLY0Y3VkVmUTJVeDl2RmNOaDFicVRwVkVkQTNIbDA4X1dneW1WTkZZOXl5V3FrVjZ0MjJqZHhyWmk2Q3Z2NldNWHBRM2szMzcxelRJTUY1ajNDUFF3ZU5URlJfWVFTdTJGTFNWTTc3NEFlUGhMOHRlelFuMDc5ZHVmNUFWbl91elRZdnVralJzVkJ4TVpIVzZ2TDBUbHJ1MUNfRy1QXzBTTjFZMFpHUGcyZ3JoRlhxbVNmdF9Eb0hwRTRYSXfSAdIBQVVfeXFMT0JIRUFDLTVlcnNWbkxEckFQM2RrNS1peU9fUXRKZERnYjhMbVluUGZ2cXU3dXZvaWtoaXBfdEtCRWFxaDFfc3A4WmF4MUNmUERLQjZJYi03dXh4UC1IeGpQMGsxLVRkZWM5eUswVlhPUU9uR1dlSi1BZUg2aDZQVndrRGMzZ1Q4TEJMZUJNOS1yTU5GOTJjTFpvSmFENkl3TFg5RXBTbU9HOUpmbXF2UV9rWnoyRUVITXh2VHZqS1E5d3Byc19zVlZwcXRCUlZ4aVRn?oc=5",
+   "place": "Porto Alegre, Brazil",
+   "src": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNdlRDVm84ZWpOY3BHdXFNNVNKYnV0NTdMckZsWFh5MzlxMEh0cWs1blFkdzVGZ2xzOTRLWHVGQnlpRkF4aEdrRzBsdU5kd0QyS0QwaGFTc1lEVTl3WWo5Skc5OGxmd0VpWG0xemhkSFBNZnFEdUNTV2JYV0dMdHAteEtVNXUyM1dfZ2Vhak5uUnloOXE2ZVJNT2F4eXh2RHNTTTFmQjYwZ1k3MmpXNTBYMTJTT1dsbVHSAbwBQVVfeXFMTU8wMzdxS3ZyOFdRUmpUbmFXTHI0YXFLdWllanVtRkpseW5SNU5EbFp0Zm9BODJmRjlWRndTVFFsZ281Rlc2aFJ5eE01UFJQcWlPWk96UmZwZ2Jtc2xNZ2FseWhKcFNPdE00T0xZV1FsMUp2MzFucG5pczlSOXdTMkl3NENNcHAyX0g1SWp1NllQZE0tQUltNFVPRkpKY3hsZ2VsSlExaGFYN1lTYVh3LUExMldoRV8xaXpwVkk?oc=5",
    "published": "2026-11-15",
-   "vec": "uhvpD/HXnSOizj49pdZCCxMxyeiBDvH3EJ4VFebyZTj76hkmFjcm7fEg0PEhH/Y79Sw="
-  },
-  {
-   "real": true,
-   "h2": "Alarm raised over a man 'unable to leave the sea' in Comodoro Rivadavia, Argentina, but he is calmly fishing from a []",
-   "ans": [
-    "kayak",
-    "kayaks",
-    "canoe"
-   ],
-   "alt": [
-    "boat",
-    "raft",
-    "dinghy",
-    "paddleboard",
-    "board"
-   ],
-   "place": "Comodoro Rivadavia, Argentina",
-   "src": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPZ3RXVnp4c280a1JqRjRaVFZZR3RFODBXc01QZ1owOVNKbHBIX05DU2k0X0V3NzNDTTlRejRja0NRZ1hxUDVpTDg5R3dGbVl6NnpuZ2hWdTdfNzZIYkJScWN5R3lvRVE4bjNQQ3Bic0MzVVVrb2NSOHZtTzB1RnFDMnFVemxXYkx0ZlhIRU1BX2dsbDEtQzd4Uklwb0VZSTFRWXhubHNMU0cwQ21wMUd0emRIMm9SOXpHb0duX0JxQ09DVnlWaXJMTnVMTTM3OV9HUzZWOGE1c0R0ZF95dk5pUnhwWU41cEQxVHNCeS03SzFsUWJ0RmVFNC15TQ?oc=5",
-   "published": "2026-11-17",
-   "vec": "+FP0VbQH5yEyzff6+iEk2hIl28UKDfooMBXu7vndGBzsfwsBBgvzAhLBPUAMnC7Z/dY="
+   "vec": "DjP45z0j0yHM+gxB4coj+98J9zLoL/AFKoHnvwYYW+jfHTYDBQsdBv4n2+Uc5dqgFBM="
   }
  ]
 }

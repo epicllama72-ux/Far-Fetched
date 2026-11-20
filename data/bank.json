@@ -1,41 +1,6 @@
 {
  "real": [
   {
-   "id": 17,
-   "h": "Family walks off a plane in {} and forgets their 7-year-old son on board; the pilot radios the tower",
-   "h2": "Family walks off a plane in Porto Alegre, Brazil and forgets their 7-year-old [] on board; the pilot radios the tower",
-   "ans": [
-    "son",
-    "boy",
-    "child",
-    "kid"
-   ],
-   "alt": [
-    "daughter",
-    "toddler",
-    "baby",
-    "youngster"
-   ],
-   "place": "Porto Alegre, Brazil",
-   "geocode": "Porto Alegre, Rio Grande do Sul, Brazil",
-   "lat": -30.1009166,
-   "lng": -51.1887882,
-   "country": "Brazil",
-   "cc": "BR",
-   "hint": "where the World Social Forum began",
-   "clue": "",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 3,
-   "theme": "forgetful",
-   "src": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNdlRDVm84ZWpOY3BHdXFNNVNKYnV0NTdMckZsWFh5MzlxMEh0cWs1blFkdzVGZ2xzOTRLWHVGQnlpRkF4aEdrRzBsdU5kd0QyS0QwaGFTc1lEVTl3WWo5Skc5OGxmd0VpWG0xemhkSFBNZnFEdUNTV2JYV0dMdHAteEtVNXUyM1dfZ2Vhak5uUnloOXE2ZVJNT2F4eXh2RHNTTTFmQjYwZ1k3MmpXNTBYMTJTT1dsbVHSAbwBQVVfeXFMTU8wMzdxS3ZyOFdRUmpUbmFXTHI0YXFLdWllanVtRkpseW5SNU5EbFp0Zm9BODJmRjlWRndTVFFsZ281Rlc2aFJ5eE01UFJQcWlPWk96UmZwZ2Jtc2xNZ2FseWhKcFNPdE00T0xZV1FsMUp2MzFucG5pczlSOXdTMkl3NENNcHAyX0g1SWp1NllQZE0tQUltNFVPRkpKY3hsZ2VsSlExaGFYN1lTYVh3LUExMldoRV8xaXpwVkk?oc=5",
-   "published": "2026-11-15",
-   "banked": "2026-11-20",
-   "rules": 2,
-   "taste": 6.0
-  },
-  {
    "id": 11,
    "h": "Man, 38, caught trying to steal a mountain bike from the yard of a police substation in {}, then tries to flee over the fence",
    "h2": "Man, 38, caught trying to steal a [] from the yard of a police substation in Cipolletti, Argentina, then tries to flee over the fence",
@@ -366,27 +331,6 @@
    "jargon_only": false
   },
   {
-   "h": "Nurse spots the pale skin of a fake silicone arm on a man seeking a Covid pass at a vaccine clinic in {}",
-   "hint": "a Piedmontese wool-weaving town",
-   "lat": 45.5663,
-   "lng": 8.0535,
-   "place": "Biella, Italy",
-   "src": "https://www.theguardian.com/world/2021/dec/03/italian-man-tries-to-dodge-covid-vaccine-wearing-fake-arm",
-   "published": "2021-12-03",
-   "clue": "Nurse Filippa Bua noticed the arm's lighter colour; the health authority filed a complaint, Dec 2021",
-   "banked": "2026-11-15",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "people",
-   "cc": "IT",
-   "country": "Italy",
-   "geocode": "Biella, Piedmont, Italy",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
    "h": "Two tourists wake up with a penguin stolen from a theme park after a beach party; each is fined A$1,000 in {}",
    "hint": "host of the 2018 Commonwealth Games",
    "lat": -27.9576,
@@ -446,27 +390,6 @@
    "geocode": "Office of Temporary and Disability Assistance, Albany, New York, USA",
    "daily_only": true,
    "mappable": 2,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
-   "h": "Air Force wing commander, honey-trapped by a woman on social media, is arrested for leaking defence secrets in {}",
-   "hint": "home of the Red Fort",
-   "lat": 28.6139,
-   "lng": 77.209,
-   "place": "New Delhi, India",
-   "src": "https://indianexpress.com/article/india/indian-air-force-officer-arrest-pakistan-spy-war-plans-leak-official-secrets-act-10960907/",
-   "published": "2026-08-08",
-   "clue": "Arrested around 30-31 May 2026 under the Official Secrets Act; chargesheet filed 30 July",
-   "banked": "2026-11-15",
-   "rules": 2,
-   "unbelievable": 3,
-   "theme": "politics",
-   "cc": "IN",
-   "country": "India",
-   "geocode": "New Delhi, India",
-   "daily_only": true,
-   "mappable": 3,
    "clue_strength": 2,
    "jargon_only": false
   },
@@ -769,6 +692,94 @@
   }
  ],
  "fake": [
+  {
+   "h": "Robber in {} flees a post office on a 1994 Segway with 37 rolls of stamps in a pram",
+   "tell": "The Segway wasn't invented until 2001, so none existed in 1994.",
+   "obvious": 3,
+   "unbelievable": 4,
+   "theme": "heist",
+   "taste": 5.0,
+   "pred": 22.0,
+   "banked": "2026-11-21",
+   "rules": 2
+  },
+  {
+   "h": "A clock stolen from a vicarage on 31 April chimes and gives away the burglar in {}",
+   "tell": "April has only 30 days, so there is no 31 April.",
+   "obvious": 3,
+   "unbelievable": 3,
+   "theme": "burglary",
+   "taste": 4.0,
+   "pred": 20.0,
+   "banked": "2026-11-21",
+   "rules": 2
+  },
+  {
+   "h": "Archaeologists in {} cook a Roman tomato sauce from a 1,900-year-old tablet for 38 diners",
+   "tell": "Tomatoes came from the Americas and reached Europe only in the 1500s.",
+   "obvious": 2,
+   "unbelievable": 3,
+   "theme": "archaeology",
+   "taste": 4.0,
+   "pred": 30.0,
+   "banked": "2026-11-21",
+   "rules": 2
+  },
+  {
+   "h": "Farmer ploughing in {} digs up a horned Viking helmet and trades it for a new tractor",
+   "tell": "Vikings didn't wear horned helmets; that image is a 19th-century stage myth.",
+   "obvious": 2,
+   "unbelievable": 4,
+   "theme": "treasure",
+   "taste": 4.0,
+   "pred": 15.0,
+   "banked": "2026-11-21",
+   "rules": 2
+  },
+  {
+   "h": "Dairy farmer in {} sues a breeder who sold him 12 'high-yield' bulls that never gave milk",
+   "tell": "Bulls are male and cannot produce milk.",
+   "obvious": 3,
+   "unbelievable": 4,
+   "theme": "farming",
+   "taste": 3.0,
+   "pred": 12.0,
+   "banked": "2026-11-21",
+   "rules": 2
+  },
+  {
+   "h": "Twin sisters, 34 and 36, caught swapping places at each other's driving tests in {}",
+   "tell": "Twins are born together, so they cannot be different ages.",
+   "obvious": 3,
+   "unbelievable": 3,
+   "theme": "twins",
+   "taste": 3.0,
+   "pred": 10.0,
+   "banked": "2026-11-21",
+   "rules": 2
+  },
+  {
+   "h": "Neighbours in {} settle a hedge dispute with a tug-of-war lasting 12 hours, 9 a.m. to 4 p.m.",
+   "tell": "From 9 a.m. to 4 p.m. is seven hours, not twelve.",
+   "obvious": 3,
+   "unbelievable": 4,
+   "theme": "dispute",
+   "taste": 3.0,
+   "pred": 8.0,
+   "banked": "2026-11-21",
+   "rules": 2
+  },
+  {
+   "h": "Guide in {} charges tourists to see sink water swirl opposite ways either side of the equator",
+   "tell": "Drain swirl direction isn't set by the equator; the Coriolis effect is far too weak for sinks.",
+   "obvious": 2,
+   "unbelievable": 3,
+   "theme": "tourism",
+   "taste": 4.0,
+   "pred": 30.0,
+   "banked": "2026-11-21",
+   "rules": 2
+  },
   {
    "h": "Forger in {} sells collectors 9 love letters supposedly from Napoleon, all written in ballpoint pen",
    "tell": "Ballpoint pens arrived in the 1930s; Napoleon died in 1821.",
@@ -1152,89 +1163,33 @@
    "pred": 40.0,
    "banked": "2026-11-18",
    "rules": 2
-  },
-  {
-   "h": "Runner in a washing-machine costume wins the marathon in {} in 1 hour 53 minutes",
-   "tell": "The marathon world record is just over two hours, so 1:53 is impossible.",
-   "obvious": 3,
-   "theme": "numbers",
-   "taste": 4.0,
-   "pred": 15.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "Farmer in a bathrobe digs up a Greek coin in {} stamped with its own minting year, 440 BC",
-   "tell": "Nobody in ancient Greece dated years as BC; that system was devised centuries later.",
-   "obvious": 3,
-   "theme": "history",
-   "taste": 4.0,
-   "pred": 25.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "Tourist in a ruff is charged in {} over a hotel theft police say took place on 29 February 2022",
-   "tell": "2022 was not a leap year, so there was no 29 February.",
-   "obvious": 3,
-   "theme": "dates",
-   "taste": 5.0,
-   "pred": 25.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "Driver in a tuxedo steers into a canal in {} following his 1984 car's built-in satnav",
-   "tell": "Built-in satellite navigation did not exist in cars in 1984.",
-   "obvious": 3,
-   "theme": "technology",
-   "taste": 5.0,
-   "pred": 25.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "School in {} names its maths prize for Einstein after teachers learn he failed the subject at 16",
-   "tell": "Einstein excelled at maths; the claim that he failed it is a myth.",
-   "obvious": 3,
-   "theme": "myth",
-   "taste": 4.0,
-   "pred": 40.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "Chef in a snorkel mask in {} plates by tongue map, sweet on the tip and bitter at the back",
-   "tell": "The tongue map is a myth; all taste areas of the tongue detect every basic taste.",
-   "obvious": 3,
-   "theme": "science",
-   "taste": 5.0,
-   "pred": 38.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "Postman, 58, retires in {} after 47 years delivering mail by unicycle, since his first day at 14",
-   "tell": "Starting at 14 and working 47 years makes him 61, not 58.",
-   "obvious": 3,
-   "theme": "arithmetic",
-   "taste": 5.0,
-   "pred": 28.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "Guide in a pharaoh headdress tells 52 tourists in {} that Cleopatra watched the Great Pyramid built",
-   "tell": "The Great Pyramid was built about 2,500 years before Cleopatra lived.",
-   "obvious": 3,
-   "theme": "timeline",
-   "taste": 4.0,
-   "pred": 15.0,
-   "banked": "2026-11-18",
-   "rules": 2
   }
  ],
  "pol": [
+  {
+   "id": 18,
+   "h": "Queen of diamonds decides winner of a school board election tie in {}",
+   "place": "St. Clair, Minnesota, USA",
+   "geocode": "St. Clair, Blue Earth County, Minnesota, USA",
+   "lat": 44.0818744,
+   "lng": -93.8577456,
+   "clue": "school board + playing card draw = US Midwest; a small town near Mankato",
+   "src": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOaVp0Z0YwclFVMWxjWkhaVUtOT0pKWF91UkcxdWZFUEdhQVNKdTNLYmtXQWdFSjJhNTJJQ3ZTT0FSQ2gyS0ZmUElvTEZBdi1iY0ZvNnNSbnNlbkZaenpfLWE0cEdXTjJTY3FaUTh6QnV5Z0QwQlZoQ1Z5T0xhYkFoejRPckFlaThHUF9UNGREYXMtS1U2QlVkRVd6NEU4R3JHX1pCeDZQcGVMM0ljaUNrT1ItN05LTllIYkFxYnA5d3pPMEp1MmRLYUQwWkVyNTRobHlJN2N2bENnbGhUY2g2VXJQbTEyN2NWY2JhMXVNaDhmUHhFOEdz?oc=5",
+   "published": "2026-11-18",
+   "banked": "2026-11-21"
+  },
+  {
+   "id": 55,
+   "h": "Municipality in {} gets a rotating mayor under a new coalition deal",
+   "place": "Ladismith, Western Cape, South Africa",
+   "geocode": "Ladismith, Kannaland, Western Cape, South Africa",
+   "lat": -33.4840586,
+   "lng": 21.2656926,
+   "clue": "a small Karoo town; rotating mayor + coalition + municipality = Commonwealth",
+   "src": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOeVBVLWZoTjdYWENULThzVXFuYy1CaU9Pc1hjdGdJdmt3c3BORDB2ZWk1N0FFXzVxRVRJWmVPX0UxZlQ2UFZmQXB2VEUwbkhEbV9XMWxYNXpNeTEtNl85SDNlNzJmb0l0aWJpaWREOWQ1YWtZREhIcXVKc0U5azdTQm9LbmhQV0w5QUJBWk96d0ZUa3VBeElycHRJWURSVWs?oc=5",
+   "published": "2026-11-18",
+   "banked": "2026-11-21"
+  },
   {
    "id": 17,
    "h": "Candidate in {} pulls a paper marked 'elected' from a container to settle an election tie",
@@ -1246,24 +1201,36 @@
    "src": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNNm9DSUpuWFBWQ29zOV96YnhJbmc5SERJM2FJekNFRHFLb3J2NlRsWlVXdGxOekxDZlVJRVVQSEljbzUwcWJLcFY5OThFS0s0MldoSzhPckNIaFFqNlJGZG5xc2ZyTWZsZEp1Z282X2xTejh3VUZ1Y0VYTGxyVWhrR1BwYWV4ZlVubXFqSnFzOXJCaFpYaHZHYnI5ZUNzSWhkQVdvRm1nTlpPN19taU40VEV0YlczWnFWM21QVXJpaw?oc=5",
    "published": "2026-11-17",
    "banked": "2026-11-20"
-  },
-  {
-   "id": 56,
-   "h": "Municipality of {} to have a rotating mayor under new coalition deal",
-   "place": "Ladismith, Kannaland, South Africa",
-   "geocode": "Ladismith, Western Cape, South Africa",
-   "lat": -33.492222,
-   "lng": 21.266667,
-   "clue": "a Little Karoo ostrich-country municipality; mayor swaps seats under a coalition deal",
-   "src": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOeVBVLWZoTjdYWENULThzVXFuYy1CaU9Pc1hjdGdJdmt3c3BORDB2ZWk1N0FFXzVxRVRJWmVPX0UxZlQ2UFZmQXB2VEUwbkhEbV9XMWxYNXpNeTEtNl85SDNlNzJmb0l0aWJpaWREOWQ1YWtZREhIcXVKc0U5azdTQm9LbmhQV0w5QUJBWk96d0ZUa3VBeElycHRJWURSVWs?oc=5",
-   "published": "2026-11-18",
-   "banked": "2026-11-20"
   }
  ],
  "polfake": [
   {
+   "h": "Treasurer, 24, admits skimming {}'s road fund for 31 years",
+   "banked": "2026-11-21"
+  },
+  {
    "h": "Armoured robber flees a pharmacy in {} on a Segway built in 1950",
    "banked": "2026-11-20"
+  },
+  {
+   "h": "Thief in {} melts a stolen mayoral chain in a kitchen microwave and sells the gold as bars",
+   "banked": "2026-11-21"
+  },
+  {
+   "h": "Mayoral candidate in {} stays awake for 19 days of campaigning, then sleeps through his own count",
+   "banked": "2026-11-21"
+  },
+  {
+   "h": "Voters in {} are handed kosher bacon sandwiches by a candidate, who is fined for bribery",
+   "banked": "2026-11-21"
+  },
+  {
+   "h": "Mayor of {} opens a 1923 time capsule and finds a working smartphone, a charger and a Wi-Fi password",
+   "banked": "2026-11-21"
+  },
+  {
+   "h": "Elections office in {} counts 4,212 ballots by hand in nine minutes, ending a recount early",
+   "banked": "2026-11-21"
   },
   {
    "h": "Voter cycles 412 km to a polling station in {} and arrives in under three hours",
@@ -1316,30 +1283,6 @@
   {
    "h": "Woman in {} is charged with registering her 38-year-old pet hamster to vote in a school board election",
    "banked": "2026-11-18"
-  },
-  {
-   "h": "Mayor of {} unveils a plaque marking the first telephone call in town, made in 1791",
-   "banked": "2026-11-18"
-  },
-  {
-   "h": "Teenager in a clown wig is jailed in {} for hacking the council website with a rotary phone",
-   "banked": "2026-11-18"
-  },
-  {
-   "h": "Pirate-costumed man is jailed in {} for stealing 19 live lobsters that were boiled hours earlier",
-   "banked": "2026-11-17"
-  },
-  {
-   "h": "Mayor in {} bans smartphones from the council chamber in a decree typed on a 1962 laptop",
-   "banked": "2026-11-17"
-  },
-  {
-   "h": "Candidate in {} who campaigned in a shark suit wins a council seat with 212 votes in a village of 94 voters",
-   "banked": "2026-11-17"
-  },
-  {
-   "h": "Parliament in {} votes to make the tomato officially a vegetable after botanists find it grows underground",
-   "banked": "2026-11-17"
   }
  ]
 }

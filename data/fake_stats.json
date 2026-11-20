@@ -330,32 +330,48 @@
    "i": 4,
    "h": "Couple, both 98, marry in {} after a 79-year engagement that began on 29 February 1947",
    "tell": "1947 was not a leap year, so there was no 29 February that year.",
-   "n": 2064,
-   "pct": 64.1
+   "n": 2068,
+   "pct": 64.0
   },
   {
    "day": "2026-11-18",
    "i": 6,
    "h": "Twin brothers in matching tutus walk free in {} as police find their fingerprints are identical",
    "tell": "Even identical twins have different fingerprints.",
-   "n": 2064,
-   "pct": 33.2
+   "n": 2068,
+   "pct": 33.3
   },
   {
    "day": "2026-11-19",
    "i": 2,
    "h": "Chef sets restaurant ceiling alight flambéing a trifle with shandy in {}, evacuating 11 diners",
    "tell": "Shandy is only a few percent alcohol, far too weak to catch fire; flambé needs spirits of roughly 40%.",
-   "n": 163,
-   "pct": 49.1
+   "n": 1732,
+   "pct": 50.7
   },
   {
    "day": "2026-11-19",
    "i": 4,
    "h": "Burglar flees beekeeper's shed in {} after drone bees sting him more than 200 times, owner says",
    "tell": "Drone bees are male and have no stinger, so they cannot sting anyone.",
-   "n": 163,
-   "pct": 58.9
+   "n": 1732,
+   "pct": 60.3
+  },
+  {
+   "day": "2026-11-20",
+   "i": 3,
+   "h": "Magnets dragged across a lake in {} recover dozens of gold bars from a 1944 plane wreck",
+   "tell": "Gold is not magnetic, so magnets cannot pull up gold bars.",
+   "n": 145,
+   "pct": 33.1
+  },
+  {
+   "day": "2026-11-20",
+   "i": 5,
+   "h": "Brewer in a wizard robe wins a gluten-free beer award in {} for a lager of pure barley malt",
+   "tell": "Barley contains gluten, so a pure barley malt beer is not gluten-free.",
+   "n": 145,
+   "pct": 44.1
   }
  ]
 }
