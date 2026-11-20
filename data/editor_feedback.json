@@ -627,6 +627,13 @@
    "before": "a town in Mother Teresa's homeland",
    "after": "a northeast town in Mother Teresa's homeland",
    "why": "owner (Nov 20): add a compass direction to a well-known fact"
+  },
+  {
+   "kind": "hint",
+   "place": "Bangkok",
+   "before": "the city with the world's longest ceremonial name",
+   "after": "the Asian capital nicknamed the City of Angels",
+   "why": "owner (Nov 20): chose the City of Angels option, reworded to sound better; the continent keeps it fair for a global audience"
   }
  ]
 }
