@@ -5,7 +5,7 @@
   {
    "real": true,
    "h": "Rotten bread left outside a condo in {} until covered in ants leads police to a 2 million baht drug ring",
-   "hint": "setting of The Hangover Part II",
+   "hint": "the world's most-visited city",
    "lat": 13.738,
    "lng": 100.6446,
    "place": "Bangkok, Thailand",
@@ -15,8 +15,8 @@
   },
   {
    "real": true,
-   "h": "Prime minister's office summons the telecom secretary after 129 betting sites were blocked on forged court orders in {}",
-   "hint": "capital of the world's largest democracy",
+   "h": "Prime minister's office in {} summons the telecom secretary after 129 betting sites were blocked on forged court orders",
+   "hint": "a capital north of the Taj Mahal",
    "lat": 28.6139,
    "lng": 77.209,
    "place": "New Delhi, India",
@@ -37,13 +37,13 @@
   },
   {
    "real": false,
-   "h": "Magnets dragged across a lake in {} recover 214 gold bars from a 1944 plane wreck",
+   "h": "Magnets dragged across a lake in {} recover dozens of gold bars from a 1944 plane wreck",
    "tell": "Gold is not magnetic, so magnets cannot pull up gold bars."
   },
   {
    "real": true,
    "h": "19 two-man teams race to dig a grave at a cemetery contest in {}",
-   "hint": "a Danube town in goulash country",
+   "hint": "a northwest Danube town in goulash country",
    "lat": 47.7667,
    "lng": 18.55,
    "place": "Nyergesújfalu, Hungary",
@@ -59,7 +59,7 @@
   {
    "real": true,
    "h": "Town in {} seeks a state of crisis over 1,000 roaming cattle that belong to the government's own food agency",
-   "hint": "a town in Mother Teresa's homeland",
+   "hint": "a northeast town in Mother Teresa's homeland",
    "lat": 42.2017,
    "lng": 22.3317,
    "place": "Kriva Palanka, North Macedonia",
@@ -71,7 +71,7 @@
  "blank": [
   {
    "real": true,
-   "h2": "Man earns 100,000 yuan a month from two [] in Shenzhen, China where customers pay to be gently scratched",
+   "h2": "Man earns 100,000 yuan a month from two [] in Shenzhen, China, where customers pay to be gently scratched",
    "ans": [
     "salons",
     "salon",
