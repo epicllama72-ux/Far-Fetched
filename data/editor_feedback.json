@@ -634,6 +634,12 @@
    "before": "the city with the world's longest ceremonial name",
    "after": "the Asian capital nicknamed the City of Angels",
    "why": "owner (Nov 20): chose the City of Angels option, reworded to sound better; the continent keeps it fair for a global audience"
+  },
+  {
+   "kind": "real",
+   "before": "Prime minister's office summons the telecom secretary after 129 betting sites were blocked on forged court orders in {}",
+   "after": "Prime minister's office in {} summons the telecom secretary after 129 betting sites were blocked on forged court orders",
+   "why": "owner (Nov 20): reword to sound better; the {} goes right after the subject and the sentence ends on the scandal, not a trailing 'in {}'"
   }
  ]
 }
