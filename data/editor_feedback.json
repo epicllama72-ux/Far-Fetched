@@ -599,6 +599,34 @@
    "before": "Magnets dragged across a lake in {} recover 214 gold bars from a 1944 plane wreck",
    "after": "Magnets dragged across a lake in {} recover dozens of gold bars from a 1944 plane wreck",
    "why": "owner (Nov 20): no exact counts in fakes; 'dozens of' keeps it natural and the slip (gold isn't magnetic) intact"
+  },
+  {
+   "kind": "hint",
+   "place": "Bangkok",
+   "before": "setting of The Hangover Part II",
+   "after": "the city with the world's longest ceremonial name",
+   "why": "owner (Nov 20): the Hangover clue was already used on Nov 18; a world-famous fact about the city instead"
+  },
+  {
+   "kind": "hint",
+   "place": "New Delhi",
+   "before": "capital of the world's largest democracy",
+   "after": "a capital north of the Taj Mahal",
+   "why": "owner (Nov 20): better clues; a world-famous landmark plus a direction"
+  },
+  {
+   "kind": "hint",
+   "place": "Nyergesújfalu",
+   "before": "a Danube town in goulash country",
+   "after": "a northwest Danube town in goulash country",
+   "why": "owner (Nov 20): add a compass direction to a well-known fact about the country"
+  },
+  {
+   "kind": "hint",
+   "place": "Kriva Palanka",
+   "before": "a town in Mother Teresa's homeland",
+   "after": "a northeast town in Mother Teresa's homeland",
+   "why": "owner (Nov 20): add a compass direction to a well-known fact"
   }
  ]
 }
