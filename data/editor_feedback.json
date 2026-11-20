@@ -640,6 +640,13 @@
    "before": "Prime minister's office summons the telecom secretary after 129 betting sites were blocked on forged court orders in {}",
    "after": "Prime minister's office in {} summons the telecom secretary after 129 betting sites were blocked on forged court orders",
    "why": "owner (Nov 20): reword to sound better; the {} goes right after the subject and the sentence ends on the scandal, not a trailing 'in {}'"
+  },
+  {
+   "kind": "hint",
+   "place": "Bangkok",
+   "before": "the Asian capital nicknamed the City of Angels",
+   "after": "the world's most-visited city",
+   "why": "owner (Nov 20): chose the most-visited-city clue; a world-famous superlative a global audience knows"
   }
  ]
 }
