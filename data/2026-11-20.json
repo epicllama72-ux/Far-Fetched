@@ -37,7 +37,7 @@
   },
   {
    "real": false,
-   "h": "Magnets dragged across a lake in {} recover 214 gold bars from a 1944 plane wreck",
+   "h": "Magnets dragged across a lake in {} recover dozens of gold bars from a 1944 plane wreck",
    "tell": "Gold is not magnetic, so magnets cannot pull up gold bars."
   },
   {
@@ -71,7 +71,7 @@
  "blank": [
   {
    "real": true,
-   "h2": "Man earns 100,000 yuan a month from two [] in Shenzhen, China where customers pay to be gently scratched",
+   "h2": "Man earns 100,000 yuan a month from two [] in Shenzhen, China, where customers pay to be gently scratched",
    "ans": [
     "salons",
     "salon",

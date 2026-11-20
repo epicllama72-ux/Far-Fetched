@@ -593,6 +593,12 @@
    "before": "YouTuber's ₹15-crore showroom heist via scaffolding and a lift shaft is solved by his arm [] in Madurai, India",
    "after": "YouTuber robs a ₹15-crore showroom in Madurai, India, via scaffolding and a lift shaft, but police identify him by the [] on his arm",
    "why": "owner (Nov 19): a player said the first fill-in-the-blank was unreadable. Keep one plain clause order (who did what, then the twist) with the blank in a natural noun slot; don't stack a possessive, a method and a 'solved by' clause."
+  },
+  {
+   "kind": "fake",
+   "before": "Magnets dragged across a lake in {} recover 214 gold bars from a 1944 plane wreck",
+   "after": "Magnets dragged across a lake in {} recover dozens of gold bars from a 1944 plane wreck",
+   "why": "owner (Nov 20): no exact counts in fakes; 'dozens of' keeps it natural and the slip (gold isn't magnetic) intact"
   }
  ]
 }
