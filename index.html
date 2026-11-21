@@ -733,6 +733,7 @@ body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
 :is(#homeBtns,#finalBtns) .hdot{position:absolute;top:-5px;right:-4px;background:#a8231a;color:#fff;font:6px/1 var(--px);padding:3px 4px 2px}
 :is(#homeBtns,#finalBtns) .hdot:empty{display:none}
 #finalBtns{display:flex;flex-direction:column;margin:16px 0 8px}   /* the same buttons, under the summary of a finished round */
+body.calm *,body.calm *::before,body.calm *::after{animation:none!important}   /* Settings > Calm mode */
 /* one-time notice over the earth: pin on the globe or the map */
 #pinNote{position:fixed;left:50%;top:46%;z-index:26;width:min(238px,calc(100vw - 48px));transform:translate(-50%,-50%) rotate(-1.2deg);animation:pnIn .35s steps(5) both}
 @keyframes pnIn{from{opacity:0;transform:translate(-50%,-44%) rotate(-3deg)}to{opacity:1;transform:translate(-50%,-50%) rotate(-1.2deg)}}
@@ -1981,7 +1982,7 @@ body.pinning #card #headline{font-size:23px}
   </div>
   <div class="hr">
     <button type="button" class="ht" data-h="passport"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="1" y="0" width="5" height="7"/><rect x="2" y="1" width="3" height="3" style="fill:#141821"/><rect x="3" y="2" width="1" height="1"/><rect x="2" y="5" width="3" height="1" style="fill:#141821"/></g></svg><span class="hn">Passport</span><span class="hs" id="hPass"></span></button>
-    <button type="button" class="ht" data-h="back" id="hBack"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="0" width="5" height="1"/><rect x="1" y="2" width="5" height="1"/><rect x="2" y="4" width="5" height="1"/></g></svg><span class="hn">Back issues</span></button>
+    <button type="button" class="ht" data-h="settings"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="3" y="0" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="5" y="1" width="1" height="1"/><rect x="2" y="2" width="3" height="3"/><rect x="0" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/><rect x="1" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/><rect x="3" y="3" width="1" height="1" style="fill:#1b1813"/></g></svg><span class="hn">Settings</span></button>
     <button type="button" class="ht" data-h="account"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="1" width="3" height="3"/><rect x="3" y="2" width="4" height="1"/><rect x="5" y="3" width="1" height="2"/></g></svg><span class="hn" id="hAcctN">Sign in</span><span class="hdot" id="hAcctDot">SAVE</span></button>
     <button type="button" class="ht" data-h="groups"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="1" width="2" height="2"/><rect x="0" y="3" width="3" height="3"/><rect x="3" y="0" width="2" height="2"/><rect x="3" y="2" width="3" height="4"/></g></svg><span class="hn">Groups</span><span class="hs" id="hGroups"></span></button>
   </div>
@@ -2124,8 +2125,8 @@ body.pinning #card #headline{font-size:23px}
   </section>
   <section id="pinNote" hidden role="dialog" aria-label="New: pin on a globe">
   <div class="pnIn"><p>You can now drop your pin on a globe instead of a map.</p>
-    <p>Try it and make your choice now by clicking <b>Sign In</b> (or <b>Account</b>).</p>
-    <div class="pnBtns"><button id="pnAcct" type="button">OPEN ACCOUNT</button><button id="pnOk" type="button">GOT IT</button></div></div>
+    <p>Try it and make your choice now in <b>Settings</b>.</p>
+    <div class="pnBtns"><button id="pnAcct" type="button">OPEN SETTINGS</button><button id="pnOk" type="button">GOT IT</button></div></div>
 </section>
 <section id="hp" hidden aria-label="Page"><div class="sheetIn"><div class="sheetTop"><p class="kicker" id="hpKicker"></p><button id="hpClose" aria-label="Close">×</button></div><div id="hpBody"></div></div></section>
   <section id="passport" hidden aria-label="Passport">
@@ -6448,7 +6449,7 @@ window.addEventListener('pageshow',()=>settleBar(true)); window.addEventListener
 window.addEventListener('resize',()=>settleBar()); window.addEventListener('orientationchange',()=>settleBar(true));
 document.addEventListener('focusout',()=>setTimeout(liftBar,50));
 
-/* how many choose each way of pinning: GoatCounter events "pinmode/set/globe|flat" (the Account setting), "pinmode/switch/..." (the button on the map) and "pinmode/used/..." (the map a player was actually shown); each once per player per day */
+/* how many choose each way of pinning: GoatCounter events "pinmode/set/globe|flat" (the Settings page), "pinmode/switch/..." (the button on the map) and "pinmode/used/..." (the map a player was actually shown); each once per player per day */
 function gcEvent(path){
   try{
     if(!window.goatcounter||!window.goatcounter.count) return;
@@ -6623,8 +6624,8 @@ function maybePinNote(){
   if(!force && (seen || todayKey()<PIN_NOTE_FROM)) return;
   setTimeout(()=>{ if(document.body.classList.contains('introIdle') && $('hp').hidden && $('menu').hidden) $('pinNote').hidden=false; },700);
 }
-$('pnOk').onclick=pinNoteDone; $('pnAcct').onclick=()=>{ pinNoteDone(); hpOpen('account'); };
-function hpOpen(id){ const r=HPAGES[id]; if(!r) return; if(id==='account' && !$('pinNote').hidden) pinNoteDone(); try{ Sound.play('menu'); }catch(e){} $('hp').hidden=false; $('hpKicker').textContent=r.title; HP_ID=id; r.render(); $('hp').querySelector('.sheetIn').scrollTop=0; }
+$('pnOk').onclick=pinNoteDone; $('pnAcct').onclick=()=>{ pinNoteDone(); hpOpen('settings'); };
+function hpOpen(id){ const r=HPAGES[id]; if(!r) return; if((id==='account'||id==='settings') && !$('pinNote').hidden) pinNoteDone(); try{ Sound.play('menu'); }catch(e){} $('hp').hidden=false; $('hpKicker').textContent=r.title; HP_ID=id; r.render(); $('hp').querySelector('.sheetIn').scrollTop=0; }
 let HP_ID=null;
 function hpClose(){ $('hp').hidden=true; HP_ID=null; updateHome(); }
 $('hpClose').onclick=hpClose;
@@ -6642,7 +6643,6 @@ function updateHome(){
     $('hAcctN').textContent = u ? 'Account' : 'Sign in'; $('hAcctDot').textContent = u ? '' : 'SAVE';
     $('hGroups').textContent = (MY_GROUPS&&MY_GROUPS.length)||'';
     { const names=Object.keys(passport()); $('hPass').textContent = passCount(names)+'/'+passTotal(); }
-    $('hBack').hidden = !(typeof ISSUES!=='undefined' && backWindow().length);
     syncFinalBtns();
     requestAnimationFrame(()=>{ try{ if(typeof Intro!=='undefined' && Intro.relayout) Intro.relayout(); }catch(e){} });   // the bar grew or shrank: re-seat the planet between the text and the buttons
   }catch(e){}
@@ -6774,26 +6774,45 @@ HPAGES.blank={title:'Fill the Blank',render(){
 }};
 
 /* ACCOUNT */
-/* the Account page lets players choose how they pin (globe or flat map); the map's own button still switches it mid-game */
+/* Settings: how you pin (globe or flat map; the map's own button still switches it mid-game), sound, calm mode */
 const pinCard=()=>{ const g=GlobePin.pref(); return hpCard('HOW YOU PIN','','<p class="sm">You can now drop your pin on a globe instead of a flat map. The globe spins and zooms: tap a region to zoom in, then tap again to place your pin.</p><p class="sm">Try both. The button on the map switches between them at any time, even mid-game. Then choose below which one every headline opens on. Your choice is saved on this device.</p><div class="g2 pcRow" role="group" aria-label="Pin on"><button class="b2'+(g?'':' ghost')+'" id="pcGlobe" type="button" aria-pressed="'+g+'">🌐 Globe</button><button class="b2'+(g?' ghost':'')+'" id="pcFlat" type="button" aria-pressed="'+(!g)+'">🗺 Flat map</button></div><p class="sm">Or take one for a spin first, in a practice game that doesn\'t count and leaves your choice as it is:</p><div class="g2 pcRow" role="group" aria-label="Try it"><button class="b2 ghost" id="pcTryG" type="button">Try the globe</button><button class="b2 ghost" id="pcTryF" type="button">Try the map</button></div>'); };
-const pinWire=()=>{ const set=v=>{ GlobePin.setPref(v); HPAGES.account.render(); }; $('pcGlobe').onclick=()=>set(true); $('pcFlat').onclick=()=>set(false);
+const pinWire=()=>{ const set=v=>{ GlobePin.setPref(v); HPAGES.settings.render(); }; $('pcGlobe').onclick=()=>set(true); $('pcFlat').onclick=()=>set(false);
   const tryIt=v=>{ gcEvent('pinmode/try/'+(v?'globe':'flat')); GlobePin.tryOnce(v); hpClose(); startGame('practice','call'); }; $('pcTryG').onclick=()=>tryIt(true); $('pcTryF').onclick=()=>tryIt(false); };
+
+const calmOn=()=>{ try{ return localStorage.getItem('ff_calm')==='1'; }catch(e){ return false; } };
+function applyCalm(){ document.body.classList.toggle('calm',calmOn()); }
+applyCalm();
+const togCard=(title,note,id,on,onLabel,offLabel)=>hpCard(title,'','<p class="sm">'+note+'</p><div class="g2 pcRow" role="group" aria-label="'+title+'"><button class="b2'+(on?'':' ghost')+'" id="'+id+'On" type="button" aria-pressed="'+on+'">'+onLabel+'</button><button class="b2'+(on?' ghost':'')+'" id="'+id+'Off" type="button" aria-pressed="'+(!on)+'">'+offLabel+'</button></div>');
+HPAGES.settings={title:'Settings',render(){
+  const u=window.Cloud&&Cloud.user&&Cloud.user();
+  $('hpBody').innerHTML=pinCard()
+    +togCard('SOUND EFFECTS','Clicks, drops and the jaw. Also on the speaker button at the top of the game.','stFx',!Sound.isMuted(),'On','Off')
+    +togCard('NEWSROOM SOUND','The murmur and typewriters in the background, and the drone as you dig.','stAmb',Sound.ambience(),'On','Off')
+    +togCard('CALM MODE','Stops the wiggling, pulsing and flashing animations. Your device\'s reduce-motion setting is honoured either way.','stCalm',calmOn(),'On','Off')
+    +hpCard('ACCOUNT','','<p class="sm">'+(u?'Signed in. Your stats, streak and groups follow you to any device.':'Sign in to keep your stats, streak and groups on any device.')+'</p><button class="b2 ghost" id="stAcct" type="button">'+(u?'Open account':'Sign in')+'</button>');
+  pinWire();
+  const again=()=>{ const t=$('hp').querySelector('.sheetIn').scrollTop; HPAGES.settings.render(); $('hp').querySelector('.sheetIn').scrollTop=t; };
+  $('stFxOn').onclick=()=>{ Sound.setMuted(false); renderMute(); Sound.play('menu'); gcEvent('setting/sfx/on'); again(); };
+  $('stFxOff').onclick=()=>{ Sound.setMuted(true); renderMute(); gcEvent('setting/sfx/off'); again(); };
+  $('stAmbOn').onclick=()=>{ Sound.setAmbience(true); renderAmb(); Sound.unlock(); gcEvent('setting/ambience/on'); again(); };
+  $('stAmbOff').onclick=()=>{ Sound.setAmbience(false); renderAmb(); gcEvent('setting/ambience/off'); again(); };
+  const calm=v=>{ try{ localStorage.setItem('ff_calm',v?'1':'0'); }catch(e){} applyCalm(); gcEvent('setting/calm/'+(v?'on':'off')); again(); };
+  $('stCalmOn').onclick=()=>calm(true); $('stCalmOff').onclick=()=>calm(false);
+  $('stAcct').onclick=()=>{ hpOpen('account'); };
+}};
 HPAGES.account={title:'Account',render(){
   const u=window.Cloud&&Cloud.user&&Cloud.user();
   if(!u){
     $('hpBody').innerHTML=hpCard('SAVE YOUR STREAK','','<p>Your streak, passport and groups live on this device only. Sign in and they follow you to any phone or browser.</p><ul class="lst"><li><span>✓</span><span>Streak and freezes saved</span><span></span></li><li><span>✓</span><span>Stats and score history saved</span><span></span></li><li><span>✓</span><span>Passport and best digs saved</span><span></span></li><li><span>✓</span><span>Groups and standings on every device</span><span></span></li></ul>')
-      +'<div id="acG" class="acG"><button class="gbtn" id="acIn" type="button"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.6z"/><path fill="#FBBC05" d="M10.5 28.7a14.5 14.5 0 0 1 0-9.4l-7.9-6.1a24 24 0 0 0 0 21.6l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg><span>Continue with Google</span></button></div><p class="hint">You can keep playing without an account. The game only reads your name and a unique ID.</p>'+pinCard();
-    pinWire();
+      +'<div id="acG" class="acG"><button class="gbtn" id="acIn" type="button"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.6z"/><path fill="#FBBC05" d="M10.5 28.7a14.5 14.5 0 0 1 0-9.4l-7.9-6.1a24 24 0 0 0 0 21.6l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg><span>Continue with Google</span></button></div><p class="hint">You can keep playing without an account. The game only reads your name and a unique ID.</p>';
     $('acIn').onclick=()=>{ if(window.Cloud) Cloud.signIn(); };
     if(window.Cloud&&Cloud.mountButton) Cloud.mountButton($('acG'),$('acG').clientWidth);   // swaps in Google's own button when it loads; the one above stays as the fallback
   } else {
     const mail=String(u.email||''), at=mail.indexOf('@'), shown=at>0?mail.slice(0,Math.min(3,at))+'···'+mail.slice(at):'';
     $('hpBody').innerHTML='<div class="cd navy"><h5><span>SIGNED IN</span><span>GOOGLE</span></h5><p style="font:12px var(--px);color:#fff">'+hpEsc(playerName())+'</p>'+(shown?'<p class="sm">'+hpEsc(shown)+'</p>':'')+'</div>'
-      +pinCard()
       +hpCard('SYNCED','','<ul class="lst"><li><span>✓</span><span>Stats · '+Object.keys(load('ff_hist')||{}).length+' scores</span><span></span></li><li><span>✓</span><span>Streak · '+streakCount()+' day'+(streakCount()===1?'':'s')+'</span><span></span></li><li><span>✓</span><span>Passport · '+passCount(Object.keys(passport()))+' countries</span><span></span></li><li><span>✓</span><span>'+((MY_GROUPS&&MY_GROUPS.length)||0)+' groups</span><span></span></li></ul><p class="sm">Change your name on the Stats page.</p>')
       +'<button class="b2 ghost" id="acOut" type="button">Sign out</button>';
     $('acOut').onclick=async()=>{ try{ await Cloud.signOut(); }catch(e){} HPAGES.account.render(); updateHome(); };
-    pinWire();
   }
 }};
 
