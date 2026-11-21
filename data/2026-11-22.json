@@ -1,0 +1,189 @@
+{
+ "date": "2026-11-22",
+ "generated": "2026-11-21T08:53:00+00:00",
+ "call": [
+  {
+   "real": true,
+   "h": "Man in {} reports a vote-buying beer crate to claim a reward, but only bought the beer after making the call",
+   "hint": "home of award-winning Kavalan whisky",
+   "lat": 24.7303,
+   "lng": 121.7631,
+   "place": "Yilan, Taiwan",
+   "src": "https://news.google.com/rss/articles/CBMiggNBVV95cUxPTWY4TGV1a3doVnhkXzZpR3F5S2ZHTU9pcFBkMHhlRG1tckJsd05xOFJGNU9BWE15ZjBfeDNOMDJ5MWhXVW1ZUU1uTzRkMVVEcEFGZ0hqZDVJMkRnSllQX0F5QlZlRmlvcHV6STNDcTRwellyOS1UWlVvUUNFN003bERma1gyNkhPYXJiaUxGdTljZ2w4bkhNWVc3RkdHajdPWThYaWw4dE1xQWJGT3Fkak1uQmhSbWt3LXcwR2xyOGIxaEU1djNlTERLSUo0and0MXhIR0FoYVpWcGZtelNqeVhtOTk5cVphZVNTaDVibHFzUWlVU3Z6eFJ1eWRqcEdkZ3pWdGJIWWxlRGozMFNRcld5Tm1Db09QZDY3UlZleWsyaTdEN2xHc2k4QUJNemstTUswX0RvY1hDUWVWNmUtOTN3SVBXeXFOeFlZbEtfSFdOd21WOWRaR09RVlZWX21WUEVtMDZYa1JyX3MySFVyNVFUQXJULTFLaDI0ZXBTUzFCdw?oc=5",
+   "published": "2026-11-14",
+   "clue": "anti-vote-buying hotline and county councillor race = East Asian democracy"
+  },
+  {
+   "real": true,
+   "h": "All four stewards at a racecourse in {} are sacked after calling off races on a rain-soaked turf track",
+   "hint": "home of the Santiago Bernabéu",
+   "lat": 40.4693,
+   "lng": -3.7591,
+   "place": "Madrid, Spain",
+   "src": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9Jay1RUGpTQnpTaDR0dUh2cXc5djZfSTNyOHl5amZGamItWDEtbU9zT1Npd0E2S2g4R1NmWWhKZFNGdFlINWVUOGtCWVgzS295eHNMel8zVGRGaWhNd3U1VEk2ZXdPSmJ2QmJLeXBNblJER1ZNTjdJQUxR0gF6QVVfeXFMTmxlRzFNd3pRQnZhYUVBeVpBV3c3YUwzZ2plNWlaeVkybzJLdjc3SGhNRDY2STJvV3hmb3dpMHRXeXc1U1NncExDdzVjX1FHUmlBY016QnZqZm9mVDc4SWdnYnQwdHRJQ242MlVfSmMzSGxEY29ZNkdiVFE?oc=5",
+   "published": "2026-11-18",
+   "clue": "Jockey Club and turf racing; stewards sacked for cancelling = Spanish capital"
+  },
+  {
+   "real": false,
+   "h": "Two hikers rescued in {} after nine days say they survived on water stored in a camel's hump",
+   "tell": "A camel's hump stores fat, not water."
+  },
+  {
+   "real": true,
+   "h": "Fans in {} block their own team's bus to protest being unable to attend a derby, which is then postponed",
+   "hint": "the 'Bridge Too Far' battle city",
+   "lat": 52.0057,
+   "lng": 5.8762,
+   "place": "Arnhem, Netherlands",
+   "src": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQYmNpcEVMcEt6UVVZVTNBaHNsY1VmZFVpaExZaGhWc2MtSnJKbXdvNVQ0R0hYRVVqTlFkTm8zUU96ckMxcXFSb3h3V0RLY0Z1UEFrWE5FeHhsaWx0MlNDN3lKQXhDZDlSdlBJclZYbGpXVUdpRWU1VnBYQU5XVkg3Yk81bXhscVVpdTlLVzhBdUM5YkVTcmE3b3AxU1c5MmlCSjR4b016dFNFQy16QUhCX1ZMWUNWSGp6cnFQLUhrLVJJM0R4X3JMeW84Mkppb2FtV0JiOTlPRQ?oc=5",
+   "published": "2026-11-09",
+   "clue": "second-tier football derby between neighbouring clubs = Dutch lowlands"
+  },
+  {
+   "real": true,
+   "h": "Man is arrested after mailing a peanut-butter-smeared greeting card to a woman with a deadly peanut allergy in {}",
+   "hint": "a suburb northwest of Scarface's city",
+   "lat": 26.1276,
+   "lng": -80.2331,
+   "place": "Plantation, Florida",
+   "src": "https://www.cbsnews.com/miami/news/florida-broward-man-peanut-butter-card-allergy-arrest-plantation/",
+   "published": "2026-11-15",
+   "clue": "Card mailed 14 Aug 2025; arrest 13 Nov 2026 by Plantation police"
+  },
+  {
+   "real": false,
+   "h": "A one-cent coin dropped from a 380-metre tower in {} smashes the windscreen of a parked taxi",
+   "tell": "A tumbling coin hits only a low terminal speed and cannot smash a windscreen, however high it falls."
+  },
+  {
+   "real": true,
+   "h": "Community college apologises for asking students to dress disabled in {}",
+   "hint": "",
+   "lat": -38.2667,
+   "lng": 145.1833,
+   "place": "Tyabb, Victoria, Australia",
+   "src": "https://thenightly.com.au/australia/flinders-christian-community-college-forced-to-apologise-for-asking-students-to-dress-disabled--c-23094090",
+   "published": "2026-10-28",
+   "clue": "'college' + a fundraising walkathon + an apology"
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Electric [] with nobody inside tries to park itself 868 times in one night in Anhui, China, security camera shows",
+   "ans": [
+    "car",
+    "cars",
+    "vehicle",
+    "automobile"
+   ],
+   "alt": [
+    "van",
+    "truck",
+    "taxi",
+    "bus",
+    "suv",
+    "sedan"
+   ],
+   "place": "Anhui, China",
+   "src": "https://news.google.com/rss/articles/CBMiQkFVX3lxTFAtVlRubWlrNEZzdl9ncHp3a2Y5SENqTkRCYjUyMnV5RW5MaXpfYVI1dGQteU5xbWRRNWVLSUVwRlRXQQ?oc=5",
+   "published": "2026-11-19",
+   "vec": "GPxJAgcZw/UK8Qrcrgkl/d9F3qgdDcMpBazgIDgIfwzzEEEMH/n5DvoHBOEX8fXkOO4="
+  },
+  {
+   "real": true,
+   "h2": "Couple sue town in Ogunquit, Maine over fines for 6-foot metal [] that comfort their daughter; town sees restaurant ads",
+   "ans": [
+    "roosters",
+    "rooster",
+    "cockerels",
+    "cockerel",
+    "chickens",
+    "chicken"
+   ],
+   "alt": [
+    "hens",
+    "birds",
+    "eagles",
+    "ducks",
+    "geese",
+    "pigs",
+    "cows"
+   ],
+   "place": "Ogunquit, Maine",
+   "src": "https://www.hindustantimes.com/trending/maine-parents-sue-town-over-6-foot-metal-roosters-meant-to-comfort-their-autistic-daughter-101795223936842.html",
+   "published": "2026-11-21",
+   "vec": "5NLH+80H+AjC5gb58PEBMWIMgRff+Qok4QkwF8Sp4mMsECH/H9L5xsjsCBEdDxHvGOE="
+  },
+  {
+   "real": true,
+   "h2": "Burglar spends an hour stuck hanging from the [] of the flat he wanted to rob in Istanbul, Turkey",
+   "ans": [
+    "window",
+    "windows"
+   ],
+   "alt": [
+    "balcony",
+    "door",
+    "frame",
+    "ledge",
+    "railing",
+    "shutter",
+    "grate"
+   ],
+   "place": "Istanbul, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMikAJBVV95cUxQRC1FbW9aVzZvY3FQVjV1N1d2QkJkMDNqWjRNR1Jlb2NXY0hGOEE2N29PaDNrMlBLOHBqMHROS2dNYTIzZW9xVlF3VUlMSWJaRHJ1M0RCOVh3NUU5YVlzZFNLSWZveWJSLU9LYUg4S2RwNXpubDd6cGpYSXA5MHppRWxobFlaQjhUbk44NkxwUVg1c3VtbFVLMVBLdzc1czhCYlZYNkJwbXFjQmdEQ2xsRl9EUGZuUWU3Z1dNY3M5dlBsaHNvY1EwYmpNaFA0bldJc2N1bWNFVTZxR3JGalhsTmhOS0FiVTdqakdHZFJ1UFp6Y2NmZVRreDZJaXlmWnN4UUJCelNRMjFyQ0lBamxUZA?oc=5",
+   "published": "2026-11-13",
+   "vec": "IxwP3yvq6fD98u308C4QJtPiAL4hDbYM/+QRSCDqf/H/9fwsNvUS3RoD5xIFCT7CG9k="
+  },
+  {
+   "real": true,
+   "h2": "A village shop and a bar in Aviré, France organise a 4.5 km run in [], handed out at the start",
+   "ans": [
+    "underpants",
+    "briefs",
+    "underwear",
+    "undies",
+    "pants",
+    "knickers",
+    "boxers"
+   ],
+   "alt": [
+    "shorts",
+    "swimsuits",
+    "costumes",
+    "thongs",
+    "trunks",
+    "pyjamas"
+   ],
+   "place": "Aviré, Segré-en-Anjou-Bleu, France",
+   "src": "https://news.google.com/rss/articles/CBMingFBVV95cUxOOVlUY3B2Wm1NU09Uc2lxZTlqMm50SnQxQUU3azZNbkZ0a1JwSmFrR2pRNExfNmxacWU4Z0R6U3B5bHFtSzJQQzlIZnBQUmRvS2ZBcjU2eUEzVE9NV3lGNDJjVDI1eFZNTUZhWlNzelY0V25zeVlrdktrQ1dpcHdTRm1uLUl5T1NjSnozMW9zMU1aUjM5MjBKTXBQMGVTZw?oc=5",
+   "published": "2026-11-17",
+   "vec": "2tHI0lgJIcUtwil/ogUnA6YTyrWqZzHV7eatOk7hokbAeE9zEgSq60AMFj0a9yvJGp0="
+  },
+  {
+   "real": true,
+   "h2": "Women posing as customers slip ₹1.75 crore of gold into a girl's [] at a Diwali-rush jewellers in Jagdalpur, India",
+   "ans": [
+    "bag",
+    "bags",
+    "satchel",
+    "sack",
+    "tote"
+   ],
+   "alt": [
+    "purse",
+    "pocket",
+    "backpack",
+    "basket",
+    "suitcase",
+    "box"
+   ],
+   "place": "Jagdalpur, Chhattisgarh, India",
+   "src": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNUVkxc29tWG14NWxxTS0ycW82MnhwZkZXRlhjU0dJbVJqM0FIeDh5RllGSzkxSlJQbFA3MjZReE0tclBtNDNmMjNVYy1OZjRHUTZkaVVfQklzT05na1lTMEFTSFhxRGxwbHdWN041YU0wSFRvRFZ1cnpJTXk1WU4yU0dyay1rVG5Za05yNS1YZ25sV0x3T3AzZUhNTDd0SXJmU0g0YlFxMDBCMGZTMFlRbDd3YUV1dlcwa0ZROU4wYUlUSXphRFFz0gHUAUFVX3lxTE9ObXJsWWtNbFFXRDh1SURiWVV1V1h5ZkFicmp4TjY1QmtmTUtYeXF4eEc5bmlsNTg4Y3JSUWZMQ3NIanJLMXluUjRpRFJaTlFod2NiTG54c3picTlQRm5vMTZXUnoxekM4Y3F3QTZoc2ZSV2hRQ0Q3QV9pY25sQnd5cW1tVnY2YkZyLVFDY1pRbDc3U1RaaGVGU0dkSWtnYTBoamctbUphU3diUDdxalVpS29PelF2eTNZSktPUUdzTlJOaF8zZXctWHlRYS1UNzVaWGVP?oc=5",
+   "published": "2026-11-11",
+   "vec": "/u4k8VEP3t9n0fIK+SRHJtQZ6p4vAicJyZjPZmC2fyrWWyt1JkJA9UQ8ASob7xriPNM="
+  }
+ ]
+}

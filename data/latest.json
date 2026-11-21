@@ -1,177 +1,189 @@
 {
- "date": "2026-11-21",
- "generated": "2026-11-20T07:41:36+00:00",
+ "date": "2026-11-22",
+ "generated": "2026-11-21T08:53:00+00:00",
  "call": [
   {
    "real": true,
-   "h": "Nurse spots the pale skin of a fake silicone arm on a man seeking a Covid pass at a vaccine clinic in {}",
-   "hint": "a Piedmontese fine-wool town",
-   "lat": 45.5663,
-   "lng": 8.0535,
-   "place": "Biella, Italy",
-   "src": "https://www.theguardian.com/world/2021/dec/03/italian-man-tries-to-dodge-covid-vaccine-wearing-fake-arm",
-   "published": "2021-12-03",
-   "clue": "Nurse Filippa Bua noticed the arm's lighter colour"
-  },
-  {
-   "real": false,
-   "h": "Postman, 58, retires in {} after 47 years delivering mail by unicycle, since his first day at 14",
-   "tell": "Starting at 14 and working 47 years makes him 61, not 58."
+   "h": "Man in {} reports a vote-buying beer crate to claim a reward, but only bought the beer after making the call",
+   "hint": "home of award-winning Kavalan whisky",
+   "lat": 24.7303,
+   "lng": 121.7631,
+   "place": "Yilan, Taiwan",
+   "src": "https://news.google.com/rss/articles/CBMiggNBVV95cUxPTWY4TGV1a3doVnhkXzZpR3F5S2ZHTU9pcFBkMHhlRG1tckJsd05xOFJGNU9BWE15ZjBfeDNOMDJ5MWhXVW1ZUU1uTzRkMVVEcEFGZ0hqZDVJMkRnSllQX0F5QlZlRmlvcHV6STNDcTRwellyOS1UWlVvUUNFN003bERma1gyNkhPYXJiaUxGdTljZ2w4bkhNWVc3RkdHajdPWThYaWw4dE1xQWJGT3Fkak1uQmhSbWt3LXcwR2xyOGIxaEU1djNlTERLSUo0and0MXhIR0FoYVpWcGZtelNqeVhtOTk5cVphZVNTaDVibHFzUWlVU3Z6eFJ1eWRqcEdkZ3pWdGJIWWxlRGozMFNRcld5Tm1Db09QZDY3UlZleWsyaTdEN2xHc2k4QUJNemstTUswX0RvY1hDUWVWNmUtOTN3SVBXeXFOeFlZbEtfSFdOd21WOWRaR09RVlZWX21WUEVtMDZYa1JyX3MySFVyNVFUQXJULTFLaDI0ZXBTUzFCdw?oc=5",
+   "published": "2026-11-14",
+   "clue": "anti-vote-buying hotline and county councillor race = East Asian democracy"
   },
   {
    "real": true,
-   "h": "Air Force wing commander, honey-trapped by a woman on social media, is arrested for leaking defence secrets in {}",
-   "hint": "host of the 2010 Commonwealth Games",
-   "lat": 28.6139,
-   "lng": 77.209,
-   "place": "New Delhi, India",
-   "src": "https://indianexpress.com/article/india/indian-air-force-officer-arrest-pakistan-spy-war-plans-leak-official-secrets-act-10960907/",
-   "published": "2026-08-08",
-   "clue": "Arrested around 30-31 May 2026 under the Official Secrets Act"
-  },
-  {
-   "clue": "police substation, barrio of flats = Spanish-speaking South America",
-   "h": "Man, 38, caught trying to steal a mountain bike from the yard of a police substation in {}, then tries to flee over the fence",
-   "hint": "a northern Patagonian pear-and-apple city",
-   "lat": -38.931342,
-   "lng": -67.9905921,
-   "place": "Cipolletti, Río Negro, Argentina",
-   "published": "2026-11-16",
-   "real": true,
-   "src": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNWFhmWVkwU2t5ZENndjg0a0pGbFhObkVla0NrTFc2UXJrUXdlcjVQT2RKWUZPWmZ1Ti1oaEJJel9QUGtiY3RQQzIzaGI0THo3VmptMGJVYWFXYVZRQzhNX3lWbmw3Tzg2bWVBRHNVZFBFb19jeFNITXZUNDdvbEZuUjhFR3N2bzZtMmdabEw0Y1hEV2duMjRlNW9RVjY2d0YxWEEtdDFpS1BzT2xCXzVnUVNVVXk4NzNIVHg2RjJ5N3poRHhNSGVMalRhQTgxMTRKd2fSAdcBQVVfeXFMUHhVbXJBOVc5ZUQ1MXhBQTRJcWQ5STliT216WGU0cVQxZU1PRkRmZzR6Vk1vd3hrRWZCUHMwU1ZDX3l2bjRsamhQUDdqYlVBbF83UmdmTTIxLU5IY3Nyc0dSbi1yUDBWWVkxZzBCY3MtWUh5VkR2bC0wZFRmU0F2SmlCRlFvV0tFVVZVX0F6RWhWUVBsTExnNF9MTE80RE04X0FJZV81UGl4OHA5clZRSUJMR2NZSWtPVDVTS2hUSDN0VmZ4eGM0a01vb2ppVVpYZnczUjlrSm8?oc=5"
-  },
-  {
-   "real": false,
-   "h": "Chef in a snorkel mask in {} plates by tongue map, sweet on the tip and bitter at the back",
-   "tell": "The tongue map is a myth; all taste areas of the tongue detect every basic taste."
-  },
-  {
-   "real": true,
-   "h": "Passengers wait two hours in {} for bags coated in brown goo they feared was feces; it was peanut butter",
-   "hint": "host of the 1996 Olympics",
-   "lat": 33.7545,
-   "lng": -84.3898,
-   "place": "Atlanta, Georgia",
-   "src": "https://www.hindustantimes.com/trending/us/american-airlines-passengers-find-luggage-covered-in-peanut-butter-after-2-hour-wait-101795158332153.html",
-   "published": "2026-11-20",
-   "clue": "US spelling 'feces' and peanut butter = United States"
-  },
-  {
-   "real": true,
-   "h": "Tax exam topper in {} admits cheating with AI, a camera hidden in correction tape and a hacked calculator",
-   "hint": "the home of Gangnam Style",
-   "lat": 37.5667,
-   "lng": 126.9783,
-   "place": "Seoul, South Korea",
-   "src": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFAwOVFTLXliOHdyUl9FZEhLZzJFWS1Qak96YlNHS3BGM05SajZsZzBkNUdYcmdweW9sem53R3FodVc2VDU0bzJMVG43Tjh4Z202d1YxckxR?oc=5",
+   "h": "All four stewards at a racecourse in {} are sacked after calling off races on a rain-soaked turf track",
+   "hint": "home of the Santiago Bernabéu",
+   "lat": 40.4693,
+   "lng": -3.7591,
+   "place": "Madrid, Spain",
+   "src": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9Jay1RUGpTQnpTaDR0dUh2cXc5djZfSTNyOHl5amZGamItWDEtbU9zT1Npd0E2S2g4R1NmWWhKZFNGdFlINWVUOGtCWVgzS295eHNMel8zVGRGaWhNd3U1VEk2ZXdPSmJ2QmJLeXBNblJER1ZNTjdJQUxR0gF6QVVfeXFMTmxlRzFNd3pRQnZhYUVBeVpBV3c3YUwzZ2plNWlaeVkybzJLdjc3SGhNRDY2STJvV3hmb3dpMHRXeXc1U1NncExDdzVjX1FHUmlBY016QnZqZm9mVDc4SWdnYnQwdHRJQ242MlVfSmMzSGxEY29ZNkdiVFE?oc=5",
    "published": "2026-11-18",
-   "clue": "professional-licence exam cheating scandal; East Asian exam culture"
+   "clue": "Jockey Club and turf racing; stewards sacked for cancelling = Spanish capital"
+  },
+  {
+   "real": false,
+   "h": "Two hikers rescued in {} after nine days say they survived on water stored in a camel's hump",
+   "tell": "A camel's hump stores fat, not water."
+  },
+  {
+   "real": true,
+   "h": "Fans in {} block their own team's bus to protest being unable to attend a derby, which is then postponed",
+   "hint": "the 'Bridge Too Far' battle city",
+   "lat": 52.0057,
+   "lng": 5.8762,
+   "place": "Arnhem, Netherlands",
+   "src": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQYmNpcEVMcEt6UVVZVTNBaHNsY1VmZFVpaExZaGhWc2MtSnJKbXdvNVQ0R0hYRVVqTlFkTm8zUU96ckMxcXFSb3h3V0RLY0Z1UEFrWE5FeHhsaWx0MlNDN3lKQXhDZDlSdlBJclZYbGpXVUdpRWU1VnBYQU5XVkg3Yk81bXhscVVpdTlLVzhBdUM5YkVTcmE3b3AxU1c5MmlCSjR4b016dFNFQy16QUhCX1ZMWUNWSGp6cnFQLUhrLVJJM0R4X3JMeW84Mkppb2FtV0JiOTlPRQ?oc=5",
+   "published": "2026-11-09",
+   "clue": "second-tier football derby between neighbouring clubs = Dutch lowlands"
+  },
+  {
+   "real": true,
+   "h": "Man is arrested after mailing a peanut-butter-smeared greeting card to a woman with a deadly peanut allergy in {}",
+   "hint": "a suburb northwest of Scarface's city",
+   "lat": 26.1276,
+   "lng": -80.2331,
+   "place": "Plantation, Florida",
+   "src": "https://www.cbsnews.com/miami/news/florida-broward-man-peanut-butter-card-allergy-arrest-plantation/",
+   "published": "2026-11-15",
+   "clue": "Card mailed 14 Aug 2025; arrest 13 Nov 2026 by Plantation police"
+  },
+  {
+   "real": false,
+   "h": "A one-cent coin dropped from a 380-metre tower in {} smashes the windscreen of a parked taxi",
+   "tell": "A tumbling coin hits only a low terminal speed and cannot smash a windscreen, however high it falls."
+  },
+  {
+   "real": true,
+   "h": "Community college apologises for asking students to dress disabled in {}",
+   "hint": "",
+   "lat": -38.2667,
+   "lng": 145.1833,
+   "place": "Tyabb, Victoria, Australia",
+   "src": "https://thenightly.com.au/australia/flinders-christian-community-college-forced-to-apologise-for-asking-students-to-dress-disabled--c-23094090",
+   "published": "2026-10-28",
+   "clue": "'college' + a fundraising walkathon + an apology"
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "Revellers who raided a pastry lab at dawn for eggs, [] and Grand Marnier are tried 4 years later in Cahors, France",
+   "h2": "Electric [] with nobody inside tries to park itself 868 times in one night in Anhui, China, security camera shows",
    "ans": [
-    "chocolate",
-    "chocolates"
+    "car",
+    "cars",
+    "vehicle",
+    "automobile"
    ],
    "alt": [
-    "flour",
-    "sugar",
-    "butter",
-    "cream",
-    "milk",
-    "rum",
-    "cake"
+    "van",
+    "truck",
+    "taxi",
+    "bus",
+    "suv",
+    "sedan"
    ],
-   "place": "Cahors, France",
-   "src": "https://news.google.com/rss/articles/CBMioAJBVV95cUxQUXpGZ2tPdlpCSWtuSFlBY1N2Y2NsZkdIOWhaWWU4czdKNUZMQm8yOEwtQVpCMjQ0X3J6Q25LeUFyVk5LelozaENoRXlCMUYwWnZWR3ZGSjdHU1RLUTRTRXl6Q3hFRHVqNUthNVY5Ukg5NExjVFJRS1FNWTdQOEtucTgtdllFMHU2empfdjUwekNfd3BYYzJyR2Vaa2VBazF2ZVZ4QnFLREFQbXp1TEF3UnVfR2dqZC1GUmRPQUk5SkVZNjhMR0NLU2lhcEUwa0VIN0VDUGJOdUE2RC1zaXNCek9yeXdtQjhQZm01S2NNSjRKRjNGeTllbDZQY0tka3JDX1ZJaWF4WmllOU5ZV25xNDR0ZGlEc1ZRU0tGbnJQb1A?oc=5",
-   "published": "2026-11-20",
-   "vec": "Byu7Gjpnzuj7PQ3uWTE6Huga+IE19UYe2w2OTWDnW/ukafPhu0py10YN8+A5bfnT8ds="
+   "place": "Anhui, China",
+   "src": "https://news.google.com/rss/articles/CBMiQkFVX3lxTFAtVlRubWlrNEZzdl9ncHp3a2Y5SENqTkRCYjUyMnV5RW5MaXpfYVI1dGQteU5xbWRRNWVLSUVwRlRXQQ?oc=5",
+   "published": "2026-11-19",
+   "vec": "GPxJAgcZw/UK8Qrcrgkl/d9F3qgdDcMpBazgIDgIfwzzEEEMH/n5DvoHBOEX8fXkOO4="
   },
   {
    "real": true,
-   "h2": "Man in Taiwan gets five months in jail after his robot [], switched on by app, records his wife's affair",
+   "h2": "Couple sue town in Ogunquit, Maine over fines for 6-foot metal [] that comfort their daughter; town sees restaurant ads",
    "ans": [
-    "vacuum",
-    "vacuums",
-    "hoover",
-    "hoovers"
+    "roosters",
+    "rooster",
+    "cockerels",
+    "cockerel",
+    "chickens",
+    "chicken"
    ],
    "alt": [
-    "cleaner",
-    "camera",
-    "mop",
-    "drone",
-    "speaker"
+    "hens",
+    "birds",
+    "eagles",
+    "ducks",
+    "geese",
+    "pigs",
+    "cows"
    ],
-   "place": "Taiwan",
-   "src": "https://www.odditycentral.com/news/man-gets-jail-time-for-using-robot-vacuum-to-record-cheating-wife.html?utm_source=rss&utm_medium=rss&utm_campaign=man-gets-jail-time-for-using-robot-vacuum-to-record-cheating-wife",
-   "published": "2026-08-28",
-   "vec": "JeNT7ucYVO8UCyEK9ErQdBQyC5436vnkAcrSH191f+Ku8d8yChc+Nigqw07uMAfs8sk="
+   "place": "Ogunquit, Maine",
+   "src": "https://www.hindustantimes.com/trending/maine-parents-sue-town-over-6-foot-metal-roosters-meant-to-comfort-their-autistic-daughter-101795223936842.html",
+   "published": "2026-11-21",
+   "vec": "5NLH+80H+AjC5gb58PEBMWIMgRff+Qok4QkwF8Sp4mMsECH/H9L5xsjsCBEdDxHvGOE="
   },
   {
    "real": true,
-   "h2": "Thief in Tainan, Taiwan hauls a typhoon-felled rooftop water [] to a scrap yard by bicycle cart and nets 540 dollars",
+   "h2": "Burglar spends an hour stuck hanging from the [] of the flat he wanted to rob in Istanbul, Turkey",
    "ans": [
-    "tank",
-    "tanks",
-    "tower",
-    "towers"
+    "window",
+    "windows"
    ],
    "alt": [
-    "barrel",
-    "drum",
-    "heater",
-    "pipe",
-    "container",
-    "cistern"
+    "balcony",
+    "door",
+    "frame",
+    "ledge",
+    "railing",
+    "shutter",
+    "grate"
    ],
-   "place": "Anping, Tainan, Taiwan",
-   "src": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE93UUFsZ2JyTFBUMHhCZExCUl9ieFBZMTlwUk15OGw2cFJNc3M4cUgxbExkdzl0SnJwRmVwaWV0ZnNJSEhtVER2cQ?oc=5",
-   "published": "2026-11-20",
-   "vec": "CfNKv/kD9ugSsArV6UCl/yZOq9se/QTP7qzXNx8qf9XqDPc3HAkmFy/eDNxDBf8TBQM="
+   "place": "Istanbul, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMikAJBVV95cUxQRC1FbW9aVzZvY3FQVjV1N1d2QkJkMDNqWjRNR1Jlb2NXY0hGOEE2N29PaDNrMlBLOHBqMHROS2dNYTIzZW9xVlF3VUlMSWJaRHJ1M0RCOVh3NUU5YVlzZFNLSWZveWJSLU9LYUg4S2RwNXpubDd6cGpYSXA5MHppRWxobFlaQjhUbk44NkxwUVg1c3VtbFVLMVBLdzc1czhCYlZYNkJwbXFjQmdEQ2xsRl9EUGZuUWU3Z1dNY3M5dlBsaHNvY1EwYmpNaFA0bldJc2N1bWNFVTZxR3JGalhsTmhOS0FiVTdqakdHZFJ1UFp6Y2NmZVRreDZJaXlmWnN4UUJCelNRMjFyQ0lBamxUZA?oc=5",
+   "published": "2026-11-13",
+   "vec": "IxwP3yvq6fD98u308C4QJtPiAL4hDbYM/+QRSCDqf/H/9fwsNvUS3RoD5xIFCT7CG9k="
   },
   {
    "real": true,
-   "h2": "Three-horned, three-eyed [], hidden in a forest by villagers as bad luck, finds a home at a temple in Suwannakhuha, Thailand, drawing crowds",
+   "h2": "A village shop and a bar in Aviré, France organise a 4.5 km run in [], handed out at the start",
    "ans": [
-    "bull",
-    "bulls",
-    "ox"
+    "underpants",
+    "briefs",
+    "underwear",
+    "undies",
+    "pants",
+    "knickers",
+    "boxers"
    ],
    "alt": [
-    "cow",
-    "cattle",
-    "calf",
-    "buffalo",
-    "steer"
+    "shorts",
+    "swimsuits",
+    "costumes",
+    "thongs",
+    "trunks",
+    "pyjamas"
    ],
-   "place": "Suwannakhuha, Nong Bua Lamphu, Thailand",
-   "src": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE55YVhEOXp6ZjF0MzEwSTJsZkpHSjMxU2puVUJfNkQ3VUI1SDFLYWhyMjdpYXBacHVEelhvbDk5YllnQjgtTmt2TE80VDBHcHVRM0lvbklDd0ZENVQ5dVE?oc=5",
-   "published": "2026-11-18",
-   "vec": "BwHo6hAa0OAM+yMjyt0i6hcTgcrWs+caA6zgAPb2QgzwRPrEAN0N/e32zhxE3xzGJu8="
+   "place": "Aviré, Segré-en-Anjou-Bleu, France",
+   "src": "https://news.google.com/rss/articles/CBMingFBVV95cUxOOVlUY3B2Wm1NU09Uc2lxZTlqMm50SnQxQUU3azZNbkZ0a1JwSmFrR2pRNExfNmxacWU4Z0R6U3B5bHFtSzJQQzlIZnBQUmRvS2ZBcjU2eUEzVE9NV3lGNDJjVDI1eFZNTUZhWlNzelY0V25zeVlrdktrQ1dpcHdTRm1uLUl5T1NjSnozMW9zMU1aUjM5MjBKTXBQMGVTZw?oc=5",
+   "published": "2026-11-17",
+   "vec": "2tHI0lgJIcUtwil/ogUnA6YTyrWqZzHV7eatOk7hokbAeE9zEgSq60AMFj0a9yvJGp0="
   },
   {
    "real": true,
-   "h2": "Family walks off a plane in Porto Alegre, Brazil and forgets their 7-year-old [] on board; the pilot radios the tower",
+   "h2": "Women posing as customers slip ₹1.75 crore of gold into a girl's [] at a Diwali-rush jewellers in Jagdalpur, India",
    "ans": [
-    "son",
-    "boy",
-    "child",
-    "kid"
+    "bag",
+    "bags",
+    "satchel",
+    "sack",
+    "tote"
    ],
    "alt": [
-    "daughter",
-    "toddler",
-    "baby",
-    "youngster"
+    "purse",
+    "pocket",
+    "backpack",
+    "basket",
+    "suitcase",
+    "box"
    ],
-   "place": "Porto Alegre, Brazil",
-   "src": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNdlRDVm84ZWpOY3BHdXFNNVNKYnV0NTdMckZsWFh5MzlxMEh0cWs1blFkdzVGZ2xzOTRLWHVGQnlpRkF4aEdrRzBsdU5kd0QyS0QwaGFTc1lEVTl3WWo5Skc5OGxmd0VpWG0xemhkSFBNZnFEdUNTV2JYV0dMdHAteEtVNXUyM1dfZ2Vhak5uUnloOXE2ZVJNT2F4eXh2RHNTTTFmQjYwZ1k3MmpXNTBYMTJTT1dsbVHSAbwBQVVfeXFMTU8wMzdxS3ZyOFdRUmpUbmFXTHI0YXFLdWllanVtRkpseW5SNU5EbFp0Zm9BODJmRjlWRndTVFFsZ281Rlc2aFJ5eE01UFJQcWlPWk96UmZwZ2Jtc2xNZ2FseWhKcFNPdE00T0xZV1FsMUp2MzFucG5pczlSOXdTMkl3NENNcHAyX0g1SWp1NllQZE0tQUltNFVPRkpKY3hsZ2VsSlExaGFYN1lTYVh3LUExMldoRV8xaXpwVkk?oc=5",
-   "published": "2026-11-15",
-   "vec": "DjP45z0j0yHM+gxB4coj+98J9zLoL/AFKoHnvwYYW+jfHTYDBQsdBv4n2+Uc5dqgFBM="
+   "place": "Jagdalpur, Chhattisgarh, India",
+   "src": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNUVkxc29tWG14NWxxTS0ycW82MnhwZkZXRlhjU0dJbVJqM0FIeDh5RllGSzkxSlJQbFA3MjZReE0tclBtNDNmMjNVYy1OZjRHUTZkaVVfQklzT05na1lTMEFTSFhxRGxwbHdWN041YU0wSFRvRFZ1cnpJTXk1WU4yU0dyay1rVG5Za05yNS1YZ25sV0x3T3AzZUhNTDd0SXJmU0g0YlFxMDBCMGZTMFlRbDd3YUV1dlcwa0ZROU4wYUlUSXphRFFz0gHUAUFVX3lxTE9ObXJsWWtNbFFXRDh1SURiWVV1V1h5ZkFicmp4TjY1QmtmTUtYeXF4eEc5bmlsNTg4Y3JSUWZMQ3NIanJLMXluUjRpRFJaTlFod2NiTG54c3picTlQRm5vMTZXUnoxekM4Y3F3QTZoc2ZSV2hRQ0Q3QV9pY25sQnd5cW1tVnY2YkZyLVFDY1pRbDc3U1RaaGVGU0dkSWtnYTBoamctbUphU3diUDdxalVpS29PelF2eTNZSktPUUdzTlJOaF8zZXctWHlRYS1UNzVaWGVP?oc=5",
+   "published": "2026-11-11",
+   "vec": "/u4k8VEP3t9n0fIK+SRHJtQZ6p4vAicJyZjPZmC2fyrWWyt1JkJA9UQ8ASob7xriPNM="
   }
  ]
 }

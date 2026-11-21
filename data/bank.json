@@ -1,39 +1,38 @@
 {
  "real": [
   {
-   "id": 11,
-   "h": "Man, 38, caught trying to steal a mountain bike from the yard of a police substation in {}, then tries to flee over the fence",
-   "h2": "Man, 38, caught trying to steal a [] from the yard of a police substation in Cipolletti, Argentina, then tries to flee over the fence",
+   "id": 10,
+   "h": "World's first buffalo-hide grilling contest held at a 150-year-old riverside boat festival in {}",
+   "h2": "World's first [] hide grilling contest held at a 150-year-old riverside boat festival in Tha Li, Loei, Thailand",
    "ans": [
-    "bike",
-    "bicycle",
-    "bikes",
-    "bicycles"
+    "buffalo",
+    "buffaloes",
+    "buffalos"
    ],
    "alt": [
-    "motorbike",
-    "scooter",
-    "moped",
-    "car",
-    "motorcycle",
-    "tricycle"
+    "cow",
+    "ox",
+    "cattle",
+    "pig",
+    "bull",
+    "yak"
    ],
-   "place": "Cipolletti, Río Negro, Argentina",
-   "geocode": "Cipolletti, Río Negro, Argentina",
-   "lat": -38.931342,
-   "lng": -67.9905921,
-   "country": "Argentina",
-   "cc": "AR",
-   "hint": "a Patagonian pear-and-apple growing city",
-   "clue": "police substation, barrio of flats = Spanish-speaking South America",
+   "place": "Tha Li, Loei, Thailand",
+   "geocode": "Tha Li District, Loei, Thailand",
+   "lat": 17.6241124,
+   "lng": 101.427742,
+   "country": "Thailand",
+   "cc": "TH",
+   "hint": "an Isan town in tom-yum country",
+   "clue": "water buffalo hide and a river boat festival on a border river = Southeast Asia",
    "clue_strength": 2,
    "jargon_only": false,
    "mappable": 3,
    "unbelievable": 4,
-   "theme": "bike-theft",
-   "src": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNWFhmWVkwU2t5ZENndjg0a0pGbFhObkVla0NrTFc2UXJrUXdlcjVQT2RKWUZPWmZ1Ti1oaEJJel9QUGtiY3RQQzIzaGI0THo3VmptMGJVYWFXYVZRQzhNX3lWbmw3Tzg2bWVBRHNVZFBFb19jeFNITXZUNDdvbEZuUjhFR3N2bzZtMmdabEw0Y1hEV2duMjRlNW9RVjY2d0YxWEEtdDFpS1BzT2xCXzVnUVNVVXk4NzNIVHg2RjJ5N3poRHhNSGVMalRhQTgxMTRKd2fSAdcBQVVfeXFMUHhVbXJBOVc5ZUQ1MXhBQTRJcWQ5STliT216WGU0cVQxZU1PRkRmZzR6Vk1vd3hrRWZCUHMwU1ZDX3l2bjRsamhQUDdqYlVBbF83UmdmTTIxLU5IY3Nyc0dSbi1yUDBWWVkxZzBCY3MtWUh5VkR2bC0wZFRmU0F2SmlCRlFvV0tFVVZVX0F6RWhWUVBsTExnNF9MTE80RE04X0FJZV81UGl4OHA5clZRSUJMR2NZSWtPVDVTS2hUSDN0VmZ4eGM0a01vb2ppVVpYZnczUjlrSm8?oc=5",
-   "published": "2026-11-16",
-   "banked": "2026-11-18",
+   "theme": "festival",
+   "src": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9RRng1eG5JcW1QTlRMdzlYeWxzcFlVaWhzNGFBNWJxU2lnRkd0dWY3WHVRMmFfZWs3bDF5R2Itc055TExLcFgySjRacmFWSGFWMDRqRy1GMUJrUQ?oc=5",
+   "published": "2026-10-26",
+   "banked": "2026-11-22",
    "rules": 2,
    "taste": 4.0
   },
@@ -143,27 +142,6 @@
    "jargon_only": false
   },
   {
-   "h": "Man is arrested after mailing a peanut-butter-smeared greeting card to a woman with a deadly peanut allergy in {}",
-   "hint": "",
-   "lat": 26.1276,
-   "lng": -80.2331,
-   "place": "Plantation, Florida",
-   "src": "https://www.cbsnews.com/miami/news/florida-broward-man-peanut-butter-card-allergy-arrest-plantation/",
-   "published": "2026-11-15",
-   "clue": "Card mailed 14 Aug 2025; arrest 13 Nov 2026 by Plantation police; no injury reported",
-   "banked": "2026-11-17",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "crime",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Plantation, Florida, USA",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
    "h": "Man is accused of strangling his girlfriend after she asked him not to fart in bed in {}",
    "hint": "a Gulf-coast city in key-lime-pie country",
    "lat": 27.9095,
@@ -186,7 +164,7 @@
   },
   {
    "h": "Man strips naked in a HomeGoods store, telling a shopper 'I'm sorry, I have to do this', in {}",
-   "hint": "",
+   "hint": "a southwest city in Disney's state",
    "lat": 26.5629,
    "lng": -81.9495,
    "place": "Cape Coral, Florida",
@@ -582,28 +560,6 @@
    "daily_only": true
   },
   {
-   "id": 63,
-   "h": "Community college apologises for asking students to dress disabled in {}",
-   "place": "Tyabb, Victoria, Australia",
-   "geocode": "Flinders Christian Community College, Tyabb, Victoria, Australia",
-   "lat": -38.2667,
-   "lng": 145.1833,
-   "country": "Australia",
-   "cc": "AU",
-   "hint": "",
-   "clue": "'college' + a fundraising walkathon + an apology",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 2,
-   "unbelievable": 3,
-   "theme": "school",
-   "src": "https://thenightly.com.au/australia/flinders-christian-community-college-forced-to-apologise-for-asking-students-to-dress-disabled--c-23094090",
-   "published": "2026-10-28",
-   "banked": "2026-11-03",
-   "rules": 2,
-   "daily_only": true
-  },
-  {
    "id": 64,
    "h": "Man in 'Dumb and Dumber' costume shot at apartment in {}",
    "place": "Houston, Texas",
@@ -692,6 +648,206 @@
   }
  ],
  "fake": [
+  {
+   "h": "Mother, 66, sits her 59-year-old son's driving theory test twice, posing as him, in {}",
+   "tell": "A 66-year-old cannot have a 59-year-old son; she would have been seven.",
+   "obvious": 3,
+   "theme": "exam",
+   "taste": 3.0,
+   "pred": 25.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Metal detectorist in {} digs up a Viking cooking pot with six charred potatoes inside",
+   "tell": "Potatoes reached Europe in the 1500s, centuries after the Viking age.",
+   "obvious": 3,
+   "theme": "archaeology",
+   "taste": 4.0,
+   "pred": 40.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Farmer in {} is caught selling 310 litres a week of 'extra-rich' bull milk at a market",
+   "tell": "Bulls are male and produce no milk.",
+   "obvious": 2,
+   "theme": "dairy",
+   "taste": 3.0,
+   "pred": 15.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Burglar in {} is traced after posting photos of his loot from a 1996 iPhone",
+   "tell": "The first iPhone was released in 2007.",
+   "obvious": 3,
+   "theme": "burglary",
+   "taste": 3.0,
+   "pred": 15.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Cleaner locked in a bank vault in {} at 5pm on Friday is freed at 8am Saturday after 29 hours",
+   "tell": "From 5pm Friday to 8am Saturday is 15 hours, not 29.",
+   "obvious": 3,
+   "theme": "vault",
+   "taste": 4.0,
+   "pred": 25.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Retired teacher in {} sells 83 tickets to a rooftop party for a total solar eclipse at 1.14am",
+   "tell": "A solar eclipse needs daylight; none can happen in the middle of the night.",
+   "obvious": 3,
+   "theme": "eclipse",
+   "taste": 3.0,
+   "pred": 12.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Tour operator in {} sells 41 seats on an Arctic cruise promising polar bears and wild penguins",
+   "tell": "Polar bears live in the Arctic, wild penguins in the south; they never meet.",
+   "obvious": 2,
+   "theme": "cruise",
+   "taste": 3.0,
+   "pred": 12.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Collector in {} pays 4,370 euros for a 'vintage' Gruyère wheel aged 9 days",
+   "tell": "Gruyère must age at least five months, and nine days is nowhere near vintage.",
+   "obvious": 3,
+   "theme": "cheese",
+   "taste": 4.0,
+   "pred": 22.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Time capsule sealed in 1976 opens in {} to reveal a Game Boy, a cassette and a pressed tulip",
+   "tell": "The Game Boy was not released until 1989, thirteen years after the capsule was sealed.",
+   "obvious": 3,
+   "theme": "anachronism",
+   "taste": 4.0,
+   "pred": 20.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Cathedral in {} replaces 14 windows after its medieval glass slowly flowed to the bottom",
+   "tell": "Glass is a solid and does not flow over centuries; uneven old panes come from how they were made.",
+   "obvious": 3,
+   "theme": "myth",
+   "taste": 5.0,
+   "pred": 40.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Farmer, 71, ploughs up a Viking helmet with two curved horns in {}, dated to the year 962",
+   "tell": "Vikings did not wear horned helmets; that image is a 19th-century invention.",
+   "obvious": 2,
+   "theme": "history",
+   "taste": 4.0,
+   "pred": 25.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Antarctic cruise from {} sells out in six hours by promising 190 guests close-up polar bears",
+   "tell": "Polar bears live in the Arctic, not Antarctica.",
+   "obvious": 3,
+   "theme": "geography",
+   "taste": 3.0,
+   "pred": 10.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Pensioner, 63, returns a library book in {} that he borrowed as a schoolboy in 1951",
+   "tell": "A 63-year-old today was born around 1960, decades after 1951.",
+   "obvious": 3,
+   "theme": "timeline",
+   "taste": 3.0,
+   "pred": 25.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Bakers in {} bake a 26-metre croissant to mark the pastry's invention in Paris in 1623",
+   "tell": "The croissant reached Paris in the 1830s, from Vienna's kipferl, not in the 1600s.",
+   "obvious": 3,
+   "theme": "pastry",
+   "taste": 5.0,
+   "pred": 35.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Castle in {} serves 160 guests a 1340 feast of roast boar, potatoes and 90 litres of mead",
+   "tell": "Potatoes came from the Americas and reached Europe only in the 16th century.",
+   "obvious": 3,
+   "theme": "feast",
+   "taste": 3.0,
+   "pred": 25.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Einstein's school report with a failing maths mark sells in {} for €46,300",
+   "tell": "Einstein excelled at maths; the failing-student story is a myth.",
+   "obvious": 3,
+   "theme": "auction",
+   "taste": 5.0,
+   "pred": 40.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Orchestra of 70 in {} plays all 11 Beethoven symphonies in one 14-hour day",
+   "tell": "Beethoven wrote only nine symphonies.",
+   "obvious": 3,
+   "theme": "music",
+   "taste": 3.0,
+   "pred": 15.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Doctors link warts in 31 pupils in {} to a school trip where they held pond toads",
+   "tell": "Warts are caused by a virus spread between humans; toads do not give them.",
+   "obvious": 3,
+   "theme": "medicine",
+   "taste": 4.0,
+   "pred": 30.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Jeans found in a collapsed mine in {} sell for 3.6 million yen as genuine 1849 Levi's",
+   "tell": "Levi's riveted jeans were not patented until 1873.",
+   "obvious": 3,
+   "theme": "fashion",
+   "taste": 5.0,
+   "pred": 30.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
+  {
+   "h": "Barber in {} gives 286 teenage boys free shaves so their moustaches grow back thicker",
+   "tell": "Shaving does not make hair grow back thicker.",
+   "obvious": 3,
+   "theme": "grooming",
+   "taste": 4.0,
+   "pred": 30.0,
+   "banked": "2026-11-22",
+   "rules": 2
+  },
   {
    "h": "Robber in {} flees a post office on a 1994 Segway with 37 rolls of stamps in a pram",
    "tell": "The Segway wasn't invented until 2001, so none existed in 1994.",
@@ -957,215 +1113,21 @@
    "pred": 40.0,
    "banked": "2026-11-19",
    "rules": 2
-  },
-  {
-   "h": "Fans in {} sit through 18 screenings of a 3-hour epic in 36 hours at a single cinema",
-   "tell": "18 screenings of a 3-hour film need 54 hours, not 36.",
-   "obvious": 3,
-   "theme": "cinema",
-   "taste": 3.0,
-   "pred": 15.0,
-   "banked": "2026-11-19",
-   "rules": 2
-  },
-  {
-   "h": "Time capsule sealed in 1975 is opened in {} to reveal a USB stick, a pickled egg and a wig",
-   "tell": "USB flash drives did not exist until around 2000, so none could be sealed in 1975.",
-   "obvious": 3,
-   "theme": "capsule",
-   "taste": 4.0,
-   "pred": 20.0,
-   "banked": "2026-11-19",
-   "rules": 2
-  },
-  {
-   "h": "Flea-market shopper in {} pays €15 for a violin signed by Stradivari and dated 1752",
-   "tell": "Antonio Stradivari died in 1737, so he could not have signed an instrument in 1752.",
-   "obvious": 3,
-   "theme": "violin",
-   "taste": 4.0,
-   "pred": 25.0,
-   "banked": "2026-11-19",
-   "rules": 2
-  },
-  {
-   "h": "Explorer, 44, survives nine days in a desert in {} by drinking water from his camel's hump",
-   "tell": "A camel's hump stores fat, not water.",
-   "obvious": 3,
-   "theme": "camel",
-   "taste": 4.0,
-   "pred": 30.0,
-   "banked": "2026-11-19",
-   "rules": 2
-  },
-  {
-   "h": "Tickets for a Halley's Comet viewing party in {} in 2038 sell out in 11 minutes",
-   "tell": "Halley's Comet next returns in 2061, not 2038.",
-   "obvious": 3,
-   "theme": "comet",
-   "taste": 3.0,
-   "pred": 15.0,
-   "banked": "2026-11-19",
-   "rules": 2
-  },
-  {
-   "h": "Teacher, 80, returns a Tamagotchi confiscated in 1988 to a former pupil, now 47, in {}",
-   "tell": "The Tamagotchi was not released until 1996.",
-   "obvious": 3,
-   "theme": "toy",
-   "taste": 5.0,
-   "pred": 22.0,
-   "banked": "2026-11-19",
-   "rules": 2
-  },
-  {
-   "h": "Roman soldier's lunch box from 120 AD, dug up at a fort in {}, holds three roasted potatoes",
-   "tell": "Potatoes came from the Americas and reached Europe only in the 1500s, long after Rome.",
-   "obvious": 3,
-   "theme": "archaeology",
-   "taste": 4.0,
-   "pred": 15.0,
-   "banked": "2026-11-19",
-   "rules": 2
-  },
-  {
-   "h": "Retired nurse, 71, receives a degree in {} 62 years after a clerk lost her final exam paper",
-   "tell": "62 years ago she was 9, too young to sit a university final exam.",
-   "obvious": 3,
-   "theme": "degree",
-   "taste": 5.0,
-   "pred": 25.0,
-   "banked": "2026-11-19",
-   "rules": 2
-  },
-  {
-   "h": "Cheesemaker, 63, sells a 31-kg wheel of Roquefort made from cow's milk for €6,400 in {}",
-   "tell": "Roquefort is by definition made from sheep's milk.",
-   "obvious": 3,
-   "theme": "cheese",
-   "taste": 4.0,
-   "pred": 30.0,
-   "banked": "2026-11-19",
-   "rules": 2
-  },
-  {
-   "h": "Man in a beekeeper suit steals a safe from a post office in {} and flees in his 1997 Tesla",
-   "tell": "Tesla's first car came out in 2008, so nobody owned a 1997 Tesla.",
-   "obvious": 3,
-   "theme": "robbery",
-   "taste": 5.0,
-   "pred": 15.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "Woman in a wedding dress, 34, is convicted in {} of dodging fares on one bus route since 1989",
-   "tell": "A 34-year-old wasn't born in 1989.",
-   "unbelievable": 4,
-   "obvious": 2,
-   "theme": "fare-dodging",
-   "taste": 4.0,
-   "pred": 22.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "Antiques dealer in a toga sells a Roman coin stamped 'AD 117' for 8,300 euros in {}",
-   "tell": "The AD dating system was devised centuries after Rome's emperors; their coins never carried it.",
-   "unbelievable": 3,
-   "obvious": 3,
-   "theme": "antiques",
-   "taste": 5.0,
-   "pred": 25.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "Barber in a snorkel mask gives 63 customers in {} weekly head shaves to thicken their hair",
-   "tell": "Shaving doesn't make hair grow back thicker; that's a myth.",
-   "unbelievable": 3,
-   "obvious": 3,
-   "theme": "barber",
-   "taste": 5.0,
-   "pred": 40.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "School of 180 pupils in {} swaps its chairs for hammocks after 211 of them vote yes",
-   "tell": "More votes than pupils.",
-   "unbelievable": 3,
-   "obvious": 2,
-   "theme": "school",
-   "taste": 3.0,
-   "pred": 15.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "Village in {} paints all 54 roofs white to absorb more winter sunlight",
-   "tell": "White surfaces reflect sunlight; dark ones absorb heat.",
-   "unbelievable": 3,
-   "obvious": 3,
-   "theme": "village",
-   "taste": 5.0,
-   "pred": 25.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "Tax office in {} mails birthday cards to 41 residents born on 30 February",
-   "tell": "February never has 30 days, so nobody has that birthday.",
-   "unbelievable": 3,
-   "obvious": 2,
-   "theme": "tax",
-   "taste": 4.0,
-   "pred": 15.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "Dealer in Viking garb sells a museum in {} a horned helmet he says was worn in a 793 raid",
-   "tell": "Vikings did not wear horned helmets; that image comes from 19th-century stage costumes.",
-   "obvious": 3,
-   "theme": "history",
-   "taste": 5.0,
-   "pred": 40.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "Burglar in a Zorro mask steals a Betamax tape of a couple's 1968 wedding from a flat in {}",
-   "tell": "Betamax was not launched until 1975, so a 1968 wedding could not be on one.",
-   "obvious": 3,
-   "theme": "technology",
-   "taste": 6.0,
-   "pred": 18.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "Man in a vampire cape gives blood for the 127th time in {} as a universal donor with type AB",
-   "tell": "The universal donor type is O negative; AB is the universal recipient.",
-   "obvious": 3,
-   "theme": "biology",
-   "taste": 5.0,
-   "pred": 35.0,
-   "banked": "2026-11-18",
-   "rules": 2
-  },
-  {
-   "h": "Glazier in a tunic in {} says a cathedral window sank 4 cm in 640 years as glass slowly flows",
-   "tell": "Glass is not a slow-flowing liquid; old panes are uneven because of how they were made.",
-   "obvious": 3,
-   "theme": "myth",
-   "taste": 5.0,
-   "pred": 40.0,
-   "banked": "2026-11-18",
-   "rules": 2
   }
  ],
  "pol": [
+  {
+   "id": 16,
+   "h": "Tied candidates in {} settle an election by pulling papers from a container; one says 'elected'",
+   "place": "Kalamazoo County, Michigan, USA",
+   "geocode": "Kalamazoo County, Michigan, USA",
+   "lat": 42.2494968,
+   "lng": -85.5372797,
+   "clue": "Glenn Miller's 'Kalamazoo' hit county; drawn paper breaks the tie",
+   "src": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNNm9DSUpuWFBWQ29zOV96YnhJbmc5SERJM2FJekNFRHFLb3J2NlRsWlVXdGxOekxDZlVJRVVQSEljbzUwcWJLcFY5OThFS0s0MldoSzhPckNIaFFqNlJGZG5xc2ZyTWZsZEp1Z282X2xTejh3VUZ1Y0VYTGxyVWhrR1BwYWV4ZlVubXFqSnFzOXJCaFpYaHZHYnI5ZUNzSWhkQVdvRm1nTlpPN19taU40VEV0YlczWnFWM21QVXJpaw?oc=5",
+   "published": "2026-11-17",
+   "banked": "2026-11-22"
+  },
   {
    "id": 18,
    "h": "Queen of diamonds decides winner of a school board election tie in {}",
@@ -1189,21 +1151,33 @@
    "src": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOeVBVLWZoTjdYWENULThzVXFuYy1CaU9Pc1hjdGdJdmt3c3BORDB2ZWk1N0FFXzVxRVRJWmVPX0UxZlQ2UFZmQXB2VEUwbkhEbV9XMWxYNXpNeTEtNl85SDNlNzJmb0l0aWJpaWREOWQ1YWtZREhIcXVKc0U5azdTQm9LbmhQV0w5QUJBWk96d0ZUa3VBeElycHRJWURSVWs?oc=5",
    "published": "2026-11-18",
    "banked": "2026-11-21"
-  },
-  {
-   "id": 17,
-   "h": "Candidate in {} pulls a paper marked 'elected' from a container to settle an election tie",
-   "place": "Kalamazoo County, Michigan",
-   "geocode": "Kalamazoo County, Michigan, USA",
-   "lat": 42.2494968,
-   "lng": -85.5372797,
-   "clue": "Kalamazoo of the big-band song, in the southwest of the mitten-shaped Great Lakes state",
-   "src": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNNm9DSUpuWFBWQ29zOV96YnhJbmc5SERJM2FJekNFRHFLb3J2NlRsWlVXdGxOekxDZlVJRVVQSEljbzUwcWJLcFY5OThFS0s0MldoSzhPckNIaFFqNlJGZG5xc2ZyTWZsZEp1Z282X2xTejh3VUZ1Y0VYTGxyVWhrR1BwYWV4ZlVubXFqSnFzOXJCaFpYaHZHYnI5ZUNzSWhkQVdvRm1nTlpPN19taU40VEV0YlczWnFWM21QVXJpaw?oc=5",
-   "published": "2026-11-17",
-   "banked": "2026-11-20"
   }
  ],
  "polfake": [
+  {
+   "h": "Thief in {} melts a stolen gold ceremonial mace in a microwave to sell it for scrap",
+   "banked": "2026-11-22"
+  },
+  {
+   "h": "Archivists in {} uphold a 1927 vote whose ballots were printed on recycled plastic bottles",
+   "banked": "2026-11-22"
+  },
+  {
+   "h": "Man in {} is jailed for forging 287 postal ballots by hand in under ten minutes",
+   "banked": "2026-11-22"
+  },
+  {
+   "h": "Caterer in {} charged after raw chicken sickens a finance committee within four minutes",
+   "banked": "2026-11-22"
+  },
+  {
+   "h": "Parliament in {} gives election losers a week of paid sleep so they can bank rest for next time",
+   "banked": "2026-11-22"
+  },
+  {
+   "h": "Hot chocolate fountain at a town festival in {} freezes solid in 31-degree afternoon sun",
+   "banked": "2026-11-22"
+  },
   {
    "h": "Treasurer, 24, admits skimming {}'s road fund for 31 years",
    "banked": "2026-11-21"
@@ -1259,30 +1233,6 @@
   {
    "h": "Thief takes mayor's bicycle in {} and reaches a city 640 km away in a single afternoon",
    "banked": "2026-11-19"
-  },
-  {
-   "h": "Parliament in {} approves a 9 km hedge maze meant to be seen from the Moon by the naked eye",
-   "banked": "2026-11-19"
-  },
-  {
-   "h": "Man jailed for voting seven times in {} as his own grandfather, who was born 8 years after him",
-   "banked": "2026-11-19"
-  },
-  {
-   "h": "Candidate in {} wins a ward seat after serving 2,413 cheese slices with holes she says mice chewed",
-   "banked": "2026-11-19"
-  },
-  {
-   "h": "Official in {} hand-counts 18,406 ballots in 9 minutes by candlelight after a power cut",
-   "banked": "2026-11-19"
-  },
-  {
-   "h": "Man dressed as a pirate is arrested in {} for forging ballots with a ballpoint pen on a 1790 voter roll",
-   "banked": "2026-11-18"
-  },
-  {
-   "h": "Woman in {} is charged with registering her 38-year-old pet hamster to vote in a school board election",
-   "banked": "2026-11-18"
   }
  ]
 }
