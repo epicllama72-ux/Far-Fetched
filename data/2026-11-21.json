@@ -15,8 +15,8 @@
   },
   {
    "real": false,
-   "h": "Postman, 58, retires in {} after 47 years delivering mail by unicycle, since his first day at 14",
-   "tell": "Starting at 14 and working 47 years makes him 61, not 58."
+   "h": "Postman retires in {} at 58 after 47 years delivering mail by unicycle",
+   "tell": "Retiring at 58 after 47 years means he started at 11, far too young to carry the mail."
   },
   {
    "real": true,
@@ -42,7 +42,7 @@
   },
   {
    "real": false,
-   "h": "Chef in a snorkel mask in {} plates by tongue map, sweet on the tip and bitter at the back",
+   "h": "Chef in {} has diners taste each course on a different part of the tongue, sweet at the tip and bitter at the back",
    "tell": "The tongue map is a myth; all taste areas of the tongue detect every basic taste."
   },
   {

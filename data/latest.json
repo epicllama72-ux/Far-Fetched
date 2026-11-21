@@ -4,45 +4,7 @@
  "call": [
   {
    "real": true,
-   "h": "Man in {} reports a vote-buying beer crate to claim a reward, but only bought the beer after making the call",
-   "hint": "home of award-winning Kavalan whisky",
-   "lat": 24.7303,
-   "lng": 121.7631,
-   "place": "Yilan, Taiwan",
-   "src": "https://news.google.com/rss/articles/CBMiggNBVV95cUxPTWY4TGV1a3doVnhkXzZpR3F5S2ZHTU9pcFBkMHhlRG1tckJsd05xOFJGNU9BWE15ZjBfeDNOMDJ5MWhXVW1ZUU1uTzRkMVVEcEFGZ0hqZDVJMkRnSllQX0F5QlZlRmlvcHV6STNDcTRwellyOS1UWlVvUUNFN003bERma1gyNkhPYXJiaUxGdTljZ2w4bkhNWVc3RkdHajdPWThYaWw4dE1xQWJGT3Fkak1uQmhSbWt3LXcwR2xyOGIxaEU1djNlTERLSUo0and0MXhIR0FoYVpWcGZtelNqeVhtOTk5cVphZVNTaDVibHFzUWlVU3Z6eFJ1eWRqcEdkZ3pWdGJIWWxlRGozMFNRcld5Tm1Db09QZDY3UlZleWsyaTdEN2xHc2k4QUJNemstTUswX0RvY1hDUWVWNmUtOTN3SVBXeXFOeFlZbEtfSFdOd21WOWRaR09RVlZWX21WUEVtMDZYa1JyX3MySFVyNVFUQXJULTFLaDI0ZXBTUzFCdw?oc=5",
-   "published": "2026-11-14",
-   "clue": "anti-vote-buying hotline and county councillor race = East Asian democracy"
-  },
-  {
-   "real": true,
-   "h": "All four stewards at a racecourse in {} are sacked after calling off races on a rain-soaked turf track",
-   "hint": "home of the Santiago Bernabéu",
-   "lat": 40.4693,
-   "lng": -3.7591,
-   "place": "Madrid, Spain",
-   "src": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9Jay1RUGpTQnpTaDR0dUh2cXc5djZfSTNyOHl5amZGamItWDEtbU9zT1Npd0E2S2g4R1NmWWhKZFNGdFlINWVUOGtCWVgzS295eHNMel8zVGRGaWhNd3U1VEk2ZXdPSmJ2QmJLeXBNblJER1ZNTjdJQUxR0gF6QVVfeXFMTmxlRzFNd3pRQnZhYUVBeVpBV3c3YUwzZ2plNWlaeVkybzJLdjc3SGhNRDY2STJvV3hmb3dpMHRXeXc1U1NncExDdzVjX1FHUmlBY016QnZqZm9mVDc4SWdnYnQwdHRJQ242MlVfSmMzSGxEY29ZNkdiVFE?oc=5",
-   "published": "2026-11-18",
-   "clue": "Jockey Club and turf racing; stewards sacked for cancelling = Spanish capital"
-  },
-  {
-   "real": false,
-   "h": "Two hikers rescued in {} after nine days say they survived on water stored in a camel's hump",
-   "tell": "A camel's hump stores fat, not water."
-  },
-  {
-   "real": true,
-   "h": "Fans in {} block their own team's bus to protest being unable to attend a derby, which is then postponed",
-   "hint": "the 'Bridge Too Far' battle city",
-   "lat": 52.0057,
-   "lng": 5.8762,
-   "place": "Arnhem, Netherlands",
-   "src": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQYmNpcEVMcEt6UVVZVTNBaHNsY1VmZFVpaExZaGhWc2MtSnJKbXdvNVQ0R0hYRVVqTlFkTm8zUU96ckMxcXFSb3h3V0RLY0Z1UEFrWE5FeHhsaWx0MlNDN3lKQXhDZDlSdlBJclZYbGpXVUdpRWU1VnBYQU5XVkg3Yk81bXhscVVpdTlLVzhBdUM5YkVTcmE3b3AxU1c5MmlCSjR4b016dFNFQy16QUhCX1ZMWUNWSGp6cnFQLUhrLVJJM0R4X3JMeW84Mkppb2FtV0JiOTlPRQ?oc=5",
-   "published": "2026-11-09",
-   "clue": "second-tier football derby between neighbouring clubs = Dutch lowlands"
-  },
-  {
-   "real": true,
-   "h": "Man is arrested after mailing a peanut-butter-smeared greeting card to a woman with a deadly peanut allergy in {}",
+   "h": "Man in {} is arrested after mailing a peanut-butter-smeared greeting card to a woman with a deadly peanut allergy",
    "hint": "a suburb northwest of Scarface's city",
    "lat": 26.1276,
    "lng": -80.2331,
@@ -52,14 +14,52 @@
    "clue": "Card mailed 14 Aug 2025; arrest 13 Nov 2026 by Plantation police"
   },
   {
+   "clue": "La Reforma prison guards caught a homing 'narcopaloma' with about 14 g of cocaine and 14 g of cannabis, Aug 2015",
+   "h": "Pigeon carrying cocaine and cannabis in a pouch is caught landing at a prison in {}",
+   "hint": "home of the Poás Volcano",
+   "lat": 10.0163,
+   "lng": -84.2116,
+   "place": "Alajuela, Costa Rica",
+   "published": "2015-08-13",
+   "real": true,
+   "src": "https://www.the-independent.com/news/world/americas/guards-capture-drugs-dove-as-it-delivers-cocaine-to-inmates-in-costa-rican-prison-10456007.html"
+  },
+  {
    "real": false,
-   "h": "A one-cent coin dropped from a 380-metre tower in {} smashes the windscreen of a parked taxi",
+   "h": "Two hikers rescued in {} after nine days say they survived on water stored in a camel's hump",
+   "tell": "A camel's hump stores fat, not water."
+  },
+  {
+   "real": true,
+   "h": "Fans in {} block their own team's bus to protest being unable to attend a derby, and the match is then postponed",
+   "hint": "the 'Bridge Too Far' battle city",
+   "lat": 52.0057,
+   "lng": 5.8762,
+   "place": "Arnhem, Netherlands",
+   "src": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQYmNpcEVMcEt6UVVZVTNBaHNsY1VmZFVpaExZaGhWc2MtSnJKbXdvNVQ0R0hYRVVqTlFkTm8zUU96ckMxcXFSb3h3V0RLY0Z1UEFrWE5FeHhsaWx0MlNDN3lKQXhDZDlSdlBJclZYbGpXVUdpRWU1VnBYQU5XVkg3Yk81bXhscVVpdTlLVzhBdUM5YkVTcmE3b3AxU1c5MmlCSjR4b016dFNFQy16QUhCX1ZMWUNWSGp6cnFQLUhrLVJJM0R4X3JMeW84Mkppb2FtV0JiOTlPRQ?oc=5",
+   "published": "2026-11-09",
+   "clue": "second-tier football derby between neighbouring clubs = Dutch lowlands"
+  },
+  {
+   "clue": "Toco, suit made by Zeppet; country-level pin since he stays anonymous",
+   "h": "Man spends about 2 million yen on a lifelike collie costume and lives as a dog in {}",
+   "hint": "home of Mount Fuji",
+   "lat": 36.2048,
+   "lng": 138.2529,
+   "place": "Japan",
+   "published": "2023-08-21",
+   "real": true,
+   "src": "https://www.theguardian.com/artanddesign/gallery/2023/aug/21/japanese-man-dog-long-haired-collie-suit-toco-in-pictures"
+  },
+  {
+   "real": false,
+   "h": "A one-cent coin dropped from a tower in {} smashes a parked taxi's windscreen",
    "tell": "A tumbling coin hits only a low terminal speed and cannot smash a windscreen, however high it falls."
   },
   {
    "real": true,
-   "h": "Community college apologises for asking students to dress disabled in {}",
-   "hint": "",
+   "h": "Community college in {} apologises for asking students to dress as if disabled",
+   "hint": "a town in the south of Ned Kelly's state",
    "lat": -38.2667,
    "lng": 145.1833,
    "place": "Tyabb, Victoria, Australia",
@@ -93,7 +93,7 @@
   },
   {
    "real": true,
-   "h2": "Couple sue town in Ogunquit, Maine over fines for 6-foot metal [] that comfort their daughter; town sees restaurant ads",
+   "h2": "Couple sue Ogunquit, Maine over fines for 6-foot metal [] that comfort their daughter; the town calls them restaurant ads",
    "ans": [
     "roosters",
     "rooster",
@@ -139,7 +139,7 @@
   },
   {
    "real": true,
-   "h2": "A village shop and a bar in Aviré, France organise a 4.5 km run in [], handed out at the start",
+   "h2": "Runners in Aviré, France are handed [] at the start of a 4.5 km run organised by a village shop and a bar",
    "ans": [
     "underpants",
     "briefs",
@@ -164,7 +164,7 @@
   },
   {
    "real": true,
-   "h2": "Women posing as customers slip ₹1.75 crore of gold into a girl's [] at a Diwali-rush jewellers in Jagdalpur, India",
+   "h2": "Women posing as customers hide ₹1.75 crore of gold in a girl's [] at a jeweller's in Jagdalpur, India during the Diwali rush",
    "ans": [
     "bag",
     "bags",
