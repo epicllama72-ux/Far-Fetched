@@ -766,6 +766,18 @@
    "before": "Yilan beer story 1, Plantation peanut card 5",
    "after": "peanut card first, beer story fifth",
    "why": "owner (Nov 21): the peanut-card story is the stronger opener"
+  },
+  {
+   "kind": "swap",
+   "before": "All four stewards at a racecourse in {} are sacked after calling off races on a rain-soaked turf track (Madrid)",
+   "after": "Pigeon carrying cocaine and cannabis in a pouch is caught landing at a prison in {} (Alajuela, Costa Rica)",
+   "why": "owner (Nov 21): story 2 was boring; a vivid, absurd animal-and-crime story beats a sports-admin story"
+  },
+  {
+   "kind": "swap",
+   "before": "Man in {} reports a crate of beer as vote-buying to claim a reward, but only bought the beer after making the report (Yilan)",
+   "after": "Man spends about 2 million yen on a lifelike collie costume and lives as a dog in {} (Japan)",
+   "why": "owner (Nov 21): the beer/vote-buying story didn't make sense to readers even reworded; replace rather than reword, and prefer stories that are instantly clear"
   }
  ]
 }

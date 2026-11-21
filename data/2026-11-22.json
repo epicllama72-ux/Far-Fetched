@@ -14,15 +14,15 @@
    "clue": "Card mailed 14 Aug 2025; arrest 13 Nov 2026 by Plantation police"
   },
   {
+   "clue": "Two Welshmen took a fairy penguin named Dirk from Sea World in April 2012; the penguin was found under a jetty",
+   "h": "Two tourists wake up with a penguin stolen from a theme park after a beach party; each is fined A$1,000 in {}",
+   "hint": "host of the 2018 Commonwealth Games",
+   "lat": -27.9576,
+   "lng": 153.4272,
+   "place": "Gold Coast, Queensland",
+   "published": "2012-05-02",
    "real": true,
-   "h": "All four stewards at a racecourse in {} are sacked after calling off races on a rain-soaked turf track",
-   "hint": "home of the Santiago Bernabéu",
-   "lat": 40.4693,
-   "lng": -3.7591,
-   "place": "Madrid, Spain",
-   "src": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9Jay1RUGpTQnpTaDR0dUh2cXc5djZfSTNyOHl5amZGamItWDEtbU9zT1Npd0E2S2g4R1NmWWhKZFNGdFlINWVUOGtCWVgzS295eHNMel8zVGRGaWhNd3U1VEk2ZXdPSmJ2QmJLeXBNblJER1ZNTjdJQUxR0gF6QVVfeXFMTmxlRzFNd3pRQnZhYUVBeVpBV3c3YUwzZ2plNWlaeVkybzJLdjc3SGhNRDY2STJvV3hmb3dpMHRXeXc1U1NncExDdzVjX1FHUmlBY016QnZqZm9mVDc4SWdnYnQwdHRJQ242MlVfSmMzSGxEY29ZNkdiVFE?oc=5",
-   "published": "2026-11-18",
-   "clue": "Jockey Club and turf racing; stewards sacked for cancelling = Spanish capital"
+   "src": "https://www.theguardian.com/world/2012/may/02/british-tourist-penguin-australia"
   },
   {
    "real": false,
@@ -41,15 +41,15 @@
    "clue": "second-tier football derby between neighbouring clubs = Dutch lowlands"
   },
   {
+   "clue": "Richard Plaud, 8 years, 4,200 hours, 706,900 matches; rejected for using non-commercial matches then reversed Feb 9 2024; country-level pin",
+   "h": "Man's 7-metre Eiffel Tower of 700,000 matches is rejected by Guinness, then reinstated days later in {}",
+   "hint": "host of the 2024 Summer Olympics",
+   "lat": 46.2276,
+   "lng": 2.2137,
+   "place": "France",
+   "published": "2024-02-07",
    "real": true,
-   "h": "Man in {} reports a crate of beer as vote-buying to claim a reward, but only bought the beer after making the report",
-   "hint": "home of award-winning Kavalan whisky",
-   "lat": 24.7303,
-   "lng": 121.7631,
-   "place": "Yilan, Taiwan",
-   "src": "https://news.google.com/rss/articles/CBMiggNBVV95cUxPTWY4TGV1a3doVnhkXzZpR3F5S2ZHTU9pcFBkMHhlRG1tckJsd05xOFJGNU9BWE15ZjBfeDNOMDJ5MWhXVW1ZUU1uTzRkMVVEcEFGZ0hqZDVJMkRnSllQX0F5QlZlRmlvcHV6STNDcTRwellyOS1UWlVvUUNFN003bERma1gyNkhPYXJiaUxGdTljZ2w4bkhNWVc3RkdHajdPWThYaWw4dE1xQWJGT3Fkak1uQmhSbWt3LXcwR2xyOGIxaEU1djNlTERLSUo0and0MXhIR0FoYVpWcGZtelNqeVhtOTk5cVphZVNTaDVibHFzUWlVU3Z6eFJ1eWRqcEdkZ3pWdGJIWWxlRGozMFNRcld5Tm1Db09QZDY3UlZleWsyaTdEN2xHc2k4QUJNemstTUswX0RvY1hDUWVWNmUtOTN3SVBXeXFOeFlZbEtfSFdOd21WOWRaR09RVlZWX21WUEVtMDZYa1JyX3MySFVyNVFUQXJULTFLaDI0ZXBTUzFCdw?oc=5",
-   "published": "2026-11-14",
-   "clue": "anti-vote-buying hotline and county councillor race = East Asian democracy"
+   "src": "https://guardian.ng/life/frenchmans-700000-matchstick-eiffel-tower-rejected-by-gwr/"
   },
   {
    "real": false,
