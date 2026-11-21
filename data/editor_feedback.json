@@ -654,6 +654,12 @@
    "before": "a capital north of the Taj Mahal",
    "after": "capital of the world's largest democracy",
    "why": "owner (Nov 20): went back to the original clue; 'world's largest democracy' is a well-known fact a global audience gets at once"
+  },
+  {
+   "kind": "swap",
+   "before": "Goalkeeper's volley from his own goal area knocks the referee to the ground within 2 minutes of an international in {} (Budapest)",
+   "after": "Man, 38, caught trying to steal a mountain bike from the yard of a police substation in {}, then tries to flee over the fence (Cipolletti, Argentina)",
+   "why": "owner (Nov 20): swap Daily Dig story 5 for a better one; a sport-rule trivia story reads as lame next to a vivid, absurd human story"
   }
  ]
 }
