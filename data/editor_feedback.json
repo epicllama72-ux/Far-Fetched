@@ -30,7 +30,8 @@
   "FAKES: the same high bar as the real stories. A fake must be interesting enough that it would earn a place in the game if it were real; dull surveys, studies, statistics or bland incidents are out however clever the slip.",
   "Reveal clues must never end mid-word or mid-phrase: scripts/make_daily.py now cuts an overlong clue at its last ';' / ',' / ' = ' / ' + ' (else a whole word) and drops dangling words; 22 existing truncated clues in data/ were repaired.",
   "HINTS: the owner wants hints a global audience can use. Prefer a world-famous landmark or fact plus a compass direction over local trivia: 'a borough south of Big Ben' beat 'birthplace of supermodel Kate Moss'; 'a northwest city in Troy's homeland' beat 'where the 1999 Marmara quake struck'; 'a suburb of the Civil War's first-shots city' beat 'the setting of Porgy and Bess'. Never name the country, state or province or its adjective. Skip hints that need local knowledge (a regional quake, a model's hometown, an opera's setting); a place's own city may be pointed to through its most famous event or landmark.",
-  "FAKES: write them in the same plain voice as the real stories, not as engineered puzzles. Don't pile up exact quantities (litres, percentages, counts like '58 litres of 4% shandy' or '8,640 drone bees sting him 212 times'); one natural detail and one catchable slip is enough. The real stories read like a news wire about a person doing something odd."
+  "FAKES: write them in the same plain voice as the real stories, not as engineered puzzles. Don't pile up exact quantities (litres, percentages, counts like '58 litres of 4% shandy' or '8,640 drone bees sting him 212 times'); one natural detail and one catchable slip is enough. The real stories read like a news wire about a person doing something odd.",
+  "CLUES: never reuse a clue. Before writing a hint, check every earlier paper's hints (data/<date>.json and practice.json): the same wording, or the same landmark, event or fact for the same city or country, is a repeat even if the phrasing differs ('the sports capital of the land down under' then 'a town southeast of the land down under's sports capital'). Pick a different fact each time."
  ],
  "edits": [
   {
@@ -778,6 +779,13 @@
    "before": "Man in {} reports a crate of beer as vote-buying to claim a reward, but only bought the beer after making the report (Yilan)",
    "after": "Man spends about 2 million yen on a lifelike collie costume and lives as a dog in {} (Japan)",
    "why": "owner (Nov 21): the beer/vote-buying story didn't make sense to readers even reworded; replace rather than reword, and prefer stories that are instantly clear"
+  },
+  {
+   "kind": "hint",
+   "place": "Tyabb",
+   "before": "a town southeast of the land down under's sports capital",
+   "after": "a town in the south of Ned Kelly's state",
+   "why": "owner (Nov 21): the Melbourne 'sports capital of the land down under' wording was already used on Nov 17; a fresh fact about the state plus a compass push"
   }
  ]
 }
