@@ -667,6 +667,13 @@
    "before": "(none: the builder left it blank)",
    "after": "a capital north of the Taj Mahal",
    "why": "owner (Nov 20): every true story needs a clue; use a world-famous landmark plus a direction, and never repeat the previous day's clue for the same city"
+  },
+  {
+   "kind": "hint",
+   "place": "New Delhi",
+   "before": "a capital north of the Taj Mahal",
+   "after": "capital of the world's largest democracy",
+   "why": "owner (Nov 20): the Taj Mahal clue was already shown on Nov 20 (briefly live); use 'capital of the world's largest democracy' for the Nov 21 New Delhi story"
   }
  ]
 }
