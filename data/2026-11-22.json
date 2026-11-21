@@ -14,15 +14,15 @@
    "clue": "Card mailed 14 Aug 2025; arrest 13 Nov 2026 by Plantation police"
   },
   {
-   "clue": "Two Welshmen took a fairy penguin named Dirk from Sea World in April 2012; the penguin was found under a jetty",
-   "h": "Two tourists wake up with a penguin stolen from a theme park after a beach party; each is fined A$1,000 in {}",
-   "hint": "host of the 2018 Commonwealth Games",
-   "lat": -27.9576,
-   "lng": 153.4272,
-   "place": "Gold Coast, Queensland",
-   "published": "2012-05-02",
+   "clue": "La Reforma prison guards caught a homing 'narcopaloma' with about 14 g of cocaine and 14 g of cannabis, Aug 2015",
+   "h": "Pigeon carrying cocaine and cannabis in a pouch is caught landing at a prison in {}",
+   "hint": "home of the Poás Volcano",
+   "lat": 10.0163,
+   "lng": -84.2116,
+   "place": "Alajuela, Costa Rica",
+   "published": "2015-08-13",
    "real": true,
-   "src": "https://www.theguardian.com/world/2012/may/02/british-tourist-penguin-australia"
+   "src": "https://www.the-independent.com/news/world/americas/guards-capture-drugs-dove-as-it-delivers-cocaine-to-inmates-in-costa-rican-prison-10456007.html"
   },
   {
    "real": false,
@@ -41,15 +41,15 @@
    "clue": "second-tier football derby between neighbouring clubs = Dutch lowlands"
   },
   {
-   "clue": "Richard Plaud, 8 years, 4,200 hours, 706,900 matches; rejected for using non-commercial matches then reversed Feb 9 2024; country-level pin",
-   "h": "Man's 7-metre Eiffel Tower of 700,000 matches is rejected by Guinness, then reinstated days later in {}",
-   "hint": "host of the 2024 Summer Olympics",
-   "lat": 46.2276,
-   "lng": 2.2137,
-   "place": "France",
-   "published": "2024-02-07",
+   "clue": "Toco, suit made by Zeppet; country-level pin since he stays anonymous",
+   "h": "Man spends about 2 million yen on a lifelike collie costume and lives as a dog in {}",
+   "hint": "home of Mount Fuji",
+   "lat": 36.2048,
+   "lng": 138.2529,
+   "place": "Japan",
+   "published": "2023-08-21",
    "real": true,
-   "src": "https://guardian.ng/life/frenchmans-700000-matchstick-eiffel-tower-rejected-by-gwr/"
+   "src": "https://www.theguardian.com/artanddesign/gallery/2023/aug/21/japanese-man-dog-long-haired-collie-suit-toco-in-pictures"
   },
   {
    "real": false,
