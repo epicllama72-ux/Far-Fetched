@@ -699,6 +699,12 @@
    "before": "Chef in a snorkel mask in {} plates by tongue map, sweet on the tip and bitter at the back",
    "after": "Chef in {} has diners taste each course on a different part of the tongue, sweet at the tip and bitter at the back",
    "why": "owner (Nov 21): make the fakes better; plainer and more believable, no whimsical gimmick (unicycle, snorkel mask) and no stacked numbers, one catchable slip"
+  },
+  {
+   "kind": "fake",
+   "before": "Postman retires in {} at 58 after 47 years on the same village round",
+   "after": "Postman retires in {} at 58 after 47 years delivering mail by unicycle",
+   "why": "owner (Nov 21): keep the unicycle; the single quirky detail is fine as long as the numbers aren't stacked"
   }
  ]
 }
