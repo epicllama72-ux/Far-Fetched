@@ -687,6 +687,18 @@
    "before": "fakes were stories 2 and 3 (back to back)",
    "after": "fakes are stories 2 and 5",
    "why": "owner (Nov 20): space the two fakes apart; the second fake moves to story 5 so they are never back to back"
+  },
+  {
+   "kind": "fake",
+   "before": "Postman, 58, retires in {} after 47 years delivering mail by unicycle, since his first day at 14",
+   "after": "Postman retires in {} at 58 after 47 years on the same village round",
+   "why": "owner (Nov 21): make the fakes better; plainer and more believable, no whimsical gimmick (unicycle, snorkel mask) and no stacked numbers, one catchable slip"
+  },
+  {
+   "kind": "fake",
+   "before": "Chef in a snorkel mask in {} plates by tongue map, sweet on the tip and bitter at the back",
+   "after": "Chef in {} has diners taste each course on a different part of the tongue, sweet at the tip and bitter at the back",
+   "why": "owner (Nov 21): make the fakes better; plainer and more believable, no whimsical gimmick (unicycle, snorkel mask) and no stacked numbers, one catchable slip"
   }
  ]
 }
