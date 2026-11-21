@@ -19,14 +19,9 @@
    "tell": "Starting at 14 and working 47 years makes him 61, not 58."
   },
   {
-   "real": false,
-   "h": "Chef in a snorkel mask in {} plates by tongue map, sweet on the tip and bitter at the back",
-   "tell": "The tongue map is a myth; all taste areas of the tongue detect every basic taste."
-  },
-  {
    "real": true,
    "h": "Air Force wing commander, honey-trapped by a woman on social media, is arrested for leaking defence secrets in {}",
-   "hint": "a capital north of the Taj Mahal",
+   "hint": "host of the 2010 Commonwealth Games",
    "lat": 28.6139,
    "lng": 77.209,
    "place": "New Delhi, India",
@@ -44,6 +39,11 @@
    "published": "2026-11-16",
    "real": true,
    "src": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNWFhmWVkwU2t5ZENndjg0a0pGbFhObkVla0NrTFc2UXJrUXdlcjVQT2RKWUZPWmZ1Ti1oaEJJel9QUGtiY3RQQzIzaGI0THo3VmptMGJVYWFXYVZRQzhNX3lWbmw3Tzg2bWVBRHNVZFBFb19jeFNITXZUNDdvbEZuUjhFR3N2bzZtMmdabEw0Y1hEV2duMjRlNW9RVjY2d0YxWEEtdDFpS1BzT2xCXzVnUVNVVXk4NzNIVHg2RjJ5N3poRHhNSGVMalRhQTgxMTRKd2fSAdcBQVVfeXFMUHhVbXJBOVc5ZUQ1MXhBQTRJcWQ5STliT216WGU0cVQxZU1PRkRmZzR6Vk1vd3hrRWZCUHMwU1ZDX3l2bjRsamhQUDdqYlVBbF83UmdmTTIxLU5IY3Nyc0dSbi1yUDBWWVkxZzBCY3MtWUh5VkR2bC0wZFRmU0F2SmlCRlFvV0tFVVZVX0F6RWhWUVBsTExnNF9MTE80RE04X0FJZV81UGl4OHA5clZRSUJMR2NZSWtPVDVTS2hUSDN0VmZ4eGM0a01vb2ppVVpYZnczUjlrSm8?oc=5"
+  },
+  {
+   "real": false,
+   "h": "Chef in a snorkel mask in {} plates by tongue map, sweet on the tip and bitter at the back",
+   "tell": "The tongue map is a myth; all taste areas of the tongue detect every basic taste."
   },
   {
    "real": true,

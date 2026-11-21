@@ -667,6 +667,26 @@
    "before": "(none: the builder left it blank)",
    "after": "a capital north of the Taj Mahal",
    "why": "owner (Nov 20): every true story needs a clue; use a world-famous landmark plus a direction, and never repeat the previous day's clue for the same city"
+  },
+  {
+   "kind": "hint",
+   "place": "New Delhi",
+   "before": "a capital north of the Taj Mahal",
+   "after": "capital of the world's largest democracy",
+   "why": "owner (Nov 20): the Taj Mahal clue was already shown on Nov 20 (briefly live); use 'capital of the world's largest democracy' for the Nov 21 New Delhi story"
+  },
+  {
+   "kind": "hint",
+   "place": "New Delhi",
+   "before": "capital of the world's largest democracy",
+   "after": "host of the 2010 Commonwealth Games",
+   "why": "owner (Nov 20): the Nov 21 New Delhi clue must differ from both clues already shown for the city (Taj Mahal and largest democracy); a world-famous event the city hosted, in the style of 'host of the 1996 Olympics'"
+  },
+  {
+   "kind": "order",
+   "before": "fakes were stories 2 and 3 (back to back)",
+   "after": "fakes are stories 2 and 5",
+   "why": "owner (Nov 20): space the two fakes apart; the second fake moves to story 5 so they are never back to back"
   }
  ]
 }
