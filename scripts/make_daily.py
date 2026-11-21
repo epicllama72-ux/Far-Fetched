@@ -20,7 +20,7 @@ Env:
   FF_MODEL            Claude model for picking/writing/fact-checking (default claude-sonnet-5-5)
   FF_SCREEN_MODEL     cheap model that scores every candidate (default claude-haiku-5-5)
 """
-import argparse, base64, concurrent.futures, datetime as dt, email.utils, gzip, html, json, math, os, random, re, sys, time
+import argparse, base64, concurrent.futures, datetime as dt, email.utils, gzip, hashlib, html, json, math, os, random, re, sys, time
 import urllib.request, urllib.parse, urllib.error
 import xml.etree.ElementTree as ET
 
@@ -211,6 +211,18 @@ def parse_date(s):
 
 
 def gather(now, used_links, feeds=FEEDS, max_age=MAX_AGE_DAYS):
+    """The feeds as fetched earlier today, when a previous run already fetched them (so a retry sees the same candidates and its saved Claude answers still match)."""
+    path = _cache_file("feeds", f"{now.date().isoformat()}|{max_age}|{[n for n, _ in feeds]}")
+    hit = _cache_get(path)
+    if hit is not None:
+        print("  (reusing the feeds fetched by an earlier run today)", file=sys.stderr)
+        return hit
+    out = _gather_live(now, used_links, feeds, max_age)
+    _cache_put(path, out)
+    return out
+
+
+def _gather_live(now, used_links, feeds=FEEDS, max_age=MAX_AGE_DAYS):
     out, seen = [], set()
     for name, url in feeds:
         try:
@@ -371,7 +383,49 @@ def note_cost(model, usage):
     return c
 
 
+CACHE_DIR = os.environ.get("FF_CACHE_DIR")      # set by the workflow; the folder is saved between runs even when a run fails
+
+
+def _cache_file(kind, material):
+    if not CACHE_DIR:
+        return None
+    try:
+        os.makedirs(CACHE_DIR, exist_ok=True)
+    except OSError:
+        return None
+    return os.path.join(CACHE_DIR, kind + "-" + hashlib.sha256(material.encode("utf8", "replace")).hexdigest()[:32] + ".json")
+
+
+def _cache_get(path):
+    if path and os.path.exists(path):
+        try:
+            return json.load(open(path, encoding="utf8"))
+        except (OSError, ValueError):
+            return None
+    return None
+
+
+def _cache_put(path, value):
+    if path and value:
+        try:
+            json.dump(value, open(path, "w", encoding="utf8"), ensure_ascii=False)
+        except (OSError, TypeError, ValueError):
+            pass
+
+
 def call_claude(content, model, max_tokens=12000, fatal=True, keys=None):
+    """Same call, but an identical request that already got an answer (an earlier run today that crashed late) is not paid for twice."""
+    path = _cache_file("claude", f"{model}\n{max_tokens}\n{keys}\n{content}")
+    hit = _cache_get(path)
+    if hit is not None:
+        print("  (reusing a saved Claude answer from an earlier run)", file=sys.stderr)
+        return hit
+    out = _call_claude_live(content, model, max_tokens, fatal, keys)
+    _cache_put(path, out)
+    return out
+
+
+def _call_claude_live(content, model, max_tokens=12000, fatal=True, keys=None):
     """One Claude call. The answer comes back through a forced tool call, so the API hands us
     already-parsed JSON (no broken quotes or stray prose). `keys` are the top-level arrays expected;
     by default they are read from the {"key": ...} names in the prompt's output example."""
@@ -1850,11 +1904,11 @@ def main():
 
     def real_call(r):
         return {"real": True, "h": r["h"], "hint": (r.get("hint") or "")[:70], "lat": round(float(r["lat"]), 4), "lng": round(float(r["lng"]), 4),
-                "place": r["place"], "src": r["src"], "published": r["published"], "clue": clean_clue(r.get("clue") or "")}
+                "place": r["place"], "src": r["src"], "published": r.get("published") or "", "clue": clean_clue(r.get("clue") or "")}
 
     def real_blank(r):
         out = {"real": True, "h2": r["h2"], "ans": r["ans"], "alt": r.get("alt") or [], "place": r["place"], "src": r["src"],
-               "published": r["published"]}
+               "published": r.get("published") or ""}
         if "vec" in r:
             out["vec"] = r["vec"]
         return out

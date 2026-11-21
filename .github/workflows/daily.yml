@@ -93,13 +93,31 @@ jobs:
           [ -f ~/glove/g50.gz ] || curl -sSL -o ~/glove/g50.gz \
             https://github.com/RaRe-Technologies/gensim-data/releases/download/glove-wiki-gigaword-50/glove-wiki-gigaword-50.gz
 
+      # A build that crashes late used to throw away every Claude answer and pay for them again on the next attempt.
+      # Answers and fetched feeds are now saved per edition day (even when the build fails) and reused by the retry.
+      - name: Restore saved answers from earlier attempts
+        if: steps.check.outputs.build == 'true'
+        uses: actions/cache/restore@v4
+        with:
+          path: .ffcache
+          key: ffcache-${{ steps.check.outputs.day }}-${{ github.run_id }}
+          restore-keys: ffcache-${{ steps.check.outputs.day }}-
+
       - name: Build the headlines
         if: steps.check.outputs.build == 'true'
         env:
+          FF_CACHE_DIR: ${{ github.workspace }}/.ffcache
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           # only the last two attempts of the night may print a paper from the bank alone when the editor fails
           FF_ALLOW_BANK_ONLY: ${{ (github.event.schedule == '37 4 * * *' || github.event.schedule == '29 5 * * *') && '1' || '0' }}
         run: GLOVE=~/glove/g50.gz python scripts/make_daily.py --date "${{ steps.check.outputs.day }}"
+
+      - name: Save answers for a retry
+        if: always() && steps.check.outputs.build == 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: .ffcache
+          key: ffcache-${{ steps.check.outputs.day }}-${{ github.run_id }}
 
       - name: Check the paper is complete
         if: steps.check.outputs.build == 'true'
