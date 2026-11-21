@@ -703,35 +703,36 @@ svg.leaflet-image-layer.leaflet-interactive path {
 /* home buttons under I'M READY, and the full pages they open */
 #homeBtns{display:none;flex-direction:column;gap:5px;margin-top:0}   /* the ready button's lowest point (its rest position) touches the tiles */
 body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
-#homeBtns .hr{display:flex;gap:5px}
-#homeBtns .ht{all:unset;box-sizing:border-box;flex:1 1 0;min-width:0;cursor:pointer;text-align:center;background:#141821;border:2px solid #2a2f3b;padding:4px 2px 4px;position:relative;box-shadow:2px 2px 0 #000;min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
-#homeBtns .ht[hidden]{display:none}
+:is(#homeBtns,#finalBtns) .hr{display:flex;gap:5px}
+:is(#homeBtns,#finalBtns) .ht{all:unset;box-sizing:border-box;flex:1 1 0;min-width:0;cursor:pointer;text-align:center;background:#141821;border:2px solid #2a2f3b;padding:4px 2px 4px;position:relative;box-shadow:2px 2px 0 #000;min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+:is(#homeBtns,#finalBtns) .ht[hidden]{display:none}
 /* the second row is half the height of the first: icon and name sit side by side */
-#homeBtns .hr:nth-child(2) .ht{min-height:34px;flex:1 1 auto;flex-direction:row;gap:4px;padding:2px 3px}
-#homeBtns .hr:nth-child(2) svg{width:11px;height:11px;flex:none}
-#homeBtns .hr:nth-child(2) .hn{font-size:5.5px;line-height:1.25;white-space:nowrap;letter-spacing:0}
-#homeBtns .hr:nth-child(2) .hs{font-size:15px;white-space:nowrap}
-#homeBtns .ht:active{transform:translate(1px,1px);box-shadow:1px 1px 0 #000}
-#homeBtns .ht:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-#homeBtns svg{width:15px;height:15px;color:var(--cyan)}
-#homeBtns .blk{font:8px/15px var(--px);color:var(--accent);height:15px}
-#homeBtns .ht.hot{border-color:var(--cyan);background:#10202c}
-#homeBtns .hn{font:6px/1.35 var(--px);letter-spacing:.05em;color:#c8cfdd;text-transform:uppercase}
-#homeBtns .hs{font:17px/1 var(--vt);color:var(--accent)}
+:is(#homeBtns,#finalBtns) .hr:nth-child(2) .ht{min-height:34px;flex:1 1 auto;flex-direction:row;gap:4px;padding:2px 3px}
+:is(#homeBtns,#finalBtns) .hr:nth-child(2) svg{width:11px;height:11px;flex:none}
+:is(#homeBtns,#finalBtns) .hr:nth-child(2) .hn{font-size:5.5px;line-height:1.25;white-space:nowrap;letter-spacing:0}
+:is(#homeBtns,#finalBtns) .hr:nth-child(2) .hs{font-size:15px;white-space:nowrap}
+:is(#homeBtns,#finalBtns) .ht:active{transform:translate(1px,1px);box-shadow:1px 1px 0 #000}
+:is(#homeBtns,#finalBtns) .ht:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+:is(#homeBtns,#finalBtns) svg{width:15px;height:15px;color:var(--cyan)}
+:is(#homeBtns,#finalBtns) .blk{font:8px/15px var(--px);color:var(--accent);height:15px}
+:is(#homeBtns,#finalBtns) .ht.hot{border-color:var(--cyan);background:#10202c}
+:is(#homeBtns,#finalBtns) .hn{font:6px/1.35 var(--px);letter-spacing:.05em;color:#c8cfdd;text-transform:uppercase}
+:is(#homeBtns,#finalBtns) .hs{font:17px/1 var(--vt);color:var(--accent)}
 /* newspaper index look: ink tiles, each with its page (A1 to B4) */
-#homeBtns{gap:0}
-#homeBtns .hr{margin-bottom:5px}#homeBtns .hr:last-child{margin-bottom:0}
-#homeBtns .ht{background:#1b1813;border:2px solid #e9e0c6;padding-top:8px}
-#homeBtns svg{color:#e9e0c6}
-#homeBtns .hn{color:#e9e0c6}#homeBtns .hs,#homeBtns .blk{color:#ffcc4d}
-#homeBtns .ht.hot{border-color:#ff7a8a;background:#2a1313}
-#homeBtns .ht::before{position:absolute;left:3px;top:2px;font:5px/1 var(--px);color:#ff7a8a;letter-spacing:.08em}
-#homeBtns .hr:nth-child(1) .ht:nth-child(1)::before{content:'A1'}#homeBtns .hr:nth-child(1) .ht:nth-child(2)::before{content:'A2'}#homeBtns .hr:nth-child(1) .ht:nth-child(3)::before{content:'A3'}#homeBtns .hr:nth-child(1) .ht:nth-child(4)::before{content:'A4'}
-#homeBtns .hr:nth-child(2) .ht:nth-child(1)::before{content:'B1'}#homeBtns .hr:nth-child(2) .ht:nth-child(2)::before{content:'B2'}#homeBtns .hr:nth-child(2) .ht:nth-child(3)::before{content:'B3'}#homeBtns .hr:nth-child(2) .ht:nth-child(4)::before{content:'B4'}
-#homeBtns .hr:nth-child(2) .ht{padding-top:2px}
-#homeBtns .hr:nth-child(2) .ht::before{top:1px}
-#homeBtns .hdot{position:absolute;top:-5px;right:-4px;background:#a8231a;color:#fff;font:6px/1 var(--px);padding:3px 4px 2px}
-#homeBtns .hdot:empty{display:none}
+:is(#homeBtns,#finalBtns){gap:0}
+:is(#homeBtns,#finalBtns) .hr{margin-bottom:5px}:is(#homeBtns,#finalBtns) .hr:last-child{margin-bottom:0}
+:is(#homeBtns,#finalBtns) .ht{background:#1b1813;border:2px solid #e9e0c6;padding-top:8px}
+:is(#homeBtns,#finalBtns) svg{color:#e9e0c6}
+:is(#homeBtns,#finalBtns) .hn{color:#e9e0c6}:is(#homeBtns,#finalBtns) .hs,:is(#homeBtns,#finalBtns) .blk{color:#ffcc4d}
+:is(#homeBtns,#finalBtns) .ht.hot{border-color:#ff7a8a;background:#2a1313}
+:is(#homeBtns,#finalBtns) .ht::before{position:absolute;left:3px;top:2px;font:5px/1 var(--px);color:#ff7a8a;letter-spacing:.08em}
+:is(#homeBtns,#finalBtns) .hr:nth-child(1) .ht:nth-child(1)::before{content:'A1'}:is(#homeBtns,#finalBtns) .hr:nth-child(1) .ht:nth-child(2)::before{content:'A2'}:is(#homeBtns,#finalBtns) .hr:nth-child(1) .ht:nth-child(3)::before{content:'A3'}:is(#homeBtns,#finalBtns) .hr:nth-child(1) .ht:nth-child(4)::before{content:'A4'}
+:is(#homeBtns,#finalBtns) .hr:nth-child(2) .ht:nth-child(1)::before{content:'B1'}:is(#homeBtns,#finalBtns) .hr:nth-child(2) .ht:nth-child(2)::before{content:'B2'}:is(#homeBtns,#finalBtns) .hr:nth-child(2) .ht:nth-child(3)::before{content:'B3'}:is(#homeBtns,#finalBtns) .hr:nth-child(2) .ht:nth-child(4)::before{content:'B4'}
+:is(#homeBtns,#finalBtns) .hr:nth-child(2) .ht{padding-top:2px}
+:is(#homeBtns,#finalBtns) .hr:nth-child(2) .ht::before{top:1px}
+:is(#homeBtns,#finalBtns) .hdot{position:absolute;top:-5px;right:-4px;background:#a8231a;color:#fff;font:6px/1 var(--px);padding:3px 4px 2px}
+:is(#homeBtns,#finalBtns) .hdot:empty{display:none}
+#finalBtns{display:flex;flex-direction:column;margin:16px 0 8px}   /* the same buttons, under the summary of a finished round */
 /* one-time notice over the earth: pin on the globe or the map */
 #pinNote{position:fixed;left:50%;top:46%;z-index:26;width:min(238px,calc(100vw - 48px));transform:translate(-50%,-50%) rotate(-1.2deg);animation:pnIn .35s steps(5) both}
 @keyframes pnIn{from{opacity:0;transform:translate(-50%,-44%) rotate(-3deg)}to{opacity:1;transform:translate(-50%,-50%) rotate(-1.2deg)}}
@@ -4916,6 +4917,7 @@ function finish(restored){
   $('mapWrap').classList.remove('open'); document.body.classList.remove('pinning','pinned','pinDone','answered'); GlobePin.hide();
   ['card','speed','feedback','mapWrap','blankUI'].forEach(id=>$(id).hidden=true);
   setBar('end');
+  ensureFinalBtns(); updateHome();
   getDb().then(d=>{ $('btnBoard').textContent = (d || sbOn()) ? 'Standings' : 'My digs'; });
   const total = sumPts(S.results), max = S.maxScore;
   S.score = total; renderDots();
@@ -6641,15 +6643,32 @@ function updateHome(){
     $('hGroups').textContent = (MY_GROUPS&&MY_GROUPS.length)||'';
     { const names=Object.keys(passport()); $('hPass').textContent = passCount(names)+'/'+passTotal(); }
     $('hBack').hidden = !(typeof ISSUES!=='undefined' && backWindow().length);
+    syncFinalBtns();
     requestAnimationFrame(()=>{ try{ if(typeof Intro!=='undefined' && Intro.relayout) Intro.relayout(); }catch(e){} });   // the bar grew or shrank: re-seat the planet between the text and the buttons
   }catch(e){}
 }
-document.querySelectorAll('#homeBtns .ht').forEach(b=>b.onclick=()=>{
+function homeBtnGo(b){
   const k=b.dataset.h;
   if(k==='board'){ try{ Sound.play('menu'); }catch(e){} openBoard(); return; }
   if(k==='passport'){ openPassport(); return; }
   hpOpen(k);
-});
+}
+document.querySelectorAll('#homeBtns .ht').forEach(b=>b.onclick=()=>homeBtnGo(b));
+/* the same eight buttons again under the summary of a finished round: a copy of the home grid, kept in step with it */
+function syncFinalBtns(){
+  const c=$('finalBtns'); if(!c) return;
+  c.querySelectorAll('[data-src]').forEach(e=>{ const o=$(e.dataset.src); if(!o) return; if(!e.children.length) e.textContent=o.textContent; e.hidden=o.hidden; });
+}
+function ensureFinalBtns(){
+  let c=$('finalBtns');
+  if(!c){
+    c=$('homeBtns').cloneNode(true); c.id='finalBtns'; c.removeAttribute('style'); delete c.dataset.folded; c.setAttribute('aria-label','Quick links');
+    c.querySelectorAll('[id]').forEach(e=>{ e.dataset.src=e.id; e.removeAttribute('id'); });
+    c.querySelectorAll('.ht').forEach(b=>b.onclick=()=>homeBtnGo(b));
+    $('summary').after(c);
+  }
+  syncFinalBtns();
+}
 
 
 /* the home buttons fold up and vanish the moment the game starts; they come back with the next title screen */
