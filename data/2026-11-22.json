@@ -4,14 +4,14 @@
  "call": [
   {
    "real": true,
-   "h": "Man in {} reports a vote-buying beer crate to claim a reward, but only bought the beer after making the call",
-   "hint": "home of award-winning Kavalan whisky",
-   "lat": 24.7303,
-   "lng": 121.7631,
-   "place": "Yilan, Taiwan",
-   "src": "https://news.google.com/rss/articles/CBMiggNBVV95cUxPTWY4TGV1a3doVnhkXzZpR3F5S2ZHTU9pcFBkMHhlRG1tckJsd05xOFJGNU9BWE15ZjBfeDNOMDJ5MWhXVW1ZUU1uTzRkMVVEcEFGZ0hqZDVJMkRnSllQX0F5QlZlRmlvcHV6STNDcTRwellyOS1UWlVvUUNFN003bERma1gyNkhPYXJiaUxGdTljZ2w4bkhNWVc3RkdHajdPWThYaWw4dE1xQWJGT3Fkak1uQmhSbWt3LXcwR2xyOGIxaEU1djNlTERLSUo0and0MXhIR0FoYVpWcGZtelNqeVhtOTk5cVphZVNTaDVibHFzUWlVU3Z6eFJ1eWRqcEdkZ3pWdGJIWWxlRGozMFNRcld5Tm1Db09QZDY3UlZleWsyaTdEN2xHc2k4QUJNemstTUswX0RvY1hDUWVWNmUtOTN3SVBXeXFOeFlZbEtfSFdOd21WOWRaR09RVlZWX21WUEVtMDZYa1JyX3MySFVyNVFUQXJULTFLaDI0ZXBTUzFCdw?oc=5",
-   "published": "2026-11-14",
-   "clue": "anti-vote-buying hotline and county councillor race = East Asian democracy"
+   "h": "Man in {} is arrested after mailing a peanut-butter-smeared greeting card to a woman with a deadly peanut allergy",
+   "hint": "a suburb northwest of Scarface's city",
+   "lat": 26.1276,
+   "lng": -80.2331,
+   "place": "Plantation, Florida",
+   "src": "https://www.cbsnews.com/miami/news/florida-broward-man-peanut-butter-card-allergy-arrest-plantation/",
+   "published": "2026-11-15",
+   "clue": "Card mailed 14 Aug 2025; arrest 13 Nov 2026 by Plantation police"
   },
   {
    "real": true,
@@ -31,7 +31,7 @@
   },
   {
    "real": true,
-   "h": "Fans in {} block their own team's bus to protest being unable to attend a derby, which is then postponed",
+   "h": "Fans in {} block their own team's bus to protest being unable to attend a derby, and the match is then postponed",
    "hint": "the 'Bridge Too Far' battle city",
    "lat": 52.0057,
    "lng": 5.8762,
@@ -42,24 +42,24 @@
   },
   {
    "real": true,
-   "h": "Man is arrested after mailing a peanut-butter-smeared greeting card to a woman with a deadly peanut allergy in {}",
-   "hint": "a suburb northwest of Scarface's city",
-   "lat": 26.1276,
-   "lng": -80.2331,
-   "place": "Plantation, Florida",
-   "src": "https://www.cbsnews.com/miami/news/florida-broward-man-peanut-butter-card-allergy-arrest-plantation/",
-   "published": "2026-11-15",
-   "clue": "Card mailed 14 Aug 2025; arrest 13 Nov 2026 by Plantation police"
+   "h": "Man in {} reports a crate of beer as vote-buying to claim a reward, but only bought the beer after making the report",
+   "hint": "home of award-winning Kavalan whisky",
+   "lat": 24.7303,
+   "lng": 121.7631,
+   "place": "Yilan, Taiwan",
+   "src": "https://news.google.com/rss/articles/CBMiggNBVV95cUxPTWY4TGV1a3doVnhkXzZpR3F5S2ZHTU9pcFBkMHhlRG1tckJsd05xOFJGNU9BWE15ZjBfeDNOMDJ5MWhXVW1ZUU1uTzRkMVVEcEFGZ0hqZDVJMkRnSllQX0F5QlZlRmlvcHV6STNDcTRwellyOS1UWlVvUUNFN003bERma1gyNkhPYXJiaUxGdTljZ2w4bkhNWVc3RkdHajdPWThYaWw4dE1xQWJGT3Fkak1uQmhSbWt3LXcwR2xyOGIxaEU1djNlTERLSUo0and0MXhIR0FoYVpWcGZtelNqeVhtOTk5cVphZVNTaDVibHFzUWlVU3Z6eFJ1eWRqcEdkZ3pWdGJIWWxlRGozMFNRcld5Tm1Db09QZDY3UlZleWsyaTdEN2xHc2k4QUJNemstTUswX0RvY1hDUWVWNmUtOTN3SVBXeXFOeFlZbEtfSFdOd21WOWRaR09RVlZWX21WUEVtMDZYa1JyX3MySFVyNVFUQXJULTFLaDI0ZXBTUzFCdw?oc=5",
+   "published": "2026-11-14",
+   "clue": "anti-vote-buying hotline and county councillor race = East Asian democracy"
   },
   {
    "real": false,
-   "h": "A one-cent coin dropped from a 380-metre tower in {} smashes the windscreen of a parked taxi",
+   "h": "A one-cent coin dropped from a tower in {} smashes a parked taxi's windscreen",
    "tell": "A tumbling coin hits only a low terminal speed and cannot smash a windscreen, however high it falls."
   },
   {
    "real": true,
-   "h": "Community college apologises for asking students to dress disabled in {}",
-   "hint": "",
+   "h": "Community college in {} apologises for asking students to dress as if disabled",
+   "hint": "a town southeast of the land down under's sports capital",
    "lat": -38.2667,
    "lng": 145.1833,
    "place": "Tyabb, Victoria, Australia",
@@ -93,7 +93,7 @@
   },
   {
    "real": true,
-   "h2": "Couple sue town in Ogunquit, Maine over fines for 6-foot metal [] that comfort their daughter; town sees restaurant ads",
+   "h2": "Couple sue Ogunquit, Maine over fines for 6-foot metal [] that comfort their daughter; the town calls them restaurant ads",
    "ans": [
     "roosters",
     "rooster",
@@ -139,7 +139,7 @@
   },
   {
    "real": true,
-   "h2": "A village shop and a bar in Aviré, France organise a 4.5 km run in [], handed out at the start",
+   "h2": "Runners in Aviré, France are handed [] at the start of a 4.5 km run organised by a village shop and a bar",
    "ans": [
     "underpants",
     "briefs",
@@ -164,7 +164,7 @@
   },
   {
    "real": true,
-   "h2": "Women posing as customers slip ₹1.75 crore of gold into a girl's [] at a Diwali-rush jewellers in Jagdalpur, India",
+   "h2": "Women posing as customers hide ₹1.75 crore of gold in a girl's [] at a jeweller's in Jagdalpur, India during the Diwali rush",
    "ans": [
     "bag",
     "bags",

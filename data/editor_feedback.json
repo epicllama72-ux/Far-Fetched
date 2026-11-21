@@ -705,6 +705,67 @@
    "before": "Postman retires in {} at 58 after 47 years on the same village round",
    "after": "Postman retires in {} at 58 after 47 years delivering mail by unicycle",
    "why": "owner (Nov 21): keep the unicycle; the single quirky detail is fine as long as the numbers aren't stacked"
+  },
+  {
+   "kind": "real",
+   "before": "Man in {} reports a vote-buying beer crate to claim a reward, but only bought the beer after making the call",
+   "after": "Man in {} reports a crate of beer as vote-buying to claim a reward, but only bought the beer after making the report",
+   "why": "owner (Nov 21): reword for clarity; keep the place next to the subject and make clear who did what"
+  },
+  {
+   "kind": "real",
+   "before": "Fans in {} block their own team's bus to protest being unable to attend a derby, which is then postponed",
+   "after": "Fans in {} block their own team's bus to protest being unable to attend a derby, and the match is then postponed",
+   "why": "owner (Nov 21): reword for clarity; keep the place next to the subject and make clear who did what"
+  },
+  {
+   "kind": "real",
+   "before": "Man is arrested after mailing a peanut-butter-smeared greeting card to a woman with a deadly peanut allergy in {}",
+   "after": "Man in {} is arrested after mailing a peanut-butter-smeared greeting card to a woman with a deadly peanut allergy",
+   "why": "owner (Nov 21): reword for clarity; keep the place next to the subject and make clear who did what"
+  },
+  {
+   "kind": "fake",
+   "before": "A one-cent coin dropped from a 380-metre tower in {} smashes the windscreen of a parked taxi",
+   "after": "A one-cent coin dropped from a tower in {} smashes a parked taxi's windscreen",
+   "why": "owner (Nov 21): reword for clarity; keep the place next to the subject and make clear who did what"
+  },
+  {
+   "kind": "real",
+   "before": "Community college apologises for asking students to dress disabled in {}",
+   "after": "Community college in {} apologises for asking students to dress as if disabled",
+   "why": "owner (Nov 21): reword for clarity; keep the place next to the subject and make clear who did what"
+  },
+  {
+   "kind": "real",
+   "before": "A village shop and a bar in Aviré, France organise a 4.5 km run in [], handed out at the start",
+   "after": "Runners in Aviré, France are handed [] at the start of a 4.5 km run organised by a village shop and a bar",
+   "why": "owner (Nov 21): reword for clarity; keep the place next to the subject and make clear who did what"
+  },
+  {
+   "kind": "real",
+   "before": "Couple sue town in Ogunquit, Maine over fines for 6-foot metal [] that comfort their daughter; town sees restaurant ads",
+   "after": "Couple sue Ogunquit, Maine over fines for 6-foot metal [] that comfort their daughter; the town calls them restaurant ads",
+   "why": "owner (Nov 21): reword for clarity; keep the place next to the subject and make clear who did what"
+  },
+  {
+   "kind": "real",
+   "before": "Women posing as customers slip ₹1.75 crore of gold into a girl's [] at a Diwali-rush jewellers in Jagdalpur, India",
+   "after": "Women posing as customers hide ₹1.75 crore of gold in a girl's [] at a jeweller's in Jagdalpur, India during the Diwali rush",
+   "why": "owner (Nov 21): reword for clarity; keep the place next to the subject and make clear who did what"
+  },
+  {
+   "kind": "hint",
+   "place": "Tyabb",
+   "before": "(none: the builder left it blank)",
+   "after": "a town southeast of the land down under's sports capital",
+   "why": "owner (Nov 21): every true story needs a clue; a region fact plus a compass push, never naming the country or state"
+  },
+  {
+   "kind": "order",
+   "before": "Yilan beer story 1, Plantation peanut card 5",
+   "after": "peanut card first, beer story fifth",
+   "why": "owner (Nov 21): the peanut-card story is the stronger opener"
   }
  ]
 }
