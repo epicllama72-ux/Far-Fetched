@@ -346,32 +346,48 @@
    "i": 2,
    "h": "Chef sets restaurant ceiling alight flambéing a trifle with shandy in {}, evacuating 11 diners",
    "tell": "Shandy is only a few percent alcohol, far too weak to catch fire; flambé needs spirits of roughly 40%.",
-   "n": 1732,
-   "pct": 50.7
+   "n": 1735,
+   "pct": 50.8
   },
   {
    "day": "2026-11-19",
    "i": 4,
    "h": "Burglar flees beekeeper's shed in {} after drone bees sting him more than 200 times, owner says",
    "tell": "Drone bees are male and have no stinger, so they cannot sting anyone.",
-   "n": 1732,
-   "pct": 60.3
+   "n": 1735,
+   "pct": 60.2
   },
   {
    "day": "2026-11-20",
    "i": 3,
    "h": "Magnets dragged across a lake in {} recover dozens of gold bars from a 1944 plane wreck",
    "tell": "Gold is not magnetic, so magnets cannot pull up gold bars.",
-   "n": 145,
-   "pct": 33.1
+   "n": 1530,
+   "pct": 34.5
   },
   {
    "day": "2026-11-20",
    "i": 5,
    "h": "Brewer in a wizard robe wins a gluten-free beer award in {} for a lager of pure barley malt",
    "tell": "Barley contains gluten, so a pure barley malt beer is not gluten-free.",
-   "n": 145,
-   "pct": 44.1
+   "n": 1530,
+   "pct": 49.7
+  },
+  {
+   "day": "2026-11-21",
+   "i": 1,
+   "h": "Postman, 58, retires in {} after 47 years delivering mail by unicycle, since his first day at 14",
+   "tell": "Starting at 14 and working 47 years makes him 61, not 58.",
+   "n": 123,
+   "pct": 55.3
+  },
+  {
+   "day": "2026-11-21",
+   "i": 4,
+   "h": "Chef in a snorkel mask in {} plates by tongue map, sweet on the tip and bitter at the back",
+   "tell": "The tongue map is a myth; all taste areas of the tongue detect every basic taste.",
+   "n": 123,
+   "pct": 31.7
   }
  ]
 }
