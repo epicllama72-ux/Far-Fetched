@@ -1,189 +1,187 @@
 {
- "date": "2026-11-22",
- "generated": "2026-11-21T08:53:00+00:00",
+ "date": "2026-11-23",
+ "generated": "2026-11-22T07:23:02+00:00",
  "call": [
   {
    "real": true,
-   "h": "Man in {} is arrested after mailing a peanut-butter-smeared greeting card to a woman with a deadly peanut allergy",
-   "hint": "a suburb northwest of Scarface's city",
-   "lat": 26.1276,
-   "lng": -80.2331,
-   "place": "Plantation, Florida",
-   "src": "https://www.cbsnews.com/miami/news/florida-broward-man-peanut-butter-card-allergy-arrest-plantation/",
+   "h": "Fans in {} topple the VAR monitor mid-match, then dunk its plug in a glass of beer",
+   "hint": "a town in Dracula country's southeast",
+   "lat": 44.5636,
+   "lng": 27.3618,
+   "place": "Slobozia, Romania",
+   "src": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQQ3VFU1NMaDRBbnNMNXhRMUFZLTIzS3g1ZkpVbmxxbUdEYUNHaDF3T3JzYUxjcUwzZ0ZvdXBjeDM2UnYtYVduWXpqYmVEMm0tbF93eW1kS1Utd0ZpX1ZtQjBCdk96akVwNlNSNUhqUGhPYi1uOHBOaHRobzhHb2FqS0syeFRWVmNJOU5wN2J6LWRLb1dpeXJjLXpsTDFGamwybkhTeENxaUhvOFRVTXNQSmFRSHhVa2JlLVdwRnMtU2otcEo1dzVPM1VjYllwSzU1OW1LbHlXa205Uk9WMHRXN2JPcFViQXJsR1NLazMwMUJVcl9vd1dfNtIB4wFBVV95cUxQSDdOekxMR0lnc3hlaF96XzNUSmxZMm1rYWh3ZE1oaXVEVmZWMFhsQ3lVaWh5bnhSSTRnSElpS3BKUWdnbXRCM1lyakZWWWJ4YlhjSUJxX2JYMFliOFhwMHlUdGpfeF84Z0lHXzBBZFppNTdsVFpnai1HN3hPTkFhT1lXMlFDY2hvaUYtc2NSWGdVLVptWFE5WWNGVUdvOFJwNm14ZU1BS1FkSDRZNTR1MW1MSmhaaUZieGNnR1ZyQnVzWlA5STVENUNGaGhzOElKNEJVbEpGRk9UTHNqNE12X2xrTQ?oc=5",
+   "published": "2026-11-22",
+   "clue": "football fans, beer and a league match = Eastern Europe"
+  },
+  {
+   "real": false,
+   "h": "Treasure hunters in {} dig up a field for 9 days using a 1672 pirate map drawn in ballpoint pen",
+   "tell": "Ballpoint pens weren't invented until the late 1930s, so a 1672 map can't be drawn in one."
+  },
+  {
+   "real": true,
+   "h": "Chinese maker reports Chinese rival for copying at a motorcycle show in {}; financial police seize the bikes",
+   "hint": "home of football's San Siro derby",
+   "lat": 45.5186,
+   "lng": 9.0864,
+   "place": "Milan, Italy",
+   "src": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxORFJBRE9jcno1RWJib0NjQThrVjhPN1oxZjhDb3MzVVdYNUpxOXp3VzRlVGl4RUJERWRaVjhxSGV3bXU1Y3Y5S1VIYXpmTERzVUV1UGJpWmVCWHpSQUN3VFJiNGQ2ZWRuS0lQSW1GYzJRUHdobGJYQ0hLZ1RFLWVuRFcydmwtZjVRc21xeWVDOGVnY0U1NktoMy1qSjI4VUJMM0RrWTBDWVRoMFZvcVNoUjM5WmtzR0tsdXN5RUVZUDB3V251RlBIOEVLOTNjZ1YxeEU2d3dIUFl2Yk9hbnFpblB3?oc=5",
    "published": "2026-11-15",
-   "clue": "Card mailed 14 Aug 2025; arrest 13 Nov 2026 by Plantation police"
-  },
-  {
-   "clue": "La Reforma prison guards caught a homing 'narcopaloma' with about 14 g of cocaine and 14 g of cannabis, Aug 2015",
-   "h": "Pigeon carrying cocaine and cannabis in a pouch is caught landing at a prison in {}",
-   "hint": "home of the Poás Volcano",
-   "lat": 10.0163,
-   "lng": -84.2116,
-   "place": "Alajuela, Costa Rica",
-   "published": "2015-08-13",
-   "real": true,
-   "src": "https://www.the-independent.com/news/world/americas/guards-capture-drugs-dove-as-it-delivers-cocaine-to-inmates-in-costa-rican-prison-10456007.html"
+   "clue": "a famous European motorcycle show with financial police"
   },
   {
    "real": false,
-   "h": "Two hikers rescued in {} after nine days say they survived on water stored in a camel's hump",
-   "tell": "A camel's hump stores fat, not water."
+   "h": "Gravediggers in {} open a 1932 coffin and find nails that grew 30 cm after burial",
+   "tell": "Hair and nails don't keep growing after death; skin just retracts."
   },
   {
    "real": true,
-   "h": "Fans in {} block their own team's bus to protest being unable to attend a derby, and the match is then postponed",
-   "hint": "the 'Bridge Too Far' battle city",
-   "lat": 52.0057,
-   "lng": 5.8762,
-   "place": "Arnhem, Netherlands",
-   "src": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQYmNpcEVMcEt6UVVZVTNBaHNsY1VmZFVpaExZaGhWc2MtSnJKbXdvNVQ0R0hYRVVqTlFkTm8zUU96ckMxcXFSb3h3V0RLY0Z1UEFrWE5FeHhsaWx0MlNDN3lKQXhDZDlSdlBJclZYbGpXVUdpRWU1VnBYQU5XVkg3Yk81bXhscVVpdTlLVzhBdUM5YkVTcmE3b3AxU1c5MmlCSjR4b016dFNFQy16QUhCX1ZMWUNWSGp6cnFQLUhrLVJJM0R4X3JMeW84Mkppb2FtV0JiOTlPRQ?oc=5",
-   "published": "2026-11-09",
-   "clue": "second-tier football derby between neighbouring clubs = Dutch lowlands"
-  },
-  {
-   "clue": "Toco, suit made by Zeppet; country-level pin since he stays anonymous",
-   "h": "Man spends about 2 million yen on a lifelike collie costume and lives as a dog in {}",
-   "hint": "home of Mount Fuji",
-   "lat": 36.2048,
-   "lng": 138.2529,
-   "place": "Japan",
-   "published": "2023-08-21",
-   "real": true,
-   "src": "https://www.theguardian.com/artanddesign/gallery/2023/aug/21/japanese-man-dog-long-haired-collie-suit-toco-in-pictures"
-  },
-  {
-   "real": false,
-   "h": "A one-cent coin dropped from a tower in {} smashes a parked taxi's windscreen",
-   "tell": "A tumbling coin hits only a low terminal speed and cannot smash a windscreen, however high it falls."
+   "h": "World's first buffalo-hide grilling contest held at a 150-year-old riverside boat festival in {}",
+   "hint": "an Isan town in tom-yum country",
+   "lat": 17.6241,
+   "lng": 101.4277,
+   "place": "Tha Li, Loei, Thailand",
+   "src": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9RRng1eG5JcW1QTlRMdzlYeWxzcFlVaWhzNGFBNWJxU2lnRkd0dWY3WHVRMmFfZWs3bDF5R2Itc055TExLcFgySjRacmFWSGFWMDRqRy1GMUJrUQ?oc=5",
+   "published": "2026-10-26",
+   "clue": "water buffalo hide and a river boat festival on a border river = Southeast Asia"
   },
   {
    "real": true,
-   "h": "Community college in {} apologises for asking students to dress as if disabled",
-   "hint": "a town in the south of Ned Kelly's state",
-   "lat": -38.2667,
-   "lng": 145.1833,
-   "place": "Tyabb, Victoria, Australia",
-   "src": "https://thenightly.com.au/australia/flinders-christian-community-college-forced-to-apologise-for-asking-students-to-dress-disabled--c-23094090",
-   "published": "2026-10-28",
-   "clue": "'college' + a fundraising walkathon + an apology"
+   "h": "Man says declining his cocaine was 'offensive to his culture' before shooting up a neighbor's apartment in {}",
+   "hint": "where Frank Lloyd Wright wintered",
+   "lat": 33.4942,
+   "lng": -111.9261,
+   "place": "Scottsdale, Arizona",
+   "src": "https://www.azfamily.com/2026/10/24/man-accused-attacking-scottsdale-apartment-residents-declining-his-cocaine/",
+   "published": "2026-10-24",
+   "clue": "Allegations in police documents; shooting and pistol-whipping (violent: held"
+  },
+  {
+   "real": true,
+   "h": "Motorbike thief flees on a stolen bicycle, then rides back past police taking the victim's report in {}",
+   "hint": "setting of the film Parasite",
+   "lat": 37.5667,
+   "lng": 126.9783,
+   "place": "Seoul, South Korea",
+   "src": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5fV1BTXzZJNGhYMzFIdEZ6WDZMckJzUXdHZnJGSFZlN3VIYm1YNGpBMVFRR2tmUFhPYmJCbTFxOHlBbURJclVhSzNYYTNBSXhPVkMySmpvWlkzMlBCNzZ2VEpfZHFaRm1nVmfSAWZBVV95cUxQUXJpX3pqaHZSemwxV19GYWs4VkcyYnY1QUIyWFNnV2Q1d1EwYlFtQ3RLcTFaQzlLUEoxaEMwSVgyZS03YzFHamlTYjhuX3oydkk4TVJveU1tTWxncEhoSE1vNFBrV1E?oc=5",
+   "published": "2026-11-15",
+   "clue": "big-city boulevard chase = East Asian capital"
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "Electric [] with nobody inside tries to park itself 868 times in one night in Anhui, China, security camera shows",
+   "h2": "Police called to a garage break-in in Florida, USA find the intruder is a runaway []",
    "ans": [
-    "car",
-    "cars",
-    "vehicle",
-    "automobile"
-   ],
-   "alt": [
-    "van",
-    "truck",
-    "taxi",
-    "bus",
-    "suv",
-    "sedan"
-   ],
-   "place": "Anhui, China",
-   "src": "https://news.google.com/rss/articles/CBMiQkFVX3lxTFAtVlRubWlrNEZzdl9ncHp3a2Y5SENqTkRCYjUyMnV5RW5MaXpfYVI1dGQteU5xbWRRNWVLSUVwRlRXQQ?oc=5",
-   "published": "2026-11-19",
-   "vec": "GPxJAgcZw/UK8Qrcrgkl/d9F3qgdDcMpBazgIDgIfwzzEEEMH/n5DvoHBOEX8fXkOO4="
-  },
-  {
-   "real": true,
-   "h2": "Couple sue Ogunquit, Maine over fines for 6-foot metal [] that comfort their daughter; the town calls them restaurant ads",
-   "ans": [
-    "roosters",
-    "rooster",
-    "cockerels",
-    "cockerel",
-    "chickens",
-    "chicken"
-   ],
-   "alt": [
-    "hens",
-    "birds",
-    "eagles",
-    "ducks",
-    "geese",
+    "pig",
     "pigs",
-    "cows"
+    "hog",
+    "piglet",
+    "swine"
    ],
-   "place": "Ogunquit, Maine",
-   "src": "https://www.hindustantimes.com/trending/maine-parents-sue-town-over-6-foot-metal-roosters-meant-to-comfort-their-autistic-daughter-101795223936842.html",
-   "published": "2026-11-21",
-   "vec": "5NLH+80H+AjC5gb58PEBMWIMgRff+Qok4QkwF8Sp4mMsECH/H9L5xsjsCBEdDxHvGOE="
+   "alt": [
+    "boar",
+    "goat",
+    "dog",
+    "sheep",
+    "cow",
+    "raccoon",
+    "alligator"
+   ],
+   "place": "Florida, USA",
+   "src": "https://www.upi.com/Odd_News/2026/11/20/casselberry-police-pig-bacon/8891795199569/",
+   "published": "2026-11-20",
+   "vec": "B73ZySdU+71dDAsAZRkeBic/1BoBxjgOLaPVIQ7FUgX8UMMlJQ0P7d0OzQN/COzIDvU="
   },
   {
    "real": true,
-   "h2": "Burglar spends an hour stuck hanging from the [] of the flat he wanted to rob in Istanbul, Turkey",
+   "h2": "Husband surprises influencer wife in Bangkok, Thailand with a [] made of 3 million baht in banknotes",
    "ans": [
-    "window",
-    "windows"
+    "bouquet",
+    "bouquets"
    ],
    "alt": [
-    "balcony",
-    "door",
-    "frame",
-    "ledge",
-    "railing",
-    "shutter",
-    "grate"
+    "wreath",
+    "bunch",
+    "flowers",
+    "cake",
+    "dress",
+    "crown",
+    "garland"
    ],
-   "place": "Istanbul, Turkey",
-   "src": "https://news.google.com/rss/articles/CBMikAJBVV95cUxQRC1FbW9aVzZvY3FQVjV1N1d2QkJkMDNqWjRNR1Jlb2NXY0hGOEE2N29PaDNrMlBLOHBqMHROS2dNYTIzZW9xVlF3VUlMSWJaRHJ1M0RCOVh3NUU5YVlzZFNLSWZveWJSLU9LYUg4S2RwNXpubDd6cGpYSXA5MHppRWxobFlaQjhUbk44NkxwUVg1c3VtbFVLMVBLdzc1czhCYlZYNkJwbXFjQmdEQ2xsRl9EUGZuUWU3Z1dNY3M5dlBsaHNvY1EwYmpNaFA0bldJc2N1bWNFVTZxR3JGalhsTmhOS0FiVTdqakdHZFJ1UFp6Y2NmZVRreDZJaXlmWnN4UUJCelNRMjFyQ0lBamxUZA?oc=5",
-   "published": "2026-11-13",
-   "vec": "IxwP3yvq6fD98u308C4QJtPiAL4hDbYM/+QRSCDqf/H/9fwsNvUS3RoD5xIFCT7CG9k="
+   "place": "Bangkok, Thailand",
+   "src": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE81bjNqZ2JBdFY0STB3V0RzYnV4VGRqNGc3YnRGMGo0cGh5c3ZEbF8yT2dHdS1OVWFrYUtJbHZ1amZsakJzUjU5TGU0QTRyLUdKcEg5S3RsTk52UWRI?oc=5",
+   "published": "2026-11-22",
+   "vec": "SX+00mAd7BAJA94NSO0HzfHfC6IZ9gXI1xnUXyPTDC3IPwwi1g8e91Ieyb0quQ7OAtE="
   },
   {
    "real": true,
-   "h2": "Runners in Aviré, France are handed [] at the start of a 4.5 km run organised by a village shop and a bar",
+   "h2": "200 strangers turn up at a shunned man's wedding in China with roast [] and private chefs",
    "ans": [
-    "underpants",
-    "briefs",
-    "underwear",
-    "undies",
-    "pants",
-    "knickers",
-    "boxers"
+    "pigs",
+    "pig",
+    "hogs",
+    "piglets"
    ],
    "alt": [
-    "shorts",
-    "swimsuits",
-    "costumes",
-    "thongs",
-    "trunks",
-    "pyjamas"
+    "ducks",
+    "chickens",
+    "lambs",
+    "goats",
+    "sheep",
+    "geese",
+    "turkeys"
    ],
-   "place": "Aviré, Segré-en-Anjou-Bleu, France",
-   "src": "https://news.google.com/rss/articles/CBMingFBVV95cUxOOVlUY3B2Wm1NU09Uc2lxZTlqMm50SnQxQUU3azZNbkZ0a1JwSmFrR2pRNExfNmxacWU4Z0R6U3B5bHFtSzJQQzlIZnBQUmRvS2ZBcjU2eUEzVE9NV3lGNDJjVDI1eFZNTUZhWlNzelY0V25zeVlrdktrQ1dpcHdTRm1uLUl5T1NjSnozMW9zMU1aUjM5MjBKTXBQMGVTZw?oc=5",
-   "published": "2026-11-17",
-   "vec": "2tHI0lgJIcUtwil/ogUnA6YTyrWqZzHV7eatOk7hokbAeE9zEgSq60AMFj0a9yvJGp0="
+   "place": "China",
+   "src": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNMGh5QldaOXpkZllTZEJvZUx4Si1LTmNrdDRlbnlPSjM2c3RJNV9nV3drc3lPaTBaazZQbWVwWGRmVm9vdmhxczFUVUVtYjRQRmFiZmNvSF9FS21ncGc3Umc0RlYtQU9KR05scDJqNzJHMXd4cmV5aGx0UGFSdUo0TVppczNDOWJ0cWhqMFVLWVVUZm9YbEREbGxQSGowZHhkSXA5anpScWxKRVZuajlkXzMxRDg1YllmazdmcTdKb3ZnZXNlZDVwX0xfdDZQMnNZNHNMck9QdGctUWxNNHIxMDZabDRFZWlPR0x3ai02MEFhUdIB8gFBVV95cUxQa3RVdkJMalE5RDRnTk9fOWZDdVdzVXJGMFNSa0dBaUhwOXlZeGRJQWZUVFBxNk9YdlZoUkdEYVJ1OTZCOGUzYjhhMVo3a0RZb1FRVVdZS19BSFlXdnBlTEZtcTVkMng2VkZtUHg4NUtVMlVqc3pzUjRrNUpTUkNSVl9CekczRHVaNzFxQVU0dmIxeXh1Q25FSHlFNGcyOWw0TVhNZHhhMlYxRTR4TGJPZXRxYzBsZUxhb3JOVUd5UU15ZThRUDJ3T21ibXFjRWNNaHRpeUVadmNZV2RaQWItVEF0QXRkUGg5YzM1c2NYc2xzZw?oc=5",
+   "published": "2026-11-05",
+   "vec": "P5nwsv4j2LRTAB/6f+dJEhYqqiLX0l35IbrwACPSTRzoJ9oUFAr6C9P9GiV9D+Lk5e8="
   },
   {
    "real": true,
-   "h2": "Women posing as customers hide ₹1.75 crore of gold in a girl's [] at a jeweller's in Jagdalpur, India during the Diwali rush",
+   "h2": "Thieves steal a blue [] from inside a circus's globe of death stunt cage in Chivilcoy, Argentina",
    "ans": [
-    "bag",
-    "bags",
-    "satchel",
-    "sack",
-    "tote"
+    "motorbike",
+    "motorcycle",
+    "bike",
+    "motorbikes",
+    "motorcycles",
+    "bikes"
    ],
    "alt": [
-    "purse",
-    "pocket",
-    "backpack",
-    "basket",
-    "suitcase",
-    "box"
+    "scooter",
+    "moped",
+    "car",
+    "yamaha",
+    "vehicle",
+    "quad"
    ],
-   "place": "Jagdalpur, Chhattisgarh, India",
-   "src": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNUVkxc29tWG14NWxxTS0ycW82MnhwZkZXRlhjU0dJbVJqM0FIeDh5RllGSzkxSlJQbFA3MjZReE0tclBtNDNmMjNVYy1OZjRHUTZkaVVfQklzT05na1lTMEFTSFhxRGxwbHdWN041YU0wSFRvRFZ1cnpJTXk1WU4yU0dyay1rVG5Za05yNS1YZ25sV0x3T3AzZUhNTDd0SXJmU0g0YlFxMDBCMGZTMFlRbDd3YUV1dlcwa0ZROU4wYUlUSXphRFFz0gHUAUFVX3lxTE9ObXJsWWtNbFFXRDh1SURiWVV1V1h5ZkFicmp4TjY1QmtmTUtYeXF4eEc5bmlsNTg4Y3JSUWZMQ3NIanJLMXluUjRpRFJaTlFod2NiTG54c3picTlQRm5vMTZXUnoxekM4Y3F3QTZoc2ZSV2hRQ0Q3QV9pY25sQnd5cW1tVnY2YkZyLVFDY1pRbDc3U1RaaGVGU0dkSWtnYTBoamctbUphU3diUDdxalVpS29PelF2eTNZSktPUUdzTlJOaF8zZXctWHlRYS1UNzVaWGVP?oc=5",
-   "published": "2026-11-11",
-   "vec": "/u4k8VEP3t9n0fIK+SRHJtQZ6p4vAicJyZjPZmC2fyrWWyt1JkJA9UQ8ASob7xriPNM="
+   "place": "Chivilcoy, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNWUJoTVNaenZZVG1DRnV6ZDJtRFlDZUlqbkxSOVI2WEs1VkR5SWZOUjdPSTYwWTBMdTVLSngtdE9oNmNEdm9rUGYzRlJvcHRQOGFlbi1NVzgxLTNUMkdSSVdpYlRLRjRLZmdneFJVVGFRNmhTRF9tNHBUalkxNEdpbmhEV1R1UU9WQVVURVNFVjY1VXVRaS1zaXJGMmljQmlyQ1hpT0pQWGlaVWJNNUFmZm81dTFYMFlJZUxzbEhnSUpUSlk?oc=5",
+   "published": "2026-11-22",
+   "vec": "DZwjEPg70hM38TuctQcSy7tqsacmI6I7MK3kDSfvEirkSUojFv32T+IM/ehMmRvJf6A="
+  },
+  {
+   "real": true,
+   "h2": "Pets in kimonos are blessed at a festival in Japan that doesn't have enough []",
+   "ans": [
+    "kids",
+    "children",
+    "kid",
+    "child"
+   ],
+   "alt": [
+    "people",
+    "babies",
+    "adults",
+    "toddlers",
+    "visitors",
+    "parents"
+   ],
+   "place": "Japan",
+   "src": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOUmktc3UySWVfSVRmbXprX3M4QTc3MzBXWkV6NmZWMW5qaHpoV3N1WWZtb05FZjRZVFN0RVcwWkdHdDVEWi11MklzanJRazJLTS01MmFkdi1Kelk3b1d0UFNnVUVhNjllamt5YUxKNFNkeEkySXpWRjlfZEJLbEZCY2Y2Rm5BTDhGWUNqbDRrUUc5dThxRDZ3aU01ZzlNdzE5aXB0Z1B3?oc=5",
+   "published": "2026-11-01",
+   "vec": "8A8I0h8Iz9j+DOYFCAg2CQcuEusFQBxFGtHY8y25f1P47QUi+PEY3OT1ASEpCw/b/zA="
   }
  ]
 }
