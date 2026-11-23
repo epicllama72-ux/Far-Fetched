@@ -85,27 +85,6 @@
    "jargon_only": false
   },
   {
-   "h": "Man is accused of strangling his girlfriend after she asked him not to fart in bed in {}",
-   "hint": "a Gulf-coast city in key-lime-pie country",
-   "lat": 27.9095,
-   "lng": -82.7873,
-   "place": "Largo, Florida",
-   "src": "https://www.mystateline.com/news/national/florida-man-choked-girlfriend/",
-   "published": "2026-09-22",
-   "clue": "Arrest affidavit, third-degree felony (violent: held, not auto-picked)",
-   "banked": "2026-11-17",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "crime",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Largo, Florida, USA",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
    "h": "Man strips naked in a HomeGoods store, telling a shopper 'I'm sorry, I have to do this', in {}",
    "hint": "a southwest city in Disney's state",
    "lat": 26.5629,
@@ -190,27 +169,6 @@
    "jargon_only": false
   },
   {
-   "h": "Two tourists wake up with a penguin stolen from a theme park after a beach party; each is fined A$1,000 in {}",
-   "hint": "host of the 2018 Commonwealth Games",
-   "lat": -27.9576,
-   "lng": 153.4272,
-   "place": "Gold Coast, Queensland",
-   "src": "https://www.theguardian.com/world/2012/may/02/british-tourist-penguin-australia",
-   "published": "2012-05-02",
-   "clue": "Two Welshmen took a fairy penguin named Dirk from Sea World in April 2012; the penguin was found under a jetty",
-   "banked": "2026-11-15",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "people",
-   "cc": "AU",
-   "country": "Australia",
-   "geocode": "Sea World, Gold Coast, Queensland, Australia",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
    "h": "Police log a pigeon carrying an Urdu message and a phone number as a suspected spy near the border in {}",
    "hint": "",
    "lat": 32.2643,
@@ -249,27 +207,6 @@
    "geocode": "Office of Temporary and Disability Assistance, Albany, New York, USA",
    "daily_only": true,
    "mappable": 2,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
-   "h": "Over 200 swans get hooked on a farmer's poppy field after floods in {}",
-   "hint": "where Merry Widow's composer was born",
-   "lat": 47.7633,
-   "lng": 18.1272,
-   "place": "Komárno, Slovakia",
-   "src": "https://www.birdguides.com/news/swans-become-addicted-to-poppy-seeds-at-slovakian-farm/",
-   "published": "2023-06-15",
-   "clue": "Mute swans, farmer Bálint Pém; conservationists caught the intoxicated birds in June 2023",
-   "banked": "2026-11-15",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "animals",
-   "cc": "SK",
-   "country": "Slovakia",
-   "geocode": "Komárno, Slovakia",
-   "daily_only": true,
-   "mappable": 3,
    "clue_strength": 2,
    "jargon_only": false
   },
@@ -509,6 +446,183 @@
  ],
  "fake": [
   {
+   "h": "Man, 31, in {} is charged with cashing his late father's pension for 38 years by forgery",
+   "tell": "A 31-year-old can't have collected a pension for 38 years.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "fraud",
+   "taste": 3.0,
+   "pred": 20.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "Archivists in {} find a 1604 sailor's diary written in ballpoint pen, listing 41 days at sea",
+   "tell": "Ballpoint pens weren't invented until the 1930s.",
+   "unbelievable": 3,
+   "obvious": 2,
+   "theme": "diary",
+   "taste": 5.0,
+   "pred": 18.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "Lost tourists in {} survive 3 days in the desert by drinking water from a camel's hump",
+   "tell": "Camel humps store fat, not water.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "desert",
+   "taste": 4.0,
+   "pred": 30.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "Brothers in {} go to court over 47 years of knuckle-cracking at dinner, blamed for arthritis",
+   "tell": "Cracking knuckles doesn't cause arthritis.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "lawsuit",
+   "taste": 3.0,
+   "pred": 35.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "Cyclist in {} delivers a wedding cake 640 km away in 5 hours, and it arrives still warm",
+   "tell": "That needs an average of 128 km/h on a bicycle.",
+   "unbelievable": 4,
+   "obvious": 3,
+   "theme": "delivery",
+   "taste": 3.0,
+   "pred": 15.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "Pub in {} hosts the 30th real birthday of a man born on 29 February, who is turning 75",
+   "tell": "Leap-day birthdays come every four years, so 75 gives about 18, not 30.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "birthday",
+   "taste": 4.0,
+   "pred": 20.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "Retiree in {} pays 41,300 dollars for a rock Apollo 8 astronauts supposedly picked up on the Moon",
+   "tell": "Apollo 8 only orbited the Moon; it never landed.",
+   "unbelievable": 3,
+   "obvious": 3,
+   "theme": "moonrock",
+   "taste": 5.0,
+   "pred": 30.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "A zip fastener is found sewn into the door flap of Napoleon's 1805 field tent, restored in {}",
+   "tell": "Zip fasteners were not invented until the 1890s and 1910s, long after 1805.",
+   "obvious": 3,
+   "theme": "anachronism",
+   "taste": 4.0,
+   "pred": 15.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "Cathedral panes from 1320 have sagged 3 cm as the glass slowly flowed, glaziers in {} find",
+   "tell": "Glass is not a slow-flowing liquid at room temperature; old panes are uneven from how they were made.",
+   "obvious": 3,
+   "theme": "glass",
+   "taste": 3.0,
+   "pred": 45.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "In {}, a convent cooks 40 guests a tomato sauce from a recipe book sealed in a wall in 1370",
+   "tell": "Tomatoes reached Europe from the Americas only after 1492, so no 1370 recipe could use them.",
+   "obvious": 3,
+   "theme": "tomato",
+   "taste": 5.0,
+   "pred": 25.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "Lighthouse keeper, 54, retires in {} after climbing his 212 steps twice daily for 61 years",
+   "tell": "A 54-year-old cannot have worked for 61 years.",
+   "obvious": 3,
+   "theme": "age",
+   "taste": 3.0,
+   "pred": 15.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "Orchestra in {} premieres a lost Mozart piece from 1788, scored for four saxophones",
+   "tell": "The saxophone was invented in the 1840s, decades after Mozart died in 1791.",
+   "obvious": 3,
+   "theme": "music",
+   "taste": 5.0,
+   "pred": 20.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "Undertakers in {} exhume a coffin after 9 years and find the dead man's beard grown 27 cm",
+   "tell": "Hair and nails do not keep growing after death; the skin shrinks and makes them look longer.",
+   "obvious": 3,
+   "theme": "death",
+   "taste": 4.0,
+   "pred": 35.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "Metal detectorist in {} digs up a 10th-century Viking helmet with both horns intact",
+   "tell": "Vikings did not wear horned helmets.",
+   "obvious": 2,
+   "theme": "vikings",
+   "taste": 3.0,
+   "pred": 30.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "Distillery in {} crushes 22 tonnes of cactus a week to make a 4,870-peso tequila",
+   "tell": "Tequila is distilled from blue agave, which is not a cactus.",
+   "obvious": 3,
+   "theme": "spirits",
+   "taste": 3.0,
+   "pred": 25.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "Grandmother, 81, and her grandson row 1,450 km of coast in {} in 6 days, averaging 4 km/h",
+   "tell": "At 4 km/h, even rowing nonstop for 6 days covers only about 576 km.",
+   "obvious": 3,
+   "theme": "arithmetic",
+   "taste": 4.0,
+   "pred": 25.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
+   "h": "Sculptor in {} hides a 21-cm lift in the boots of a Napoleon statue to mask his short height",
+   "tell": "Napoleon was of average height for his time; his shortness is a myth.",
+   "obvious": 3,
+   "theme": "statue",
+   "taste": 4.0,
+   "pred": 40.0,
+   "banked": "2026-11-24",
+   "rules": 2
+  },
+  {
    "h": "Dog walker in {} finds a horned Viking helmet from 940 AD in a peat bog and wears it to the pub",
    "tell": "Vikings didn't wear horned helmets; that image is a 19th-century invention.",
    "unbelievable": 4,
@@ -571,16 +685,6 @@
    "theme": "restaurant",
    "taste": 5.0,
    "pred": 35.0,
-   "banked": "2026-11-23",
-   "rules": 2
-  },
-  {
-   "h": "Tupperware lid found sealed in a 1931 cathedral wall in {}, beside 12 coins and a sermon",
-   "tell": "Tupperware wasn't invented until the 1940s, so it can't be in a 1931 wall.",
-   "obvious": 3,
-   "theme": "anachronism",
-   "taste": 6.0,
-   "pred": 20.0,
    "banked": "2026-11-23",
    "rules": 2
   },
@@ -661,16 +765,6 @@
    "theme": "anachronism",
    "taste": 5.0,
    "pred": 22.0,
-   "banked": "2026-11-23",
-   "rules": 2
-  },
-  {
-   "h": "Restaurant in {} adds a vomitorium so diners can purge between 14 courses, Roman style",
-   "tell": "A vomitorium was a stadium passage for crowds, not a room for vomiting.",
-   "obvious": 3,
-   "theme": "culture",
-   "taste": 6.0,
-   "pred": 35.0,
    "banked": "2026-11-23",
    "rules": 2
   },
@@ -813,206 +907,30 @@
    "pred": 35.0,
    "banked": "2026-11-22",
    "rules": 2
-  },
-  {
-   "h": "Castle in {} serves 160 guests a 1340 feast of roast boar, potatoes and 90 litres of mead",
-   "tell": "Potatoes came from the Americas and reached Europe only in the 16th century.",
-   "obvious": 3,
-   "theme": "feast",
-   "taste": 3.0,
-   "pred": 25.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Einstein's school report with a failing maths mark sells in {} for €46,300",
-   "tell": "Einstein excelled at maths; the failing-student story is a myth.",
-   "obvious": 3,
-   "theme": "auction",
-   "taste": 5.0,
-   "pred": 40.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Orchestra of 70 in {} plays all 11 Beethoven symphonies in one 14-hour day",
-   "tell": "Beethoven wrote only nine symphonies.",
-   "obvious": 3,
-   "theme": "music",
-   "taste": 3.0,
-   "pred": 15.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Doctors link warts in 31 pupils in {} to a school trip where they held pond toads",
-   "tell": "Warts are caused by a virus spread between humans; toads do not give them.",
-   "obvious": 3,
-   "theme": "medicine",
-   "taste": 4.0,
-   "pred": 30.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Jeans found in a collapsed mine in {} sell for 3.6 million yen as genuine 1849 Levi's",
-   "tell": "Levi's riveted jeans were not patented until 1873.",
-   "obvious": 3,
-   "theme": "fashion",
-   "taste": 5.0,
-   "pred": 30.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Barber in {} gives 286 teenage boys free shaves so their moustaches grow back thicker",
-   "tell": "Shaving does not make hair grow back thicker.",
-   "obvious": 3,
-   "theme": "grooming",
-   "taste": 4.0,
-   "pred": 30.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Robber in {} flees a post office on a 1994 Segway with 37 rolls of stamps in a pram",
-   "tell": "The Segway wasn't invented until 2001, so none existed in 1994.",
-   "obvious": 3,
-   "unbelievable": 4,
-   "theme": "heist",
-   "taste": 5.0,
-   "pred": 22.0,
-   "banked": "2026-11-21",
-   "rules": 2
-  },
-  {
-   "h": "A clock stolen from a vicarage on 31 April chimes and gives away the burglar in {}",
-   "tell": "April has only 30 days, so there is no 31 April.",
-   "obvious": 3,
-   "unbelievable": 3,
-   "theme": "burglary",
-   "taste": 4.0,
-   "pred": 20.0,
-   "banked": "2026-11-21",
-   "rules": 2
-  },
-  {
-   "h": "Archaeologists in {} cook a Roman tomato sauce from a 1,900-year-old tablet for 38 diners",
-   "tell": "Tomatoes came from the Americas and reached Europe only in the 1500s.",
-   "obvious": 2,
-   "unbelievable": 3,
-   "theme": "archaeology",
-   "taste": 4.0,
-   "pred": 30.0,
-   "banked": "2026-11-21",
-   "rules": 2
-  },
-  {
-   "h": "Farmer ploughing in {} digs up a horned Viking helmet and trades it for a new tractor",
-   "tell": "Vikings didn't wear horned helmets; that image is a 19th-century stage myth.",
-   "obvious": 2,
-   "unbelievable": 4,
-   "theme": "treasure",
-   "taste": 4.0,
-   "pred": 15.0,
-   "banked": "2026-11-21",
-   "rules": 2
-  },
-  {
-   "h": "Dairy farmer in {} sues a breeder who sold him 12 'high-yield' bulls that never gave milk",
-   "tell": "Bulls are male and cannot produce milk.",
-   "obvious": 3,
-   "unbelievable": 4,
-   "theme": "farming",
-   "taste": 3.0,
-   "pred": 12.0,
-   "banked": "2026-11-21",
-   "rules": 2
-  },
-  {
-   "h": "Twin sisters, 34 and 36, caught swapping places at each other's driving tests in {}",
-   "tell": "Twins are born together, so they cannot be different ages.",
-   "obvious": 3,
-   "unbelievable": 3,
-   "theme": "twins",
-   "taste": 3.0,
-   "pred": 10.0,
-   "banked": "2026-11-21",
-   "rules": 2
-  },
-  {
-   "h": "Neighbours in {} settle a hedge dispute with a tug-of-war lasting 12 hours, 9 a.m. to 4 p.m.",
-   "tell": "From 9 a.m. to 4 p.m. is seven hours, not twelve.",
-   "obvious": 3,
-   "unbelievable": 4,
-   "theme": "dispute",
-   "taste": 3.0,
-   "pred": 8.0,
-   "banked": "2026-11-21",
-   "rules": 2
-  },
-  {
-   "h": "Guide in {} charges tourists to see sink water swirl opposite ways either side of the equator",
-   "tell": "Drain swirl direction isn't set by the equator; the Coriolis effect is far too weak for sinks.",
-   "obvious": 2,
-   "unbelievable": 3,
-   "theme": "tourism",
-   "taste": 4.0,
-   "pred": 30.0,
-   "banked": "2026-11-21",
-   "rules": 2
-  },
-  {
-   "h": "Forger in {} sells collectors 9 love letters supposedly from Napoleon, all written in ballpoint pen",
-   "tell": "Ballpoint pens arrived in the 1930s; Napoleon died in 1821.",
-   "unbelievable": 3,
-   "obvious": 3,
-   "theme": "forgery",
-   "taste": 4.0,
-   "pred": 15.0,
-   "banked": "2026-11-20",
-   "rules": 2
   }
  ],
- "pol": [
-  {
-   "id": 16,
-   "h": "Candidate in {} pulls the 'elected' slip of paper to settle a tied election",
-   "place": "Kalamazoo County, Michigan, USA",
-   "geocode": "Kalamazoo County, Michigan, USA",
-   "lat": 42.2494968,
-   "lng": -85.5372797,
-   "clue": "county named in a Glenn Miller swing hit, in a mitten-shaped state's southwest",
-   "src": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNNm9DSUpuWFBWQ29zOV96YnhJbmc5SERJM2FJekNFRHFLb3J2NlRsWlVXdGxOekxDZlVJRVVQSEljbzUwcWJLcFY5OThFS0s0MldoSzhPckNIaFFqNlJGZG5xc2ZyTWZsZEp1Z282X2xTejh3VUZ1Y0VYTGxyVWhrR1BwYWV4ZlVubXFqSnFzOXJCaFpYaHZHYnI5ZUNzSWhkQVdvRm1nTlpPN19taU40VEV0YlczWnFWM21QVXJpaw?oc=5",
-   "published": "2026-11-17",
-   "banked": "2026-11-23"
-  },
-  {
-   "id": 18,
-   "h": "Queen of diamonds decides winner of a school board election tie in {}",
-   "place": "St. Clair, Minnesota, USA",
-   "geocode": "St. Clair, Blue Earth County, Minnesota, USA",
-   "lat": 44.0818744,
-   "lng": -93.8577456,
-   "clue": "school board + playing card draw = US Midwest; a small town near Mankato",
-   "src": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOaVp0Z0YwclFVMWxjWkhaVUtOT0pKWF91UkcxdWZFUEdhQVNKdTNLYmtXQWdFSjJhNTJJQ3ZTT0FSQ2gyS0ZmUElvTEZBdi1iY0ZvNnNSbnNlbkZaenpfLWE0cEdXTjJTY3FaUTh6QnV5Z0QwQlZoQ1Z5T0xhYkFoejRPckFlaThHUF9UNGREYXMtS1U2QlVkRVd6NEU4R3JHX1pCeDZQcGVMM0ljaUNrT1ItN05LTllIYkFxYnA5d3pPMEp1MmRLYUQwWkVyNTRobHlJN2N2bENnbGhUY2g2VXJQbTEyN2NWY2JhMXVNaDhmUHhFOEdz?oc=5",
-   "published": "2026-11-18",
-   "banked": "2026-11-21"
-  },
-  {
-   "id": 55,
-   "h": "Municipality in {} gets a rotating mayor under a new coalition deal",
-   "place": "Ladismith, Western Cape, South Africa",
-   "geocode": "Ladismith, Kannaland, Western Cape, South Africa",
-   "lat": -33.4840586,
-   "lng": 21.2656926,
-   "clue": "a small Karoo town; rotating mayor + coalition + municipality = Commonwealth",
-   "src": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOeVBVLWZoTjdYWENULThzVXFuYy1CaU9Pc1hjdGdJdmt3c3BORDB2ZWk1N0FFXzVxRVRJWmVPX0UxZlQ2UFZmQXB2VEUwbkhEbV9XMWxYNXpNeTEtNl85SDNlNzJmb0l0aWJpaWREOWQ1YWtZREhIcXVKc0U5azdTQm9LbmhQV0w5QUJBWk96d0ZUa3VBeElycHRJWURSVWs?oc=5",
-   "published": "2026-11-18",
-   "banked": "2026-11-21"
-  }
- ],
+ "pol": [],
  "polfake": [
+  {
+   "h": "Clerk in {} is charged with printing ballots on a laser printer for an election held in 1884",
+   "banked": "2026-11-24"
+  },
+  {
+   "h": "Town in {} bans lightning rods from public buildings, saying lightning never strikes twice",
+   "banked": "2026-11-24"
+  },
+  {
+   "h": "Candidate in {} is jailed for running under a false name and swearing he was born on 30 February",
+   "banked": "2026-11-24"
+  },
+  {
+   "h": "Village in {} records a turnout of 131 percent in a council vote and blames a spelling error",
+   "banked": "2026-11-24"
+  },
+  {
+   "h": "Voter in {} is arrested after casting ballots in 18 villages in one morning, travelling by wheelbarrow",
+   "banked": "2026-11-24"
+  },
   {
    "h": "Bridge in {} is opened by the mayor cutting a ribbon on 31 April",
    "banked": "2026-11-23"
@@ -1072,26 +990,6 @@
   {
    "h": "Thief in {} melts a stolen mayoral chain in a kitchen microwave and sells the gold as bars",
    "banked": "2026-11-21"
-  },
-  {
-   "h": "Mayoral candidate in {} stays awake for 19 days of campaigning, then sleeps through his own count",
-   "banked": "2026-11-21"
-  },
-  {
-   "h": "Voters in {} are handed kosher bacon sandwiches by a candidate, who is fined for bribery",
-   "banked": "2026-11-21"
-  },
-  {
-   "h": "Mayor of {} opens a 1923 time capsule and finds a working smartphone, a charger and a Wi-Fi password",
-   "banked": "2026-11-21"
-  },
-  {
-   "h": "Elections office in {} counts 4,212 ballots by hand in nine minutes, ending a recount early",
-   "banked": "2026-11-21"
-  },
-  {
-   "h": "Voter cycles 412 km to a polling station in {} and arrives in under three hours",
-   "banked": "2026-11-20"
   }
  ]
 }
