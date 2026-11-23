@@ -4,6 +4,22 @@
  "call": [
   {
    "real": true,
+   "h": "Man is accused of strangling his girlfriend after she asked him not to fart in bed in {}",
+   "hint": "a Gulf-coast city in key-lime-pie country",
+   "lat": 27.9095,
+   "lng": -82.7873,
+   "place": "Largo, Florida",
+   "src": "https://www.mystateline.com/news/national/florida-man-choked-girlfriend/",
+   "published": "2026-09-22",
+   "clue": "Arrest affidavit, third-degree felony (violent: held, not auto-picked)"
+  },
+  {
+   "real": false,
+   "h": "Restaurant in {} adds a vomitorium so diners can purge between 14 courses, Roman style",
+   "tell": "A vomitorium was a stadium passage for crowds, not a room for vomiting."
+  },
+  {
+   "real": true,
    "h": "Hand pump in a courtyard in {} gushes illicit liquor, not water, when police work it",
    "hint": "",
    "lat": 25.5299,
@@ -12,16 +28,6 @@
    "src": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNSjk1cUd5MVlSSGl1QldHaWk0MEl3aWxINXpCc1ROSWZCMFY0YmlPVzVVSHdncjlZY3dMVGg3VU5QWXlyNWxTWUhudVM2b09Bb0VqV3I1SVRvZ1l1LTAydjlkS2dJQlkwYWNYcll3eVg2SFd1dlpuSDhEVC13YVJEMjQzSWdaOXpQTTJNMzRWT0dsOUpoeXNtWVBkandFMEpNLUJQOW94U1dMSWJBNmdUUEpJRXBDd0xzcGRFcUpHcEVRQ2xuLWVIYVozcEdTOThPb3E1TTNwRGtZc2JpRjBRTkhMR2ctU2h0c2fSAe8BQVVfeXFMTU9nZ0luZGRtN2wwUXpBQ2htN2hkX0FqQzludlFhQ0Nud1hqUUQtTFVVQVNYUHlGckowM1dZSnAwUl9xYm5Ta0FWbzBUMW9yVllFYTYycHRoRTk4RGhyT25iMkFmTTFMaTZEUUZzMkhZRzltOVdHVXZmYUpObDNLRmZodE5OUDhnc0FnRzB5QnRxU1RIZkJuSTFuNFhRWjlOV0RBcHdwWVVEc2draVppelN3MDhudnZxUlhsbW1TNmYzeUpkX09TNTN3WUQ0TTNkUnFqOUdVU3NRMVQybjFXVGk2SUVWY3h0MXB4X2VGYk0?oc=5",
    "published": "2026-11-22",
    "clue": "country liquor, excise police and a village hand pump = rural India"
-  },
-  {
-   "real": false,
-   "h": "Restaurant in {} adds a vomitorium so diners can purge between 14 courses, Roman style",
-   "tell": "A vomitorium was a stadium passage for crowds, not a room for vomiting."
-  },
-  {
-   "real": false,
-   "h": "Tupperware lid found sealed in a 1931 cathedral wall in {}, beside 12 coins and a sermon",
-   "tell": "Tupperware wasn't invented until the 1940s, so it can't be in a 1931 wall."
   },
   {
    "real": true,
@@ -33,6 +39,11 @@
    "src": "https://www.birdguides.com/news/swans-become-addicted-to-poppy-seeds-at-slovakian-farm/",
    "published": "2023-06-15",
    "clue": "Mute swans, farmer Bálint Pém"
+  },
+  {
+   "real": false,
+   "h": "Tupperware lid found sealed in a 1931 cathedral wall in {}, beside 12 coins and a sermon",
+   "tell": "Tupperware wasn't invented until the 1940s, so it can't be in a 1931 wall."
   },
   {
    "real": true,
@@ -55,17 +66,6 @@
    "src": "https://www.theguardian.com/world/2012/may/02/british-tourist-penguin-australia",
    "published": "2012-05-02",
    "clue": "Two Welshmen took a fairy penguin named Dirk from Sea World in April 2012"
-  },
-  {
-   "real": true,
-   "h": "Man is accused of strangling his girlfriend after she asked him not to fart in bed in {}",
-   "hint": "a Gulf-coast city in key-lime-pie country",
-   "lat": 27.9095,
-   "lng": -82.7873,
-   "place": "Largo, Florida",
-   "src": "https://www.mystateline.com/news/national/florida-man-choked-girlfriend/",
-   "published": "2026-09-22",
-   "clue": "Arrest affidavit, third-degree felony (violent: held, not auto-picked)"
   }
  ],
  "blank": [

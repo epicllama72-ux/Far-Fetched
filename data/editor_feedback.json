@@ -823,6 +823,12 @@
    "before": "Fans in {} topple the VAR monitor mid-match, then dunk its plug in a glass of beer",
    "after": "Fans in {} topple a VAR monitor mid-match, then dunk its plug in a glass of beer",
    "why": "owner (Nov 23): 'a VAR monitor' not 'the': the fans toppled one monitor, not a known one; use the indefinite article unless the story names a specific thing"
+  },
+  {
+   "kind": "order",
+   "before": "Nov 24: Jhansi 1, fakes 2 and 3 back to back, Largo 7",
+   "after": "Largo first, fakes at 2 and 5",
+   "why": "owner (Nov 23): lead with the fart story and never put the two fakes back to back"
   }
  ]
 }
