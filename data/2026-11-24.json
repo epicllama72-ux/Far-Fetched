@@ -1,0 +1,243 @@
+{
+ "date": "2026-11-24",
+ "generated": "2026-11-23T08:07:40+00:00",
+ "call": [
+  {
+   "real": true,
+   "h": "Hand pump in a courtyard in {} gushes illicit liquor, not water, when police work it",
+   "hint": "",
+   "lat": 25.5299,
+   "lng": 78.6528,
+   "place": "Jhansi, Uttar Pradesh",
+   "src": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxNSjk1cUd5MVlSSGl1QldHaWk0MEl3aWxINXpCc1ROSWZCMFY0YmlPVzVVSHdncjlZY3dMVGg3VU5QWXlyNWxTWUhudVM2b09Bb0VqV3I1SVRvZ1l1LTAydjlkS2dJQlkwYWNYcll3eVg2SFd1dlpuSDhEVC13YVJEMjQzSWdaOXpQTTJNMzRWT0dsOUpoeXNtWVBkandFMEpNLUJQOW94U1dMSWJBNmdUUEpJRXBDd0xzcGRFcUpHcEVRQ2xuLWVIYVozcEdTOThPb3E1TTNwRGtZc2JpRjBRTkhMR2ctU2h0c2fSAe8BQVVfeXFMTU9nZ0luZGRtN2wwUXpBQ2htN2hkX0FqQzludlFhQ0Nud1hqUUQtTFVVQVNYUHlGckowM1dZSnAwUl9xYm5Ta0FWbzBUMW9yVllFYTYycHRoRTk4RGhyT25iMkFmTTFMaTZEUUZzMkhZRzltOVdHVXZmYUpObDNLRmZodE5OUDhnc0FnRzB5QnRxU1RIZkJuSTFuNFhRWjlOV0RBcHdwWVVEc2draVppelN3MDhudnZxUlhsbW1TNmYzeUpkX09TNTN3WUQ0TTNkUnFqOUdVU3NRMVQybjFXVGk2SUVWY3h0MXB4X2VGYk0?oc=5",
+   "published": "2026-11-22",
+   "clue": "country liquor, excise police and a village hand pump = rural India"
+  },
+  {
+   "real": false,
+   "h": "Restaurant in {} adds a vomitorium so diners can purge between 14 courses, Roman style",
+   "tell": "A vomitorium was a stadium passage for crowds, not a room for vomiting."
+  },
+  {
+   "real": false,
+   "h": "Tupperware lid found sealed in a 1931 cathedral wall in {}, beside 12 coins and a sermon",
+   "tell": "Tupperware wasn't invented until the 1940s, so it can't be in a 1931 wall."
+  },
+  {
+   "real": true,
+   "h": "Over 200 swans get hooked on a farmer's poppy field after floods in {}",
+   "hint": "birthplace of The Merry Widow's composer",
+   "lat": 47.7633,
+   "lng": 18.1272,
+   "place": "Komárno, Slovakia",
+   "src": "https://www.birdguides.com/news/swans-become-addicted-to-poppy-seeds-at-slovakian-farm/",
+   "published": "2023-06-15",
+   "clue": "Mute swans, farmer Bálint Pém"
+  },
+  {
+   "real": true,
+   "h": "Deputy treasurer who 'went fishing' steals 3 million pesos from a bank in {}, resurfaces with orange hair",
+   "hint": "a river port in Messi's province",
+   "lat": -34.4586,
+   "lng": -58.6367,
+   "place": "Santa Fe, Argentina",
+   "src": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOWFRvbHBhUkZlWmRfblBpQmNfN2Z0VmFJeFdKR0JFclFGVUdLMHJ4bFpLbkxSYnE2TUFSNHFBNmRsZThaOXhKN1FReUt0N0tZb1pXenA4S2Z4Wnl6M3B1NFBXWFE2RTZwaWpjR2JqWVN4OENicS05YUZVdHpnT19fOHlBY2tqeXlXUUF1VWo3NVVobGp5d3hFWmppR2tGOVgzbU5JaG4wODg2emlUc0xjR2lwZWVXMklLSnlvaWVoNWF5QzdtWFJxLVdqYWpDOXRkV2tSMVE4YmJDTXhsekHSAeMBQVVfeXFMTm5wcVNBaC1HSm1vVTJTa2JJNVk1UmphMDE0SEEtV2trTFZxVC1oWmdMMngzWURLMnhxTDRCZWpnZFBha2R0VEl0Q2JXQTBheTAwTXU3eXkzejZ0Q0hDZ1BfdlI5cnhKdFpvdDJsXzZRdkhhM0VFRVJ5RllyTmhVZ0x5NnEyNHB5V0c5Um1na0JxQi1RYkp2a1UtYzUzNnpKOG5CVlB6dVNNNXlRbGJZSWpyWmttZnNiT3kzNW5NSDYtX1RyVVpHVlRUWEtRb1h6a0J1UEJxYVJILXgtY3Vrb24zbmc?oc=5",
+   "published": "2026-11-22",
+   "clue": "pesos plus a river-city state bank = Argentina"
+  },
+  {
+   "real": true,
+   "h": "Two tourists in {} wake up with a penguin stolen from a theme park after a beach party; each is fined A$1,000",
+   "hint": "where Thor: Ragnarok was filmed",
+   "lat": -27.9576,
+   "lng": 153.4272,
+   "place": "Gold Coast, Queensland",
+   "src": "https://www.theguardian.com/world/2012/may/02/british-tourist-penguin-australia",
+   "published": "2012-05-02",
+   "clue": "Two Welshmen took a fairy penguin named Dirk from Sea World in April 2012"
+  },
+  {
+   "real": true,
+   "h": "Man is accused of strangling his girlfriend after she asked him not to fart in bed in {}",
+   "hint": "a Gulf-coast city in key-lime-pie country",
+   "lat": 27.9095,
+   "lng": -82.7873,
+   "place": "Largo, Florida",
+   "src": "https://www.mystateline.com/news/national/florida-man-choked-girlfriend/",
+   "published": "2026-09-22",
+   "clue": "Arrest affidavit, third-degree felony (violent: held, not auto-picked)"
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Brother-in-law garlands two [] in Mathura, India with 100-foot chains of 500-rupee notes, said to be 1 crore each",
+   "ans": [
+    "grooms",
+    "groom",
+    "bridegrooms",
+    "bridegroom"
+   ],
+   "alt": [
+    "brides",
+    "brothers",
+    "men",
+    "couples",
+    "husbands"
+   ],
+   "place": "Surir, Mathura, Uttar Pradesh",
+   "src": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQaTNKdy1ld1dISV9GM1pHUmEtUTVSaFFSOThIZ2M2OC12REdSRjM3N1NYcUlIdzRmRG5jeVBrNVJDenFnd0ZkdnhEMDVPUllLaDBDbWwyMzNxS3ZHS2tOci1lNURNU0swdVJZbFBVUkpzSkttakc3QXQ2dUpROXZHMDg2X3NSRVRvR051Qzh1NWh0UHFad2N3X0Nfcmg5dWE5RWhGcnZEZU1CQjlxVkMwbmhTR0JNR0M4MW1OcTdpX23SAc4BQVVfeXFMTjRfT1VqZk9NeTBJak5GdGNNZ3VYWmpnRDN2YS0wbEotTnlFeFJBcjMxWk1TSGs2dzJXNHVxeS1QSF9wWVM5QkdfY2lyaGd5WU9zVUpibm8ybFQ4alFrMFJZb193U0lydjRIYUNTYkRrcE1PWFJubXUycjhCeXZGOWZpOGpEd1laTVdWbjQ2M191VnpsLVBjTmd1ZW9mLUJGRkpzOUthYTJGc1VRdlJwY0xMcHJJR3dpbGc4NDRRMmV4OWp2QWFVbkdPZU93TkE?oc=5",
+   "published": "2026-11-22",
+   "vec": "DzjCqTcfz/fWrP04NCI5FB3+HLsD+gY47CHr6frgpX/lESb71tjqArYPLh0gpgnG6wA="
+  },
+  {
+   "real": true,
+   "h2": "Man in Iași, Romania is jailed in place of a [] who shares his name and date of birth",
+   "ans": [
+    "convict",
+    "convicts",
+    "prisoner",
+    "inmate",
+    "felon"
+   ],
+   "alt": [
+    "criminal",
+    "thief",
+    "killer",
+    "namesake",
+    "fugitive",
+    "offender"
+   ],
+   "place": "Iași, Romania",
+   "src": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNcDRxWWxubXo4TTl1VklzUzNnbFBFN1BlNVRidkRteDRFekViNTJBYzZWNG5kSE9pbDBzenQ0Z3ZTZ0pHdVNXaHZuczMxUmpoTFFyY1plY2FNNkFNZ2pDN3dtWXU1cWJEbkxmS1ZkZFhfNXduM2dfUTJ3NmZfVV9fSm1vb3NRQ0U3RVNKdF9Bb3gyT19RcHVhS19zZ2dxcTdoNmRpWDRBRWl6aG9rdG5CUzhwX25qUlpIczJfVmZQSXpzbjZEcUdfN2NDcThhOHZHT3daUzlCNU1NV3dLd21lLWc5YlgzZE9nTnJpaHBvM1R4VHVBcGZpRmFKMG42OXM?oc=5",
+   "published": "2026-11-22",
+   "vec": "DdoO2k4wHnjuFN4iHxw06kLrFN0HBvsa24EOvCUCCJCh1GYMKOgcyt8RRzD45MTQNeA="
+  },
+  {
+   "real": true,
+   "h2": "Student from abroad in Cheonan, South Korea pockets a 2-million-won [] on a security cord, claims he thought it was free",
+   "ans": [
+    "phone",
+    "phones",
+    "smartphone",
+    "smartphones",
+    "mobile",
+    "cellphone"
+   ],
+   "alt": [
+    "tablet",
+    "laptop",
+    "watch",
+    "camera",
+    "wallet"
+   ],
+   "place": "Cheonan, South Korea",
+   "src": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE54T1RYTFpad2hfMi1ZaGdUcmVzRUNydTlEWE12NXNBWjFfeklqZEJxaGpuLXZITDFoWUh2ZmNHeE9uMGdPVXFVS29CenVaMjcxSWhqdEgxV3MtZ9IBX0FVX3lxTE52QXRXNldVT004R0Fsc0VHWmw4NzFiRU1TN0F4bnkydks0eXdmekhKclR0Nmg3MG1iak9OdGhIU0dNWm14QUZHb3g3WFQyRkdHSkUtVjZfek9QMlhpODZj?oc=5",
+   "published": "2026-11-19",
+   "vec": "Jv5OOAj50wYJA/oEAwsQD6H/HuUwFvwoGbAH+BTdfxAGDfz0AfTyAjoq7B4I9fwG/xA="
+  },
+  {
+   "real": true,
+   "h2": "Embassy apologises after a visiting folk [] dances in viral video between red gates at Nezu Shrine in Tokyo, Japan",
+   "ans": [
+    "troupe",
+    "troupes",
+    "group",
+    "dancers",
+    "ensemble"
+   ],
+   "alt": [
+    "band",
+    "company",
+    "tourists",
+    "choir",
+    "team"
+   ],
+   "place": "Tokyo, Japan",
+   "src": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPSU5sNk9jOFRwYVBZZ3ZnY011Wjd6Y05vSndvc0Y3OFlEUUxZdU4xb0VGRC1LTlpzSE1YeVczbzhjOFh5NVE2OUZKTDZxM3UyYUY2Rmk2MGRvUHpwVkgtWnpHem5wdkM5eTM3bGFITFFkUlNQNm4yN01qWEp6YmgwdWlDNTFUZE5IYXRVeU5FOUk2X0Q4RjFZN01sY2w4LTlVNk15ZDJfaDhqeDlG?oc=5",
+   "published": "2026-11-23",
+   "vec": "CgeB5Qvo6Q3VMy3/IXXm2CRVwgtZNu4n9/nB57bDUiQL+fEY7wXYFdQG28AHtQevwCo="
+  },
+  {
+   "real": true,
+   "h2": "Two drunk burglars surprised by the homeowner in Eischen, Luxembourg flee with his [], then are caught by a patrol",
+   "ans": [
+    "doormat",
+    "doormats",
+    "mat",
+    "mats"
+   ],
+   "alt": [
+    "rug",
+    "carpet",
+    "bag",
+    "key",
+    "wallet"
+   ],
+   "place": "Eischen, Luxembourg",
+   "src": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNTG5WcjJPMGxwT3BvamdhX2VCZ2NpaHFSWXB3VTRkdHlpQUZoZHRMU1BGQkFHdWpqVnFCdTlVVFBDRm1BYkR4c3MzQzZmNlM2MFBzdkd4Q1Njc3ZidkYyZTNhaVg1TG16UjkyLUtvbnhKYzhpc2xzbmpHcVJQYnZTNE9HbFRJR0RQTmhzMTBJazNscDNIY2lPbGFqVkNKQUk2R2VaUmJDZV9kYkxDSHZSVDBWQmFxM1ZTN3lZYWlQdDlMbURFQkVROTJJcw?oc=5",
+   "published": "2026-11-23",
+   "vec": "rEazKw0HDBTgAM0ONDAcAfhJSGOT4Awrz8IkUkHdrR3uCsQoqw/Ugfio+Xfx/vE97fM="
+  }
+ ],
+ "politics": [
+  {
+   "real": true,
+   "h": "Municipality in {} gets a rotating mayor under a new coalition deal",
+   "hint": "",
+   "lat": -33.4841,
+   "lng": 21.2657,
+   "place": "Ladismith, Western Cape, South Africa",
+   "src": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOeVBVLWZoTjdYWENULThzVXFuYy1CaU9Pc1hjdGdJdmt3c3BORDB2ZWk1N0FFXzVxRVRJWmVPX0UxZlQ2UFZmQXB2VEUwbkhEbV9XMWxYNXpNeTEtNl85SDNlNzJmb0l0aWJpaWREOWQ1YWtZREhIcXVKc0U5azdTQm9LbmhQV0w5QUJBWk96d0ZUa3VBeElycHRJWURSVWs?oc=5",
+   "published": "2026-11-18",
+   "clue": "a small Karoo town; rotating mayor + coalition + municipality = Commonwealth",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "Candidate in {} pulls the 'elected' slip of paper to settle a tied election",
+   "hint": "",
+   "lat": 42.2495,
+   "lng": -85.5373,
+   "place": "Kalamazoo County, Michigan, USA",
+   "src": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNNm9DSUpuWFBWQ29zOV96YnhJbmc5SERJM2FJekNFRHFLb3J2NlRsWlVXdGxOekxDZlVJRVVQSEljbzUwcWJLcFY5OThFS0s0MldoSzhPckNIaFFqNlJGZG5xc2ZyTWZsZEp1Z282X2xTejh3VUZ1Y0VYTGxyVWhrR1BwYWV4ZlVubXFqSnFzOXJCaFpYaHZHYnI5ZUNzSWhkQVdvRm1nTlpPN19taU40VEV0YlczWnFWM21QVXJpaw?oc=5",
+   "published": "2026-11-17",
+   "clue": "county named in a Glenn Miller swing hit, in a mitten-shaped state's southwest",
+   "cat": "pol"
+  },
+  {
+   "real": false,
+   "h": "Voters in {} approve ban on leaf blowers after the town's only hardware store closes",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "Commissioner race in {} ends in a tie after a recount, and a coin toss picks the winner",
+   "hint": "",
+   "lat": 30.3344,
+   "lng": -81.3987,
+   "place": "Atlantic Beach, Florida, USA",
+   "src": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOWFlqa3JvbmRtU0RXc1cza0JJZW9oZVRjQTZyeTFvejlYXzEyYzJrWnpMZUNxVnFzNDY5alpwTHFDSDlwWktSNGI2NDFfYWh4QkJTYXVYS1BEUDhsQ0xxU0RmeS1YRmxZckFLZkkzNGhiMUFVbTNkZkxFbmpBenF2Ul9DTnnSAYoBQVVfeXFMT0RxTE9sWWd2TWZabFVwaEh2cEpsbVlidzRwaUEzM2hwY1dwVXRGUGlwdkhXd090MndfTmNSSUtRVWpLLUFjTGZDd0s4ZXhFdjJwYmtuanJKalcyd2puVTVLV0VpdkNpSHZfRVRwWkxCSUxCX0g4Ylc3SVJLNDN6TzBjc0ZMM192dkhn?oc=5",
+   "published": "2026-11-20",
+   "clue": "a commission seat + coin toss; a beach town east of the Jaguars' home city",
+   "cat": "pol"
+  },
+  {
+   "real": false,
+   "h": "Councillors in {} ban sushi from the canteen, saying the raw rice made staff ill",
+   "cat": "pol"
+  },
+  {
+   "real": true,
+   "h": "Queen of diamonds decides winner of a school board election tie in {}",
+   "hint": "",
+   "lat": 44.0819,
+   "lng": -93.8577,
+   "place": "St. Clair, Minnesota, USA",
+   "src": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOaVp0Z0YwclFVMWxjWkhaVUtOT0pKWF91UkcxdWZFUEdhQVNKdTNLYmtXQWdFSjJhNTJJQ3ZTT0FSQ2gyS0ZmUElvTEZBdi1iY0ZvNnNSbnNlbkZaenpfLWE0cEdXTjJTY3FaUTh6QnV5Z0QwQlZoQ1Z5T0xhYkFoejRPckFlaThHUF9UNGREYXMtS1U2QlVkRVd6NEU4R3JHX1pCeDZQcGVMM0ljaUNrT1ItN05LTllIYkFxYnA5d3pPMEp1MmRLYUQwWkVyNTRobHlJN2N2bENnbGhUY2g2VXJQbTEyN2NWY2JhMXVNaDhmUHhFOEdz?oc=5",
+   "published": "2026-11-18",
+   "clue": "school board + playing card draw = US Midwest; a small town near Mankato",
+   "cat": "pol"
+  }
+ ]
+}
