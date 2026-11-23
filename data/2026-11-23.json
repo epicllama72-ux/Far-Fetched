@@ -4,14 +4,14 @@
  "call": [
   {
    "real": true,
-   "h": "Fans in {} topple the VAR monitor mid-match, then dunk its plug in a glass of beer",
-   "hint": "a town in Dracula country's southeast",
-   "lat": 44.5636,
-   "lng": 27.3618,
-   "place": "Slobozia, Romania",
-   "src": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQQ3VFU1NMaDRBbnNMNXhRMUFZLTIzS3g1ZkpVbmxxbUdEYUNHaDF3T3JzYUxjcUwzZ0ZvdXBjeDM2UnYtYVduWXpqYmVEMm0tbF93eW1kS1Utd0ZpX1ZtQjBCdk96akVwNlNSNUhqUGhPYi1uOHBOaHRobzhHb2FqS0syeFRWVmNJOU5wN2J6LWRLb1dpeXJjLXpsTDFGamwybkhTeENxaUhvOFRVTXNQSmFRSHhVa2JlLVdwRnMtU2otcEo1dzVPM1VjYllwSzU1OW1LbHlXa205Uk9WMHRXN2JPcFViQXJsR1NLazMwMUJVcl9vd1dfNtIB4wFBVV95cUxQSDdOekxMR0lnc3hlaF96XzNUSmxZMm1rYWh3ZE1oaXVEVmZWMFhsQ3lVaWh5bnhSSTRnSElpS3BKUWdnbXRCM1lyakZWWWJ4YlhjSUJxX2JYMFliOFhwMHlUdGpfeF84Z0lHXzBBZFppNTdsVFpnai1HN3hPTkFhT1lXMlFDY2hvaUYtc2NSWGdVLVptWFE5WWNGVUdvOFJwNm14ZU1BS1FkSDRZNTR1MW1MSmhaaUZieGNnR1ZyQnVzWlA5STVENUNGaGhzOElKNEJVbEpGRk9UTHNqNE12X2xrTQ?oc=5",
-   "published": "2026-11-22",
-   "clue": "football fans, beer and a league match = Eastern Europe"
+   "h": "Man says declining his cocaine was 'offensive to his culture' before shooting up a neighbor's apartment in {}",
+   "hint": "where Frank Lloyd Wright wintered",
+   "lat": 33.4942,
+   "lng": -111.9261,
+   "place": "Scottsdale, Arizona",
+   "src": "https://www.azfamily.com/2026/10/24/man-accused-attacking-scottsdale-apartment-residents-declining-his-cocaine/",
+   "published": "2026-10-24",
+   "clue": "Allegations in police documents; shooting and pistol-whipping (violent: held"
   },
   {
    "real": false,
@@ -19,15 +19,15 @@
    "tell": "Years were not counted as BC or AD until centuries after the Romans, so no coin could be stamped 44 BC."
   },
   {
+   "clue": "TikToker David Baerten (@RagnarleFou), June 2023; country-level pin",
+   "h": "Man fakes his own death, then lands at his funeral in a helicopter to teach his family a lesson in {}",
+   "hint": "home of the Atomium",
+   "lat": 50.5039,
+   "lng": 4.4699,
+   "place": "Belgium",
+   "published": "2023-06-14",
    "real": true,
-   "h": "Chinese maker reports Chinese rival for copying at a motorcycle show in {}; financial police seize the bikes",
-   "hint": "home of football's San Siro derby",
-   "lat": 45.5186,
-   "lng": 9.0864,
-   "place": "Milan, Italy",
-   "src": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxORFJBRE9jcno1RWJib0NjQThrVjhPN1oxZjhDb3MzVVdYNUpxOXp3VzRlVGl4RUJERWRaVjhxSGV3bXU1Y3Y5S1VIYXpmTERzVUV1UGJpWmVCWHpSQUN3VFJiNGQ2ZWRuS0lQSW1GYzJRUHdobGJYQ0hLZ1RFLWVuRFcydmwtZjVRc21xeWVDOGVnY0U1NktoMy1qSjI4VUJMM0RrWTBDWVRoMFZvcVNoUjM5WmtzR0tsdXN5RUVZUDB3V251RlBIOEVLOTNjZ1YxeEU2d3dIUFl2Yk9hbnFpblB3?oc=5",
-   "published": "2026-11-15",
-   "clue": "a famous European motorcycle show with financial police"
+   "src": "https://www.the-independent.com/life-style/fake-death-funeral-tiktok-helicopter-family-b2357836.html"
   },
   {
    "real": false,
@@ -47,14 +47,14 @@
   },
   {
    "real": true,
-   "h": "Man says declining his cocaine was 'offensive to his culture' before shooting up a neighbor's apartment in {}",
-   "hint": "where Frank Lloyd Wright wintered",
-   "lat": 33.4942,
-   "lng": -111.9261,
-   "place": "Scottsdale, Arizona",
-   "src": "https://www.azfamily.com/2026/10/24/man-accused-attacking-scottsdale-apartment-residents-declining-his-cocaine/",
-   "published": "2026-10-24",
-   "clue": "Allegations in police documents; shooting and pistol-whipping (violent: held"
+   "h": "Fans in {} topple a VAR monitor mid-match, then dunk its plug in a glass of beer",
+   "hint": "a town in Dracula country's southeast",
+   "lat": 44.5636,
+   "lng": 27.3618,
+   "place": "Slobozia, Romania",
+   "src": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQQ3VFU1NMaDRBbnNMNXhRMUFZLTIzS3g1ZkpVbmxxbUdEYUNHaDF3T3JzYUxjcUwzZ0ZvdXBjeDM2UnYtYVduWXpqYmVEMm0tbF93eW1kS1Utd0ZpX1ZtQjBCdk96akVwNlNSNUhqUGhPYi1uOHBOaHRobzhHb2FqS0syeFRWVmNJOU5wN2J6LWRLb1dpeXJjLXpsTDFGamwybkhTeENxaUhvOFRVTXNQSmFRSHhVa2JlLVdwRnMtU2otcEo1dzVPM1VjYllwSzU1OW1LbHlXa205Uk9WMHRXN2JPcFViQXJsR1NLazMwMUJVcl9vd1dfNtIB4wFBVV95cUxQSDdOekxMR0lnc3hlaF96XzNUSmxZMm1rYWh3ZE1oaXVEVmZWMFhsQ3lVaWh5bnhSSTRnSElpS3BKUWdnbXRCM1lyakZWWWJ4YlhjSUJxX2JYMFliOFhwMHlUdGpfeF84Z0lHXzBBZFppNTdsVFpnai1HN3hPTkFhT1lXMlFDY2hvaUYtc2NSWGdVLVptWFE5WWNGVUdvOFJwNm14ZU1BS1FkSDRZNTR1MW1MSmhaaUZieGNnR1ZyQnVzWlA5STVENUNGaGhzOElKNEJVbEpGRk9UTHNqNE12X2xrTQ?oc=5",
+   "published": "2026-11-22",
+   "clue": "football fans, beer and a league match = Eastern Europe"
   },
   {
    "real": true,
