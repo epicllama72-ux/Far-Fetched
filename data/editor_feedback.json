@@ -798,6 +798,19 @@
    "before": "Gravediggers in {} open a 1932 coffin and find nails that grew 30 cm after burial",
    "after": "Zoo in {} opens an Arctic exhibit where polar bears and penguins swim in neighbouring pools",
    "why": "owner (Nov 22): make new, better fakes; plain voice, one natural detail, no stacked numbers, a slip a careful reader can catch from general knowledge"
+  },
+  {
+   "kind": "swap",
+   "before": "Chinese maker reports Chinese rival for copying at a motorcycle show in {}; financial police seize the bikes (Milan)",
+   "after": "Man fakes his own death, then lands at his funeral in a helicopter to teach his family a lesson in {} (Belgium)",
+   "why": "owner (Nov 22): swap the Chinese motorcycle story; it named a country adjective twice and was a business story. A vivid human story with a famous hint is better"
+  },
+  {
+   "kind": "hint",
+   "place": "Belgium",
+   "before": "the birthplace of Tintin",
+   "after": "home of the Atomium",
+   "why": "a Tintin clue ('home of Tintin's creator') was already used for a Belgian story on Oct 27 (practice pool); never reuse a clue, so a different fact"
   }
  ]
 }
