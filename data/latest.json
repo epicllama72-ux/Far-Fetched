@@ -15,8 +15,8 @@
   },
   {
    "real": false,
-   "h": "Treasure hunters in {} dig up a field for 9 days using a 1672 pirate map drawn in ballpoint pen",
-   "tell": "Ballpoint pens weren't invented until the late 1930s, so a 1672 map can't be drawn in one."
+   "h": "Boy, 9, in {} digs up a Roman coin stamped with the year 44 BC while planting beans in his school garden",
+   "tell": "Years were not counted as BC or AD until centuries after the Romans, so no coin could be stamped 44 BC."
   },
   {
    "real": true,
@@ -31,8 +31,8 @@
   },
   {
    "real": false,
-   "h": "Gravediggers in {} open a 1932 coffin and find nails that grew 30 cm after burial",
-   "tell": "Hair and nails don't keep growing after death; skin just retracts."
+   "h": "Zoo in {} opens an Arctic exhibit where polar bears and penguins swim in neighbouring pools",
+   "tell": "Polar bears live at the North Pole and penguins live in the south, so no Arctic exhibit would hold penguins."
   },
   {
    "real": true,
