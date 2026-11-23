@@ -786,6 +786,18 @@
    "before": "a town southeast of the land down under's sports capital",
    "after": "a town in the south of Ned Kelly's state",
    "why": "owner (Nov 21): the Melbourne 'sports capital of the land down under' wording was already used on Nov 17; a fresh fact about the state plus a compass push"
+  },
+  {
+   "kind": "fake",
+   "before": "Treasure hunters in {} dig up a field for 9 days using a 1672 pirate map drawn in ballpoint pen",
+   "after": "Boy, 9, in {} digs up a Roman coin stamped with the year 44 BC while planting beans in his school garden",
+   "why": "owner (Nov 22): make new, better fakes; plain voice, one natural detail, no stacked numbers, a slip a careful reader can catch from general knowledge"
+  },
+  {
+   "kind": "fake",
+   "before": "Gravediggers in {} open a 1932 coffin and find nails that grew 30 cm after burial",
+   "after": "Zoo in {} opens an Arctic exhibit where polar bears and penguins swim in neighbouring pools",
+   "why": "owner (Nov 22): make new, better fakes; plain voice, one natural detail, no stacked numbers, a slip a careful reader can catch from general knowledge"
   }
  ]
 }
