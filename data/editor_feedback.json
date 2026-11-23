@@ -817,6 +817,12 @@
    "before": "Romania VAR story first, Scottsdale cocaine story sixth",
    "after": "cocaine story first, VAR story sixth (fakes stay at 2 and 4)",
    "why": "owner (Nov 22): the cocaine story is the stronger opener"
+  },
+  {
+   "kind": "real",
+   "before": "Fans in {} topple the VAR monitor mid-match, then dunk its plug in a glass of beer",
+   "after": "Fans in {} topple a VAR monitor mid-match, then dunk its plug in a glass of beer",
+   "why": "owner (Nov 23): 'a VAR monitor' not 'the': the fans toppled one monitor, not a known one; use the indefinite article unless the story names a specific thing"
   }
  ]
 }
