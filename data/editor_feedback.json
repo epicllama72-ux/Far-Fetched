@@ -31,7 +31,8 @@
   "Reveal clues must never end mid-word or mid-phrase: scripts/make_daily.py now cuts an overlong clue at its last ';' / ',' / ' = ' / ' + ' (else a whole word) and drops dangling words; 22 existing truncated clues in data/ were repaired.",
   "HINTS: the owner wants hints a global audience can use. Prefer a world-famous landmark or fact plus a compass direction over local trivia: 'a borough south of Big Ben' beat 'birthplace of supermodel Kate Moss'; 'a northwest city in Troy's homeland' beat 'where the 1999 Marmara quake struck'; 'a suburb of the Civil War's first-shots city' beat 'the setting of Porgy and Bess'. Never name the country, state or province or its adjective. Skip hints that need local knowledge (a regional quake, a model's hometown, an opera's setting); a place's own city may be pointed to through its most famous event or landmark.",
   "FAKES: write them in the same plain voice as the real stories, not as engineered puzzles. Don't pile up exact quantities (litres, percentages, counts like '58 litres of 4% shandy' or '8,640 drone bees sting him 212 times'); one natural detail and one catchable slip is enough. The real stories read like a news wire about a person doing something odd.",
-  "CLUES: never reuse a clue. Before writing a hint, check every earlier paper's hints (data/<date>.json and practice.json): the same wording, or the same landmark, event or fact for the same city or country, is a repeat even if the phrasing differs ('the sports capital of the land down under' then 'a town southeast of the land down under's sports capital'). Pick a different fact each time."
+  "CLUES: never reuse a clue. Before writing a hint, check every earlier paper's hints (data/<date>.json and practice.json): the same wording, or the same landmark, event or fact for the same city or country, is a repeat even if the phrasing differs ('the sports capital of the land down under' then 'a town southeast of the land down under's sports capital'). Pick a different fact each time.",
+  "HEADLINES: never include a currency or unit that identifies the country in the headline or clue (A$, yen, baht, rupees, lakh, won, pesos with a named country). Use a plain amount ('$1,000', 'a hefty fine') or leave the currency out, unless the place name is already in the text."
  ],
  "edits": [
   {
@@ -829,6 +830,12 @@
    "before": "Nov 24: Jhansi 1, fakes 2 and 3 back to back, Largo 7",
    "after": "Largo first, fakes at 2 and 5",
    "why": "owner (Nov 23): lead with the fart story and never put the two fakes back to back"
+  },
+  {
+   "kind": "real",
+   "before": "Two tourists in {} wake up with a penguin stolen from a theme park after a beach party; each is fined A$1,000",
+   "after": "Two tourists in {} wake up with a penguin stolen from a theme park after a beach party; each is fined $1,000",
+   "why": "owner (Nov 23): a currency code like A$ gives the country away; drop it. Never print currency symbols or units that identify the country (A$, yen, baht, rupees, lakh, won)"
   }
  ]
 }
