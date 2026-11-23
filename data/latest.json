@@ -4,32 +4,6 @@
  "call": [
   {
    "real": true,
-<<<<<<< HEAD
-   "h": "Man says declining his cocaine was 'offensive to his culture' before shooting up a neighbor's apartment in {}",
-   "hint": "where Frank Lloyd Wright wintered",
-   "lat": 33.4942,
-   "lng": -111.9261,
-   "place": "Scottsdale, Arizona",
-   "src": "https://www.azfamily.com/2026/10/24/man-accused-attacking-scottsdale-apartment-residents-declining-his-cocaine/",
-   "published": "2026-10-24",
-   "clue": "Allegations in police documents; shooting and pistol-whipping (violent: held"
-  },
-  {
-   "real": false,
-   "h": "Boy, 9, in {} digs up a Roman coin stamped with the year 44 BC while planting beans in his school garden",
-   "tell": "Years were not counted as BC or AD until centuries after the Romans, so no coin could be stamped 44 BC."
-  },
-  {
-   "clue": "TikToker David Baerten (@RagnarleFou), June 2023; country-level pin",
-   "h": "Man fakes his own death, then lands at his funeral in a helicopter to teach his family a lesson in {}",
-   "hint": "home of the Atomium",
-   "lat": 50.5039,
-   "lng": 4.4699,
-   "place": "Belgium",
-   "published": "2023-06-14",
-   "real": true,
-   "src": "https://www.the-independent.com/life-style/fake-death-funeral-tiktok-helicopter-family-b2357836.html"
-=======
    "h": "Hand pump in a courtyard in {} gushes illicit liquor, not water, when police work it",
    "hint": "",
    "lat": 25.5299,
@@ -43,7 +17,6 @@
    "real": false,
    "h": "Restaurant in {} adds a vomitorium so diners can purge between 14 courses, Roman style",
    "tell": "A vomitorium was a stadium passage for crowds, not a room for vomiting."
->>>>>>> origin/main
   },
   {
    "real": false,
@@ -63,16 +36,6 @@
   },
   {
    "real": true,
-<<<<<<< HEAD
-   "h": "Fans in {} topple the VAR monitor mid-match, then dunk its plug in a glass of beer",
-   "hint": "a town in Dracula country's southeast",
-   "lat": 44.5636,
-   "lng": 27.3618,
-   "place": "Slobozia, Romania",
-   "src": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQQ3VFU1NMaDRBbnNMNXhRMUFZLTIzS3g1ZkpVbmxxbUdEYUNHaDF3T3JzYUxjcUwzZ0ZvdXBjeDM2UnYtYVduWXpqYmVEMm0tbF93eW1kS1Utd0ZpX1ZtQjBCdk96akVwNlNSNUhqUGhPYi1uOHBOaHRobzhHb2FqS0syeFRWVmNJOU5wN2J6LWRLb1dpeXJjLXpsTDFGamwybkhTeENxaUhvOFRVTXNQSmFRSHhVa2JlLVdwRnMtU2otcEo1dzVPM1VjYllwSzU1OW1LbHlXa205Uk9WMHRXN2JPcFViQXJsR1NLazMwMUJVcl9vd1dfNtIB4wFBVV95cUxQSDdOekxMR0lnc3hlaF96XzNUSmxZMm1rYWh3ZE1oaXVEVmZWMFhsQ3lVaWh5bnhSSTRnSElpS3BKUWdnbXRCM1lyakZWWWJ4YlhjSUJxX2JYMFliOFhwMHlUdGpfeF84Z0lHXzBBZFppNTdsVFpnai1HN3hPTkFhT1lXMlFDY2hvaUYtc2NSWGdVLVptWFE5WWNGVUdvOFJwNm14ZU1BS1FkSDRZNTR1MW1MSmhaaUZieGNnR1ZyQnVzWlA5STVENUNGaGhzOElKNEJVbEpGRk9UTHNqNE12X2xrTQ?oc=5",
-   "published": "2026-11-22",
-   "clue": "football fans, beer and a league match = Eastern Europe"
-=======
    "h": "Deputy treasurer who 'went fishing' steals 3 million pesos from a bank in {}, resurfaces with orange hair",
    "hint": "a river port in Messi's province",
    "lat": -34.4586,
@@ -81,7 +44,6 @@
    "src": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOWFRvbHBhUkZlWmRfblBpQmNfN2Z0VmFJeFdKR0JFclFGVUdLMHJ4bFpLbkxSYnE2TUFSNHFBNmRsZThaOXhKN1FReUt0N0tZb1pXenA4S2Z4Wnl6M3B1NFBXWFE2RTZwaWpjR2JqWVN4OENicS05YUZVdHpnT19fOHlBY2tqeXlXUUF1VWo3NVVobGp5d3hFWmppR2tGOVgzbU5JaG4wODg2emlUc0xjR2lwZWVXMklLSnlvaWVoNWF5QzdtWFJxLVdqYWpDOXRkV2tSMVE4YmJDTXhsekHSAeMBQVVfeXFMTm5wcVNBaC1HSm1vVTJTa2JJNVk1UmphMDE0SEEtV2trTFZxVC1oWmdMMngzWURLMnhxTDRCZWpnZFBha2R0VEl0Q2JXQTBheTAwTXU3eXkzejZ0Q0hDZ1BfdlI5cnhKdFpvdDJsXzZRdkhhM0VFRVJ5RllyTmhVZ0x5NnEyNHB5V0c5Um1na0JxQi1RYkp2a1UtYzUzNnpKOG5CVlB6dVNNNXlRbGJZSWpyWmttZnNiT3kzNW5NSDYtX1RyVVpHVlRUWEtRb1h6a0J1UEJxYVJILXgtY3Vrb24zbmc?oc=5",
    "published": "2026-11-22",
    "clue": "pesos plus a river-city state bank = Argentina"
->>>>>>> origin/main
   },
   {
    "real": true,
