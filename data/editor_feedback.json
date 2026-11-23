@@ -811,6 +811,12 @@
    "before": "the birthplace of Tintin",
    "after": "home of the Atomium",
    "why": "a Tintin clue ('home of Tintin's creator') was already used for a Belgian story on Oct 27 (practice pool); never reuse a clue, so a different fact"
+  },
+  {
+   "kind": "order",
+   "before": "Romania VAR story first, Scottsdale cocaine story sixth",
+   "after": "cocaine story first, VAR story sixth (fakes stay at 2 and 4)",
+   "why": "owner (Nov 22): the cocaine story is the stronger opener"
   }
  ]
 }
