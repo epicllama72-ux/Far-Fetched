@@ -836,6 +836,13 @@
    "before": "Two tourists in {} wake up with a penguin stolen from a theme park after a beach party; each is fined A$1,000",
    "after": "Two tourists in {} wake up with a penguin stolen from a theme park after a beach party; each is fined $1,000",
    "why": "owner (Nov 23): a currency code like A$ gives the country away; drop it. Never print currency symbols or units that identify the country (A$, yen, baht, rupees, lakh, won)"
+  },
+  {
+   "kind": "hint",
+   "place": "Jhansi",
+   "before": "(none: the builder left it blank)",
+   "after": "a city northwest of the Khajuraho temples",
+   "why": "owner (Nov 24): every true story needs a clue; a world-famous landmark plus a compass direction, never naming the country or state (Taj Mahal was off the table: already used for India)"
   }
  ]
 }
