@@ -1,0 +1,166 @@
+{
+ "date": "2026-11-25",
+ "generated": "2026-11-24T05:57:21+00:00",
+ "call": [
+  {
+   "real": true,
+   "h": "Police in {} invite a shaman on Halloween to cleanse their station; she traces the evil eye to the archives",
+   "hint": "where Bernadette saw the Virgin Mary",
+   "lat": 43.0941,
+   "lng": -0.0465,
+   "place": "Lourdes, France",
+   "src": "https://news.google.com/rss/articles/CBMimwJBVV95cUxQSll1VFZMd0ZfcDlFTVQ5eTlsX1RFTUZPWkNGYzl0eGRyNGNnUHEybEpud3poUjFHSEtxT1E2VEVkTDVOZk9IZVhiVkdYUy1uelNub214S3U1WExpV01ENUlDa3BqZUh0NVJ3c1g5cll5dktXLTk2aXhWZl9ZUWoxWjVGRlNFdVhMbFA1YW9ONm9fUlNZRS16VEpwUGJIWUxtcEJVbk9hdG1SeVExSmV5YjVfaGFrblhQaTdwRGJwNTJRN3NCdEtHbXB0SGJSZkhOOWRTc2E4VE5yQmNXQ00tRTZWXzVVTTkwb3VIRmZQa3NlZFFqYXhIUDA3Y1NXaXRJR1ZUWG5jeFplR3NkY3ZTYlBGZFl3b21JNmxJ?oc=5",
+   "published": "2026-11-18",
+   "clue": "a prefecture and a famed Pyrenean pilgrimage town = France"
+  },
+  {
+   "real": true,
+   "h": "Boy, 9, runs up a $118,000 bill on YouTube ads for his Minecraft videos using his dad's work credit card in {}",
+   "hint": "home of DreamWorks Animation",
+   "lat": 34.1425,
+   "lng": -118.2551,
+   "place": "Glendale, California",
+   "src": "https://www.hs.fi/maailma/art-2000012279364.html",
+   "published": "2026-09-19",
+   "clue": "Father's own account (figure not independently verified)"
+  },
+  {
+   "real": true,
+   "h": "Police and drones hunt a lioness in woods near {} hours before a European match; a fan turns up dressed as one",
+   "hint": "host of Liverpool's 2005 comeback final",
+   "lat": 41.0064,
+   "lng": 28.9759,
+   "place": "Istanbul, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMijgJBVV95cUxNOEpqN2x6dHFELUV2U1NUMk5nM0R3YlZua0MtUlB4RHRGRFJ2b1VIamt0TDU0TTdpWlltNWZJT24zeFphSXNBZHl3ellFMXdsTzRjdWR6R0trbHVORHFQQWRrUUFLTnlON25lcTljeTlva1NCMmpYN1lPaEJ5S2hzaHNzOWtEUlNMTlgtekZ2LWlERXdrLVhKanRPOWdqQUc1Rjg3bUc5dkw5dHRjaUoxN2hlQ0Q4enBIRkJmZ3ZGODFyOHVLOXE3QUVEcTA0WFBzZk5GM05KdEhMc1M2MVJJb0hpaFNsVGw5cFJGME9UQ1ltTVFVMUVsd1NaSFI5UTVoc3JzRndROU5KaDAwYkE?oc=5",
+   "published": "2026-11-23",
+   "clue": "a club nicknamed the lions; forests at a city on two continents"
+  },
+  {
+   "real": false,
+   "h": "Divers off {} haul up 212 sealed tins of corned beef from a galleon that sank in 1741",
+   "tell": "Canning was not invented until about 1810."
+  },
+  {
+   "real": false,
+   "h": "Pilot in {} eats 3 kg of carrots a day for a month and says he can now see in the dark",
+   "tell": "Carrots cannot give night vision; that was a wartime propaganda myth."
+  },
+  {
+   "real": true,
+   "h": "Civil servant in {} threatens to burn trains stopping at one station, to avoid a man who threatened to punch him",
+   "hint": "home of Haeundae Beach",
+   "lat": 35.18,
+   "lng": 129.0752,
+   "place": "Busan, South Korea",
+   "src": "https://news.google.com/rss/articles/CBMia0FVX3lxTE40ZW03Qzc5eFY0X053Q0VTdG43aEZuWnZFLUtDNU9qdmxxSHJjbjlqZF9uNFpaX1lJWjhTeHFFSVB4bUFTSGhlQmxPOXQwaXFkRHRYRlh3N3lFUllSbjNEX1JsNXRyQ2h6dlFz0gFwQVVfeXFMUHdBdGs4bmRvZXdEcXMwSjdMNDV4VXBkZ21mMGpCS3FSaFliSko1TGoxQzU1QTBRUFF5THNDUGRWWmZFb2hrbktpaGxnbjVzWFotdldLcU9Ud3dzbVBpWlp1cVo3MEtJN1JaZlF0U0dfdg?oc=5",
+   "published": "2026-11-24",
+   "clue": "a civil servant, a subway line and a port city = East Asia"
+  },
+  {
+   "real": true,
+   "h": "Fans in {} applaud their own player's missed penalty, because a win would help their city rivals win the title",
+   "hint": "home of the Nobel banquet",
+   "lat": 59.3251,
+   "lng": 18.0711,
+   "place": "Stockholm, Sweden",
+   "src": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQT0ZmLUhJSi02NWctUDhTMmNfSjFfQ0t4N2hNQzZSdGU1dGE1Q1NnMEhzLXpOY0xsWVhaQXV0Ym1yX0JEODBxdEtPOFRXSG9jdUROSmtFNm9PMENRd1JHb1lOY3dfeDdpckVZdmpYWnByeEUwcW14RThaWHJ5YU1jeUJoUkdxcUpxT0xzWnkwU1cxemxyRzdBWmdka29nN29pN2VfWU1Fb2tlZS1kTzFOV21qQWVEVUhwclBqcWlYMzBDTUh4RkM2YTVYbHNvRTM0dHRTdjNfZG5DejhqeW5MRg?oc=5",
+   "published": "2026-11-23",
+   "clue": "city derby rivals and a league title race = Nordic football"
+  }
+ ],
+ "blank": [
+  {
+   "real": true,
+   "h2": "Man sneaks into a [] in Nairobi, Kenya for 12 years and builds a film career",
+   "ans": [
+    "university",
+    "universities"
+   ],
+   "alt": [
+    "college",
+    "campus",
+    "school",
+    "academy"
+   ],
+   "place": "Nairobi, Kenya",
+   "src": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPa2psbGY0d1NJQUp2RHVaZlZLcXVhcklSdllJMlAxaWdDeFlIZXc2SGFiM2w5M1JuRWcxN1Z3bWdHYXlmTm5CeFdtUDNTMUtBenBJUVNfRWczTXdNUDhyQU0tbThoSVB1M1p5TnBYaXVuY0lZNmo3X1lsaGhLM1QtT3YwNG1DM1hmMHVSY1VFLVo4VldIOHg1UXdlYm9vWHNZd2R0Y0hYNFpYNkZSQjVUNkdHcUZxTU85dWdaSE5Ib0lnVUtJaVlxUWxYUkRIaDZw?oc=5",
+   "published": "2026-11-21",
+   "vec": "yj/a6uzm1Ojx8BjoAcfpDfsxzUkiI/sA/IUG1pnUf/77k/0A+zxUIPr98hL7GBIN5gI="
+  },
+  {
+   "real": true,
+   "h2": "[] rides a zip line for 568 feet with his whole body on fire in Poland",
+   "ans": [
+    "stuntman",
+    "daredevil"
+   ],
+   "alt": [
+    "performer",
+    "acrobat",
+    "athlete",
+    "man"
+   ],
+   "place": "Poland",
+   "src": "https://www.upi.com/Odd_News/2026/11/20/poland-guinness-world-records-zip-line-fire/1931795195407/",
+   "published": "2026-11-20",
+   "vec": "yNf489cV+Qn7LxwX8UMt0xNvwQYFMNUWDs/09voU1eojABw99ezx5e1f6O4FgRrb5kQ="
+  },
+  {
+   "real": true,
+   "h2": "2.8 million [] gather every year at an undersea mountain south of Tasmania, Australia for a ten-month mating frenzy",
+   "ans": [
+    "eels",
+    "eel"
+   ],
+   "alt": [
+    "fish",
+    "snakes",
+    "worms"
+   ],
+   "place": "Tasmania, Australia",
+   "src": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPS2FULUdROHk0WUYtel9GY1FVUXotWjNaRkZDMXZzMVAzUTJMWTNRTEh3aXRfckpNRjhQTS1xdmxaenFUZ3pJWnZDTVFuQ1pfS0FwSVJIV3NQaXpVS0FsckswZDMyTDNKNVhBakxHeWRRMjhnSXY5Y3lNVGt5WWJVYW9ybVo2QkFrT2dGR1Vianh3NFJGU3lBeNIBngFBVV95cUxPWE56RjVJVUtoVktkZlVSdTJZOTZpLU1GMjJfY3JSSnRNb2o5VFM4UHFmSlQ5cFdxeHdaeXhESnR3VDFpWnJfLUpIYW5nMXZHTDhQcDFSRVQzMGk0UkxpZlZzTGRkeEkycV9KUWFLSFBzQXl1VFFoWWVOMGZTMDVRSjhpc18zazlZanBWblRfMnhsNFRlN2R1QWdXUkk4Zw?oc=5",
+   "published": "2026-10-28",
+   "vec": "8f7QGMAb6h7cPiZnfzcEPkMbhfToqzoCEAFQCdHoBPI5KC8FG+MPms/q6UdAM/ilEL0="
+  },
+  {
+   "real": true,
+   "h2": "District head in Kefamenanu, Indonesia hands out holiday bonuses to civil servants with coupons taped under their [], paid from his own pocket",
+   "ans": [
+    "chairs",
+    "chair",
+    "seats",
+    "seat"
+   ],
+   "alt": [
+    "desks",
+    "benches",
+    "tables",
+    "stools"
+   ],
+   "place": "Kefamenanu, Indonesia",
+   "src": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxON0IwSDJBeG92UFBtM25meFRrX0tVVEVZUC1pNTROSzNxbHlmdm9FRThJRGMxbmIyUlQ3Y0EwTkQ3ODJvQkxDYWVOSGtfZ1p6R01IRTZNcGhOeGF4bFpEeTI2OGdyRm5PNHFJbW9DclZqMHB0ZlBuNzZPWmE5Z3VxdnRYVlVZUHEwbl9fdVNxeGc1YlYwdDM5OEE3d3pSc3dpcktINTBwdXcxVlZWckNXVzZHM0NIcmgwdUhJdnNodkJxN2c?oc=5",
+   "published": "2026-01-05",
+   "vec": "4g/p4i3/8KPxmbb5AGTtDA8sP4ElMu7t2OEVOa31ZSHUGO04CjMkD/AtBDsJQt7G3tQ="
+  },
+  {
+   "real": true,
+   "h2": "Hackers heat a supermarket's [] to 80 degrees in France",
+   "ans": [
+    "fridges",
+    "fridge",
+    "refrigerators",
+    "refrigerator"
+   ],
+   "alt": [
+    "freezers",
+    "coolers",
+    "cabinets",
+    "ovens"
+   ],
+   "place": "France",
+   "src": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBDeXhDaXpSWmRIeDgtd04yRVU4NXNBZDJxMzJaV2V3dkdLVDFrdENYcGF5aWx2YXpjRUZncnY5QjBBeGJvMVktSzVsMDVpOXdwMEl5Xy14MU1SVWFSYnh1Q2ZPSDJaZ3JGZEJlM19kM1RLR1F5dXJyT9IBeEFVX3lxTE5JbDdYWGFOVkRFbnNpZ2dzemt5U0cxR19BdEFRVXpPOUVLNWRqam9pSm9oWG1wSU95NHNtR0N5R3UwNG9hOUhTNC0ybEVUYkdGQ2FmM21fVU5kR1d0ajB5ZGRSREJfc0JEZHY3R2lGS0xMSmROZ3NiNA?oc=5",
+   "published": "2026-10-13",
+   "vec": "C9w01+foEKviNDYIG1oBSck9HvwrEf78+kTgIVDy0n8sMgNmESgKRQYOICsXPPkQ88U="
+  }
+ ]
+}

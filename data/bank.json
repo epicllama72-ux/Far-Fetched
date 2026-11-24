@@ -1,6 +1,37 @@
 {
  "real": [
   {
+   "id": 22,
+   "h": "Taxi driver in {} receives 1,000 times his fare after a passenger's bank transfer typo, and drives back to find him at a barber's",
+   "h2": "[] driver in Izmir, Turkey receives 1,000 times his fare after a passenger's bank transfer typo, and drives back to find him at a barber's",
+   "ans": [
+    "taxi",
+    "cab"
+   ],
+   "alt": [
+    "car",
+    "minicab"
+   ],
+   "place": "Izmir, Turkey",
+   "geocode": "Izmir, Turkey",
+   "lat": 38.4192537,
+   "lng": 27.128469,
+   "country": "Turkey",
+   "cc": "TR",
+   "hint": "reputed birthplace of Homer",
+   "clue": "26 years at a bus-station taxi rank; a lira fare",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 3,
+   "unbelievable": 3,
+   "theme": "banking",
+   "src": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxPeE1GMUxSSDhPa3lpLUpLclltc1AxVzZjNjJfNTJLczFyWGtDeDQ0MHFsQnhaR2hGUnRyUHRvR0s5STJ1cHdFTGtaMDAxMUJIeHdVVzNTUTE1ZzBST2RiQktVdXNSU3ZyNFVXMGlXTHMyU1ZWSmI4LXIyVnhLTXRrVmtmLU5tdTQ0UnFFaDdPTXRwcU5YckxEQmowXzFNbUFtaFFVbk1DOVZ4Q3Flb1ByLUlZYzIzRnZfXzV4Q09YMkpjWk9nMGRQTlJ3S1dnbFFZa243aWpxZXBacUtMaTV1QzM5TG9TLTduOVVDQWoycUkwZGQtdlVqd3RB?oc=5",
+   "published": "2026-11-07",
+   "banked": "2026-11-25",
+   "rules": 2,
+   "taste": 5.0
+  },
+  {
    "real": true,
    "h": "78-square-metre flat in {} listed for 170,000 euros can't be visited or valued, as squatters live in it",
    "hint": "a Basque city famed for pintxos",
@@ -37,27 +68,6 @@
    "cc": "US",
    "country": "United States",
    "geocode": "Newark Liberty International Airport, New Jersey, USA",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
-   "h": "Boy, 9, runs up a $118,000 bill on YouTube ads for his Minecraft videos using his dad's work credit card in {}",
-   "hint": "home of DreamWorks Animation",
-   "lat": 34.1425,
-   "lng": -118.2551,
-   "place": "Glendale, California",
-   "src": "https://www.hs.fi/maailma/art-2000012279364.html",
-   "published": "2026-09-19",
-   "clue": "Father's own account (figure not independently verified); the owner says it happened in Glendale; reported mid-September 2026",
-   "banked": "2026-11-17",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "tech",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Glendale, California, USA",
    "daily_only": true,
    "mappable": 3,
    "clue_strength": 2,
@@ -208,27 +218,6 @@
    "daily_only": true,
    "mappable": 2,
    "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
-   "h": "Man fakes his own death, then lands at his funeral in a helicopter to teach his family a lesson in {}",
-   "hint": "the birthplace of Tintin",
-   "lat": 50.5039,
-   "lng": 4.4699,
-   "place": "Belgium",
-   "src": "https://www.the-independent.com/life-style/fake-death-funeral-tiktok-helicopter-family-b2357836.html",
-   "published": "2023-06-14",
-   "clue": "TikToker David Baerten (@RagnarleFou), June 2023; country-level pin",
-   "banked": "2026-11-15",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "people",
-   "cc": "BE",
-   "country": "Belgium",
-   "geocode": "Belgium",
-   "daily_only": true,
-   "mappable": 1,
-   "clue_strength": 3,
    "jargon_only": false
   },
   {
@@ -445,6 +434,176 @@
   }
  ],
  "fake": [
+  {
+   "h": "Thief in {} crawls through a museum vent to steal a 1984 iPhone prototype, sells it for $60",
+   "tell": "The iPhone didn't exist until 2007, so no 1984 prototype could be stolen.",
+   "obvious": 3,
+   "theme": "museum-theft",
+   "taste": 4.0,
+   "pred": 18.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "Smugglers in {} hide 14 rhino tusks inside hollowed-out watermelons at a border market",
+   "tell": "Rhinos have horns, not tusks.",
+   "obvious": 3,
+   "theme": "smuggling",
+   "taste": 4.0,
+   "pred": 20.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "Fraudster in {} sells 212 tickets to a rooftop concert on 29 February 2027, then vanishes",
+   "tell": "2027 is not a leap year, so there is no 29 February.",
+   "obvious": 2,
+   "theme": "fraud",
+   "taste": 4.0,
+   "pred": 25.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "Bus driver in {} takes 38 commuters 410 km to see his mother, a 3-hour trip at 60 km/h",
+   "tell": "Three hours at 60 km/h covers only 180 km, not 410.",
+   "obvious": 2,
+   "theme": "bus",
+   "taste": 3.0,
+   "pred": 15.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "Bootlegger in {} is jailed for selling single malt whisky distilled from grapes to 31 pubs",
+   "tell": "Single malt whisky is made from malted barley; grape spirit is brandy.",
+   "obvious": 3,
+   "theme": "whisky",
+   "taste": 4.0,
+   "pred": 25.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "Mosaic under a vineyard in {} shows Roman diners at a banquet eating potatoes and chilli peppers",
+   "tell": "Potatoes and chillies came from the Americas, unknown in Roman times.",
+   "obvious": 3,
+   "theme": "archaeology",
+   "taste": 5.0,
+   "pred": 25.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "Woman, 23, in {} is jailed for running a pyramid scheme from her parents' garage in 1994",
+   "tell": "A 23-year-old today wasn't born in 1994.",
+   "obvious": 2,
+   "theme": "pyramid",
+   "taste": 3.0,
+   "pred": 15.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "Burglar in {} drags a stolen 137-kg safe across a lake frozen 3 cm thick, and the ice holds",
+   "tell": "Ice 3 cm thick can't carry a man dragging a heavy safe.",
+   "obvious": 3,
+   "theme": "safe",
+   "taste": 5.0,
+   "pred": 35.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "Undertaker in {} says a dead man's beard grew 6 cm in the 11 days before his funeral",
+   "tell": "Hair and nails do not keep growing after death; the skin just retracts.",
+   "obvious": 3,
+   "theme": "myth",
+   "taste": 4.0,
+   "pred": 35.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "A farmer in {} plows up a 10th-century Viking helmet with both bull horns still attached",
+   "tell": "Vikings did not wear horned helmets in battle.",
+   "obvious": 3,
+   "theme": "history",
+   "taste": 5.0,
+   "pred": 40.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "Pupils open a 1979 school time capsule in {} and find a USB stick holding 212 photos",
+   "tell": "USB sticks did not exist until around 2000.",
+   "obvious": 3,
+   "theme": "technology",
+   "taste": 4.0,
+   "pred": 15.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "Love letter mailed in 1957 at age 19 is returned to its 93-year-old writer in {}, 66 years late",
+   "tell": "Someone aged 19 in 1957 would be about 85 after 66 years, not 93.",
+   "obvious": 3,
+   "theme": "arithmetic",
+   "taste": 4.0,
+   "pred": 22.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "Man in {} proposes with a ring baked into a fortune cookie from a Beijing bakery open since 1650",
+   "tell": "Fortune cookies are a Californian-Japanese invention, not an old Chinese tradition.",
+   "obvious": 3,
+   "theme": "cookie",
+   "taste": 5.0,
+   "pred": 40.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "Two cyclists, both 80, end a 63-day ride across the Sahara, the world's largest desert, in {}",
+   "tell": "Antarctica, not the Sahara, is the largest desert on Earth.",
+   "obvious": 4,
+   "theme": "geography",
+   "taste": 4.0,
+   "pred": 35.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "Clockmaker in {} finds a Post-it note dated 1923 inside a grandfather clock, listing 14 groceries",
+   "tell": "Post-it notes were not invented until the late 1970s.",
+   "obvious": 3,
+   "theme": "clock",
+   "taste": 4.0,
+   "pred": 15.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "George Washington's wooden teeth, carved from oak, sell for $212,000 at an auction in {}",
+   "tell": "Washington's dentures were made of ivory, metal and human teeth, never wood.",
+   "obvious": 3,
+   "theme": "auction",
+   "taste": 5.0,
+   "pred": 38.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
+  {
+   "h": "From his roof in {}, an engineer, 67, photographs the Moon's far side with a 23-cm telescope",
+   "tell": "The Moon is tidally locked, so its far side never faces Earth.",
+   "obvious": 3,
+   "theme": "astronomy",
+   "taste": 4.0,
+   "pred": 25.0,
+   "banked": "2026-11-25",
+   "rules": 2
+  },
   {
    "h": "Man, 31, in {} is charged with cashing his late father's pension for 38 years by forgery",
    "tell": "A 31-year-old can't have collected a pension for 38 years.",
@@ -737,180 +896,47 @@
    "pred": 22.0,
    "banked": "2026-11-23",
    "rules": 2
-  },
-  {
-   "h": "Pupils open a 1979 time capsule in {} and find sourdough starter and a DVD of a school play",
-   "tell": "DVDs didn't exist until the mid-1990s.",
-   "obvious": 3,
-   "theme": "technology",
-   "taste": 5.0,
-   "pred": 18.0,
-   "banked": "2026-11-23",
-   "rules": 2
-  },
-  {
-   "h": "Choir of 52 sings nonstop for 31 hours in {}, performing 740 four-minute songs",
-   "tell": "740 songs of four minutes take nearly 49 hours, not 31.",
-   "obvious": 3,
-   "theme": "arithmetic",
-   "taste": 3.0,
-   "pred": 25.0,
-   "banked": "2026-11-23",
-   "rules": 2
-  },
-  {
-   "h": "Divers raise 340 tinned sausages from a 1707 galleon wreck off {}, some labels intact",
-   "tell": "Canning wasn't invented until about 1810, a century after the wreck.",
-   "obvious": 3,
-   "theme": "anachronism",
-   "taste": 5.0,
-   "pred": 22.0,
-   "banked": "2026-11-23",
-   "rules": 2
-  },
-  {
-   "h": "Mother, 66, sits her 59-year-old son's driving theory test twice, posing as him, in {}",
-   "tell": "A 66-year-old cannot have a 59-year-old son; she would have been seven.",
-   "obvious": 3,
-   "theme": "exam",
-   "taste": 3.0,
-   "pred": 25.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Metal detectorist in {} digs up a Viking cooking pot with six charred potatoes inside",
-   "tell": "Potatoes reached Europe in the 1500s, centuries after the Viking age.",
-   "obvious": 3,
-   "theme": "archaeology",
-   "taste": 4.0,
-   "pred": 40.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Farmer in {} is caught selling 310 litres a week of 'extra-rich' bull milk at a market",
-   "tell": "Bulls are male and produce no milk.",
-   "obvious": 2,
-   "theme": "dairy",
-   "taste": 3.0,
-   "pred": 15.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Burglar in {} is traced after posting photos of his loot from a 1996 iPhone",
-   "tell": "The first iPhone was released in 2007.",
-   "obvious": 3,
-   "theme": "burglary",
-   "taste": 3.0,
-   "pred": 15.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Cleaner locked in a bank vault in {} at 5pm on Friday is freed at 8am Saturday after 29 hours",
-   "tell": "From 5pm Friday to 8am Saturday is 15 hours, not 29.",
-   "obvious": 3,
-   "theme": "vault",
-   "taste": 4.0,
-   "pred": 25.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Retired teacher in {} sells 83 tickets to a rooftop party for a total solar eclipse at 1.14am",
-   "tell": "A solar eclipse needs daylight; none can happen in the middle of the night.",
-   "obvious": 3,
-   "theme": "eclipse",
-   "taste": 3.0,
-   "pred": 12.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Tour operator in {} sells 41 seats on an Arctic cruise promising polar bears and wild penguins",
-   "tell": "Polar bears live in the Arctic, wild penguins in the south; they never meet.",
-   "obvious": 2,
-   "theme": "cruise",
-   "taste": 3.0,
-   "pred": 12.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Collector in {} pays 4,370 euros for a 'vintage' Gruyère wheel aged 9 days",
-   "tell": "Gruyère must age at least five months, and nine days is nowhere near vintage.",
-   "obvious": 3,
-   "theme": "cheese",
-   "taste": 4.0,
-   "pred": 22.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Time capsule sealed in 1976 opens in {} to reveal a Game Boy, a cassette and a pressed tulip",
-   "tell": "The Game Boy was not released until 1989, thirteen years after the capsule was sealed.",
-   "obvious": 3,
-   "theme": "anachronism",
-   "taste": 4.0,
-   "pred": 20.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Cathedral in {} replaces 14 windows after its medieval glass slowly flowed to the bottom",
-   "tell": "Glass is a solid and does not flow over centuries; uneven old panes come from how they were made.",
-   "obvious": 3,
-   "theme": "myth",
-   "taste": 5.0,
-   "pred": 40.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Farmer, 71, ploughs up a Viking helmet with two curved horns in {}, dated to the year 962",
-   "tell": "Vikings did not wear horned helmets; that image is a 19th-century invention.",
-   "obvious": 2,
-   "theme": "history",
-   "taste": 4.0,
-   "pred": 25.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Antarctic cruise from {} sells out in six hours by promising 190 guests close-up polar bears",
-   "tell": "Polar bears live in the Arctic, not Antarctica.",
-   "obvious": 3,
-   "theme": "geography",
-   "taste": 3.0,
-   "pred": 10.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Pensioner, 63, returns a library book in {} that he borrowed as a schoolboy in 1951",
-   "tell": "A 63-year-old today was born around 1960, decades after 1951.",
-   "obvious": 3,
-   "theme": "timeline",
-   "taste": 3.0,
-   "pred": 25.0,
-   "banked": "2026-11-22",
-   "rules": 2
-  },
-  {
-   "h": "Bakers in {} bake a 26-metre croissant to mark the pastry's invention in Paris in 1623",
-   "tell": "The croissant reached Paris in the 1830s, from Vienna's kipferl, not in the 1600s.",
-   "obvious": 3,
-   "theme": "pastry",
-   "taste": 5.0,
-   "pred": 35.0,
-   "banked": "2026-11-22",
-   "rules": 2
   }
  ],
- "pol": [],
+ "pol": [
+  {
+   "id": 17,
+   "h": "City council seat in {} goes to a candidate after a coin flip breaks an election tie",
+   "place": "Pine Island, Minnesota, USA",
+   "geocode": "US",
+   "lat": 44.2013,
+   "lng": -92.6527,
+   "clue": "city council + coin-flip tiebreak; a small city northwest of the Mayo Clinic",
+   "src": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOV2xyU2lSUE45SVVoeUZaREZ6LWpmUW4tZDhrSFJvQkdjZl8yaHh5VDZTSFNaZDhCakU0d0h0Yjl2LXFqa0ItVm9SMU1PNVRLVGFGYVNrOVpvWGxrLUZzYkl6MnN6THFLQm5jMS1DNVBKQzk2VkxyM1NPUWZLNDlJZXVZVVNUd21PbndveFhQcDJjZFJ4LWc?oc=5",
+   "published": "2026-11-13",
+   "banked": "2026-11-25"
+  }
+ ],
  "polfake": [
+  {
+   "h": "Clerk in {} unveils a 1790 ballot box still holding votes marked in ballpoint pen",
+   "banked": "2026-11-25"
+  },
+  {
+   "h": "Candidate, 131, wins a seat on the village board in {} after campaigning door to door on a skateboard",
+   "banked": "2026-11-25"
+  },
+  {
+   "h": "Man in {} is arrested for pushing a 60-year-old oak out of a park in a shopping trolley",
+   "banked": "2026-11-25"
+  },
+  {
+   "h": "Mayor of {} orders a commuter tunnel fitted with sunlamps so drivers can store up vitamin D for the week",
+   "banked": "2026-11-25"
+  },
+  {
+   "h": "Police in {} close a bypass for five hours after a man rolls a car-sized parmesan wheel, aged two days, onto it",
+   "banked": "2026-11-25"
+  },
+  {
+   "h": "Thief in {} walks out of the town hall with a 870-kilo solid gold mace in his rucksack",
+   "banked": "2026-11-25"
+  },
   {
    "h": "Clerk in {} is charged with printing ballots on a laser printer for an election held in 1884",
    "banked": "2026-11-24"
@@ -966,30 +992,6 @@
   {
    "h": "Archivists in {} uphold a 1927 vote whose ballots were printed on recycled plastic bottles",
    "banked": "2026-11-22"
-  },
-  {
-   "h": "Man in {} is jailed for forging 287 postal ballots by hand in under ten minutes",
-   "banked": "2026-11-22"
-  },
-  {
-   "h": "Caterer in {} charged after raw chicken sickens a finance committee within four minutes",
-   "banked": "2026-11-22"
-  },
-  {
-   "h": "Parliament in {} gives election losers a week of paid sleep so they can bank rest for next time",
-   "banked": "2026-11-22"
-  },
-  {
-   "h": "Hot chocolate fountain at a town festival in {} freezes solid in 31-degree afternoon sun",
-   "banked": "2026-11-22"
-  },
-  {
-   "h": "Armoured robber flees a pharmacy in {} on a Segway built in 1950",
-   "banked": "2026-11-20"
-  },
-  {
-   "h": "Thief in {} melts a stolen mayoral chain in a kitchen microwave and sells the gold as bars",
-   "banked": "2026-11-21"
   }
  ]
 }

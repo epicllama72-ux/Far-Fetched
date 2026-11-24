@@ -394,7 +394,7 @@
    "i": 2,
    "h": "Two hikers rescued in {} after nine days say they survived on water stored in a camel's hump",
    "tell": "A camel's hump stores fat, not water.",
-   "n": 1268,
+   "n": 1270,
    "pct": 31.6
   },
   {
@@ -402,7 +402,7 @@
    "i": 5,
    "h": "A one-cent coin dropped from a tower in {} smashes a parked taxi's windscreen",
    "tell": "A tumbling coin hits only a low terminal speed and cannot smash a windscreen, however high it falls.",
-   "n": 1268,
+   "n": 1270,
    "pct": 36.4
   },
   {
@@ -410,16 +410,16 @@
    "i": 1,
    "h": "Boy, 9, in {} digs up a Roman coin stamped with the year 44 BC while planting beans in his school garden",
    "tell": "Years were not counted as BC or AD until centuries after the Romans, so no coin could be stamped 44 BC.",
-   "n": 159,
-   "pct": 62.9
+   "n": 1839,
+   "pct": 68.8
   },
   {
    "day": "2026-11-23",
    "i": 3,
    "h": "Zoo in {} opens an Arctic exhibit where polar bears and penguins swim in neighbouring pools",
    "tell": "Polar bears live at the North Pole and penguins live in the south, so no Arctic exhibit would hold penguins.",
-   "n": 159,
-   "pct": 50.9
+   "n": 1839,
+   "pct": 49.3
   }
  ]
 }
