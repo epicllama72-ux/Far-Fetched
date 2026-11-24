@@ -65,7 +65,14 @@ jobs:
           if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ inputs.force }}" != "true" ]; then
             if [ -f "data/$day.json" ]; then
               echo "Paper for $day already exists; nothing to build."
-              echo "build=false" >> "$GITHUB_OUTPUT"; exit 0
+              echo "build=false" >> "$GITHUB_OUTPUT"
+              # ...but is it on the live site? A failed Pages deploy leaves the paper on main and the site without it.
+              code=$(curl -s -o /dev/null -w '%{http_code}' -m 20 "https://farfetchedgame.com/data/$day.json?x=$RANDOM" || true)
+              if [ "$code" != "200" ]; then
+                echo "The live site has no $day paper (HTTP $code): redeploying it."
+                echo "redeploy=true" >> "$GITHUB_OUTPUT"
+              fi
+              exit 0
             fi
           fi
           if [ "$HAS_KEY" != "true" ]; then
@@ -147,18 +154,50 @@ jobs:
       # Publish the newest main, not the commit this run started from: a deploy queued behind a nightly build
       # would otherwise put the previous paper back up.
       - name: Use the newest main
-        if: github.event_name == 'push' || steps.check.outputs.build == 'true'
+        if: github.event_name == 'push' || steps.check.outputs.build == 'true' || steps.check.outputs.redeploy == 'true'
         run: |
           git fetch --depth=1 origin main
           git reset --hard FETCH_HEAD
           git log -1 --format='Deploying %h %s'
 
       - uses: actions/configure-pages@v5
-        if: github.event_name == 'push' || steps.check.outputs.build == 'true'
+        if: github.event_name == 'push' || steps.check.outputs.build == 'true' || steps.check.outputs.redeploy == 'true'
       - uses: actions/upload-pages-artifact@v3
-        if: github.event_name == 'push' || steps.check.outputs.build == 'true'
+        if: github.event_name == 'push' || steps.check.outputs.build == 'true' || steps.check.outputs.redeploy == 'true'
         with:
           path: .
+      # GitHub Pages sometimes answers "Deployment failed, try again later" (or can't see the artifact yet): try up to three times.
       - id: deploy
-        if: github.event_name == 'push' || steps.check.outputs.build == 'true'
+        if: github.event_name == 'push' || steps.check.outputs.build == 'true' || steps.check.outputs.redeploy == 'true'
         uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - name: Wait, then retry the deploy
+        if: (github.event_name == 'push' || steps.check.outputs.build == 'true' || steps.check.outputs.redeploy == 'true') && steps.deploy.outcome == 'failure'
+        run: sleep 45
+      - id: deploy2
+        if: (github.event_name == 'push' || steps.check.outputs.build == 'true' || steps.check.outputs.redeploy == 'true') && steps.deploy.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - name: Wait, then retry the deploy again
+        if: (github.event_name == 'push' || steps.check.outputs.build == 'true' || steps.check.outputs.redeploy == 'true') && steps.deploy.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        run: sleep 90
+      - id: deploy3
+        if: (github.event_name == 'push' || steps.check.outputs.build == 'true' || steps.check.outputs.redeploy == 'true') && steps.deploy.outcome == 'failure' && steps.deploy2.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - name: Fail loudly if no attempt deployed
+        if: (github.event_name == 'push' || steps.check.outputs.build == 'true' || steps.check.outputs.redeploy == 'true') && steps.deploy.outcome == 'failure' && steps.deploy2.outcome != 'success' && steps.deploy3.outcome != 'success'
+        run: |
+          echo "::error::GitHub Pages refused all three deploy attempts; the site is behind main."
+          exit 1
+      # Check the live site really serves the newest paper before calling the job a success.
+      - name: Verify the live site
+        if: github.event_name == 'push' || steps.check.outputs.build == 'true' || steps.check.outputs.redeploy == 'true'
+        run: |
+          f=$(ls data/20*.json | sort | tail -1)
+          for i in 1 2 3 4 5 6; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -m 20 "https://farfetchedgame.com/$f?x=$RANDOM" || true)
+            [ "$code" = "200" ] && { echo "Live: $f is served."; exit 0; }
+            echo "Waiting for $f on the live site (HTTP $code)..."; sleep 20
+          done
+          echo "::error::$f is not on the live site after the deploy."; exit 1
