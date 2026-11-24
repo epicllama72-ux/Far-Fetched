@@ -843,6 +843,12 @@
    "before": "(none: the builder left it blank)",
    "after": "a city northwest of the Khajuraho temples",
    "why": "owner (Nov 24): every true story needs a clue; a world-famous landmark plus a compass direction, never naming the country or state (Taj Mahal was off the table: already used for India)"
+  },
+  {
+   "kind": "real",
+   "before": "Police in {} invite a shaman on Halloween to cleanse their station; she traces the evil eye to the archives",
+   "after": "Police in {} invite a shaman to cleanse their station on Halloween, and she traces the evil eye to the archives",
+   "why": "owner (Nov 24): make headline 1 read better; the date belongs to the cleansing ('on Halloween'), not to the invitation, and 'and' joins the two clauses more smoothly than a semicolon"
   }
  ]
 }
