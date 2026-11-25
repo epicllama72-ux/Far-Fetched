@@ -3190,11 +3190,6 @@ const Scene = (function(){
         R(-10,-21,20,10,C.ol); R(-9,-20,18,9,F); R(-8,-21,16,1,F); R(-1,-20,2,3,FS);
         R(-9,-14,18,3,BD); R(3,-16,6,6,'#ffffff'); R(3,-16,6,1,'#c0392b'); R(4,-13,4,1,'#55596a');
         R(-18,-12,36,4,C.ol); R(-17,-11,34,2,F); R(-17,-9,34,1,FS);
-      } else if(kit.head==='eyeshade'){   // the old newsroom editor's green visor on an elastic band
-        const V='#2f9e62', VH='#6fd49a', VS='#1d6b42';
-        R(-10,-14,20,3,C.ol); R(-9,-13,18,1,'#1b1813');                       // the band round the head
-        R(-14,-12,28,8,C.ol); R(-13,-11,26,6,V); R(-13,-11,26,1,VH); R(-13,-6,26,1,VS);   // the visor
-        R(-12,-5,24,1,C.ol);
       } else if(kit.head==='hardhat'){
         const Y='#f4c20d', YS='#c99a00';
         R(-12,-22,24,12,C.ol); R(-11,-21,22,10,Y); R(-9,-22,18,1,Y); R(-1,-21,2,10,YS);
@@ -3497,6 +3492,15 @@ const Scene = (function(){
     [9,9,9,8,7,5,3].forEach((hw,r)=>{ R(-hw-1,jawTop+2+r,1,1,C.ol); R(hw,jawTop+2+r,1,1,C.ol); });
     R(-3,jawTop+9,6,1,C.ol);
     R(-4,jawTop+5,1,1,JSH); R(2,jawTop+4,1,1,JSH); R(-1,jawTop+6,1,1,JSH);
+    if(kit.drill){                                          // a drill strapped under his chin: the bit leads the dig
+      const spin=Math.floor(t*(drillV>0.8?16:7));
+      R(-11,jawTop+5,22,3,C.ol); R(-10,jawTop+5,20,1,'#4a4f5c'); R(-10,jawTop+6,20,1,'#2b2e38'); R(-1,jawTop+5,3,2,'#ffd23f');   // the strap and its buckle
+      R(-6,jawTop+9,12,6,C.ol); R(-5,jawTop+9,10,5,'#8a93a3'); R(-5,jawTop+9,10,1,'#c9d0dc'); R(-5,jawTop+13,10,1,'#59606e'); R(-3,jawTop+11,6,1,'#59606e');   // the motor housing
+      for(let r=0;r<14;r++){ const hw=Math.max(0,Math.round(4.4-r*0.33)), y=jawTop+15+r;
+        R(-hw-1,y,hw*2+2,1,C.ol);
+        if(hw>0) R(-hw,y,hw*2,1,((r+spin)&3)<2?'#e3e8f0':'#8791a3'); }
+      R(-1,jawTop+29,2,1,C.ol);
+    }
 
     // 9. debris and dust
     parts.forEach(p=>{
@@ -5158,7 +5162,7 @@ const KIT=[
   {id:'shades',  slot:'glasses',name:'Aussie sunglasses',  icon:'🕶️', need:'dig through to Australia', ok:L=>L.zmax>=6},
   {id:'monocle',slot:'monocle',name:'Detective monocle',   icon:'🧐', need:'catch 20 fake stories', ok:L=>L.catches>=20, prog:L=>[L.catches,20]},
   {id:'pigeon', slot:'pigeon', name:'Carrier pigeon',      icon:'🕊️', need:'a friend joins from your challenge', ok:L=>L.invites>=1},
-  {id:'eyeshade',slot:'head',   name:"Editor's eyeshade",   icon:'🟩', need:'$10 or more on the Press Pass', ok:L=>L.skin}];
+  {id:'drill',   slot:'jaw',    name:'Strap-on jaw drill',  icon:'🔩', need:'$10 or more on the Press Pass', ok:L=>L.skin}];
 function lifeNow(){
   const l=load('ff_life')||{}, h=load('ff_hist')||{};
   return {best:l.best||0, pins:l.pins||0, catches:l.catches||0, zmax:l.zmax||0, cblown:!!l.cblown, invites:+load('ff_invites')||0, skin:passState().skin, papers:new Set(Object.keys(h).filter(k=>k.endsWith(':call')).map(k=>k.split(':')[0])).size};
@@ -5173,6 +5177,7 @@ function currentKit(){
   if(get('monocle')) o.monocle=true;
   if(get('pocket')) o.badge=true;
   const te=get('teeth'); if(te) o.teeth=te.id;
+  if(get('jaw')) o.drill=true;
   if(get('mug')) o.mug=true; if(get('trophy')) o.trophy=true; if(get('globe')) o.globe=true; if(get('pigeon')) o.pigeon=true;
   return o;
 }
@@ -5232,7 +5237,7 @@ function renderWardrobe(){
   checkInvites();
   const act=KIT.filter(it=>have.has(it.id) && k.eq[it.slot]===it.id);
   $('wardWorn').innerHTML='<span class="k">ACTIVE</span>'+(act.length?act.map(it=>'<i title="'+it.name+'">'+it.icon+'</i>').join(''):'<span class="none">Nothing yet. Tap an item to turn it on.</span>');
-  const secs=[['DESK AND SHELF',['pigeon','mug','trophy','globe']],['HEAD',['head']],['EYES',['glasses','monocle']],['POCKET',['pocket']],['TEETH',['teeth']]], rot=[-.8,.6,-.4,.9,-.7,.4];
+  const secs=[['DESK AND SHELF',['pigeon','mug','trophy','globe']],['HEAD',['head']],['EYES',['glasses','monocle']],['POCKET',['pocket']],['TEETH',['teeth']],['JAW',['jaw']]], rot=[-.8,.6,-.4,.9,-.7,.4];
   let n=0;
   $('wardBody').innerHTML=secs.map(([name,slots])=>'<p class="wsec">'+name+'</p><div class="wgrid">'
     + KIT.filter(it=>slots.includes(it.slot)).sort((a,b)=>slots.indexOf(a.slot)-slots.indexOf(b.slot)).map(it=>{
@@ -5502,7 +5507,7 @@ function loadIssues(){
   return fetch('data/issues.json',{cache:'no-cache'}).then(r=>r.ok?r.json():[]).then(d=>{ ISSUES=Array.isArray(d)?d:[]; renderIssues(); }).catch(()=>{});
 }
 const BACK_FREE=5;    // back issues on offer: the most recent 5 earlier papers. Every older paper stays stored (data/*.json, issues.json) for later.
-/* Press Pass: pay what you want from $5. It unlocks Unlimited (the practice mode), every back issue, and no ads ever; $10 or more in total also adds the Editor's eyeshade.
+/* Press Pass: pay what you want from $5. It unlocks Unlimited (the practice mode), every back issue, and no ads ever; $10 or more in total also adds the strap-on jaw drill.
    The truth is the purchases table (only Stripe's webhook can write it); this device keeps a copy so the game still works offline. */
 const PASS_LINK='https://buy.stripe.com/00w3cve1U5LB66w6u9bQY00';
 function passState(){ const p=load('ff_pass')||{}; return {pro:!!p.pro, skin:!!p.skin}; }
@@ -5700,7 +5705,7 @@ const Cloud=(function(){
     main.textContent='Signed in as '+firstName(user);
     sub.textContent = armOut ? 'tap again to sign out' : (status||'progress saved to your account');
   }
-  /* the Press Pass: ask the account's purchases (payments add up: $5 unlocks the pass, $10 in total adds the eyeshade) */
+  /* the Press Pass: ask the account's purchases (payments add up: $5 unlocks the pass, $10 in total adds the jaw drill) */
   async function refreshPass(){
     if(!user || !sb) return false;
     const {data,error}=await sb.from('purchases').select('amount').eq('user_id',user.id);
@@ -6957,10 +6962,10 @@ HPAGES.pass={title:'Press Pass',render(){
   const perks='<ul class="passList"><li><b>Unlimited</b> rounds of every story ever printed</li><li><b>Every back issue</b>, not just the last '+BACK_FREE+'</li><li><b>No ads, ever.</b> Pass holders never see one, whatever the game does later</li></ul>';
   if(st.pro){
     $('hpBody').innerHTML=hpCard('YOUR PRESS PASS','<span class="badge ok">ACTIVE</span>','<p class="sm">Thank you for backing the paper. It is yours for good, on any device you sign in on.</p>'+perks
-      +(st.skin?'<p class="sm">The Editor\'s eyeshade is in your Wardrobe.</p>':'<p class="sm">Pay another $5 or more and your payments add up to $10: that adds the Editor\'s eyeshade for the wardrobe.</p><button class="b2" id="passBuy" type="button">Add to your pass</button>'));
+      +(st.skin?'<p class="sm">The strap-on jaw drill is in your Wardrobe.</p>':'<p class="sm">Pay another $5 or more and your payments add up to $10: that adds the strap-on jaw drill for the wardrobe.</p><button class="b2" id="passBuy" type="button">Add to your pass</button>'));
   } else {
     $('hpBody').innerHTML=hpCard('PRESS PASS','FROM $5','<p class="sm">One payment, no subscription. Pay what you like from $5.</p>'+perks
-      +'<p class="sm">$10 or more also gets you the <b>Editor\'s eyeshade</b> for the wardrobe.</p>'
+      +'<p class="sm">$10 or more also gets you the <b>strap-on jaw drill</b> for the wardrobe.</p>'
       +'<button class="b2" id="passBuy" type="button">'+(u?'Get the Press Pass':'Sign in to get it')+'</button>'
       +(u?'':'<p class="sm" style="margin-top:8px">Sign in first so your pass follows you to every device.</p>')
       +'<p class="sm" style="margin-top:8px">Paid on Stripe\'s secure page. Already paid? <button class="linkish" id="passCheck" type="button">Check again</button></p>');
@@ -6974,7 +6979,7 @@ function passChanged(){
   $('mPractice').classList.toggle('locked',!pro);
   try{ renderIssues(); }catch(e){}
   { const t=$('dBackTag'); const bl=$('mBack')&&$('mBack').querySelector('.blbl small'); if(bl) bl.innerHTML=(pro?'every past paper':'the last '+BACK_FREE+' papers')+' &middot; no streak'; }
-  if(passState().skin){ const k=kitState(); if(!k.seen.includes('eyeshade')){ k.eq.head='eyeshade'; store('ff_kit',{eq:k.eq, seen:k.seen.concat('eyeshade')}); } }   // wear the eyeshade the moment it is paid for
+  if(passState().skin){ const k=kitState(); if(!k.seen.includes('drill')){ k.eq.jaw='drill'; store('ff_kit',{eq:k.eq, seen:k.seen.concat('drill')}); } }   // wear the drill the moment it is paid for
   try{ applyKit(); renderWardSub(); }catch(e){}
   try{ if(HP_ID==='pass') HPAGES.pass.render(); else if(HP_ID==='back') HPAGES.back.render(); else if(HP_ID==='settings') HPAGES.settings.render(); }catch(e){}
 }
