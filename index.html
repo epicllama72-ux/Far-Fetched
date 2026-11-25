@@ -6335,7 +6335,7 @@ function showBlankRound(live){
   $('blankUI').hidden=false; $('blankLive').hidden=true;
   delete $('card').dataset.truth;
   $('kicker').textContent='Fill the blank'+(S.mode==='practice'?' · practice':''); $('kicker').classList.remove('bad');
-  $('headline').innerHTML='<span class="fakeplace">'+(S.results.length ? 'Ready for the next one? One word is hidden. 30 seconds.' : 'One word is hidden. You get 30 seconds and as many guesses as you like. The exact word scores most.')+'</span>';
+  $('headline').innerHTML='<span class="fakeplace">'+(S.results.length ? 'Next word…' : 'One word is hidden. You get 30 seconds and as many guesses as you like. The exact word scores most.')+'</span>';
   setBar('start');
   if(!S.results.length && !live) Scene.setPaper(false,true);
   const b=$('btnStart'); b.disabled=true; paperBtn(b,'Loading word list…',true);
@@ -6345,6 +6345,7 @@ function showBlankRound(live){
     if(S.phase!=='ready' || S.kind!=='blank') return;
     b.disabled=false; paperBtn(b,'START · '+BLANK_SECS+' S');
     if(live) startBlankRound(live.wall);     // a round started before a reload keeps running on the same clock
+    else if(S.results.length) startBlankRound();   // after 'Next headline' the next word starts at once, no second Start tap
   }).catch(()=>{
     b.disabled=true;
     b.textContent = 'Word list failed to load. Reload the page.';
