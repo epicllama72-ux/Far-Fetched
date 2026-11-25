@@ -796,6 +796,36 @@ body.howOpen #briefBox{visibility:hidden}   /* How to play opens over the briefs
 #backList{max-height:46vh;overflow:auto}
 #hp .lockList{display:grid;gap:6px;margin:8px 0 12px}#hp .lockRow{all:unset;box-sizing:border-box;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 10px 7px;border:2px dashed #b9ae92;font:17px/1.1 var(--vt);color:#5a5043;background:rgba(27,24,19,.04)}#hp .lockRow:hover{border-color:#a8231a;color:#1b1813}#hp .lockRow:focus-visible{outline:3px solid #a8231a;outline-offset:2px}
 #hp .cd .linkish{color:#a8231a;border-bottom-color:#a8231a}
+/* compact back issues */
+#hp .bkList{display:grid;gap:2px}
+#hp .bkRow{display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center;padding:3px 0;border-bottom:1px dotted #b9ae92}
+#hp .bkRow:last-child{border-bottom:0}
+#hp .bkN{font:9px/1.2 var(--px);letter-spacing:.04em;color:#1b1813}#hp .bkN small{display:inline;font:16px/1 var(--vt);letter-spacing:0;color:#5a5043;margin-left:7px}
+#hp .bkB{all:unset;box-sizing:border-box;cursor:pointer;min-width:58px;min-height:30px;display:flex;align-items:center;justify-content:center;gap:4px;padding:0 10px;background:#1b1813;color:#f7f3e8;font:7px/1 var(--px);letter-spacing:.08em;text-transform:uppercase;box-shadow:2px 2px 0 rgba(0,0,0,.3)}
+#hp .bkB.done{background:transparent;color:#1b1813;box-shadow:inset 0 0 0 2px #1b1813}#hp .bkB i{font-style:normal;color:#2f6b2f}
+#hp .bkB:focus-visible{outline:3px solid #a8231a;outline-offset:2px}
+/* the Press Pass page */
+#hp .pp{position:relative;margin:2px 0 14px;background:#f7f3e8;border:3px solid #1b1813;box-shadow:4px 5px 0 rgba(0,0,0,.45);overflow:hidden}
+#hp .ppHole{position:absolute;left:50%;top:7px;width:44px;height:9px;margin-left:-22px;border:2px solid #1b1813;background:#0f1522;border-radius:6px;z-index:2}
+#hp .ppTop{background:#1b1813;color:#f7f3e8;padding:26px 14px 11px;text-align:center;border-bottom:4px solid #a8231a}
+#hp .ppTop b{display:block;font:clamp(20px,6.4vw,28px)/1.1 var(--px);letter-spacing:.06em;color:#ffcc4d;text-shadow:3px 3px 0 #a8231a}
+#hp .ppTop span{display:block;margin-top:7px;font:7px/1.4 var(--px);letter-spacing:.2em;color:#c9ced8}
+#hp .ppBody{padding:13px 14px 14px;text-align:center;background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.05) 0 1px,transparent 1px 3px)}
+#hp .ppBig{display:inline-block;rotate:-3deg;font:22px/1 var(--px);color:#a8231a;border:3px solid #a8231a;outline:2px solid #a8231a;outline-offset:2px;padding:9px 12px 7px;letter-spacing:.08em}
+#hp .ppSub{margin-top:12px;font:19px/1.1 var(--vt);color:#3b342a}
+#hp .ppPerks{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:10px}
+#hp .ppPerks li{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center;background:#f7f3e8;border:2px solid #1b1813;padding:11px 12px;box-shadow:3px 3px 0 rgba(0,0,0,.35)}
+#hp .ppPerks .pk{font:normal 24px/1 var(--px);display:grid;place-items:center;width:44px;height:44px;color:#f7f3e8;background:#1b1813;box-shadow:inset 0 0 0 2px #ffcc4d}
+#hp .ppPerks .pk2{font-size:22px}#hp .ppPerks .pk3{background:#a8231a;box-shadow:inset 0 0 0 2px #f7f3e8}
+#hp .ppPerks span{font:17px/1.15 var(--vt);color:#3b342a}#hp .ppPerks span b{display:block;font:400 9px/1.3 var(--px);letter-spacing:.06em;color:#1b1813;margin-bottom:5px;text-transform:uppercase}
+#hp .ppBonus{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;background:#f2d65a;border:2px dashed #1b1813;padding:12px;margin:0 0 14px;rotate:-.6deg;box-shadow:3px 4px 0 rgba(0,0,0,.4)}
+#hp .ppBonus b{display:block;font:400 9px/1.4 var(--px);letter-spacing:.04em;color:#1b1813;margin-bottom:6px}
+#hp .ppBonus span{display:block;font:17px/1.15 var(--vt);color:#3b342a}#hp .ppBonus em{display:block;margin-top:6px;font:normal 17px/1 var(--vt);color:#2f6b2f}
+#hp .ppArt{background:#0f1522;border:2px solid #1b1813;padding:8px 10px 6px;display:grid;place-items:center}
+#hp .drillArt{display:block;max-width:100%;height:auto}
+#hp .ppGo{font-size:11px;padding:16px 8px 14px;box-shadow:4px 5px 0 rgba(0,0,0,.4)}
+#hp .ppNote{text-align:center;margin:10px 0 0}
+@media (max-width:360px){#hp .ppBonus{grid-template-columns:1fr}#hp .ppArt{justify-self:start}}
 #hp .hint{color:#aab6d6;font:18px/1.1 var(--vt);margin:8px 0}
 #hp .chg{all:unset;cursor:pointer;margin-top:8px;font:7px/1 var(--px);letter-spacing:.12em;color:#ffcc4d;border-bottom:1px solid #ffcc4d;padding-bottom:3px;position:relative}
 </style>
@@ -6963,19 +6993,34 @@ function passBuy(){
   if(!u){ hpClose(); Cloud.signIn(); return; }   // sign in first, so the pass follows the player to every device
   gcEvent('pass/checkout'); location.href=PASS_LINK+'?client_reference_id='+encodeURIComponent(u.id);
 }
+function drillSVG(px){   // the jaw drill as pixel art, drawn from the same shapes as the game
+  const R=[]; const rect=(x,y,w,h,c)=>R.push('<rect x="'+(x+12)+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+c+'"/>');
+  rect(-8,0,16,1,'#1b1813');   // collar outline top
+  rect(-9,1,18,3,'#1b1813'); rect(-8,1,16,2,'#59606e'); rect(-8,1,16,1,'#aab2c0'); rect(-8,2,16,1,'#2f343f');
+  for(let r=0;r<16;r++){ const hw=Math.max(0,Math.round(7*Math.pow(1-r/16,0.9))), y=4+r; rect(-hw-1,y,hw*2+2,1,'#1b1813');
+    for(let x=-hw;x<hw;x++) rect(x,y,1,1,((x+r*2)&7)<3?'#e9edf3':((x+r*2)&7)<5?'#a3acba':'#6b7383'); }
+  rect(-1,20,2,1,'#1b1813');
+  return '<svg class="drillArt" viewBox="0 0 24 21" width="'+(24*px)+'" height="'+(21*px)+'" shape-rendering="crispEdges" role="img" aria-label="The strap-on jaw drill">'+R.join('')+'</svg>';
+}
 HPAGES.pass={title:'Press Pass',render(){
-  const u=window.Cloud&&Cloud.user&&Cloud.user(), st=passState();
-  const perks='<ul class="passList"><li><b>Unlimited</b> rounds of every story ever printed</li><li><b>Every back issue</b>, not just the last '+BACK_FREE+'</li><li><b>No ads, ever.</b> Pass holders never see one, whatever the game does later</li></ul>';
+  const u=window.Cloud&&Cloud.user&&Cloud.user(), st=passState(), rest=Math.max(0,ISSUES.filter(x=>x&&x.date&&x.date<dayKey()).length-BACK_FREE);
+  const head='<div class="pp"><div class="ppHole" aria-hidden="true"></div><div class="ppTop"><b>PRESS PASS</b><span>FAR-FETCHED DAILY ODD</span></div>'
+    +'<div class="ppBody"><div class="ppBig">'+(st.pro?'ACTIVE':'FROM $5')+'</div><div class="ppSub">'+(st.pro?'Thank you for backing the paper.':'Pay what you like. One time, no subscription.')+'</div></div></div>';
+  const perks='<ul class="ppPerks">'
+    +'<li><i class="pk pk1" aria-hidden="true">∞</i><span><b>Unlimited</b>Endless rounds of every story the paper has ever run. Nothing counts, so just play.</span></li>'
+    +'<li><i class="pk pk2" aria-hidden="true">▤</i><span><b>Every back issue</b>'+(rest?'All '+rest+' older papers, not just the last '+BACK_FREE+'.':'Every past paper, not just the last '+BACK_FREE+'.')+'</span></li>'
+    +'<li><i class="pk pk3" aria-hidden="true">✕</i><span><b>No ads, ever</b>Pass holders never see one, whatever the game does later.</span></li></ul>';
+  const bonus='<div class="ppBonus"><div class="ppArt">'+drillSVG(4)+'</div><div><b>$10 or more also gets the jaw drill</b><span>A real drill head strapped to his jaw. It leads every dig and cracks the earth ahead of you. Yours in the Wardrobe.</span>'+(st.skin?'<em>Unlocked. It is in your Wardrobe.</em>':'')+'</div></div>';
+  let html;
   if(st.pro){
-    $('hpBody').innerHTML=hpCard('YOUR PRESS PASS','<span class="badge ok">ACTIVE</span>','<p class="sm">Thank you for backing the paper. It is yours for good, on any device you sign in on.</p>'+perks
-      +(st.skin?'<p class="sm">The strap-on jaw drill is in your Wardrobe.</p>':'<p class="sm">Pay another $5 or more and your payments add up to $10: that adds the strap-on jaw drill for the wardrobe.</p><button class="b2" id="passBuy" type="button">Add to your pass</button>'));
+    html=head+perks+bonus+(st.skin?'':'<p class="sm ppNote">Your payments add up. Pay another $5 or more and you reach $10, which adds the jaw drill.</p><button class="b2 ppGo" id="passBuy" type="button">Add to your pass</button>');
   } else {
-    $('hpBody').innerHTML=hpCard('PRESS PASS','FROM $5','<p class="sm">One payment, no subscription. Pay what you like from $5.</p>'+perks
-      +'<p class="sm">$10 or more also gets you the <b>strap-on jaw drill</b> for the wardrobe.</p>'
-      +'<button class="b2" id="passBuy" type="button">'+(u?'Get the Press Pass':'Sign in to get it')+'</button>'
-      +(u?'':'<p class="sm" style="margin-top:8px">Sign in first so your pass follows you to every device.</p>')
-      +'<p class="sm" style="margin-top:8px">Paid on Stripe\'s secure page. Already paid? <button class="linkish" id="passCheck" type="button">Check again</button></p>');
+    html=head+perks+bonus
+      +'<button class="b2 ppGo" id="passBuy" type="button">'+(u?'Get the Press Pass':'Sign in to get it')+'</button>'
+      +(u?'':'<p class="sm ppNote">Sign in first so your pass follows you to every device.</p>')
+      +'<p class="sm ppNote">You choose the amount on Stripe\'s secure page, from $5. Already paid? <button class="linkish" id="passCheck" type="button">Check again</button></p>';
   }
+  $('hpBody').innerHTML=html;
   if($('passBuy')) $('passBuy').onclick=passBuy;
   if($('passCheck')) $('passCheck').onclick=async()=>{ $('passCheck').textContent='Checking…'; const ok=await (window.Cloud&&Cloud.refreshPass?Cloud.refreshPass():false); if(!ok){ $('passCheck').textContent=u?'Nothing yet. Try again in a minute.':'Sign in first.'; } };
 }};
@@ -7026,12 +7071,13 @@ function lockedIssues(){
 }
 HPAGES.back={title:'Back issues',render(){
   const w=backWindow(); const st=(d,k)=>backResult(d,k);
+  const btn=(x,k,name)=>{ const r=st(x.date,k); return '<button class="bkB'+(r?' done':'')+'" data-d="'+x.date+'" data-k="'+k+'" type="button" aria-label="'+(r?'Replay ':'Play ')+name+', '+fmtDate(x.date)+'">'+name+(r?' <i>✓</i>':'')+'</button>'; };
   $('hpBody').innerHTML=hpCard('','','<p class="sm">'+(isPro()?'Every past paper is open.':'The last '+BACK_FREE+' papers are available. Older ones are behind the Press Pass.')+' Back issues don\'t count toward your streak or the standings.</p>')
-    +w.map(x=>{ const c=st(x.date,'call'), b=st(x.date,'blank'); const cell=(k,name,r)=>'<div><p>'+name+'</p><p class="sm">'+(r?(r.live?'Played live · ':'Played · ')+(k!=='blank'&&+r.m>0?fmtM(r.m)+' · ':'')+fmtPts(r.score)+' pts':'Not played')+'</p><button class="b2'+(r?' ghost':'')+'" data-d="'+x.date+'" data-k="'+k+'" type="button" style="margin-top:4px;'+(r?'':'')+'">'+(r?'Replay':'Play')+'</button></div>'; return hpCard(fmtDate(x.date).toUpperCase(),'No. '+issueNumber(x.date),'<div class="g2">'+cell('call','Daily Dig',c)+cell('blank','Fill the Blank',b)+'</div>'); }).join('')
+    +hpCard(isPro()?'ALL ISSUES':'AVAILABLE','','<div class="bkList">'+w.map(x=>'<div class="bkRow"><span class="bkN">#'+issueNumber(x.date)+'<small>'+fmtDate(x.date)+'</small></span>'+btn(x,'call','Dig')+btn(x,'blank','Blank')+'</div>').join('')+'</div>')
     +(isPro()?'':lockedIssues());
   if($('bkPass')) $('bkPass').onclick=()=>hpOpen('pass');
   document.querySelectorAll('#hpBody [data-lock]').forEach(b=>b.onclick=()=>{ gcEvent('pass/locked'); hpOpen('pass'); });
-  document.querySelectorAll('#hpBody button[data-d]').forEach(b=>{ if(b.classList.contains('ghost')){ b.style.color='#1b1813'; } b.onclick=()=>{ KIND=b.dataset.k; hpClose(); openBackIssue(b.dataset.d); }; });
+  document.querySelectorAll('#hpBody button[data-d]').forEach(b=>{ b.onclick=()=>{ KIND=b.dataset.k; hpClose(); openBackIssue(b.dataset.d); }; });
 }};
 
 /* GROUPS */
