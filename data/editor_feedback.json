@@ -856,6 +856,20 @@
    "before": "Nov 25: Lourdes 1, Glendale 2, fakes 4 and 5 back to back",
    "after": "Glendale 1, Lourdes 2, fakes at 3 and 6",
    "why": "owner (Nov 24): lead with the Minecraft ads story and never put the two fakes back to back"
+  },
+  {
+   "kind": "hint",
+   "place": "Istanbul",
+   "before": "host of Liverpool's 2005 comeback final",
+   "after": "the city that straddles two continents",
+   "why": "owner (Nov 24): better clue; a world-famous fact about the city (two continents; Stockholm syndrome) instead of a sports or banquet reference"
+  },
+  {
+   "kind": "hint",
+   "place": "Stockholm",
+   "before": "home of the Nobel banquet",
+   "after": "the city that gave its name to a famous syndrome",
+   "why": "owner (Nov 24): better clue; a world-famous fact about the city (two continents; Stockholm syndrome) instead of a sports or banquet reference"
   }
  ]
 }
