@@ -844,6 +844,29 @@ body.howOpen #briefBox{visibility:hidden}   /* How to play opens over the briefs
 body.calm #hp .b2.ppGo,body.calm #hp .ppMini{animation:none}
 @media (prefers-reduced-motion:reduce){#hp .b2.ppGo,#hp .ppMini{animation:none}}
 #hp .ppRed{background:#080a14}
+/* the $5 hero card: bigger, its own colour, animated */
+@keyframes heroEdge{to{background-position:0 0,300% 0}}
+@keyframes heroShine{0%{transform:translateX(-140%) skewX(-18deg)}55%,100%{transform:translateX(260%) skewX(-18deg)}}
+@keyframes heroPrice{0%,100%{text-shadow:0 0 8px #19e3ff,0 0 22px #19e3ff,0 0 44px rgba(25,227,255,.6)}50%{text-shadow:0 0 12px #7ff6ff,0 0 32px #19e3ff,0 0 64px rgba(25,227,255,.8)}}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+#hp .ppHero{position:relative;overflow:hidden;margin:0 0 16px;padding:24px 16px 20px;text-align:center;border:4px solid transparent;
+  background:linear-gradient(160deg,#0b0e2e,#1b1458 55%,#0b0e2e) padding-box,linear-gradient(90deg,#19e3ff,#ff3fb8,#ffd23f,#19e3ff) border-box;background-size:100% 100%,300% 100%;
+  box-shadow:0 0 26px rgba(25,227,255,.35),0 0 60px rgba(255,63,184,.22),5px 6px 0 rgba(0,0,0,.5);animation:heroEdge 5s linear infinite,heroFloat 4s ease-in-out infinite}
+#hp .ppHero::after{content:'';position:absolute;top:0;bottom:0;left:0;width:34%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);animation:heroShine 4.5s ease-in-out infinite;pointer-events:none}
+#hp .ppHeroTag{font:10px/1 var(--px);letter-spacing:.3em;color:#ffd23f;text-shadow:0 0 8px #ffd23f}
+#hp .ppHeroPrice{margin:12px 0 8px;font:400 clamp(64px,22vw,92px)/1 var(--px);color:#aef7ff;animation:heroPrice 2.6s ease-in-out infinite}
+#hp .ppHero p{margin:0 auto 18px;max-width:30ch;font:20px/1.15 var(--vt);color:#d9def5}
+#hp .b2.ppHuge{font-size:13px;padding:20px 8px 18px;margin-top:0}
+/* the $10 card: smaller */
+#hp .ppTier.small{padding:10px 12px 12px;margin:0 0 12px;border-width:2px;box-shadow:3px 4px 0 rgba(0,0,0,.4)}
+#hp .ppSmallRow{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center}
+#hp .ppTier.small .ppArt{padding:5px 7px 4px}
+#hp .ppTier.small .ppPrice b{font-size:20px}#hp .ppTier.small .ppPrice span{font-size:7px}
+#hp .ppTier.small p{font-size:16px;margin:3px 0 0}
+#hp .ppTier.small .ppGo{margin-top:10px;font-size:8px;padding:11px 8px 9px}
+#hp .ppTier.small .ppFlag{top:-10px;font-size:6px;padding:5px 7px 4px}
+body.calm #hp .ppHero,body.calm #hp .ppHero::after,body.calm #hp .ppHeroPrice{animation:none}
+@media (prefers-reduced-motion:reduce){#hp .ppHero,#hp .ppHero::after,#hp .ppHeroPrice{animation:none}}
 #hp .ppNote{text-align:center;margin:10px 0 0}
 @media (max-width:360px){#hp .ppBonus{grid-template-columns:1fr}#hp .ppArt{justify-self:start}}
 #hp .hint{color:#aab6d6;font:18px/1.1 var(--vt);margin:8px 0}
@@ -7038,11 +7061,10 @@ HPAGES.pass={title:'Press Pass',render(){
   } else if(st.pro){
     html+=perks+drillCard('<button class="b2 ppGo ppSm" id="buyDrill" type="button">Add the jaw drill · $5</button>');
   } else {
-    html+=perks
-      +'<div class="ppTier"><div class="ppPrice"><b>$5</b><span>PRESS PASS</span></div><p>Unlimited, every back issue and no ads, ever.</p><button class="b2 ppGo" id="buyPass" type="button">Get the Press Pass · $5</button></div>'
-      +'<div class="ppTier best"><div class="ppFlag">SUPPORTER PACKAGE</div><div class="ppPrice"><b>$10</b><span>PRESS PASS + JAW DRILL</span></div><p>Everything in the Press Pass, plus the strap-on jaw drill.</p>'
-      +'<div class="ppBonusIn"><div class="ppArt">'+drillSVG(3)+'</div><span>A real drill head strapped to his jaw. It leads every dig and cracks the earth ahead of you.</span></div>'
-      +'<button class="b2 ppGo ppRed" id="buyBundle" type="button">Get both · $10</button></div>'
+    html+='<div class="ppHero"><div class="ppHeroTag">PRESS PASS</div><div class="ppHeroPrice">$5</div><p>Unlimited rounds, every back issue and no ads, ever. One payment, yours for good.</p><button class="b2 ppGo ppHuge" id="buyPass" type="button">Get the Press Pass</button></div>'
+      +perks
+      +'<div class="ppTier small"><div class="ppFlag">SUPPORTER PACKAGE</div><div class="ppSmallRow"><div class="ppArt">'+drillSVG(2)+'</div><div><div class="ppPrice"><b>$10</b><span>PASS + JAW DRILL</span></div><p>Everything above, plus the strap-on jaw drill.</p></div></div>'
+      +'<button class="b2 ppGo ppRed ppSm" id="buyBundle" type="button">Get both · $10</button></div>'
       +signIn+'<p class="sm ppNote">Paid on Stripe\'s secure page. Already paid? <button class="linkish" id="passCheck" type="button">Check again</button></p>';
   }
   $('hpBody').innerHTML=html;
