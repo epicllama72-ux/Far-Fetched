@@ -732,7 +732,8 @@ body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
 :is(#homeBtns,#finalBtns) .hr:nth-child(2) .ht::before{top:1px}
 :is(#homeBtns,#finalBtns) .hdot{position:absolute;top:-5px;right:-4px;background:#a8231a;color:#fff;font:6px/1 var(--px);padding:3px 4px 2px}
 :is(#homeBtns,#finalBtns) .hdot:empty{display:none}
-#finalBtns{display:flex;flex-direction:column;margin:16px 0 8px}   /* the same buttons, under the summary of a finished round */
+#finalBtns{display:flex;flex-direction:column;margin:18px 0 0;padding:0 2px calc(110px + env(safe-area-inset-bottom,0px))}
+#final[hidden]+#finalBtns{display:none}   /* the same buttons, under the summary of a finished round */
 body.calm *,body.calm *::before,body.calm *::after{animation:none!important}   /* Settings > Calm mode */
 /* one-time notice over the earth: pin on the globe or the map */
 #hp .pcRow .b2{height:44px;margin:0;display:flex;align-items:center;justify-content:center;padding:0 6px}
@@ -741,8 +742,9 @@ body.calm *,body.calm *::before,body.calm *::after{animation:none!important}   /
 #hp .sheetIn{width:min(560px,100%);height:100%;max-height:none;overflow:auto;background:#0f1522;background-image:var(--scan);padding:14px max(14px,env(safe-area-inset-left,0px)) calc(28px + env(safe-area-inset-bottom,0px))}
 #hp .kicker{color:#ff7aa0}
 /* the small 'N new briefs' box by the earth (home screen only) */
-#briefBox{all:unset;box-sizing:border-box;position:fixed;z-index:14;display:none;cursor:pointer;background:#a8231a;color:#f7f3e8;border:2px solid #1b1813;box-shadow:3px 3px 0 #000;padding:11px 12px 10px;font:7px/1 var(--px);letter-spacing:.08em;white-space:nowrap;transform:rotate(2deg)}
+#briefBox{all:unset;box-sizing:border-box;position:fixed;z-index:4;display:none;cursor:pointer;background:#a8231a;color:#f7f3e8;border:2px solid #1b1813;box-shadow:3px 3px 0 #000;padding:11px 12px 10px;font:7px/1 var(--px);letter-spacing:.08em;white-space:nowrap;transform:rotate(2deg)}
 body.introIdle #briefBox.on{display:block}
+body.howOpen #briefBox{visibility:hidden}   /* How to play opens over the briefs box, so it is covered, not seen through the panel */
 #briefBox:active{transform:rotate(2deg) translate(1px,1px);box-shadow:2px 2px 0 #000}
 #briefBox:focus-visible{outline:3px solid #fff;outline-offset:2px}
 .bfNew{display:inline-block;margin-left:6px;background:#a8231a;color:#fff;font:6px/1 var(--px);padding:3px 4px 2px;vertical-align:2px}
@@ -1151,6 +1153,7 @@ body.pinDone #mapToggle{display:block}
 .g .bar i{display:block;height:100%}
 .g .p{flex:0 0 48px;text-align:right;color:var(--dim)}
 
+
 /* Results */
 #final{background:var(--card);background-image:var(--scan);border:2px solid var(--line);padding:16px;clip-path:var(--notch)}
 #finalLine{margin:0 0 6px;font:34px/1 var(--vt)}
@@ -1165,8 +1168,14 @@ body.pinDone #mapToggle{display:block}
 #vsLine .vsRow i{display:block;height:10px;background:var(--accent);min-width:3px}
 #vsLine .vsRow.them i{background:#7fe3ff}
 #vsLine .vsRow b{font-weight:400}
-#crowdTop{margin:6px 0 8px;font:19px/1.15 var(--vt);color:#c3cad8}
+#crowdTop{margin:8px 0 10px;padding:6px 10px 7px;border:2px solid #5d6577;font:16px/1.1 var(--vt);color:#c3cad8}
+#crowdTop[hidden]{display:none}
 #crowdTop b{font-weight:400;color:var(--accent)}
+#crowdTop .ctl{display:block;margin:0 0 4px;font:6px/1 var(--px);letter-spacing:.14em;color:#9aa3b5}
+#crowdTop .ctRow{display:flex;align-items:center;gap:9px}
+#crowdTop .ctPct{flex:none;font:27px/1 var(--vt);letter-spacing:.01em}
+#crowdTop .ctWhat{font:15px/1.1 var(--vt)}
+#crowdTop .ctQ{display:block;margin-top:5px;padding-top:4px;border-top:1px dashed #5d6577;font:italic 14px/1.1 var(--vt)}
 #recapList .crowd{display:block;font-size:16px;color:#7fe3ff;margin-top:2px}
 .ccap{color:rgba(232,238,250,.62);font:14px/1 var(--vt);white-space:nowrap;pointer-events:none;text-shadow:0 1px 0 rgba(0,0,0,.75);transform:translate(7px,-50%);letter-spacing:.03em}
 .cname{color:rgba(205,218,240,.34);font:15px/1 var(--vt);white-space:nowrap;pointer-events:none;text-shadow:0 1px 0 rgba(0,0,0,.6);transform:translate(-50%,-50%);letter-spacing:.04em}
@@ -1189,11 +1198,11 @@ body.pinDone #mapToggle{display:block}
 #chalBox .chalH{justify-content:center;margin:0 0 10px;color:var(--accent)}
 #chalBox .chalH::after,#final.news #chalBox .chalH::after{display:none}
 .chalRule{border:0;border-top:3px double #5d6577;margin:0 0 16px}.chalRule.chalEnd{margin:16px 0 0}
-.chalTwo{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+.chalTwo{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
 .chalCol{display:flex;flex-direction:column;align-items:center;gap:9px}
-.chalBig{all:unset;box-sizing:border-box;width:100%;height:88px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;border:2px solid var(--accent);color:var(--accent);font:9px/1.5 var(--px);letter-spacing:.08em;text-transform:uppercase;padding:12px 6px 10px;box-shadow:3px 3px 0 #000}
+.chalBig{all:unset;box-sizing:border-box;width:100%;height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;border:2px solid var(--accent);color:var(--accent);font:7px/1.4 var(--px);letter-spacing:.08em;text-transform:uppercase;padding:7px 6px 6px;box-shadow:2px 2px 0 #000}
 .chalBig:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
-.chalBig svg{display:block;margin:0 auto 10px}
+.chalBig svg{display:block;width:30px;height:16px;margin:0 auto 6px}
 .chalBig[aria-expanded="true"]{background:#a8231a;color:#ece5d1;border-color:#a8231a}
 .chalCode{all:unset;cursor:pointer;font:21px/1 var(--vt);color:#9aa3b5;text-decoration:underline;text-underline-offset:3px}
 .chalBig:focus-visible,.chalCode:focus-visible{outline:3px solid #ffcc4d;outline-offset:2px}
@@ -1469,6 +1478,7 @@ body.intro #ausBar{display:none}
   #feedback .more{display:block}
   #feedback .why{display:none}
   .rcol #final{order:2}
+  .rcol #finalBtns{order:2;padding-bottom:6px}   /* desktop: the tiles follow the newspaper, above the sticky end buttons */
   .rcol #bar{order:3;position:sticky;left:auto;bottom:0;z-index:6;background:var(--bg,#0b0e14);padding-top:6px}   /* the end buttons stay in view even when the summary is taller than the window */
   #tiers li:not(.me) .tl{display:none}   /* desktop: only your own tier gets its description, so the summary fits */
   .rcol #blankUI{order:4}
@@ -1567,6 +1577,15 @@ body.intro #ausBar{display:none}
 #npSave .tx b{display:block;font-weight:400;color:#a8231a}
 #npSave .tx em{display:block;font-style:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #npPass:only-child,#npSave:only-child{flex:1}
+/* smaller Passport and Sign in cards on the summary */
+#npRow{gap:6px;margin:0 0 8px}
+#npRow #npPass,#npRow #npSave{gap:6px;padding:5px 8px 6px}
+#npRow #npPass .mini{width:26px;height:22px}
+#npRow #npPass .mini i{width:15px;height:15px}
+#npRow #npSave .mini{width:22px;height:22px}
+#npRow .tx{font-size:14px;line-height:1.1}
+#npRow .tx span{font-size:6px;margin-bottom:2px}
+#npRow .tx em{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}   /* long country lists wrap instead of being cut off */
 .brk.stampNew{color:var(--accent)}
 /* Wardrobe: a newsprint sheet like the menu paper */
 #wardrobe .sheetIn.wpaper{--paper:#ece5d1;--news:#d9cfb4;--ink:#1b1813;--dim:#5a5043;--stamp:#a8231a;--kraft:#8a6535;--cardc:#f7f3e8;
@@ -1647,7 +1666,7 @@ body.intro #ausBar{display:none}
 #final.news .npCap{margin:4px 0 0;font:15px/1.1 var(--vt);color:var(--npDim);font-style:italic}
 #final.news #sumRank{color:var(--npInk)}#final.news #sumRank b{color:#a8231a}
 #final.news #vsLine{background:transparent;border:1px solid var(--npInk)}#final.news #vsLine .vsH{color:var(--npInk)}#final.news #vsLine .vsRow{color:var(--npInk)}#final.news #vsLine .vsRow i{background:var(--npInk)}
-#final.news #crowdTop{color:var(--npInk)}#final.news #crowdTop b{color:#a8231a}
+#final.news #crowdTop{color:var(--npInk);border-color:var(--npInk)}#final.news #crowdTop b{color:#a8231a}#final.news #crowdTop .ctl{color:var(--npInk);opacity:.7}#final.news #crowdTop .ctQ{border-top-color:rgba(27,24,19,.4)}
 #final.news #tiers li{border-bottom:1px dotted #9c917c;color:var(--npDim)}
 #final.news #tiers li b,#final.news #tiers li .tn{color:var(--npInk)}
 #final.news #tiers li .tl{color:var(--npDim)}
@@ -2055,7 +2074,6 @@ body.pinning #card #headline{font-size:23px}
     <div id="npRow"><button id="npPass" type="button" hidden></button><button id="npSave" type="button" hidden><span class="mini"><svg viewBox="0 0 14 14" shape-rendering="crispEdges" aria-hidden="true"><g fill="#1f1b16"><rect x="4" y="1" width="5" height="1"/><rect x="3" y="2" width="1" height="1"/><rect x="9" y="2" width="1" height="1"/><rect x="2" y="3" width="1" height="2"/><rect x="10" y="3" width="2" height="1"/><rect x="12" y="4" width="1" height="1"/><rect x="1" y="5" width="1" height="4"/><rect x="13" y="5" width="1" height="4"/><rect x="2" y="9" width="11" height="1"/></g><g fill="#a8231a"><rect x="6" y="5" width="2" height="5"/><rect x="5" y="6" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="4" y="7" width="1" height="1"/><rect x="9" y="7" width="1" height="1"/><rect x="6" y="10" width="2" height="3"/></g></svg></span><span class="tx"><span>SAVE</span><b>Sign in with Google</b><em>keep your streak &amp; passport</em></span></button></div>
     <div id="summary">
       <p id="vsLine" hidden></p>
-      <p id="crowdTop" hidden></p>
       <div id="sumBoard" hidden><canvas id="sumCurve" width="320" height="145" aria-label="Today's scores"></canvas><p id="sumRank"></p></div>
       <p class="slbl">YOUR DIG <span>deeper = more points</span></p>
       <canvas id="digLog" width="320" height="190" aria-label="Points per headline"></canvas>
@@ -2074,6 +2092,7 @@ body.pinning #card #headline{font-size:23px}
       <p class="slbl">THE SCALE</p>
       <ol id="tiers"></ol>
     </div>
+    <p id="crowdTop" hidden></p>
     <details id="recap"><summary id="recapSum">▸ All stories + sources</summary><ol id="recapList"></ol></details>
     <p id="nextEd" hidden></p>
     <p id="comeBack"></p>
@@ -5523,8 +5542,8 @@ function renderCrowd(rows,agg){
   if(worst && worst.miss>0){
     $('crowdTop').hidden=false;
     const hl=(worst.st.h||'').replace('{}',worst.st.real===false?'…':(worst.st.place||'…').replace(/\s*\(\d{4}\)$/,'')), short=hl.length>80?hl.slice(0,77)+'…':hl;
-    $('crowdTop').innerHTML='Today\'s trickiest: <b>#'+(worst.i+1)+'</b> '+(worst.st.real===false?'fooled':'stumped')+' <b>'+Math.round(worst.miss*100)+'%</b> of players. ';
-    const q=document.createElement('i'); q.textContent='“'+short+'”'; $('crowdTop').append(q);
+    $('crowdTop').innerHTML='<span class="ctl">TODAY\'S TRICKIEST</span><span class="ctRow"><b class="ctPct">'+Math.round(worst.miss*100)+'%</b><span class="ctWhat">of players were '+(worst.st.real===false?'fooled':'stumped')+' by headline <b>#'+(worst.i+1)+'</b></span></span>';
+    const q=document.createElement('i'); q.className='ctQ'; q.textContent='“'+short+'”'; $('crowdTop').append(q);
   }
 }
 function answersOf(results){ return results.map(x=>x.blank ? [x.callOk?1:0, null, (x.exact!==undefined?x.exact:x.c>=0.999)?1:0, x.secs==null?null:x.secs] : [x.callOk?1:0, x.dist==null?null:Math.round(x.dist)].concat(Array.isArray(x.pin)?x.pin:[])); }   // blank: [close enough, -, found the word, seconds]
@@ -6702,6 +6721,7 @@ function loadBriefs(){
     briefBoxSync();
   }).catch(()=>{});
 }
+$('introHow').addEventListener('toggle',()=>document.body.classList.toggle('howOpen',$('introHow').open));
 $('briefBox').onclick=()=>{ gcEvent('briefs/open'); hpOpen('briefs'); };
 $('mBriefs').onclick=()=>{ gcEvent('briefs/menu'); closeMenu(); hpOpen('briefs'); };
 function hpOpen(id){ const r=HPAGES[id]; if(!r) return; try{ Sound.play('menu'); }catch(e){} $('hp').hidden=false; $('hpKicker').textContent=r.title; HP_ID=id; r.render(); $('hp').querySelector('.sheetIn').scrollTop=0; }
@@ -6744,7 +6764,7 @@ function ensureFinalBtns(){
     c=$('homeBtns').cloneNode(true); c.id='finalBtns'; c.removeAttribute('style'); delete c.dataset.folded; c.setAttribute('aria-label','Quick links');
     c.querySelectorAll('[id]').forEach(e=>{ e.dataset.src=e.id; e.removeAttribute('id'); });
     c.querySelectorAll('.ht').forEach(b=>b.onclick=()=>homeBtnGo(b));
-    $('summary').after(c);
+    $('final').after(c);      // below the newspaper, at the very bottom of the page
   }
   syncFinalBtns();
 }
@@ -7467,6 +7487,7 @@ setTimeout(checkInvites,4000);
 loadBriefs();
 Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS&&(POL_ON||VS.kind!=='pol')?VS.kind:KIND); loadIssues(); setTimeout(Intro.check,60); setTimeout(()=>{ checkGroupInvite(); syncName(false); },1200); });
 window.addEventListener('resize',()=>{ clearTimeout(window._aimT); window._aimT=setTimeout(()=>aim(),200); });
+
 </script>
 </body>
 </html>
