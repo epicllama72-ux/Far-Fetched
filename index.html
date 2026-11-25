@@ -794,6 +794,7 @@ body.howOpen #briefBox{visibility:hidden}   /* How to play opens over the briefs
 #hp .passList{margin:10px 0 12px;padding:0;list-style:none;display:grid;gap:7px}#hp .passList li{position:relative;padding-left:18px;font:17px/1.15 var(--vt);color:#3b342a}#hp .passList li::before{content:'';position:absolute;left:2px;top:5px;width:8px;height:8px;background:#a8231a}#hp .passList b{font-weight:400;color:#1b1813;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
 #menu #mPractice.locked .ttl::after{content:'PASS';margin-left:8px;font:6px/1 var(--px);letter-spacing:.14em;color:#fff;background:var(--stamp);padding:3px 4px 2px;vertical-align:2px}
 #backList{max-height:46vh;overflow:auto}
+#hp .ppMini{all:unset;box-sizing:border-box;cursor:pointer;margin:-6px 0 -6px;padding:7px 9px 6px;background:#a8231a;color:#fff;font:7px/1 var(--px);letter-spacing:.1em;box-shadow:2px 2px 0 rgba(0,0,0,.35)}#hp .ppMini:focus-visible{outline:3px solid #1b1813;outline-offset:2px}
 #hp .lockList{display:grid;gap:6px;margin:8px 0 12px}#hp .lockRow{all:unset;box-sizing:border-box;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 10px 7px;border:2px dashed #b9ae92;font:17px/1.1 var(--vt);color:#5a5043;background:rgba(27,24,19,.04)}#hp .lockRow:hover{border-color:#a8231a;color:#1b1813}#hp .lockRow:focus-visible{outline:3px solid #a8231a;outline-offset:2px}
 #hp .cd .linkish{color:#a8231a;border-bottom-color:#a8231a}
 /* compact back issues */
@@ -7083,7 +7084,7 @@ function lockedIssues(){
   const open=new Set(backWindow().map(x=>x.date));
   const rest=ISSUES.filter(x=>x && x.date && x.date<dayKey() && !open.has(x.date)).sort((a,b)=>a.date<b.date?1:-1);
   if(!rest.length) return '';
-  return hpCard('OLDER ISSUES','PRESS PASS','<p class="sm">These '+rest.length+' older papers come with the Press Pass. Tap one to see it.</p><div class="lockList">'
+  return hpCard('OLDER ISSUES','<button class="ppMini" id="bkPassTop" type="button">PRESS PASS ▸</button>','<p class="sm">These '+rest.length+' older papers come with the Press Pass. Tap one to see it.</p><div class="lockList">'
     +rest.map(x=>'<button type="button" class="lockRow" data-lock="'+x.date+'"><span>#'+issueNumber(x.date)+' · '+fmtDate(x.date)+'</span><span class="badge dim">LOCKED</span></button>').join('')+'</div>'
     +'<button class="b2" id="bkPass" type="button">See the Press Pass</button>');
 }
@@ -7094,6 +7095,7 @@ HPAGES.back={title:'Back issues',render(){
     +hpCard(isPro()?'ALL ISSUES':'AVAILABLE','','<div class="bkList">'+w.map(x=>'<div class="bkRow"><span class="bkN">#'+issueNumber(x.date)+'<small>'+fmtDate(x.date)+'</small></span>'+btn(x,'call','Dig')+btn(x,'blank','Blank')+'</div>').join('')+'</div>')
     +(isPro()?'':lockedIssues());
   if($('bkPass')) $('bkPass').onclick=()=>hpOpen('pass');
+  if($('bkPassTop')) $('bkPassTop').onclick=()=>hpOpen('pass');
   document.querySelectorAll('#hpBody [data-lock]').forEach(b=>b.onclick=()=>{ gcEvent('pass/locked'); hpOpen('pass'); });
   document.querySelectorAll('#hpBody button[data-d]').forEach(b=>{ b.onclick=()=>{ KIND=b.dataset.k; hpClose(); openBackIssue(b.dataset.d); }; });
 }};
