@@ -2034,7 +2034,7 @@ body.pinning #card #headline{font-size:23px}
         </button>
         <button id="mBlank" type="button" class="obj cross" style="--r:2deg;--i:1"><span class="ttl">FILL THE BLANK</span><span class="cgrid" aria-hidden="true"><i>B</i><i class="f">?</i><i>N</i><i>K</i><i class="f">?</i><i>R</i><i class="b"></i></span><small>5 headlines, one word missing from each</small></button>
         <div class="obj pad" style="--r:-2.5deg;--i:2">
-          <button id="mPractice" type="button" class="padHead" aria-expanded="false" aria-controls="practiceList"><span class="ttl">UNLIMITED</span><small id="unlSub">Every past story. Nothing counts.</small></button>
+          <button id="mPractice" type="button" class="padHead" aria-expanded="false" aria-controls="practiceList"><span class="ttl">UNLIMITED</span><small id="unlSub">Every story we have.</small></button>
           <div id="practiceList" class="padList" hidden>
             <button data-k="call" type="button">Daily Dig</button>
             <button data-k="blank" type="button">Fill the Blank</button>
@@ -7075,7 +7075,7 @@ HPAGES.pass={title:'Press Pass',render(){
 }};
 /* everything that depends on the pass: menu labels, back issues, the wardrobe */
 function passChanged(){
-  const pro=isPro(), sub=$('unlSub'); if(sub) sub.textContent=pro?'Every past story. Nothing counts.':'Every past story. Press Pass.';
+  const pro=isPro(), sub=$('unlSub'); if(sub) sub.textContent='Every story we have.';
   $('mPractice').classList.toggle('locked',!pro);
   try{ renderIssues(); }catch(e){}
   { const t=$('dBackTag'); const bl=$('mBack')&&$('mBack').querySelector('.blbl small'); if(bl) bl.innerHTML=(pro?'every past paper':'the last '+BACK_FREE+' papers')+' &middot; no streak'; }
