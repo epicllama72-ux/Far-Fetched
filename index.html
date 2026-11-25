@@ -732,7 +732,8 @@ body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
 :is(#homeBtns,#finalBtns) .hr:nth-child(2) .ht::before{top:1px}
 :is(#homeBtns,#finalBtns) .hdot{position:absolute;top:-5px;right:-4px;background:#a8231a;color:#fff;font:6px/1 var(--px);padding:3px 4px 2px}
 :is(#homeBtns,#finalBtns) .hdot:empty{display:none}
-#finalBtns{display:flex;flex-direction:column;margin:16px 0 8px}   /* the same buttons, under the summary of a finished round */
+#finalBtns{display:flex;flex-direction:column;margin:18px 0 0;padding:0 2px calc(110px + env(safe-area-inset-bottom,0px))}
+#final[hidden]+#finalBtns{display:none}   /* the same buttons, under the summary of a finished round */
 body.calm *,body.calm *::before,body.calm *::after{animation:none!important}   /* Settings > Calm mode */
 /* one-time notice over the earth: pin on the globe or the map */
 #hp .pcRow .b2{height:44px;margin:0;display:flex;align-items:center;justify-content:center;padding:0 6px}
@@ -1153,71 +1154,6 @@ body.pinDone #mapToggle{display:block}
 .g .p{flex:0 0 48px;text-align:right;color:var(--dim)}
 
 
-/* ---- DRAFT summary layouts (only with ?sum=a|b|c; the default summary is unchanged) ---- */
-details.sdet{margin:0 0 8px;border:2px solid var(--npInk,#1f1b16);background:rgba(255,255,255,.18)}
-details.sdet>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 12px 10px;font:8px/1.2 var(--px);letter-spacing:.14em;color:var(--npInk,#1f1b16)}
-details.sdet>summary::-webkit-details-marker{display:none}
-details.sdet>summary::after{content:'+';font:18px/1 var(--vt);letter-spacing:0}
-details.sdet[open]>summary::after{content:'\2212'}
-details.sdet>.sdb{padding:2px 12px 12px;border-top:1px dashed rgba(27,24,19,.45)}
-details.sdet>.sdb>*:first-child{margin-top:8px}
-.sumMini{font:17px/1.1 var(--vt);margin:0 0 8px;color:var(--npInk,#1f1b16)}
-/* A: the same front page, trimmed */
-body.sumA #np .npBy,body.sumA #npNote,body.sumA #np .npMotto{display:none}
-body.sumA #np .npMast{font-size:.72em}
-body.sumA #np h2{font-size:19px;margin-bottom:5px}
-body.sumA #np .npDeck{font-size:19px;margin-bottom:8px}
-body.sumA #npRow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 8px}
-body.sumA #npRow button{margin:0!important;padding:7px 8px!important;min-height:0}
-body.sumA #npRow .mini{display:none!important}
-body.sumA #npRow .tx{font-size:15px!important}
-body.sumA #npRow .tx span{margin-bottom:2px!important}
-body.sumA #crowdTop .ctQ{display:none}
-body.sumA #crowdTop{padding:5px 10px 6px;margin:6px 0 8px}
-body.sumA #summary .npCap{display:none}
-body.sumA #chalBox .chalRule,body.sumA #chalBox .chalH{display:none}
-body.sumA #chalBox{margin:10px 0 8px}
-body.sumA #tiers li:not(.me){display:none}
-body.sumA #tiers.all li{display:grid}
-body.sumA #sumMoreScale{all:unset;cursor:pointer;display:block;margin:6px 0 10px;font:17px/1 var(--vt);color:var(--npInk,#1f1b16);text-decoration:underline;text-underline-offset:3px}
-body.sumA #recap{margin-top:6px}
-/* B: scorecard on top, everything else in folders */
-body.sumB #np .npBy,body.sumB #npNote,body.sumB #np .npDeck,body.sumB #np .npDate,body.sumB #np .npMast,body.sumB #np .npMotto,body.sumB #npStamp{display:none}
-body.sumB #np{padding-bottom:0}
-body.sumB #np h2{font-size:21px;margin:0 0 8px}
-body.sumB #sumCard{display:flex;align-items:center;justify-content:space-between;gap:10px;border:2px solid var(--npInk,#1f1b16);padding:10px 12px;margin:0 0 10px;background:rgba(255,255,255,.28)}
-body.sumB #sumCard .big{font:34px/1 var(--vt)}
-body.sumB #sumCard .big small{font:8px/1 var(--px);letter-spacing:.1em;color:var(--npDim,#5e5546);margin-left:4px}
-body.sumB #sumCard .rk{text-align:right;font:8px/1.5 var(--px);letter-spacing:.12em;text-transform:uppercase;color:var(--npDim,#5e5546)}
-body.sumB #sumCard .rk b{display:block;font:22px/1 var(--vt);letter-spacing:0;color:#a8231a;margin-top:2px}
-body.sumB #npRow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}
-body.sumB #npRow button{margin:0!important;padding:6px 8px!important}
-body.sumB #npRow .mini{display:none!important}
-body.sumB #npRow .tx{font-size:14px!important}
-body.sumB #npRow .tx span{margin-bottom:1px!important}
-body.sumB #summary{margin:0}
-body.sumB #summary>.slbl,body.sumB #summary>.npCap,body.sumB #summary>#digLog{display:none}
-body.sumB #finalBtns{margin-top:10px}
-body.sumB #recap{margin:0 0 8px;border:2px solid var(--npInk,#1f1b16)}
-body.sumB #recap>summary{padding:11px 12px 10px;font:8px/1.2 var(--px);letter-spacing:.14em}
-body.sumB #chalBox .chalRule,body.sumB #chalBox .chalH{display:none}
-body.sumB #chalBox{margin:0}
-body.sumB #letters{margin-top:0}
-/* C: a receipt */
-body.sumC #np,body.sumC #npStats,body.sumC #npRow,body.sumC #summary,body.sumC #grid{display:none}
-body.sumC #recap{margin:10px 0 0}
-body.sumC #sumReceipt{font:19px/1.2 var(--vt);color:var(--npInk,#1f1b16)}
-body.sumC #sumReceipt .rh{text-align:center;font:11px/1.3 var(--px);letter-spacing:.06em;text-transform:uppercase;padding:2px 0 4px}
-body.sumC #sumReceipt .rs{text-align:center;font:17px/1 var(--vt);color:var(--npDim,#5e5546);margin:0 0 10px}
-body.sumC #sumReceipt .ln{display:flex;align-items:baseline;gap:6px;margin:0 0 5px}
-body.sumC #sumReceipt .ln i{flex:1;border-bottom:2px dotted rgba(27,24,19,.5);transform:translateY(-4px)}
-body.sumC #sumReceipt .ln b{font-weight:400}
-body.sumC #sumReceipt .ln.big{font-size:30px;margin:6px 0 8px}
-body.sumC #sumReceipt .ln.big b{color:#a8231a}
-body.sumC #sumReceipt hr{border:0;border-top:2px dashed rgba(27,24,19,.5);margin:10px 0}
-body.sumC #sumReceipt .sp{display:block;margin:2px auto 0;max-width:100%;image-rendering:pixelated}
-body.sumC #sumReceipt .lk{display:flex;gap:8px;margin:8px 0 2px}
-body.sumC #sumReceipt .lk button{all:unset;cursor:pointer;flex:1;text-align:center;border:2px solid var(--npInk,#1f1b16);padding:10px 4px 9px;font:7px/1.2 var(--px);letter-spacing:.1em;text-transform:uppercase}
 /* Results */
 #final{background:var(--card);background-image:var(--scan);border:2px solid var(--line);padding:16px;clip-path:var(--notch)}
 #finalLine{margin:0 0 6px;font:34px/1 var(--vt)}
@@ -1542,6 +1478,7 @@ body.intro #ausBar{display:none}
   #feedback .more{display:block}
   #feedback .why{display:none}
   .rcol #final{order:2}
+  .rcol #finalBtns{order:2;padding-bottom:6px}   /* desktop: the tiles follow the newspaper, above the sticky end buttons */
   .rcol #bar{order:3;position:sticky;left:auto;bottom:0;z-index:6;background:var(--bg,#0b0e14);padding-top:6px}   /* the end buttons stay in view even when the summary is taller than the window */
   #tiers li:not(.me) .tl{display:none}   /* desktop: only your own tier gets its description, so the summary fits */
   .rcol #blankUI{order:4}
@@ -2128,7 +2065,6 @@ body.pinning #card #headline{font-size:23px}
     <div id="npRow"><button id="npPass" type="button" hidden></button><button id="npSave" type="button" hidden><span class="mini"><svg viewBox="0 0 14 14" shape-rendering="crispEdges" aria-hidden="true"><g fill="#1f1b16"><rect x="4" y="1" width="5" height="1"/><rect x="3" y="2" width="1" height="1"/><rect x="9" y="2" width="1" height="1"/><rect x="2" y="3" width="1" height="2"/><rect x="10" y="3" width="2" height="1"/><rect x="12" y="4" width="1" height="1"/><rect x="1" y="5" width="1" height="4"/><rect x="13" y="5" width="1" height="4"/><rect x="2" y="9" width="11" height="1"/></g><g fill="#a8231a"><rect x="6" y="5" width="2" height="5"/><rect x="5" y="6" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="4" y="7" width="1" height="1"/><rect x="9" y="7" width="1" height="1"/><rect x="6" y="10" width="2" height="3"/></g></svg></span><span class="tx"><span>SAVE</span><b>Sign in with Google</b><em>keep your streak &amp; passport</em></span></button></div>
     <div id="summary">
       <p id="vsLine" hidden></p>
-      <p id="crowdTop" hidden></p>
       <div id="sumBoard" hidden><canvas id="sumCurve" width="320" height="145" aria-label="Today's scores"></canvas><p id="sumRank"></p></div>
       <p class="slbl">YOUR DIG <span>deeper = more points</span></p>
       <canvas id="digLog" width="320" height="190" aria-label="Points per headline"></canvas>
@@ -2147,6 +2083,7 @@ body.pinning #card #headline{font-size:23px}
       <p class="slbl">THE SCALE</p>
       <ol id="tiers"></ol>
     </div>
+    <p id="crowdTop" hidden></p>
     <details id="recap"><summary id="recapSum">▸ All stories + sources</summary><ol id="recapList"></ol></details>
     <p id="nextEd" hidden></p>
     <p id="comeBack"></p>
@@ -6818,7 +6755,7 @@ function ensureFinalBtns(){
     c=$('homeBtns').cloneNode(true); c.id='finalBtns'; c.removeAttribute('style'); delete c.dataset.folded; c.setAttribute('aria-label','Quick links');
     c.querySelectorAll('[id]').forEach(e=>{ e.dataset.src=e.id; e.removeAttribute('id'); });
     c.querySelectorAll('.ht').forEach(b=>b.onclick=()=>homeBtnGo(b));
-    $('summary').after(c);
+    $('final').after(c);      // below the newspaper, at the very bottom of the page
   }
   syncFinalBtns();
 }
@@ -7542,54 +7479,6 @@ loadBriefs();
 Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS&&(POL_ON||VS.kind!=='pol')?VS.kind:KIND); loadIssues(); setTimeout(Intro.check,60); setTimeout(()=>{ checkGroupInvite(); syncName(false); },1200); });
 window.addEventListener('resize',()=>{ clearTimeout(window._aimT); window._aimT=setTimeout(()=>aim(),200); });
 
-/* ---- DRAFT summary layouts (?sum=a|b|c) ---- */
-(function(){
-  const V=(location.search.match(/[?&]sum=([abc])/)||[])[1]; if(!V) return;
-  document.body.classList.add('sum'+V.toUpperCase());
-  const q=id=>document.getElementById(id);
-  const folder=(label,nodes,open)=>{ const d=document.createElement('details'); d.className='sdet'; if(open) d.open=true; const sm=document.createElement('summary'); sm.textContent=label; const b=document.createElement('div'); b.className='sdb'; d.append(sm,b); nodes.forEach(n=>n&&b.append(n)); return d; };
-  const text=e=>e?e.textContent.replace(/\s+/g,' ').trim():'';
-  function build(){
-    const f=q('final'); if(!f||f.hidden||f.dataset.draft===V) return; f.dataset.draft=V;
-    const rank=text(document.querySelector('#tiers li.me .tn'))||'';
-    const stats=[...document.querySelectorAll('#npStats div')].map(d=>[text(d.querySelector('span')),text(d.querySelector('b,strong,i,em')||d.lastElementChild)]);
-    if(V==='a'){
-      const tiers=q('tiers'); if(tiers&&!q('sumMoreScale')){ const b=document.createElement('button'); b.id='sumMoreScale'; b.type='button'; b.textContent='See the full scale'; b.onclick=()=>{ tiers.classList.toggle('all'); b.textContent=tiers.classList.contains('all')?'Show only my rank':'See the full scale'; }; tiers.after(b); }
-    }
-    if(V==='b'){
-      const card=document.createElement('div'); card.id='sumCard';
-      const score=text(document.querySelector('#npDeck b'))||'0';
-      card.innerHTML='<div class="big">'+score+'<small>OF 1,000</small></div><div class="rk">Your rank<b>'+(rank||'')+'</b></div>';
-      q('npHead').after(card);
-      const sum=q('summary');
-      const crowd=[q('vsLine'),q('crowdTop'),q('sumBoard')];
-      const f1=folder('YOUR DIG',[q('digLog'),sum.querySelector('.npCap')]);
-      const f2=folder('HOW EVERYONE DID',crowd);
-      const f3=folder('CHALLENGE YOUR FRIENDS',[q('chalBox')]);
-      const f4=folder('THE SCALE',[document.querySelector('#summary>p.slbl:last-of-type'),q('tiers')].filter(Boolean));
-      const f5=folder('TELL THE EDITOR',[q('letters')]);
-      const wrap=document.createElement('div'); wrap.id='sumFolders'; wrap.append(f1,f2,f3,f4); sum.before(wrap);
-      q('recap').before(document.createComment('folders above'));
-      q('replayWrap').after(f5);
-    }
-    if(V==='c'){
-      const r=document.createElement('div'); r.id='sumReceipt';
-      const jaw=text(q('npHead')).replace(/^jaw drops\s*/i,'');
-      const lines=stats.filter(x=>x[0]).map(x=>'<div class="ln"><span>'+x[0].toLowerCase().replace(/^./,c=>c.toUpperCase())+'</span><i></i><b>'+x[1]+'</b></div>').join('');
-      r.innerHTML='<div class="rh">The Daily Odd<br>'+text(q('npNo'))+'</div><div class="rs">'+text(q('npDay'))+'</div>'
-        +'<div class="ln big"><span>Score</span><i></i><b>'+(text(document.querySelector('#npDeck b'))||'0')+' / 1,000</b></div>'
-        +'<div class="ln"><span>Rank</span><i></i><b>'+rank+'</b></div>'+lines+'<hr>';
-      const cv=q('digLog'); if(cv){ const img=document.createElement('img'); img.className='sp'; try{ img.src=cv.toDataURL(); }catch(e){} img.alt='Your dig'; r.append(img); }
-      const lk=document.createElement('div'); lk.className='lk';
-      [['Challenge',()=>{ q('sumMoreC')&&(q('sumMoreC').open=true); q('sumMoreC')&&q('sumMoreC').scrollIntoView({block:'center'}); }],['Full scale',()=>{ q('sumMoreC')&&(q('sumMoreC').open=true); }],['Standings',()=>q('btnBoard')&&q('btnBoard').click()]].forEach(([t,fn])=>{ const b=document.createElement('button'); b.type='button'; b.textContent=t; b.onclick=fn; lk.append(b); });
-      r.append(lk);
-      f.insertBefore(r,q('npRow'));
-      const more=folder('MORE: CHALLENGE, THE FULL SCALE, FEEDBACK',[q('chalBox'),q('tiers'),q('letters')]); more.id='sumMoreC'; q('recap').after(more);
-    }
-  }
-  new MutationObserver(build).observe(document.getElementById('final'),{attributes:true,attributeFilter:['hidden']});
-  setInterval(build,800);
-})();
 </script>
 </body>
 </html>
