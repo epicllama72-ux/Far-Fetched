@@ -835,7 +835,15 @@ body.howOpen #briefBox{visibility:hidden}   /* How to play opens over the briefs
 #hp .ppFlag{position:absolute;right:10px;top:-12px;rotate:3deg;background:#a8231a;color:#fff;font:7px/1 var(--px);letter-spacing:.16em;padding:6px 8px 5px;border:2px solid #1b1813}
 #hp .ppBonusIn{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;margin-top:10px}
 #hp .ppBonusIn span{font:17px/1.15 var(--vt);color:#3b342a}
-#hp .ppRed{background:#a8231a}
+/* neon buttons */
+@keyframes neonPulse{0%,100%{box-shadow:0 0 5px var(--nc),0 0 14px var(--nc),0 0 30px var(--ng),inset 0 0 9px var(--ng)}50%{box-shadow:0 0 8px var(--nc),0 0 22px var(--nc),0 0 46px var(--ng),inset 0 0 14px var(--ng)}}
+#hp .b2.ppGo,#hp .ppMini{--nc:#19e3ff;--ng:rgba(25,227,255,.45);background:#080a14;color:#aef7ff;border:2px solid var(--nc);text-shadow:0 0 6px var(--nc),0 0 14px var(--nc);box-shadow:0 0 5px var(--nc),0 0 14px var(--nc),0 0 30px var(--ng),inset 0 0 9px var(--ng);animation:neonPulse 2.6s ease-in-out infinite}
+#hp .b2.ppRed,#hp .ppMini{--nc:#ff3fb8;--ng:rgba(255,63,184,.45);color:#ffc2ea}
+#hp .b2.ppGo:hover,#hp .ppMini:hover{filter:brightness(1.25)}
+#hp .b2.ppGo:active,#hp .ppMini:active{transform:translate(1px,1px)}
+body.calm #hp .b2.ppGo,body.calm #hp .ppMini{animation:none}
+@media (prefers-reduced-motion:reduce){#hp .b2.ppGo,#hp .ppMini{animation:none}}
+#hp .ppRed{background:#080a14}
 #hp .ppNote{text-align:center;margin:10px 0 0}
 @media (max-width:360px){#hp .ppBonus{grid-template-columns:1fr}#hp .ppArt{justify-self:start}}
 #hp .hint{color:#aab6d6;font:18px/1.1 var(--vt);margin:8px 0}
