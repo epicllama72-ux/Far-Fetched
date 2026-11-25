@@ -791,6 +791,10 @@ body.howOpen #briefBox{visibility:hidden}   /* How to play opens over the briefs
 #hp .gbtn svg{width:18px;height:18px;flex:none}
 #hp .gbtn:hover{background:#f7f8f8}#hp .gbtn:active{background:#eceff1}
 #hp .gbtn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+#hp .passList{margin:10px 0 12px;padding:0;list-style:none;display:grid;gap:7px}#hp .passList li{position:relative;padding-left:18px;font:17px/1.15 var(--vt);color:#3b342a}#hp .passList li::before{content:'';position:absolute;left:2px;top:5px;width:8px;height:8px;background:#a8231a}#hp .passList b{font-weight:400;color:#1b1813;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+#menu #mPractice.locked .ttl::after{content:'PASS';margin-left:8px;font:6px/1 var(--px);letter-spacing:.14em;color:#fff;background:var(--stamp);padding:3px 4px 2px;vertical-align:2px}
+#backList{max-height:46vh;overflow:auto}
+#hp .cd .linkish{color:#a8231a;border-bottom-color:#a8231a}
 #hp .hint{color:#aab6d6;font:18px/1.1 var(--vt);margin:8px 0}
 #hp .chg{all:unset;cursor:pointer;margin-top:8px;font:7px/1 var(--px);letter-spacing:.12em;color:#ffcc4d;border-bottom:1px solid #ffcc4d;padding-bottom:3px;position:relative}
 </style>
@@ -1956,7 +1960,7 @@ body.pinning #card #headline{font-size:23px}
         </button>
         <button id="mBlank" type="button" class="obj cross" style="--r:2deg;--i:1"><span class="ttl">FILL THE BLANK</span><span class="cgrid" aria-hidden="true"><i>B</i><i class="f">?</i><i>N</i><i>K</i><i class="f">?</i><i>R</i><i class="b"></i></span><small>5 headlines, one word missing from each</small></button>
         <div class="obj pad" style="--r:-2.5deg;--i:2">
-          <button id="mPractice" type="button" class="padHead" aria-expanded="false" aria-controls="practiceList"><span class="ttl">PRACTICE</span><small>Every past story. Nothing counts.</small></button>
+          <button id="mPractice" type="button" class="padHead" aria-expanded="false" aria-controls="practiceList"><span class="ttl">UNLIMITED</span><small id="unlSub">Every past story. Nothing counts.</small></button>
           <div id="practiceList" class="padList" hidden>
             <button data-k="call" type="button">Daily Dig</button>
             <button data-k="blank" type="button">Fill the Blank</button>
@@ -2033,7 +2037,7 @@ body.pinning #card #headline{font-size:23px}
   <div class="btns" id="endBtns" hidden>
     <button class="primary" id="btnShare">Share ↗</button>
     <button class="primary" id="btnBoard">Standings</button>
-    <button class="ghost" id="btnPractice">Practice</button>
+    <button class="ghost" id="btnPractice">Unlimited</button>
   </div>
   </div>
 
@@ -3186,6 +3190,11 @@ const Scene = (function(){
         R(-10,-21,20,10,C.ol); R(-9,-20,18,9,F); R(-8,-21,16,1,F); R(-1,-20,2,3,FS);
         R(-9,-14,18,3,BD); R(3,-16,6,6,'#ffffff'); R(3,-16,6,1,'#c0392b'); R(4,-13,4,1,'#55596a');
         R(-18,-12,36,4,C.ol); R(-17,-11,34,2,F); R(-17,-9,34,1,FS);
+      } else if(kit.head==='eyeshade'){   // the old newsroom editor's green visor on an elastic band
+        const V='#2f9e62', VH='#6fd49a', VS='#1d6b42';
+        R(-10,-14,20,3,C.ol); R(-9,-13,18,1,'#1b1813');                       // the band round the head
+        R(-14,-12,28,8,C.ol); R(-13,-11,26,6,V); R(-13,-11,26,1,VH); R(-13,-6,26,1,VS);   // the visor
+        R(-12,-5,24,1,C.ol);
       } else if(kit.head==='hardhat'){
         const Y='#f4c20d', YS='#c99a00';
         R(-12,-22,24,12,C.ol); R(-11,-21,22,10,Y); R(-9,-22,18,1,Y); R(-1,-21,2,10,YS);
@@ -3831,6 +3840,7 @@ const FAKE_BASE = 50, FOOLED_BASE = 25, TRUE_BASE = 180, JAW_SCALE = 1000;   // 
 let FAKE_PTS = 50;
 
 function startGame(mode, kind){
+  if(mode==='practice' && !isPro()){ hpOpen('pass'); return; }   // Unlimited is part of the Press Pass
   GlobePin.tryApply();   // a 'try it' game borrows the other pin method for this one game only
   $('hudNext').hidden=true; $('hudTry').hidden=true; document.body.classList.remove('sumUp');
   if(typeof Intro!=='undefined' && Intro.planetOn()) Intro.hide(true);
@@ -3908,7 +3918,7 @@ function startGame(mode, kind){
     if(hh){
       Scene.setPaper(false,true); $('card').hidden=false; $('speed').hidden=true; $('feedback').hidden=true; $('mapWrap').hidden=true; $('blankUI').hidden=true;
       delete $('card').dataset.truth; $('kicker').textContent='Already played today'; $('kicker').classList.remove('bad');
-      $('headline').innerHTML='You finished today\'s '+modeName(KIND)+': <span class="clue">'+fmtM(hh.m)+' · '+fmtPts(hh.score)+'</span>. The next paper arrives at midnight. Practice has plenty more.';
+      $('headline').innerHTML='You finished today\'s '+modeName(KIND)+': <span class="clue">'+fmtM(hh.m)+' · '+fmtPts(hh.score)+'</span>. The next paper arrives at midnight. '+(isPro()?'Unlimited has plenty more.':'The back issues have more.')+'';
       $('storyLink').hidden=true; setBar('none'); renderDots(); aim();
       return;
     }
@@ -4071,7 +4081,7 @@ function showRound(shown,quiet,gate){
   $('blankUI').hidden=true; $('card').hidden=false; $('storyLink').hidden=true; hideHint();
   const st = S.rounds[S.i];
   delete $('card').dataset.truth;   // the REAL / FAKE stamp goes on once the headline is answered
-  $('kicker').textContent = 'Real or fake?'+(S.kind==='pol'?' · Politics':'')+(S.mode==='practice'?' · practice':'');
+  $('kicker').textContent = 'Real or fake?'+(S.kind==='pol'?' · Politics':'')+(S.mode==='practice'?' · unlimited':'');
   $('kicker').classList.remove('bad');
   if(gate){
     // nothing is shown, and no clock runs, until the player says they are ready
@@ -4906,7 +4916,7 @@ function renderLetters(){
 function renderFrontPage(inf,total,max){
   const k=tierOf(total,max), t=TIERS[k]||{}, z=String(inf.zone||'');
   const d=new Date(dayKey()+'T12:00:00Z');
-  $('npNo').textContent = S.mode==='daily' ? modeName(S.kind)+' #'+dayNumber() : S.mode==='back' ? 'Back issue #'+dayNumber()+' · '+modeName(S.kind) : 'Practice · '+modeName(S.kind);
+  $('npNo').textContent = S.mode==='daily' ? modeName(S.kind)+' #'+dayNumber() : S.mode==='back' ? 'Back issue #'+dayNumber()+' · '+modeName(S.kind) : 'Unlimited · '+modeName(S.kind);
   { const paper=(S.mode==='back'&&typeof BACK!=='undefined'&&BACK)?BACK:DAILY, on=S.mode==='daily'||S.mode==='back', note=on&&paper&&paper.dedication||'', stamp=on&&S.kind==='call'&&paper&&paper.stamp||'', sp=$('npStamp');
     $('npNote').textContent=note; $('npNote').hidden=!note;
     if(stamp){ sp.innerHTML=PAW+'<span></span>'+PAW; sp.querySelector('span').textContent=stamp; sp.hidden=false; } else { sp.hidden=true; sp.textContent=''; } }
@@ -5009,7 +5019,7 @@ function finish(restored){
   const total = sumPts(S.results), max = S.maxScore;
   S.score = total; renderDots();
   const inf = Scene.info();
-  $('finalKicker').textContent = (S.mode==='daily' ? 'Daily #'+dayNumber()+' complete' : S.mode==='back' ? 'Back issue #'+dayNumber()+' complete' : 'Practice complete')+' · '+modeName(S.kind);
+  $('finalKicker').textContent = (S.mode==='daily' ? 'Daily #'+dayNumber()+' complete' : S.mode==='back' ? 'Back issue #'+dayNumber()+' complete' : 'Unlimited complete')+' · '+modeName(S.kind);
   $('finalLine').innerHTML = inf.zone==='NOWHERE' ? 'His jaw stayed <b>shut</b>.' : inf.zone==='BEHIND THE PAPER' ? 'Jaw dropped <b>'+fmtM(inf.m).replace(' ','&nbsp;')+'</b>, still behind the paper.' : 'Jaw dropped <b>'+fmtM(inf.m).replace(' ','&nbsp;')+'</b> to <b>'+inf.zone.replace(/ /g,'&nbsp;')+'</b>.';
   $('finalScoreLine').innerHTML = 'Score <b>'+fmtPts(total)+'</b> / '+max;
   S.total=total; S.max=max;
@@ -5147,10 +5157,11 @@ const KIT=[
   {id:'globe',   slot:'globe',  name:'Desk globe',         icon:'🌍', need:'pin 50 stories', ok:L=>L.pins>=50, prog:L=>[L.pins,50]},
   {id:'shades',  slot:'glasses',name:'Aussie sunglasses',  icon:'🕶️', need:'dig through to Australia', ok:L=>L.zmax>=6},
   {id:'monocle',slot:'monocle',name:'Detective monocle',   icon:'🧐', need:'catch 20 fake stories', ok:L=>L.catches>=20, prog:L=>[L.catches,20]},
-  {id:'pigeon', slot:'pigeon', name:'Carrier pigeon',      icon:'🕊️', need:'a friend joins from your challenge', ok:L=>L.invites>=1}];
+  {id:'pigeon', slot:'pigeon', name:'Carrier pigeon',      icon:'🕊️', need:'a friend joins from your challenge', ok:L=>L.invites>=1},
+  {id:'eyeshade',slot:'head',   name:"Editor's eyeshade",   icon:'🟩', need:'$10 or more on the Press Pass', ok:L=>L.skin}];
 function lifeNow(){
   const l=load('ff_life')||{}, h=load('ff_hist')||{};
-  return {best:l.best||0, pins:l.pins||0, catches:l.catches||0, zmax:l.zmax||0, cblown:!!l.cblown, invites:+load('ff_invites')||0, papers:new Set(Object.keys(h).filter(k=>k.endsWith(':call')).map(k=>k.split(':')[0])).size};
+  return {best:l.best||0, pins:l.pins||0, catches:l.catches||0, zmax:l.zmax||0, cblown:!!l.cblown, invites:+load('ff_invites')||0, skin:passState().skin, papers:new Set(Object.keys(h).filter(k=>k.endsWith(':call')).map(k=>k.split(':')[0])).size};
 }
 function kitState(){ const k=load('ff_kit'); return {eq:(k&&k.eq)||{}, seen:(k&&k.seen)||[]}; }
 function unlockedIds(){ const L=lifeNow(); return KIT.filter(it=>it.ok(L)).map(it=>it.id); }
@@ -5491,7 +5502,12 @@ function loadIssues(){
   return fetch('data/issues.json',{cache:'no-cache'}).then(r=>r.ok?r.json():[]).then(d=>{ ISSUES=Array.isArray(d)?d:[]; renderIssues(); }).catch(()=>{});
 }
 const BACK_FREE=5;    // back issues on offer: the most recent 5 earlier papers. Every older paper stays stored (data/*.json, issues.json) for later.
-const backWindow=()=>ISSUES.filter(x=>x && x.date && x.date<dayKey()).sort((a,b)=>a.date<b.date?1:-1).slice(0,BACK_FREE);
+/* Press Pass: pay what you want from $5. It unlocks Unlimited (the practice mode), every back issue, and no ads ever; $10 or more in total also adds the Editor's eyeshade.
+   The truth is the purchases table (only Stripe's webhook can write it); this device keeps a copy so the game still works offline. */
+const PASS_LINK='https://buy.stripe.com/REPLACE_ME';
+function passState(){ const p=load('ff_pass')||{}; return {pro:!!p.pro, skin:!!p.skin}; }
+const isPro=()=>passState().pro;
+const backWindow=()=>{ const all=ISSUES.filter(x=>x && x.date && x.date<dayKey()).sort((a,b)=>a.date<b.date?1:-1); return isPro()?all:all.slice(0,BACK_FREE); };
 /* a past paper counts as played if it was played live (the history) or later as a back issue; the live result wins */
 function backResult(date,kind){ const h=(load('ff_hist')||{})[date+':'+kind]; if(h) return Object.assign({live:true},h); return load('ff_back:'+date+':'+kind); }
 function renderIssues(){
@@ -5559,7 +5575,7 @@ function answersOf(results){ return results.map(x=>x.blank ? [x.callOk?1:0, null
 /* the zone his jaw reached, in plain words for the share text: "bedrock", "magma", "core"... */
 function shareZone(z){ return z==='NOWHERE' ? 'jaw shut' : String(z||'').toLowerCase().replace(/^the /,''); }
 async function share(){
-  const label = (S.mode==='daily' ? 'Far-Fetched #'+dayNumber() : S.mode==='back' ? 'Far-Fetched #'+dayNumber()+' (back issue)' : 'Far-Fetched (practice)')+(S.kind!=='call'?' · '+modeName(S.kind):'');
+  const label = (S.mode==='daily' ? 'Far-Fetched #'+dayNumber() : S.mode==='back' ? 'Far-Fetched #'+dayNumber()+' (back issue)' : 'Far-Fetched (unlimited)')+(S.kind!=='call'?' · '+modeName(S.kind):'');
   const text = label+' · 🌎 '+fmtM(S.finalM!=null?S.finalM:0)+'\n'
     + S.shareLines.join('\n')+'  '+TIERS[tierOf(S.total||0,S.max||1000)].name+'\n'      // your rank on the scale (Globalist, Statesman...), not the zone
     + shareUrl();                      // the link also carries the friend challenge
@@ -5684,6 +5700,16 @@ const Cloud=(function(){
     main.textContent='Signed in as '+firstName(user);
     sub.textContent = armOut ? 'tap again to sign out' : (status||'progress saved to your account');
   }
+  /* the Press Pass: ask the account's purchases (payments add up: $5 unlocks the pass, $10 in total adds the eyeshade) */
+  async function refreshPass(){
+    if(!user || !sb) return false;
+    const {data,error}=await sb.from('purchases').select('amount').eq('user_id',user.id);
+    if(error) return false;
+    const total=(data||[]).reduce((m,x)=>m+(+x.amount||0),0), was=JSON.stringify(passState());
+    store('ff_pass',{pro:total>=500, skin:total>=1000, ts:Date.now()});
+    if(was!==JSON.stringify(passState())) try{ passChanged(); }catch(e){}
+    return total>=500;
+  }
   function setStatus(t){ status=t; render(); }
   async function push(){
     if(!user || !sb) return;
@@ -5717,7 +5743,8 @@ const Cloud=(function(){
   }
   function setUser(u){
     const was=user&&user.id; user=u||null; armOut=0; render(); try{ renderNpPass(); }catch(e){}
-    if(user && was!==user.id){ ready=true; pull(); }
+    if(user && was!==user.id){ ready=true; pull(); refreshPass(); }
+    try{ if(HP_ID==='pass') HPAGES.pass.render(); }catch(e){}
     try{ if(HP_ID==='account') HPAGES.account.render(); updateHome(); }catch(e){}   // the Account page flips to its signed-in view straight away
   }
   /* Sign-in: Google's own button inside a small sheet; its ID token goes straight to Supabase, so Google's screen shows the game, not the Supabase address. */
@@ -5767,7 +5794,7 @@ const Cloud=(function(){
   $('gsiClose').onclick=()=>{ $('gsi').hidden=true; };
   $('gsi').addEventListener('click',e=>{ if(e.target===$('gsi')) $('gsi').hidden=true; });
   $('gsiOld').onclick=oauthSignIn;
-  async function signOut(){ try{ await client(); await sb.auth.signOut(); }catch(e){} user=null; render(); }
+  async function signOut(){ try{ await client(); await sb.auth.signOut(); }catch(e){} user=null; store('ff_pass',{}); try{ passChanged(); }catch(e){} render(); }
   async function boot(){
     const q=new URLSearchParams(location.search), back=q.has('code');
     let had=false; try{ had=!!localStorage.getItem('ff_auth'); }catch(e){}
@@ -5786,7 +5813,7 @@ const Cloud=(function(){
     clearTimeout(armOut); armOut=0; signOut();
   };
   render(); boot();
-  return {user:()=>user, push, mergeKey, signIn, signOut, mountButton};
+  return {user:()=>user, push, mergeKey, signIn, signOut, mountButton, refreshPass};
 })();
 window.Cloud=Cloud;
 async function sbRpc(fn,body){
@@ -6067,7 +6094,7 @@ async function openBoard(kind){
   $('curve').hidden=rows.length<3;
   drawCurve(rows, mine);
   const others=rows.filter(r=>r.id!==b.me);
-  if(own && S.mode!=='daily') $('rankLine').innerHTML=rows.length+' reader'+(rows.length===1?'':'s')+' so far today. '+(S.mode==='back'?'Back issues':'Practice runs')+' don\'t count.';
+  if(own && S.mode!=='daily') $('rankLine').innerHTML=rows.length+' reader'+(rows.length===1?'':'s')+' so far today. '+(S.mode==='back'?'Back issues':'Unlimited runs')+' don\'t count.';
   else if(!done) $('rankLine').innerHTML=(rows.length ? rows.length+' reader'+(rows.length===1?'':'s')+' so far today.' : 'Nobody has finished today\'s round yet.')+' Finish yours to see where you land.';
   else if(!others.length) $('rankLine').innerHTML='You\'re the <b>first reader</b> today. Check back as others play.';
   else {
@@ -6340,7 +6367,7 @@ function showBlankRound(live){
   $('feedback').hidden=true; $('mapWrap').hidden=true;
   $('blankUI').hidden=false; $('blankLive').hidden=true;
   delete $('card').dataset.truth;
-  $('kicker').textContent='Fill the blank'+(S.mode==='practice'?' · practice':''); $('kicker').classList.remove('bad');
+  $('kicker').textContent='Fill the blank'+(S.mode==='practice'?' · unlimited':''); $('kicker').classList.remove('bad');
   $('headline').innerHTML='<span class="fakeplace">'+(S.results.length ? 'Next word…' : 'One word is hidden. You get 30 seconds and as many guesses as you like. The exact word scores most.')+'</span>';
   setBar('start');
   if(!S.results.length && !live) Scene.setPaper(false,true);
@@ -6905,9 +6932,10 @@ HPAGES.settings={title:'Settings',render(){
     +togCard('SOUND EFFECTS','Clicks, drops and the jaw. Also on the speaker button at the top of the game.','stFx',!Sound.isMuted(),'On','Off')
     +togCard('NEWSROOM SOUND','The murmur and typewriters in the background, and the drone as you dig.','stAmb',Sound.ambience(),'On','Off')
     +togCard('CALM MODE','Stops the wiggling, pulsing and flashing animations. Your device\'s reduce-motion setting is honoured either way.','stCalm',calmOn(),'On','Off')
+    +hpCard('PRESS PASS',passState().pro?'ACTIVE':'FROM $5','<p class="sm">'+(passState().pro?'Unlimited, every back issue and no ads, ever.':'Unlimited rounds, every back issue and no ads, ever. Pay what you like from $5.')+'</p><button class="b2 ghost" id="stPass" type="button">'+(passState().pro?'View your pass':'See the Press Pass')+'</button>')
     +hpCard('BRIEFS','','<p class="sm">What\'s new in the game, with dates.</p><button class="b2 ghost" id="stBriefs" type="button">Open Briefs</button>')
     +hpCard('ACCOUNT','','<p class="sm">'+(u?'Signed in. Your stats, streak and groups follow you to any device.':'Sign in to keep your stats, streak and groups on any device.')+'</p><button class="b2 ghost" id="stAcct" type="button">'+(u?'Open account':'Sign in')+'</button>');
-  pinWire();
+  pinWire(); if($('stPass')) $('stPass').onclick=()=>hpOpen('pass');
   const again=()=>{ const t=$('hp').querySelector('.sheetIn').scrollTop; HPAGES.settings.render(); $('hp').querySelector('.sheetIn').scrollTop=t; };
   $('stFxOn').onclick=()=>{ Sound.setMuted(false); renderMute(); Sound.play('menu'); gcEvent('setting/sfx/on'); again(); };
   $('stFxOff').onclick=()=>{ Sound.setMuted(true); renderMute(); gcEvent('setting/sfx/off'); again(); };
@@ -6918,6 +6946,48 @@ HPAGES.settings={title:'Settings',render(){
   $('stAcct').onclick=()=>{ hpOpen('account'); };
   $('stBriefs').onclick=()=>hpOpen('briefs');
 }};
+/* PRESS PASS */
+function passBuy(){
+  const u=window.Cloud&&Cloud.user&&Cloud.user();
+  if(!u){ hpClose(); Cloud.signIn(); return; }   // sign in first, so the pass follows the player to every device
+  gcEvent('pass/checkout'); location.href=PASS_LINK+'?client_reference_id='+encodeURIComponent(u.id);
+}
+HPAGES.pass={title:'Press Pass',render(){
+  const u=window.Cloud&&Cloud.user&&Cloud.user(), st=passState();
+  const perks='<ul class="passList"><li><b>Unlimited</b> rounds of every story ever printed</li><li><b>Every back issue</b>, not just the last '+BACK_FREE+'</li><li><b>No ads, ever.</b> Pass holders never see one, whatever the game does later</li></ul>';
+  if(st.pro){
+    $('hpBody').innerHTML=hpCard('YOUR PRESS PASS','<span class="badge ok">ACTIVE</span>','<p class="sm">Thank you for backing the paper. It is yours for good, on any device you sign in on.</p>'+perks
+      +(st.skin?'<p class="sm">The Editor\'s eyeshade is in your Wardrobe.</p>':'<p class="sm">Pay another $5 or more and your payments add up to $10: that adds the Editor\'s eyeshade for the wardrobe.</p><button class="b2" id="passBuy" type="button">Add to your pass</button>'));
+  } else {
+    $('hpBody').innerHTML=hpCard('PRESS PASS','FROM $5','<p class="sm">One payment, no subscription. Pay what you like from $5.</p>'+perks
+      +'<p class="sm">$10 or more also gets you the <b>Editor\'s eyeshade</b> for the wardrobe.</p>'
+      +'<button class="b2" id="passBuy" type="button">'+(u?'Get the Press Pass':'Sign in to get it')+'</button>'
+      +(u?'':'<p class="sm" style="margin-top:8px">Sign in first so your pass follows you to every device.</p>')
+      +'<p class="sm" style="margin-top:8px">Paid on Stripe\'s secure page. Already paid? <button class="linkish" id="passCheck" type="button">Check again</button></p>');
+  }
+  if($('passBuy')) $('passBuy').onclick=passBuy;
+  if($('passCheck')) $('passCheck').onclick=async()=>{ $('passCheck').textContent='Checking…'; const ok=await (window.Cloud&&Cloud.refreshPass?Cloud.refreshPass():false); if(!ok){ $('passCheck').textContent=u?'Nothing yet. Try again in a minute.':'Sign in first.'; } };
+}};
+/* everything that depends on the pass: menu labels, back issues, the wardrobe */
+function passChanged(){
+  const pro=isPro(), sub=$('unlSub'); if(sub) sub.textContent=pro?'Every past story. Nothing counts.':'Every past story. Press Pass.';
+  $('mPractice').classList.toggle('locked',!pro);
+  try{ renderIssues(); }catch(e){}
+  { const t=$('dBackTag'); const bl=$('mBack')&&$('mBack').querySelector('.blbl small'); if(bl) bl.innerHTML=(pro?'every past paper':'the last '+BACK_FREE+' papers')+' &middot; no streak'; }
+  if(passState().skin){ const k=kitState(); if(!k.seen.includes('eyeshade')){ k.eq.head='eyeshade'; store('ff_kit',{eq:k.eq, seen:k.seen.concat('eyeshade')}); } }   // wear the eyeshade the moment it is paid for
+  try{ applyKit(); renderWardSub(); }catch(e){}
+  try{ if(HP_ID==='pass') HPAGES.pass.render(); else if(HP_ID==='back') HPAGES.back.render(); else if(HP_ID==='settings') HPAGES.settings.render(); }catch(e){}
+}
+/* back from Stripe's page (?pass=ok): the webhook can take a few seconds, so ask the account until the pass shows up */
+function checkPassReturn(){
+  const q=new URLSearchParams(location.search); if(q.get('pass')!=='ok') return;
+  q.delete('pass'); const rest=q.toString(); history.replaceState(null,'',location.pathname+(rest?'?'+rest:'')+location.hash);
+  showToast('Thank you! Unlocking your Press Pass…'); let n=0;
+  const go=async()=>{ n++; const ok=window.Cloud&&Cloud.refreshPass?await Cloud.refreshPass():false;
+    if(ok){ showToast('Press Pass unlocked. Thank you!'); hpOpen('pass'); return; }
+    if(n<20) setTimeout(go,2500); else { showToast('Still working on it. Tap Check again on the Press Pass page in a minute.'); hpOpen('pass'); } };
+  go();
+}
 HPAGES.account={title:'Account',render(){
   const u=window.Cloud&&Cloud.user&&Cloud.user();
   if(!u){
@@ -6937,9 +7007,10 @@ HPAGES.account={title:'Account',render(){
 /* BACK ISSUES */
 HPAGES.back={title:'Back issues',render(){
   const w=backWindow(); const st=(d,k)=>backResult(d,k);
-  $('hpBody').innerHTML=hpCard('','','<p class="sm">The last '+BACK_FREE+' papers stay open. Back issues don\'t count toward your streak or the standings.</p>')
+  $('hpBody').innerHTML=hpCard('','','<p class="sm">'+(isPro()?'Every past paper is open.':'The last '+BACK_FREE+' papers are open.')+' Back issues don\'t count toward your streak or the standings.</p>')
     +w.map(x=>{ const c=st(x.date,'call'), b=st(x.date,'blank'); const cell=(k,name,r)=>'<div><p>'+name+'</p><p class="sm">'+(r?(r.live?'Played live · ':'Played · ')+(k!=='blank'&&+r.m>0?fmtM(r.m)+' · ':'')+fmtPts(r.score)+' pts':'Not played')+'</p><button class="b2'+(r?' ghost':'')+'" data-d="'+x.date+'" data-k="'+k+'" type="button" style="margin-top:4px;'+(r?'':'')+'">'+(r?'Replay':'Play')+'</button></div>'; return hpCard(fmtDate(x.date).toUpperCase(),'No. '+issueNumber(x.date),'<div class="g2">'+cell('call','Daily Dig',c)+cell('blank','Fill the Blank',b)+'</div>'); }).join('')
-    +hpCard('OLDER ISSUES','','<p class="sm">Every earlier story is in Practice, with nothing counting.</p>');
+    +(isPro()?'':hpCard('OLDER ISSUES','PRESS PASS','<p class="sm">Every earlier paper, plus Unlimited rounds, comes with the Press Pass.</p><button class="b2" id="bkPass" type="button">See the Press Pass</button>'));
+  if($('bkPass')) $('bkPass').onclick=()=>hpOpen('pass');
   document.querySelectorAll('#hpBody button[data-d]').forEach(b=>{ if(b.classList.contains('ghost')){ b.style.color='#1b1813'; } b.onclick=()=>{ KIND=b.dataset.k; hpClose(); openBackIssue(b.dataset.d); }; });
 }};
 
@@ -6961,7 +7032,7 @@ HPAGES.groups={title:'My groups',render(){
 }};
 
 $('mPol').onclick=()=>{ if(POL_ON) startGame('daily','pol'); };
-$('mPractice').onclick=()=>{ const l=$('practiceList'); l.hidden=!l.hidden; $('mPractice').setAttribute('aria-expanded',String(!l.hidden)); Sound.play('menu'); $('backList').hidden=true; $('howBox').hidden=true; l.querySelectorAll('button').forEach(b=>b.classList.toggle('on',S&&S.mode==='practice'&&b.dataset.k===S.kind)); };
+$('mPractice').onclick=()=>{ if(!isPro()){ closeMenu(); hpOpen('pass'); return; } const l=$('practiceList'); l.hidden=!l.hidden; $('mPractice').setAttribute('aria-expanded',String(!l.hidden)); Sound.play('menu'); $('backList').hidden=true; $('howBox').hidden=true; l.querySelectorAll('button').forEach(b=>b.classList.toggle('on',S&&S.mode==='practice'&&b.dataset.k===S.kind)); };
 $('practiceList').querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(!b.disabled) startGame('practice',b.dataset.k); });
 
 
@@ -7494,7 +7565,7 @@ Intro.show();                                   // the earth from space until yo
 updateStreak();
 setTimeout(checkInvites,4000);
 loadBriefs();
-Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS&&(POL_ON||VS.kind!=='pol')?VS.kind:KIND); loadIssues(); setTimeout(Intro.check,60); setTimeout(()=>{ checkGroupInvite(); syncName(false); },1200); });
+Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS&&(POL_ON||VS.kind!=='pol')?VS.kind:KIND); loadIssues(); setTimeout(Intro.check,60); try{ passChanged(); }catch(e){} setTimeout(checkPassReturn,1500); setTimeout(()=>{ checkGroupInvite(); syncName(false); },1200); });
 window.addEventListener('resize',()=>{ clearTimeout(window._aimT); window._aimT=setTimeout(()=>aim(),200); });
 
 </script>
