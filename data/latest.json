@@ -4,6 +4,17 @@
  "call": [
   {
    "real": true,
+   "h": "Boy, 9, runs up a $118,000 bill on YouTube ads for his Minecraft videos using his dad's work credit card in {}",
+   "hint": "home of DreamWorks Animation",
+   "lat": 34.1425,
+   "lng": -118.2551,
+   "place": "Glendale, California",
+   "src": "https://www.hs.fi/maailma/art-2000012279364.html",
+   "published": "2026-09-19",
+   "clue": "Father's own account (figure not independently verified)"
+  },
+  {
+   "real": true,
    "h": "Police in {} invite a shaman to cleanse their station on Halloween, and she traces the evil eye to the archives",
    "hint": "where Bernadette saw the Virgin Mary",
    "lat": 43.0941,
@@ -14,15 +25,9 @@
    "clue": "a prefecture and a famed Pyrenean pilgrimage town = France"
   },
   {
-   "real": true,
-   "h": "Boy, 9, runs up a $118,000 bill on YouTube ads for his Minecraft videos using his dad's work credit card in {}",
-   "hint": "home of DreamWorks Animation",
-   "lat": 34.1425,
-   "lng": -118.2551,
-   "place": "Glendale, California",
-   "src": "https://www.hs.fi/maailma/art-2000012279364.html",
-   "published": "2026-09-19",
-   "clue": "Father's own account (figure not independently verified)"
+   "real": false,
+   "h": "Divers off {} haul up 212 sealed tins of corned beef from a galleon that sank in 1741",
+   "tell": "Canning was not invented until about 1810."
   },
   {
    "real": true,
@@ -36,16 +41,6 @@
    "clue": "a club nicknamed the lions; forests at a city on two continents"
   },
   {
-   "real": false,
-   "h": "Divers off {} haul up 212 sealed tins of corned beef from a galleon that sank in 1741",
-   "tell": "Canning was not invented until about 1810."
-  },
-  {
-   "real": false,
-   "h": "Pilot in {} eats 3 kg of carrots a day for a month and says he can now see in the dark",
-   "tell": "Carrots cannot give night vision; that was a wartime propaganda myth."
-  },
-  {
    "real": true,
    "h": "Civil servant in {} threatens to burn trains stopping at one station, to avoid a man who threatened to punch him",
    "hint": "home of Haeundae Beach",
@@ -55,6 +50,11 @@
    "src": "https://news.google.com/rss/articles/CBMia0FVX3lxTE40ZW03Qzc5eFY0X053Q0VTdG43aEZuWnZFLUtDNU9qdmxxSHJjbjlqZF9uNFpaX1lJWjhTeHFFSVB4bUFTSGhlQmxPOXQwaXFkRHRYRlh3N3lFUllSbjNEX1JsNXRyQ2h6dlFz0gFwQVVfeXFMUHdBdGs4bmRvZXdEcXMwSjdMNDV4VXBkZ21mMGpCS3FSaFliSko1TGoxQzU1QTBRUFF5THNDUGRWWmZFb2hrbktpaGxnbjVzWFotdldLcU9Ud3dzbVBpWlp1cVo3MEtJN1JaZlF0U0dfdg?oc=5",
    "published": "2026-11-24",
    "clue": "a civil servant, a subway line and a port city = East Asia"
+  },
+  {
+   "real": false,
+   "h": "Pilot in {} eats 3 kg of carrots a day for a month and says he can now see in the dark",
+   "tell": "Carrots cannot give night vision; that was a wartime propaganda myth."
   },
   {
    "real": true,
