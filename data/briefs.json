@@ -1,18 +1,6 @@
 {
- "about": "Dated notes shown on the Briefs screen. The owner decides what is listed. Each brief: id (unique, never reused), date (YYYY-MM-DD), title, body (blank line = new paragraph). Newest date first; adding one makes the 'N new briefs' box appear for everyone who has not seen it.",
+ "about": "Dated notes shown on the Briefs screen. A brief is added only when the owner says so, never automatically with an update. Each brief: id (unique, never reused), date (YYYY-MM-DD), title, body (a blank line starts a new paragraph). Newest date first; adding one makes the 'N new briefs' box appear for everyone who has not seen it.",
  "briefs": [
-  {
-   "id": "2026-11-22-settings",
-   "date": "2026-11-22",
-   "title": "Settings, with a sandbox for the globe and map",
-   "body": "There is now a Settings tile on the home screen. It holds how you pin, sound effects, newsroom sound and Calm mode, which stops the wiggling and pulsing animations.\n\nUnder How you pin, Try the globe and Try the map open the real thing right there. Spin it, zoom in and drop a pin. Nothing is scored."
-  },
-  {
-   "id": "2026-11-21-summary-buttons",
-   "date": "2026-11-21",
-   "title": "Your buttons are under your summary",
-   "body": "After you finish a paper, the same eight buttons from the home screen now sit under your summary: Stats, Streak, Fill the Blank, Standings, Passport, Settings, Sign in and Groups."
-  },
   {
    "id": "2026-11-19-globe",
    "date": "2026-11-19",
