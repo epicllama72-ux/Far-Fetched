@@ -1579,6 +1579,27 @@ def one_per_country(call_pick, wider):
 
 
 # ---------------------------------------------------------------- main
+def place_fakes(call, rng):
+    """Where the fakes sit decides how many Real-or-Fake calls stay open. Once both fakes are found, every story after them
+    is obviously true and the question is pointless, so the second fake always sits late (slot 6 or 7), the first in the
+    middle (slot 2 to 4), never first and never next to each other. The best true story keeps slot 1."""
+    fakes = [x for x in call if not x.get("real")]
+    reals = [x for x in call if x.get("real")]
+    n = len(call)
+    if len(fakes) != 2 or n != 7 or len(reals) != 5:
+        return call                                   # other shapes keep the old shuffle (+ best story first)
+    first, second = rng.choice([1, 2, 3]), rng.choice([5, 6])        # zero-based: slots 2-4 and slots 6-7
+    out, ri = [], 0
+    for i in range(n):
+        if i == first:
+            out.append(fakes[0])
+        elif i == second:
+            out.append(fakes[1])
+        else:
+            out.append(reals[ri]); ri += 1
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", help="UTC date to build (default today)")
@@ -1939,6 +1960,7 @@ def main():
             if x.get("h") == best_h:
                 call.insert(0, call.pop(i))
                 break
+    call = place_fakes(call, rng)
     rng.shuffle(blank)
     result = {"date": day, "generated": now.isoformat(timespec="seconds"),
               "call": call, "blank": [real_blank(r) for r in blank]}

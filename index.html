@@ -2372,11 +2372,17 @@ function pickRounds(r,pol,allowDaily){
   const nr=Math.min(ROUNDS_REAL,reals.length), count={};
   return spreadFakes(shuffle(takeMixed(reals,nr,2,count).concat(takeMixed(fakes,ROUNDS_FAKE,2,count)),r),r);
 }
-/* the same rule as the daily paper: a fake is never the first story and two fakes never sit side by side
+/* the same rule as the daily paper: a fake is never the first story, two fakes never sit side by side, and the second fake sits late
    (a plain shuffle put a fake first about 3 rounds in 10, and two fakes together almost as often) */
 function spreadFakes(list,r){
   const fakes=list.filter(s=>!s.real), reals=list.filter(s=>s.real), n=list.length;
   if(!fakes.length || reals.length<fakes.length) return list;          // too few true stories to space them out
+  if(fakes.length===2 && n===7){                                       // the daily layout: once both fakes are found the rest are obviously true, so the second sits late
+    const f1=1+Math.floor(r()*3), f2=5+Math.floor(r()*2);               // slots 2-4 and slots 6-7
+    const out=[]; let ri=0, fi=0;
+    for(let i=0;i<n;i++) out.push(i===f1||i===f2 ? fakes[fi++] : reals[ri++]);
+    return out;
+  }
   let slots=null;
   for(let tries=0;tries<200 && !slots;tries++){
     const pool=[]; for(let i=1;i<n;i++) pool.push(i);                    // never slot 0
