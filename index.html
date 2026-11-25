@@ -7391,12 +7391,12 @@ const Intro=(function(){
     const t=$('introTop'), bar=document.querySelector('.topline');
     introText();
     t.style.top=Math.round(bar ? bar.getBoundingClientRect().bottom+4 : 62)+'px';   // straight under the top bar: the counters are hidden until the game starts
-    t.hidden=false; document.body.classList.add('introIdle');
+    t.hidden=false; document.body.classList.add('introIdle'); try{ briefBoxSync(); }catch(e){}
     if(typeof homeUnfold==='function') homeUnfold();
     layoutIdle();
     requestAnimationFrame(()=>t.classList.add('on'));
   }
-  function titleOff(keepCard){ const t=$('introTop'); t.classList.remove('on'); $('introHow').open=false; if(!keepCard) document.body.classList.remove('introIdle'); setTimeout(()=>{ if(!t.classList.contains('on')) t.hidden=true; },520); }
+  function titleOff(keepCard){ const t=$('introTop'); t.classList.remove('on'); const bb=$('briefBox'); if(bb) bb.classList.remove('on'); $('introHow').open=false; if(!keepCard) document.body.classList.remove('introIdle'); setTimeout(()=>{ if(!t.classList.contains('on')) t.hidden=true; },520); }
   function show(){
     if(reduce || on) return;
     size(); on=true; mode='idle'; dive=null; gen++; document.body.classList.add('intro'); titleOn(); tgt=spot(); lon0=tgt[1]-110; lat0=15; cv.style.opacity='1'; cv.style.transition=''; cv.hidden=false; last=0;
