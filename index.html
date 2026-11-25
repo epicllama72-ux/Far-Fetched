@@ -2365,7 +2365,23 @@ function pickRounds(r,pol,allowDaily){
   const pool=allowDaily ? STORIES.filter(want) : practicePool(want, pol?12:30);
   const reals=freshFirst(pool.filter(s=>s.real),r), fakes=freshFirst(pool.filter(s=>!s.real),r);
   const nr=Math.min(ROUNDS_REAL,reals.length), count={};
-  return shuffle(takeMixed(reals,nr,2,count).concat(takeMixed(fakes,ROUNDS_FAKE,2,count)),r);
+  return spreadFakes(shuffle(takeMixed(reals,nr,2,count).concat(takeMixed(fakes,ROUNDS_FAKE,2,count)),r),r);
+}
+/* the same rule as the daily paper: a fake is never the first story and two fakes never sit side by side
+   (a plain shuffle put a fake first about 3 rounds in 10, and two fakes together almost as often) */
+function spreadFakes(list,r){
+  const fakes=list.filter(s=>!s.real), reals=list.filter(s=>s.real), n=list.length;
+  if(!fakes.length || reals.length<fakes.length) return list;          // too few true stories to space them out
+  let slots=null;
+  for(let tries=0;tries<200 && !slots;tries++){
+    const pool=[]; for(let i=1;i<n;i++) pool.push(i);                    // never slot 0
+    const picked=[]; shuffle(pool,r).forEach(i=>{ if(picked.length<fakes.length && picked.every(j=>Math.abs(j-i)>1)) picked.push(i); });
+    if(picked.length===fakes.length) slots=new Set(picked);
+  }
+  if(!slots) return list;
+  const out=[]; let ri=0, fi=0;
+  for(let i=0;i<n;i++) out.push(slots.has(i) ? fakes[fi++] : reals[ri++]);
+  return out;
 }
 let PRACTICE_P=null;
 function loadPractice(){

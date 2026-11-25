@@ -849,6 +849,12 @@
    "before": "Police in {} invite a shaman on Halloween to cleanse their station; she traces the evil eye to the archives",
    "after": "Police in {} invite a shaman to cleanse their station on Halloween, and she traces the evil eye to the archives",
    "why": "owner (Nov 24): make headline 1 read better; the date belongs to the cleansing ('on Halloween'), not to the invitation, and 'and' joins the two clauses more smoothly than a semicolon"
+  },
+  {
+   "kind": "order",
+   "before": "Nov 25: Lourdes 1, Glendale 2, fakes 4 and 5 back to back",
+   "after": "Glendale 1, Lourdes 2, fakes at 3 and 6",
+   "why": "owner (Nov 24): lead with the Minecraft ads story and never put the two fakes back to back"
   }
  ]
 }
