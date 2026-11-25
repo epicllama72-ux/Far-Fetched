@@ -410,7 +410,7 @@
    "i": 1,
    "h": "Boy, 9, in {} digs up a Roman coin stamped with the year 44 BC while planting beans in his school garden",
    "tell": "Years were not counted as BC or AD until centuries after the Romans, so no coin could be stamped 44 BC.",
-   "n": 1839,
+   "n": 1841,
    "pct": 68.8
   },
   {
@@ -418,8 +418,40 @@
    "i": 3,
    "h": "Zoo in {} opens an Arctic exhibit where polar bears and penguins swim in neighbouring pools",
    "tell": "Polar bears live at the North Pole and penguins live in the south, so no Arctic exhibit would hold penguins.",
-   "n": 1839,
+   "n": 1841,
    "pct": 49.3
+  },
+  {
+   "day": "2026-11-24",
+   "i": 1,
+   "h": "Restaurant in {} adds a vomitorium so diners can purge between 14 courses, Roman style",
+   "tell": "A vomitorium was a stadium passage for crowds, not a room for vomiting.",
+   "n": 1946,
+   "pct": 45.4
+  },
+  {
+   "day": "2026-11-24",
+   "i": 4,
+   "h": "Tupperware lid found sealed in a 1931 cathedral wall in {}, beside 12 coins and a sermon",
+   "tell": "Tupperware wasn't invented until the 1940s, so it can't be in a 1931 wall.",
+   "n": 1946,
+   "pct": 40.5
+  },
+  {
+   "day": "2026-11-25",
+   "i": 2,
+   "h": "Divers off {} haul up 212 sealed tins of corned beef from a galleon that sank in 1741",
+   "tell": "Canning was not invented until about 1810.",
+   "n": 272,
+   "pct": 41.2
+  },
+  {
+   "day": "2026-11-25",
+   "i": 5,
+   "h": "Pilot in {} eats 3 kg of carrots a day for a month and says he can now see in the dark",
+   "tell": "Carrots cannot give night vision; that was a wartime propaganda myth.",
+   "n": 272,
+   "pct": 30.9
   }
  ]
 }
