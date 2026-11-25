@@ -1,0 +1,11 @@
+{
+ "about": "Dated notes shown on the Briefs screen. A brief is added only when the owner says so, never automatically with an update. Each brief: id (unique, never reused), date (YYYY-MM-DD), title, body (a blank line starts a new paragraph). Newest date first; adding one makes the 'N new briefs' box appear for everyone who has not seen it.",
+ "briefs": [
+  {
+   "id": "2026-11-19-globe",
+   "date": "2026-11-19",
+   "title": "Pin on a globe or a flat map",
+   "body": "You can now drop your pin on a spinning globe instead of the flat map. Tap a region to zoom in, then tap again to place your pin.\n\nPick the one you like in Settings. Your choice is saved on this device."
+  }
+ ]
+}
