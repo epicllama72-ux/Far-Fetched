@@ -2094,7 +2094,7 @@ body.pinning #card #headline{font-size:23px}
     <button type="button" class="ht" data-h="passport"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="1" y="0" width="5" height="7"/><rect x="2" y="1" width="3" height="3" style="fill:#141821"/><rect x="3" y="2" width="1" height="1"/><rect x="2" y="5" width="3" height="1" style="fill:#141821"/></g></svg><span class="hn">Passport</span><span class="hs" id="hPass"></span></button>
     <button type="button" class="ht" data-h="settings"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="3" y="0" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="5" y="1" width="1" height="1"/><rect x="2" y="2" width="3" height="3"/><rect x="0" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/><rect x="1" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/><rect x="3" y="3" width="1" height="1" style="fill:#1b1813"/></g></svg><span class="hn">Settings</span></button>
     <button type="button" class="ht" data-h="account"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="1" width="3" height="3"/><rect x="3" y="2" width="4" height="1"/><rect x="5" y="3" width="1" height="2"/></g></svg><span class="hn" id="hAcctN">Sign in</span><span class="hdot" id="hAcctDot">SAVE</span></button>
-    <button type="button" class="ht" data-h="groups"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="1" width="2" height="2"/><rect x="0" y="3" width="3" height="3"/><rect x="3" y="0" width="2" height="2"/><rect x="3" y="2" width="3" height="4"/></g></svg><span class="hn">Groups</span><span class="hs" id="hGroups"></span></button>
+    <button type="button" class="ht" data-h="unlimited"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="1" y="2" width="2" height="1"/><rect x="4" y="2" width="2" height="1"/><rect x="0" y="3" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/><rect x="1" y="4" width="2" height="1"/><rect x="4" y="4" width="2" height="1"/></g></svg><span class="hn">Unlimited</span><span class="hdot" id="hUnlDot">PASS</span></button>
   </div>
 </div>
   <button class="primary" id="btnNext" hidden>Next</button>
@@ -4897,7 +4897,8 @@ function toggleMapSize(){
 /* the start button is a folded copy of today's paper: its masthead strip, then the label with a red arrow */
 function paperBtn(b,label,plain){
   b.classList.add('paperBtn');
-  b.innerHTML='<span class="pbm"><span>'+(typeof S!=='undefined'&&S&&S.kind==='blank'?'FILL IN THE BLANK':'THE DAILY ODD')+'</span><span>NO. '+dayNumber()+'</span></span><span class="pbl"></span>';
+  const unl=typeof S!=='undefined'&&S&&S.mode==='practice';   // Unlimited has no issue number: the strip just says UNLIMITED
+  b.innerHTML='<span class="pbm"'+(unl?' style="justify-content:center"':'')+'><span>'+(unl?'UNLIMITED':typeof S!=='undefined'&&S&&S.kind==='blank'?'FILL IN THE BLANK':'THE DAILY ODD')+'</span>'+(unl?'':'<span>NO. '+dayNumber()+'</span>')+'</span><span class="pbl"></span>';
   b.querySelector('.pbl').innerHTML=escH(label)+(plain?'':' <i aria-hidden="true">→</i>');
 }
 /* next headline: a paper slip, with the points just won on a green tag */
@@ -6864,7 +6865,6 @@ function updateHome(){
     const hb=(load('ff_hist')||{})[dayKey()+':blank'];
     $('hBlank').textContent = bd ? (hb?fmtPts(hb.score):'done') : BLANK_N+' words';
     $('hAcctN').textContent = u ? 'Account' : 'Sign in'; $('hAcctDot').textContent = u ? '' : 'SAVE';
-    $('hGroups').textContent = (MY_GROUPS&&MY_GROUPS.length)||'';
     { const names=Object.keys(passport()); $('hPass').textContent = passCount(names)+'/'+passTotal(); }
     syncFinalBtns();
     requestAnimationFrame(()=>{ try{ if(typeof Intro!=='undefined' && Intro.relayout) Intro.relayout(); }catch(e){} });   // the bar grew or shrank: re-seat the planet between the text and the buttons
@@ -6874,6 +6874,7 @@ function homeBtnGo(b){
   const k=b.dataset.h;
   if(k==='board'){ try{ Sound.play('menu'); }catch(e){} openBoard(); return; }
   if(k==='passport'){ openPassport(); return; }
+  if(k==='unlimited'){ try{ Sound.play('menu'); }catch(e){} startGame('practice',KIND==='blank'?'blank':'call'); return; }   // locked players land on the Press Pass page instead
   hpOpen(k);
 }
 document.querySelectorAll('#homeBtns .ht').forEach(b=>b.onclick=()=>homeBtnGo(b));
@@ -7081,11 +7082,12 @@ HPAGES.pass={title:'Press Pass',render(){
 function passChanged(){
   const pro=isPro(), sub=$('unlSub'); if(sub) sub.textContent='Every story we have.';
   $('mPractice').classList.toggle('locked',!pro);
+  { const d=$('hUnlDot'); if(d) d.hidden=pro; try{ syncFinalBtns(); }catch(e){} }
   try{ renderIssues(); }catch(e){}
   { const t=$('dBackTag'); const bl=$('mBack')&&$('mBack').querySelector('.blbl small'); if(bl) bl.innerHTML=(pro?'every past paper':'the last '+BACK_FREE+' papers')+' &middot; no streak'; }
   if(passState().skin){ const k=kitState(); if(!k.seen.includes('drill')){ k.eq.jaw='drill'; store('ff_kit',{eq:k.eq, seen:k.seen.concat('drill')}); } }   // wear the drill the moment it is paid for
   try{ applyKit(); renderWardSub(); }catch(e){}
-  try{ if(HP_ID==='pass') HPAGES.pass.render(); else if(HP_ID==='back') HPAGES.back.render(); else if(HP_ID==='settings') HPAGES.settings.render(); }catch(e){}
+  try{ if(HP_ID==='pass') HPAGES.pass.render(); else if(HP_ID==='back') HPAGES.back.render(); else if(HP_ID==='settings') HPAGES.settings.render(); else if(HP_ID==='account') HPAGES.account.render(); }catch(e){}
 }
 /* back from Stripe's page (?pass=ok): the webhook can take a few seconds, so ask the account until the pass shows up */
 function checkPassReturn(){
@@ -7097,18 +7099,34 @@ function checkPassReturn(){
     if(n<20) setTimeout(go,2500); else { showToast('Still working on it. Tap Check again on the Press Pass page in a minute.'); hpOpen('pass'); } };
   go();
 }
+/* the Press Pass card on the Account page */
+function acctPassCard(signedIn){
+  const st=passState();
+  const row=(ok,t)=>'<li><span>'+(ok?'✓':'·')+'</span><span>'+t+'</span><span></span></li>';
+  if(st.pro){
+    return hpCard('PRESS PASS','<span class="badge ok">ACTIVE</span>','<ul class="lst">'+row(1,'Unlimited rounds')+row(1,'Every back issue')+row(1,'No ads, ever')+row(st.skin,'Jaw drill'+(st.skin?'':' · not added'))+'</ul>'
+      +(st.skin?'':'<button class="b2 ghost" id="acPassMore" type="button">Add the jaw drill · $5</button>'));
+  }
+  return hpCard('PRESS PASS','FROM $5','<p class="sm">Unlimited rounds, every back issue and no ads, ever. One payment, yours for good'+(signedIn?'.':', and it follows you to any device once you sign in.')+'</p>'
+    +'<button class="b2 ppGo ppSm" id="acPassMore" type="button">See the Press Pass</button>');
+}
+function acctGroupsCard(){ const n=(MY_GROUPS&&MY_GROUPS.length)||0; return hpCard('GROUPS',n?n+' OF 10':'','<p class="sm">Make a group to compete with friends on the same papers, or join one with a code.</p><button class="b2 ghost" id="acGroups" type="button">My groups</button>'); }
+function acctPassWire(){ const g=$('acGroups'); if(g) g.onclick=()=>hpOpen('groups'); const b=$('acPassMore'); if(b) b.onclick=()=>hpOpen('pass'); }
 HPAGES.account={title:'Account',render(){
   const u=window.Cloud&&Cloud.user&&Cloud.user();
   if(!u){
     $('hpBody').innerHTML=hpCard('SAVE YOUR STREAK','','<p>Your streak, passport and groups live on this device only. Sign in and they follow you to any phone or browser.</p><ul class="lst"><li><span>✓</span><span>Streak and freezes saved</span><span></span></li><li><span>✓</span><span>Stats and score history saved</span><span></span></li><li><span>✓</span><span>Passport and best digs saved</span><span></span></li><li><span>✓</span><span>Groups and standings on every device</span><span></span></li></ul>')
       +'<div id="acG" class="acG"><button class="gbtn" id="acIn" type="button"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.6z"/><path fill="#FBBC05" d="M10.5 28.7a14.5 14.5 0 0 1 0-9.4l-7.9-6.1a24 24 0 0 0 0 21.6l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg><span>Continue with Google</span></button></div><p class="hint">You can keep playing without an account. The game only reads your name and a unique ID.</p>';
+    $('hpBody').insertAdjacentHTML('beforeend',acctPassCard(false)+acctGroupsCard()); acctPassWire();
     $('acIn').onclick=()=>{ if(window.Cloud) Cloud.signIn(); };
     if(window.Cloud&&Cloud.mountButton) Cloud.mountButton($('acG'),$('acG').clientWidth);   // swaps in Google's own button when it loads; the one above stays as the fallback
   } else {
     const mail=String(u.email||''), at=mail.indexOf('@'), shown=at>0?mail.slice(0,Math.min(3,at))+'···'+mail.slice(at):'';
     $('hpBody').innerHTML='<div class="cd navy"><h5><span>SIGNED IN</span><span>GOOGLE</span></h5><p style="font:12px var(--px);color:#fff">'+hpEsc(playerName())+'</p>'+(shown?'<p class="sm">'+hpEsc(shown)+'</p>':'')+'</div>'
       +hpCard('SYNCED','','<ul class="lst"><li><span>✓</span><span>Stats · '+Object.keys(load('ff_hist')||{}).length+' scores</span><span></span></li><li><span>✓</span><span>Streak · '+streakCount()+' day'+(streakCount()===1?'':'s')+'</span><span></span></li><li><span>✓</span><span>Passport · '+passCount(Object.keys(passport()))+' countries</span><span></span></li><li><span>✓</span><span>'+((MY_GROUPS&&MY_GROUPS.length)||0)+' groups</span><span></span></li></ul><p class="sm">Change your name on the Stats page.</p>')
+      +acctPassCard(true)+acctGroupsCard()
       +'<button class="b2 ghost" id="acOut" type="button">Sign out</button>';
+    acctPassWire();
     $('acOut').onclick=async()=>{ try{ await Cloud.signOut(); }catch(e){} HPAGES.account.render(); updateHome(); };
   }
 }};

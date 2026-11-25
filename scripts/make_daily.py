@@ -511,6 +511,9 @@ Candidates:
 """
 
 
+RUNNERS_UP, RUNNERS_KEEP = [], 40      # filled by screen(): good candidates just below the shortlist
+
+
 def screen(cands, model, top=SCREEN_TOP):
     """Score every candidate with a cheap model; return the best `top` (falls back to a random slice)."""
     scores = {}
@@ -548,6 +551,14 @@ def screen(cands, model, top=SCREEN_TOP):
                 best.append(cands[i])
                 if len(best) == top:
                     break
+    kept = {id(c) for c in best}
+    RUNNERS_UP[:] = []
+    for i in order:                                       # the next best candidates: the editor never sees them, Unlimited may use them
+        if id(cands[i]) not in kept and scores.get(i, -1) >= 0:
+            cands[i]["screen"] = scores.get(i, -1)
+            RUNNERS_UP.append(cands[i])
+            if len(RUNNERS_UP) >= RUNNERS_KEEP:
+                break
     spread = ", ".join(f"{k} {v}" for k, v in sorted(per.items(), key=lambda kv: -kv[1]))
     print(f"  screened {len(scores)} candidates; kept top {len(best)} (scores {best[0]['screen']:.0f} to {best[-1]['screen']:.0f}); countries: {spread}", file=sys.stderr)
     return best
@@ -1600,6 +1611,97 @@ def place_fakes(call, rng):
     return out
 
 
+UNLIMITED_EXTRAS_MAX = 6        # stories added to Unlimited per night from the screening runners-up
+UNLIMITED_EXTRAS_POOL = 14      # runners-up shown to the cheap model
+UNLIMITED_PROMPT_CUT = re.compile(r'^   - "(h2|ans|alt)":.*\n', re.M)
+
+
+def unlimited_extras(day, used, prior, model):
+    """Stories for Unlimited only. The shortlist screening scored just below the Daily Dig candidates never reach the editor, so they are
+    lost every night. One cheap-model call (a fraction of a cent) turns the best of them into playable stories. Anything the cheap
+    model rates 4-5 is skipped here: those may still be good enough for a Daily Dig and come round again in later feeds."""
+    pool = [c for c in RUNNERS_UP if c.get("link") and c["link"] not in used][:UNLIMITED_EXTRAS_POOL]
+    if len(pool) < 4:
+        return []
+    head = PROMPT.split('\n2) "fake"')[0]
+    head = UNLIMITED_PROMPT_CUT.sub("", head)
+    head = re.sub(r"pick 16 of the best stories for the game, best first\. You MUST return at least 12, never fewer\.",
+                  "pick up to 8 stories that work as playable stories, best first. Fewer is fine: skip any whose place or facts are unclear.", head, count=1)
+    if "pick up to 8 stories" not in head:
+        return []                                              # the editor prompt changed shape: do nothing rather than guess
+    tail = '\n\nOutput format:\n{"real":[{"id":0,"h":"...","place":"...","geocode":"...","lat":0,"lng":0,"country":"...","cc":"..","hint":"...","clue":"...","mappable":0,"unbelievable":1}]}\n\nCandidates:\n'
+    payload = [{"id": i, "title": c["title"], "summary": (c.get("summary") or "")[:400], "source": c.get("source", ""), "published": c.get("published", "")}
+               for i, c in enumerate(pool)]
+    res = call_claude(styled(head + tail, "Candidates:") + json.dumps(payload, ensure_ascii=False), model, max_tokens=6000, fatal=False, keys=["real"])
+    out = []
+    for r in (res or {}).get("real", []):
+        try:
+            c = pool[int(r["id"])]
+        except Exception:
+            continue
+        r["src"], r["published"] = c["link"], c.get("published", "")
+        if not r.get("cc") and c.get("cc") and c["cc"] != "?":
+            r["cc"] = c["cc"]
+        try:
+            if int(r.get("unbelievable", 3) or 3) >= 4 or int(r.get("mappable", 2)) < 2:
+                continue                                       # strong stories wait for a Daily Dig; unmappable ones are no use
+        except Exception:
+            continue
+        if valid_real(r) or not hint_ok(r.get("hint"), r.get("place", "")) or seen_before(r, prior):
+            continue
+        g = geocode(r.get("geocode") or r.get("place", ""))
+        if not g:
+            continue
+        try:
+            if km(g[0], g[1], float(r["lat"]), float(r["lng"])) >= 400:
+                continue                                       # the model and the geocoder disagree: a same-name town elsewhere
+        except Exception:
+            pass
+        r["lat"], r["lng"] = g
+        out.append(r)
+        if len(out) >= UNLIMITED_EXTRAS_MAX:
+            break
+    print(f"  Unlimited extras: {len(out)} stories from {len(pool)} runners-up", file=sys.stderr)
+    return out
+
+
+UNLIMITED_REAL_RESERVE = 60      # real stories kept in the bank for future Daily Digs; strong ones beyond that go to Unlimited instead
+UNLIMITED_MIN_FAKE_TASTE = 5     # the taste judge's 1-10 score a spilled fake needs to join Unlimited
+
+
+def spill_for_unlimited(keep_real, keep_fake, old_bank_fakes, oldest, day):
+    """Stories and fakes the bank has no room for (or that aged out of it) are not thrown away if they were rated well:
+    they join the Unlimited archive. This only re-uses ratings the run already paid for: no extra Claude calls.
+    Returns (spill_real, spill_fake); the caller removes spill_real from the bank so a story never sits in both places."""
+    try:
+        yesterday2 = (dt.date.fromisoformat(day) - dt.timedelta(days=2)).isoformat()   # dated so Unlimited can use it right away
+    except Exception:
+        return [], []
+    def stamp(x):
+        return min(str(x.get("banked") or yesterday2), yesterday2)
+    ranked = sorted([r for r in keep_real if not r.get("hold") and not r.get("blank_only") and not r.get("_desk_reject")], key=merit, reverse=True)
+    spill_real = []
+    for r in ranked[UNLIMITED_REAL_RESERVE:]:
+        try:
+            strong = int(r.get("unbelievable", 0) or 0) >= 4
+        except Exception:
+            strong = False
+        if strong and (r.get("hint") or "").strip() and not valid_real(r) and r.get("src"):
+            spill_real.append(dict(r, _day=stamp(r)))
+    spill_fake, seen = [], set()
+    for f in list(keep_fake[45:]) + [f for f in old_bank_fakes if f.get("banked", "") < oldest]:
+        if f.get("hand") or f.get("_desk_reject") or not valid_fake(f) or f["h"] in seen:
+            continue
+        try:
+            taste = float(f.get("taste") or 0)
+        except Exception:
+            taste = 0
+        if taste >= UNLIMITED_MIN_FAKE_TASTE:
+            seen.add(f["h"])
+            spill_fake.append({"real": False, "h": f["h"], "tell": f.get("tell", ""), "day": stamp(f)})
+    return spill_real, spill_fake
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", help="UTC date to build (default today)")
@@ -2074,11 +2176,23 @@ def main():
     used_fake = {f["h"] for f in fakes[:N_CALL_FAKE]}
     keep_fake = [f for f in fakes if f["h"] not in used_fake and not f.get("_desk_reject")]
     keep_fake.sort(key=lambda f: 0 if f.get("hand") else 1)      # hand-written fakes stay in the bank; fresh ones fill the rest
+    spill_real, spill_fake = spill_for_unlimited(keep_real, keep_fake, bank.get("fake", []), oldest, day)
+    if spill_real:
+        gone = {r["src"] for r in spill_real}
+        keep_real = [r for r in keep_real if r.get("src") not in gone]
+    print(f"  to Unlimited instead of being dropped: {len(spill_real)} real stories, {len(spill_fake)} fakes", file=sys.stderr)
     with open(bank_path, "w") as f:
         json.dump({"real": keep_real[:BANK_MAX], "fake": keep_fake[:45],
                    "pol": [r for r in keep_pol if r.get("src") not in pol_src][:60], "polfake": keep_polfake[:20]},
                   f, ensure_ascii=False, indent=1)
     print(f"  bank now holds {min(len(keep_real), BANK_MAX)} stories and {min(len(keep_fake), 30)} fakes", file=sys.stderr)
+
+    unlimited_extra = []
+    if RUNNERS_UP and not args.picks:
+        try:
+            unlimited_extra = unlimited_extras(day, used, prior, os.environ.get("FF_SCREEN_MODEL", "claude-haiku-5-5"))
+        except Exception as e:
+            print(f"  Unlimited extras skipped ({e})", file=sys.stderr)
 
     # Practice archive: every story the daily modes have shown, from any day, so Practice has a deep pool.
     arch_path = os.path.join(DATA, "practice.json")
@@ -2129,6 +2243,14 @@ def main():
                     add_real(r, m.group(1), pol)
                 elif key != "blank":
                     add_fake(r, m.group(1))
+    for r in spill_real:
+        add_real(r, r.pop("_day"))
+    for r in unlimited_extra:
+        add_real(r, (dt.date.fromisoformat(day) - dt.timedelta(days=2)).isoformat())
+    for f in spill_fake:
+        if f["h"] not in have:
+            have.add(f["h"])
+            arch["fake"].append(f)
     # Entries wrongly stamped with today's date (or later) that were not in today's edition can be practised: restamp them.
     todays = {r.get("src") for r in call_real + blank if r.get("src")} | {r.get("src") for r in result.get("politics", []) if r.get("src")}
     todays_fake = {c.get("h") for c in call + result.get("politics", []) if not c.get("real")}
