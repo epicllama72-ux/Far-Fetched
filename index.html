@@ -824,6 +824,17 @@ body.howOpen #briefBox{visibility:hidden}   /* How to play opens over the briefs
 #hp .ppArt{background:#0f1522;border:2px solid #1b1813;padding:8px 10px 6px;display:grid;place-items:center}
 #hp .drillArt{display:block;max-width:100%;height:auto}
 #hp .ppGo{font-size:11px;padding:16px 8px 14px;box-shadow:4px 5px 0 rgba(0,0,0,.4)}
+#hp .ppSm{font-size:9px;padding:12px 8px 10px;margin-top:10px}
+#hp .ppTier{position:relative;background:#f7f3e8;border:3px solid #1b1813;box-shadow:4px 5px 0 rgba(0,0,0,.45);padding:14px 14px 14px;margin:0 0 14px}
+#hp .ppTier.best{background:#f2d65a;border-style:solid;margin-top:14px}
+#hp .ppTier .ppGo{margin-top:12px}
+#hp .ppTier p{margin:6px 0 0;font:18px/1.15 var(--vt);color:#3b342a}
+#hp .ppPrice{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+#hp .ppPrice b{font:400 30px/1 var(--px);color:#a8231a}#hp .ppPrice span{font:8px/1.4 var(--px);letter-spacing:.12em;text-align:right;color:#1b1813}
+#hp .ppFlag{position:absolute;right:10px;top:-12px;rotate:3deg;background:#a8231a;color:#fff;font:7px/1 var(--px);letter-spacing:.16em;padding:6px 8px 5px;border:2px solid #1b1813}
+#hp .ppBonusIn{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;margin-top:10px}
+#hp .ppBonusIn span{font:17px/1.15 var(--vt);color:#3b342a}
+#hp .ppRed{background:#a8231a}
 #hp .ppNote{text-align:center;margin:10px 0 0}
 @media (max-width:360px){#hp .ppBonus{grid-template-columns:1fr}#hp .ppArt{justify-self:start}}
 #hp .hint{color:#aab6d6;font:18px/1.1 var(--vt);margin:8px 0}
@@ -5196,7 +5207,7 @@ const KIT=[
   {id:'shades',  slot:'glasses',name:'Aussie sunglasses',  icon:'🕶️', need:'dig through to Australia', ok:L=>L.zmax>=6},
   {id:'monocle',slot:'monocle',name:'Detective monocle',   icon:'🧐', need:'catch 20 fake stories', ok:L=>L.catches>=20, prog:L=>[L.catches,20]},
   {id:'pigeon', slot:'pigeon', name:'Carrier pigeon',      icon:'🕊️', need:'a friend joins from your challenge', ok:L=>L.invites>=1},
-  {id:'drill',   slot:'jaw',    name:'Strap-on jaw drill',  icon:'🔩', need:'$10 or more on the Press Pass', ok:L=>L.skin}];
+  {id:'drill',   slot:'jaw',    name:'Strap-on jaw drill',  icon:'🔩', need:'the $10 Press Pass + Jaw Drill', ok:L=>L.skin}];
 function lifeNow(){
   const l=load('ff_life')||{}, h=load('ff_hist')||{};
   return {best:l.best||0, pins:l.pins||0, catches:l.catches||0, zmax:l.zmax||0, cblown:!!l.cblown, invites:+load('ff_invites')||0, skin:passState().skin, papers:new Set(Object.keys(h).filter(k=>k.endsWith(':call')).map(k=>k.split(':')[0])).size};
@@ -5543,7 +5554,7 @@ function loadIssues(){
 const BACK_FREE=5;    // back issues on offer: the most recent 5 earlier papers. Every older paper stays stored (data/*.json, issues.json) for later.
 /* Press Pass: pay what you want from $5. It unlocks Unlimited (the practice mode), every back issue, and no ads ever; $10 or more in total also adds the strap-on jaw drill.
    The truth is the purchases table (only Stripe's webhook can write it); this device keeps a copy so the game still works offline. */
-const PASS_LINK='https://buy.stripe.com/00w3cve1U5LB66w6u9bQY00';
+const PASS_LINKS={pass:'https://buy.stripe.com/7sYfZh2jcfmb7aA05LbQY01', bundle:'https://buy.stripe.com/3cI6oH1f8b5V9iI7ydbQY02', drill:'https://buy.stripe.com/dRm5kD8HA1vl7aAf0FbQY03'};   // $5 pass, $10 pass + jaw drill, $5 jaw drill for a pass holder
 function passState(){ const p=load('ff_pass')||{}; return {pro:!!p.pro, skin:!!p.skin}; }
 const isPro=()=>passState().pro;
 const backWindow=()=>{ const all=ISSUES.filter(x=>x && x.date && x.date<dayKey()).sort((a,b)=>a.date<b.date?1:-1); return isPro()?all:all.slice(0,BACK_FREE); };
@@ -6973,7 +6984,7 @@ HPAGES.settings={title:'Settings',render(){
     +togCard('SOUND EFFECTS','Clicks, drops and the jaw. Also on the speaker button at the top of the game.','stFx',!Sound.isMuted(),'On','Off')
     +togCard('NEWSROOM SOUND','The murmur and typewriters in the background, and the drone as you dig.','stAmb',Sound.ambience(),'On','Off')
     +togCard('CALM MODE','Stops the wiggling, pulsing and flashing animations. Your device\'s reduce-motion setting is honoured either way.','stCalm',calmOn(),'On','Off')
-    +hpCard('PRESS PASS',passState().pro?'ACTIVE':'FROM $5','<p class="sm">'+(passState().pro?'Unlimited, every back issue and no ads, ever.':'Unlimited rounds, every back issue and no ads, ever. Pay what you like from $5.')+'</p><button class="b2 ghost" id="stPass" type="button">'+(passState().pro?'View your pass':'See the Press Pass')+'</button>')
+    +hpCard('PRESS PASS',passState().pro?'ACTIVE':'FROM $5','<p class="sm">'+(passState().pro?'Unlimited, every back issue and no ads, ever.':'Unlimited rounds, every back issue and no ads, ever. From $5.')+'</p><button class="b2 ghost" id="stPass" type="button">'+(passState().pro?'View your pass':'See the Press Pass')+'</button>')
     +hpCard('BRIEFS','','<p class="sm">What\'s new in the game, with dates.</p><button class="b2 ghost" id="stBriefs" type="button">Open Briefs</button>')
     +hpCard('ACCOUNT','','<p class="sm">'+(u?'Signed in. Your stats, streak and groups follow you to any device.':'Sign in to keep your stats, streak and groups on any device.')+'</p><button class="b2 ghost" id="stAcct" type="button">'+(u?'Open account':'Sign in')+'</button>');
   pinWire(); if($('stPass')) $('stPass').onclick=()=>hpOpen('pass');
@@ -6988,10 +6999,10 @@ HPAGES.settings={title:'Settings',render(){
   $('stBriefs').onclick=()=>hpOpen('briefs');
 }};
 /* PRESS PASS */
-function passBuy(){
+function passBuy(kind){
   const u=window.Cloud&&Cloud.user&&Cloud.user();
   if(!u){ hpClose(); Cloud.signIn(); return; }   // sign in first, so the pass follows the player to every device
-  gcEvent('pass/checkout'); location.href=PASS_LINK+'?client_reference_id='+encodeURIComponent(u.id);
+  gcEvent('pass/checkout/'+kind); location.href=(PASS_LINKS[kind]||PASS_LINKS.pass)+'?client_reference_id='+encodeURIComponent(u.id);
 }
 function drillSVG(px){   // the jaw drill as pixel art, drawn from the same shapes as the game
   const R=[]; const rect=(x,y,w,h,c)=>R.push('<rect x="'+(x+12)+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+c+'"/>');
@@ -7005,23 +7016,30 @@ function drillSVG(px){   // the jaw drill as pixel art, drawn from the same shap
 HPAGES.pass={title:'Press Pass',render(){
   const u=window.Cloud&&Cloud.user&&Cloud.user(), st=passState(), rest=Math.max(0,ISSUES.filter(x=>x&&x.date&&x.date<dayKey()).length-BACK_FREE);
   const head='<div class="pp"><div class="ppHole" aria-hidden="true"></div><div class="ppTop"><b>PRESS PASS</b><span>FAR-FETCHED DAILY ODD</span></div>'
-    +'<div class="ppBody"><div class="ppBig">'+(st.pro?'ACTIVE':'FROM $5')+'</div><div class="ppSub">'+(st.pro?'Thank you for backing the paper.':'Pay what you like. One time, no subscription.')+'</div></div></div>';
+    +'<div class="ppBody"><div class="ppBig">'+(st.pro?'ACTIVE':'FROM $5')+'</div><div class="ppSub">'+(st.pro?'Thank you for backing the paper.':'One payment. No subscription.')+'</div></div></div>';
   const perks='<ul class="ppPerks">'
     +'<li><i class="pk pk1" aria-hidden="true">∞</i><span><b>Unlimited</b>Endless rounds of every story the paper has ever run. Nothing counts, so just play.</span></li>'
     +'<li><i class="pk pk2" aria-hidden="true">▤</i><span><b>Every back issue</b>'+(rest?'All '+rest+' older papers, not just the last '+BACK_FREE+'.':'Every past paper, not just the last '+BACK_FREE+'.')+'</span></li>'
     +'<li><i class="pk pk3" aria-hidden="true">✕</i><span><b>No ads, ever</b>Pass holders never see one, whatever the game does later.</span></li></ul>';
-  const bonus='<div class="ppBonus"><div class="ppArt">'+drillSVG(4)+'</div><div><b>$10 or more also gets the jaw drill</b><span>A real drill head strapped to his jaw. It leads every dig and cracks the earth ahead of you. Yours in the Wardrobe.</span>'+(st.skin?'<em>Unlocked. It is in your Wardrobe.</em>':'')+'</div></div>';
-  let html;
-  if(st.pro){
-    html=head+perks+bonus+(st.skin?'':'<p class="sm ppNote">Your payments add up. Pay another $5 or more and you reach $10, which adds the jaw drill.</p><button class="b2 ppGo" id="passBuy" type="button">Add to your pass</button>');
+  const signIn=u?'':'<p class="sm ppNote">You will be asked to sign in first, so your pass follows you to every device.</p>';
+  const drillCard=(btn)=>'<div class="ppBonus"><div class="ppArt">'+drillSVG(4)+'</div><div><b>The strap-on jaw drill</b><span>A real drill head strapped to his jaw. It leads every dig and cracks the earth ahead of you.</span>'+btn+'</div></div>';
+  let html=head;
+  if(st.pro && st.skin){
+    html+=perks+'<div class="ppBonus"><div class="ppArt">'+drillSVG(4)+'</div><div><b>The strap-on jaw drill</b><span>Unlocked. You are wearing it.</span></div></div>';
+  } else if(st.pro){
+    html+=perks+drillCard('<button class="b2 ppGo ppSm" id="buyDrill" type="button">Add the jaw drill · $5</button>');
   } else {
-    html=head+perks+bonus
-      +'<button class="b2 ppGo" id="passBuy" type="button">'+(u?'Get the Press Pass':'Sign in to get it')+'</button>'
-      +(u?'':'<p class="sm ppNote">Sign in first so your pass follows you to every device.</p>')
-      +'<p class="sm ppNote">You choose the amount on Stripe\'s secure page, from $5. Already paid? <button class="linkish" id="passCheck" type="button">Check again</button></p>';
+    html+=perks
+      +'<div class="ppTier"><div class="ppPrice"><b>$5</b><span>PRESS PASS</span></div><p>Unlimited, every back issue and no ads, ever.</p><button class="b2 ppGo" id="buyPass" type="button">Get the Press Pass · $5</button></div>'
+      +'<div class="ppTier best"><div class="ppFlag">BEST DEAL</div><div class="ppPrice"><b>$10</b><span>PRESS PASS + JAW DRILL</span></div><p>Everything in the Press Pass, plus the strap-on jaw drill.</p>'
+      +'<div class="ppBonusIn"><div class="ppArt">'+drillSVG(3)+'</div><span>A real drill head strapped to his jaw. It leads every dig and cracks the earth ahead of you.</span></div>'
+      +'<button class="b2 ppGo ppRed" id="buyBundle" type="button">Get both · $10</button></div>'
+      +signIn+'<p class="sm ppNote">Paid on Stripe\'s secure page. Already paid? <button class="linkish" id="passCheck" type="button">Check again</button></p>';
   }
   $('hpBody').innerHTML=html;
-  if($('passBuy')) $('passBuy').onclick=passBuy;
+  if($('buyPass')) $('buyPass').onclick=()=>passBuy('pass');
+  if($('buyBundle')) $('buyBundle').onclick=()=>passBuy('bundle');
+  if($('buyDrill')) $('buyDrill').onclick=()=>passBuy('drill');
   if($('passCheck')) $('passCheck').onclick=async()=>{ $('passCheck').textContent='Checking…'; const ok=await (window.Cloud&&Cloud.refreshPass?Cloud.refreshPass():false); if(!ok){ $('passCheck').textContent=u?'Nothing yet. Try again in a minute.':'Sign in first.'; } };
 }};
 /* everything that depends on the pass: menu labels, back issues, the wardrobe */
