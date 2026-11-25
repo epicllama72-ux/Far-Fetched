@@ -1600,6 +1600,43 @@ def place_fakes(call, rng):
     return out
 
 
+UNLIMITED_REAL_RESERVE = 60      # real stories kept in the bank for future Daily Digs; strong ones beyond that go to Unlimited instead
+UNLIMITED_MIN_FAKE_TASTE = 5     # the taste judge's 1-10 score a spilled fake needs to join Unlimited
+
+
+def spill_for_unlimited(keep_real, keep_fake, old_bank_fakes, oldest, day):
+    """Stories and fakes the bank has no room for (or that aged out of it) are not thrown away if they were rated well:
+    they join the Unlimited archive. This only re-uses ratings the run already paid for: no extra Claude calls.
+    Returns (spill_real, spill_fake); the caller removes spill_real from the bank so a story never sits in both places."""
+    try:
+        yesterday2 = (dt.date.fromisoformat(day) - dt.timedelta(days=2)).isoformat()   # dated so Unlimited can use it right away
+    except Exception:
+        return [], []
+    def stamp(x):
+        return min(str(x.get("banked") or yesterday2), yesterday2)
+    ranked = sorted([r for r in keep_real if not r.get("hold") and not r.get("blank_only") and not r.get("_desk_reject")], key=merit, reverse=True)
+    spill_real = []
+    for r in ranked[UNLIMITED_REAL_RESERVE:]:
+        try:
+            strong = int(r.get("unbelievable", 0) or 0) >= 4
+        except Exception:
+            strong = False
+        if strong and (r.get("hint") or "").strip() and not valid_real(r) and r.get("src"):
+            spill_real.append(dict(r, _day=stamp(r)))
+    spill_fake, seen = [], set()
+    for f in list(keep_fake[45:]) + [f for f in old_bank_fakes if f.get("banked", "") < oldest]:
+        if f.get("hand") or f.get("_desk_reject") or not valid_fake(f) or f["h"] in seen:
+            continue
+        try:
+            taste = float(f.get("taste") or 0)
+        except Exception:
+            taste = 0
+        if taste >= UNLIMITED_MIN_FAKE_TASTE:
+            seen.add(f["h"])
+            spill_fake.append({"real": False, "h": f["h"], "tell": f.get("tell", ""), "day": stamp(f)})
+    return spill_real, spill_fake
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", help="UTC date to build (default today)")
@@ -2074,6 +2111,11 @@ def main():
     used_fake = {f["h"] for f in fakes[:N_CALL_FAKE]}
     keep_fake = [f for f in fakes if f["h"] not in used_fake and not f.get("_desk_reject")]
     keep_fake.sort(key=lambda f: 0 if f.get("hand") else 1)      # hand-written fakes stay in the bank; fresh ones fill the rest
+    spill_real, spill_fake = spill_for_unlimited(keep_real, keep_fake, bank.get("fake", []), oldest, day)
+    if spill_real:
+        gone = {r["src"] for r in spill_real}
+        keep_real = [r for r in keep_real if r.get("src") not in gone]
+    print(f"  to Unlimited instead of being dropped: {len(spill_real)} real stories, {len(spill_fake)} fakes", file=sys.stderr)
     with open(bank_path, "w") as f:
         json.dump({"real": keep_real[:BANK_MAX], "fake": keep_fake[:45],
                    "pol": [r for r in keep_pol if r.get("src") not in pol_src][:60], "polfake": keep_polfake[:20]},
@@ -2129,6 +2171,12 @@ def main():
                     add_real(r, m.group(1), pol)
                 elif key != "blank":
                     add_fake(r, m.group(1))
+    for r in spill_real:
+        add_real(r, r.pop("_day"))
+    for f in spill_fake:
+        if f["h"] not in have:
+            have.add(f["h"])
+            arch["fake"].append(f)
     # Entries wrongly stamped with today's date (or later) that were not in today's edition can be practised: restamp them.
     todays = {r.get("src") for r in call_real + blank if r.get("src")} | {r.get("src") for r in result.get("politics", []) if r.get("src")}
     todays_fake = {c.get("h") for c in call + result.get("politics", []) if not c.get("real")}
