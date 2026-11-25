@@ -2701,6 +2701,7 @@ const Scene = (function(){
   let dipUntil=0,dipping=false,pops=[],marksEl=null,mks=[],recap=null,markCb=null,paperT=1,paperGoal=1,tp=0,jd=0,camY=0,browse=false,browseY=0,focusT=0.85,focus=0.85,t=0,last=0,gaspT=-99,foolT=-99,safeTop=120;
   let shake=0,lastZone=-1,emitAcc=0,bestJd=0,panT=-99,zoneCb=null,breakCb=null,rumbleCb=null,sparks=[],kit={},drillV=0;
   let props=[],lmCb=null,deskView=false,coreT=-99;   // coreT: -99 intact, -98 already collapsed, otherwise the time the core blew
+  const DRILL_LEN=30;    // how far the strap-on drill bit reaches below the chin (cracks start there; depth is still measured at the chin)
   let peb=[],gems=[],bubbles=[],worms=[],beetles=[],tunnels=[],cracks=[],parts=[],drips=[],embers=[];
   let tickPx=[],labels=[],zoneLabels=[],zones=[],depthCb=null,lastM='',running=false,resizeTimer=0;
 
@@ -2905,7 +2906,7 @@ const Scene = (function(){
     if(rumbleCb) rumbleCb(cy>70 && Math.abs(speed)>0.8 ? clamp(Math.abs(speed)/35,0.15,1) : 0);
     if(speed>0.8 && cy>74){
       emitAcc+=speed*dt*1.4;
-      while(emitAcc>1){ emitAcc-=1; burst(1,cy,clamp(speed/30,0.4,1.4)); }
+      while(emitAcc>1){ emitAcc-=1; burst(1,cy+(kit.drill?DRILL_LEN:0),clamp(speed/30,0.4,1.4)); }   // the rubble flies from the bit
       shake=Math.max(shake,clamp(speed/40,0,1.2));
     }
     const z=zoneIndex(cy);
@@ -2917,7 +2918,8 @@ const Scene = (function(){
     }
     lastZone=z;
     shake=Math.max(0,shake-dt*3);
-    cracks.forEach(c=>{ if(c.rt<0 && cy>c.y+2) c.rt=t; });
+    { const tip=kit.drill?DRILL_LEN:0;     // the drill bit breaks the earth just ahead of the chin: only a part of each crack, never the distance
+      cracks.forEach(c=>{ if(c.rt<0 && cy>c.y+2) c.rt=t; else if(tip && c.rt<0 && c.pt==null && !c.lava && cy+tip>c.y+2) c.pt=t; }); }
     props.forEach(p=>{ if(!p.hit && cy>p.y+(p.h>>1)){ p.hit=true; if(lmCb) lmCb(p.text); } });
     if(coreT===-99 && cy>coreY()){       // the jaw has gone through the centre of the core: it blows up, then falls in on itself
       coreT=t; burst(110,cy,2.8); shake=6.5;
@@ -3438,7 +3440,7 @@ const Scene = (function(){
     }
     if(cyNow>EXIT){ R(-10,EXIT,20,9,'#3a2a1a'); R(-13,EXIT+7,3,2,'#f0d9a0'); R(10,EXIT+7,3,2,'#f0d9a0'); R(-12,EXIT+5,2,2,'#d9c088'); R(10,EXIT+4,2,2,'#d9c088'); }
     cracks.forEach(c=>{
-      if(c.rt<0 || !vis(c.y-14,c.y+14)) return;
+      if((c.rt<0 && (c.pt==null || c.lava)) || !vis(c.y-14,c.y+14)) return;
       if(c.lava){        // a molten ripple spreading out from the jaw, with a few flung droplets
         const a=t-c.rt; if(a>1.5) return;
         const f=1-a/1.5, x=c.side*Math.round(10+a*15+Math.sin(c.y)*2);
@@ -3448,7 +3450,7 @@ const Scene = (function(){
         R(dxp,dyp,1,1,'#ffd23f'); if(a>0.15) R(dxp-c.side*2,dyp+1,1,1,'#ff8a1f');
         g.globalAlpha=1; return;
       }
-      const n=Math.ceil(c.pts.length*clamp((t-c.rt)/0.45,0,1));
+      const n=Math.ceil(c.pts.length*(c.rt>=0 ? clamp((t-c.rt)/0.45,0,1) : 0.4*clamp((t-c.pt)/0.45,0,1)));   // a crack the bit has reached but the chin has not: 40% of it
       for(let i=0;i<n;i++){
         const [x,y]=c.pts[i];
         R(x,y,1,1,mix(rowColor(y),'#000000',0.6));
@@ -3492,39 +3494,15 @@ const Scene = (function(){
     [9,9,9,8,7,5,3].forEach((hw,r)=>{ R(-hw-1,jawTop+2+r,1,1,C.ol); R(hw,jawTop+2+r,1,1,C.ol); });
     R(-3,jawTop+9,6,1,C.ol);
     R(-4,jawTop+5,1,1,JSH); R(2,jawTop+4,1,1,JSH); R(-1,jawTop+6,1,1,JSH);
-    if(kit.drill){                                          // a drill strapped under his chin: the bit leads the dig (DRAFT: several designs)
-      const dv=window.__drillV||'a', spin=Math.floor(t*(drillV>0.8?16:7)), dig=drillV>0.8;
-      R(-11,jawTop+5,22,3,C.ol); R(-10,jawTop+5,20,1,'#4a4f5c'); R(-10,jawTop+6,20,1,'#2b2e38'); R(-1,jawTop+5,3,2,'#ffd23f');   // the strap and its buckle
-      if(dv==='a'){
-        R(-6,jawTop+9,12,6,C.ol); R(-5,jawTop+9,10,5,'#8a93a3'); R(-5,jawTop+9,10,1,'#c9d0dc'); R(-5,jawTop+13,10,1,'#59606e'); R(-3,jawTop+11,6,1,'#59606e');
-        for(let r=0;r<14;r++){ const hw=Math.max(0,Math.round(4.4-r*0.33)), y=jawTop+15+r;
-          R(-hw-1,y,hw*2+2,1,C.ol);
-          if(hw>0) R(-hw,y,hw*2,1,((r+spin)&3)<2?'#e3e8f0':'#8791a3'); }
-        R(-1,jawTop+29,2,1,C.ol);
-      } else if(dv==='b'){          // a fat golden auger with spiral flights
-        R(-5,jawTop+9,10,4,C.ol); R(-4,jawTop+9,8,3,'#8a5a14'); R(-4,jawTop+9,8,1,'#d9a441');
-        for(let r=0;r<15;r++){ const hw=Math.max(1,Math.round(6.6-r*0.42)), y=jawTop+12+r, sh=Math.round(Math.sin((r+spin)*0.95)*2);
-          R(-hw-1,y,hw*2+2,1,C.ol);
-          R(-hw,y,hw*2,1,'#c27b12');
-          R(Math.max(-hw,-1+sh-2),y,Math.min(hw*2,4),1,'#ffd23f'); }
-        R(-1,jawTop+27,2,1,C.ol);
-      } else if(dv==='c'){          // a pneumatic jackhammer: yellow body, a hose to the ear, a chisel that hammers
-        const jit=dig?(Math.floor(t*34)&1):0;
-        R(-7,jawTop+9,14,10,C.ol); R(-6,jawTop+9,12,9,'#f4c20d'); R(-6,jawTop+9,12,1,'#ffe27a');
-        for(let k=0;k<5;k++) R(-6+k*3+((spin>>1)&0),jawTop+12+((k&1)?0:0),1,6,'#1b1813');
-        R(-6,jawTop+17,12,1,'#c99a00');
-        R(-3,jawTop+19,6,3,C.ol); R(-2,jawTop+19,4,3,'#8a93a3');
-        R(-2,jawTop+22+jit,4,10,C.ol); R(-1,jawTop+22+jit,2,9,'#e3e8f0'); R(-1,jawTop+31+jit,2,1,'#59606e');
-        R(8,jawTop+12,3,2,C.ol); R(9,jawTop+12,2,1,'#c0392b'); R(10,jawTop+4,2,10,C.ol); R(11,jawTop+4,1,9,'#c0392b'); R(9,jawTop+3,3,2,C.ol); R(10,jawTop+3,1,1,'#c0392b');
-        if(dig){ R(-3+(spin&3)-1,jawTop+33,1,1,'#ffd23f'); R(2-(spin&3),jawTop+34,1,1,'#ffe27a'); }
-      } else {                      // a tunnel-boring cutter head: a toothed disc that turns
-        R(-3,jawTop+9,6,5,C.ol); R(-2,jawTop+9,4,4,'#59606e'); R(-2,jawTop+9,4,1,'#8a93a3');
-        const W=[5,8,10,11,11,10,8,5];
-        W.forEach((hw,i)=>{ const y=jawTop+13+i; R(-hw-1,y,hw*2+2,1,C.ol);
-          for(let x=-hw;x<hw;x++) R(x,y,1,1,((x+spin+i)&3)===0?'#ffd23f':((x+i)&1?'#c0392b':'#8f2a1f')); });
-        R(-6,jawTop+21,12,1,C.ol); R(-1,jawTop+17,2,2,'#e3e8f0');
-        for(let k=0;k<4;k++){ const ax=[-10,-5,1,6][k]; R(ax,jawTop+16+((k+spin)&1),2,2,'#e3e8f0'); }
-      }
+    if(kit.drill){                                          // a real drill head strapped onto his jaw: wide collar, no shaft, a spiralling cone
+      const spin=Math.floor(t*(drillV>0.8?14:6));
+      [-1,1].forEach(sd=>{ const x=sd<0?-11:9; R(x,jawTop,2,9,C.ol); R(x+(sd<0?1:0),jawTop,1,9,'#3b3f4a'); R(x-(sd<0?0:0),jawTop+3,2,2,'#ffd23f'); });   // the straps up the sides of his jaw, with their buckles
+      R(-13,jawTop+7,26,5,C.ol); R(-12,jawTop+8,24,3,'#59606e'); R(-12,jawTop+8,24,1,'#aab2c0'); R(-12,jawTop+10,24,1,'#2f343f');
+      for(let x=-10;x<=10;x+=5) R(x,jawTop+9,1,1,'#e3e8f0');                                                        // rivets round the collar
+      for(let r=0;r<26;r++){ const hw=Math.max(0,Math.round(11*Math.pow(1-r/26,0.9))), y=jawTop+12+r;
+        R(-hw-1,y,hw*2+2,1,C.ol);
+        for(let x=-hw;x<hw;x++) R(x,y,1,1,((x+r*2+spin)&7)<3?'#e9edf3':((x+r*2+spin)&7)<5?'#a3acba':'#6b7383'); }
+      R(-1,jawTop+38,2,1,C.ol);
     }
 
     // 9. debris and dust
@@ -3675,7 +3653,7 @@ const Scene = (function(){
   function restore(points){ tp=Math.max(0,points); jd=target(); emitAcc=0; camY=camFor(); lastZone=zoneIndex(chinY()); cracks.forEach(c=>{ if(chinY()>c.y+2) c.rt=-99; }); props.forEach(p=>{ p.hit=chinY()>p.y; }); coreT=chinY()>coreY()?-98:-99; emitDepth(); }
   function reset(){
     browse=false; paperT=paperGoal=1; dipUntil=0; dipping=false; tp=0; jd=0; gaspT=-99; foolT=-99; focusT=0.85; focus=0.85; parts=[]; sparks=[]; shake=0; panT=-99;
-    cracks.forEach(c=>c.rt=-1); props.forEach(p=>p.hit=false); coreT=-99;
+    cracks.forEach(c=>{ c.rt=-1; c.pt=null; }); props.forEach(p=>p.hit=false); coreT=-99;
     if(W){ camY=camFor(); lastZone=zoneIndex(chinY()); emitDepth(); if(reduce) settle(); }
   }
   function start(){
