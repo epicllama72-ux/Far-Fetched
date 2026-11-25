@@ -3492,14 +3492,39 @@ const Scene = (function(){
     [9,9,9,8,7,5,3].forEach((hw,r)=>{ R(-hw-1,jawTop+2+r,1,1,C.ol); R(hw,jawTop+2+r,1,1,C.ol); });
     R(-3,jawTop+9,6,1,C.ol);
     R(-4,jawTop+5,1,1,JSH); R(2,jawTop+4,1,1,JSH); R(-1,jawTop+6,1,1,JSH);
-    if(kit.drill){                                          // a drill strapped under his chin: the bit leads the dig
-      const spin=Math.floor(t*(drillV>0.8?16:7));
+    if(kit.drill){                                          // a drill strapped under his chin: the bit leads the dig (DRAFT: several designs)
+      const dv=window.__drillV||'a', spin=Math.floor(t*(drillV>0.8?16:7)), dig=drillV>0.8;
       R(-11,jawTop+5,22,3,C.ol); R(-10,jawTop+5,20,1,'#4a4f5c'); R(-10,jawTop+6,20,1,'#2b2e38'); R(-1,jawTop+5,3,2,'#ffd23f');   // the strap and its buckle
-      R(-6,jawTop+9,12,6,C.ol); R(-5,jawTop+9,10,5,'#8a93a3'); R(-5,jawTop+9,10,1,'#c9d0dc'); R(-5,jawTop+13,10,1,'#59606e'); R(-3,jawTop+11,6,1,'#59606e');   // the motor housing
-      for(let r=0;r<14;r++){ const hw=Math.max(0,Math.round(4.4-r*0.33)), y=jawTop+15+r;
-        R(-hw-1,y,hw*2+2,1,C.ol);
-        if(hw>0) R(-hw,y,hw*2,1,((r+spin)&3)<2?'#e3e8f0':'#8791a3'); }
-      R(-1,jawTop+29,2,1,C.ol);
+      if(dv==='a'){
+        R(-6,jawTop+9,12,6,C.ol); R(-5,jawTop+9,10,5,'#8a93a3'); R(-5,jawTop+9,10,1,'#c9d0dc'); R(-5,jawTop+13,10,1,'#59606e'); R(-3,jawTop+11,6,1,'#59606e');
+        for(let r=0;r<14;r++){ const hw=Math.max(0,Math.round(4.4-r*0.33)), y=jawTop+15+r;
+          R(-hw-1,y,hw*2+2,1,C.ol);
+          if(hw>0) R(-hw,y,hw*2,1,((r+spin)&3)<2?'#e3e8f0':'#8791a3'); }
+        R(-1,jawTop+29,2,1,C.ol);
+      } else if(dv==='b'){          // a fat golden auger with spiral flights
+        R(-5,jawTop+9,10,4,C.ol); R(-4,jawTop+9,8,3,'#8a5a14'); R(-4,jawTop+9,8,1,'#d9a441');
+        for(let r=0;r<15;r++){ const hw=Math.max(1,Math.round(6.6-r*0.42)), y=jawTop+12+r, sh=Math.round(Math.sin((r+spin)*0.95)*2);
+          R(-hw-1,y,hw*2+2,1,C.ol);
+          R(-hw,y,hw*2,1,'#c27b12');
+          R(Math.max(-hw,-1+sh-2),y,Math.min(hw*2,4),1,'#ffd23f'); }
+        R(-1,jawTop+27,2,1,C.ol);
+      } else if(dv==='c'){          // a pneumatic jackhammer: yellow body, a hose to the ear, a chisel that hammers
+        const jit=dig?(Math.floor(t*34)&1):0;
+        R(-7,jawTop+9,14,10,C.ol); R(-6,jawTop+9,12,9,'#f4c20d'); R(-6,jawTop+9,12,1,'#ffe27a');
+        for(let k=0;k<5;k++) R(-6+k*3+((spin>>1)&0),jawTop+12+((k&1)?0:0),1,6,'#1b1813');
+        R(-6,jawTop+17,12,1,'#c99a00');
+        R(-3,jawTop+19,6,3,C.ol); R(-2,jawTop+19,4,3,'#8a93a3');
+        R(-2,jawTop+22+jit,4,10,C.ol); R(-1,jawTop+22+jit,2,9,'#e3e8f0'); R(-1,jawTop+31+jit,2,1,'#59606e');
+        R(8,jawTop+12,3,2,C.ol); R(9,jawTop+12,2,1,'#c0392b'); R(10,jawTop+4,2,10,C.ol); R(11,jawTop+4,1,9,'#c0392b'); R(9,jawTop+3,3,2,C.ol); R(10,jawTop+3,1,1,'#c0392b');
+        if(dig){ R(-3+(spin&3)-1,jawTop+33,1,1,'#ffd23f'); R(2-(spin&3),jawTop+34,1,1,'#ffe27a'); }
+      } else {                      // a tunnel-boring cutter head: a toothed disc that turns
+        R(-3,jawTop+9,6,5,C.ol); R(-2,jawTop+9,4,4,'#59606e'); R(-2,jawTop+9,4,1,'#8a93a3');
+        const W=[5,8,10,11,11,10,8,5];
+        W.forEach((hw,i)=>{ const y=jawTop+13+i; R(-hw-1,y,hw*2+2,1,C.ol);
+          for(let x=-hw;x<hw;x++) R(x,y,1,1,((x+spin+i)&3)===0?'#ffd23f':((x+i)&1?'#c0392b':'#8f2a1f')); });
+        R(-6,jawTop+21,12,1,C.ol); R(-1,jawTop+17,2,2,'#e3e8f0');
+        for(let k=0;k<4;k++){ const ax=[-10,-5,1,6][k]; R(ax,jawTop+16+((k+spin)&1),2,2,'#e3e8f0'); }
+      }
     }
 
     // 9. debris and dust
