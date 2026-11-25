@@ -868,6 +868,7 @@ body.calm #hp .b2.ppGo,body.calm #hp .ppMini{animation:none}
 body.calm #hp .ppHero,body.calm #hp .ppHero::after,body.calm #hp .ppHeroPrice{animation:none}
 @media (prefers-reduced-motion:reduce){#hp .ppHero,#hp .ppHero::after,#hp .ppHeroPrice{animation:none}}
 #hp .ppNote{text-align:center;margin:10px 0 0}
+#hp .ppNote a{color:#ffcc4d}
 @media (max-width:360px){#hp .ppBonus{grid-template-columns:1fr}#hp .ppArt{justify-self:start}}
 #hp .hint{color:#aab6d6;font:18px/1.1 var(--vt);margin:8px 0}
 #hp .chg{all:unset;cursor:pointer;margin-top:8px;font:7px/1 var(--px);letter-spacing:.12em;color:#ffcc4d;border-bottom:1px solid #ffcc4d;padding-bottom:3px;position:relative}
@@ -2051,7 +2052,7 @@ body.pinning #card #headline{font-size:23px}
         <button id="mAcct" type="button" class="obj biz" style="--r:-1.5deg;--i:9"><span class="logo" aria-hidden="true">FF</span><span><span class="ttl" id="acctMain">Sign in with Google</span><small id="acctSub">save your streak, passport and wardrobe</small></span></button>
       </div>
       <p id="menuStats"></p>
-      <div class="dSmall"><button id="mAbout" type="button">About</button><a id="mContact" href="mailto:playfarfetched@gmail.com">Letters to the editor</a><a id="mPrivacy" href="privacy.html">Privacy</a><button id="mA2HS" type="button" hidden>Add to Home Screen</button></div>
+      <div class="dSmall"><button id="mAbout" type="button">About</button><a id="mContact" href="mailto:playfarfetched@gmail.com">Letters to the editor</a><a id="mPrivacy" href="privacy.html">Privacy</a><a id="mTerms" href="terms.html">Terms</a><button id="mA2HS" type="button" hidden>Add to Home Screen</button></div>
       <p class="dCopy">&copy; 2026 Far-Fetched. All rights reserved.</p>
       </div>
     </div>
@@ -7072,6 +7073,7 @@ HPAGES.pass={title:'Press Pass',render(){
       +'<button class="b2 ppGo ppRed ppSm" id="buyBundle" type="button">Get both · $10</button></div>'
       +signIn+'<p class="sm ppNote">Paid on Stripe\'s secure page. Already paid? <button class="linkish" id="passCheck" type="button">Check again</button></p>';
   }
+  html+='<p class="sm ppNote">Full refund within 14 days. <a href="terms.html" target="_blank" rel="noopener">Terms and refunds</a></p>';
   $('hpBody').innerHTML=html;
   if($('buyPass')) $('buyPass').onclick=()=>passBuy('pass');
   if($('buyBundle')) $('buyBundle').onclick=()=>passBuy('bundle');
