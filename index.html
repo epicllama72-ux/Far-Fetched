@@ -735,21 +735,17 @@ body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
 #finalBtns{display:flex;flex-direction:column;margin:16px 0 8px}   /* the same buttons, under the summary of a finished round */
 body.calm *,body.calm *::before,body.calm *::after{animation:none!important}   /* Settings > Calm mode */
 /* one-time notice over the earth: pin on the globe or the map */
-#pinNote{position:fixed;left:50%;top:46%;z-index:26;width:min(238px,calc(100vw - 48px));transform:translate(-50%,-50%) rotate(-1.2deg);animation:pnIn .35s steps(5) both}
-@keyframes pnIn{from{opacity:0;transform:translate(-50%,-44%) rotate(-3deg)}to{opacity:1;transform:translate(-50%,-50%) rotate(-1.2deg)}}
-@media (prefers-reduced-motion:reduce){#pinNote{animation:none}}
-#pinNote[hidden]{display:none}
-#pinNote .pnIn{background:#ece5d1;background-image:repeating-linear-gradient(0deg,rgba(60,45,20,.045) 0 1px,transparent 1px 3px);color:#1b1813;border:3px solid #a8231a;box-shadow:0 0 0 2px #ece5d1,0 0 0 4px #1b1813,5px 6px 0 4px rgba(0,0,0,.45);padding:11px 11px 9px;text-align:left}
-#pinNote p{margin:0 0 6px;font:18px/1.1 var(--vt)}#pinNote b{font-weight:400;color:#a8231a}
-#pinNote .pnBtns{display:flex;gap:6px;margin-top:4px}
-#pinNote .pnBtns button{all:unset;box-sizing:border-box;cursor:pointer;flex:1;text-align:center;font:6px/1 var(--px);padding:8px 4px 7px;letter-spacing:.06em;white-space:nowrap}
-#pinNote #pnAcct{background:#1b1813;color:#f7f3e8;box-shadow:2px 2px 0 rgba(0,0,0,.35)}#pinNote #pnOk{border:2px solid #1b1813;padding:6px 4px 5px;flex:0 0 auto;padding-left:9px;padding-right:9px}
-#pinNote .pnBtns button:focus-visible{outline:3px solid #a8231a;outline-offset:2px}
 #hp .pcRow .b2{height:44px;margin:0;display:flex;align-items:center;justify-content:center;padding:0 6px}
 #hp{position:fixed;inset:0;z-index:31;background:rgba(5,6,10,.85);display:flex;align-items:stretch;justify-content:center}
 #hp[hidden]{display:none}
 #hp .sheetIn{width:min(560px,100%);height:100%;max-height:none;overflow:auto;background:#0f1522;background-image:var(--scan);padding:14px max(14px,env(safe-area-inset-left,0px)) calc(28px + env(safe-area-inset-bottom,0px))}
 #hp .kicker{color:#ff7aa0}
+/* the small 'N new briefs' box by the earth (home screen only) */
+#briefBox{all:unset;box-sizing:border-box;position:fixed;z-index:14;display:none;cursor:pointer;background:#a8231a;color:#f7f3e8;border:2px solid #1b1813;box-shadow:3px 3px 0 #000;padding:11px 12px 10px;font:7px/1 var(--px);letter-spacing:.08em;white-space:nowrap;transform:rotate(2deg)}
+body.introIdle #briefBox.on{display:block}
+#briefBox:active{transform:rotate(2deg) translate(1px,1px);box-shadow:2px 2px 0 #000}
+#briefBox:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.bfNew{display:inline-block;margin-left:6px;background:#a8231a;color:#fff;font:6px/1 var(--px);padding:3px 4px 2px;vertical-align:2px}
 #hpClose{width:34px;height:34px;padding:0;font:20px/1 var(--vt);background:#f7f3e8;color:#1b1813;border:2px solid #1b1813;box-shadow:2px 2px 0 #000;cursor:pointer}
 #hp .cd{background:#f7f3e8;color:#1b1813;padding:12px 12px 13px;margin-bottom:12px;box-shadow:3px 3px 0 #000;position:relative}
 #hp .cd::before{content:'';position:absolute;inset:4px;border:1px dashed rgba(27,24,19,.3);pointer-events:none}
@@ -2127,11 +2123,7 @@ body.pinning #card #headline{font-size:23px}
       <section class="wNotice" aria-label="Notices"><h3>NOTICES</h3><p id="wardNote"></p><div class="wFreeze" id="wardFreeze" aria-hidden="true"></div></section>
     </div>
   </section>
-  <section id="pinNote" hidden role="dialog" aria-label="New: pin on a globe">
-  <div class="pnIn"><p>You can now drop your pin on a globe instead of a map.</p>
-    <p>Try it and make your choice now in <b>Settings</b>.</p>
-    <div class="pnBtns"><button id="pnAcct" type="button">OPEN SETTINGS</button><button id="pnOk" type="button">GOT IT</button></div></div>
-</section>
+  <button id="briefBox" type="button" aria-label="New briefs"></button>
 <section id="hp" hidden aria-label="Page"><div class="sheetIn"><div class="sheetTop"><p class="kicker" id="hpKicker"></p><button id="hpClose" aria-label="Close">×</button></div><div id="hpBody"></div></div></section>
   <section id="passport" hidden aria-label="Passport">
     <div class="sheetIn">
@@ -6524,7 +6516,7 @@ function track(step){
   }catch(e){}
 }
 $('btnStart').onclick=()=>{
-  homeFold(); if(!$('pinNote').hidden) pinNoteDone(); if(S && S.i===0 && !S.results.length) track('r1');
+  homeFold(); if(S && S.i===0 && !S.results.length) track('r1');
   const begin=()=>{ if(S.kind==='blank') startBlankRound(); else startCallRound(); };
   if(Intro.diving()) return;                        // already on the way down
   if(Intro.active()){ $('btnStart').disabled=true; Intro.go(()=>{ $('btnStart').disabled=false; begin(); }); return; }
@@ -6667,16 +6659,35 @@ const HPAGES={};
 const hpEsc=t=>String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const hpCard=(l,r,inner,cls)=>'<div class="cd'+(cls?' '+cls:'')+'"><h5><span>'+l+'</span><span>'+(r||'')+'</span></h5>'+inner+'</div>';
 const addDays=(d,n)=>{ const p=d.split('-').map(Number); return keyOf(new Date(Date.UTC(p[0],p[1]-1,p[2]+n,12))); };
-/* the notice over the earth: shown once per device, from Nov 20; ?pinnote forces it for a look */
-const PIN_NOTE_FROM='2026-11-19';
-function pinNoteDone(){ try{ localStorage.setItem('ff_pinnote','1'); }catch(e){} const n=$('pinNote'); if(n) n.hidden=true; }
-function maybePinNote(){
-  const force=/[?&]pinnote/.test(location.search); let seen=false; try{ seen=localStorage.getItem('ff_pinnote')==='1'; }catch(e){ seen=true; }
-  if(!force && (seen || todayKey()<PIN_NOTE_FROM)) return;
-  setTimeout(()=>{ if(document.body.classList.contains('introIdle') && $('hp').hidden && $('menu').hidden) $('pinNote').hidden=false; },700);
+/* BRIEFS: the owner's own list of what's new (data/briefs.json). A small box by the earth says how many are unread; it opens the Briefs screen. */
+let BRIEFS=[];
+const briefsUnread=()=>{ const seen=load('ff_briefs_seen'); return BRIEFS.filter(b=>!(Array.isArray(seen)&&seen.includes(b.id))); };
+function briefBoxSync(){
+  const el=$('briefBox'); if(!el) return; const n=briefsUnread().length;
+  el.innerHTML=n+' NEW BRIEF'+(n===1?'':'S'); el.setAttribute('aria-label',n+' new brief'+(n===1?'':'s')+'. Open the Briefs screen.'); el.classList.toggle('on',n>0);
+  try{ if(typeof Intro!=='undefined' && Intro.relayout) Intro.relayout(); }catch(e){}
 }
-$('pnOk').onclick=pinNoteDone; $('pnAcct').onclick=()=>{ pinNoteDone(); hpOpen('settings'); };
-function hpOpen(id){ const r=HPAGES[id]; if(!r) return; if((id==='account'||id==='settings') && !$('pinNote').hidden) pinNoteDone(); try{ Sound.play('menu'); }catch(e){} $('hp').hidden=false; $('hpKicker').textContent=r.title; HP_ID=id; r.render(); $('hp').querySelector('.sheetIn').scrollTop=0; }
+/* the box sits at the upper right of the earth, overlapping its rim; layoutIdle passes the planet's centre and radius */
+function placeBrief(cx,cy,R){
+  const el=$('briefBox'); if(!el || !el.classList.contains('on')) return;
+  const bw=el.offsetWidth||116, bh=el.offsetHeight||34;
+  let left=cx+R*0.60-bw*0.2, top=cy-R*0.86-bh*0.1;
+  left=Math.max(8,Math.min(innerWidth-bw-8,left)); top=Math.max(8,top);
+  el.style.left=Math.round(left)+'px'; el.style.top=Math.round(top)+'px';
+}
+function loadBriefs(){
+  return fetch('data/briefs.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{
+    const list=((d&&d.briefs)||[]).filter(b=>b&&b.id&&b.title&&b.date);
+    BRIEFS=list.map((b,i)=>[b,i]).sort((x,y)=>x[0].date<y[0].date?1:x[0].date>y[0].date?-1:x[1]-y[1]).map(x=>x[0]);   // newest first
+    if(!Array.isArray(load('ff_briefs_seen'))){      // first time this device meets Briefs
+      const returning=!!load('ff_coached') || Object.keys(load('ff_hist')||{}).length>0;
+      store('ff_briefs_seen', returning ? [] : BRIEFS.map(b=>b.id));   // a brand-new player is not pitched old updates; a returning one sees everything as new
+    }
+    briefBoxSync();
+  }).catch(()=>{});
+}
+$('briefBox').onclick=()=>{ gcEvent('briefs/open'); hpOpen('briefs'); };
+function hpOpen(id){ const r=HPAGES[id]; if(!r) return; try{ Sound.play('menu'); }catch(e){} $('hp').hidden=false; $('hpKicker').textContent=r.title; HP_ID=id; r.render(); $('hp').querySelector('.sheetIn').scrollTop=0; }
 let HP_ID=null;
 function hpClose(){ $('hp').hidden=true; HP_ID=null; updateHome(); }
 $('hpClose').onclick=hpClose;
@@ -6834,12 +6845,21 @@ const calmOn=()=>{ try{ return localStorage.getItem('ff_calm')==='1'; }catch(e){
 function applyCalm(){ document.body.classList.toggle('calm',calmOn()); }
 applyCalm();
 const togCard=(title,note,id,on,onLabel,offLabel)=>hpCard(title,'','<p class="sm">'+note+'</p><div class="g2 pcRow" role="group" aria-label="'+title+'"><button class="b2'+(on?'':' ghost')+'" id="'+id+'On" type="button" aria-pressed="'+on+'">'+onLabel+'</button><button class="b2'+(on?' ghost':'')+'" id="'+id+'Off" type="button" aria-pressed="'+(!on)+'">'+offLabel+'</button></div>');
+/* BRIEFS: dated notes on what's new. The owner decides what is listed (data/briefs.json). */
+HPAGES.briefs={title:'Briefs',render(){
+  const fresh=new Set(briefsUnread().map(b=>b.id));          // what was unread when the screen opened gets a NEW tag
+  if(!BRIEFS.length){ $('hpBody').innerHTML=hpCard('BRIEFS','','<p class="sm">Nothing new yet. Updates and additions to the game will be listed here, newest first.</p>'); return; }
+  $('hpBody').innerHTML='<p class="sm" style="margin:0 2px 8px;color:#c8cfdd">What\'s new in Far-Fetched, newest first.</p>'
+    + BRIEFS.map(b=>hpCard(hpEsc(b.title).toUpperCase(), '<span style="white-space:nowrap">'+hpEsc(fmtDate(b.date))+(fresh.has(b.id)?' <span class="bfNew">NEW</span>':'')+'</span>', String(b.body||'').split(/\n\s*\n/).map(t=>'<p>'+hpEsc(t)+'</p>').join(''))).join('');
+  store('ff_briefs_seen', BRIEFS.map(b=>b.id)); briefBoxSync();
+}};
 HPAGES.settings={title:'Settings',render(){
   const u=window.Cloud&&Cloud.user&&Cloud.user();
   $('hpBody').innerHTML=pinCard()
     +togCard('SOUND EFFECTS','Clicks, drops and the jaw. Also on the speaker button at the top of the game.','stFx',!Sound.isMuted(),'On','Off')
     +togCard('NEWSROOM SOUND','The murmur and typewriters in the background, and the drone as you dig.','stAmb',Sound.ambience(),'On','Off')
     +togCard('CALM MODE','Stops the wiggling, pulsing and flashing animations. Your device\'s reduce-motion setting is honoured either way.','stCalm',calmOn(),'On','Off')
+    +hpCard('BRIEFS','','<p class="sm">What\'s new in the game, with dates.</p><button class="b2 ghost" id="stBriefs" type="button">Open Briefs</button>')
     +hpCard('ACCOUNT','','<p class="sm">'+(u?'Signed in. Your stats, streak and groups follow you to any device.':'Sign in to keep your stats, streak and groups on any device.')+'</p><button class="b2 ghost" id="stAcct" type="button">'+(u?'Open account':'Sign in')+'</button>');
   pinWire();
   const again=()=>{ const t=$('hp').querySelector('.sheetIn').scrollTop; HPAGES.settings.render(); $('hp').querySelector('.sheetIn').scrollTop=t; };
@@ -6850,6 +6870,7 @@ HPAGES.settings={title:'Settings',render(){
   const calm=v=>{ try{ localStorage.setItem('ff_calm',v?'1':'0'); }catch(e){} applyCalm(); gcEvent('setting/calm/'+(v?'on':'off')); again(); };
   $('stCalmOn').onclick=()=>calm(true); $('stCalmOff').onclick=()=>calm(false);
   $('stAcct').onclick=()=>{ hpOpen('account'); };
+  $('stBriefs').onclick=()=>hpOpen('briefs');
 }};
 HPAGES.account={title:'Account',render(){
   const u=window.Cloud&&Cloud.user&&Cloud.user();
@@ -7303,6 +7324,7 @@ const Intro=(function(){
     const GAP=11, room=Math.max(80,bb-tb-GAP-2);
     const Rpx=Math.min(innerWidth*(narrow?0.49:0.3), room/2-(narrow?0:14)), eyPx=tb+GAP+Math.max(0,(room-2*Rpx)/2)+Rpx;   // spare height (planet limited by width) is split above and below, so the earth sits centred   // tucked right under How to play
     IP={R:Rpx/PX, ey:eyPx/PX};
+    if(typeof placeBrief==='function') placeBrief((w*PX)/2, eyPx, Rpx);
   }
   const idlePos=()=>IP || {R:Math.min(w,h)*0.32, ey:h*0.6};
   function introText(){
@@ -7326,7 +7348,6 @@ const Intro=(function(){
     t.hidden=false; document.body.classList.add('introIdle');
     if(typeof homeUnfold==='function') homeUnfold();
     layoutIdle();
-    if(typeof maybePinNote==='function') maybePinNote();
     requestAnimationFrame(()=>t.classList.add('on'));
   }
   function titleOff(keepCard){ const t=$('introTop'); t.classList.remove('on'); $('introHow').open=false; if(!keepCard) document.body.classList.remove('introIdle'); setTimeout(()=>{ if(!t.classList.contains('on')) t.hidden=true; },520); }
@@ -7418,6 +7439,7 @@ Scene.start(); applyKit(); renderWardSub();
 Intro.show();                                   // the earth from space until you say you're ready
 updateStreak();
 setTimeout(checkInvites,4000);
+loadBriefs();
 Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS&&(POL_ON||VS.kind!=='pol')?VS.kind:KIND); loadIssues(); setTimeout(Intro.check,60); setTimeout(()=>{ checkGroupInvite(); syncName(false); },1200); });
 window.addEventListener('resize',()=>{ clearTimeout(window._aimT); window._aimT=setTimeout(()=>aim(),200); });
 </script>
