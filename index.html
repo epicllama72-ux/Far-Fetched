@@ -5504,7 +5504,7 @@ function loadIssues(){
 const BACK_FREE=5;    // back issues on offer: the most recent 5 earlier papers. Every older paper stays stored (data/*.json, issues.json) for later.
 /* Press Pass: pay what you want from $5. It unlocks Unlimited (the practice mode), every back issue, and no ads ever; $10 or more in total also adds the Editor's eyeshade.
    The truth is the purchases table (only Stripe's webhook can write it); this device keeps a copy so the game still works offline. */
-const PASS_LINK='https://buy.stripe.com/REPLACE_ME';
+const PASS_LINK='https://buy.stripe.com/00w3cve1U5LB66w6u9bQY00';
 function passState(){ const p=load('ff_pass')||{}; return {pro:!!p.pro, skin:!!p.skin}; }
 const isPro=()=>passState().pro;
 const backWindow=()=>{ const all=ISSUES.filter(x=>x && x.date && x.date<dayKey()).sort((a,b)=>a.date<b.date?1:-1); return isPro()?all:all.slice(0,BACK_FREE); };

@@ -33,7 +33,7 @@ Deno.serve(async (req) => {
   if (!/^[0-9a-f-]{36}$/i.test(uid)) return new Response("no player on this payment", { status: 200 });
   const db = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
   const { error } = await db.from("purchases").upsert(
-    { user_id: uid, stripe_session: s.id, amount: s.amount_total ?? 0, currency: s.currency ?? "usd" },
+    { user_id: uid, stripe_session: s.id, amount: s.amount_subtotal ?? s.amount_total ?? 0, currency: s.currency ?? "usd" },
     { onConflict: "stripe_session" },
   );
   if (error) return new Response("db error", { status: 500 });             // Stripe retries on a 500
