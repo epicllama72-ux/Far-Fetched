@@ -904,6 +904,12 @@ body:has(#menu:not([hidden]))::before{content:'';position:fixed;inset:0;z-index:
 #menu .obj .ttl{display:block;font:clamp(11px,2.6vw,14px)/1.2 var(--px)}
 #menu .obj small{display:block;font:17px/1.05 var(--vt);color:var(--inkdim);opacity:1}
 #menu .red{color:var(--stamp)}
+#menu .briefRow{grid-column:1/-1;display:flex;justify-content:center;margin:0 0 -14px;position:relative;z-index:4;pointer-events:none}
+#menu #mBriefs{all:unset;box-sizing:border-box;pointer-events:auto;cursor:pointer;position:relative;background:var(--note);color:var(--ink);border:2px solid var(--ink);box-shadow:2px 3px 0 rgba(27,24,19,.45);padding:9px 14px 8px;font:8px/1 var(--px);letter-spacing:.14em;rotate:-1.5deg}
+#menu #mBriefs:hover{rotate:0deg}
+#menu #mBriefs:focus-visible{outline:3px solid var(--stamp);outline-offset:2px}
+#menu #mBriefs i{position:absolute;right:-9px;top:-9px;min-width:18px;height:18px;box-sizing:border-box;padding:4px 3px 0;background:var(--stamp);color:#fff;border:2px solid var(--ink);border-radius:9px;font:7px/1 var(--px);text-align:center;font-style:normal}
+#menu #mBriefs i[hidden]{display:none}
 #menu .news{grid-column:1/-1;background:var(--cardc);background-image:var(--grain);padding:12px 14px 14px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:12px;border:1px solid var(--ink)}
 #menu .news::after{content:'';position:absolute;top:0;bottom:0;left:50%;width:14px;translate:-50% 0;background:linear-gradient(90deg,transparent,rgba(27,24,19,.12),rgba(255,255,255,.4),transparent);pointer-events:none}
 #menu .npm{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;border-bottom:3px double var(--ink);padding-bottom:4px;font:8px/1 var(--px);letter-spacing:.12em}
@@ -1920,6 +1926,7 @@ body.pinning #card #headline{font-size:23px}
         <button id="mAmb" type="button" class="ctl snd" aria-label="Background newsroom sound">&#9834;<span id="mAmbState">ON</span></button>
       </div>
       <div class="desk"><div class="dGrid">
+        <div class="briefRow"><button id="mBriefs" type="button" aria-label="Briefs: what is new in the game">BRIEFS<i id="mBriefsN" hidden></i></button></div>
         <button id="mCall" type="button" class="obj news" style="--r:-1deg;--i:0">
           <span class="npm"><span>THE DAILY ODD</span><span id="dNo"></span></span>
           <span class="nl"><span class="ttl red">TODAY'S PAPER</span><span class="h">Daily Dig</span><span class="deck">Seven strange headlines. Five true, two made up. Call them, then pin where the real ones happened.</span><span class="go">READ IT &rarr;</span></span>
@@ -6670,6 +6677,7 @@ let BRIEFS=[];
 const briefsUnread=()=>{ const seen=load('ff_briefs_seen'); return BRIEFS.filter(b=>!(Array.isArray(seen)&&seen.includes(b.id))); };
 function briefBoxSync(){
   const el=$('briefBox'); if(!el) return; const n=briefsUnread().length;
+  const mb=$('mBriefsN'); if(mb){ mb.hidden=!n; mb.textContent=n; }
   el.innerHTML=n+' NEW BRIEF'+(n===1?'':'S'); el.setAttribute('aria-label',n+' new brief'+(n===1?'':'s')+'. Open the Briefs screen.'); el.classList.toggle('on',n>0);
   try{ if(typeof Intro!=='undefined' && Intro.relayout) Intro.relayout(); }catch(e){}
 }
@@ -6685,14 +6693,11 @@ function loadBriefs(){
   return fetch('data/briefs.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{
     const list=((d&&d.briefs)||[]).filter(b=>b&&b.id&&b.title&&b.date);
     BRIEFS=list.map((b,i)=>[b,i]).sort((x,y)=>x[0].date<y[0].date?1:x[0].date>y[0].date?-1:x[1]-y[1]).map(x=>x[0]);   // newest first
-    if(!Array.isArray(load('ff_briefs_seen'))){      // first time this device meets Briefs
-      const returning=!!load('ff_coached') || Object.keys(load('ff_hist')||{}).length>0;
-      store('ff_briefs_seen', returning ? [] : BRIEFS.map(b=>b.id));   // a brand-new player is not pitched old updates; a returning one sees everything as new
-    }
     briefBoxSync();
   }).catch(()=>{});
 }
 $('briefBox').onclick=()=>{ gcEvent('briefs/open'); hpOpen('briefs'); };
+$('mBriefs').onclick=()=>{ gcEvent('briefs/menu'); closeMenu(); hpOpen('briefs'); };
 function hpOpen(id){ const r=HPAGES[id]; if(!r) return; try{ Sound.play('menu'); }catch(e){} $('hp').hidden=false; $('hpKicker').textContent=r.title; HP_ID=id; r.render(); $('hp').querySelector('.sheetIn').scrollTop=0; }
 let HP_ID=null;
 function hpClose(){ $('hp').hidden=true; HP_ID=null; updateHome(); }
