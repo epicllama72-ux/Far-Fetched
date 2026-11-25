@@ -2421,14 +2421,16 @@ function shuffle(a,r){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.flo
 const PSEEN_KEY='ff_pseen';
 const storyKey=s=>hash(s.h||s.h2||'');
 function practiceSeen(){ return new Set(load(PSEEN_KEY)||[]); }
+/* the seen list is kept in the order stories were last shown, so once everything has been seen the ones you saw longest ago come back first */
 function markPractised(rounds){
-  const seen=load(PSEEN_KEY)||[]; const have=new Set(seen);
-  rounds.forEach(s=>{ const k=storyKey(s); if(!have.has(k)){ have.add(k); seen.push(k); } });
-  store(PSEEN_KEY, seen.slice(-5000));
+  let seen=load(PSEEN_KEY)||[];
+  rounds.forEach(s=>{ const k=storyKey(s); seen=seen.filter(x=>x!==k); seen.push(k); });
+  store(PSEEN_KEY, seen.slice(-3000));
 }
-function freshFirst(list,r){                      // unseen stories first (shuffled), then the rest (shuffled)
-  const seen=practiceSeen();
-  return shuffle(list.filter(s=>!seen.has(storyKey(s))),r).concat(shuffle(list.filter(s=>seen.has(storyKey(s))),r));
+function freshFirst(list,r){                      // stories you have not seen (shuffled), then the ones you saw longest ago
+  const order=new Map((load(PSEEN_KEY)||[]).map((k,i)=>[k,i]));
+  const fresh=list.filter(s=>!order.has(storyKey(s))), old=list.filter(s=>order.has(storyKey(s))).sort((a,b)=>order.get(storyKey(a))-order.get(storyKey(b)));
+  return shuffle(fresh,r).concat(old);
 }
 const _stop=new Set('the and for with that this from have into over after their been were was are his her its who but not you all can had has out one two new off say says said about than them then when what which while will would'.split(' '));
 function evWords(s){ const t=(s.h||'')+' '+(s.h2||'').replace('[]',(s.ans||[''])[0]||''); return new Set((t.toLowerCase().match(/[a-z0-9]{4,}/g)||[]).filter(w=>!_stop.has(w))); }
@@ -3944,7 +3946,7 @@ function startGame(mode, kind){
     const spare=reals.slice(DIG_REAL).filter(s=>s.h2);
     rounds = blank ? spare.slice(0,BLANK_N)
                    : shuffle(reals.slice(0,DIG_REAL).concat(fakes.slice(0,ROUNDS_FAKE)),rng(hash(todayKey()+'o')));
-  } else { rounds = blank ? pickBlankRounds(r) : pickRounds(r,pol); markPractised(rounds); }   // practice never uses today's stories
+  } else { rounds = blank ? pickBlankRounds(r) : pickRounds(r,pol); }   // a story counts as seen when the player answers it, not when the round is picked   // practice never uses today's stories
   if(daily && DAILY && blank && rounds){                 // never show a Real or Fake story again in Fill the Blank
     const seen=new Set((DAILY.call||[]).concat(DAILY.politics||[]).map(x=>x.src).filter(Boolean));
     const fresh=rounds.filter(x=>!x.src||!seen.has(x.src));
@@ -4197,6 +4199,7 @@ function showRound(shown,quiet,gate){
 function onCall(saysReal){
   if(S.phase!=='call') return;
   const st = S.rounds[S.i];
+  if(S.mode==='practice') markPractised([st]);
   const callOk = saysReal === st.real;
   const sec=(performance.now()-S.t0)/1000;
   const pts = st.real ? (callOk?speedPts(sec,st):0) : (callOk?FAKE_PTS:FOOLED_PTS);
@@ -5738,7 +5741,7 @@ let BOARD_VIEW='all', BOARD_KIND='call', MY_GROUPS=load('ff_groups')||[];
    only read and write their own row). Everything still works signed out; signing in just copies progress to the account. */
 const Cloud=(function(){
   const LIB='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js';
-  const SYNC=['ff_hist','ff_streak','ff_best','ff_life','ff_kit','ff_invites','ff_name','ff_pid','ff_groups','ff_daily','ff_blank','ff_pol','ff_passport','ff_coached'];   // the practice 'already seen' list stays on the device: it is the bulk of the data and the least important
+  const SYNC=['ff_hist','ff_streak','ff_best','ff_life','ff_kit','ff_invites','ff_name','ff_pid','ff_groups','ff_daily','ff_blank','ff_pol','ff_passport','ff_coached','ff_pseen'];   // the Unlimited 'already seen' list follows the account, so a new device carries on with fresh stories
   const synced=k=>SYNC.includes(k) || k.indexOf('ff_back:')===0;
   let sb=null, user=null, ready=false, timer=0, status='', armOut=0;
   const raw=k=>{ try{ return JSON.parse(localStorage.getItem(k)); }catch(e){ return null; } };
@@ -6472,6 +6475,7 @@ function startBlankRound(wall){
   S.phase='live';
   Scene.setPaper(true);
   const st=S.rounds[S.i];
+  if(S.mode==='practice') markPractised([st]);
   const w = typeof wall==='number' ? wall : Date.now();
   S.blank={t0:performance.now()-Math.max(0,Date.now()-w), guesses:[], seen:new Set(), bestC:0, bestPts:0, bestWord:'', exact:false};
   saveProgress({live:{i:S.i, wall:w}});
