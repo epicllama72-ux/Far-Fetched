@@ -4897,7 +4897,8 @@ function toggleMapSize(){
 /* the start button is a folded copy of today's paper: its masthead strip, then the label with a red arrow */
 function paperBtn(b,label,plain){
   b.classList.add('paperBtn');
-  b.innerHTML='<span class="pbm"><span>'+(typeof S!=='undefined'&&S&&S.kind==='blank'?'FILL IN THE BLANK':'THE DAILY ODD')+'</span><span>NO. '+dayNumber()+'</span></span><span class="pbl"></span>';
+  const unl=typeof S!=='undefined'&&S&&S.mode==='practice';   // Unlimited has no issue number: the strip just says UNLIMITED
+  b.innerHTML='<span class="pbm"'+(unl?' style="justify-content:center"':'')+'><span>'+(unl?'UNLIMITED':typeof S!=='undefined'&&S&&S.kind==='blank'?'FILL IN THE BLANK':'THE DAILY ODD')+'</span>'+(unl?'':'<span>NO. '+dayNumber()+'</span>')+'</span><span class="pbl"></span>';
   b.querySelector('.pbl').innerHTML=escH(label)+(plain?'':' <i aria-hidden="true">→</i>');
 }
 /* next headline: a paper slip, with the points just won on a green tag */
