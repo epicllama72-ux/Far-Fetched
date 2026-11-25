@@ -841,7 +841,8 @@ body.planetview #final,body.planetview #bar,body.planetview #comeBack,body.plane
 #introHowText b{color:var(--accent);font-weight:400}
 #introHowText .sc{color:var(--dim)}
 #introHowText details.scoring{margin-top:2px}
-#introHowText details.scoring summary{cursor:pointer;list-style:none;display:inline-block;padding:8px 0 6px;font:8px/1 var(--px);letter-spacing:.06em;color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+#introHowText details.scoring summary{cursor:pointer;list-style:none;display:inline-block;margin:0;padding:10px 0 8px;border:0;background:none;font:8px/1 var(--px);letter-spacing:.06em;color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+#introHowText details.scoring summary::after,#introHowText details.scoring[open] summary::after{content:none}   /* a plain underlined link: the pixel font has no arrow glyph */
 #introHowText details.scoring summary::-webkit-details-marker{display:none}
 #introHowText details.scoring .sc{margin:4px 0 0}
 body.introIdle #card{display:none}
@@ -1173,8 +1174,7 @@ body.pinDone #mapToggle{display:block}
 .storyLink{display:block;text-align:right;margin:4px 0 0;font:18px/1 var(--vt);color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 .challenge{display:block;margin-top:6px;color:var(--accent)}
 @media not all and (min-width:1100px) and (min-height:600px){ body.returned #final,body.peek #final{margin-top:max(0px,calc(100vh - 330px))} }
-/* once the planet animation is done the summary rises to the halfway mark, covering the lower half of the globe */
-@media not all and (min-width:1100px) and (min-height:600px){ body.peek #final{margin-top:max(0px,calc(50vh - var(--sumBase,110px)))} #final{transition:opacity .45s,transform .45s,margin-top .8s cubic-bezier(.2,.8,.3,1)} }
+
 #summary canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rendering:crisp-edges;background:#0b0e14;border:1px solid #232a38}
 #sumRank{margin:8px 0 2px;font:9px/1.4 var(--px);letter-spacing:.16em;color:var(--cyan);text-transform:uppercase}
 #sumRank b{font-weight:400;color:var(--accent)}
@@ -6927,7 +6927,11 @@ $('practiceList').querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(!b.di
 
 /* ---------- Intro: the earth from space. "I'm ready" dives through the clouds and lands on his house. ---------- */
 /* where the summary sits with no margin (the top bar and the page padding above it), so its top edge can be set to the halfway mark */
-function sumBase(){ const f=$('final'); if(!f) return; const cs=parseFloat(getComputedStyle(f).marginTop)||0, top=f.getBoundingClientRect().top+(window.scrollY||0)-cs; if(top>0) document.documentElement.style.setProperty('--sumBase',Math.round(top)+'px'); }
+function sumRise(smooth){
+  const f=$('final'); if(!f || f.hidden || window.matchMedia('(min-width:1100px) and (min-height:600px)').matches) return;
+  const delta=Math.round(f.getBoundingClientRect().top+(window.scrollY||0)-innerHeight/2);          // the summary's resting top edge is the halfway mark
+  if(delta>8 && (window.scrollY||0)<delta-8) window.scrollTo({top:delta,behavior:smooth?'smooth':'auto'});   // scroll back down any time to see the planet as before
+}
 const Intro=(function(){
   const LAND='AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/AAH//gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD////////7wAAAAAAAGwAAAAAAAAAAAAAAAAAAAAAAB//////////AAAP8QH//gDB/AAAAAAAAAAAAAAAAABP//////////AAAf//AHngAwD/4AAAAAAAAAAAAAAAD+//////////8AAB//AAAAAAAAP4AAAAAAAAAAAAAAD/////j//////gAAA5gAAAP8ABP/+AAHhoAAAAAAAAAH////8AB/////AAAAAAAAH+AGf//4AA//AAAAAAAAAB/53//8AB////4AAABAAAB+Buf////fCeAAAAAAAAAAP/////8AD///+AAAAAAAAPgP//////+j/gAADAD/4ADf///v//AP///4BgAAH+AA/h///////////gAYAf//////////+A////gAAAP//gNn//////////////8H//////////f+B///wAAAB/////////////////////f/////////5/+H//gfwAAP///////////////////////////////P/wP/4D/gAB////////////////////j//////////+/+A/8AH8AAf///////////////////+DP////////x//4B/gAAAwH////////////////////wx////////8A//gD+AAABMf+f/////////////////4BP////////gD/3ABwAAABx/////////////////+fsAAD/AH/////gD/8AAAAAA+H/3/////////////+Bn8AAMD8AH/////wf/4AAAAAD4H///////////////wA/gAAB9AAP/////9//4AAAAAPgfz/////////////+AD/wAA+AAAf/////3//4AAAAD/n////////////////APzAD/AAAB/////////gAAAAP/////////////////8AcAycAAAAC////////+AAAAA7/////////////////4DgAMAAAAAD////////8AAAAAf////////////////9gcAAAAAAAAD////////4AAAAA/////////////////+BAAAAAAAAAH////////gAAAAD////////////////+4YAAAAAAAAAf///////AAAAAAB////////////////7vAAAAAAAAAB///////0AAAAADH/f/3/3//////////PwAAAAAAAAAH//////EAAAAAAf/v/+A/v/////////58AAAAAAAAAAf/////+AAAAAAB/5n///nf////////4HAAAAAAAAAAB//////gAAABAAH/2f///9//P//////AYAAAAAAAAAAH/////8AAAAFgAf+b7///3///////68DgAAAAAAAAAAP/////gAAAABgB/f/P////////////8eAAAAAAAAAAAf////+AAAAAAAB//If///////////Hv4AAAAAAAAAAA/////wAAAAAAAP/+AY//////////8f/AAAAAAAAAAAD////8AYAAAABh//+OA//////////5/kAAAAAAAAAAAD////gBAAAAAAH//+////////////gwAAAAAAAAAAAAH///+AAAAAAAA////////////////DAAAAAAAAAAAABP/+44AAAAAAB///////+////////4YAAAAAAAAAAAAB//wB4AAAAAAH////////////////hAEAAAAAAAAAAAB/+AHwAAAAAAH///////7///////8MAQAAAAAAAAAAAD/4AbwAAAAAA////////+////////AAAAAAAAAAAAAAH/gD/AAAAAAD//////f/+D/////9gAAAAAAAAOAAAAAD+H//AAAAAAf////////4H/////GAAAAAAAAAMAAAAAP8eH8AAAAAB/////////Af/x//gIAAAAAAAAAQAAAAEf/w9/gAAAAD//////3/8Af+D/2BgABAAAAAAAAAAAAA//A3/gAAAYP//////f/gB/wH/4HAAEAAAAAAAAAAAAAf/gAGAAAAw////////4AD+A//AcAAQAAAAAAAAAAAAAH+AAIAAADH///////+AAPwAf8B4ABAAAAAAAAAAAAAAH4AAwAAAAP///////mAA/AZ/wHgAMAAAAAAAAAAAAAAHgfCAAAAA///////z4AF4Bn/A/AAAAAAAAAAAAAAAAAOD/4AAAAD///////+AAXgEZ8D8AAAAIAAAAAAAAAAAAf//wAAAAD///////4AAPARzAZwCAAAAAAAAAAAAAAAA///gAAAAP///////AAE+AnABPhABgB4AAAAAAAAAAAAP//wAAAAf//////8AAA4DPAPsAAAICgAAAAAAAAAAAA///wAAAAfx/////gAAgAHch8YAAAEAAAAgAAAAAAAAD///AAAAAAB////8AACAAP/fBkAAAAMAABgAAAAAAAAf//+AAAAAAH////gAAAAA/n+PAAAAAwAAAAAAAAAAMB///4AAAAAAv///8AAAAAB+f/sAAAABAAAAAAAAAAA4P///+AAAAAA////gAAAAAH5/8/gCACiAQAAAAAAAAAA/////AAAAAD///8AAAAAAP/7//4+AAABgBAAAAAAAAD////+AAAAAH///gAAAAAAf/vf/8cAAAWAEAAAAAAAAP////+AAAAAP//+AEAAAAA8A8D//4AAAAAQAAAAAAAA/////8AAAAA///4AAAAAAA/5YM/8wAAAAAAAAAAAAAB/////wAEAAB///gAABAAAB///H/T4AAGAAAMAAAAAAH////+AAAAAH//+AAAAAAAAP/gHvngAAAAAAQAAAAAAP////4AAAAAf//4AAAAAAAQB45E8DYAAAAIAAAAAAAA/////AAAAAB///uwAAAACAABD8wMYgQmAAAAAAAAAAB////4AAAAAP//+LAAAAAAAABvzgABAEIAAAAAAAAAAH////gAAAAA///8cAAAAAAAAP/PAAMAgAAI4AAAAAAAP///+AAAEAD///nwAAAAAAAB//8AAwPAAAwSAAAAAAAP///4AAAAAP//8fAAAAAAAAP//4ABB8kAABMAAAAAAAf///AAAAAA///h8AAAAAAAB///gECCkAAABAAAAAAAA///8AAAAAB//4HhwAAAAAB////AD4AQAgAAAAAAAAAD///gAAAAAH//w+EAAAAAAP////AHCAAAAAAAAAAAAAf//+AAAAAAP//D4AAAAAAA////8AEAAAAAAAgAAAAAB///AAAAAAA//8HAAAAAAAD////8AAAAAAAAAAAAAAAH//wAAAAAAD//AYAAAAAAAP////gAAAAAAAAAACAAAAf//AAAAAAAP/8AAAAAAAAA/////AAAAAAAAAAAAAAAB//8AAAAAAAf/wAAAAAAAAB////8AQAAAAAAAAAAAAAH//gAAAAAAA/+AAAAAAAAAH////gAAAAAAAAAAAAAAAf/8AAAAAAAD/wAAAAAAAAAf///+AAAAAAAAAAAAAABD//gAAAAAAAP+AAAAAAAAAB/wf/4AAAAAAAAAAAAAAAP/+AAAAAAAAfgAAAAAAAAAH8A//AAMAAAAAAAAAAAAA//AAAAAAAAAAAAAAAAAAAAAAB/8AAYAAAAAAAAAAAAH/8AAAAAAAAAAAAAAAAAAAAAAB/gAA4AAAAAAAAAAAAf/wAAAAAAAAAAAAAAAAAAAAAAD4AAHgAAAAAAAAAAAB/wAAAAAAAAAAAAAAAAAAAAAAADQAA8AAAAAAAAAAAAH/AAAAAAAAAAAAAAAAAAAAAAAAPAAHwAAAAAAAAAAAA/4AAAAAAAAAAAAAAAAAAAAAAAAcAA8CAAAAAAAAAAAD/AAAAAAAAAAAAAAAAAAAAAAAAAgAPwAAAAAAAAAAAAP8AAAAAAAAAAAAAIAAAAAAAAAAAAA8AAAAAAAAAAAAA/wAAAAAAAAAAAIAgAAAAAAAAAAAABgAAAAAAAAAAAAD/AAAAAAAAAAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAPwAAAAAAAAAAAAAAAOAAAAAAAAAAAgAAAAAAAAAAAAA/DgAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAD8OAAAAAAAAAAAAAAAIAAAAAAAAAACAAAAAAAAAAAAAH+AADgAAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAH4AACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==';
   const MW=256, MH=128, D2R=Math.PI/180;
@@ -7345,8 +7349,8 @@ const Intro=(function(){
     if(stamp){ st.innerHTML=PAW+'<span></span>'+PAW; st.querySelector('span').textContent=stamp; st.hidden=false; }
     else{ st.hidden=true; st.textContent=''; }
     $('introHowText').innerHTML = (blank
-      ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how close it is: <b>cold, cool, warm, hot, on fire</b>, or exact. Spelling slips are fixed for you.</li><li>You have <b>30 seconds</b> per headline. The exact word scores the most, however fast you find it.</li><li>Every point drops the jaw of the man in the dig. How far can you drop it?</li></ol>'
-      : '<ol><li>Read the headline. The place is <b>left out</b>.</li><li>Tap <b>REAL</b> or <b>FAKE</b>. Quick answers score more. Then a <b>clue</b> about where it happened is added to the headline.</li><li>If it\'s real, <b>tap the map</b> to zoom in, tap again to drop a pin, then <b>LOCK IN</b>. You get 30 seconds. Closer pins score more.</li><li>Every point drops the jaw of the man in the dig. How far can you drop it?</li></ol>')
+      ? '<ol><li>Every headline is <b>true</b>, but one word is hidden.</li><li>Type a guess. Each guess shows how close it is: <b>cold, cool, warm, hot, on fire</b>, or exact. Spelling slips are fixed for you.</li><li>You have <b>30 seconds</b> per headline. The exact word scores the most, however fast you find it.</li><li>Every point drops the reader\'s jaw deeper through the earth.</li></ol>'
+      : '<ol><li>Read the headline. The place is <b>left out</b>.</li><li>Tap <b>REAL</b> or <b>FAKE</b>.</li><li>If it\'s real, a <b>clue</b> about where it happened is added to the headline. <b>Tap the map</b> to zoom in, tap again to drop a pin, then <b>LOCK IN</b>. You get 30 seconds. Closer pins score more.</li><li>Every point drops the reader\'s jaw deeper through the earth.</li></ol>')
       + '<details class="scoring"><summary>See scoring</summary><p class="sc">'+$('howText').innerHTML+'</p></details>';
   }
   function titleOn(){                   // the game's name, the day's line and "how to play" above the turning planet
@@ -7372,9 +7376,9 @@ const Intro=(function(){
   function summaryBack(){                 // the summary rises to its resting place: just its top showing under the planet, scroll to read the rest
     clearTimeout(sumT); const b=document.body;
     if(!b.classList.contains('planetview')) return;
-    if(typeof sumBase==='function') sumBase();
     b.classList.remove('planetview'); if(on && mode==='end') b.classList.add('peek');
     window.scrollTo({top:0});
+    setTimeout(()=>{ if(typeof sumRise==='function') sumRise(true); },450);   // let the summary fade in at the bottom, then it rises to the halfway mark
   }
   function summaryLater(ms){ clearTimeout(sumT); sumT=setTimeout(summaryBack,ms); }
   function spot(){                        // one spot per edition, so the damage sits where today's dive landed
@@ -7402,8 +7406,8 @@ const Intro=(function(){
     tgt=spot(); lat0=tgt[0]; lon0=tgt[1];
     on=true; mode='end'; dive=null; cracks=null; parts=[]; endT=performance.now()-4000;
     aus=tier===4 ? {lat:-20,lon:134} : null; if(tier===4){ lat0=-20; lon0=134; }
-    if(typeof sumBase==='function') sumBase();
     titleOff(); document.body.classList.add('intro','peek'); document.body.classList.remove('planetview');
+    setTimeout(()=>{ if(typeof sumRise==='function') sumRise(false); },60); setTimeout(()=>{ if(typeof sumRise==='function') sumRise(false); },500);
     cv.style.transition='opacity .4s'; cv.style.opacity='0'; cv.hidden=false; last=0;
     requestAnimationFrame(()=>{ cv.style.opacity='1'; });
     raf=requestAnimationFrame(frame);
