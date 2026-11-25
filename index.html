@@ -2882,8 +2882,9 @@ const Scene = (function(){
       const sstep=x=>x*x*(3-2*x);
       if(recap.quick){
         const r=clamp((t-recap.tR)/Math.max(0.01,recap.t0-recap.tR),0,1);
-        camY=recap.from+(camMin-recap.from)*sstep(Math.pow(r,1.35));      // eases in (accelerates), then settles on the room view
-        if(r>=1 && !recap.finished){ recap.finished=true; camY=camMin; const d=recap.done; if(d) setTimeout(d,120); }
+        camY=recap.from+(camMin-recap.from)*Math.pow(r,1.7);      // accelerates all the way up and does not ease to a stop, so the zoom out follows with no pause at the room
+        if(r>=0.78 && !recap.nearFired){ recap.nearFired=true; if(nearCb) nearCb(); }   // the planet starts zooming out over the last of the climb, so there is no seam between the two
+        if(r>=1 && !recap.finished){ recap.finished=true; camY=camMin; const d=recap.done; if(d) d(); }
       } else if(t<recap.t0){
         const r=clamp((t-recap.tR)/Math.max(0.01,recap.t0-recap.tR),0,1);
         camY=recap.from+(camMin-recap.from)*sstep(Math.pow(r,1.5));
@@ -3664,7 +3665,7 @@ const Scene = (function(){
     if(reduce||!W||!list.length){ if(done) done(); return; }
     if(quick){   // right after a finished dig: one smooth, quick, accelerating climb back up to the room, then the zoom out (no slow review)
       const from=camY, dist=Math.abs(from-camMin);
-      if(dist<4){ camY=camMin; if(done) setTimeout(done,150); return; }
+      if(dist<4){ camY=camMin; if(done) done(); return; }
       recap={tR:t,t0:t+clamp(0.85+dist/H*0.22,1.0,1.9),from,dur:0,done,finished:false,maxLy:0,quick:true};
       return;
     }
@@ -3689,6 +3690,8 @@ const Scene = (function(){
     if(!rise) camY=camMin;
     recap={tR:t,t0:t+rise,from,dur,done,finished:false,maxLy:Math.max.apply(null,mks.map(m=>m.ly))};
   }
+  let nearCb=null;
+  function onNear(cb){ nearCb=cb; }
   function onMark(cb){ markCb=cb; }
   function popPts(n){
     if(!n || !W) return;
@@ -3696,7 +3699,7 @@ const Scene = (function(){
     document.body.appendChild(el); pops.push({el,t0:t+pops.length*0.25});     // a second pop right after the first waits its turn
     el.style.opacity=0;
   }
-  return {coreBlown:()=>13+target()+9>coreY(), mToPx, setKit,chinAt,playRecap,endRecap,onMark,popPts,setPaper,start,setJaw,configure,restore,gasp,fooled:fooledReact,setFocus,setSafeTop,info,reset,setBest,panDown,layout,camDepth,browseStart,browseBy,browseEnd,
+  return {coreBlown:()=>13+target()+9>coreY(), mToPx, setKit,chinAt,playRecap,endRecap,onMark,onNear,popPts,setPaper,start,setJaw,configure,restore,gasp,fooled:fooledReact,setFocus,setSafeTop,info,reset,setBest,panDown,layout,camDepth,browseStart,browseBy,browseEnd,
           onDepth:cb=>{depthCb=cb;}, onZone:cb=>{zoneCb=cb;}, onBreak:cb=>{breakCb=cb;}, onRumble:cb=>{rumbleCb=cb;}, onLandmark:cb=>{lmCb=cb;}};
 })();
 
@@ -5094,12 +5097,15 @@ function recapList(){
             html:'<b class="mp"><i class="mi">'+icon+'</i>'+(pts<0?'−'+Math.abs(pts):'+'+pts)+'</b><span class="ml">'+esc(tag)+'</span><span class="mh">'+esc(head)+'</span>'};
   }).filter(Boolean);
 }
+let OUTRO_EARLY=false;
+Scene.onNear(()=>{ if(S && RECAP_ON && !$('final').hidden && document.body.classList.contains('quick')){ OUTRO_EARLY=true; Intro.hold(); Intro.outro(Scene.info().zone, Scene.coreBlown()); } });
 function endRecapUI(skipped,quick){
   if(!RECAP_ON) return;
   RECAP_ON=false; Intro.hold(); document.body.classList.remove('recap','quick');   // the summary waits until the planet has zoomed out
   if(quick && S){ Scene.browseStart(); S.returned=true; document.body.classList.add('returned'); }   // hold the camera at the room while the zoom out starts (otherwise it eases back down toward the jaw)
   Scene.endRecap(); Sound.play('fanfare'); aim(0.74);
-  setTimeout(()=>{ if(S && !RECAP_ON && !$('final').hidden) Intro.outro(Scene.info().zone, Scene.coreBlown()); else if(!RECAP_ON) Intro.hide(true); }, skipped?300:quick?250:1400);   // zoom back out to the planet, damaged by how deep you dug
+  if(OUTRO_EARLY){ OUTRO_EARLY=false; }
+  else setTimeout(()=>{ if(S && !RECAP_ON && !$('final').hidden) Intro.outro(Scene.info().zone, Scene.coreBlown()); else if(!RECAP_ON) Intro.hide(true); }, skipped?300:quick?0:1400);   // zoom back out to the planet, damaged by how deep you dug
   if(S && S.newUnlocks && S.newUnlocks.length && !S.unlockPlayed){ S.unlockPlayed=true; setTimeout(()=>Sound.play('unlock'),500); }
 }
 function startRecap(auto){
@@ -7348,7 +7354,7 @@ const Intro=(function(){
       const T=(now-out.t0)/1000, D=2.2, p=1-ease(clamp01(T/D)), E=endPos();
       lat0=tgt[0]; lon0=tgt[1];
       drawDive(p,tt,E.R,E.ey,tier>=3 && p<0.5);
-      cv.style.opacity=String(clamp01(T/0.25));
+      cv.style.opacity=String(clamp01(T/0.5));
       if(T>=D){ mode='end'; endT=now; parts=[]; if(tier>=1) Sound.play(tier>=2?'core':'crunch'); summaryLater(1000); }
     } else {                             // the damage report: the planet, as your dig left it
       const E=endPos(), age=(now-endT)/1000;
