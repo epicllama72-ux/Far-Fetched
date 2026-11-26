@@ -806,6 +806,41 @@ body.howOpen #briefBox{visibility:hidden}   /* How to play opens over the briefs
 #hp .bkB.done{background:transparent;color:#1b1813;box-shadow:inset 0 0 0 2px #1b1813}#hp .bkB i{font-style:normal;color:#2f6b2f}
 #hp .bkB:focus-visible{outline:3px solid #a8231a;outline-offset:2px}
 /* account page */
+/* settings */
+#hp .stH{margin:16px 2px 8px;font:8px/1 var(--px);letter-spacing:.2em;color:#9aa3b5}#hp .stH:first-child{margin-top:2px}
+#hp .stCard{margin:0 0 10px;padding:4px 14px;background:#f7f3e8;border:2px solid #1b1813;box-shadow:3px 4px 0 rgba(0,0,0,.4);color:#1b1813}
+#hp .stCard>.stTx{padding:12px 0 6px}
+#hp .stTx{min-width:0}#hp .stTx b{display:block;font:400 10px/1.3 var(--px);letter-spacing:.03em;color:#1b1813}
+#hp .stTx span{display:block;margin-top:5px;font:17px/1.1 var(--vt);color:#5a5043}
+#hp .stRow{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px dotted #b9ae92}#hp .stRow:last-child{border-bottom:0}
+#hp .stSw{all:unset;box-sizing:border-box;cursor:pointer;flex:none;position:relative;width:64px;height:32px;border:2px solid #1b1813;background:#d9cfb4;font:7px/1 var(--px);letter-spacing:.08em;color:#5a5043;display:flex;align-items:center;justify-content:flex-end;padding:0 8px 0 0}
+#hp .stSw i{position:absolute;left:2px;top:2px;width:24px;height:24px;background:#1b1813;transition:left .12s steps(3)}
+#hp .stSw b{font-weight:400;position:relative;z-index:1}
+#hp .stSw.on{background:#2f6b2f;color:#fff;justify-content:flex-start;padding:0 0 0 9px}#hp .stSw.on i{left:34px;background:#f7f3e8}
+#hp .stSw:focus-visible,#hp .stSeg button:focus-visible,#hp .stLink:focus-visible,#hp .stTry button:focus-visible{outline:3px solid #a8231a;outline-offset:2px}
+#hp .stSeg{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:6px 0 10px;border:2px solid #1b1813}
+#hp .stSeg button{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;padding:12px 6px 10px;font:8px/1 var(--px);letter-spacing:.06em;color:#1b1813;background:#f7f3e8}
+#hp .stSeg button+button{border-left:2px solid #1b1813}
+#hp .stSeg button.on{background:#1b1813;color:#ffcc4d}
+#hp .stTry{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:0 0 12px}
+#hp .stTry span{flex:1 1 100%;font:17px/1.1 var(--vt);color:#5a5043}
+#hp .stTry button{all:unset;box-sizing:border-box;cursor:pointer;padding:8px 12px 6px;border:2px solid #1b1813;font:7px/1 var(--px);letter-spacing:.08em;color:#1b1813}
+#hp .stTry button:hover{background:#1b1813;color:#f7f3e8}
+#hp .stLinks{padding:0 14px}
+#hp .stLink{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:flex;align-items:center;gap:10px;padding:13px 0;border-bottom:1px dotted #b9ae92;color:#1b1813}#hp .stLink:last-child{border-bottom:0}
+#hp .stLink .stTx{flex:1}
+#hp .stLink em{font:normal 7px/1 var(--px);letter-spacing:.1em;color:#fff;background:#a8231a;padding:5px 6px 4px}
+#hp .stLink i{font-style:normal;font:12px/1 var(--px);color:#8a806c}
+#hp .stLink:hover i{color:#a8231a}
+/* briefs */
+#hp .bfIntro{margin:2px 2px 12px;font:8px/1.4 var(--px);letter-spacing:.16em;color:#9aa3b5}
+#hp .bf{position:relative;margin:0 0 14px;padding:12px 14px 14px;background:#f7f3e8;border:2px solid #1b1813;box-shadow:4px 5px 0 rgba(0,0,0,.4);color:#1b1813}
+#hp .bf::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;background:#a8231a}
+#hp .bfTop{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-left:6px;font:8px/1 var(--px);letter-spacing:.12em;color:#5a5043}
+#hp .bfTop .bfNew{margin:0}
+#hp .bfT{margin:10px 0 6px 6px;font:11px/1.35 var(--px);letter-spacing:.02em;color:#1b1813}
+#hp .bfB{margin:0 0 6px 6px;font:19px/1.15 var(--vt);color:#3b342a}
+#hp .bfGo{margin:8px 0 0 6px;width:auto;padding:10px 14px 8px;font-size:8px}
 #hp .acCard,#hp .acRow,#hp .acHead{margin-bottom:12px}
 #hp .acChips{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0 2px}
 #hp .acChip{display:flex;align-items:center;gap:7px;padding:8px 9px 6px;border:2px dashed #b9ae92;font:17px/1.05 var(--vt);color:#6b6252;min-width:0}
@@ -1891,6 +1926,12 @@ body.peek #hudTry:not([hidden]),body.sumUp #hudTry:not([hidden]){display:block}
 #endBtns button{flex:1 1 0;min-width:0;min-height:38px;padding:6px 6px;margin:0;font:9px/1.2 var(--px);letter-spacing:.06em;white-space:nowrap;text-transform:uppercase;
   background:#1b1813;color:#f7f3e8;border:2px solid #1b1813;box-shadow:3px 3px 0 #5a5043;transform:none}
 #endBtns #btnShare{background:#a8231a;color:#fff;box-shadow:3px 3px 0 #1b1813}
+/* Unlimited stands out: a neon edge, and a PASS tag until the player has the Press Pass */
+@keyframes unlGlow{0%,100%{box-shadow:0 0 4px #19e3ff,0 0 12px #19e3ff,0 0 22px rgba(25,227,255,.45),inset 0 0 8px rgba(25,227,255,.35)}50%{box-shadow:0 0 7px #7ff6ff,0 0 20px #19e3ff,0 0 36px rgba(25,227,255,.6),inset 0 0 12px rgba(25,227,255,.5)}}
+#endBtns #btnPractice{position:relative;background:#080a14;color:#aef7ff;border-color:#19e3ff;text-shadow:0 0 6px #19e3ff;animation:unlGlow 2.6s ease-in-out infinite}
+#endBtns #btnPractice.locked::after{content:'PASS';position:absolute;top:-9px;right:-6px;background:#a8231a;color:#fff;font:6px/1 var(--px);letter-spacing:.1em;padding:4px 5px 3px;border:1px solid #1b1813;text-shadow:none;rotate:4deg}
+body.calm #endBtns #btnPractice{animation:none;box-shadow:0 0 6px #19e3ff,3px 3px 0 #5a5043}
+@media (prefers-reduced-motion:reduce){#endBtns #btnPractice{animation:none;box-shadow:0 0 6px #19e3ff,3px 3px 0 #5a5043}}
 #endBtns button:hover{filter:brightness(1.12)}
 #endBtns button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #1b1813}
 @media (max-width:360px){ #endBtns button{font-size:8px;letter-spacing:0} }
@@ -7016,39 +7057,48 @@ HPAGES.blank={title:'Fill the Blank',render(){
 
 /* ACCOUNT */
 /* Settings: how you pin (globe or flat map; the map's own button still switches it mid-game), sound, calm mode */
-const pinCard=()=>{ const g=GlobePin.pref(); return hpCard('HOW YOU PIN','','<p class="sm">You can now drop your pin on a globe instead of a flat map. The globe spins and zooms: tap a region to zoom in, then tap again to place your pin.</p><p class="sm">Try both. The button on the map switches between them at any time, even mid-game. Then choose below which one every headline opens on. Your choice is saved on this device.</p><div class="g2 pcRow" role="group" aria-label="Pin on"><button class="b2'+(g?'':' ghost')+'" id="pcGlobe" type="button" aria-pressed="'+g+'">🌐 Globe</button><button class="b2'+(g?' ghost':'')+'" id="pcFlat" type="button" aria-pressed="'+(!g)+'">🗺 Flat map</button></div><p class="sm">Or take one for a spin first. It opens right here, nothing is scored, and your choice stays as it is:</p><div class="g2 pcRow" role="group" aria-label="Try it"><button class="b2 ghost" id="pcTryG" type="button">Try the globe</button><button class="b2 ghost" id="pcTryF" type="button">Try the map</button></div>'); };
+const stSwitch=(id,on,label)=>'<button class="stSw'+(on?' on':'')+'" id="'+id+'" type="button" role="switch" aria-checked="'+on+'" aria-label="'+label+'"><i></i><b>'+(on?'ON':'OFF')+'</b></button>';
+const stRow=(name,note,right)=>'<div class="stRow"><div class="stTx"><b>'+name+'</b><span>'+note+'</span></div>'+right+'</div>';
+const stLink=(id,name,note,tag)=>'<button class="stLink" id="'+id+'" type="button"><span class="stTx"><b>'+name+'</b><span>'+note+'</span></span>'+(tag?'<em>'+tag+'</em>':'')+'<i aria-hidden="true">▸</i></button>';
+const pinCard=()=>{ const g=GlobePin.pref();
+  return '<div class="stCard"><div class="stTx"><b>How you pin</b><span>Pick what every headline opens on. The button on the map switches it any time, even mid-game.</span></div>'
+    +'<div class="stSeg" role="group" aria-label="Pin on"><button class="'+(g?'on':'')+'" id="pcGlobe" type="button" aria-pressed="'+g+'">🌐 Globe</button><button class="'+(g?'':'on')+'" id="pcFlat" type="button" aria-pressed="'+(!g)+'">🗺 Flat map</button></div>'
+    +'<div class="stTry"><span>Take one for a spin first. Nothing is scored.</span><button id="pcTryG" type="button">Try globe</button><button id="pcTryF" type="button">Try map</button></div></div>'; };
 const pinWire=()=>{ const set=v=>{ GlobePin.setPref(v); HPAGES.settings.render(); }; $('pcGlobe').onclick=()=>set(true); $('pcFlat').onclick=()=>set(false);
   const tryIt=v=>openTry(v); $('pcTryG').onclick=()=>tryIt(true); $('pcTryF').onclick=()=>tryIt(false); };
 
 const calmOn=()=>{ try{ return localStorage.getItem('ff_calm')==='1'; }catch(e){ return false; } };
 function applyCalm(){ document.body.classList.toggle('calm',calmOn()); }
 applyCalm();
-const togCard=(title,note,id,on,onLabel,offLabel)=>hpCard(title,'','<p class="sm">'+note+'</p><div class="g2 pcRow" role="group" aria-label="'+title+'"><button class="b2'+(on?'':' ghost')+'" id="'+id+'On" type="button" aria-pressed="'+on+'">'+onLabel+'</button><button class="b2'+(on?' ghost':'')+'" id="'+id+'Off" type="button" aria-pressed="'+(!on)+'">'+offLabel+'</button></div>');
 /* BRIEFS: dated notes on what's new. The owner decides what is listed (data/briefs.json). */
 HPAGES.briefs={title:'Briefs',render(){
   const fresh=new Set(briefsUnread().map(b=>b.id));          // what was unread when the screen opened gets a NEW tag
-  if(!BRIEFS.length){ $('hpBody').innerHTML=hpCard('BRIEFS','','<p class="sm">Nothing new yet. Updates and additions to the game will be listed here, newest first.</p>'); return; }
-  $('hpBody').innerHTML='<p class="sm" style="margin:0 2px 8px;color:#c8cfdd">What\'s new in Far-Fetched, newest first.</p>'
-    + BRIEFS.map(b=>hpCard(hpEsc(b.title).toUpperCase(), '<span style="white-space:nowrap">'+hpEsc(fmtDate(b.date))+(fresh.has(b.id)?' <span class="bfNew">NEW</span>':'')+'</span>', String(b.body||'').split(/\n\s*\n/).map(t=>'<p>'+hpEsc(t)+'</p>').join(''))).join('');
+  if(!BRIEFS.length){ $('hpBody').innerHTML='<div class="bf"><p class="bfB">Nothing new yet. Updates to the game will be listed here, newest first.</p></div>'; return; }
+  const ok=a=>a && a.label && a.page && HPAGES[a.page];
+  $('hpBody').innerHTML='<p class="bfIntro">WHAT\'S NEW · NEWEST FIRST</p>'+BRIEFS.map((b,i)=>
+    '<article class="bf"><div class="bfTop"><span>'+hpEsc(fmtDate(b.date)).toUpperCase()+'</span>'+(fresh.has(b.id)?'<span class="bfNew">NEW</span>':'')+'</div>'
+    +'<h3 class="bfT">'+hpEsc(b.title)+'</h3>'
+    +String(b.body||'').split(/\n\s*\n/).map(t=>'<p class="bfB">'+hpEsc(t)+'</p>').join('')
+    +(ok(b.action)?'<button class="b2 ghost bfGo" type="button" data-bp="'+hpEsc(b.action.page)+'">'+hpEsc(b.action.label)+' ▸</button>':'')+'</article>').join('');
+  document.querySelectorAll('#hpBody [data-bp]').forEach(b=>b.onclick=()=>{ gcEvent('briefs/action/'+b.dataset.bp); hpOpen(b.dataset.bp); });
   store('ff_briefs_seen', BRIEFS.map(b=>b.id)); briefBoxSync();
 }};
 HPAGES.settings={title:'Settings',render(){
-  const u=window.Cloud&&Cloud.user&&Cloud.user();
-  $('hpBody').innerHTML=pinCard()
-    +togCard('SOUND EFFECTS','Clicks, drops and the jaw. Also on the speaker button at the top of the game.','stFx',!Sound.isMuted(),'On','Off')
-    +togCard('NEWSROOM SOUND','The murmur and typewriters in the background, and the drone as you dig.','stAmb',Sound.ambience(),'On','Off')
-    +togCard('CALM MODE','Stops the wiggling, pulsing and flashing animations. Your device\'s reduce-motion setting is honoured either way.','stCalm',calmOn(),'On','Off')
-    +hpCard('PRESS PASS',passState().pro?'ACTIVE':'FROM $5','<p class="sm">'+(passState().pro?'Unlimited, every back issue and no ads, ever.':'Unlimited rounds, every back issue and no ads, ever. From $5.')+'</p><button class="b2 ghost" id="stPass" type="button">'+(passState().pro?'View your pass':'See the Press Pass')+'</button>')
-    +hpCard('BRIEFS','','<p class="sm">What\'s new in the game, with dates.</p><button class="b2 ghost" id="stBriefs" type="button">Open Briefs</button>')
-    +hpCard('ACCOUNT','','<p class="sm">'+(u?'Signed in. Your stats, streak and groups follow you to any device.':'Sign in to keep your stats, streak and groups on any device.')+'</p><button class="b2 ghost" id="stAcct" type="button">'+(u?'Open account':'Sign in')+'</button>');
-  pinWire(); if($('stPass')) $('stPass').onclick=()=>hpOpen('pass');
+  const u=window.Cloud&&Cloud.user&&Cloud.user(), pro=passState().pro, newB=(typeof briefsUnread==='function'?briefsUnread().length:0);
+  $('hpBody').innerHTML='<p class="stH">PLAY</p>'+pinCard()
+    +'<div class="stCard">'+stRow('Calm mode','Stops wiggling, pulsing and flashing. Your device\'s reduce-motion setting is honoured too.',stSwitch('stCalm',calmOn(),'Calm mode'))+'</div>'
+    +'<p class="stH">SOUND</p><div class="stCard">'
+      +stRow('Sound effects','Clicks, drops and the jaw. Also on the speaker button.',stSwitch('stFx',!Sound.isMuted(),'Sound effects'))
+      +stRow('Newsroom sound','Murmur and typewriters, and the drone as you dig.',stSwitch('stAmb',Sound.ambience(),'Newsroom sound'))+'</div>'
+    +'<p class="stH">MORE</p><div class="stCard stLinks">'
+      +stLink('stPass','Press Pass',pro?'Unlimited, every back issue, no ads':'Unlimited, every back issue, no ads. From $5',pro?'ACTIVE':'')
+      +stLink('stBriefs','Briefs','What\'s new in the game, with dates',newB?newB+' NEW':'')
+      +stLink('stAcct','Account',u?'Signed in. Your stats, streak and groups follow you':'Sign in to keep your stats, streak and groups',u?'':'SIGN IN')+'</div>';
+  pinWire(); $('stPass').onclick=()=>hpOpen('pass');
   const again=()=>{ const t=$('hp').querySelector('.sheetIn').scrollTop; HPAGES.settings.render(); $('hp').querySelector('.sheetIn').scrollTop=t; };
-  $('stFxOn').onclick=()=>{ Sound.setMuted(false); renderMute(); Sound.play('menu'); gcEvent('setting/sfx/on'); again(); };
-  $('stFxOff').onclick=()=>{ Sound.setMuted(true); renderMute(); gcEvent('setting/sfx/off'); again(); };
-  $('stAmbOn').onclick=()=>{ Sound.setAmbience(true); renderAmb(); Sound.unlock(); gcEvent('setting/ambience/on'); again(); };
-  $('stAmbOff').onclick=()=>{ Sound.setAmbience(false); renderAmb(); gcEvent('setting/ambience/off'); again(); };
-  const calm=v=>{ try{ localStorage.setItem('ff_calm',v?'1':'0'); }catch(e){} applyCalm(); gcEvent('setting/calm/'+(v?'on':'off')); again(); };
-  $('stCalmOn').onclick=()=>calm(true); $('stCalmOff').onclick=()=>calm(false);
+  $('stFx').onclick=()=>{ const m=!Sound.isMuted(); Sound.setMuted(m); renderMute(); if(!m) Sound.play('menu'); gcEvent('setting/sfx/'+(m?'off':'on')); again(); };
+  $('stAmb').onclick=()=>{ const on=!Sound.ambience(); Sound.setAmbience(on); renderAmb(); if(on) Sound.unlock(); gcEvent('setting/ambience/'+(on?'on':'off')); again(); };
+  $('stCalm').onclick=()=>{ const v=!calmOn(); try{ localStorage.setItem('ff_calm',v?'1':'0'); }catch(e){} applyCalm(); gcEvent('setting/calm/'+(v?'on':'off')); again(); };
   $('stAcct').onclick=()=>{ hpOpen('account'); };
   $('stBriefs').onclick=()=>hpOpen('briefs');
 }};
@@ -7099,7 +7149,7 @@ HPAGES.pass={title:'Press Pass',render(){
 /* everything that depends on the pass: menu labels, back issues, the wardrobe */
 function passChanged(){
   const pro=isPro(), sub=$('unlSub'); if(sub) sub.textContent='Every story we have.';
-  $('mPractice').classList.toggle('locked',!pro);
+  $('mPractice').classList.toggle('locked',!pro); { const bp=$('btnPractice'); if(bp) bp.classList.toggle('locked',!pro); }
   { const d=$('hUnlDot'); if(d) d.hidden=pro; try{ syncFinalBtns(); }catch(e){} }
   try{ renderIssues(); }catch(e){}
   { const t=$('dBackTag'); const bl=$('mBack')&&$('mBack').querySelector('.blbl small'); if(bl) bl.innerHTML=(pro?'every past paper':'the last '+BACK_FREE+' papers')+' &middot; no streak'; }
