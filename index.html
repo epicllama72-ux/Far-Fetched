@@ -839,7 +839,7 @@ body.howOpen #briefBox{visibility:hidden}   /* How to play opens over the briefs
 #hp .ppBonus b{display:block;font:400 9px/1.4 var(--px);letter-spacing:.04em;color:#1b1813;margin-bottom:6px}
 #hp .ppBonus span{display:block;font:17px/1.15 var(--vt);color:#3b342a}#hp .ppBonus em{display:block;margin-top:6px;font:normal 17px/1 var(--vt);color:#2f6b2f}
 #hp .ppArt{background:#0f1522;border:2px solid #1b1813;padding:8px 10px 6px;display:grid;place-items:center}
-#hp .ppThanks{margin:0 0 14px;text-align:center;font:19px/1.15 var(--vt);color:#d9def5}
+#hp .drillArt{display:block;max-width:100%;height:auto}
 #hp .ppGo{font-size:11px;padding:16px 8px 14px;box-shadow:4px 5px 0 rgba(0,0,0,.4)}
 #hp .ppSm{font-size:9px;padding:12px 8px 10px;margin-top:10px}
 #hp .ppTier{position:relative;background:#f7f3e8;border:3px solid #1b1813;box-shadow:4px 5px 0 rgba(0,0,0,.45);padding:14px 14px 14px;margin:0 0 14px}
@@ -5260,7 +5260,7 @@ const KIT=[
   {id:'shades',  slot:'glasses',name:'Aussie sunglasses',  icon:'🕶️', need:'dig through to Australia', ok:L=>L.zmax>=6},
   {id:'monocle',slot:'monocle',name:'Detective monocle',   icon:'🧐', need:'catch 20 fake stories', ok:L=>L.catches>=20, prog:L=>[L.catches,20]},
   {id:'pigeon', slot:'pigeon', name:'Carrier pigeon',      icon:'🕊️', need:'a friend joins from your challenge', ok:L=>L.invites>=1},
-  {id:'drill',   slot:'jaw',    name:'Strap-on jaw drill',  icon:'🔩', need:'a thank-you for $10 supporters', ok:L=>L.skin}];
+  {id:'drill',   slot:'jaw',    name:'Strap-on jaw drill',  icon:'🔩', need:'the $10 Press Pass + Jaw Drill', ok:L=>L.skin}];
 function lifeNow(){
   const l=load('ff_life')||{}, h=load('ff_hist')||{};
   return {best:l.best||0, pins:l.pins||0, catches:l.catches||0, zmax:l.zmax||0, cblown:!!l.cblown, invites:+load('ff_invites')||0, skin:passState().skin, papers:new Set(Object.keys(h).filter(k=>k.endsWith(':call')).map(k=>k.split(':')[0])).size};
@@ -5605,9 +5605,9 @@ function loadIssues(){
   return fetch('data/issues.json',{cache:'no-cache'}).then(r=>r.ok?r.json():[]).then(d=>{ ISSUES=Array.isArray(d)?d:[]; renderIssues(); }).catch(()=>{});
 }
 const BACK_FREE=5;    // back issues on offer: the most recent 5 earlier papers. Every older paper stays stored (data/*.json, issues.json) for later.
-/* Press Pass: pay what you want from $5. It unlocks Unlimited (the practice mode), every back issue, and no ads ever; $10 in total is the supporter package, which adds a thank-you item for the wardrobe.
+/* Press Pass: pay what you want from $5. It unlocks Unlimited (the practice mode), every back issue, and no ads ever; $10 or more in total also adds the strap-on jaw drill.
    The truth is the purchases table (only Stripe's webhook can write it); this device keeps a copy so the game still works offline. */
-const PASS_LINKS={pass:'https://buy.stripe.com/7sYfZh2jcfmb7aA05LbQY01', bundle:'https://buy.stripe.com/3cI6oH1f8b5V9iI7ydbQY02'};   // $5 Press Pass, $10 supporter package
+const PASS_LINKS={pass:'https://buy.stripe.com/7sYfZh2jcfmb7aA05LbQY01', bundle:'https://buy.stripe.com/3cI6oH1f8b5V9iI7ydbQY02', drill:'https://buy.stripe.com/dRm5kD8HA1vl7aAf0FbQY03'};   // $5 pass, $10 pass + jaw drill, $5 jaw drill for a pass holder
 function passState(){ const p=load('ff_pass')||{}; return {pro:!!p.pro, skin:!!p.skin}; }
 const isPro=()=>passState().pro;
 const backWindow=()=>{ const all=ISSUES.filter(x=>x && x.date && x.date<dayKey()).sort((a,b)=>a.date<b.date?1:-1); return isPro()?all:all.slice(0,BACK_FREE); };
@@ -5803,7 +5803,7 @@ const Cloud=(function(){
     main.textContent='Signed in as '+firstName(user);
     sub.textContent = armOut ? 'tap again to sign out' : (status||'progress saved to your account');
   }
-  /* the Press Pass: ask the account's purchases (payments add up: $5 unlocks the pass, $10 in total is the supporter package) */
+  /* the Press Pass: ask the account's purchases (payments add up: $5 unlocks the pass, $10 in total adds the jaw drill) */
   async function refreshPass(){
     if(!user || !sb) return false;
     const {data,error}=await sb.from('purchases').select('amount').eq('user_id',user.id);
@@ -7058,6 +7058,15 @@ function passBuy(kind){
   if(!u){ hpClose(); Cloud.signIn(); return; }   // sign in first, so the pass follows the player to every device
   gcEvent('pass/checkout/'+kind); location.href=(PASS_LINKS[kind]||PASS_LINKS.pass)+'?client_reference_id='+encodeURIComponent(u.id);
 }
+function drillSVG(px){   // the jaw drill as pixel art, drawn from the same shapes as the game
+  const R=[]; const rect=(x,y,w,h,c)=>R.push('<rect x="'+(x+12)+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+c+'"/>');
+  rect(-8,0,16,1,'#1b1813');   // collar outline top
+  rect(-9,1,18,3,'#1b1813'); rect(-8,1,16,2,'#59606e'); rect(-8,1,16,1,'#aab2c0'); rect(-8,2,16,1,'#2f343f');
+  for(let r=0;r<16;r++){ const hw=Math.max(0,Math.round(7*Math.pow(1-r/16,0.9))), y=4+r; rect(-hw-1,y,hw*2+2,1,'#1b1813');
+    for(let x=-hw;x<hw;x++) rect(x,y,1,1,((x+r*2)&7)<3?'#e9edf3':((x+r*2)&7)<5?'#a3acba':'#6b7383'); }
+  rect(-1,20,2,1,'#1b1813');
+  return '<svg class="drillArt" viewBox="0 0 24 21" width="'+(24*px)+'" height="'+(21*px)+'" shape-rendering="crispEdges" role="img" aria-label="The strap-on jaw drill">'+R.join('')+'</svg>';
+}
 HPAGES.pass={title:'Press Pass',render(){
   const u=window.Cloud&&Cloud.user&&Cloud.user(), st=passState(), rest=Math.max(0,ISSUES.filter(x=>x&&x.date&&x.date<dayKey()).length-BACK_FREE);
   const head='<div class="pp"><div class="ppHole" aria-hidden="true"></div><div class="ppTop"><b>PRESS PASS</b><span>FAR-FETCHED DAILY ODD</span></div>'
@@ -7067,20 +7076,24 @@ HPAGES.pass={title:'Press Pass',render(){
     +'<li><i class="pk pk2" aria-hidden="true">▤</i><span><b>Every back issue</b>'+(rest?'All '+rest+' older papers, not just the last '+BACK_FREE+'.':'Every past paper, not just the last '+BACK_FREE+'.')+'</span></li>'
     +'<li><i class="pk pk3" aria-hidden="true">✕</i><span><b>No ads, ever</b>Pass holders never see one, whatever the game does later.</span></li></ul>';
   const signIn=u?'':'<p class="sm ppNote">You will be asked to sign in first, so your pass follows you to every device.</p>';
+  const drillCard=(btn)=>'<div class="ppBonus"><div class="ppArt">'+drillSVG(4)+'</div><div><b>The strap-on jaw drill</b><span>A real drill head strapped to his jaw. It leads every dig and cracks the earth ahead of you.</span>'+btn+'</div></div>';
   let html=head;
-  if(st.pro){
-    html+=perks+(st.skin?'<p class="ppThanks">Thank you for backing the game. A thank-you item is waiting in your Wardrobe.</p>':'');
+  if(st.pro && st.skin){
+    html+=perks+'<div class="ppBonus"><div class="ppArt">'+drillSVG(4)+'</div><div><b>The strap-on jaw drill</b><span>Unlocked. You are wearing it.</span></div></div>';
+  } else if(st.pro){
+    html+=perks+drillCard('<button class="b2 ppGo ppSm" id="buyDrill" type="button">Add the jaw drill · $5</button>');
   } else {
     html+='<div class="ppHero"><div class="ppHeroTag">PRESS PASS</div><div class="ppHeroPrice">$5</div><p>Unlimited rounds, every back issue and no ads, ever. One payment, yours for good.</p><button class="b2 ppGo ppHuge" id="buyPass" type="button">Get the Press Pass</button></div>'
       +perks
-      +'<div class="ppTier small"><div class="ppFlag">SUPPORTER PACKAGE</div><div class="ppPrice"><b>$10</b><span>PASS + A THANK-YOU</span></div><p>Everything in the Press Pass, for anyone who wants to help the game a little more. A thank-you item for your wardrobe is included.</p>'
-      +'<button class="b2 ppGo ppRed ppSm" id="buyBundle" type="button">Support the game · $10</button></div>'
+      +'<div class="ppTier small"><div class="ppFlag">SUPPORTER PACKAGE</div><div class="ppSmallRow"><div class="ppArt">'+drillSVG(2)+'</div><div><div class="ppPrice"><b>$10</b><span>PASS + JAW DRILL</span></div><p>Everything above, plus the strap-on jaw drill.</p></div></div>'
+      +'<button class="b2 ppGo ppRed ppSm" id="buyBundle" type="button">Get both · $10</button></div>'
       +signIn+'<p class="sm ppNote">Paid on Stripe\'s secure page. Already paid? <button class="linkish" id="passCheck" type="button">Check again</button></p>';
   }
   html+='<p class="sm ppNote">Full refund within 14 days. <a href="terms.html" target="_blank" rel="noopener">Terms and refunds</a></p>';
   $('hpBody').innerHTML=html;
   if($('buyPass')) $('buyPass').onclick=()=>passBuy('pass');
   if($('buyBundle')) $('buyBundle').onclick=()=>passBuy('bundle');
+  if($('buyDrill')) $('buyDrill').onclick=()=>passBuy('drill');
   if($('passCheck')) $('passCheck').onclick=async()=>{ $('passCheck').textContent='Checking…'; const ok=await (window.Cloud&&Cloud.refreshPass?Cloud.refreshPass():false); if(!ok){ $('passCheck').textContent=u?'Nothing yet. Try again in a minute.':'Sign in first.'; } };
 }};
 /* everything that depends on the pass: menu labels, back issues, the wardrobe */
@@ -7109,8 +7122,8 @@ function acctPassCard(signedIn){
   const st=passState();
   const chip=(ok,t)=>'<span class="acChip'+(ok?' on':'')+'"><i>'+(ok?'✓':'·')+'</i>'+t+'</span>';
   if(st.pro){
-    return hpCard('PRESS PASS','<span class="badge ok">ACTIVE</span>','<div class="acChips">'+chip(1,'Unlimited rounds')+chip(1,'Every back issue')+chip(1,'No ads, ever')+(st.skin?chip(1,'Supporter · thank you'):'')+'</div>'
-      ,'acCard');
+    return hpCard('PRESS PASS','<span class="badge ok">ACTIVE</span>','<div class="acChips">'+chip(1,'Unlimited rounds')+chip(1,'Every back issue')+chip(1,'No ads, ever')+chip(st.skin,'Jaw drill'+(st.skin?'':' · not added'))+'</div>'
+      +(st.skin?'':'<button class="b2 ghost acBtn" id="acPassMore" type="button">Add the jaw drill · $5</button>'),'acCard');
   }
   return hpCard('PRESS PASS','FROM $5','<p class="sm">Unlimited rounds, every back issue and no ads, ever. One payment, yours for good'+(signedIn?'.':', and it follows you to any device once you sign in.')+'</p>'
     +'<button class="b2 ppGo ppSm" id="acPassMore" type="button">See the Press Pass</button>','acCard');
