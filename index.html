@@ -2705,8 +2705,14 @@ const PREP_RE = '(?:(?:just |far |well |a bit )?(?:north|south|east|west|north-?
 /* "{}" used as an adjective ("at {} airport", "wins {} council seat") would leave "at airport" once the place is hidden, so the hidden form reads
    "at an airport" / "wins a council seat". New headlines are written so this cannot happen (see the builder), this covers the older ones. */
 const MOD_NOUNS='airports?|airlines?|council|councils|police|court|hospital|zoo|university|school|stadium|museum|station|port|harbou?r|restaurant|town|city|village|county|home|mayoral|by-election|mayor|parliament|government|library|church|cathedral|bank|prison|jail|shop|store|market|hotel|club|team|festival|brewery|factory|college|ferry|fire|metro|transit|rail';
-const MOD_RE=new RegExp('((?:\\b(?:in|near|outside|at|of|from|around|across|inside|within|by|on|to|into|toward|towards|beyond|off|over|through)\\s+)?)\\{\\}\\s+('+MOD_NOUNS+')\\b','i');
-function modFix(h){ return h.replace(new RegExp(MOD_RE.source,'gi'),(m,prep,noun)=>(prep||'')+(/^[aeiou]/i.test(noun)?'an ':'a ')+noun); }
+const MOD_RE=new RegExp('((?:\\b(?:in|near|outside|at|of|from|around|across|inside|within|by|on|to|into|toward|towards|beyond|off|over|through|a|an|the)\\s+)?)\\{\\}\\s+('+MOD_NOUNS+')\\b','i');
+function modFix(h){
+  const out=h.replace(new RegExp(MOD_RE.source,'gi'),(m,prep,noun)=>{
+    if(/^(?:a|an|the)\s*$/i.test(prep||'')) return prep+noun;                         // "a {} home" keeps its own article
+    if(/^(?:police|councils?|government|parliament)$/i.test(noun)) return (prep||'')+noun;   // "{} police arrest" -> "police arrest"
+    return (prep||'')+(/^[aeiou]/i.test(noun)?'an ':'a ')+noun; });
+  return out.charAt(0).toLowerCase()===out.charAt(0)&&/^\{\}/.test(h) ? out.charAt(0).toUpperCase()+out.slice(1) : out;   // a headline that began with the place still starts with a capital
+}
 function noBlank(h){
   if(MOD_RE.test(h)) h=modFix(h);
   let t=h.replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+(where\s)/i,' $2')                      // "born in {}, where X" -> "born where X"

@@ -1070,7 +1070,8 @@ def leaks(h, place):
 
 # "{}" is hidden before the player's call, so it may only stand where the sentence still reads without it: after a preposition,
 # as in "an airport in {}" or "police in {}". Used as an adjective ("at {} airport", "wins {} council seat") the hidden headline
-# comes out as "turns back airport ..." and breaks. This catches any noun that tends to follow a place used that way.
+# comes out as "turns back airport ..." and breaks. The game now words these correctly itself; the builder rewords the clear cases
+# ("at {} airport" -> "at an airport in {}") and leaves the rest as written. It never rejects a story for this.
 MOD_NOUNS = ("airports?|airlines?|council|councils|police|court|hospital|zoo|university|school|stadium|museum|station|port|harbou?r|restaurant|"
              "town|city|village|county|home|mayoral|by-election|mayor|parliament|government|library|church|cathedral|bank|prison|jail|shop|store|"
              "market|hotel|club|team|festival|brewery|factory|college|ferry|fire|metro|transit|rail")
@@ -1081,6 +1082,55 @@ def place_as_adjective(h):
     return bool(MOD_RE.search(h or ""))
 
 
+_PREPS = "in|near|outside|at|of|from|around|across|inside|within|by|on|to|into|toward|towards|beyond|off|over|through"
+_ADJ_RE = re.compile(r"(?:\b(" + _PREPS + r")\s+)?\{\}\s+(" + MOD_NOUNS + r")\b(\s+(?:seat|tower|terminal|chief|chiefs|member|members|officials?|spokes(?:man|woman|person)|workers?|staff|officers?|employees|board|meeting|election|vote|candidate|leader|authorities|department|hall|building|park|centre|center|bus|train|line|route|runway|gate|boss|manager|owner|worker|resident|residents|fans?|players?|coach|captain|branch|office))?", re.I)
+_NO_ARTICLE = {"police", "council", "councils", "government", "parliament"}
+_OF_NOUNS = {"mayor"}
+
+
+_SAFE_NEXT = set("before after and or but as when while because for with to on by from over at in during until where who which that is was has have had says said are were will would about amid despite following than".split())
+_NOT_HEAD = {"home", "mayoral", "by-election"}      # "from a {} home", "{} mayoral race": the game's own hidden form reads these correctly, so they are left as written
+
+
+def _safe_to_reword(h):
+    m = _ADJ_RE.search(h)
+    if not m or m.group(2).lower() in _NOT_HEAD:
+        return False
+    before = h[:m.start()].rstrip().split(" ")[-1].lower() if h[:m.start()].strip() else ""
+    if before in ("a", "an", "the"):
+        return False                                  # "a {} home": already has its article
+    rest = h[m.end():].lstrip()
+    if not rest or rest[0] in ",;:.!?":
+        return True
+    nxt = re.match(r"[A-Za-z'-]+", rest)
+    w = nxt.group(0).lower() if nxt else ""
+    return w in _SAFE_NEXT or (w.endswith("s") and not w.endswith("ss")) or w.endswith("ed")   # a verb follows: the noun was the head
+
+
+def fix_place_adjective(h):
+    """Reword a headline that uses the place as an adjective so it reads properly with the place hidden:
+    'Plane turns back at {} airport before departure' -> 'Plane turns back at an airport in {} before departure',
+    'Engineer wins {} council seat' -> 'Engineer wins a council seat in {}', '{} police arrest a man' -> 'Police in {} arrest a man'."""
+    def sub(m):
+        prep, noun, extra = m.group(1), m.group(2), (m.group(3) or "")
+        phrase = noun + extra
+        low = noun.lower()
+        link = "of" if low in _OF_NOUNS else "in"
+        before = h[:m.start()]
+        at_start = not before.strip()
+        if low in _NO_ARTICLE and not extra:
+            lead = (prep + " " if prep else "") + (phrase.capitalize() if at_start and not prep else phrase)
+        else:
+            art = "an" if phrase[0].lower() in "aeiou" else "a"
+            lead = (prep + " " if prep else "") + (art + " " + phrase if not (low in _OF_NOUNS and not prep and at_start) else phrase)
+            if at_start and not prep:
+                lead = lead[0].upper() + lead[1:]
+        return lead + " " + link + " {}"
+    out = _ADJ_RE.sub(sub, h, count=1)
+    out = re.sub(r"\s{2,}", " ", out).strip()
+    return out
+
+
 def valid_real(r):
     h, h2 = r.get("h", ""), r.get("h2", "")
     if r.get("hint") and not hint_ok(r["hint"], r.get("place", "")):
@@ -1088,7 +1138,8 @@ def valid_real(r):
     if h.count("{}") != 1 or len(h) > 130:
         return "bad h"
     if place_as_adjective(h):
-        return "place used as an adjective ('{} airport'): write 'an airport in {}'"
+        if _safe_to_reword(h):                                    # reworded so it reads properly with the place hidden; otherwise left as written
+            h = r["h"] = fix_place_adjective(h)                   # (the game's hidden and revealed forms read both ways correctly)
     if leaks(h.replace("{}", ""), r.get("place", "")):
         return "place leaks into h"
     try:
@@ -1127,7 +1178,8 @@ def valid_fake(f):
     if h.count("{}") != 1 or len(h) > 130:
         return False
     if place_as_adjective(h):
-        return False
+        if _safe_to_reword(h):
+            h = f["h"] = fix_place_adjective(h)
     if re.search(r"\bexactly\b|to the second|on the dot", h, re.I):
         return False
     for n in re.findall(r"(?<![$£€¥₹\d,])\b\d[\d,]*\b(?!\s*(?:dollars|pounds|euros|yen|rupees|pesos|rand))", h):   # prices are naturally round
