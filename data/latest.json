@@ -4,7 +4,7 @@
  "call": [
   {
    "real": true,
-   "h": "Plane turns back at {} airport before departure because of strippers",
+   "h": "Plane turns back before departure at an airport in {} because of strippers",
    "hint": "birthplace of Franz Kafka",
    "lat": 50.102,
    "lng": 14.2706,

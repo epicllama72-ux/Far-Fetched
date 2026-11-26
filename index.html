@@ -2702,7 +2702,13 @@ function showHint(st){
 }
 // Before the call there is no redaction bar: "in {}, a capital on a volcano" reads "in a capital on a volcano"; a bare "in {}" is dropped.
 const PREP_RE = '(?:(?:just |far |well |a bit )?(?:north|south|east|west|north-?east|north-?west|south-?east|south-?west) of|in|near|outside|at|of|from|around|across|to|into|inside|within|toward|towards|beyond|off|over|through|by)';
+/* "{}" used as an adjective ("at {} airport", "wins {} council seat") would leave "at airport" once the place is hidden, so the hidden form reads
+   "at an airport" / "wins a council seat". New headlines are written so this cannot happen (see the builder), this covers the older ones. */
+const MOD_NOUNS='airports?|airlines?|council|councils|police|court|hospital|zoo|university|school|stadium|museum|station|port|harbou?r|restaurant|town|city|village|county|home|mayoral|by-election|mayor|parliament|government|library|church|cathedral|bank|prison|jail|shop|store|market|hotel|club|team|festival|brewery|factory|college|ferry|fire|metro|transit|rail';
+const MOD_RE=new RegExp('((?:\\b(?:in|near|outside|at|of|from|around|across|inside|within|by|on|to|into|toward|towards|beyond|off|over|through)\\s+)?)\\{\\}\\s+('+MOD_NOUNS+')\\b','i');
+function modFix(h){ return h.replace(new RegExp(MOD_RE.source,'gi'),(m,prep,noun)=>(prep||'')+(/^[aeiou]/i.test(noun)?'an ':'a ')+noun); }
 function noBlank(h){
+  if(MOD_RE.test(h)) h=modFix(h);
   let t=h.replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+(where\s)/i,' $2')                      // "born in {}, where X" -> "born where X"
          .replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+((?:famed|known|noted|famous|namechecked)\s)/i,' $1 a city $2')
          .replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+host of\s/i,' $1 the host city of ')
@@ -2731,7 +2737,7 @@ function clueClause(prep,hint){
 }
 function headlineHTML(story, reveal, clue){
   const hint=String(story.hint||'').trim().replace(/[.,]+$/,'');
-  const showClue=(reveal||clue) && hint && story.real!==false;       // fakes aren't mapped, so they get no clue
+  const showClue=(reveal||clue) && hint && story.real!==false && !MOD_RE.test(story.h);       // fakes aren't mapped, so they get no clue; an adjective-style "{} airport" keeps its clue on the sticker only
   if(!reveal && showClue){                        // clue added after the call, place still hidden
     const m=story.h.match(new RegExp('\\s+('+PREP_RE+')\\s+\\{\\}','i'));
     if(m && (story.h.match(/\{\}/g)||[]).length===1){
@@ -2744,7 +2750,7 @@ function headlineHTML(story, reveal, clue){
   const h=showClue ? foldHint(story.h,hint) : story.h;
   let out;
   if(!reveal) out=noBlank(h).replace(/[,;]\s*$/,'');
-  else if(story.real) out=h.replace('{}', '<span class="reveal">'+story.place+'</span>');
+  else if(story.real) out=h.replace('{}', '<span class="reveal">'+(MOD_RE.test(h)?String(story.place||'').split(',')[0]:story.place)+'</span>');   // "at Prague airport", not "at Prague, Czechia airport"
   else out=h.replace('{}', '<span class="fakeplace">[invented]</span>');
   if(showClue){                                   // the clue is picked out in yellow
     const i=out.indexOf(hint);
