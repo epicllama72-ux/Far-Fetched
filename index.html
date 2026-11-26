@@ -3997,7 +3997,7 @@ const FAKE_BASE = 50, FOOLED_BASE = 25, TRUE_BASE = 180, JAW_SCALE = 1000;   // 
 let FAKE_PTS = 50;
 
 function startGame(mode, kind){
-  if(mode==='practice' && !isPro()){ hpOpen('pass'); return; }   // Unlimited is part of the Press Pass
+  if(mode==='practice' && !isPro()){ openPass(); return; }   // Unlimited is part of the Press Pass
   GlobePin.tryApply();   // a 'try it' game borrows the other pin method for this one game only
   $('hudNext').hidden=true; $('hudTry').hidden=true; document.body.classList.remove('sumUp');
   if(typeof Intro!=='undefined' && Intro.planetOn()) Intro.hide(true);
@@ -7113,7 +7113,7 @@ HPAGES.settings={title:'Settings',render(){
       +stLink('stPass','Press Pass',pro?'Unlimited, every back issue, no ads':'Unlimited, every back issue, no ads. From $5',pro?'ACTIVE':'')
       +stLink('stBriefs','Briefs','What\'s new in the game, with dates',newB?newB+' NEW':'')
       +stLink('stAcct','Account',u?'Signed in. Your stats, streak and groups follow you':'Sign in to keep your stats, streak and groups',u?'':'SIGN IN')+'</div>';
-  pinWire(); $('stPass').onclick=()=>hpOpen('pass');
+  pinWire(); $('stPass').onclick=()=>openPass();
   const again=()=>{ const t=$('hp').querySelector('.sheetIn').scrollTop; HPAGES.settings.render(); $('hp').querySelector('.sheetIn').scrollTop=t; };
   $('stFx').onclick=()=>{ const m=!Sound.isMuted(); Sound.setMuted(m); renderMute(); if(!m) Sound.play('menu'); gcEvent('setting/sfx/'+(m?'off':'on')); again(); };
   $('stAmb').onclick=()=>{ const on=!Sound.ambience(); Sound.setAmbience(on); renderAmb(); if(on) Sound.unlock(); gcEvent('setting/ambience/'+(on?'on':'off')); again(); };
@@ -7122,22 +7122,28 @@ HPAGES.settings={title:'Settings',render(){
   $('stBriefs').onclick=()=>hpOpen('briefs');
 }};
 /* PRESS PASS */
+/* Every way into the Press Pass (Unlimited, the pass buttons, locked back issues) goes through here: a signed-out player signs in
+   on a popup first, so the pass is tied to their account, and then lands on the Press Pass page to choose and pay. */
+const PASS_SIGNIN_WHY='Sign in with Google so your Press Pass follows you to every device. Right after, you land on the page to choose your pass.';
+function openPass(){
+  const u=window.Cloud&&Cloud.user&&Cloud.user();
+  let had=false; try{ had=!!localStorage.getItem('ff_auth'); }catch(e){}
+  if(u || had || isPro()){ hpOpen('pass'); return; }       // signed in (or the saved sign-in is still loading)
+  try{ sessionStorage.setItem('ff_buy','page|'+Date.now()); }catch(e){}
+  Cloud.signIn({why:PASS_SIGNIN_WHY});
+}
 function passBuy(kind){
   const u=window.Cloud&&Cloud.user&&Cloud.user();
-  if(!u){   // sign in on a popup over this page; once signed in, the purchase carries straight on to Stripe
-    try{ sessionStorage.setItem('ff_buy',kind+'|'+Date.now()); }catch(e){}
-    Cloud.signIn({why:'Sign in with Google so your Press Pass follows you to every device. Right after, you go straight to checkout.'}); return;
-  }
+  if(!u){ try{ sessionStorage.setItem('ff_buy','page|'+Date.now()); }catch(e){} Cloud.signIn({why:PASS_SIGNIN_WHY}); return; }   // sign in first, then back to this page to pay
   gcEvent('pass/checkout/'+kind); location.href=(PASS_LINKS[kind]||PASS_LINKS.pass)+'?client_reference_id='+encodeURIComponent(u.id);
 }
-/* back from signing in: a purchase that was waiting goes on to checkout (unless the account already has it) */
+/* back from signing in: open (or return to) the Press Pass page */
 function resumeBuy(){
   let v=null; try{ v=sessionStorage.getItem('ff_buy'); sessionStorage.removeItem('ff_buy'); }catch(e){}
   if(!v) return;
-  const [kind,t]=v.split('|'); if(!kind || Date.now()-(+t||0)>10*60*1000) return;   // a stale tap from earlier does nothing
-  const st=passState();
-  if(st.pro && (kind==='pass' || st.skin)){ showToast('You already have the Press Pass. Welcome back!'); try{ if(HP_ID==='pass') HPAGES.pass.render(); }catch(e){} return; }
-  showToast('Signed in. Taking you to checkout…'); setTimeout(()=>passBuy(kind),1000);
+  const t=+v.split('|')[1]; if(Date.now()-(t||0)>10*60*1000) return;   // a stale tap from earlier does nothing
+  showToast(isPro()?'Signed in. You already have the Press Pass. Welcome back!':'Signed in. Choose your pass.');
+  setTimeout(()=>{ try{ if(HP_ID==='pass') HPAGES.pass.render(); else hpOpen('pass'); }catch(e){} },350);
 }
 function drillSVG(px){   // the jaw drill as pixel art, drawn from the same shapes as the game
   const R=[]; const rect=(x,y,w,h,c)=>R.push('<rect x="'+(x+12)+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+c+'"/>');
@@ -7222,7 +7228,7 @@ function acctPassCard(signedIn){
     +'<button class="b2 ppGo ppSm" id="acPassMore" type="button">See the Press Pass</button>','acCard');
 }
 function acctGroupsCard(){ const n=(MY_GROUPS&&MY_GROUPS.length)||0; return '<div class="cd acRow"><div><h5 style="margin:0"><span>GROUPS</span></h5><p class="sm" style="margin:4px 0 0">'+(n?n+' of 10 · ':'')+'Play the same papers with friends.</p></div><button class="b2 ghost acBtn" id="acGroups" type="button">My groups ▸</button></div>'; }
-function acctPassWire(){ const g=$('acGroups'); if(g) g.onclick=()=>hpOpen('groups'); const b=$('acPassMore'); if(b) b.onclick=()=>hpOpen('pass'); }
+function acctPassWire(){ const g=$('acGroups'); if(g) g.onclick=()=>hpOpen('groups'); const b=$('acPassMore'); if(b) b.onclick=()=>openPass(); }
 HPAGES.account={title:'Account',render(){
   const u=window.Cloud&&Cloud.user&&Cloud.user();
   if(!u){
@@ -7260,9 +7266,9 @@ HPAGES.back={title:'Back issues',render(){
   $('hpBody').innerHTML=hpCard('','','<p class="sm">'+(isPro()?'Every past paper is open.':'The last '+BACK_FREE+' papers are available. Older ones are behind the Press Pass.')+' Back issues don\'t count toward your streak or the standings.</p>')
     +hpCard(isPro()?'ALL ISSUES':'AVAILABLE','','<div class="bkList">'+w.map(x=>'<div class="bkRow"><span class="bkN">#'+issueNumber(x.date)+'<small>'+fmtDate(x.date)+'</small></span>'+btn(x,'call','Dig')+btn(x,'blank','Blank')+'</div>').join('')+'</div>')
     +(isPro()?'':lockedIssues());
-  if($('bkPass')) $('bkPass').onclick=()=>hpOpen('pass');
-  if($('bkPassTop')) $('bkPassTop').onclick=()=>hpOpen('pass');
-  document.querySelectorAll('#hpBody [data-lock]').forEach(b=>b.onclick=()=>{ gcEvent('pass/locked'); hpOpen('pass'); });
+  if($('bkPass')) $('bkPass').onclick=()=>openPass();
+  if($('bkPassTop')) $('bkPassTop').onclick=()=>openPass();
+  document.querySelectorAll('#hpBody [data-lock]').forEach(b=>b.onclick=()=>{ gcEvent('pass/locked'); openPass(); });
   document.querySelectorAll('#hpBody button[data-d]').forEach(b=>{ b.onclick=()=>{ KIND=b.dataset.k; hpClose(); openBackIssue(b.dataset.d); }; });
 }};
 
@@ -7284,7 +7290,7 @@ HPAGES.groups={title:'My groups',render(){
 }};
 
 $('mPol').onclick=()=>{ if(POL_ON) startGame('daily','pol'); };
-$('mPractice').onclick=()=>{ if(!isPro()){ hpOpen('pass'); return; } const l=$('practiceList'); l.hidden=!l.hidden; $('mPractice').setAttribute('aria-expanded',String(!l.hidden)); Sound.play('menu'); $('backList').hidden=true; $('howBox').hidden=true; l.querySelectorAll('button').forEach(b=>b.classList.toggle('on',S&&S.mode==='practice'&&b.dataset.k===S.kind)); };
+$('mPractice').onclick=()=>{ if(!isPro()){ openPass(); return; } const l=$('practiceList'); l.hidden=!l.hidden; $('mPractice').setAttribute('aria-expanded',String(!l.hidden)); Sound.play('menu'); $('backList').hidden=true; $('howBox').hidden=true; l.querySelectorAll('button').forEach(b=>b.classList.toggle('on',S&&S.mode==='practice'&&b.dataset.k===S.kind)); };
 $('practiceList').querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(!b.disabled) startGame('practice',b.dataset.k); });
 
 
