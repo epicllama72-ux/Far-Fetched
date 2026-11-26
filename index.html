@@ -1926,6 +1926,12 @@ body.peek #hudTry:not([hidden]),body.sumUp #hudTry:not([hidden]){display:block}
 #endBtns button{flex:1 1 0;min-width:0;min-height:38px;padding:6px 6px;margin:0;font:9px/1.2 var(--px);letter-spacing:.06em;white-space:nowrap;text-transform:uppercase;
   background:#1b1813;color:#f7f3e8;border:2px solid #1b1813;box-shadow:3px 3px 0 #5a5043;transform:none}
 #endBtns #btnShare{background:#a8231a;color:#fff;box-shadow:3px 3px 0 #1b1813}
+/* Unlimited stands out: a neon edge, and a PASS tag until the player has the Press Pass */
+@keyframes unlGlow{0%,100%{box-shadow:0 0 4px #19e3ff,0 0 12px #19e3ff,0 0 22px rgba(25,227,255,.45),inset 0 0 8px rgba(25,227,255,.35)}50%{box-shadow:0 0 7px #7ff6ff,0 0 20px #19e3ff,0 0 36px rgba(25,227,255,.6),inset 0 0 12px rgba(25,227,255,.5)}}
+#endBtns #btnPractice{position:relative;background:#080a14;color:#aef7ff;border-color:#19e3ff;text-shadow:0 0 6px #19e3ff;animation:unlGlow 2.6s ease-in-out infinite}
+#endBtns #btnPractice.locked::after{content:'PASS';position:absolute;top:-9px;right:-6px;background:#a8231a;color:#fff;font:6px/1 var(--px);letter-spacing:.1em;padding:4px 5px 3px;border:1px solid #1b1813;text-shadow:none;rotate:4deg}
+body.calm #endBtns #btnPractice{animation:none;box-shadow:0 0 6px #19e3ff,3px 3px 0 #5a5043}
+@media (prefers-reduced-motion:reduce){#endBtns #btnPractice{animation:none;box-shadow:0 0 6px #19e3ff,3px 3px 0 #5a5043}}
 #endBtns button:hover{filter:brightness(1.12)}
 #endBtns button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #1b1813}
 @media (max-width:360px){ #endBtns button{font-size:8px;letter-spacing:0} }
@@ -7143,7 +7149,7 @@ HPAGES.pass={title:'Press Pass',render(){
 /* everything that depends on the pass: menu labels, back issues, the wardrobe */
 function passChanged(){
   const pro=isPro(), sub=$('unlSub'); if(sub) sub.textContent='Every story we have.';
-  $('mPractice').classList.toggle('locked',!pro);
+  $('mPractice').classList.toggle('locked',!pro); { const bp=$('btnPractice'); if(bp) bp.classList.toggle('locked',!pro); }
   { const d=$('hUnlDot'); if(d) d.hidden=pro; try{ syncFinalBtns(); }catch(e){} }
   try{ renderIssues(); }catch(e){}
   { const t=$('dBackTag'); const bl=$('mBack')&&$('mBack').querySelector('.blbl small'); if(bl) bl.innerHTML=(pro?'every past paper':'the last '+BACK_FREE+' papers')+' &middot; no streak'; }
