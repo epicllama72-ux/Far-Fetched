@@ -914,6 +914,7 @@ body.calm #hp .b2.ppGo,body.calm #hp .ppMini{animation:none}
 #hp .ppTier.small .ppArt{padding:5px 7px 4px}
 #hp .ppTier.small .ppPrice b{font-size:20px}#hp .ppTier.small .ppPrice span{font-size:7px}
 #hp .ppTier.small p{font-size:16px;margin:3px 0 0}
+#hp .ppTier.small p.ppCosm{margin:5px 0 0;font:15px/1.1 var(--vt);color:#6b6252;font-style:italic}
 #hp .ppTier.small .ppGo{margin-top:10px;font-size:8px;padding:11px 8px 9px}
 #hp .ppTier.small .ppFlag{top:-10px;font-size:6px;padding:5px 7px 4px}
 body.calm #hp .ppHero,body.calm #hp .ppHero::after,body.calm #hp .ppHeroPrice{animation:none}
@@ -1926,6 +1927,9 @@ body.peek #hudTry:not([hidden]),body.sumUp #hudTry:not([hidden]){display:block}
 #endBtns button{flex:1 1 0;min-width:0;min-height:38px;padding:6px 6px;margin:0;font:9px/1.2 var(--px);letter-spacing:.06em;white-space:nowrap;text-transform:uppercase;
   background:#1b1813;color:#f7f3e8;border:2px solid #1b1813;box-shadow:3px 3px 0 #5a5043;transform:none}
 #endBtns #btnShare{background:#a8231a;color:#fff;box-shadow:3px 3px 0 #1b1813}
+#endBtns button{letter-spacing:.02em;padding-left:2px;padding-right:2px;font-size:8.5px}   /* three labels fit on a narrow phone */
+#endBtns #btnShare,#endBtns #btnPractice{flex:1.05 1 0}   /* Share and Unlimited are exactly the same size; Standings is a touch narrower */
+#endBtns #btnBoard{flex:1 1 0}
 /* Unlimited stands out: a neon edge, and a PASS tag until the player has the Press Pass */
 @keyframes unlGlow{0%,100%{box-shadow:0 0 4px #19e3ff,0 0 12px #19e3ff,0 0 22px rgba(25,227,255,.45),inset 0 0 8px rgba(25,227,255,.35)}50%{box-shadow:0 0 7px #7ff6ff,0 0 20px #19e3ff,0 0 36px rgba(25,227,255,.6),inset 0 0 12px rgba(25,227,255,.5)}}
 #endBtns #btnPractice{position:relative;background:#080a14;color:#aef7ff;border-color:#19e3ff;text-shadow:0 0 6px #19e3ff;animation:unlGlow 2.6s ease-in-out infinite}
@@ -2698,7 +2702,13 @@ function showHint(st){
 }
 // Before the call there is no redaction bar: "in {}, a capital on a volcano" reads "in a capital on a volcano"; a bare "in {}" is dropped.
 const PREP_RE = '(?:(?:just |far |well |a bit )?(?:north|south|east|west|north-?east|north-?west|south-?east|south-?west) of|in|near|outside|at|of|from|around|across|to|into|inside|within|toward|towards|beyond|off|over|through|by)';
+/* "{}" used as an adjective ("at {} airport", "wins {} council seat") would leave "at airport" once the place is hidden, so the hidden form reads
+   "at an airport" / "wins a council seat". New headlines are written so this cannot happen (see the builder), this covers the older ones. */
+const MOD_NOUNS='airports?|airlines?|council|councils|police|court|hospital|zoo|university|school|stadium|museum|station|port|harbou?r|restaurant|town|city|village|county|home|mayoral|by-election|mayor|parliament|government|library|church|cathedral|bank|prison|jail|shop|store|market|hotel|club|team|festival|brewery|factory|college|ferry|fire|metro|transit|rail';
+const MOD_RE=new RegExp('((?:\\b(?:in|near|outside|at|of|from|around|across|inside|within|by|on|to|into|toward|towards|beyond|off|over|through)\\s+)?)\\{\\}\\s+('+MOD_NOUNS+')\\b','i');
+function modFix(h){ return h.replace(new RegExp(MOD_RE.source,'gi'),(m,prep,noun)=>(prep||'')+(/^[aeiou]/i.test(noun)?'an ':'a ')+noun); }
 function noBlank(h){
+  if(MOD_RE.test(h)) h=modFix(h);
   let t=h.replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+(where\s)/i,' $2')                      // "born in {}, where X" -> "born where X"
          .replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+((?:famed|known|noted|famous|namechecked)\s)/i,' $1 a city $2')
          .replace(/\s+(in|near|outside|at|of|from|around|across)\s+\{\},\s+host of\s/i,' $1 the host city of ')
@@ -2727,7 +2737,7 @@ function clueClause(prep,hint){
 }
 function headlineHTML(story, reveal, clue){
   const hint=String(story.hint||'').trim().replace(/[.,]+$/,'');
-  const showClue=(reveal||clue) && hint && story.real!==false;       // fakes aren't mapped, so they get no clue
+  const showClue=(reveal||clue) && hint && story.real!==false && !MOD_RE.test(story.h);       // fakes aren't mapped, so they get no clue; an adjective-style "{} airport" keeps its clue on the sticker only
   if(!reveal && showClue){                        // clue added after the call, place still hidden
     const m=story.h.match(new RegExp('\\s+('+PREP_RE+')\\s+\\{\\}','i'));
     if(m && (story.h.match(/\{\}/g)||[]).length===1){
@@ -2740,7 +2750,7 @@ function headlineHTML(story, reveal, clue){
   const h=showClue ? foldHint(story.h,hint) : story.h;
   let out;
   if(!reveal) out=noBlank(h).replace(/[,;]\s*$/,'');
-  else if(story.real) out=h.replace('{}', '<span class="reveal">'+story.place+'</span>');
+  else if(story.real) out=h.replace('{}', '<span class="reveal">'+(MOD_RE.test(h)?String(story.place||'').split(',')[0]:story.place)+'</span>');   // "at Prague airport", not "at Prague, Czechia airport"
   else out=h.replace('{}', '<span class="fakeplace">[invented]</span>');
   if(showClue){                                   // the clue is picked out in yellow
     const i=out.indexOf(hint);
@@ -5887,7 +5897,7 @@ const Cloud=(function(){
   }
   function setUser(u){
     const was=user&&user.id; user=u||null; armOut=0; render(); try{ renderNpPass(); }catch(e){}
-    if(user && was!==user.id){ ready=true; pull(); refreshPass(); }
+    if(user && was!==user.id){ ready=true; pull(); refreshPass().then(()=>{ try{ resumeBuy(); }catch(e){} }); }
     try{ if(HP_ID==='pass') HPAGES.pass.render(); }catch(e){}
     try{ if(HP_ID==='account') HPAGES.account.render(); updateHome(); }catch(e){}   // the Account page flips to its signed-in view straight away
   }
@@ -5925,7 +5935,9 @@ const Cloud=(function(){
       host.innerHTML=''; host.appendChild(box); return true;
     }catch(e){ return false; }
   }
-  async function signIn(){
+  const GWHY=$('gsi').querySelector('.gWhy'), GWHY0=GWHY?GWHY.textContent:'';
+  async function signIn(opts){
+    if(GWHY) GWHY.textContent=(opts&&opts.why)||GWHY0;
     setStatus(''); $('gsiMsg').textContent=''; $('gsi').hidden=false;
     try{
       await Promise.all([client(), gsiLib()]);
@@ -5935,8 +5947,9 @@ const Cloud=(function(){
       google.accounts.id.renderButton(host,{type:'standard',theme:'outline',size:'large',text:'continue_with',shape:'rectangular',logo_alignment:'left',width:Math.min(400,Math.max(200,Math.min(480,innerWidth)-28))});
     }catch(e){ $('gsiMsg').textContent='Google\'s button couldn\'t load. Use the link below.'; }
   }
-  $('gsiClose').onclick=()=>{ $('gsi').hidden=true; };
-  $('gsi').addEventListener('click',e=>{ if(e.target===$('gsi')) $('gsi').hidden=true; });
+  const gsiShut=()=>{ $('gsi').hidden=true; try{ sessionStorage.removeItem('ff_buy'); }catch(e){} };   // closing the popup cancels a purchase that was waiting on the sign-in
+  $('gsiClose').onclick=gsiShut;
+  $('gsi').addEventListener('click',e=>{ if(e.target===$('gsi')) gsiShut(); });
   $('gsiOld').onclick=oauthSignIn;
   async function signOut(){ try{ await client(); await sb.auth.signOut(); }catch(e){} user=null; store('ff_pass',{}); try{ passChanged(); }catch(e){} render(); }
   async function boot(){
@@ -7105,8 +7118,20 @@ HPAGES.settings={title:'Settings',render(){
 /* PRESS PASS */
 function passBuy(kind){
   const u=window.Cloud&&Cloud.user&&Cloud.user();
-  if(!u){ hpClose(); Cloud.signIn(); return; }   // sign in first, so the pass follows the player to every device
+  if(!u){   // sign in on a popup over this page; once signed in, the purchase carries straight on to Stripe
+    try{ sessionStorage.setItem('ff_buy',kind+'|'+Date.now()); }catch(e){}
+    Cloud.signIn({why:'Sign in with Google so your Press Pass follows you to every device. Right after, you go straight to checkout.'}); return;
+  }
   gcEvent('pass/checkout/'+kind); location.href=(PASS_LINKS[kind]||PASS_LINKS.pass)+'?client_reference_id='+encodeURIComponent(u.id);
+}
+/* back from signing in: a purchase that was waiting goes on to checkout (unless the account already has it) */
+function resumeBuy(){
+  let v=null; try{ v=sessionStorage.getItem('ff_buy'); sessionStorage.removeItem('ff_buy'); }catch(e){}
+  if(!v) return;
+  const [kind,t]=v.split('|'); if(!kind || Date.now()-(+t||0)>10*60*1000) return;   // a stale tap from earlier does nothing
+  const st=passState();
+  if(st.pro && (kind==='pass' || st.skin)){ showToast('You already have the Press Pass. Welcome back!'); try{ if(HP_ID==='pass') HPAGES.pass.render(); }catch(e){} return; }
+  showToast('Signed in. Taking you to checkout…'); setTimeout(()=>passBuy(kind),1000);
 }
 function drillSVG(px){   // the jaw drill as pixel art, drawn from the same shapes as the game
   const R=[]; const rect=(x,y,w,h,c)=>R.push('<rect x="'+(x+12)+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+c+'"/>');
@@ -7135,7 +7160,7 @@ HPAGES.pass={title:'Press Pass',render(){
   } else {
     html+='<div class="ppHero"><div class="ppHeroTag">PRESS PASS</div><div class="ppHeroPrice">$5</div><p>Unlimited rounds, every back issue and no ads, ever. One payment, yours for good.</p><button class="b2 ppGo ppHuge" id="buyPass" type="button">Get the Press Pass</button></div>'
       +perks
-      +'<div class="ppTier small"><div class="ppFlag">SUPPORTER PACKAGE</div><div class="ppSmallRow"><div class="ppArt">'+drillSVG(2)+'</div><div><div class="ppPrice"><b>$10</b><span>PASS + JAW DRILL</span></div><p>Everything above, plus the strap-on jaw drill.</p></div></div>'
+      +'<div class="ppTier small"><div class="ppFlag">SUPPORTER PACKAGE</div><div class="ppSmallRow"><div class="ppArt">'+drillSVG(2)+'</div><div><div class="ppPrice"><b>$10</b><span>PASS + JAW DRILL</span></div><p>Everything above, plus the strap-on jaw drill.</p><p class="ppCosm">Cosmetic only. It does not change your score, depth or rank.</p></div></div>'
       +'<button class="b2 ppGo ppRed ppSm" id="buyBundle" type="button">Get both · $10</button></div>'
       +signIn+'<p class="sm ppNote">Paid on Stripe\'s secure page. Already paid? <button class="linkish" id="passCheck" type="button">Check again</button></p>';
   }
