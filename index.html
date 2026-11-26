@@ -1320,6 +1320,11 @@ body.pinDone #mapToggle{display:block}
 .storyLink{display:block;text-align:right;margin:4px 0 0;font:18px/1 var(--vt);color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 .challenge{display:block;margin-top:6px;color:var(--accent)}
 @media not all and (min-width:1100px) and (min-height:600px){ body.returned #final,body.peek #final{margin-top:max(0px,calc(100vh - 330px))} }
+/* the summary scrolls to its end exactly when the tiles sit just above the bottom bar: no dead space under them */
+@media not all and (min-width:1100px) and (min-height:600px){
+  .app:has(#final:not([hidden])){padding-bottom:0}
+  #finalBtns{padding-bottom:calc(var(--barH,62px) + 10px)}
+}
 
 #summary canvas{display:block;width:100%;height:auto;image-rendering:pixelated;image-rendering:crisp-edges;background:#0b0e14;border:1px solid #232a38}
 #sumRank{margin:8px 0 2px;font:9px/1.4 var(--px);letter-spacing:.16em;color:var(--cyan);text-transform:uppercase}
@@ -7815,6 +7820,8 @@ Scene.onDepth(m=>{ setDepthHud(m); setAusBar(m); });
 Scene.onZone(name=>showToast(name));
 Scene.onBreak(z=>{ Sound.play('crunch'); if(z>=5) Sound.play('core'); });
 Scene.onRumble(l=>Sound.rumble(l));
+function syncBarH(){ const b=$('bar'); if(b) document.documentElement.style.setProperty('--barH',Math.ceil(b.getBoundingClientRect().height)+'px'); }
+try{ if(window.ResizeObserver) new ResizeObserver(syncBarH).observe($('bar')); window.addEventListener('resize',syncBarH); syncBarH(); }catch(e){}
 function renderMute(){ const m=Sound.isMuted(); $('muteBtn').classList.toggle('off',m); $('muteBtn').setAttribute('aria-pressed',String(m)); $('muteBtn').setAttribute('aria-label',m?'Sound off':'Sound on'); }
 $('muteBtn').onclick=e=>{ e.stopPropagation(); Sound.setMuted(!Sound.isMuted()); renderMute(); if(!Sound.isMuted()) Sound.play('menu'); };
 renderMute();
