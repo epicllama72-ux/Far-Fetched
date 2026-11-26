@@ -426,7 +426,7 @@
    "i": 1,
    "h": "Restaurant in {} adds a vomitorium so diners can purge between 14 courses, Roman style",
    "tell": "A vomitorium was a stadium passage for crowds, not a room for vomiting.",
-   "n": 1946,
+   "n": 1948,
    "pct": 45.4
   },
   {
@@ -434,24 +434,40 @@
    "i": 4,
    "h": "Tupperware lid found sealed in a 1931 cathedral wall in {}, beside 12 coins and a sermon",
    "tell": "Tupperware wasn't invented until the 1940s, so it can't be in a 1931 wall.",
-   "n": 1946,
-   "pct": 40.5
+   "n": 1948,
+   "pct": 40.6
   },
   {
    "day": "2026-11-25",
    "i": 2,
    "h": "Divers off {} haul up 212 sealed tins of corned beef from a galleon that sank in 1741",
    "tell": "Canning was not invented until about 1810.",
-   "n": 272,
-   "pct": 41.2
+   "n": 1740,
+   "pct": 42.8
   },
   {
    "day": "2026-11-25",
    "i": 5,
    "h": "Pilot in {} eats 3 kg of carrots a day for a month and says he can now see in the dark",
    "tell": "Carrots cannot give night vision; that was a wartime propaganda myth.",
-   "n": 272,
-   "pct": 30.9
+   "n": 1740,
+   "pct": 30.2
+  },
+  {
+   "day": "2026-11-26",
+   "i": 2,
+   "h": "Woman, 70, in {} sits on a dozen supermarket eggs for 21 days, hoping to hatch chicks, on a livestream",
+   "tell": "Supermarket eggs are unfertilised, so they can never hatch.",
+   "n": 282,
+   "pct": 47.9
+  },
+  {
+   "day": "2026-11-26",
+   "i": 6,
+   "h": "Divers raise a Roman amphora off {} still half full of 1,900-year-old tomato sauce",
+   "tell": "Tomatoes came from the Americas and reached Europe only in the 1500s, long after Rome.",
+   "n": 282,
+   "pct": 31.6
   }
  ]
 }
