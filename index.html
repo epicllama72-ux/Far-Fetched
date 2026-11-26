@@ -1926,6 +1926,9 @@ body.peek #hudTry:not([hidden]),body.sumUp #hudTry:not([hidden]){display:block}
 #endBtns button{flex:1 1 0;min-width:0;min-height:38px;padding:6px 6px;margin:0;font:9px/1.2 var(--px);letter-spacing:.06em;white-space:nowrap;text-transform:uppercase;
   background:#1b1813;color:#f7f3e8;border:2px solid #1b1813;box-shadow:3px 3px 0 #5a5043;transform:none}
 #endBtns #btnShare{background:#a8231a;color:#fff;box-shadow:3px 3px 0 #1b1813}
+#endBtns button{letter-spacing:.02em;padding-left:2px;padding-right:2px;font-size:8.5px}   /* three labels fit on a narrow phone */
+#endBtns #btnShare,#endBtns #btnPractice{flex:1.05 1 0}   /* Share and Unlimited are exactly the same size; Standings is a touch narrower */
+#endBtns #btnBoard{flex:1 1 0}
 /* Unlimited stands out: a neon edge, and a PASS tag until the player has the Press Pass */
 @keyframes unlGlow{0%,100%{box-shadow:0 0 4px #19e3ff,0 0 12px #19e3ff,0 0 22px rgba(25,227,255,.45),inset 0 0 8px rgba(25,227,255,.35)}50%{box-shadow:0 0 7px #7ff6ff,0 0 20px #19e3ff,0 0 36px rgba(25,227,255,.6),inset 0 0 12px rgba(25,227,255,.5)}}
 #endBtns #btnPractice{position:relative;background:#080a14;color:#aef7ff;border-color:#19e3ff;text-shadow:0 0 6px #19e3ff;animation:unlGlow 2.6s ease-in-out infinite}
