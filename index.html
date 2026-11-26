@@ -5891,7 +5891,7 @@ const Cloud=(function(){
   }
   function setUser(u){
     const was=user&&user.id; user=u||null; armOut=0; render(); try{ renderNpPass(); }catch(e){}
-    if(user && was!==user.id){ ready=true; pull(); refreshPass(); }
+    if(user && was!==user.id){ ready=true; pull(); refreshPass().then(()=>{ try{ resumeBuy(); }catch(e){} }); }
     try{ if(HP_ID==='pass') HPAGES.pass.render(); }catch(e){}
     try{ if(HP_ID==='account') HPAGES.account.render(); updateHome(); }catch(e){}   // the Account page flips to its signed-in view straight away
   }
@@ -5929,7 +5929,9 @@ const Cloud=(function(){
       host.innerHTML=''; host.appendChild(box); return true;
     }catch(e){ return false; }
   }
-  async function signIn(){
+  const GWHY=$('gsi').querySelector('.gWhy'), GWHY0=GWHY?GWHY.textContent:'';
+  async function signIn(opts){
+    if(GWHY) GWHY.textContent=(opts&&opts.why)||GWHY0;
     setStatus(''); $('gsiMsg').textContent=''; $('gsi').hidden=false;
     try{
       await Promise.all([client(), gsiLib()]);
@@ -5939,8 +5941,9 @@ const Cloud=(function(){
       google.accounts.id.renderButton(host,{type:'standard',theme:'outline',size:'large',text:'continue_with',shape:'rectangular',logo_alignment:'left',width:Math.min(400,Math.max(200,Math.min(480,innerWidth)-28))});
     }catch(e){ $('gsiMsg').textContent='Google\'s button couldn\'t load. Use the link below.'; }
   }
-  $('gsiClose').onclick=()=>{ $('gsi').hidden=true; };
-  $('gsi').addEventListener('click',e=>{ if(e.target===$('gsi')) $('gsi').hidden=true; });
+  const gsiShut=()=>{ $('gsi').hidden=true; try{ sessionStorage.removeItem('ff_buy'); }catch(e){} };   // closing the popup cancels a purchase that was waiting on the sign-in
+  $('gsiClose').onclick=gsiShut;
+  $('gsi').addEventListener('click',e=>{ if(e.target===$('gsi')) gsiShut(); });
   $('gsiOld').onclick=oauthSignIn;
   async function signOut(){ try{ await client(); await sb.auth.signOut(); }catch(e){} user=null; store('ff_pass',{}); try{ passChanged(); }catch(e){} render(); }
   async function boot(){
@@ -7109,8 +7112,20 @@ HPAGES.settings={title:'Settings',render(){
 /* PRESS PASS */
 function passBuy(kind){
   const u=window.Cloud&&Cloud.user&&Cloud.user();
-  if(!u){ hpClose(); Cloud.signIn(); return; }   // sign in first, so the pass follows the player to every device
+  if(!u){   // sign in on a popup over this page; once signed in, the purchase carries straight on to Stripe
+    try{ sessionStorage.setItem('ff_buy',kind+'|'+Date.now()); }catch(e){}
+    Cloud.signIn({why:'Sign in with Google so your Press Pass follows you to every device. Right after, you go straight to checkout.'}); return;
+  }
   gcEvent('pass/checkout/'+kind); location.href=(PASS_LINKS[kind]||PASS_LINKS.pass)+'?client_reference_id='+encodeURIComponent(u.id);
+}
+/* back from signing in: a purchase that was waiting goes on to checkout (unless the account already has it) */
+function resumeBuy(){
+  let v=null; try{ v=sessionStorage.getItem('ff_buy'); sessionStorage.removeItem('ff_buy'); }catch(e){}
+  if(!v) return;
+  const [kind,t]=v.split('|'); if(!kind || Date.now()-(+t||0)>10*60*1000) return;   // a stale tap from earlier does nothing
+  const st=passState();
+  if(st.pro && (kind==='pass' || st.skin)){ showToast('You already have the Press Pass. Welcome back!'); try{ if(HP_ID==='pass') HPAGES.pass.render(); }catch(e){} return; }
+  showToast('Signed in. Taking you to checkout…'); setTimeout(()=>passBuy(kind),1000);
 }
 function drillSVG(px){   // the jaw drill as pixel art, drawn from the same shapes as the game
   const R=[]; const rect=(x,y,w,h,c)=>R.push('<rect x="'+(x+12)+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+c+'"/>');
