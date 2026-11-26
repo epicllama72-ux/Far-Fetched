@@ -805,6 +805,22 @@ body.howOpen #briefBox{visibility:hidden}   /* How to play opens over the briefs
 #hp .bkB{all:unset;box-sizing:border-box;cursor:pointer;min-width:58px;min-height:30px;display:flex;align-items:center;justify-content:center;gap:4px;padding:0 10px;background:#1b1813;color:#f7f3e8;font:7px/1 var(--px);letter-spacing:.08em;text-transform:uppercase;box-shadow:2px 2px 0 rgba(0,0,0,.3)}
 #hp .bkB.done{background:transparent;color:#1b1813;box-shadow:inset 0 0 0 2px #1b1813}#hp .bkB i{font-style:normal;color:#2f6b2f}
 #hp .bkB:focus-visible{outline:3px solid #a8231a;outline-offset:2px}
+/* account page */
+#hp .acCard,#hp .acRow,#hp .acHead{margin-bottom:12px}
+#hp .acChips{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0 2px}
+#hp .acChip{display:flex;align-items:center;gap:7px;padding:8px 9px 6px;border:2px dashed #b9ae92;font:17px/1.05 var(--vt);color:#6b6252;min-width:0}
+#hp .acChip i{font-style:normal;flex:none;width:16px;text-align:center;color:#8a806c}
+#hp .acChip.on{border-style:solid;border-color:#1b1813;color:#1b1813;background:rgba(27,24,19,.05)}#hp .acChip.on i{color:#2f6b2f}
+#hp .acBtn{margin-top:10px}
+#hp .acRow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px}
+#hp .acRow .acBtn{margin:0;width:auto;flex:none;padding:10px 12px 8px;font-size:8px}
+#hp .acHead .acName{margin:2px 0 0;font:13px/1.3 var(--px);color:#fff;overflow-wrap:anywhere}
+#hp .acTiles{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0 8px}
+#hp .acTile{border:2px solid rgba(255,255,255,.28);padding:9px 2px 7px;text-align:center;background:rgba(255,255,255,.05);min-width:0}
+#hp .acTile b{display:block;font:400 20px/1 var(--px);color:#ffcc4d}
+#hp .acTile span{display:block;margin-top:6px;font:6px/1.3 var(--px);letter-spacing:.06em;color:#aab6d6}
+#hp .acSync{margin:4px 0 0}
+#hp .acOut{width:auto;margin:6px auto 4px;padding:10px 22px 8px;font-size:8px}
 /* the Press Pass page */
 #hp .pp{position:relative;margin:2px 0 14px;background:#f7f3e8;border:3px solid #1b1813;box-shadow:4px 5px 0 rgba(0,0,0,.45);overflow:hidden}
 #hp .ppHole{position:absolute;left:50%;top:7px;width:44px;height:9px;margin-left:-22px;border:2px solid #1b1813;background:#0f1522;border-radius:6px;z-index:2}
@@ -7104,30 +7120,33 @@ function checkPassReturn(){
 /* the Press Pass card on the Account page */
 function acctPassCard(signedIn){
   const st=passState();
-  const row=(ok,t)=>'<li><span>'+(ok?'✓':'·')+'</span><span>'+t+'</span><span></span></li>';
+  const chip=(ok,t)=>'<span class="acChip'+(ok?' on':'')+'"><i>'+(ok?'✓':'·')+'</i>'+t+'</span>';
   if(st.pro){
-    return hpCard('PRESS PASS','<span class="badge ok">ACTIVE</span>','<ul class="lst">'+row(1,'Unlimited rounds')+row(1,'Every back issue')+row(1,'No ads, ever')+row(st.skin,'Jaw drill'+(st.skin?'':' · not added'))+'</ul>'
-      +(st.skin?'':'<button class="b2 ghost" id="acPassMore" type="button">Add the jaw drill · $5</button>'));
+    return hpCard('PRESS PASS','<span class="badge ok">ACTIVE</span>','<div class="acChips">'+chip(1,'Unlimited rounds')+chip(1,'Every back issue')+chip(1,'No ads, ever')+chip(st.skin,'Jaw drill'+(st.skin?'':' · not added'))+'</div>'
+      +(st.skin?'':'<button class="b2 ghost acBtn" id="acPassMore" type="button">Add the jaw drill · $5</button>'),'acCard');
   }
   return hpCard('PRESS PASS','FROM $5','<p class="sm">Unlimited rounds, every back issue and no ads, ever. One payment, yours for good'+(signedIn?'.':', and it follows you to any device once you sign in.')+'</p>'
-    +'<button class="b2 ppGo ppSm" id="acPassMore" type="button">See the Press Pass</button>');
+    +'<button class="b2 ppGo ppSm" id="acPassMore" type="button">See the Press Pass</button>','acCard');
 }
-function acctGroupsCard(){ const n=(MY_GROUPS&&MY_GROUPS.length)||0; return hpCard('GROUPS',n?n+' OF 10':'','<p class="sm">Make a group to compete with friends on the same papers, or join one with a code.</p><button class="b2 ghost" id="acGroups" type="button">My groups</button>'); }
+function acctGroupsCard(){ const n=(MY_GROUPS&&MY_GROUPS.length)||0; return '<div class="cd acRow"><div><h5 style="margin:0"><span>GROUPS</span></h5><p class="sm" style="margin:4px 0 0">'+(n?n+' of 10 · ':'')+'Play the same papers with friends.</p></div><button class="b2 ghost acBtn" id="acGroups" type="button">My groups ▸</button></div>'; }
 function acctPassWire(){ const g=$('acGroups'); if(g) g.onclick=()=>hpOpen('groups'); const b=$('acPassMore'); if(b) b.onclick=()=>hpOpen('pass'); }
 HPAGES.account={title:'Account',render(){
   const u=window.Cloud&&Cloud.user&&Cloud.user();
   if(!u){
-    $('hpBody').innerHTML=hpCard('SAVE YOUR STREAK','','<p>Your streak, passport and groups live on this device only. Sign in and they follow you to any phone or browser.</p><ul class="lst"><li><span>✓</span><span>Streak and freezes saved</span><span></span></li><li><span>✓</span><span>Stats and score history saved</span><span></span></li><li><span>✓</span><span>Passport and best digs saved</span><span></span></li><li><span>✓</span><span>Groups and standings on every device</span><span></span></li></ul>')
+    const chip=t=>'<span class="acChip on"><i>✓</i>'+t+'</span>';
+    $('hpBody').innerHTML=hpCard('SAVE YOUR STREAK','','<p class="sm">Your streak, passport and groups live on this device only. Sign in and they follow you to any phone or browser.</p><div class="acChips">'+chip('Streak and freezes')+chip('Stats and score history')+chip('Passport and best digs')+chip('Groups and standings')+'</div>','acCard')
       +'<div id="acG" class="acG"><button class="gbtn" id="acIn" type="button"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.6 5.9c4.4-4.1 7-10.1 7-17.6z"/><path fill="#FBBC05" d="M10.5 28.7a14.5 14.5 0 0 1 0-9.4l-7.9-6.1a24 24 0 0 0 0 21.6l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.6-5.9c-2.1 1.4-4.9 2.3-8.3 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg><span>Continue with Google</span></button></div><p class="hint">You can keep playing without an account. The game only reads your name and a unique ID.</p>';
     $('hpBody').insertAdjacentHTML('beforeend',acctPassCard(false)+acctGroupsCard()); acctPassWire();
     $('acIn').onclick=()=>{ if(window.Cloud) Cloud.signIn(); };
     if(window.Cloud&&Cloud.mountButton) Cloud.mountButton($('acG'),$('acG').clientWidth);   // swaps in Google's own button when it loads; the one above stays as the fallback
   } else {
     const mail=String(u.email||''), at=mail.indexOf('@'), shown=at>0?mail.slice(0,Math.min(3,at))+'···'+mail.slice(at):'';
-    $('hpBody').innerHTML='<div class="cd navy"><h5><span>SIGNED IN</span><span>GOOGLE</span></h5><p style="font:12px var(--px);color:#fff">'+hpEsc(playerName())+'</p>'+(shown?'<p class="sm">'+hpEsc(shown)+'</p>':'')+'</div>'
-      +hpCard('SYNCED','','<ul class="lst"><li><span>✓</span><span>Stats · '+Object.keys(load('ff_hist')||{}).length+' scores</span><span></span></li><li><span>✓</span><span>Streak · '+streakCount()+' day'+(streakCount()===1?'':'s')+'</span><span></span></li><li><span>✓</span><span>Passport · '+passCount(Object.keys(passport()))+' countries</span><span></span></li><li><span>✓</span><span>'+((MY_GROUPS&&MY_GROUPS.length)||0)+' groups</span><span></span></li></ul><p class="sm">Change your name on the Stats page.</p>')
+    const tile=(n,l)=>'<div class="acTile"><b>'+n+'</b><span>'+l+'</span></div>', sc=streakCount();
+    $('hpBody').innerHTML='<div class="cd navy acHead"><h5><span>SIGNED IN</span><span>GOOGLE</span></h5><p class="acName">'+hpEsc(playerName())+'</p>'+(shown?'<p class="sm">'+hpEsc(shown)+'</p>':'')
+        +'<div class="acTiles" aria-label="Synced to your account">'+tile(Object.keys(load('ff_hist')||{}).length,'SCORES')+tile(sc,'DAY STREAK')+tile(passCount(Object.keys(passport())),'COUNTRIES')+tile((MY_GROUPS&&MY_GROUPS.length)||0,'GROUPS')+'</div>'
+        +'<p class="sm acSync">✓ All synced to your account. Change your name on the Stats page.</p></div>'
       +acctPassCard(true)+acctGroupsCard()
-      +'<button class="b2 ghost" id="acOut" type="button">Sign out</button>';
+      +'<button class="b2 ghost acOut" id="acOut" type="button">Sign out</button>';
     acctPassWire();
     $('acOut').onclick=async()=>{ try{ await Cloud.signOut(); }catch(e){} HPAGES.account.render(); updateHome(); };
   }
