@@ -914,6 +914,7 @@ body.calm #hp .b2.ppGo,body.calm #hp .ppMini{animation:none}
 #hp .ppTier.small .ppArt{padding:5px 7px 4px}
 #hp .ppTier.small .ppPrice b{font-size:20px}#hp .ppTier.small .ppPrice span{font-size:7px}
 #hp .ppTier.small p{font-size:16px;margin:3px 0 0}
+#hp .ppTier.small p.ppCosm{margin:5px 0 0;font:15px/1.1 var(--vt);color:#6b6252;font-style:italic}
 #hp .ppTier.small .ppGo{margin-top:10px;font-size:8px;padding:11px 8px 9px}
 #hp .ppTier.small .ppFlag{top:-10px;font-size:6px;padding:5px 7px 4px}
 body.calm #hp .ppHero,body.calm #hp .ppHero::after,body.calm #hp .ppHeroPrice{animation:none}
@@ -7138,7 +7139,7 @@ HPAGES.pass={title:'Press Pass',render(){
   } else {
     html+='<div class="ppHero"><div class="ppHeroTag">PRESS PASS</div><div class="ppHeroPrice">$5</div><p>Unlimited rounds, every back issue and no ads, ever. One payment, yours for good.</p><button class="b2 ppGo ppHuge" id="buyPass" type="button">Get the Press Pass</button></div>'
       +perks
-      +'<div class="ppTier small"><div class="ppFlag">SUPPORTER PACKAGE</div><div class="ppSmallRow"><div class="ppArt">'+drillSVG(2)+'</div><div><div class="ppPrice"><b>$10</b><span>PASS + JAW DRILL</span></div><p>Everything above, plus the strap-on jaw drill.</p></div></div>'
+      +'<div class="ppTier small"><div class="ppFlag">SUPPORTER PACKAGE</div><div class="ppSmallRow"><div class="ppArt">'+drillSVG(2)+'</div><div><div class="ppPrice"><b>$10</b><span>PASS + JAW DRILL</span></div><p>Everything above, plus the strap-on jaw drill.</p><p class="ppCosm">Cosmetic only. It does not change your score, depth or rank.</p></div></div>'
       +'<button class="b2 ppGo ppRed ppSm" id="buyBundle" type="button">Get both · $10</button></div>'
       +signIn+'<p class="sm ppNote">Paid on Stripe\'s secure page. Already paid? <button class="linkish" id="passCheck" type="button">Check again</button></p>';
   }
