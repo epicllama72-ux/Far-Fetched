@@ -1,48 +1,6 @@
 {
  "real": [
   {
-   "real": true,
-   "h": "78-square-metre flat in {} listed for 170,000 euros can't be visited or valued, as squatters live in it",
-   "hint": "a Basque city famed for pintxos",
-   "lat": 43.3224,
-   "lng": -1.9839,
-   "place": "San Sebastián, Spain",
-   "src": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNYWZLVF9UcjlkdGtGZnJVTUx5RmFPTzBoVEM5YXNUanU1TGdWNUxLeE5hVUE3LUdPangzSll6Q1JibE10b3QzTXQ5QTRqZjFuZGJ2cGczQ3NIWHdiMnZmWVdaUDNJSmdQT3MwYUNZR0F0aW9pZTRzaUg5X3k5MjRLSFA1ZzR1V0ZTaXFrTjdfUXlJZWtKQnZvLVFBMUQ4cjFIZ1h0anhkeUZ0clpKNUxWMFVadzBLS0F4NDRac180YkZaOGVOU0NNM1JFV2x5U19WOGJYcF9fbmFKRi1fSDFIR1JMSWk3MEtIcnUzamtoaC0?oc=5",
-   "published": "2026-11-17",
-   "clue": "euros + flat sold at court auction = Europe",
-   "banked": "2026-11-17",
-   "rules": 2,
-   "unbelievable": 3,
-   "theme": "property",
-   "cc": "ES",
-   "country": "Spain",
-   "geocode": "San Sebastián, Spain",
-   "clue_strength": 2,
-   "mappable": 3,
-   "jargon_only": false
-  },
-  {
-   "h": "United flight to Spain turns back to {} after 4 hours, apparently over a Bluetooth speaker's name",
-   "hint": "birthplace of Whitney Houston",
-   "lat": 40.6895,
-   "lng": -74.1745,
-   "place": "Newark, New Jersey",
-   "src": "https://www.npr.org/2026/05/31/nx-s1-5841913/united-airlines-flight-diversion-bluetooth",
-   "published": "2026-05-31",
-   "clue": "Newark to Palma de Mallorca flight returned after 4 h 24 min; reported speaker name was 'bomb'; reboarded about 9.5 h late",
-   "banked": "2026-11-17",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "travel",
-   "cc": "US",
-   "country": "United States",
-   "geocode": "Newark Liberty International Airport, New Jersey, USA",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
    "h": "Professional cornhole player, a quadruple amputee, is arrested for murder after a shooting in a car in {}",
    "hint": "a town in Chesapeake blue-crab country",
    "lat": 38.5293,
@@ -123,27 +81,6 @@
    "geocode": "World Diamond Tower, 580 Fifth Avenue, New York, USA",
    "daily_only": true,
    "mappable": 3,
-   "clue_strength": 2,
-   "jargon_only": false
-  },
-  {
-   "h": "Police log a pigeon carrying an Urdu message and a phone number as a suspected spy near the border in {}",
-   "hint": "",
-   "lat": 32.2643,
-   "lng": 75.6421,
-   "place": "Manwal village, Pathankot, Punjab",
-   "src": "https://www.theguardian.com/world/2015/may/29/spy-pigeon-becomes-jailbird-pakistan-india-border",
-   "published": "2015-05-29",
-   "clue": "Pigeon taken to police in Manwal village, 4 km from the border; X-rayed and found harmless",
-   "banked": "2026-11-15",
-   "rules": 2,
-   "unbelievable": 4,
-   "theme": "animals",
-   "cc": "IN",
-   "country": "India",
-   "geocode": "Pathankot, Punjab, India",
-   "daily_only": true,
-   "mappable": 2,
    "clue_strength": 2,
    "jargon_only": false
   },
@@ -231,27 +168,6 @@
    "clue_strength": 3
   },
   {
-   "h": "Terrier guards his owner's grave for 14 years and becomes the beloved mascot of {}",
-   "hint": "where Harry Potter was written",
-   "lat": 55.9469,
-   "lng": -3.1913,
-   "place": "Edinburgh, Scotland",
-   "src": "https://en.wikipedia.org/wiki/Greyfriars_Bobby",
-   "published": "1872-01-14",
-   "clue": "Greyfriars Bobby kept vigil at John Gray's grave until 1872; the 14 years rests on local tradition and the breed is disputed",
-   "banked": "2026-11-08",
-   "rules": 2,
-   "unbelievable": 3,
-   "theme": "animals",
-   "cc": "GB",
-   "country": "United Kingdom",
-   "geocode": "Edinburgh, Scotland, UK",
-   "daily_only": true,
-   "mappable": 3,
-   "clue_strength": 3,
-   "jargon_only": false
-  },
-  {
    "h": "'Are You Dead?' app for people living alone goes viral in {}",
    "hint": "land of the Great Wall",
    "lat": 35.8617,
@@ -316,28 +232,6 @@
    "daily_only": true
   },
   {
-   "id": 54,
-   "h": "Millions of bees get loose after truck carrying 400 hives crashes in {}: 'Please remain indoors'",
-   "place": "Mauriceville, Texas",
-   "geocode": "Mauriceville, Orange County, Texas, USA",
-   "lat": 30.2149,
-   "lng": -93.8863,
-   "country": "United States",
-   "cc": "US",
-   "hint": "a small town in Alamo country",
-   "clue": "US sheriff 'remain indoors' alert + a semitrailer",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "unbelievable": 4,
-   "theme": "animal",
-   "src": "https://www.cbsnews.com/news/bees-escape-truck-hives-crashes-texas/",
-   "published": "2026-06-22",
-   "banked": "2026-11-03",
-   "rules": 2,
-   "daily_only": true
-  },
-  {
    "id": 60,
    "h": "Customers suffer chemical burns after Chili's margaritas are mistakenly made with degreaser instead of sugar in {}",
    "place": "Forest City, North Carolina",
@@ -382,6 +276,106 @@
   }
  ],
  "fake": [
+  {
+   "h": "Intact horned Viking helmet from 940 is dug out of a bog in {}, a first for archaeologists",
+   "tell": "Vikings did not wear horned helmets; that image is a 19th-century stage invention.",
+   "obvious": 3,
+   "theme": "vikings",
+   "taste": 5.0,
+   "pred": 45.0,
+   "banked": "2026-11-27",
+   "rules": 2
+  },
+  {
+   "h": "Warehouse clearance in {} turns up a crated Pac-Man arcade cabinet stamped with the year 1976",
+   "tell": "Pac-Man was not released until 1980.",
+   "obvious": 3,
+   "theme": "arcade",
+   "taste": 4.0,
+   "pred": 25.0,
+   "banked": "2026-11-27",
+   "rules": 2
+  },
+  {
+   "h": "Brothers, 71 and 74, in {} open a time capsule they buried as schoolboys in 1938",
+   "tell": "Men aged 71 and 74 today were born in the 1950s, long after 1938.",
+   "obvious": 3,
+   "theme": "age",
+   "taste": 3.0,
+   "pred": 12.0,
+   "banked": "2026-11-27",
+   "rules": 2
+  },
+  {
+   "h": "Gravedigger in {} exhumes a coffin after 3 years and finds the occupant's nails curled to 40 cm",
+   "tell": "Hair and nails do not keep growing after death; skin just retracts as it dries.",
+   "obvious": 3,
+   "theme": "death",
+   "taste": 4.0,
+   "pred": 35.0,
+   "banked": "2026-11-27",
+   "rules": 2
+  },
+  {
+   "h": "A photo taken on the Moon in 1971 shows the Great Wall of China, a museum in {} says",
+   "tell": "The Great Wall is not visible to the naked eye even from low orbit, let alone from the Moon.",
+   "obvious": 3,
+   "theme": "space",
+   "taste": 3.0,
+   "pred": 30.0,
+   "banked": "2026-11-27",
+   "rules": 2
+  },
+  {
+   "h": "Monks in {} restore an abbey clock from 1150, its minute hand accurate to 2 seconds a day",
+   "tell": "Medieval clocks had no minute hands, and 12th-century mechanisms were nowhere near that accurate.",
+   "obvious": 3,
+   "theme": "clock",
+   "taste": 4.0,
+   "pred": 35.0,
+   "banked": "2026-11-27",
+   "rules": 2
+  },
+  {
+   "h": "Woman, 33, in {} meets the pilot who delivered her mid-flight over the Atlantic in 1978",
+   "tell": "A 33-year-old today was born in the 1990s, not in 1978.",
+   "obvious": 3,
+   "theme": "birth",
+   "taste": 3.0,
+   "pred": 15.0,
+   "banked": "2026-11-27",
+   "rules": 2
+  },
+  {
+   "h": "Museum in {} buys the guillotine that beheaded Anne Boleyn in 1536 for 638,000 pounds",
+   "tell": "The guillotine was not used until the 1790s; Boleyn was beheaded with a sword.",
+   "obvious": 2,
+   "theme": "museum",
+   "taste": 4.0,
+   "pred": 12.0,
+   "banked": "2026-11-27",
+   "rules": 2
+  },
+  {
+   "h": "Farm in {} harvests 2.7 tonnes of white cocoa beans a year to make its white chocolate",
+   "tell": "White chocolate is cocoa butter with milk and sugar; there are no white cocoa beans that make it.",
+   "obvious": 4,
+   "theme": "chocolate",
+   "taste": 4.0,
+   "pred": 30.0,
+   "banked": "2026-11-27",
+   "rules": 2
+  },
+  {
+   "h": "Retired farmer, 61, drives a ride-on mower 480 km across {} in 9 hours at 30 km/h on average",
+   "tell": "Nine hours at 30 km/h covers only 270 km, not 480.",
+   "obvious": 3,
+   "theme": "mower",
+   "taste": 5.0,
+   "pred": 15.0,
+   "banked": "2026-11-27",
+   "rules": 2
+  },
   {
    "h": "Burglar in {} livestreams his break-in on a stolen 1995 iPhone, then falls asleep on the sofa",
    "tell": "The iPhone launched in 2007, so no iPhone existed in 1995.",
@@ -528,16 +522,6 @@
    "obvious": 3,
    "theme": "physics",
    "taste": 4.0,
-   "pred": 35.0,
-   "banked": "2026-11-26",
-   "rules": 2
-  },
-  {
-   "h": "Shepherd is found alive in {} after 16 days with no water, having lived on salted goat meat",
-   "tell": "A person cannot survive about 16 days without any water; the limit is a few days.",
-   "obvious": 3,
-   "theme": "survival",
-   "taste": 5.0,
    "pred": 35.0,
    "banked": "2026-11-26",
    "rules": 2
@@ -741,106 +725,21 @@
    "pred": 25.0,
    "banked": "2026-11-25",
    "rules": 2
-  },
-  {
-   "h": "Man, 31, in {} is charged with cashing his late father's pension for 38 years by forgery",
-   "tell": "A 31-year-old can't have collected a pension for 38 years.",
-   "unbelievable": 3,
-   "obvious": 3,
-   "theme": "fraud",
-   "taste": 3.0,
-   "pred": 20.0,
-   "banked": "2026-11-24",
-   "rules": 2
-  },
-  {
-   "h": "Archivists in {} find a 1604 sailor's diary written in ballpoint pen, listing 41 days at sea",
-   "tell": "Ballpoint pens weren't invented until the 1930s.",
-   "unbelievable": 3,
-   "obvious": 2,
-   "theme": "diary",
-   "taste": 5.0,
-   "pred": 18.0,
-   "banked": "2026-11-24",
-   "rules": 2
-  },
-  {
-   "h": "Lost tourists in {} survive 3 days in the desert by drinking water from a camel's hump",
-   "tell": "Camel humps store fat, not water.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "desert",
-   "taste": 4.0,
-   "pred": 30.0,
-   "banked": "2026-11-24",
-   "rules": 2
-  },
-  {
-   "h": "Brothers in {} go to court over 47 years of knuckle-cracking at dinner, blamed for arthritis",
-   "tell": "Cracking knuckles doesn't cause arthritis.",
-   "unbelievable": 3,
-   "obvious": 3,
-   "theme": "lawsuit",
-   "taste": 3.0,
-   "pred": 35.0,
-   "banked": "2026-11-24",
-   "rules": 2
-  },
-  {
-   "h": "Cyclist in {} delivers a wedding cake 640 km away in 5 hours, and it arrives still warm",
-   "tell": "That needs an average of 128 km/h on a bicycle.",
-   "unbelievable": 4,
-   "obvious": 3,
-   "theme": "delivery",
-   "taste": 3.0,
-   "pred": 15.0,
-   "banked": "2026-11-24",
-   "rules": 2
-  },
-  {
-   "h": "Pub in {} hosts the 30th real birthday of a man born on 29 February, who is turning 75",
-   "tell": "Leap-day birthdays come every four years, so 75 gives about 18, not 30.",
-   "unbelievable": 3,
-   "obvious": 3,
-   "theme": "birthday",
-   "taste": 4.0,
-   "pred": 20.0,
-   "banked": "2026-11-24",
-   "rules": 2
-  },
-  {
-   "h": "Retiree in {} pays 41,300 dollars for a rock Apollo 8 astronauts supposedly picked up on the Moon",
-   "tell": "Apollo 8 only orbited the Moon; it never landed.",
-   "unbelievable": 3,
-   "obvious": 3,
-   "theme": "moonrock",
-   "taste": 5.0,
-   "pred": 30.0,
-   "banked": "2026-11-24",
-   "rules": 2
-  },
-  {
-   "h": "A zip fastener is found sewn into the door flap of Napoleon's 1805 field tent, restored in {}",
-   "tell": "Zip fasteners were not invented until the 1890s and 1910s, long after 1805.",
-   "obvious": 3,
-   "theme": "anachronism",
-   "taste": 4.0,
-   "pred": 15.0,
-   "banked": "2026-11-24",
-   "rules": 2
-  },
-  {
-   "h": "Cathedral panes from 1320 have sagged 3 cm as the glass slowly flowed, glaziers in {} find",
-   "tell": "Glass is not a slow-flowing liquid at room temperature; old panes are uneven from how they were made.",
-   "obvious": 3,
-   "theme": "glass",
-   "taste": 3.0,
-   "pred": 45.0,
-   "banked": "2026-11-24",
-   "rules": 2
   }
  ],
  "pol": [
+  {
+   "id": 45,
+   "h": "Urban development plan in {} aims to protect homes from climate change and from disoriented birds",
+   "place": "Mogán, Gran Canaria, Spain",
+   "geocode": "Mogán, Gran Canaria, Spain",
+   "lat": 28.1074093,
+   "lng": -15.5626748,
+   "clue": "Birds confused by lights + resort coast = a Canary island town",
+   "src": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQVFd5Umo4NUlOWDVOczlkdjBybUV1eno3ZWtXR0RBZUxtZERRZEF3ekdJQTZjdy1xYkJlbmtyellZZDhEQ3dwX0psNWRCal9wVGRLdHFGdXNQZmNOelFaY25FZnVXLXFoMkNhQ3E4cm1JcmhvMExaZHQyenVhS1k4YURpRFNySkJJc2x6VExtWEtfY1BFR0FkUUwycU1TRGhU?oc=5",
+   "published": "2026-11-24",
+   "banked": "2026-11-27"
+  },
   {
    "id": 32,
    "h": "County in {} finds 2,300 unreported ballots after election night, and a recount changes no race",
@@ -867,6 +766,30 @@
   }
  ],
  "polfake": [
+  {
+   "h": "Church bell in {} is stolen by a thief who tied it to a party balloon and floated it home",
+   "banked": "2026-11-27"
+  },
+  {
+   "h": "Bank robber in {} is caught after paying his getaway taxi with a Roman banknote dated 212 AD",
+   "banked": "2026-11-27"
+  },
+  {
+   "h": "Mayor of {} wins re-election with 212% of the vote, and the council certifies the result",
+   "banked": "2026-11-27"
+  },
+  {
+   "h": "Bowling team in {} melts a bronze town statue into gold medals for its members",
+   "banked": "2026-11-27"
+  },
+  {
+   "h": "Two candidates in {} settle a tied vote by comparing shadows at midnight beside the town hall",
+   "banked": "2026-11-27"
+  },
+  {
+   "h": "Man, 29, in {} is caught claiming a war pension for service in 1945",
+   "banked": "2026-11-27"
+  },
   {
    "h": "A man in {} is arrested for filling a fountain with dry ice to keep the water warm",
    "banked": "2026-11-26"
@@ -922,30 +845,6 @@
   {
    "h": "Town in {} bans lightning rods from public buildings, saying lightning never strikes twice",
    "banked": "2026-11-24"
-  },
-  {
-   "h": "Candidate in {} is jailed for running under a false name and swearing he was born on 30 February",
-   "banked": "2026-11-24"
-  },
-  {
-   "h": "Village in {} records a turnout of 131 percent in a council vote and blames a spelling error",
-   "banked": "2026-11-24"
-  },
-  {
-   "h": "Voter in {} is arrested after casting ballots in 18 villages in one morning, travelling by wheelbarrow",
-   "banked": "2026-11-24"
-  },
-  {
-   "h": "Bridge in {} is opened by the mayor cutting a ribbon on 31 April",
-   "banked": "2026-11-23"
-  },
-  {
-   "h": "Treasurer, 24, admits skimming {}'s road fund for 31 years",
-   "banked": "2026-11-21"
-  },
-  {
-   "h": "Thief in {} steals the town's gold ceremonial mace and melts it down with a hairdryer",
-   "banked": "2026-11-23"
   }
  ]
 }
