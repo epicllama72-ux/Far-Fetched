@@ -7122,8 +7122,8 @@ function acctPassCard(signedIn){
   const st=passState();
   const chip=(ok,t)=>'<span class="acChip'+(ok?' on':'')+'"><i>'+(ok?'✓':'·')+'</i>'+t+'</span>';
   if(st.pro){
-    return hpCard('PRESS PASS','<span class="badge ok">ACTIVE</span>','<div class="acChips">'+chip(1,'Unlimited rounds')+chip(1,'Every back issue')+chip(1,'No ads, ever')+chip(st.skin,'Jaw drill'+(st.skin?'':' · not added'))+'</div>'
-      +(st.skin?'':'<button class="b2 ghost acBtn" id="acPassMore" type="button">Add the jaw drill · $5</button>'),'acCard');
+    return hpCard('PRESS PASS','<span class="badge ok">ACTIVE</span>','<div class="acChips">'+chip(1,'Unlimited rounds')+chip(1,'Every back issue')+chip(1,'No ads, ever')+'</div>'
+      ,'acCard');
   }
   return hpCard('PRESS PASS','FROM $5','<p class="sm">Unlimited rounds, every back issue and no ads, ever. One payment, yours for good'+(signedIn?'.':', and it follows you to any device once you sign in.')+'</p>'
     +'<button class="b2 ppGo ppSm" id="acPassMore" type="button">See the Press Pass</button>','acCard');
