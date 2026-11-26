@@ -5,13 +5,13 @@
   {
    "real": true,
    "h": "Plane turns back at {} airport before departure because of strippers",
-   "hint": "site of the famed 1618 Defenestration",
+   "hint": "birthplace of Franz Kafka",
    "lat": 50.102,
    "lng": 14.2706,
    "place": "Prague, Czechia",
    "src": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNcVpxWDJ3OEJ2enlUQXdqQ3Z6R1BDYnNrQm04Vk1XRTF2NmRMOUVnQzhpZ21yMHk0clE0OUl3ZERCb3lKb0F3UTlwYy1UWkRraGkxaDVOTjNFTTBiOFNhVmwyODRUcGRsQUhDS2NINnIyZXVoMmt0V1pRaUlnLUlBb1BJV280aWs4clkwNEs5V1o1MlVpMGxTN3pjQmYwNmN3M2wtTzh3MUhIRk45dk5EZkFmNzZ1MVR0eXZvd2QxUURaY2laTlMtZk51dw?oc=5",
    "published": "2026-09-19",
-   "clue": "stag-party charter flight + 1618 window-throwing = Prague, Czechia"
+   "clue": "stag-party charter flight + Kafka's birthplace = Prague, Czechia"
   },
   {
    "real": true,
@@ -43,13 +43,13 @@
   {
    "real": true,
    "h": "Man strips naked in a HomeGoods store, telling a shopper 'I'm sorry, I have to do this', in {}",
-   "hint": "a southwest city in Disney's state",
+   "hint": "the canal capital of Disney's state",
    "lat": 26.5629,
    "lng": -81.9495,
    "place": "Cape Coral, Florida",
    "src": "https://www.gulfcoastnewsnow.com/article/florida-man-naked-stripping-homegoods-cape-coral/73643014",
    "published": "2026-09-08",
-   "clue": "HomeGoods (a US-only chain) + Disney's state = southwest Florida"
+   "clue": "HomeGoods (a US-only chain) + Disney's state canal city = Cape Coral, Florida"
   },
   {
    "real": true,
