@@ -358,7 +358,7 @@ def styled(prompt, marker):
 def _blind_guess(items, model):
     """items: [{'id', 'h', 'hint'}] -> {id: {'d': km from the truth (None if unknown), 'alts': n of far-apart alternatives}}; needs the truth under 'lat'/'lng'."""
     payload = [{"id": x["id"], "h": x["h"], "hint": x["hint"]} for x in items]
-    res = call_claude(VERIFY_PROMPT + json.dumps(payload, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["g"])
+    res = call_claude(VERIFY_PROMPT + json.dumps(payload, ensure_ascii=False), model, max_tokens=8000, fatal=False, keys=["g"])
     out = {}
     truth = {x["id"]: x for x in items}
     for g in (res or {}).get("g", []):
@@ -398,7 +398,7 @@ def verify_hints(stories, model_cheap, model_write, rounds=2):
             return
         items = [{"id": w["id"], "h": w["h"], "place": stories[w["id"]].get("place", ""), "failed_hint": w["hint"],
                   "players_guessed": res.get(w["id"], {}).get("guess", "")} for w in failing]
-        rw = call_claude(styled(HINT_REWRITE_PROMPT, "Items:") + json.dumps(items, ensure_ascii=False), model_write, max_tokens=3000, fatal=False, keys=["items"])
+        rw = call_claude(styled(HINT_REWRITE_PROMPT, "Items:") + json.dumps(items, ensure_ascii=False), model_write, max_tokens=8000, fatal=False, keys=["items"])
         cands = {}
         for x in (rw or {}).get("items", []):
             try:
@@ -539,7 +539,7 @@ def _call_claude_live(content, model, max_tokens=12000, fatal=True, keys=None):
             if res.get("stop_reason") == "max_tokens":
                 print("  Claude hit the output limit; the answer is cut short", file=sys.stderr)
                 if body["max_tokens"] < 32000:             # repeating the same request would cut off at the same place: allow a longer answer
-                    body["max_tokens"] = min(32000, int(body["max_tokens"] * 1.6))
+                    body["max_tokens"] = min(32000, int(body["max_tokens"] * 3))      # jump well past the cut-off: each failed try is paid for in full
                     print(f"  retrying with a {body['max_tokens']}-token limit", file=sys.stderr)
                     continue
             for b in res.get("content", []):
@@ -556,6 +556,8 @@ def _call_claude_live(content, model, max_tokens=12000, fatal=True, keys=None):
             detail = e.read().decode("utf8", "replace")[:500]
             last = f"HTTP {e.code}: {detail}"
             print(f"  Claude attempt {attempt+1} failed: {last}", file=sys.stderr)
+            if e.code in (401, 403):               # the key itself is refused (expired, revoked, wrong workspace): no retry will fix it, so stop the whole build now
+                sys.exit(f"Claude API key rejected (HTTP {e.code}). Replace the ANTHROPIC_API_KEY secret in the repository settings.")
             if e.code == 400:                     # the request itself was refused (free): adjust it, don't just repeat it
                 if "tool_choice" in detail and body.get("tool_choice", {}).get("type") != "auto":
                     body["tool_choice"] = {"type": "auto"}
@@ -601,7 +603,7 @@ def screen(cands, model, top=SCREEN_TOP):
     for start in range(0, len(cands), 120):
         chunk = [{"id": i, "title": c["title"], "summary": c["summary"][:220], "source": c["source"]}
                  for i, c in enumerate(cands) if start <= i < start + 120]
-        res = call_claude(TASTE + "\n\n" + SCREEN_PROMPT + json.dumps(chunk, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["s"])
+        res = call_claude(TASTE + "\n\n" + SCREEN_PROMPT + json.dumps(chunk, ensure_ascii=False), model, max_tokens=8000, fatal=False, keys=["s"])
         for pair in (res or {}).get("s", []):
             try:
                 i, sc = int(pair[0]), float(pair[1])
@@ -765,7 +767,7 @@ def clue_fakes(fakes, model):
     if not todo:
         return
     items = [{"id": i, "h": f.get("h", "")} for i, f in enumerate(todo)]
-    res = call_claude(FAKE_HINT_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=2000, fatal=False, keys=["fake"])
+    res = call_claude(FAKE_HINT_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=6000, fatal=False, keys=["fake"])
     if not res or "fake" not in res:
         print("  fake clue pass unavailable; those fakes go out without a clue", file=sys.stderr)
         return
@@ -789,7 +791,7 @@ Headlines:
 def guess_test(cands, model):
     """Blind test: can the hidden word be guessed from the headline? Returns {index: best position 1-5} for those that can."""
     items = [{"id": i, "h2": r.get("h2", "")} for i, r in enumerate(cands)]
-    res = call_claude(GUESS_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=3000, fatal=False, keys=["g"])
+    res = call_claude(GUESS_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=8000, fatal=False, keys=["g"])
     if not res or "g" not in res:
         print("  guessability test unavailable; Fill the Blank keeps its usual order", file=sys.stderr)
         return None
@@ -922,7 +924,7 @@ def sharpen(stories, model, texts):
     """Give every Daily Dig story a true knowledge hint (shown after the real-or-fake call) and rate how well headline plus hint point to a region."""
     items = [{"id": i, "h": r.get("h", ""), "hint": r.get("hint", ""), "place": r.get("place", ""), "clue": r.get("clue", ""),
               "text": texts.get(r.get("src"), "")} for i, r in enumerate(stories)]
-    res = call_claude(styled(SHARPEN_PROMPT, "Reply with ONE JSON object only") + json.dumps(items, ensure_ascii=False), model, max_tokens=3000, fatal=False, keys=["real"])
+    res = call_claude(styled(SHARPEN_PROMPT, "Reply with ONE JSON object only") + json.dumps(items, ensure_ascii=False), model, max_tokens=8000, fatal=False, keys=["real"])
     if not res or "real" not in res:
         print("  hint pass unavailable; keeping the stories as they are", file=sys.stderr)
         return
@@ -994,7 +996,7 @@ def final_desk(reals, fakes, model, texts, can_reject=True):
     items = [{"id": i, "kind": "real", "h": r.get("h", ""), "hint": r.get("hint", ""), "place": r.get("place", ""),
               "source": (texts.get(r.get("src")) or r.get("_text") or "")[:1500]} for i, r in enumerate(reals)]
     items += [{"id": len(reals) + j, "kind": "fake", "h": f.get("h", "")} for j, f in enumerate(fakes)]
-    res = call_claude(styled(TASTE + "\n\n" + DESK_PROMPT, "Reply with ONE JSON object only") + json.dumps(items, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["items"])
+    res = call_claude(styled(TASTE + "\n\n" + DESK_PROMPT, "Reply with ONE JSON object only") + json.dumps(items, ensure_ascii=False), model, max_tokens=8000, fatal=False, keys=["items"])
     if not res or "items" not in res:
         print("  desk pass unavailable; printing the paper as it is", file=sys.stderr)
         return [], [], None
@@ -1096,7 +1098,7 @@ def fact_check(reals, model):
     items = [{"id": i, "h": r.get("h", ""), "h2": r.get("h2", ""), "hint": r.get("hint", ""), "place": r.get("place", ""),
               "source": {"title": r.get("_title", ""), "summary": r.get("_summary", ""), "text": r.get("_text", "")}}
              for i, r in enumerate(reals)]
-    res = call_claude(CHECK_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["checks"])
+    res = call_claude(CHECK_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=8000, fatal=False, keys=["checks"])
     if not res or "checks" not in res:
         print("  fact-check unavailable; keeping all picks", file=sys.stderr)
         return reals
@@ -1546,7 +1548,7 @@ def taste_judge(reals, fakes, model):
              "f": [{"id": i, "h": f.get("h", ""), "tell": f.get("tell", "")} for i, f in enumerate(fakes)]}
     if not items["r"] and not items["f"]:
         return 0
-    res = call_claude(JUDGE_PROMPT.replace("{taste}", TASTE + "\n\n" + FAKE_GUIDE).replace("{calib}", fake_calibration()) + json.dumps(items, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["r", "f"])
+    res = call_claude(JUDGE_PROMPT.replace("{taste}", TASTE + "\n\n" + FAKE_GUIDE).replace("{calib}", fake_calibration()) + json.dumps(items, ensure_ascii=False), model, max_tokens=8000, fatal=False, keys=["r", "f"])
     n = 0
     for key, lst in (("r", reals), ("f", fakes)):
         for pair in (res or {}).get(key, []):
@@ -1579,7 +1581,7 @@ Today's true stories:
 
 def write_fakes(reals, model):
     """A dedicated call for fakes (the main call writes 8 while also picking 16 stories; quality is better when it is the only job)."""
-    res = call_claude(FAKE_WRITER_PROMPT.replace("{guide}", FAKE_GUIDE).replace("{calib}", fake_calibration()) + json.dumps([r.get("h", "") for r in reals], ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["fake"])
+    res = call_claude(FAKE_WRITER_PROMPT.replace("{guide}", FAKE_GUIDE).replace("{calib}", fake_calibration()) + json.dumps([r.get("h", "") for r in reals], ensure_ascii=False), model, max_tokens=16000, fatal=False, keys=["fake"])
     return [f for f in (res or {}).get("fake", []) if isinstance(f, dict) and f.get("h") and valid_fake(f)]
 
 
@@ -1660,7 +1662,7 @@ def widen_answers(blank, model):
     items = [{"id": i, "h2": r.get("h2", ""), "accepted": r.get("ans", [])} for i, r in enumerate(blank) if r.get("ans")]
     if not items:
         return
-    res = call_claude(WIDEN_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=2500, fatal=False, keys=["items"])
+    res = call_claude(WIDEN_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=6000, fatal=False, keys=["items"])
     for x in (res or {}).get("items", []):
         try:
             r = blank[int(x["id"])]
@@ -1755,7 +1757,7 @@ def ease_clues(call_pick, model, n=EASY_CLUES):
         return
     chosen = sorted(reals, key=lambda r: (eff_strength(r), map_score(r)))[:n]
     items = [{"id": i, "h": r.get("h", ""), "place": r.get("place", ""), "current": r.get("hint", "")} for i, r in enumerate(chosen)]
-    res = call_claude(EASY_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=1000, fatal=False, keys=["s"])
+    res = call_claude(EASY_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=3000, fatal=False, keys=["s"])
     if not res or "s" not in res:
         print("  easier-clue pass unavailable; clues stay as they are", file=sys.stderr)
         return
@@ -1836,7 +1838,7 @@ def unlimited_extras(day, used, prior, model):
     tail = '\n\nOutput format:\n{"real":[{"id":0,"h":"...","place":"...","geocode":"...","lat":0,"lng":0,"country":"...","cc":"..","hint":"...","clue":"...","mappable":0,"unbelievable":1}]}\n\nCandidates:\n'
     payload = [{"id": i, "title": c["title"], "summary": (c.get("summary") or "")[:400], "source": c.get("source", ""), "published": c.get("published", "")}
                for i, c in enumerate(pool)]
-    res = call_claude(styled(head + tail, "Candidates:") + json.dumps(payload, ensure_ascii=False), model, max_tokens=6000, fatal=False, keys=["real"])
+    res = call_claude(styled(head + tail, "Candidates:") + json.dumps(payload, ensure_ascii=False), model, max_tokens=16000, fatal=False, keys=["real"])
     out = []
     for r in (res or {}).get("real", []):
         try:
