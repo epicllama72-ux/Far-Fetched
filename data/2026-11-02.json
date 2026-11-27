@@ -132,10 +132,10 @@
    "real": true,
    "h2": "Local [] in Ciutadella, Menorca, leave town unpatrolled with station shut all night",
    "ans": [
-    "police"
+    "police",
+    "cops"
    ],
    "alt": [
-    "cops",
     "officers",
     "constabulary",
     "patrol",
