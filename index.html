@@ -1011,12 +1011,14 @@ body.pinning .app{padding-bottom:calc(min(30vh,260px) + 96px)}
   background:var(--paper);background-image:var(--grain);color:var(--ink);text-shadow:none;letter-spacing:0;text-align:left;font:18px/1.2 var(--vt);
   box-shadow:0 0 0 3px var(--ink),5px 7px 0 3px rgba(0,0,0,.45),0 0 34px rgba(0,0,0,.6);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;transform-origin:50% 0}
 #menu [hidden]{display:none!important}
-#menu:not([hidden]){animation:mUnfold .95s cubic-bezier(.2,.7,.2,1) both}
-@keyframes mUnfold{0%{transform:perspective(1400px) translateY(-30px) rotateX(-92deg) scale(.5,.5);opacity:0;filter:brightness(.6)}22%{transform:perspective(1400px) translateY(-10px) rotateX(-70deg) scale(.5,.62);opacity:1;filter:brightness(.75)}48%{transform:perspective(1400px) rotateX(-18deg) scale(.5,1);filter:brightness(.9)}62%{transform:perspective(1400px) rotateY(-14deg) scale(.62,1)}84%{transform:perspective(1400px) rotateY(3deg) scale(1.01,1)}100%{transform:none;opacity:1;filter:none}}
+#menu:not([hidden]){animation:mUnfold .62s cubic-bezier(.2,.85,.25,1) both}
+#menu:not([hidden])::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9;mix-blend-mode:multiply;filter:url(#menuCrumple);animation:mCrumple .62s ease-out both}   /* a lit, wrinkled sheen that smooths away as the page flattens */
+@keyframes mCrumple{0%{opacity:1}60%{opacity:.8}100%{opacity:0}}
+@keyframes mUnfold{0%{clip-path:polygon(53.9% 50.0%,55.8% 51.3%,55.2% 52.5%,54.1% 53.3%,56.0% 57.5%,52.7% 55.6%,51.4% 56.1%,50.0% 55.9%,48.7% 55.9%,47.6% 55.1%,46.2% 54.8%,43.1% 55.5%,45.5% 52.2%,44.5% 51.3%,43.6% 50.0%,42.6% 48.3%,44.5% 47.3%,45.7% 46.6%,46.2% 45.2%,46.6% 43.0%,48.5% 43.6%,50.0% 43.8%,51.3% 44.1%,52.4% 45.1%,54.1% 44.8%,57.2% 44.2%,53.9% 48.1%,54.7% 48.9%);transform:perspective(1400px) scale(.2) rotate(-16deg) rotateX(25deg);filter:brightness(0.5);opacity:1}25%{clip-path:polygon(70.9% 50.0%,72.4% 55.1%,64.6% 57.0%,68.7% 64.9%,69.4% 74.3%,59.8% 70.2%,53.5% 65.5%,50.0% 71.2%,44.3% 75.1%,41.3% 68.0%,30.5% 74.5%,35.4% 61.7%,27.6% 60.8%,26.5% 55.4%,25.0% 50.0%,32.4% 46.0%,33.7% 42.2%,26.6% 31.4%,30.0% 25.0%,39.1% 27.4%,44.2% 24.4%,50.0% 26.6%,54.4% 30.8%,58.3% 32.7%,67.0% 28.7%,64.7% 38.3%,75.1% 37.9%,73.7% 44.6%);transform:perspective(1400px) scale(.5) rotate(8deg) rotateY(-14deg);filter:brightness(0.72);opacity:1}55%{clip-path:polygon(87.4% 50.0%,93.1% 59.8%,83.6% 66.2%,90.8% 82.5%,85.0% 93.9%,69.0% 89.5%,59.3% 91.0%,50.0% 89.1%,40.2% 92.9%,31.6% 88.3%,15.2% 93.7%,5.6% 85.4%,11.8% 68.4%,7.6% 59.7%,10.9% 50.0%,14.0% 41.8%,15.9% 33.6%,15.9% 22.8%,16.0% 7.4%,33.3% 15.3%,41.5% 12.6%,50.0% 10.4%,58.6% 12.3%,68.6% 11.3%,77.7% 15.3%,87.7% 20.0%,85.4% 32.9%,89.8% 40.9%);transform:perspective(1400px) scale(.88) rotate(-3deg) rotateX(-4deg);filter:brightness(0.9);opacity:1}80%{clip-path:polygon(99.1% 50.0%,100.2% 61.5%,97.8% 73.0%,100.4% 90.2%,90.2% 100.5%,74.0% 99.8%,61.2% 99.2%,50.0% 98.6%,38.6% 100.1%,26.2% 99.4%,10.9% 99.0%,1.6% 88.6%,0.9% 73.6%,1.7% 61.0%,-0.4% 50.0%,0.8% 38.8%,-0.2% 25.8%,2.0% 11.8%,11.7% 2.0%,25.7% -0.4%,38.7% 0.4%,50.0% 1.6%,61.4% 0.0%,73.4% 1.4%,90.0% -0.1%,99.0% 11.0%,99.0% 26.4%,98.2% 39.0%);transform:perspective(1400px) scale(1.025) rotate(.8deg);filter:brightness(1);opacity:1}100%{clip-path:none;transform:none;opacity:1;filter:none}}
 body:has(#menu:not([hidden]))::before{content:'';position:fixed;inset:0;z-index:24;background:rgba(14,12,9,.64)}   /* the room dims behind the open paper; a tap there closes it */
-#menu .obj{animation:mDrop .42s cubic-bezier(.3,1.4,.5,1) both;animation-delay:calc(.8s + var(--i,0)*.06s)}
+#menu .obj{animation:mDrop .42s cubic-bezier(.3,1.4,.5,1) both;animation-delay:calc(.5s + var(--i,0)*.06s)}
 @keyframes mDrop{from{opacity:0;translate:0 -18px;scale:1.06}to{opacity:1;translate:0 0;scale:1}}
-@media (prefers-reduced-motion:reduce){ #menu:not([hidden]){animation:none} #menu .obj{animation:none} }
+@media (prefers-reduced-motion:reduce){ #menu:not([hidden]){animation:none} #menu:not([hidden])::after{display:none} #menu .obj{animation:none} }
 #menu :focus-visible{outline:3px solid var(--stamp);outline-offset:3px}
 #menu .dTop{display:grid;grid-template-columns:auto 1fr auto;align-items:stretch;border-bottom:3px double var(--ink)}
 #menu .ctl{all:unset;cursor:pointer;display:flex;flex-direction:column;justify-content:center;gap:3px;padding:8px 12px;font:8px/1 var(--px);letter-spacing:.12em;color:var(--ink)}
@@ -2073,7 +2075,7 @@ body.pinning #card #headline{font-size:23px}
 .psNone{margin:4px 0 0;font:17px/1.15 var(--vt);color:#8a7f69;font-style:italic}
 </style>
 </head>
-<body>
+<body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="menuCrumple" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".028 .034" numOctaves="4" seed="7" result="n"/><feDiffuseLighting in="n" surfaceScale="5" diffuseConstant="1.15" lighting-color="#fff"><feDistantLight azimuth="235" elevation="52"/></feDiffuseLighting><feComponentTransfer><feFuncR type="linear" slope="1.25" intercept="-.05"/><feFuncG type="linear" slope="1.25" intercept="-.05"/><feFuncB type="linear" slope="1.2" intercept="-.1"/></feComponentTransfer></filter></svg>
 <input id="guessProxy" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="Guess the hidden word" tabindex="-1">
 <canvas id="bg" aria-hidden="true"></canvas>
 <canvas id="intro" aria-hidden="true" hidden></canvas>
