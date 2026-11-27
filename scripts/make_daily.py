@@ -277,7 +277,7 @@ Below are candidate news stories from the past month (JSON). Some include "text"
    - "h": a punchy wire-style headline, max 110 characters, keeping every fact of the story exactly as reported (never change what happened, who or what was involved, numbers or outcome). You MAY reword and add short descriptive wording that makes the region easier to deduce, as long as it is generically true of that place and does not alter or add to the story: e.g. local terms and institutions ("the county sheriff", "council", "constabulary", "a roo", "monsoon rains", "rupees", "kilometres", "on the ski slopes"), local climate, wildlife or customs, or spelling and units typical of the country. Replace the place with the literal token {} exactly once, and ALWAYS right after a preposition (in {}, at {}, near {}, outside {}), never as an adjective: write "an airport in {}", not "{} airport"; "police in {}", not "{} police"; "a council seat in {}", not "{} council seat" (e.g. "... in {}"). Remove every EXPLICIT location clue: no state/country/city names, demonyms, local team, landmark, university or company names that reveal the place (landmarks and nearby cities belong in "hint", not here), no "Florida man". But KEEP the implicit, deducible clues that are part of the story (the animal, the weather, the local custom, currency or units, the type of institution), so a sharp player can reason their way to the right region. Keep the oddity intact. Write in clear English a reader anywhere can follow, but USE THE LOCAL LINGO of the place when you can: the words and spellings people there really use (lorry, bairns, footy, lolly, takeaway, bin, council, garda, "wee", "mate", "cuppa", "fortnight", rupees, a "roo") are great regional clues, so prefer them to the neutral word, as long as a reader can still understand it from the sentence ("ute" for a pickup is too obscure; "lorry" for a truck is fine). Never use lingo that names the place itself, and never invent it. Nothing may be read two ways (if a cafe fines the whole table, say "pay a fine", not "pay the bill"); the funny part must land on the first read. Put {} straight after a preposition ("in {}", "at {}", "near {}") so a clue can be attached after it. The clues do NOT have to come from the original headline: the article text ("text") often holds the best ones (a currency, a unit, a local institution, an animal, the weather, a local custom or law, a sport, a typical job). If a great story's clues sit in the body, WRITE them into "h" in your own words, as long as they are facts the text states or are generically true of that place, so the game headline can differ a lot from the source headline. A story whose body gives a fair regional clue is better than one with a punchier headline and nothing to deduce from.
    - "h2": the same story as a headline that DOES name the place (city + state/country), with the main subject noun of the story (the animal, object or kind of person it is about, e.g. "kangaroo", "pelicans", "kitten") replaced by the literal token [] exactly once. The hidden word must be an ordinary common noun that is written in lowercase in normal text: never a name, brand, product, model, company, team, place or nationality (not "Maserati" or "Vegemite" - use "car" or "spread" instead, or pick another noun). The rest of h2 must NOT contain the hidden word, a synonym or a close variant of it (if the hidden word is "toilets", h2 must not say "potties" or "loo"), and give each pick a different hidden word than the other picks (not both "burglar" and "thief"). IMPORTANT: the hidden word must be GUESSABLE from the rest of the headline by a well-read person: choose the word that the surrounding details point to most strongly, a common everyday word (not a rare animal, a technical term or an odd detail that could be anything), so that a player reading the headline would think of it within a few tries. If the story's most surprising noun could be a dozen different things from the context, hide a different, more implied noun instead.
    - "ans": 1-8 lowercase single-word answers that count as an EXACT match for []: the hidden word first, then its singular/plural, then every word that would fill the blank JUST AS WELL, so that a player who types it has found the same word. Ask: could the headline have been printed with this word instead, meaning exactly the same thing? If yes it is exact. That covers true synonyms and dialect or spelling variants ("pub" -> "bar","tavern"; "lorry" -> "truck"; "cops" -> "police","officers" when the headline does not say which; "phone" -> "mobile","cellphone"; "colour" -> "color"). A word is NOT exact when it is broader, narrower or only related ("car" is not "vehicle" or "van"; "dog" is not "pet"). The one other exception is a specific type of something when nothing in the headline says which type: if the hidden word is a particular species, breed, variety or model, the general category and its sibling types are exact too (e.g. "boa" -> ["boa","boas","snake","snakes","python","pythons","cobra","cobras"] because nothing says which snake; "poodle" -> ["poodle","poodles","dog","dogs"]). Letters only.
-   - "alt": up to 8 lowercase single words that are close but NOT exact: broader or narrower words, related things, a word the headline rules out (e.g. for "pub": "restaurant","club","hotel"; for "car": "vehicle","van","jeep"). Words that fit the blank just as well belong in "ans", never here. They earn big partial credit, never full. Never a word that means something clearly different. Letters only.
+   - "alt": up to 8 lowercase single words that are close but NOT exact: broader or narrower words, related things, a word the headline rules out (e.g. for "pub": "restaurant","club","hotel"; for "car": "vehicle","van","jeep"). Words that fit the blank just as well belong in "ans", never here: synonyms and the like ALWAYS count as exact, so list every one you can think of. They earn big partial credit, never full. Never a word that means something clearly different. Letters only.
    - "place": display name like "Appleton, Wisconsin" or "Mykolaiv, Ukraine".
    - "geocode": a precise query for a geocoder, like "Appleton, Wisconsin, USA".
    - "lat", "lng": your best coordinates for the place (decimal degrees).
@@ -1644,6 +1644,39 @@ def valid_blank(r):
 
 
 
+WIDEN_PROMPT = """You check the accepted answers for "Fill the Blank", a word game. Each item is a true news headline with one word hidden as [], plus the answers already accepted as EXACT.
+
+Add EVERY other single word a player could type into the blank so that the headline reads and means exactly the same: true synonyms, dialect and spelling variants, abbreviations, and everyday near-equivalents ("thief" -> "robber","burglar"; "toilet" -> "loo","lavatory"; "lorry" -> "truck"; "cops" -> "police"). When the hidden word is one particular kind of something and nothing in the headline says which kind, the everyday general word counts too (a car brand -> "car"). Do NOT add words that are broader, narrower or only related when the headline does distinguish them, never a word already in the headline, and never a plural or an -ing/-ed form (the game handles those). Lowercase letters only, one word each, at most 8 per item, and an empty list if nothing else truly fits.
+
+Reply with ONE JSON object only: {"items":[{"id":0,"more":["..."]}]}
+
+Items:
+"""
+
+
+def widen_answers(blank, model):
+    """Synonyms and the like must always count as exact. The editor lists some; one cheap pass over the day's blanks adds the ones it missed.
+    Fails open: any error leaves the answers as they were."""
+    items = [{"id": i, "h2": r.get("h2", ""), "accepted": r.get("ans", [])} for i, r in enumerate(blank) if r.get("ans")]
+    if not items:
+        return
+    res = call_claude(WIDEN_PROMPT + json.dumps(items, ensure_ascii=False), model, max_tokens=2500, fatal=False, keys=["items"])
+    for x in (res or {}).get("items", []):
+        try:
+            r = blank[int(x["id"])]
+        except Exception:
+            continue
+        low = (r.get("h2") or "").lower()
+        stop = {"the", "and", "his", "her", "its", "with", "from", "that", "this", "for", "gets", "got", "was", "has", "had", "are"}
+        plural_of = lambda a: any(a in (x + "s", x + "es", x + "ing", x + "ed") or (x.endswith("y") and a == x[:-1] + "ies") for x in r["ans"])    # the game handles inflections
+        add = [a for a in dict.fromkeys(x.get("more") or []) if isinstance(a, str) and re.fullmatch(r"[a-z]{3,}", a) and a not in stop and a not in r["ans"]
+               and not plural_of(a) and not re.search(r"\b" + a + r"s?\b", low)][:8]
+        if add:
+            print(f"  blank answers widened: {r['ans'][0]} + {add}", file=sys.stderr)
+            r["ans"] = (r["ans"] + add)[:16]
+            r["alt"] = [a for a in (r.get("alt") or []) if a not in add]
+
+
 def top_up_blank(blank_pool, blank_src, call_pick, prior, used, vecs, need, day):
     """Fill the Blank always prints `need` headlines. The Daily Dig has already taken its picks (they are never touched); this loosens the
     fussier rules step by step until the Blank has enough: (1) the same candidates without the one-similar-answer and leak checks,
@@ -2189,6 +2222,10 @@ def main():
         n_add = top_up_blank(blank_pool, blank_src, call_real, prior, used, vecs, N_BLANK, day)
         print(f"  Fill the Blank was short: loosened the checks and the practice archive, {n_add} more stories", file=sys.stderr)
     blank = [r for r in blank_pool if r not in call_real][:N_BLANK]
+    try:
+        widen_answers(blank, os.environ.get("FF_SCREEN_MODEL", "claude-haiku-5-5"))
+    except Exception as e:
+        print(f"  answer widening skipped ({e})", file=sys.stderr)
     if len(blank) < N_BLANK:
         print(f"  WARNING: Fill the Blank has only {len(blank)} stories today even after topping up (no sharing with Real or Fake)", file=sys.stderr)
 
