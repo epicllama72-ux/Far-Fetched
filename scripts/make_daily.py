@@ -1646,7 +1646,7 @@ def valid_blank(r):
 
 WIDEN_PROMPT = """You check the accepted answers for "Fill the Blank", a word game. Each item is a true news headline with one word hidden as [], plus the answers already accepted as EXACT.
 
-Add EVERY other single word a player could type into the blank so that the headline reads and means exactly the same: true synonyms, dialect and spelling variants, abbreviations, and everyday near-equivalents ("thief" -> "robber","burglar"; "toilet" -> "loo","lavatory"; "lorry" -> "truck"; "cops" -> "police"). When the hidden word is one particular kind of something and nothing in the headline says which kind, the everyday general word counts too (a car brand -> "car"). Do NOT add words that are broader, narrower or only related when the headline does distinguish them, never a word already in the headline, and never a plural or an -ing/-ed form (the game handles those). Lowercase letters only, one word each, at most 8 per item, and an empty list if nothing else truly fits.
+Add every other single word a player could type into the blank so that the headline reads and means EXACTLY the same, nothing lost or added: true synonyms and dialect or spelling variants ("thief" -> "robber","burglar"; "toilet" -> "loo","lavatory"; "lorry" -> "truck"; "cops" -> "police"). Strictly NOT broader category words ("doll" is not "toy", "turtle" is not "animal", "coffee" is not "food", "judge" is not "official"), not narrower or merely related words, never a word already in the headline, and never a plural or an -ing/-ed form (the game handles those). When unsure, leave it out. Lowercase letters only, one word each, at most 5 per item, and an empty list if nothing else truly fits.
 
 Reply with ONE JSON object only: {"items":[{"id":0,"more":["..."]}]}
 
