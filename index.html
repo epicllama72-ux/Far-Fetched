@@ -947,6 +947,13 @@ body.planetview #final,body.planetview #bar,body.planetview #comeBack,body.plane
 #introTop{position:fixed;left:50%;transform:translateX(-50%);z-index:5;width:min(520px,calc(100vw - 32px));}
 #introTop{text-align:center;opacity:0;transition:opacity .5s}
 #introTop.on{opacity:1}
+/* Unlimited: a pixel-art infinity sign hangs over the planet until the player says they are ready */
+#infMark{position:fixed;z-index:6;display:none;pointer-events:none;translate:-50% -50%}
+body.infIntro:has(#introTop.on) #infMark{display:block;animation:infIn .5s steps(5) both,infBob 1.6s steps(2) .5s infinite alternate}
+#infMark canvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges;filter:drop-shadow(0 0 0 #05060c)}
+@keyframes infBob{from{translate:-50% -50%}to{translate:-50% calc(-50% - 6px)}}
+@keyframes infIn{from{opacity:0;scale:.4}to{opacity:1;scale:1}}
+@media (prefers-reduced-motion:reduce){body.infIntro:has(#introTop.on) #infMark{animation:none}}
 #introTop .it{font:clamp(20px,7vw,44px)/1 var(--px);color:#c9ced8;letter-spacing:2px;text-shadow:3px 3px 0 #1a1220;white-space:nowrap}
 #introTop .it b{font-weight:400;color:var(--accent)}
 /* the title is pixel art (icons/title.png, drawn by scripts/title_art.html), scaled up without smoothing, with a soft glow that breathes slowly */
@@ -2083,6 +2090,7 @@ body.pinning #card #headline{font-size:23px}
 <input id="guessProxy" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="Guess the hidden word" tabindex="-1">
 <canvas id="bg" aria-hidden="true"></canvas>
 <canvas id="intro" aria-hidden="true" hidden></canvas>
+<div id="infMark" aria-hidden="true"><canvas id="infCv" width="56" height="28"></canvas></div>
 <div id="introTop" hidden><h1 class="it"><img src="icons/title.png" alt="Far-Fetched" width="280" height="45"></h1><div id="introStamp" hidden></div><p id="introLine"></p><p id="introNote" hidden></p><details id="introHow"><summary>HOW TO PLAY</summary><div id="introHowText"></div></details></div>
 <div id="browseHint" aria-hidden="true">↕ drag or scroll to explore your dig</div>
 <div id="ruler" aria-hidden="true"></div>
@@ -7720,10 +7728,12 @@ const Intro=(function(){
     const Rpx=Math.min(innerWidth*(narrow?0.49:0.3), room/2-(narrow?0:14)), eyPx=tb+GAP+Math.max(0,(room-2*Rpx)/2)+Rpx;   // spare height (planet limited by width) is split above and below, so the earth sits centred   // tucked right under How to play
     IP={R:Rpx/PX, ey:eyPx/PX};
     if(typeof placeBrief==='function') placeBrief((w*PX)/2, eyPx, Rpx);
+    const im=$('infMark'); if(im){ im.style.left=(w*PX)/2+'px'; im.style.top=eyPx+'px'; const sc=Math.max(3,Math.floor(Math.min(Rpx*1.2,innerWidth-40)/56)); const cv=$('infCv'); cv.style.width=(56*sc)+'px'; cv.style.height=(28*sc)+'px'; }   // the infinity sign (Unlimited) hangs over the middle of the planet
   }
   const idlePos=()=>IP || {R:Math.min(w,h)*0.32, ey:h*0.6};
   function introText(){
     if(!S || !S.rounds) return;
+    document.body.classList.toggle('infIntro', S.mode==='practice');
     const blank=S.kind==='blank', n=S.rounds.length, r=S.rounds.filter(x=>x.real).length, f=n-r;
     $('introLine').textContent = blank ? n+' true headlines, one word missing. Fill in the blank.' : n+' offbeat news stories, '+r+' true, '+f+' false. Map the true ones.';
     const paper=(S.mode==='back'&&typeof BACK!=='undefined'&&BACK)?BACK:DAILY, note=(S.mode==='daily'||S.mode==='back')&&paper&&paper.dedication||'';   // an optional line the paper carries, e.g. a dedication
@@ -7842,6 +7852,36 @@ loadBriefs();
 Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS&&(POL_ON||VS.kind!=='pol')?VS.kind:KIND); loadIssues(); setTimeout(Intro.check,60); try{ passChanged(); }catch(e){} setTimeout(checkPassReturn,1500); setTimeout(()=>{ checkGroupInvite(); syncName(false); },1200); });
 window.addEventListener('resize',()=>{ clearTimeout(window._aimT); window._aimT=setTimeout(()=>aim(),200); });
 
+
+/* Pixel-art infinity sign for Unlimited: a 76x38 grid, drawn in the game's own palette, with two bright pixels chasing around the loop */
+(function(){
+  const cv=document.getElementById('infCv'); if(!cv) return;
+  const W=56,H=28,cx=28,cy=13,A=24, ctx=cv.getContext('2d');
+  const PAL=['#a8231a','#a8231a','#a8231a','#a8231a','#a8231a','#a8231a'], OUT='#1b0806', HALO='#5a1510';   // the brief's stamp red
+  const pts=[], seen=new Set();
+  for(let k=0;k<900;k++){ const t=k/900*Math.PI*2, d=1+Math.sin(t)*Math.sin(t);
+    const x=Math.round(cx+A*Math.cos(t)/d), y=Math.round(cy+A*Math.sin(t)*Math.cos(t)/d*1.0), key=x+','+y;
+    if(!seen.has(key)){ seen.add(key); pts.push({x,y,u:k/900}); } }
+  const body=new Map(); pts.forEach(p=>{ [[0,0],[1,0],[0,1],[1,1]].forEach(([dx,dy])=>body.set((p.x+dx)+','+(p.y+dy),{x:p.x+dx,y:p.y+dy,u:p.u})); });   // two cells wide, so it reads as chunky as the planet
+  const outl=new Map(), halo=new Map();
+  body.forEach(p=>{ for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++){ if(true){ const x=p.x+dx,y=p.y+dy,k=x+','+y; if(!body.has(k)) outl.set(k,{x,y}); } }
+    for(let dx=-2;dx<=2;dx++)for(let dy=-2;dy<=2;dy++){ if(Math.abs(dx)+Math.abs(dy)<=3){ const x=p.x+dx,y=p.y+dy,k=x+','+y; if(!body.has(k)&&!outl.has(k)&&((x+y)&1)==0) halo.set(k,{x,y}); } } });
+  const mix=(h,w)=>{ const n=parseInt(h.slice(1),16),r=n>>16,g=n>>8&255,b=n&255,m=c=>Math.round(c+(255-c)*w); return 'rgb('+m(r)+','+m(g)+','+m(b)+')'; };
+  const SPARK=[[3,3],[52,3],[4,24],[51,23],[28,0],[28,27]];
+  function draw(f){
+    ctx.clearRect(0,0,W,H);
+        ctx.fillStyle=OUT; outl.forEach(p=>ctx.fillRect(p.x,p.y,1,1));
+    body.forEach(p=>{ const idx=Math.min(5,Math.max(0,Math.floor((p.x-4)/68*6)));
+      const up=body.has(p.x+','+(p.y-1)), dn=body.has(p.x+','+(p.y+1));
+      ctx.fillStyle= !up ? '#e0584a' : !dn ? '#7d1a12' : PAL[idx];
+      ctx.fillRect(p.x,p.y,1,1); });
+        const heads=[(f*0.016)%1,((f*0.016)+.5)%1];
+    body.forEach(p=>{ heads.forEach(h=>{ let d=(h-p.u+1)%1; if(d<.12){ ctx.fillStyle= d<.025?'#ffffff': d<.06?'#ffd9d2':'#ff8a7a'; ctx.fillRect(p.x,p.y,1,1); } }); });
+    SPARK.forEach(([x,y],i)=>{ const on=((f+i*3)%12)<6; ctx.fillStyle=on?'#ffffff':'#ff8a7a'; ctx.fillRect(x,y,1,1); if(on){ ctx.fillRect(x-1,y,1,1); ctx.fillRect(x+1,y,1,1); ctx.fillRect(x,y-1,1,1); ctx.fillRect(x,y+1,1,1); } });
+  }
+  let f=0; draw(0);
+  if(!matchMedia('(prefers-reduced-motion:reduce)').matches) setInterval(()=>{ if(document.body.classList.contains('infIntro') && !document.hidden){ f++; draw(f); } },100);
+})();
 </script>
 </body>
 </html>
