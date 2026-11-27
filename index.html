@@ -7211,11 +7211,15 @@ function passBuy(kind){
   if(!u){ try{ sessionStorage.setItem('ff_buy','page|'+Date.now()); }catch(e){} Cloud.signIn({why:PASS_SIGNIN_WHY}); return; }   // sign in first, then back to this page to pay
   gcEvent('pass/checkout/'+kind); location.href=(PASS_LINKS[kind]||PASS_LINKS.pass)+'?client_reference_id='+encodeURIComponent(u.id);
 }
-/* back from signing in: open (or return to) the Press Pass page */
+/* back from signing in: open (or return to) the Press Pass page.
+   Signing in can reload the page once (the account's data replaces this device's), which would wipe the page we just opened, so the note is kept for 20 seconds
+   after it is first used: the reloaded page finds it, opens the Press Pass page again and only then clears it. */
 function resumeBuy(){
-  let v=null; try{ v=sessionStorage.getItem('ff_buy'); sessionStorage.removeItem('ff_buy'); }catch(e){}
+  let v=null; try{ v=sessionStorage.getItem('ff_buy'); }catch(e){}
   if(!v) return;
-  const t=+v.split('|')[1]; if(Date.now()-(t||0)>10*60*1000) return;   // a stale tap from earlier does nothing
+  const p=v.split('|'), t=+p[1]||0, shown=+p[2]||0, now=Date.now();
+  if(now-t>10*60*1000 || (shown && now-shown>20000)){ try{ sessionStorage.removeItem('ff_buy'); }catch(e){} return; }   // a stale tap from earlier does nothing
+  try{ if(shown) sessionStorage.removeItem('ff_buy'); else sessionStorage.setItem('ff_buy','page|'+t+'|'+now); }catch(e){}
   showToast(isPro()?'Signed in. You already have the Press Pass. Welcome back!':'Signed in. Tap your pass to finish.');
   setTimeout(()=>{ try{ if(HP_ID==='pass') HPAGES.pass.render(); else hpOpen('pass'); }catch(e){} },350);
 }
