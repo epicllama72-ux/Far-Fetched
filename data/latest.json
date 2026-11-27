@@ -5,13 +5,13 @@
   {
    "real": true,
    "h": "Millions of bees get loose after truck carrying 400 hives crashes in {}: 'Please remain indoors'",
-   "hint": "a small town in the east of the Alamo's state",
+   "hint": "a small town on the far eastern edge of the Alamo's state",
    "lat": 30.2149,
    "lng": -93.8863,
    "place": "Mauriceville, Texas",
    "src": "https://www.cbsnews.com/news/bees-escape-truck-hives-crashes-texas/",
    "published": "2026-06-22",
-   "clue": "US sheriff 'remain indoors' alert + a semitrailer"
+   "clue": "sheriff's 'remain indoors' alert = US; Alamo's state, far east = Texas border"
   },
   {
    "real": false,
@@ -20,25 +20,25 @@
   },
   {
    "real": true,
-   "h": "78-square-metre flat in {} listed for 170,000 euros can't be visited or valued, as squatters live in it",
-   "hint": "a Basque city famed for pintxos",
-   "lat": 43.3224,
-   "lng": -1.9839,
-   "place": "San Sebastián, Spain",
-   "src": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNYWZLVF9UcjlkdGtGZnJVTUx5RmFPTzBoVEM5YXNUanU1TGdWNUxLeE5hVUE3LUdPangzSll6Q1JibE10b3QzTXQ5QTRqZjFuZGJ2cGczQ3NIWHdiMnZmWVdaUDNJSmdQT3MwYUNZR0F0aW9pZTRzaUg5X3k5MjRLSFA1ZzR1V0ZTaXFrTjdfUXlJZWtKQnZvLVFBMUQ4cjFIZ1h0anhkeUZ0clpKNUxWMFVadzBLS0F4NDRac180YkZaOGVOU0NNM1JFV2x5U19WOGJYcF9fbmFKRi1fSDFIR1JMSWk3MEtIcnUzamtoaC0?oc=5",
-   "published": "2026-11-17",
-   "clue": "euros + flat sold at court auction = Europe"
+   "h": "Black Labrador rides the city bus by herself to the dog park in {}",
+   "hint": "home of the Space Needle",
+   "lat": 47.6062,
+   "lng": -122.3321,
+   "place": "Seattle, Washington",
+   "src": "https://www.foxnews.com/us/black-lab-in-seattle-likes-to-hop-on-bus-take-solo-ride-to-her-dog-park-stop",
+   "published": "2015-01-13",
+   "clue": "city bus + dog park + Space Needle = Seattle, Washington"
   },
   {
    "real": true,
    "h": "Police log a pigeon carrying an Urdu message and a phone number as a suspected spy near the border in {}",
-   "hint": "a district north of the Sikh Golden Temple",
+   "hint": "a border district north of the Sikh Golden Temple",
    "lat": 32.2643,
    "lng": 75.6421,
    "place": "Manwal village, Pathankot, Punjab",
    "src": "https://www.theguardian.com/world/2015/may/29/spy-pigeon-becomes-jailbird-pakistan-india-border",
    "published": "2015-05-29",
-   "clue": "Pigeon taken to police in Manwal village, 4 km from the border"
+   "clue": "Urdu note on a border pigeon = India-Pakistan line; Golden Temple's region"
   },
   {
    "real": true,
@@ -49,7 +49,7 @@
    "place": "Newark, New Jersey",
    "src": "https://www.npr.org/2026/05/31/nx-s1-5841913/united-airlines-flight-diversion-bluetooth",
    "published": "2026-05-31",
-   "clue": "Newark to Palma de Mallorca flight returned after 4 h 24 min"
+   "clue": "United = a US airline, so a US hub; Whitney Houston's birthplace = Newark"
   },
   {
    "real": false,
@@ -59,13 +59,13 @@
   {
    "real": true,
    "h": "Terrier guards his owner's grave for 14 years and becomes the beloved mascot of {}",
-   "hint": "where Harry Potter was written",
+   "hint": "home of the world's largest arts festival",
    "lat": 55.9469,
    "lng": -3.1913,
    "place": "Edinburgh, Scotland",
    "src": "https://en.wikipedia.org/wiki/Greyfriars_Bobby",
    "published": "1872-01-14",
-   "clue": "Greyfriars Bobby kept vigil at John Gray's grave until 1872"
+   "clue": "a loyal terrier at a grave for 14 years = Greyfriars Bobby, Edinburgh"
   }
  ],
  "blank": [
