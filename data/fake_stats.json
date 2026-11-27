@@ -442,7 +442,7 @@
    "i": 2,
    "h": "Divers off {} haul up 212 sealed tins of corned beef from a galleon that sank in 1741",
    "tell": "Canning was not invented until about 1810.",
-   "n": 1740,
+   "n": 1744,
    "pct": 42.8
   },
   {
@@ -450,7 +450,7 @@
    "i": 5,
    "h": "Pilot in {} eats 3 kg of carrots a day for a month and says he can now see in the dark",
    "tell": "Carrots cannot give night vision; that was a wartime propaganda myth.",
-   "n": 1740,
+   "n": 1744,
    "pct": 30.2
   },
   {
@@ -458,16 +458,32 @@
    "i": 2,
    "h": "Woman, 70, in {} sits on a dozen supermarket eggs for 21 days, hoping to hatch chicks, on a livestream",
    "tell": "Supermarket eggs are unfertilised, so they can never hatch.",
-   "n": 282,
-   "pct": 47.9
+   "n": 1841,
+   "pct": 50.7
   },
   {
    "day": "2026-11-26",
    "i": 6,
    "h": "Divers raise a Roman amphora off {} still half full of 1,900-year-old tomato sauce",
    "tell": "Tomatoes came from the Americas and reached Europe only in the 1500s, long after Rome.",
-   "n": 282,
-   "pct": 31.6
+   "n": 1841,
+   "pct": 33.1
+  },
+  {
+   "day": "2026-11-27",
+   "i": 1,
+   "h": "Shepherd is found alive in {} after 16 days with no water, having lived on salted goat meat",
+   "tell": "A person cannot survive about 16 days without any water; the limit is a few days.",
+   "n": 1224,
+   "pct": 56.0
+  },
+  {
+   "day": "2026-11-27",
+   "i": 5,
+   "h": "Builders in {} uncover a 2nd-century Roman mosaic of banquet guests eating pineapples",
+   "tell": "Pineapples are American and reached Europe only after 1492, centuries after Rome.",
+   "n": 1224,
+   "pct": 35.0
   }
  ]
 }
