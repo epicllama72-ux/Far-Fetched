@@ -1581,7 +1581,7 @@ Today's true stories:
 
 def write_fakes(reals, model):
     """A dedicated call for fakes (the main call writes 8 while also picking 16 stories; quality is better when it is the only job)."""
-    res = call_claude(FAKE_WRITER_PROMPT.replace("{guide}", FAKE_GUIDE).replace("{calib}", fake_calibration()) + json.dumps([r.get("h", "") for r in reals], ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["fake"])
+    res = call_claude(FAKE_WRITER_PROMPT.replace("{guide}", FAKE_GUIDE).replace("{calib}", fake_calibration()) + json.dumps([r.get("h", "") for r in reals], ensure_ascii=False), model, max_tokens=16000, fatal=False, keys=["fake"])
     return [f for f in (res or {}).get("fake", []) if isinstance(f, dict) and f.get("h") and valid_fake(f)]
 
 
