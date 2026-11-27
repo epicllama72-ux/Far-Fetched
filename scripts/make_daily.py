@@ -355,6 +355,87 @@ def styled(prompt, marker):
     return prompt[:i] + block + "\n" + prompt[i:]
 
 
+def _blind_guess(items, model):
+    """items: [{'id', 'h', 'hint'}] -> {id: {'d': km from the truth (None if unknown), 'alts': n of far-apart alternatives}}; needs the truth under 'lat'/'lng'."""
+    payload = [{"id": x["id"], "h": x["h"], "hint": x["hint"]} for x in items]
+    res = call_claude(VERIFY_PROMPT + json.dumps(payload, ensure_ascii=False), model, max_tokens=4000, fatal=False, keys=["g"])
+    out = {}
+    truth = {x["id"]: x for x in items}
+    for g in (res or {}).get("g", []):
+        try:
+            i = int(g["id"]); t = truth[i]
+            d = km(float(t["lat"]), float(t["lng"]), float(g["lat"]), float(g["lng"]))
+        except Exception:
+            continue
+        far = 0
+        for a in (g.get("alts") or [])[:3]:
+            try:
+                if km(float(t["lat"]), float(t["lng"]), float(a["lat"]), float(a["lng"])) > HINT_FAR_KM:
+                    far += 1
+            except Exception:
+                pass
+        out[i] = {"d": d, "alts": far, "guess": g.get("guess", "")}
+    return out
+
+
+HINT_NEAR_KM, HINT_FAR_KM = 250, 400     # a blind guess within 250 km of the truth is a hit; an equally good fit 400+ km away is a second, far-apart place
+
+
+def verify_hints(stories, model_cheap, model_write, rounds=2):
+    """The blind test: a cheap model reads only the headline and hint and guesses the place. A hint that sends it somewhere else, or that it says fits a second
+    place far away, is rewritten (three candidates, best type first) and tested again. Fails open: if a call fails, the story keeps its hint."""
+    def bad(r):
+        return not r["_v"] or r["_v"]["d"] > HINT_NEAR_KM or r["_v"]["alts"] > 0
+    work = [{"id": i, "h": r.get("h", ""), "hint": r.get("hint", ""), "lat": r.get("lat"), "lng": r.get("lng")}
+            for i, r in enumerate(stories) if (r.get("hint") or "").strip() and r.get("lat") is not None]
+    if not work:
+        return
+    res = _blind_guess(work, model_cheap)
+    failing = [w for w in work if w["id"] in res and (res[w["id"]]["d"] > HINT_NEAR_KM or res[w["id"]]["alts"] > 0)]
+    print(f"  hint blind test: {len(work) - len(failing)}/{len(work)} hints point to one place", file=sys.stderr)
+    for attempt in range(rounds):
+        if not failing:
+            return
+        items = [{"id": w["id"], "h": w["h"], "place": stories[w["id"]].get("place", ""), "failed_hint": w["hint"],
+                  "players_guessed": res.get(w["id"], {}).get("guess", "")} for w in failing]
+        rw = call_claude(styled(HINT_REWRITE_PROMPT, "Items:") + json.dumps(items, ensure_ascii=False), model_write, max_tokens=3000, fatal=False, keys=["items"])
+        cands = {}
+        for x in (rw or {}).get("items", []):
+            try:
+                i = int(x["id"]); r = stories[i]
+            except Exception:
+                continue
+            good = [h.strip().rstrip(".,") for h in (x.get("hints") or []) if isinstance(h, str) and hint_ok(h.strip().rstrip(".,"), r.get("place", ""))]
+            if good:
+                cands[i] = good
+        if not cands:
+            print("  no usable replacement hints; keeping the originals", file=sys.stderr)
+            return
+        flat = [{"id": i * 10 + k, "h": stories[i]["h"], "hint": h, "lat": stories[i]["lat"], "lng": stories[i]["lng"]} for i, hs in cands.items() for k, h in enumerate(hs)]
+        res2 = _blind_guess(flat, model_cheap)
+        nxt = []
+        for w in failing:
+            i = w["id"]
+            options = [(f_ , res2.get(f_["id"])) for f_ in flat if f_["id"] // 10 == i]
+            passing = [f_ for f_, v in options if v and v["d"] <= HINT_NEAR_KM and v["alts"] == 0]
+            if passing:
+                print(f"  hint fixed: {w['hint']}  ->  {passing[0]['hint']}", file=sys.stderr)
+                stories[i]["hint"] = passing[0]["hint"]
+                continue
+            cur = res.get(i) or {"d": 99999, "alts": 0}
+            scored = [(v["d"] + 400 * v["alts"], f_, v) for f_, v in options if v]
+            if scored:                                   # take the least-wrong candidate only if it beats the current hint
+                sc, best, bv = min(scored, key=lambda x: x[0])
+                if sc < cur["d"] + 400 * cur["alts"]:
+                    stories[i]["hint"] = best["hint"]
+                    w = dict(w, hint=best["hint"])
+                    res[i] = bv
+            nxt.append(w)
+        failing = nxt
+    if failing:
+        print(f"  WARNING: {len(failing)} hints still fit more than one place after rewriting: {[w['hint'] for w in failing]}", file=sys.stderr)
+
+
 def ask_claude(cands, model, prompt=None, avoid=None):
     payload = []
     for i, c in enumerate(cands):
@@ -650,7 +731,7 @@ SHARPEN_PROMPT = """You edit hints for "Far-Fetched", a daily KNOWLEDGE game. Pl
 
 For each story give a "hint": a noun phrase of usually 6 words or fewer, but up to 14 words when it needs them to point to ONE place by a famous fact (a short clue that fits two places is worse than a longer one that fits one), starting with "a", "an", "the", "home of", "where" or "host of" that will be attached to the headline right after "in {}" as an appositive (for example "in {}, a castle-topped capital"), to help the player place it. It is a general-TRIVIA clue that a well-read person might know, tied to the geography of the place: a clue of ONE of these types: MEDIA (a film, show, book or game set or filmed there, or an author or musician from there), POLITICS (a famous leader, treaty, election or institution tied to it), HISTORY (a famous event, battle, invention or person's birthplace), SPORT (a famous team, race or Olympics), or FOOD/CULTURE (a famous dish, festival or export). Bare geography or a landmark description ("a desert city ringed by mountains", "on the coast") is NOT acceptable as a hint: if no true trivia clue of those types exists for the place, return "". Vary the types: across the stories in one round, MEDIA (films, shows, books, games, music) is a broad type and may be used for up to 3 stories, but every other type (politics, history, sport, food/culture) at most once, so give a good mix. Give one even when the source never mentions it, as long as it is TRUE of that place; it describes the PLACE, never the event. It must be a hint, not an answer: never write the hidden place itself, and NEVER write the name of its country, state or province, or of a neighbouring place. A hint must be a TRIVIA FACT the player has to know, not a statement of where the place lies: "home of Brittany\'s Blue Nets festival" is a good hint (a region may appear inside the name of a famous thing), but "an East Texas town near Louisiana" or "a Brittany fishing port" only say where it is and are WRONG. For a small place with no trivia hook the adjective of its REGION (not its country) is allowed ("a Bavarian moated-castle village"); an adjective for the whole country ("a Turkish town", "a German village") just names the country and is WRONG. If you can say none of these, return "". Good examples (6 words or fewer): "where Harry Potter was written" (media), "host of the 1976 Olympics" (sport), "setting of the film Parasite" (media), "site of a famous 1815 battle" (history), "home of the Blue Nets festival" (food/culture), "where the 1918 armistice was signed" (politics). A bare description is TOO VAGUE ("a village with a moated castle" fits thousands of places): if the hint is just a description with no name, number or specific fact, add the adjective of its REGION inside the country (never the country itself) so it narrows the world ("a Bavarian moated-castle village"). WIDELY KNOWN BEATS LOCAL: the player may live on any continent, so the trivia must be known to a well-read person ANYWHERE, never only to locals or fans of one country's TV, sport or regional culture. Good: a world-famous film, a global sporting event, an internationally famous festival, a major historical event or figure. Bad: a regional soap opera, a local council or minor club, a street, shop or neighbourhood nickname, a small festival, or anything a person outside that country would not have heard of. For a small or obscure place with no regional trivia hook, you may describe WHERE it is in its country with a direction plus a famous fact about the COUNTRY, never naming it: "a town in the south of the land of pandas", "a village in central wine-and-cheese country", "a town in the north of Eiffel Tower land". For a small or obscure place, do NOT reach for local trivia: use the well-known thing the wider REGION is famous for (a world-famous nearby city, event or landmark region), or the adjective of its region, so a player anywhere can narrow the world. It must also NOT be obvious: the hint should narrow the answer to a part of the world, not name the exact city or hand over the country, so a player still has to think. Test each candidate twice: would a typical reader in another country know it (if not, drop it), and would it make the answer trivial (if so, soften it to the region). Aim for RECOGNISABLE BUT NOT OBVIOUS: a well-read player should be able to use it, but it must not hand over the answer, so never name something that contains the place or its state in its name ("home of the University of Virginia", "home of the Tampa Bay Buccaneers" give it away). Think of three candidates and keep the one that best fits this. Read it attached to the headline ("... in {}, <hint>"): it must be grammatical and must not repeat a word of the headline. Keep it SHORT: the headline box must not grow. Use "" if you are not sure of a true one.
 
-If the story already has a "hint" that is true, short, fits those rules and is a trivia clue (media, politics, history, sport or food/culture, not bare geography or a landmark description), keep it unchanged. Replace geography hints with a trivia type, and make the hints in this batch a mix of types: media for up to 3 stories, every other type at most once. If it is false, doubtful, names the place, its country, state or province or a neighbouring place, only states where the place lies, or is about the event, replace it. The headline itself stays as it is.
+HINT TYPES, best first. (1) A world-famous PERSON born or raised there, or a famous landmark, film or show set or shot there, or a huge event it hosted ("birthplace of Franz Kafka", "home of the Atomium", "setting of the film Parasite"). (2) A famous product, food or invention named after or made in the place. (3) Only if the place has none of those: a famous fact about its region or country plus a second cue ("a border district north of the Sikh Golden Temple"). NEVER use a superlative or ranking ("the second-longest pier", "the world's biggest metro area"), a nickname that fits several cities, or any description that fits two or more places far apart ("a capital high in the Andes" fits three capitals). Before you answer, ask: could a player read this and sensibly pin it in a different part of the world? If yes, choose another fact.\n\nIf the story already has a "hint" that is true, short, fits those rules and is a trivia clue (media, politics, history, sport or food/culture, not bare geography or a landmark description), keep it unchanged. Replace geography hints with a trivia type, and make the hints in this batch a mix of types: media for up to 3 stories, every other type at most once. If it is false, doubtful, names the place, its country, state or province or a neighbouring place, only states where the place lies, or is about the event, replace it. The headline itself stays as it is.
 
 Prefer a hint built on a WORLD-FAMOUS landmark, event or fact plus a compass direction over local trivia, for a global audience: "a borough south of Big Ben" beats "birthplace of supermodel Kate Moss"; "a northwest city in Troy's homeland" beats "where the 1999 Marmara quake struck"; "a suburb of the Civil War's first-shots city" beats "the setting of Porgy and Bess". Never name the country, state or province or its adjective.
 
@@ -867,6 +948,24 @@ def sharpen(stories, model, texts):
             r["clue_strength"], r["jargon_only"] = cs, bool(x.get("jargon_only"))
 
 
+VERIFY_PROMPT = """You are a casual player of "Far-Fetched", a daily guessing game, from anywhere in the world: well read in general, but not a geography expert. Each item is a real weird news headline with the place hidden as {}, plus a short HINT about the place. You see ONLY these two. Using only them, say where you think it happened.
+
+For each item reply with: "guess" (town or city, and country), "lat" and "lng" (decimal degrees for that guess), "confidence" 1-5, and "alts": up to 3 OTHER places, each with "place", "lat", "lng", that fit the headline and hint about as well as your guess (leave the list empty if your guess is clearly the only fit). Be honest: if you would not know, give a low confidence.
+
+Reply with ONE JSON object only: {"g":[{"id":0,"guess":"...","lat":0,"lng":0,"confidence":3,"alts":[{"place":"...","lat":0,"lng":0}]}]}
+
+Items:
+"""
+HINT_REWRITE_PROMPT = """You write hints for "Far-Fetched", a daily guessing game. Players see a real weird headline with the place hidden as {} and a short HINT, and must pin where it happened. A hint must let an ordinary player DEDUCE the place without map knowledge: something a decent share of players worldwide know that points to ONE place only.
+
+Each item below has a headline, the true place, and a hint that FAILED a blind test (players guessed a different place, or it fits several places far apart). For each item write 3 NEW candidate hints, best first, each a noun phrase starting with "a", "an", "the", "home of", "where", "host of" or "setting of", usually 6 words or fewer and up to 14 when needed. Best types first: a world-famous person born or raised there, or a famous landmark, film or event; then a famous product or food of the place; only then a famous fact about its region plus a second cue. Never name the place, its country, state or province, its demonym, or a neighbouring place. Never a superlative, ranking or nickname that fits several places. Each candidate must be TRUE and fit only this place (not another place far away).
+
+Reply with ONE JSON object only: {"items":[{"id":0,"hints":["...","...","..."]}]}
+
+Items:
+"""
+
+
 DESK_PROMPT = """You are the final desk editor of "Far-Fetched", a daily game: players read 7 weird headlines with the place hidden as {}, call each REAL or FAKE, then pin the real ones on a world map. After the call a real headline gains its "hint" ("... in {}, <hint>"). Fakes are invented and never get a hint. Today's paper is below; the "source" is the original article (it may be in another language). Check every item against this list, fix what you can, and reject only what cannot be fixed.
 
 REAL headline ("h"):
@@ -878,7 +977,7 @@ REAL hint ("hint"):
 - TRUE of that place, usually at most 6 words and up to 14 when needed to point to one place, describes the place not the event, starts with "a", "an", "the", "home of", "where", "host of", "setting of" or "site of".
 - Recognisable but not obvious: a well-read player can use it, but it doesn't give the answer away. NEVER write the name of the place, its country, state or province, or of a neighbouring place. The hint must be a TRIVIA FACT, not a statement of where the place lies: "home of Brittany's Blue Nets festival" is good (a region may sit inside the name of a famous thing), "an East Texas town near Louisiana" or "a Brittany fishing port" only say where it is and are wrong. Never something that contains the place or its state in its name ("home of the University of Virginia"). The adjective of a region inside a country is fine for a small place ("a Bavarian moated-castle village"); the adjective of the whole country ("a Turkish town") just names the country and is wrong. If you can't say anything true and useful, set "hint" to "".
 - Not too vague: a bare description with no name or specific fact ("a village with a moated castle") fits thousands of places; add the adjective of its region inside the country, never the whole country ("a Bavarian moated-castle village").
-- Read the full headline with the hint attached: grammatical, no repeated words.
+- Read the full headline with the hint attached: grammatical, no repeated words. The hint must point to ONE place: reject or rewrite one that fits two places far apart, and never use a superlative, a ranking or a nickname that fits several cities.
 FAKE ("h"): reads exactly like the real ones (same style and length), passes at first glance, no hint. Each fake describes a POSSIBLE event about as strange as the real stories and carries ONE deliberate quiet inconsistency in its details that a careful reader can catch from the headline (numbers that do not add up, an age or date that contradicts the story, one detail contradicting another): keep that inconsistency, and never turn it into an impossible event. Fix only wording that gives it away beyond that slip; reject if it copies a real story's idea.
 If an item has no source text, judge its wording only and don't reject it for accuracy.
 Also pick "best": the id of the REAL story that should open the paper: the most surprising, funny and clear.
@@ -2038,6 +2137,10 @@ def main():
         still = [r.get("h", "")[:60] for r in call_pick if not (r.get("hint") or "").strip()]
         if still:
             print(f"  WARNING: still no hint for: {still}", file=sys.stderr)
+        try:
+            verify_hints(call_pick, os.environ.get("FF_SCREEN_MODEL", "claude-haiku-5-5"), model)   # a cheap blind test: does each hint point to ONE place?
+        except Exception as e:
+            print(f"  hint blind test skipped ({e})", file=sys.stderr)
     strong = strong_n(call_pick)
     print(f"  Real or Fake: {strong}/{len(call_pick)} stories with a usable regional clue; countries {per_country}", file=sys.stderr)
 
