@@ -732,7 +732,7 @@ body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
 :is(#homeBtns,#finalBtns) .hr:nth-child(2) .ht::before{top:1px}
 :is(#homeBtns,#finalBtns) .hdot{position:absolute;top:-5px;right:-4px;background:#a8231a;color:#fff;font:6px/1 var(--px);padding:3px 4px 2px}
 :is(#homeBtns,#finalBtns) .hdot:empty{display:none}
-:is(#homeBtns,#finalBtns) .hdot.ban{top:auto;bottom:-6px;left:50%;right:auto;translate:-50% 0;text-align:center;white-space:nowrap;background:#ffcc4d;color:#2b2000;border:1px solid #2b2000;padding:3px 6px 2px}
+:is(#homeBtns,#finalBtns) .hdot.ban{top:-6px;bottom:auto;left:50%;right:auto;translate:-50% 0;text-align:center;white-space:nowrap;background:#ffcc4d;color:#2b2000;border:1px solid #2b2000;padding:3px 6px 2px}
 #finalBtns{display:flex;flex-direction:column;margin:18px 0 0;padding:0 2px calc(110px + env(safe-area-inset-bottom,0px))}
 #final[hidden]+#finalBtns{display:none}   /* the same buttons, under the summary of a finished round */
 body.calm *,body.calm *::before,body.calm *::after{animation:none!important}   /* Settings > Calm mode */
@@ -7202,16 +7202,10 @@ HPAGES.settings={title:'Settings',render(){
   $('stBriefs').onclick=()=>hpOpen('briefs');
 }};
 /* PRESS PASS */
-/* Every way into the Press Pass (Unlimited, the pass buttons, locked back issues) goes through here: a signed-out player signs in
-   on a popup first, so the pass is tied to their account, and then lands on the Press Pass page to choose and pay. */
-const PASS_SIGNIN_WHY='Sign in with Google so your Press Pass follows you to every device. Right after, you land on the page to choose your pass.';
-function openPass(){
-  const u=window.Cloud&&Cloud.user&&Cloud.user();
-  let had=false; try{ had=!!localStorage.getItem('ff_auth'); }catch(e){}
-  if(u || had || isPro()){ hpOpen('pass'); return; }       // signed in (or the saved sign-in is still loading)
-  try{ sessionStorage.setItem('ff_buy','page|'+Date.now()); }catch(e){}
-  Cloud.signIn({why:PASS_SIGNIN_WHY});
-}
+/* Every way into the Press Pass (Unlimited, the pass buttons, locked back issues) goes through here and simply opens the Press Pass page, signed in or not.
+   Signing in is asked for only when the player taps a buy button (passBuy): a Google popup, then straight back to this page to pay. */
+const PASS_SIGNIN_WHY='Sign in with Google so your Press Pass follows you to every device. Right after, you come back to the Press Pass page to finish.';
+function openPass(){ hpOpen('pass'); }
 function passBuy(kind){
   const u=window.Cloud&&Cloud.user&&Cloud.user();
   if(!u){ try{ sessionStorage.setItem('ff_buy','page|'+Date.now()); }catch(e){} Cloud.signIn({why:PASS_SIGNIN_WHY}); return; }   // sign in first, then back to this page to pay
@@ -7222,7 +7216,7 @@ function resumeBuy(){
   let v=null; try{ v=sessionStorage.getItem('ff_buy'); sessionStorage.removeItem('ff_buy'); }catch(e){}
   if(!v) return;
   const t=+v.split('|')[1]; if(Date.now()-(t||0)>10*60*1000) return;   // a stale tap from earlier does nothing
-  showToast(isPro()?'Signed in. You already have the Press Pass. Welcome back!':'Signed in. Choose your pass.');
+  showToast(isPro()?'Signed in. You already have the Press Pass. Welcome back!':'Signed in. Tap your pass to finish.');
   setTimeout(()=>{ try{ if(HP_ID==='pass') HPAGES.pass.render(); else hpOpen('pass'); }catch(e){} },350);
 }
 function drillSVG(px){   // the jaw drill as pixel art, drawn from the same shapes as the game
@@ -7259,7 +7253,7 @@ HPAGES.pass={title:'Press Pass',render(){
     +'<li><i class="pk pk1" aria-hidden="true">'+PK_ICONS.inf()+'</i><span><b>Unlimited</b>Endless rounds of every story the paper has ever run. Nothing counts, so just play.</span></li>'
     +'<li><i class="pk pk2" aria-hidden="true">'+PK_ICONS.issues()+'</i><span><b>Every back issue</b>'+(rest?'All '+rest+' older papers, not just the last '+BACK_FREE+'.':'Every past paper, not just the last '+BACK_FREE+'.')+'</span></li>'
     +'<li><i class="pk pk3" aria-hidden="true">'+PK_ICONS.noads()+'</i><span><b>No ads, ever</b>Pass holders never see one, whatever the game does later.</span></li></ul>';
-  const signIn=u?'':'<p class="sm ppNote">You will be asked to sign in first, so your pass follows you to every device.</p>';
+  const signIn=u?'':'<p class="sm ppNote">You will need to sign in with Google when you buy, so your pass follows you to every device.</p>';
   const drillCard=(btn)=>'<div class="ppBonus"><div class="ppArt">'+drillSVG(4)+'</div><div><b>The strap-on jaw drill</b><span>A real drill head strapped to his jaw. It leads every dig and cracks the earth ahead of you.</span>'+btn+'</div></div>';
   let html=head;
   if(st.pro && st.skin){
