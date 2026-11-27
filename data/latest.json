@@ -113,7 +113,9 @@
    "h2": "Would-be [] gets stuck between window bars and wall, screams for help; police free him in El Banco, Colombia",
    "ans": [
     "thief",
-    "burglar"
+    "burglar",
+    "robber",
+    "intruder"
    ],
    "alt": [],
    "place": "El Banco, Magdalena, Colombia",
@@ -125,7 +127,10 @@
    "real": true,
    "h2": "Woman stops to push a stranger's wheelchair, then pet dog locks her out of her [] in Taipei, Taiwan",
    "ans": [
-    "maserati"
+    "maserati",
+    "car",
+    "cars",
+    "vehicle"
    ],
    "alt": [],
    "place": "Taipei, Taiwan",
