@@ -141,12 +141,14 @@
    "h2": "[] walks out the front gate of Cheonan Prison, South Korea, carrying a freed man's luggage; guards warned",
    "ans": [
     "convict",
-    "convicts"
+    "convicts",
+    "inmate"
    ],
    "place": "Cheonan, South Korea",
    "src": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5JaU1NQWhkNVhVNWlvYUNXejlFRmhKYjZGTlFXam9WQVpPQ0VWTkF1Q2JYenAtY0VNc0g3WUpaSUU3X2xGc3UxV2t6dVRPUm45UHp0SzFR?oc=5",
    "published": "2026-10-27",
-   "vec": "DdoO2k4wHnjuFN4iHxw06kLrFN0HBvsa24EOvCUCCJCh1GYMKOgcyt8RRzD45MTQNeA="
+   "vec": "DdoO2k4wHnjuFN4iHxw06kLrFN0HBvsa24EOvCUCCJCh1GYMKOgcyt8RRzD45MTQNeA=",
+   "alt": []
   },
   {
    "real": true,
@@ -165,12 +167,14 @@
    "h2": "[] opens fridge and takes alcohol from a home in Naples, Florida, on security camera",
    "ans": [
     "bear",
-    "bears"
+    "bears",
+    "bruin"
    ],
    "place": "Naples, Florida",
    "src": "https://news.google.com/rss/articles/CBMif0FVX3lxTE15Rkk3d05kZ2Zqd0Y4emxDWDRmX19ZdEpGczBvNHh4M1haQTdfSmwyVEFVWnJYVld5VGZqNlBKMW54UXhNOVFXV0NWVVpTWVBZMGV2LTgyRzJpcGl4WW13M3ZocXRmdlZ0MFd3S3BZeGVWdmtLcVFWVmZNZ2VoeXM?oc=5",
    "published": "2026-10-27",
-   "vec": "KjT45kouz+oL0eo5GfEQLiwFyf321Q/h85mcJRm8fyIaBAMF37UU0cXrBP4uy/sBCvw="
+   "vec": "KjT45kouz+oL0eo5GfEQLiwFyf321Q/h85mcJRm8fyIaBAMF37UU0cXrBP4uy/sBCvw=",
+   "alt": []
   },
   {
    "real": true,

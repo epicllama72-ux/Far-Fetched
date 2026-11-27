@@ -74,10 +74,10 @@
    "h2": "Airport bookshop self-checkout adds 3% 'employee benefit' [] labelled 'not a tip' in New York",
    "ans": [
     "fee",
-    "fees"
+    "fees",
+    "charge"
    ],
    "alt": [
-    "charge",
     "surcharge",
     "levy",
     "tax"
