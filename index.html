@@ -7253,7 +7253,7 @@ HPAGES.pass={title:'Press Pass',render(){
     +'<li><i class="pk pk1" aria-hidden="true">'+PK_ICONS.inf()+'</i><span><b>Unlimited</b>Endless rounds of every story the paper has ever run. Nothing counts, so just play.</span></li>'
     +'<li><i class="pk pk2" aria-hidden="true">'+PK_ICONS.issues()+'</i><span><b>Every back issue</b>'+(rest?'All '+rest+' older papers, not just the last '+BACK_FREE+'.':'Every past paper, not just the last '+BACK_FREE+'.')+'</span></li>'
     +'<li><i class="pk pk3" aria-hidden="true">'+PK_ICONS.noads()+'</i><span><b>No ads, ever</b>Pass holders never see one, whatever the game does later.</span></li></ul>';
-  const signIn=u?'':'<p class="sm ppNote">You will sign in with Google when you buy, so your pass follows you to every device.</p>';
+  const signIn=u?'':'<p class="sm ppNote">You will need to sign in with Google when you buy, so your pass follows you to every device.</p>';
   const drillCard=(btn)=>'<div class="ppBonus"><div class="ppArt">'+drillSVG(4)+'</div><div><b>The strap-on jaw drill</b><span>A real drill head strapped to his jaw. It leads every dig and cracks the earth ahead of you.</span>'+btn+'</div></div>';
   let html=head;
   if(st.pro && st.skin){
