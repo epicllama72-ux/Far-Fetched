@@ -7231,11 +7231,16 @@ const PK_ICONS={
   inf:()=>{ const G='#ffcc4d', rows=['..XXXX...XXXX..','.X....X.X....X.','X......X......X','X.....X.X.....X','X......X......X','.X....X.X....X.','..XXXX...XXXX..']; const r=[]; rows.forEach((row,y)=>{ for(let x=0;x<row.length;x++) if(row[x]==='X') r.push([x,y,1,1,G]); }); return pxSvg(15,7,r,'Unlimited'); },
   issues:()=>{ const I='#1b1813', C='#f7f3e8';   // a sheet with its headline lines, and the edges of the papers piled under it
     return pxSvg(13,12,[[0,0,11,8,C],[2,2,7,1,I],[2,4,4,1,I],[2,6,6,1,I],[7,4,2,1,I],[1,9,11,1,'#d9cfb4'],[2,10,11,1,'#b9ae92'],[3,11,10,1,'#8a6535']],'Back issues'); },
-  noads:()=>{ const W='#f7f3e8', G='#ffcc4d', I='#a8231a', r=[[0,0,16,1,W],[0,11,16,1,W],[0,0,1,12,W],[15,0,1,12,W]];
-    for(let k=0;k<14;k++){ const x=1+k, y=10-Math.round(k*0.64); r.push([x,y,1,2,G]); }                      // the slash first, so the letters sit on top of it
-    ['.X.','X.X','XXX','X.X','X.X'].forEach((row,y)=>{ for(let x=0;x<3;x++) if(row[x]==='X') r.push([3+x,3+y,1,1,W]); });
-    ['XX.','X.X','X.X','X.X','XX.'].forEach((row,y)=>{ for(let x=0;x<3;x++) if(row[x]==='X') r.push([9+x,3+y,1,1,W]); });
-    return pxSvg(16,12,r,'No ads'); }
+  noads:()=>{ const W='#f7f3e8', N=19, c=(N-1)/2, r=[];   // the classic "no" sign: a ring and a slash, with the letters AD left readable underneath
+    const L={A:['.X.','X.X','XXX','X.X','X.X'],D:['XX.','X.X','X.X','X.X','XX.']}, letters=new Set();
+    L.A.forEach((row,y)=>{ for(let x=0;x<3;x++) if(row[x]==='X') letters.add((4+x)+','+(4+y)); });     // the A sits above the slash, the D below it, so neither is cut
+    L.D.forEach((row,y)=>{ for(let x=0;x<3;x++) if(row[x]==='X') letters.add((12+x)+','+(10+y)); });
+    for(let y=0;y<N;y++) for(let x=0;x<N;x++){
+      const d=Math.hypot(x-c,y-c), dl=Math.abs((x-c)+(y-c))/Math.SQRT2;          // distance from the centre, and from the slash running up to the right
+      const ring=d>=7.7&&d<=9.4, slash=d<9.4&&dl<=.85, gap=d<7.7&&dl<=1.7;
+      if(slash||ring||(!gap&&letters.has(x+','+y))) r.push([x,y,1,1,W]);
+    }
+    return pxSvg(N,N,r,'No ads'); }
 };
 HPAGES.pass={title:'Press Pass',render(){
   const u=window.Cloud&&Cloud.user&&Cloud.user(), st=passState(), rest=Math.max(0,ISSUES.filter(x=>x&&x.date&&x.date<dayKey()).length-BACK_FREE);
