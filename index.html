@@ -1011,12 +1011,18 @@ body.pinning .app{padding-bottom:calc(min(30vh,260px) + 96px)}
   background:var(--paper);background-image:var(--grain);color:var(--ink);text-shadow:none;letter-spacing:0;text-align:left;font:18px/1.2 var(--vt);
   box-shadow:0 0 0 3px var(--ink),5px 7px 0 3px rgba(0,0,0,.45),0 0 34px rgba(0,0,0,.6);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;transform-origin:50% 0}
 #menu [hidden]{display:none!important}
-#menu:not([hidden]){animation:mUnfold .95s cubic-bezier(.2,.7,.2,1) both}
-@keyframes mUnfold{0%{transform:perspective(1400px) translateY(-30px) rotateX(-92deg) scale(.5,.5);opacity:0;filter:brightness(.6)}22%{transform:perspective(1400px) translateY(-10px) rotateX(-70deg) scale(.5,.62);opacity:1;filter:brightness(.75)}48%{transform:perspective(1400px) rotateX(-18deg) scale(.5,1);filter:brightness(.9)}62%{transform:perspective(1400px) rotateY(-14deg) scale(.62,1)}84%{transform:perspective(1400px) rotateY(3deg) scale(1.01,1)}100%{transform:none;opacity:1;filter:none}}
+#menu:not([hidden]){animation:mUnfold .62s cubic-bezier(.2,.85,.25,1) both}
+#menu:not([hidden])::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9;mix-blend-mode:multiply;filter:url(#menuCrumple);animation:mCrumple .62s ease-out both}   /* a lit, wrinkled sheen that smooths away as the page flattens */
+@keyframes mCrumple{0%{opacity:1}60%{opacity:.8}100%{opacity:0}}
+@keyframes mUnfold{0%{clip-path:polygon(53.9% 50.0%,55.8% 51.3%,55.2% 52.5%,54.1% 53.3%,56.0% 57.5%,52.7% 55.6%,51.4% 56.1%,50.0% 55.9%,48.7% 55.9%,47.6% 55.1%,46.2% 54.8%,43.1% 55.5%,45.5% 52.2%,44.5% 51.3%,43.6% 50.0%,42.6% 48.3%,44.5% 47.3%,45.7% 46.6%,46.2% 45.2%,46.6% 43.0%,48.5% 43.6%,50.0% 43.8%,51.3% 44.1%,52.4% 45.1%,54.1% 44.8%,57.2% 44.2%,53.9% 48.1%,54.7% 48.9%);transform:perspective(1400px) scale(.2) rotate(-16deg) rotateX(25deg);filter:brightness(0.5);opacity:1}25%{clip-path:polygon(70.9% 50.0%,72.4% 55.1%,64.6% 57.0%,68.7% 64.9%,69.4% 74.3%,59.8% 70.2%,53.5% 65.5%,50.0% 71.2%,44.3% 75.1%,41.3% 68.0%,30.5% 74.5%,35.4% 61.7%,27.6% 60.8%,26.5% 55.4%,25.0% 50.0%,32.4% 46.0%,33.7% 42.2%,26.6% 31.4%,30.0% 25.0%,39.1% 27.4%,44.2% 24.4%,50.0% 26.6%,54.4% 30.8%,58.3% 32.7%,67.0% 28.7%,64.7% 38.3%,75.1% 37.9%,73.7% 44.6%);transform:perspective(1400px) scale(.5) rotate(8deg) rotateY(-14deg);filter:brightness(0.72);opacity:1}55%{clip-path:polygon(87.4% 50.0%,93.1% 59.8%,83.6% 66.2%,90.8% 82.5%,85.0% 93.9%,69.0% 89.5%,59.3% 91.0%,50.0% 89.1%,40.2% 92.9%,31.6% 88.3%,15.2% 93.7%,5.6% 85.4%,11.8% 68.4%,7.6% 59.7%,10.9% 50.0%,14.0% 41.8%,15.9% 33.6%,15.9% 22.8%,16.0% 7.4%,33.3% 15.3%,41.5% 12.6%,50.0% 10.4%,58.6% 12.3%,68.6% 11.3%,77.7% 15.3%,87.7% 20.0%,85.4% 32.9%,89.8% 40.9%);transform:perspective(1400px) scale(.88) rotate(-3deg) rotateX(-4deg);filter:brightness(0.9);opacity:1}80%{clip-path:polygon(99.1% 50.0%,100.2% 61.5%,97.8% 73.0%,100.4% 90.2%,90.2% 100.5%,74.0% 99.8%,61.2% 99.2%,50.0% 98.6%,38.6% 100.1%,26.2% 99.4%,10.9% 99.0%,1.6% 88.6%,0.9% 73.6%,1.7% 61.0%,-0.4% 50.0%,0.8% 38.8%,-0.2% 25.8%,2.0% 11.8%,11.7% 2.0%,25.7% -0.4%,38.7% 0.4%,50.0% 1.6%,61.4% 0.0%,73.4% 1.4%,90.0% -0.1%,99.0% 11.0%,99.0% 26.4%,98.2% 39.0%);transform:perspective(1400px) scale(1.025) rotate(.8deg);filter:brightness(1);opacity:1}100%{clip-path:none;transform:none;opacity:1;filter:none}}
+#menu.closing{animation:mClose .3s cubic-bezier(.55,.05,.8,.35) both;pointer-events:none}
+#menu.closing::after{animation:mCrumpleIn .3s ease-in both}
+@keyframes mCrumpleIn{from{opacity:0}35%{opacity:.7}to{opacity:1}}
+@keyframes mClose{0%{clip-path:none;transform:none;filter:brightness(1);opacity:1}30%{clip-path:polygon(92.8% 50.0%,92.9% 59.8%,94.5% 71.4%,95.2% 86.1%,85.0% 93.9%,70.7% 92.9%,59.8% 93.1%,50.0% 95.5%,39.6% 95.6%,28.3% 95.0%,13.0% 96.4%,3.0% 87.5%,6.7% 70.8%,3.7% 60.6%,6.2% 50.0%,6.4% 40.1%,5.3% 28.5%,6.5% 15.3%,13.0% 3.6%,28.2% 4.8%,39.6% 4.5%,50.0% 3.7%,60.3% 4.8%,71.5% 5.4%,85.7% 5.2%,93.3% 15.5%,93.3% 29.2%,92.9% 40.2%);transform:perspective(1400px) scale(.96) rotate(1.5deg);filter:brightness(0.95);opacity:1}65%{clip-path:polygon(75.7% 50.0%,70.9% 54.8%,79.8% 64.4%,75.3% 70.2%,65.9% 69.9%,59.9% 70.5%,56.8% 79.7%,50.0% 75.5%,44.2% 75.6%,38.5% 73.9%,27.5% 78.2%,26.1% 69.1%,23.0% 63.0%,23.9% 56.0%,23.7% 50.0%,26.9% 44.7%,19.7% 35.4%,23.1% 28.6%,29.8% 24.7%,38.8% 26.7%,44.9% 27.5%,50.0% 30.1%,56.0% 23.6%,64.6% 19.6%,69.7% 25.3%,73.1% 31.6%,72.4% 39.2%,78.6% 43.5%);transform:perspective(1400px) scale(.58) rotate(-8deg) rotateY(12deg);filter:brightness(0.75);opacity:1}100%{clip-path:polygon(53.8% 50.0%,55.6% 51.3%,56.6% 53.2%,54.6% 53.7%,54.9% 56.2%,52.6% 55.4%,51.5% 56.4%,50.0% 54.4%,48.7% 55.7%,47.8% 54.5%,47.2% 53.6%,46.6% 52.7%,43.9% 53.0%,44.3% 51.3%,44.9% 50.0%,43.7% 48.6%,45.5% 47.8%,46.8% 47.5%,47.0% 46.2%,47.3% 44.3%,48.7% 44.5%,50.0% 46.3%,51.2% 44.9%,52.8% 44.2%,52.6% 46.7%,56.5% 44.9%,54.5% 47.8%,56.3% 48.6%);transform:perspective(1400px) scale(.16) rotate(15deg) rotateX(28deg);filter:brightness(0.5);opacity:0}}   /* closing balls the page back up: the open, reversed and quicker */
 body:has(#menu:not([hidden]))::before{content:'';position:fixed;inset:0;z-index:24;background:rgba(14,12,9,.64)}   /* the room dims behind the open paper; a tap there closes it */
-#menu .obj{animation:mDrop .42s cubic-bezier(.3,1.4,.5,1) both;animation-delay:calc(.8s + var(--i,0)*.06s)}
+#menu .obj{animation:mDrop .42s cubic-bezier(.3,1.4,.5,1) both;animation-delay:calc(.5s + var(--i,0)*.06s)}
 @keyframes mDrop{from{opacity:0;translate:0 -18px;scale:1.06}to{opacity:1;translate:0 0;scale:1}}
-@media (prefers-reduced-motion:reduce){ #menu:not([hidden]){animation:none} #menu .obj{animation:none} }
+@media (prefers-reduced-motion:reduce){ #menu:not([hidden]){animation:none} #menu:not([hidden])::after{display:none} #menu.closing{animation:none} #menu .obj{animation:none} }
 #menu :focus-visible{outline:3px solid var(--stamp);outline-offset:3px}
 #menu .dTop{display:grid;grid-template-columns:auto 1fr auto;align-items:stretch;border-bottom:3px double var(--ink)}
 #menu .ctl{all:unset;cursor:pointer;display:flex;flex-direction:column;justify-content:center;gap:3px;padding:8px 12px;font:8px/1 var(--px);letter-spacing:.12em;color:var(--ink)}
@@ -2073,7 +2079,7 @@ body.pinning #card #headline{font-size:23px}
 .psNone{margin:4px 0 0;font:17px/1.15 var(--vt);color:#8a7f69;font-style:italic}
 </style>
 </head>
-<body>
+<body><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="menuCrumple" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".028 .034" numOctaves="4" seed="7" result="n"/><feDiffuseLighting in="n" surfaceScale="5" diffuseConstant="1.15" lighting-color="#fff"><feDistantLight azimuth="235" elevation="52"/></feDiffuseLighting><feComponentTransfer><feFuncR type="linear" slope="1.25" intercept="-.05"/><feFuncG type="linear" slope="1.25" intercept="-.05"/><feFuncB type="linear" slope="1.2" intercept="-.1"/></feComponentTransfer></filter></svg>
 <input id="guessProxy" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="Guess the hidden word" tabindex="-1">
 <canvas id="bg" aria-hidden="true"></canvas>
 <canvas id="intro" aria-hidden="true" hidden></canvas>
@@ -4069,7 +4075,7 @@ function startGame(mode, kind){
     ? 'Guess the hidden word in each true headline. The exact word, or any word that means the same (pub or bar), scores <b>'+Math.round(BLANK_MAX)+'</b>, however fast you find it. Near misses pay part of that, the closer the more. Every guess after your third costs 5%.'
     : 'Right call on a true story: up to <b>+'+Math.round(PK*CALL_PTS)+'</b>, more the quicker you answer. Catching a fake: <b>+'+FAKE_PTS+'</b>. Fooled by a fake: <b>−'+Math.abs(FOOLED_PTS)+'</b>. Then pin where the true story happened for up to <b>+'+Math.round(PK*PIN_PTS)+'</b>, plus <b>+'+Math.round(PK*COUNTRY_PTS)+'</b> if your pin is in the right country. Your pin\'s rarity adds a bonus: <b>+'+pinBonus(0)+'</b> Globalist, <b>+'+pinBonus(300)+'</b> Statesman, <b>+'+pinBonus(1000)+'</b> Pundit, <b>+'+pinBonus(3000)+'</b> Skimmer. Every point drops his jaw the same distance, and losing points pulls it back up.';
   renderStats();
-  closeMenu();
+  closeMenu(true);
   Scene.configure(JAW_SCALE);
   Scene.setBest(bestM());
   Scene.reset(); setDepthHud(0); setAusBar(0);
@@ -5289,7 +5295,7 @@ function startRecap(auto){
   Intro.hide(true);                                 // back down from space for the replay
   Intro.hold();                                     // the summary stays hidden through the replay and the zoom out
   const list=recapList();
-  RECAP_ON=true; document.body.classList.add('recap'); closeMenu(); $('sheet').hidden=true;
+  RECAP_ON=true; document.body.classList.add('recap'); closeMenu(true); $('sheet').hidden=true;
   if(auto){   // finishing a dig: back up to the room fast, then out to the planet. The slow review stays one tap away (Replay the dig).
     document.body.classList.add('quick'); Sound.play('jawUp');
     Scene.playRecap(list, 0, ()=>endRecapUI(false,true), true);
@@ -5691,7 +5697,7 @@ async function openBackIssue(date){
   try{
     const r=await fetch('data/'+date+'.json',{cache:'no-cache'}); if(!r.ok) return;
     BACK=await r.json(); BACK.date=date;
-    closeMenu(); startGame('back', KIND==='blank'?'blank':POL_ON&&KIND==='pol'&&BACK.politics&&BACK.politics.length?'pol':'call');
+    closeMenu(true); startGame('back', KIND==='blank'?'blank':POL_ON&&KIND==='pol'&&BACK.politics&&BACK.politics.length?'pol':'call');
   }catch(e){}
 }
 
@@ -6828,8 +6834,11 @@ function pinMenu(){
   $('menu').style.top=(top+38)+'px'; $('menu').style.left=left+'px';
 }
 window.addEventListener('scroll',pinMenu,{passive:true}); window.addEventListener('resize',pinMenu); pinMenu();
-function closeMenu(){ document.body.classList.remove('hideq'); $('menu').hidden=true; $('backList').hidden=true; $('practiceList').hidden=true; $('mPractice').setAttribute('aria-expanded','false'); $('howBox').hidden=true; $('mHow').setAttribute('aria-expanded','false'); $('menuBtn').setAttribute('aria-expanded','false'); }
-$('menuBtn').onclick=e=>{ e.stopPropagation(); Sound.play('menu'); const open=$('menu').hidden; $('menu').hidden=!open; document.body.classList.toggle('hideq',open && !!S && S.phase==='call'); $('menuBtn').setAttribute('aria-expanded',String(open)); if(open){ renderStats(); pinMenu(); renderDesk(); $('menu').scrollTop=0; } };
+function finishClose(){ const m=$('menu'); m.classList.remove('closing'); m.hidden=true; clearTimeout(finishClose.t); }
+function closeMenu(now){ document.body.classList.remove('hideq'); const m=$('menu');
+  if(!m.hidden && !m.classList.contains('closing') && !now && !matchMedia('(prefers-reduced-motion:reduce)').matches){ m.classList.add('closing'); finishClose.t=setTimeout(finishClose,340); }   // ball up, then hide
+  else if(!m.classList.contains('closing') || now) finishClose(); $('backList').hidden=true; $('practiceList').hidden=true; $('mPractice').setAttribute('aria-expanded','false'); $('howBox').hidden=true; $('mHow').setAttribute('aria-expanded','false'); $('menuBtn').setAttribute('aria-expanded','false'); }
+$('menuBtn').onclick=e=>{ e.stopPropagation(); Sound.play('menu'); if($('menu').classList.contains('closing')) finishClose(); const open=$('menu').hidden; if(open) $('menu').hidden=false; else closeMenu(); document.body.classList.toggle('hideq',open && !!S && S.phase==='call'); $('menuBtn').setAttribute('aria-expanded',String(open)); if(open){ renderStats(); pinMenu(); renderDesk(); $('menu').scrollTop=0; } };
 $('menu').addEventListener('click',e=>e.stopPropagation());
 $('mFold').onclick=()=>{ Sound.play('menu'); closeMenu(); };
 $('mHow').onclick=()=>{ const b=$('howBox'); b.hidden=!b.hidden; $('mHow').setAttribute('aria-expanded',String(!b.hidden)); $('practiceList').hidden=true; $('mPractice').setAttribute('aria-expanded','false'); $('backList').hidden=true; };
