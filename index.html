@@ -7116,7 +7116,7 @@ HPAGES.modes={title:'Modes',render(){
   $('hpBody').innerHTML='<div class="mdGrid">'+daily+blank+back+unl+'</div>';
   const go=(id,fn)=>{ const b=$(id); if(b) b.onclick=fn; };
   go('mdDaily',()=>{ hpClose(); startGame('daily','call'); });
-  go('mdBlank',()=>hpOpen('blank'));
+  go('mdBlank',()=>{ hpClose(); startGame('daily','blank'); });
   go('mdUnlC',()=>{ hpClose(); startGame('practice','call'); });
   go('mdUnlB',()=>{ hpClose(); startGame('practice','blank'); });
   go('mdUnl',()=>openPass());
