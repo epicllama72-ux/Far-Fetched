@@ -947,21 +947,13 @@ body.planetview #final,body.planetview #bar,body.planetview #comeBack,body.plane
 #introTop{position:fixed;left:50%;transform:translateX(-50%);z-index:5;width:min(520px,calc(100vw - 32px));}
 #introTop{text-align:center;opacity:0;transition:opacity .5s}
 #introTop.on{opacity:1}
-/* Unlimited: a glowing infinity sign hangs over the planet until the player says they are ready */
-#infMark{position:fixed;z-index:6;display:none;pointer-events:none;translate:-50% -50%;aspect-ratio:2/1;overflow:visible}
-body.infIntro:has(#introTop.on) #infMark{display:block;animation:infIn .7s cubic-bezier(.2,1.3,.4,1) both,infFloat 4.2s ease-in-out .7s infinite alternate}
-#infMark svg{width:100%;height:100%;overflow:visible;display:block}
-#infMark .base{fill:none;stroke:#1a2750;stroke-width:11;stroke-linecap:round;stroke-linejoin:round;opacity:.75}
-#infMark .glow{fill:none;stroke:url(#infGrad);stroke-width:10;stroke-linecap:round;filter:url(#infBlur);animation:infPulse 2.4s ease-in-out infinite alternate}
-#infMark .core{fill:none;stroke:url(#infGrad);stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}
-#infMark .hi{fill:none;stroke:#fff;stroke-width:1.6;stroke-linecap:round;opacity:.9}
-#infMark .comet{fill:none;stroke:#fff;stroke-width:5;stroke-linecap:round;stroke-dasharray:9 91;filter:url(#infBlurS);animation:infRun 2.8s linear infinite}
-#infMark .comet.b{animation-delay:-1.4s;stroke:#bff3ff}
-@keyframes infRun{to{stroke-dashoffset:-100}}
-@keyframes infPulse{from{opacity:.55}to{opacity:1}}
-@keyframes infFloat{from{translate:-50% -50%;rotate:-1.5deg}to{translate:-50% calc(-50% - 7px);rotate:1.5deg}}
-@keyframes infIn{from{opacity:0;scale:.3;filter:brightness(2)}to{opacity:1;scale:1;filter:none}}
-@media (prefers-reduced-motion:reduce){body.infIntro:has(#introTop.on) #infMark{animation:none} #infMark .comet,#infMark .glow{animation:none}}
+/* Unlimited: a pixel-art infinity sign hangs over the planet until the player says they are ready */
+#infMark{position:fixed;z-index:6;display:none;pointer-events:none;translate:-50% -50%}
+body.infIntro:has(#introTop.on) #infMark{display:block;animation:infIn .5s steps(5) both,infBob 1.6s steps(2) .5s infinite alternate}
+#infMark canvas{display:block;image-rendering:pixelated;image-rendering:crisp-edges;filter:drop-shadow(0 0 0 #05060c)}
+@keyframes infBob{from{translate:-50% -50%}to{translate:-50% calc(-50% - 6px)}}
+@keyframes infIn{from{opacity:0;scale:.4}to{opacity:1;scale:1}}
+@media (prefers-reduced-motion:reduce){body.infIntro:has(#introTop.on) #infMark{animation:none}}
 #introTop .it{font:clamp(20px,7vw,44px)/1 var(--px);color:#c9ced8;letter-spacing:2px;text-shadow:3px 3px 0 #1a1220;white-space:nowrap}
 #introTop .it b{font-weight:400;color:var(--accent)}
 /* the title is pixel art (icons/title.png, drawn by scripts/title_art.html), scaled up without smoothing, with a soft glow that breathes slowly */
@@ -2098,13 +2090,7 @@ body.pinning #card #headline{font-size:23px}
 <input id="guessProxy" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="Guess the hidden word" tabindex="-1">
 <canvas id="bg" aria-hidden="true"></canvas>
 <canvas id="intro" aria-hidden="true" hidden></canvas>
-<div id="infMark" aria-hidden="true"><svg viewBox="-6 -4 212 108"><defs><linearGradient id="infGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffcc4d"/><stop offset=".5" stop-color="#7ee8ff"/><stop offset="1" stop-color="#ff6bd6"/></linearGradient><filter id="infBlur" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="5"/></filter><filter id="infBlurS" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="1.6"/></filter></defs>
-<path id="infPath" pathLength="100" class="base" d="M100 50C100 50 80 8 50 8C20 8 3 28 3 50C3 72 20 92 50 92C80 92 100 50 100 50C100 50 120 8 150 8C180 8 197 28 197 50C197 72 180 92 150 92C120 92 100 50 100 50Z"/>
-<path pathLength="100" class="glow" d="M100 50C100 50 80 8 50 8C20 8 3 28 3 50C3 72 20 92 50 92C80 92 100 50 100 50C100 50 120 8 150 8C180 8 197 28 197 50C197 72 180 92 150 92C120 92 100 50 100 50Z"/>
-<path pathLength="100" class="core" d="M100 50C100 50 80 8 50 8C20 8 3 28 3 50C3 72 20 92 50 92C80 92 100 50 100 50C100 50 120 8 150 8C180 8 197 28 197 50C197 72 180 92 150 92C120 92 100 50 100 50Z"/>
-<path pathLength="100" class="hi" d="M100 50C100 50 80 8 50 8C20 8 3 28 3 50C3 72 20 92 50 92C80 92 100 50 100 50C100 50 120 8 150 8C180 8 197 28 197 50C197 72 180 92 150 92C120 92 100 50 100 50Z"/>
-<path pathLength="100" class="comet" d="M100 50C100 50 80 8 50 8C20 8 3 28 3 50C3 72 20 92 50 92C80 92 100 50 100 50C100 50 120 8 150 8C180 8 197 28 197 50C197 72 180 92 150 92C120 92 100 50 100 50Z"/>
-<path pathLength="100" class="comet b" d="M100 50C100 50 80 8 50 8C20 8 3 28 3 50C3 72 20 92 50 92C80 92 100 50 100 50C100 50 120 8 150 8C180 8 197 28 197 50C197 72 180 92 150 92C120 92 100 50 100 50Z"/></svg></div>
+<div id="infMark" aria-hidden="true"><canvas id="infCv" width="76" height="38"></canvas></div>
 <div id="introTop" hidden><h1 class="it"><img src="icons/title.png" alt="Far-Fetched" width="280" height="45"></h1><div id="introStamp" hidden></div><p id="introLine"></p><p id="introNote" hidden></p><details id="introHow"><summary>HOW TO PLAY</summary><div id="introHowText"></div></details></div>
 <div id="browseHint" aria-hidden="true">↕ drag or scroll to explore your dig</div>
 <div id="ruler" aria-hidden="true"></div>
@@ -7742,7 +7728,7 @@ const Intro=(function(){
     const Rpx=Math.min(innerWidth*(narrow?0.49:0.3), room/2-(narrow?0:14)), eyPx=tb+GAP+Math.max(0,(room-2*Rpx)/2)+Rpx;   // spare height (planet limited by width) is split above and below, so the earth sits centred   // tucked right under How to play
     IP={R:Rpx/PX, ey:eyPx/PX};
     if(typeof placeBrief==='function') placeBrief((w*PX)/2, eyPx, Rpx);
-    const im=$('infMark'); if(im){ im.style.left=(w*PX)/2+'px'; im.style.top=eyPx+'px'; im.style.width=Math.min(Rpx*1.85,innerWidth-40)+'px'; }   // the infinity sign (Unlimited) hangs over the middle of the planet
+    const im=$('infMark'); if(im){ im.style.left=(w*PX)/2+'px'; im.style.top=eyPx+'px'; const sc=Math.max(2,Math.floor(Math.min(Rpx*1.85,innerWidth-40)/76)); const cv=$('infCv'); cv.style.width=(76*sc)+'px'; cv.style.height=(38*sc)+'px'; }   // the infinity sign (Unlimited) hangs over the middle of the planet
   }
   const idlePos=()=>IP || {R:Math.min(w,h)*0.32, ey:h*0.6};
   function introText(){
@@ -7866,6 +7852,38 @@ loadBriefs();
 Promise.all([loadDaily(),loadPractice()]).finally(()=>{ startGame('daily',VS&&(POL_ON||VS.kind!=='pol')?VS.kind:KIND); loadIssues(); setTimeout(Intro.check,60); try{ passChanged(); }catch(e){} setTimeout(checkPassReturn,1500); setTimeout(()=>{ checkGroupInvite(); syncName(false); },1200); });
 window.addEventListener('resize',()=>{ clearTimeout(window._aimT); window._aimT=setTimeout(()=>aim(),200); });
 
+
+/* Pixel-art infinity sign for Unlimited: a 76x38 grid, drawn in the game's own palette, with two bright pixels chasing around the loop */
+(function(){
+  const cv=document.getElementById('infCv'); if(!cv) return;
+  const W=76,H=38,cx=38,cy=19,A=33, ctx=cv.getContext('2d');
+  const PAL=['#ffcc4d','#ffe27a','#a8f2ff','#7ee8ff','#c59bff','#ff6bd6'], OUT='#0b1030', HALO='#25357a';
+  const pts=[], seen=new Set();
+  for(let k=0;k<1400;k++){ const t=k/1400*Math.PI*2, d=1+Math.sin(t)*Math.sin(t);
+    const x=Math.round(cx+A*Math.cos(t)/d), y=Math.round(cy+A*Math.sin(t)*Math.cos(t)/d*1.0), key=x+','+y;
+    if(!seen.has(key)){ seen.add(key); pts.push({x,y,u:k/1400}); } }
+  const body=new Map(); pts.forEach(p=>{ [[0,0],[1,0],[-1,0],[0,1],[0,-1]].forEach(([dx,dy])=>{ const x=p.x+dx,y=p.y+dy; body.set(x+','+y,{x,y,u:p.u}); }); });
+  const outl=new Map(), halo=new Map();
+  body.forEach(p=>{ for(let dx=-2;dx<=2;dx++)for(let dy=-2;dy<=2;dy++){ if(Math.abs(dx)+Math.abs(dy)<=2){ const x=p.x+dx,y=p.y+dy,k=x+','+y; if(!body.has(k)) outl.set(k,{x,y}); } }
+    for(let dx=-4;dx<=4;dx++)for(let dy=-3;dy<=3;dy++){ if(Math.abs(dx)+Math.abs(dy)<=4){ const x=p.x+dx,y=p.y+dy,k=x+','+y; if(!body.has(k)&&!outl.has(k)&&((x+y)&1)==0) halo.set(k,{x,y}); } } });
+  const mix=(h,w)=>{ const n=parseInt(h.slice(1),16),r=n>>16,g=n>>8&255,b=n&255,m=c=>Math.round(c+(255-c)*w); return 'rgb('+m(r)+','+m(g)+','+m(b)+')'; };
+  const SPARK=[[6,5],[69,6],[12,33],[64,32],[38,3],[38,35]];
+  function draw(f){
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle=HALO; halo.forEach(p=>{ if(((p.x*7+p.y*3+f)&3)!==0) ctx.fillRect(p.x,p.y,1,1); });
+    ctx.fillStyle=OUT; outl.forEach(p=>ctx.fillRect(p.x,p.y,1,1));
+    body.forEach(p=>{ const idx=Math.min(5,Math.max(0,Math.floor((p.x-4)/68*6)));
+      const up=body.has(p.x+','+(p.y-1)), dn=body.has(p.x+','+(p.y+1));
+      ctx.fillStyle= !up ? mix(PAL[idx],.45) : !dn ? mix(PAL[idx],-0.0)  : PAL[idx];
+      ctx.fillRect(p.x,p.y,1,1); });
+    body.forEach(p=>{ if(!body.has(p.x+','+(p.y+1))){ ctx.fillStyle='rgba(10,16,48,.35)'; ctx.fillRect(p.x,p.y,1,1); } });   // a darker lower edge
+    const heads=[(f*0.016)%1,((f*0.016)+.5)%1];
+    body.forEach(p=>{ heads.forEach(h=>{ let d=(h-p.u+1)%1; if(d<.09){ ctx.fillStyle= d<.015?'#ffffff': d<.04?'#fff7c9':'#bff3ff'; ctx.fillRect(p.x,p.y,1,1); } }); });
+    SPARK.forEach(([x,y],i)=>{ const on=((f+i*3)%12)<6; ctx.fillStyle=on?'#ffffff':'#7ee8ff'; ctx.fillRect(x,y,1,1); if(on){ ctx.fillRect(x-1,y,1,1); ctx.fillRect(x+1,y,1,1); ctx.fillRect(x,y-1,1,1); ctx.fillRect(x,y+1,1,1); } });
+  }
+  let f=0; draw(0);
+  if(!matchMedia('(prefers-reduced-motion:reduce)').matches) setInterval(()=>{ if(document.body.classList.contains('infIntro') && !document.hidden){ f++; draw(f); } },100);
+})();
 </script>
 </body>
 </html>
