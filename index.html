@@ -736,6 +736,36 @@ body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
 #final[hidden]+#finalBtns{display:none}   /* the same buttons, under the summary of a finished round */
 body.calm *,body.calm *::before,body.calm *::after{animation:none!important}   /* Settings > Calm mode */
 /* one-time notice over the earth: pin on the globe or the map */
+/* MODES page: the menu's paper objects, one per game */
+#hpBody .mdGrid{--paper:#ece5d1;--newsprint:#d9cfb4;--ink:#1b1813;--inkdim:#5a5043;--stamp:#a8231a;--note:#f2d65a;--navy:#24324a;--cardc:#f7f3e8;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px;align-items:start;padding:18px 12px 20px;border:3px solid var(--ink);box-shadow:4px 5px 0 rgba(0,0,0,.45);
+  background:repeating-linear-gradient(180deg,transparent 0 7px,rgba(27,24,19,.07) 7px 9px),var(--newsprint);color:var(--ink)}
+#hpBody .mdT{all:unset;box-sizing:border-box;position:relative;display:block;min-width:0;cursor:pointer;color:var(--ink);rotate:var(--r,0deg);transition:rotate .15s;filter:drop-shadow(3px 4px 0 rgba(27,24,19,.35));animation:mDrop .42s cubic-bezier(.3,1.4,.5,1) both;animation-delay:calc(.05s + var(--i,0)*.07s)}
+#hpBody .mdT:hover{rotate:0deg} #hpBody .mdT:focus-visible{outline:3px solid var(--stamp);outline-offset:4px}
+#hpBody .mdT .tt{display:block;font:11px/1.2 var(--px);letter-spacing:.04em} #hpBody .mdT .ss{display:block;margin-top:3px;font:17px/1 var(--vt);color:var(--inkdim)}
+#hpBody .mdDaily{grid-column:1/-1;background:var(--cardc);border:1px solid var(--ink);padding:0 0 12px}
+#hpBody .mdDaily .mast{display:flex;justify-content:space-between;background:var(--ink);color:var(--paper);padding:6px 10px 5px;font:8px/1 var(--px);letter-spacing:.12em}
+#hpBody .mdDaily .big{display:block;margin:8px 12px 2px;font:clamp(40px,12vw,56px)/.9 var(--vt)} #hpBody .mdDaily .ss{margin:0 12px}
+#hpBody .mdDaily .go{position:absolute;right:12px;bottom:12px;background:var(--ink);color:var(--paper);padding:7px 10px 6px;font:8px/1 var(--px);letter-spacing:.14em}
+#hpBody .mdDaily:hover .go{background:var(--stamp)}
+#hpBody .mdDaily .stamp{position:absolute;right:12px;top:40px;rotate:-6deg;border:2px solid var(--stamp);color:var(--stamp);padding:5px 7px 4px;font:7px/1.3 var(--px);letter-spacing:.1em;text-align:center}
+#hpBody .mdBlank{background:var(--cardc);border:1px solid var(--ink);padding:10px 10px 12px}
+#hpBody .mdBlank .cg{display:grid;grid-template-columns:repeat(6,1fr);gap:2px;margin:8px 0 6px}
+#hpBody .mdBlank .cg i{aspect-ratio:1;border:1px solid var(--ink);background:#fff;display:grid;place-items:center;font:12px/1 var(--px);font-style:normal} #hpBody .mdBlank .cg i.f{background:var(--note);color:var(--stamp)}
+#hpBody .mdUnl{background:var(--navy);color:#f1e9d2;padding:12px 10px 12px;border:1px solid var(--ink);display:block}
+#hpBody .mdUnl .tt{color:#f1e9d2} #hpBody .mdUnl .ss{color:#a9b4d0}
+#hpBody .mdUnl svg{display:block;width:64px;height:auto;margin:6px auto 6px;color:#ff5a4a;shape-rendering:crispEdges;filter:drop-shadow(0 0 6px rgba(255,90,74,.6))}
+#hpBody .mdUnl .ch{display:flex;gap:6px;margin-top:8px} #hpBody .mdUnl .ch button{all:unset;cursor:pointer;flex:1;text-align:center;background:var(--cardc);color:var(--ink);padding:7px 2px 6px;font:7px/1 var(--px);letter-spacing:.08em;box-shadow:2px 2px 0 rgba(0,0,0,.4)}
+#hpBody .mdUnl .ch button:hover{background:var(--note)} #hpBody .mdUnl .ch button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+#hpBody .mdUnl .pt{position:absolute;right:-6px;top:-8px;background:var(--stamp);color:#fff;padding:4px 5px 3px;font:6px/1 var(--px);letter-spacing:.14em;rotate:5deg}
+#hpBody .mdBack{padding:0;filter:none;background:none} #hpBody .mdBack .stk{display:block;position:relative;height:58px;margin-bottom:0}
+#hpBody .mdBack .stk i{position:absolute;left:0;right:0;height:46px;border:1px solid var(--ink);background:var(--cardc);filter:drop-shadow(2px 3px 0 rgba(27,24,19,.3))}
+#hpBody .mdBack .stk i:nth-child(1){top:14px;rotate:-3deg;background:#e7dfc6} #hpBody .mdBack .stk i:nth-child(2){top:7px;rotate:2deg;background:#efe8d3} #hpBody .mdBack .stk i:nth-child(3){top:0}
+#hpBody .mdBack .stk b{position:absolute;left:8px;right:8px;top:8px;height:5px;background:var(--ink);box-shadow:0 9px 0 -1px rgba(27,24,19,.35),0 16px 0 -1px rgba(27,24,19,.35)}
+#hpBody .mdBack .lb{display:block;position:relative;z-index:1;background:var(--cardc);border:1px solid var(--ink);padding:8px 10px 9px;margin-top:-4px}
+#hpBody .mdSoon{background:var(--note);padding:18px 12px 14px;margin-top:10px;cursor:default;opacity:.92;box-shadow:2px 3px 0 rgba(27,24,19,.25)}
+#hpBody .mdSoon .ss{color:#4d4320} #hpBody .mdSoon::before{content:'';position:absolute;left:50%;top:-8px;width:44px;height:14px;translate:-50% 0;background:rgba(255,255,255,.5);rotate:-3deg}
+@media (prefers-reduced-motion:reduce){#hpBody .mdT{animation:none}}
 #hp .pcRow .b2{height:44px;margin:0;display:flex;align-items:center;justify-content:center;padding:0 6px}
 #hp{position:fixed;inset:0;z-index:31;background:rgba(5,6,10,.85);display:flex;align-items:stretch;justify-content:center}
 #hp[hidden]{display:none}
@@ -7075,13 +7105,16 @@ HPAGES.streak={title:'Streak',mon:null,sel:null,
 let BP_T=0;
 HPAGES.modes={title:'Modes',render(){
   const days=histDays(), today=days[dayKey()]||{}, bd=blankDone(), pro=isPro();
-  const mode=(name,state,desc,btns,cls)=>hpCard(name,state||'','<p class="sm">'+desc+'</p>'+btns,cls);
-  $('hpBody').innerHTML=
-    mode('DAILY DIG',today.call?'DONE TODAY':'TODAY',"Seven strange headlines: call each real or fake, then pin where the true ones happened. A new paper every day at midnight Eastern.",'<button class="b2 red" id="mdDaily" type="button">'+(today.call?'See today\'s dig':'Play today\'s dig')+'</button>')
-    +mode('FILL THE BLANK',bd?'DONE TODAY':BLANK_N+' WORDS',"Every headline is true but one word is missing. Type it before the clock runs out; warmer and colder tell you how close you are.",'<button class="b2" id="mdBlank" type="button">'+(bd?'See your answers':'Play Fill the Blank')+'</button>')
-    +mode('UNLIMITED',pro?'':'PRESS PASS',"Every story we have, as many as you like, with no clock on the day. "+(pro?'Pick a style:':'Part of the Press Pass.'),pro?'<div class="g2"><button class="b2" id="mdUnlC" type="button">Real or Fake</button><button class="b2" id="mdUnlB" type="button">Fill the Blank</button></div>':'<button class="b2" id="mdUnl" type="button">See the Press Pass</button>')
-    +mode('BACK ISSUES','',"Missed a day? Play past papers any time. They don't count toward your streak or the standings.",'<button class="b2 ghost" id="mdBack" type="button">Open back issues</button>')
-    +mode('POLITICS','COMING SOON',"A separate paper of political stories is on hold for now.",'<button class="b2 ghost" type="button" disabled>Coming soon</button>');
+  const INF='<svg viewBox="0 0 7 7" aria-hidden="true"><g fill="currentColor"><rect x="1" y="2" width="2" height="1"/><rect x="4" y="2" width="2" height="1"/><rect x="0" y="3" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/><rect x="1" y="4" width="2" height="1"/><rect x="4" y="4" width="2" height="1"/></g></svg>';
+  $('hpBody').innerHTML='<div class="mdGrid">'
+    +'<button id="mdDaily" type="button" class="mdT mdDaily" style="--r:-1deg;--i:0"><span class="mast"><span>THE DAILY ODD</span><span>NO. '+dayNumber()+'</span></span><span class="big">Daily Dig</span><span class="ss">'+(today.call?'Done today':'Real or fake, then pin it')+'</span><span class="go">'+(today.call?'SEE IT':'PLAY')+' &rarr;</span></button>'
+    +'<button id="mdBlank" type="button" class="mdT mdBlank" style="--r:2deg;--i:1"><span class="tt">FILL THE BLANK</span><span class="cg" aria-hidden="true"><i>B</i><i class="f">?</i><i>N</i><i>K</i><i class="f">?</i><i>R</i></span><span class="ss">'+(bd?'Done today':BLANK_N+' words')+'</span></button>'
+    +(pro
+      ?'<div class="mdT mdUnl" style="--r:-2deg;--i:2">'+INF+'<span class="tt" style="text-align:center">UNLIMITED</span><span class="ch"><button id="mdUnlC" type="button">DIG</button><button id="mdUnlB" type="button">BLANK</button></span></div>'
+      :'<button id="mdUnl" type="button" class="mdT mdUnl" style="--r:-2deg;--i:2"><span class="pt">PASS</span>'+INF+'<span class="tt" style="text-align:center">UNLIMITED</span><span class="ss" style="text-align:center">Every story we have</span></button>')
+    +'<button id="mdBack" type="button" class="mdT mdBack" style="--r:2deg;--i:3"><span class="stk" aria-hidden="true"><i></i><i></i><i><b></b></i></span><span class="lb"><span class="tt">BACK ISSUES</span><span class="ss">Missed a day?</span></span></button>'
+    +'<div class="mdT mdSoon" style="--r:1.5deg;--i:4"><span class="tt">POLITICS</span><span class="ss">Coming soon</span></div>'
+    +'</div>';
   const go=(id,fn)=>{ const b=$(id); if(b) b.onclick=fn; };
   go('mdDaily',()=>{ hpClose(); startGame('daily','call'); });
   go('mdBlank',()=>hpOpen('blank'));
