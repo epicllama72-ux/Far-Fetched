@@ -732,7 +732,7 @@ body.introIdle #btnStart:not([hidden]) ~ #homeBtns{display:flex}
 :is(#homeBtns,#finalBtns) .hr:nth-child(2) .ht::before{top:1px}
 :is(#homeBtns,#finalBtns) .hdot{position:absolute;top:-5px;right:-4px;background:#a8231a;color:#fff;font:6px/1 var(--px);padding:3px 4px 2px}
 :is(#homeBtns,#finalBtns) .hdot:empty{display:none}
-:is(#homeBtns,#finalBtns) .hdot.ban{left:-4px;right:-4px;text-align:center;white-space:nowrap;background:#ffcc4d;color:#2b2000}
+:is(#homeBtns,#finalBtns) .hdot.ban{top:auto;bottom:-6px;left:50%;right:auto;translate:-50% 0;text-align:center;white-space:nowrap;background:#ffcc4d;color:#2b2000;border:1px solid #2b2000;padding:3px 6px 2px}
 #finalBtns{display:flex;flex-direction:column;margin:18px 0 0;padding:0 2px calc(110px + env(safe-area-inset-bottom,0px))}
 #final[hidden]+#finalBtns{display:none}   /* the same buttons, under the summary of a finished round */
 body.calm *,body.calm *::before,body.calm *::after{animation:none!important}   /* Settings > Calm mode */
@@ -955,10 +955,10 @@ body.calm #hp .ppHero,body.calm #hp .ppHero::after,body.calm #hp .ppHeroPrice{an
 #hp .ppNote a{color:#ffcc4d}
 @media (max-width:360px){#hp .ppBonus{grid-template-columns:1fr}#hp .ppArt{justify-self:start}}
 #hp .hint{color:#aab6d6;font:18px/1.1 var(--vt);margin:8px 0}
-#hp .chgBtn{display:inline-block;margin-top:10px;padding:9px 12px 8px;border:2px solid #ffcc4d;border-bottom-width:2px;background:rgba(255,204,77,.12);font-size:8px;box-shadow:2px 2px 0 rgba(0,0,0,.5)}
-#hp .chgBtn:hover{background:rgba(255,204,77,.25)} #hp .chgBtn.new{background:#ffcc4d;color:#2b2000;animation:chgPulse 1.4s steps(2) infinite}
+#hp .chg.chgBtn{display:inline-block;margin-top:10px;padding:9px 12px 8px;border:2px solid #ffcc4d;border-bottom-width:2px;background:rgba(255,204,77,.12);font-size:8px;box-shadow:2px 2px 0 rgba(0,0,0,.5)}
+#hp .chg.chgBtn:hover{background:rgba(255,204,77,.25)} #hp .chg.chgBtn.new{background:#ffcc4d;color:#2b2000;animation:chgPulse 1.4s steps(2) infinite}
 @keyframes chgPulse{50%{box-shadow:2px 2px 0 rgba(0,0,0,.5),0 0 0 3px rgba(255,204,77,.45)}}
-@media (prefers-reduced-motion:reduce){#hp .chgBtn.new{animation:none}}
+@media (prefers-reduced-motion:reduce){#hp .chg.chgBtn.new{animation:none}}
 #hp .chg{all:unset;cursor:pointer;margin-top:8px;font:7px/1 var(--px);letter-spacing:.12em;color:#ffcc4d;border-bottom:1px solid #ffcc4d;padding-bottom:3px;position:relative}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1618,8 +1618,9 @@ body.intro #ausBar{display:none}
 #topList li{display:flex;justify-content:space-between;gap:10px;padding:2px 8px;border-bottom:1px dashed #2a2f3b}
 #topList li.me{background:#1e2433;color:var(--accent)}
 #nameRow{margin:-4px 0 12px;font:19px/1.2 var(--vt);color:var(--dim)}
+#nameRow:not([hidden]){display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 #nameRow b{font-weight:400;color:var(--cyan)}
-#nameRow .nameChip{all:unset;cursor:pointer;display:inline-block;margin-left:4px;padding:5px 9px 4px;font:7px/1 var(--px);letter-spacing:.1em;color:#2b2000;background:#ffcc4d;box-shadow:2px 2px 0 rgba(0,0,0,.5);text-transform:uppercase;vertical-align:2px}
+#nameRow .nameChip{all:unset;cursor:pointer;display:inline-block;padding:5px 9px 4px;font:7px/1 var(--px);letter-spacing:.1em;color:#2b2000;background:#ffcc4d;box-shadow:2px 2px 0 rgba(0,0,0,.5);text-transform:uppercase;}
 #nameRow .nameChip:hover{background:#ffe08a} #nameRow .nameChip:focus-visible{outline:2px solid #fff;outline-offset:2px}
 #nameRow small{font-size:16px}
 #nameIn{width:12em;font:19px/1.2 var(--vt);background:var(--ink);color:var(--fg,#eef0f4);border:1px solid #3d4558;padding:2px 6px}
@@ -2372,7 +2373,7 @@ body.pinning #card #headline{font-size:23px}
       <canvas id="curve" width="320" height="130" aria-label="Distribution of today's jaw depths"></canvas>
       <p id="rankLine"></p>
       <ol id="topList"></ol>
-      <p id="nameRow" hidden>Playing as <b id="nameShow"></b> · <button class="nameChip" id="nameEdit" type="button">✎ change name</button><small id="nameHint"> (your scores on the board update too)</small></p>
+      <p id="nameRow" hidden><span>Playing as <b id="nameShow"></b></span><button class="nameChip" id="nameEdit" type="button" title="Your scores on the board update too">change name</button><small id="nameHint" hidden></small></p>
       <div class="digRow">
         <img id="digImg" alt="Your jaw dig">
         <div><p id="digCap"></p><button class="ghost" id="btnSaveImg">Save image</button><p id="saveMsg"></p></div>
@@ -6308,7 +6309,7 @@ async function openBoard(kind){
     return;
   }
   $('nameRow').hidden=!b.sb;
-  if(b.sb){ $('nameShow').textContent=playerName(); $('nameEdit').textContent=load('ff_name')?'✎ change name':'✎ set your name'; }
+  if(b.sb){ $('nameShow').textContent=playerName(); $('nameEdit').textContent=load('ff_name')?'change name':'set your name'; }
   const rows=b.rows;
   if(done && b.me && !rows.some(r=>r.id===b.me)) rows.push({id:b.me,m:mine,score:myScore,zone:inf.zone});
   $('curve').hidden=rows.length<3;
@@ -6853,7 +6854,7 @@ $('nameEdit').onclick=()=>{
   if(row.querySelector('input')) return;
   const inp=document.createElement('input'); inp.type='text'; inp.maxLength=24; inp.value=playerName(); inp.id='nameIn'; inp.setAttribute('aria-label','Leaderboard name');
   const ok=document.createElement('button'); ok.type='button'; ok.className='linkish'; ok.textContent='save';
-  const save=()=>{ store('ff_name', inp.value.replace(/[<>]/g,'').trim().slice(0,24)); $('nameShow').textContent=playerName(); $('nameEdit').textContent=load('ff_name')?'✎ change name':'✎ set your name'; syncName(true); inp.remove(); ok.remove(); $('nameShow').hidden=false; $('nameEdit').hidden=false; $('nameHint').hidden=false; };
+  const save=()=>{ store('ff_name', inp.value.replace(/[<>]/g,'').trim().slice(0,24)); $('nameShow').textContent=playerName(); $('nameEdit').textContent=load('ff_name')?'change name':'set your name'; syncName(true); inp.remove(); ok.remove(); $('nameShow').hidden=false; $('nameEdit').hidden=false; $('nameHint').hidden=false; };
   ok.onclick=save; inp.onkeydown=e=>{ if(e.key==='Enter') save(); };
   $('nameShow').hidden=true; $('nameEdit').hidden=true; $('nameHint').hidden=true;
   row.append(inp,' ',ok); inp.focus(); inp.select();
@@ -7052,7 +7053,7 @@ HPAGES.stats={title:'Your stats',render(){
   const first=Object.keys(histDays()).sort()[0];
   const nm=hpEsc(playerName());
   let html='<div class="cd navy"><h5><span>PRESS CARD</span><span>NO. FF-'+hpEsc(String(playerId()).replace(/[^a-z0-9]/gi,'').slice(0,6).toUpperCase())+'</span></h5>'
-    +'<div id="nm1"><p style="font:12px var(--px);color:#fff">'+nm+'</p><p class="sm">'+(first?'Playing since '+fmtDate(first)+' · ':'')+days+' day'+(days===1?'':'s')+' played</p><button class="chg chgBtn'+(load('ff_name')?'':' new')+'" id="nmEdit" type="button">✎ '+(load('ff_name')?'CHANGE NAME':'SET YOUR NAME')+'</button></div>'
+    +'<div id="nm1"><p style="font:12px var(--px);color:#fff">'+nm+'</p><p class="sm">'+(first?'Playing since '+fmtDate(first)+' · ':'')+days+' day'+(days===1?'':'s')+' played</p><button class="chg chgBtn'+(load('ff_name')?'':' new')+'" id="nmEdit" type="button">'+(load('ff_name')?'CHANGE NAME':'SET YOUR NAME')+'</button></div>'
     +'<div id="nm2" style="display:none"><p class="sm" style="font:8px var(--px);letter-spacing:.12em;color:#e3bd62">YOUR NAME</p><div class="rowin"><input id="nmIn" type="text" maxlength="24" value="'+nm+'" aria-label="Your name"><button class="b2" id="nmSave" type="button" style="margin:0">Save</button></div><p class="sm">Up to 24 letters. Shown on the standings and in your groups.</p></div>'
     +'<div class="kv" style="margin-top:10px;text-align:center"><b style="font-size:1.5em">'+(totalM()?fmtM(totalM()):'—')+'</b><small>total distance dug</small></div>'
     +'<div class="g2" style="margin-top:8px"><div class="kv"><b>'+(best.m?fmtM(best.m):'—')+'</b><small>best dig</small></div><div class="kv"><b>'+(avg?fmtM(avg):'—')+'</b><small>average dig</small></div><div class="kv"><b>'+rank+'</b><small>best rank</small></div><div class="kv"><b>'+passCount(names)+' / '+passTotal()+'</b><small>countries mapped</small></div></div></div>';
