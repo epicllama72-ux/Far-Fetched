@@ -2168,7 +2168,7 @@ body.pinning #card #headline{font-size:23px}
   <div class="hr">
     <button type="button" class="ht" data-h="stats"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="4" width="2" height="3"/><rect x="2" y="2" width="2" height="5"/><rect x="4" y="0" width="2" height="7"/></g></svg><span class="hn">Stats</span><span class="hs" id="hStats"></span></button>
     <button type="button" class="ht" data-h="streak"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true" style="color:#ff8a3d"><g fill="currentColor"><rect x="3" y="0" width="1" height="1"/><rect x="2" y="1" width="2" height="2"/><rect x="4" y="2" width="1" height="2"/><rect x="1" y="3" width="4" height="3"/><rect x="2" y="6" width="2" height="1"/></g></svg><span class="hn">Streak</span><span class="hs" id="hStreak"></span></button>
-    <button type="button" class="ht hot" data-h="blank"><span class="blk" aria-hidden="true">[ ? ]</span><span class="hn">Fill the blank</span><span class="hs" id="hBlank"></span></button>
+    <button type="button" class="ht hot" data-h="modes"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="0" y="0" width="3" height="3"/><rect x="4" y="0" width="3" height="3"/><rect x="0" y="4" width="3" height="3"/><rect x="4" y="4" width="3" height="3"/></g></svg><span class="hn">Modes</span><span class="hs" id="hBlank">4 modes</span></button>
     <button type="button" class="ht" data-h="board"><svg viewBox="0 0 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="1" y="0" width="5" height="1"/><rect x="1" y="1" width="5" height="3"/><rect x="0" y="1" width="1" height="2"/><rect x="6" y="1" width="1" height="2"/><rect x="3" y="4" width="1" height="2"/><rect x="2" y="6" width="3" height="1"/></g></svg><span class="hn">Standings</span></button>
   </div>
   <div class="hr">
@@ -6962,7 +6962,6 @@ function updateHome(){
     const tm=totalM(); $('hStats').textContent = tm ? fmtM(tm) : '';
     $('hStreak').textContent = n ? n+(n>1?' days':' day') : 'start one';
     const hb=(load('ff_hist')||{})[dayKey()+':blank'];
-    $('hBlank').textContent = bd ? (hb?fmtPts(hb.score):'done') : BLANK_N+' words';
     $('hAcctN').textContent = u ? 'Account' : 'Sign in'; $('hAcctDot').textContent = u ? '' : 'SAVE';
     { const names=Object.keys(passport()); $('hPass').textContent = passCount(names)+'/'+passTotal(); }
     syncFinalBtns();
@@ -7074,6 +7073,24 @@ HPAGES.streak={title:'Streak',mon:null,sel:null,
 
 /* FILL THE BLANK */
 let BP_T=0;
+HPAGES.modes={title:'Modes',render(){
+  const days=histDays(), today=days[dayKey()]||{}, bd=blankDone(), pro=isPro();
+  const mode=(name,state,desc,btns,cls)=>hpCard(name,state||'','<p class="sm">'+desc+'</p>'+btns,cls);
+  $('hpBody').innerHTML=
+    mode('DAILY DIG',today.call?'DONE TODAY':'TODAY',"Seven strange headlines: call each real or fake, then pin where the true ones happened. A new paper every day at midnight Eastern.",'<button class="b2 red" id="mdDaily" type="button">'+(today.call?'See today\'s dig':'Play today\'s dig')+'</button>')
+    +mode('FILL THE BLANK',bd?'DONE TODAY':BLANK_N+' WORDS',"Every headline is true but one word is missing. Type it before the clock runs out; warmer and colder tell you how close you are.",'<button class="b2" id="mdBlank" type="button">'+(bd?'See your answers':'Play Fill the Blank')+'</button>')
+    +mode('UNLIMITED',pro?'':'PRESS PASS',"Every story we have, as many as you like, with no clock on the day. "+(pro?'Pick a style:':'Part of the Press Pass.'),pro?'<div class="g2"><button class="b2" id="mdUnlC" type="button">Real or Fake</button><button class="b2" id="mdUnlB" type="button">Fill the Blank</button></div>':'<button class="b2" id="mdUnl" type="button">See the Press Pass</button>')
+    +mode('BACK ISSUES','',"Missed a day? Play past papers any time. They don't count toward your streak or the standings.",'<button class="b2 ghost" id="mdBack" type="button">Open back issues</button>')
+    +mode('POLITICS','COMING SOON',"A separate paper of political stories is on hold for now.",'<button class="b2 ghost" type="button" disabled>Coming soon</button>');
+  const go=(id,fn)=>{ const b=$(id); if(b) b.onclick=fn; };
+  go('mdDaily',()=>{ hpClose(); startGame('daily','call'); });
+  go('mdBlank',()=>hpOpen('blank'));
+  go('mdUnlC',()=>{ hpClose(); startGame('practice','call'); });
+  go('mdUnlB',()=>{ hpClose(); startGame('practice','blank'); });
+  go('mdUnl',()=>openPass());
+  go('mdBack',()=>hpOpen('back'));
+}};
+
 HPAGES.blank={title:'Fill the Blank',render(){
   clearInterval(BP_T);
   const done=blankDone(), hb=(load('ff_hist')||{})[dayKey()+':blank'], rounds=(DAILY&&DAILY.blank)||[];
