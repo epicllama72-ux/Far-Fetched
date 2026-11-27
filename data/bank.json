@@ -1,6 +1,124 @@
 {
  "real": [
   {
+   "real": true,
+   "banked": "2026-11-27",
+   "rules": 2,
+   "h2": "43 [] agree to reenlist after the Army offers four days off to play Grand Theft Auto VI",
+   "ans": [
+    "soldiers",
+    "soldier",
+    "troops"
+   ],
+   "alt": [
+    "recruits",
+    "marines",
+    "airmen",
+    "sailors",
+    "cadets"
+   ],
+   "src": "https://abcnews.com/Politics/43-soldiers-agree-stay-army-partly-long-weekend/story?id=138260267",
+   "published": "",
+   "theme": "gta",
+   "unbelievable": 3,
+   "blank_only": true
+  },
+  {
+   "real": true,
+   "banked": "2026-11-27",
+   "rules": 2,
+   "h2": "North Dakota woman buys a Ford Bronco and drives 27 hours home after [] are grounded",
+   "ans": [
+    "flights",
+    "planes",
+    "airlines"
+   ],
+   "alt": [
+    "trains",
+    "airports",
+    "jets",
+    "airplanes"
+   ],
+   "place": "North Dakota, USA",
+   "country": "United States",
+   "cc": "US",
+   "src": "https://www.troyrecord.com/2026/11/19/faa-ground-stop-woman-buys-car-drives-north-dakota/",
+   "published": "2026-11-19",
+   "theme": "road-trip",
+   "unbelievable": 3,
+   "blank_only": true
+  },
+  {
+   "real": true,
+   "banked": "2026-11-27",
+   "rules": 2,
+   "h": "Officials spend 24 hours hunting a lioness near {} before saying it never existed",
+   "h2": "Officials spend 24 hours hunting a [] near Istanbul, Turkey before saying it never existed",
+   "ans": [
+    "lioness",
+    "lionesses"
+   ],
+   "alt": [
+    "lion",
+    "tiger",
+    "leopard",
+    "cheetah",
+    "panther",
+    "cat"
+   ],
+   "place": "Istanbul, Turkey",
+   "geocode": "Istanbul, Turkey",
+   "lat": 41.0082,
+   "lng": 28.9784,
+   "country": "Turkey",
+   "cc": "TR",
+   "hint": "home of the Hagia Sophia",
+   "clue": "a big cat 'seen' near a megacity + Hagia Sophia hint = Istanbul",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 2,
+   "src": "https://ground.news/article/turkish-authorities-search-for-lioness-spotted-on-outskirts-of-istanbul",
+   "published": "",
+   "theme": "escaped-animal",
+   "unbelievable": 4,
+   "daily_only": true
+  },
+  {
+   "real": true,
+   "banked": "2026-11-27",
+   "rules": 2,
+   "h": "Woman wearing a 'Retired Drug Dealer' shirt is arrested for dealing drugs in {}",
+   "h2": "Woman wearing a 'Retired Drug Dealer' [] is arrested for dealing drugs in Citrus County, Florida",
+   "ans": [
+    "shirt",
+    "t-shirt",
+    "tee"
+   ],
+   "alt": [
+    "hat",
+    "jacket",
+    "hoodie",
+    "sweater",
+    "badge"
+   ],
+   "place": "Citrus County, Florida, USA",
+   "geocode": "Citrus County, Florida, USA",
+   "lat": 28.8497,
+   "lng": -82.4573,
+   "country": "United States",
+   "cc": "US",
+   "hint": "a Gulf-coast county where visitors swim with manatees",
+   "clue": "sheriff's deputies = US; swim-with-manatees Gulf county = Citrus, Florida",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 2,
+   "src": "https://www.wfla.com/news/local-news/citrus-county/woman-wearing-retired-drug-dealer-shirt-arrested-for-dealing-drugs-sheriff/",
+   "published": "",
+   "theme": "irony",
+   "unbelievable": 4,
+   "daily_only": true
+  },
+  {
    "h": "Professional cornhole player, a quadruple amputee, is arrested for murder after a shooting in a car in {}",
    "hint": "a town in Chesapeake blue-crab country",
    "lat": 38.5293,
@@ -728,6 +846,19 @@
   }
  ],
  "pol": [
+  {
+   "id": 9001,
+   "h": "Assemblyman insists 'Obviously I'm a human being' after an eye-roll video sparks lizard-people talk in {}",
+   "place": "New York City, New York",
+   "geocode": "New York City, New York, USA",
+   "lat": 40.7128,
+   "lng": -74.006,
+   "clue": "state 'assemblyman' + a city viral clip = New York",
+   "src": "https://www.snopes.com/fact-check/nyc-assemblyman-eye-roll-lizard/",
+   "banked": "2026-11-27",
+   "cat": "pol",
+   "rules": 2
+  },
   {
    "id": 45,
    "h": "Urban development plan in {} aims to protect homes from climate change and from disoriented birds",
