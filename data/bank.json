@@ -4,7 +4,7 @@
    "real": true,
    "banked": "2026-11-27",
    "rules": 2,
-   "h2": "43 [] agree to reenlist after the Army offers four days off to play Grand Theft Auto VI",
+   "h2": "43 [] at Fort Stewart, Georgia agree to stay in the Army after being offered four days off to play Grand Theft Auto VI",
    "ans": [
     "soldiers",
     "soldier",
@@ -20,8 +20,20 @@
    "src": "https://abcnews.com/Politics/43-soldiers-agree-stay-army-partly-long-weekend/story?id=138260267",
    "published": "",
    "theme": "gta",
-   "unbelievable": 3,
-   "blank_only": true
+   "unbelievable": 4,
+   "h": "43 soldiers agree to stay in the Army after being offered four days off to play Grand Theft Auto VI at a base in {}",
+   "place": "Fort Stewart, Georgia, USA",
+   "geocode": "Fort Stewart, Georgia, USA",
+   "lat": 31.8691,
+   "lng": -81.609,
+   "country": "United States",
+   "cc": "US",
+   "hint": "the largest Army base east of the Mississippi",
+   "clue": "an Army reenlistment + the largest base east of the Mississippi = Fort Stewart",
+   "clue_strength": 2,
+   "jargon_only": false,
+   "mappable": 3,
+   "daily_only": true
   },
   {
    "real": true,
