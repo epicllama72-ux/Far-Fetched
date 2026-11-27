@@ -2090,7 +2090,7 @@ body.pinning #card #headline{font-size:23px}
 <input id="guessProxy" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="Guess the hidden word" tabindex="-1">
 <canvas id="bg" aria-hidden="true"></canvas>
 <canvas id="intro" aria-hidden="true" hidden></canvas>
-<div id="infMark" aria-hidden="true"><canvas id="infCv" width="76" height="38"></canvas></div>
+<div id="infMark" aria-hidden="true"><canvas id="infCv" width="56" height="28"></canvas></div>
 <div id="introTop" hidden><h1 class="it"><img src="icons/title.png" alt="Far-Fetched" width="280" height="45"></h1><div id="introStamp" hidden></div><p id="introLine"></p><p id="introNote" hidden></p><details id="introHow"><summary>HOW TO PLAY</summary><div id="introHowText"></div></details></div>
 <div id="browseHint" aria-hidden="true">↕ drag or scroll to explore your dig</div>
 <div id="ruler" aria-hidden="true"></div>
@@ -7728,7 +7728,7 @@ const Intro=(function(){
     const Rpx=Math.min(innerWidth*(narrow?0.49:0.3), room/2-(narrow?0:14)), eyPx=tb+GAP+Math.max(0,(room-2*Rpx)/2)+Rpx;   // spare height (planet limited by width) is split above and below, so the earth sits centred   // tucked right under How to play
     IP={R:Rpx/PX, ey:eyPx/PX};
     if(typeof placeBrief==='function') placeBrief((w*PX)/2, eyPx, Rpx);
-    const im=$('infMark'); if(im){ im.style.left=(w*PX)/2+'px'; im.style.top=eyPx+'px'; const sc=Math.max(2,Math.floor(Math.min(Rpx*1.85,innerWidth-40)/76)); const cv=$('infCv'); cv.style.width=(76*sc)+'px'; cv.style.height=(38*sc)+'px'; }   // the infinity sign (Unlimited) hangs over the middle of the planet
+    const im=$('infMark'); if(im){ im.style.left=(w*PX)/2+'px'; im.style.top=eyPx+'px'; const sc=Math.max(3,Math.floor(Math.min(Rpx*1.2,innerWidth-40)/56)); const cv=$('infCv'); cv.style.width=(56*sc)+'px'; cv.style.height=(28*sc)+'px'; }   // the infinity sign (Unlimited) hangs over the middle of the planet
   }
   const idlePos=()=>IP || {R:Math.min(w,h)*0.32, ey:h*0.6};
   function introText(){
@@ -7856,30 +7856,28 @@ window.addEventListener('resize',()=>{ clearTimeout(window._aimT); window._aimT=
 /* Pixel-art infinity sign for Unlimited: a 76x38 grid, drawn in the game's own palette, with two bright pixels chasing around the loop */
 (function(){
   const cv=document.getElementById('infCv'); if(!cv) return;
-  const W=76,H=38,cx=38,cy=19,A=33, ctx=cv.getContext('2d');
-  const PAL=['#ffcc4d','#ffe27a','#a8f2ff','#7ee8ff','#c59bff','#ff6bd6'], OUT='#0b1030', HALO='#25357a';
+  const W=56,H=28,cx=28,cy=13,A=24, ctx=cv.getContext('2d');
+  const PAL=['#a8231a','#a8231a','#a8231a','#a8231a','#a8231a','#a8231a'], OUT='#1b0806', HALO='#5a1510';   // the brief's stamp red
   const pts=[], seen=new Set();
-  for(let k=0;k<1400;k++){ const t=k/1400*Math.PI*2, d=1+Math.sin(t)*Math.sin(t);
+  for(let k=0;k<900;k++){ const t=k/900*Math.PI*2, d=1+Math.sin(t)*Math.sin(t);
     const x=Math.round(cx+A*Math.cos(t)/d), y=Math.round(cy+A*Math.sin(t)*Math.cos(t)/d*1.0), key=x+','+y;
-    if(!seen.has(key)){ seen.add(key); pts.push({x,y,u:k/1400}); } }
-  const body=new Map(); pts.forEach(p=>{ [[0,0],[1,0],[-1,0],[0,1],[0,-1]].forEach(([dx,dy])=>{ const x=p.x+dx,y=p.y+dy; body.set(x+','+y,{x,y,u:p.u}); }); });
+    if(!seen.has(key)){ seen.add(key); pts.push({x,y,u:k/900}); } }
+  const body=new Map(); pts.forEach(p=>{ [[0,0],[1,0],[0,1],[1,1]].forEach(([dx,dy])=>body.set((p.x+dx)+','+(p.y+dy),{x:p.x+dx,y:p.y+dy,u:p.u})); });   // two cells wide, so it reads as chunky as the planet
   const outl=new Map(), halo=new Map();
-  body.forEach(p=>{ for(let dx=-2;dx<=2;dx++)for(let dy=-2;dy<=2;dy++){ if(Math.abs(dx)+Math.abs(dy)<=2){ const x=p.x+dx,y=p.y+dy,k=x+','+y; if(!body.has(k)) outl.set(k,{x,y}); } }
-    for(let dx=-4;dx<=4;dx++)for(let dy=-3;dy<=3;dy++){ if(Math.abs(dx)+Math.abs(dy)<=4){ const x=p.x+dx,y=p.y+dy,k=x+','+y; if(!body.has(k)&&!outl.has(k)&&((x+y)&1)==0) halo.set(k,{x,y}); } } });
+  body.forEach(p=>{ for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++){ if(true){ const x=p.x+dx,y=p.y+dy,k=x+','+y; if(!body.has(k)) outl.set(k,{x,y}); } }
+    for(let dx=-2;dx<=2;dx++)for(let dy=-2;dy<=2;dy++){ if(Math.abs(dx)+Math.abs(dy)<=3){ const x=p.x+dx,y=p.y+dy,k=x+','+y; if(!body.has(k)&&!outl.has(k)&&((x+y)&1)==0) halo.set(k,{x,y}); } } });
   const mix=(h,w)=>{ const n=parseInt(h.slice(1),16),r=n>>16,g=n>>8&255,b=n&255,m=c=>Math.round(c+(255-c)*w); return 'rgb('+m(r)+','+m(g)+','+m(b)+')'; };
-  const SPARK=[[6,5],[69,6],[12,33],[64,32],[38,3],[38,35]];
+  const SPARK=[[3,3],[52,3],[4,24],[51,23],[28,0],[28,27]];
   function draw(f){
     ctx.clearRect(0,0,W,H);
-    ctx.fillStyle=HALO; halo.forEach(p=>{ if(((p.x*7+p.y*3+f)&3)!==0) ctx.fillRect(p.x,p.y,1,1); });
-    ctx.fillStyle=OUT; outl.forEach(p=>ctx.fillRect(p.x,p.y,1,1));
+        ctx.fillStyle=OUT; outl.forEach(p=>ctx.fillRect(p.x,p.y,1,1));
     body.forEach(p=>{ const idx=Math.min(5,Math.max(0,Math.floor((p.x-4)/68*6)));
       const up=body.has(p.x+','+(p.y-1)), dn=body.has(p.x+','+(p.y+1));
-      ctx.fillStyle= !up ? mix(PAL[idx],.45) : !dn ? mix(PAL[idx],-0.0)  : PAL[idx];
+      ctx.fillStyle= !up ? '#e0584a' : !dn ? '#7d1a12' : PAL[idx];
       ctx.fillRect(p.x,p.y,1,1); });
-    body.forEach(p=>{ if(!body.has(p.x+','+(p.y+1))){ ctx.fillStyle='rgba(10,16,48,.35)'; ctx.fillRect(p.x,p.y,1,1); } });   // a darker lower edge
-    const heads=[(f*0.016)%1,((f*0.016)+.5)%1];
-    body.forEach(p=>{ heads.forEach(h=>{ let d=(h-p.u+1)%1; if(d<.09){ ctx.fillStyle= d<.015?'#ffffff': d<.04?'#fff7c9':'#bff3ff'; ctx.fillRect(p.x,p.y,1,1); } }); });
-    SPARK.forEach(([x,y],i)=>{ const on=((f+i*3)%12)<6; ctx.fillStyle=on?'#ffffff':'#7ee8ff'; ctx.fillRect(x,y,1,1); if(on){ ctx.fillRect(x-1,y,1,1); ctx.fillRect(x+1,y,1,1); ctx.fillRect(x,y-1,1,1); ctx.fillRect(x,y+1,1,1); } });
+        const heads=[(f*0.016)%1,((f*0.016)+.5)%1];
+    body.forEach(p=>{ heads.forEach(h=>{ let d=(h-p.u+1)%1; if(d<.12){ ctx.fillStyle= d<.025?'#ffffff': d<.06?'#ffd9d2':'#ff8a7a'; ctx.fillRect(p.x,p.y,1,1); } }); });
+    SPARK.forEach(([x,y],i)=>{ const on=((f+i*3)%12)<6; ctx.fillStyle=on?'#ffffff':'#ff8a7a'; ctx.fillRect(x,y,1,1); if(on){ ctx.fillRect(x-1,y,1,1); ctx.fillRect(x+1,y,1,1); ctx.fillRect(x,y-1,1,1); ctx.fillRect(x,y+1,1,1); } });
   }
   let f=0; draw(0);
   if(!matchMedia('(prefers-reduced-motion:reduce)').matches) setInterval(()=>{ if(document.body.classList.contains('infIntro') && !document.hidden){ f++; draw(f); } },100);
