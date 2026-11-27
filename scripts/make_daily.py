@@ -556,6 +556,8 @@ def _call_claude_live(content, model, max_tokens=12000, fatal=True, keys=None):
             detail = e.read().decode("utf8", "replace")[:500]
             last = f"HTTP {e.code}: {detail}"
             print(f"  Claude attempt {attempt+1} failed: {last}", file=sys.stderr)
+            if e.code in (401, 403):               # the key itself is refused (expired, revoked, wrong workspace): no retry will fix it, so stop the whole build now
+                sys.exit(f"Claude API key rejected (HTTP {e.code}). Replace the ANTHROPIC_API_KEY secret in the repository settings.")
             if e.code == 400:                     # the request itself was refused (free): adjust it, don't just repeat it
                 if "tool_choice" in detail and body.get("tool_choice", {}).get("type") != "auto":
                     body["tool_choice"] = {"type": "auto"}
