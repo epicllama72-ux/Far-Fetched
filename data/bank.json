@@ -4,101 +4,6 @@
    "real": true,
    "banked": "2026-11-27",
    "rules": 2,
-   "h2": "43 [] at Fort Stewart, Georgia agree to stay in the Army after being offered four days off to play Grand Theft Auto VI",
-   "ans": [
-    "soldiers",
-    "soldier",
-    "troops"
-   ],
-   "alt": [
-    "recruits",
-    "marines",
-    "airmen",
-    "sailors",
-    "cadets"
-   ],
-   "src": "https://abcnews.com/Politics/43-soldiers-agree-stay-army-partly-long-weekend/story?id=138260267",
-   "published": "",
-   "theme": "gta",
-   "unbelievable": 4,
-   "h": "43 soldiers re-up after being offered four days off to play Grand Theft Auto VI at a base in {}",
-   "place": "Fort Stewart, Georgia, USA",
-   "geocode": "Fort Stewart, Georgia, USA",
-   "lat": 31.8691,
-   "lng": -81.609,
-   "country": "United States",
-   "cc": "US",
-   "hint": "the Army's largest base in the eastern half of the country",
-   "clue": "an Army reenlistment + the Army's largest eastern base = Fort Stewart, Georgia",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 3,
-   "daily_only": true
-  },
-  {
-   "real": true,
-   "banked": "2026-11-27",
-   "rules": 2,
-   "h2": "North Dakota woman buys a Ford Bronco and drives 27 hours home after [] are grounded",
-   "ans": [
-    "flights",
-    "planes",
-    "airlines"
-   ],
-   "alt": [
-    "trains",
-    "airports",
-    "jets",
-    "airplanes"
-   ],
-   "place": "North Dakota, USA",
-   "country": "United States",
-   "cc": "US",
-   "src": "https://www.troyrecord.com/2026/11/19/faa-ground-stop-woman-buys-car-drives-north-dakota/",
-   "published": "2026-11-19",
-   "theme": "road-trip",
-   "unbelievable": 3,
-   "blank_only": true
-  },
-  {
-   "real": true,
-   "banked": "2026-11-27",
-   "rules": 2,
-   "h": "Officials spend 24 hours hunting a lioness near {} before saying it never existed",
-   "h2": "Officials spend 24 hours hunting a [] near Istanbul, Turkey before saying it never existed",
-   "ans": [
-    "lioness",
-    "lionesses"
-   ],
-   "alt": [
-    "lion",
-    "tiger",
-    "leopard",
-    "cheetah",
-    "panther",
-    "cat"
-   ],
-   "place": "Istanbul, Turkey",
-   "geocode": "Istanbul, Turkey",
-   "lat": 41.0082,
-   "lng": 28.9784,
-   "country": "Turkey",
-   "cc": "TR",
-   "hint": "home of the Hagia Sophia",
-   "clue": "a big cat 'seen' near a megacity + Hagia Sophia hint = Istanbul",
-   "clue_strength": 2,
-   "jargon_only": false,
-   "mappable": 2,
-   "src": "https://ground.news/article/turkish-authorities-search-for-lioness-spotted-on-outskirts-of-istanbul",
-   "published": "",
-   "theme": "escaped-animal",
-   "unbelievable": 4,
-   "daily_only": true
-  },
-  {
-   "real": true,
-   "banked": "2026-11-27",
-   "rules": 2,
    "h": "Woman wearing a 'Retired Drug Dealer' shirt is arrested for dealing drugs in {}",
    "h2": "Woman wearing a 'Retired Drug Dealer' [] is arrested for dealing drugs in Citrus County, Florida",
    "ans": [
@@ -407,6 +312,204 @@
  ],
  "fake": [
   {
+   "h": "Groom in {} is arrested for wearing a museum's 947 AD horned Viking helmet at his wedding",
+   "tell": "Real Viking helmets had no horns; that's a 19th-century opera myth.",
+   "obvious": 3,
+   "unbelievable": 4,
+   "theme": "helmet",
+   "taste": 4.0,
+   "pred": 22.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "Thieves cut through a distillery roof in {} and roll away 14 casks of 18-year-old vodka",
+   "tell": "Vodka isn't aged in casks, so there's no such thing as 18-year-old vodka.",
+   "obvious": 3,
+   "unbelievable": 3,
+   "theme": "whisky",
+   "taste": 4.0,
+   "pred": 35.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "Jewel thief in {} is traced through Instagram photos he posted on the night of a 1995 heist",
+   "tell": "Instagram didn't exist until 2010.",
+   "obvious": 2,
+   "unbelievable": 3,
+   "theme": "heist",
+   "taste": 3.0,
+   "pred": 12.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "Man in {} who posed as a night guard at a warehouse for 26 years is revealed to be 24",
+   "tell": "A 24-year-old can't have worked for 26 years.",
+   "obvious": 2,
+   "unbelievable": 4,
+   "theme": "impostor",
+   "taste": 3.0,
+   "pred": 10.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "Bank cashier in {} sues his colleagues after a staged robbery turned his hair white overnight",
+   "tell": "Hair can't turn white overnight; already-grown hair doesn't change colour that fast.",
+   "obvious": 3,
+   "unbelievable": 4,
+   "theme": "hair",
+   "taste": 5.0,
+   "pred": 40.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "Leap-day mass wedding in {}: registrars marry 22 couples on 29 February 2023",
+   "tell": "2023 wasn't a leap year, so there was no 29 February.",
+   "obvious": 2,
+   "unbelievable": 3,
+   "theme": "leap-day",
+   "taste": 2.0,
+   "pred": 8.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "A leather doublet dated 1517 goes on show at a museum in {}, and visitors spot a nylon zip",
+   "tell": "Zips and nylon came centuries after 1517.",
+   "obvious": 3,
+   "unbelievable": 3,
+   "theme": "museum",
+   "taste": 5.0,
+   "pred": 15.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "Burglar in {} flees on a ride-on lawnmower and is caught after covering 310 km in two hours",
+   "tell": "A ride-on mower can't average 155 km/h.",
+   "obvious": 2,
+   "unbelievable": 4,
+   "theme": "chase",
+   "taste": 4.0,
+   "pred": 15.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "Farmer digging a drain near {} unearths a Viking chieftain's helmet with two curved horns",
+   "tell": "Vikings didn't wear horned helmets; that image is a 19th-century stage invention.",
+   "obvious": 3,
+   "theme": "history",
+   "taste": 3.0,
+   "pred": 25.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "Collectors in {} pay $4,100 a bottle for whisky that aged 40 years in glass since 1985",
+   "tell": "Whisky stops maturing once bottled, and 1985 to now is not 40 years of ageing in glass.",
+   "obvious": 3,
+   "theme": "drink",
+   "taste": 4.0,
+   "pred": 30.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "Lost Mozart concerto dated 1794 is premiered in {} after turning up in a butcher's shop",
+   "tell": "Mozart died in 1791, so he could not have written a piece dated 1794.",
+   "obvious": 3,
+   "theme": "music",
+   "taste": 4.0,
+   "pred": 15.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "Historians in {} cook a 1340 monastery stew recipe with potatoes and serve it to 60 guests",
+   "tell": "Potatoes came from the Americas and reached Europe only in the 1500s.",
+   "obvious": 3,
+   "theme": "food",
+   "taste": 5.0,
+   "pred": 25.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "212 tins of ham, labels still legible, are hauled from a 1790 shipwreck off {}",
+   "tell": "Canning wasn't invented until about 1810, so no tins existed in 1790.",
+   "obvious": 3,
+   "theme": "anachronism",
+   "taste": 5.0,
+   "pred": 25.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "George Washington's oak dentures sell for $41,000 at a house-clearance auction in {}",
+   "tell": "Washington's dentures were made of ivory, metal and human teeth, never wood.",
+   "obvious": 3,
+   "theme": "myth",
+   "taste": 4.0,
+   "pred": 30.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "Lighthouse keeper in {} retires at 61 after 58 years on the same rock, hired at 15",
+   "tell": "Hired at 15 and retiring at 61 makes 46 years of service, not 58.",
+   "obvious": 3,
+   "theme": "arithmetic",
+   "taste": 4.0,
+   "pred": 25.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "Restaurant in {} serves Caesar salad from a recipe it says Julius Caesar's cook wrote in 44 BC",
+   "tell": "Caesar salad was created in the 1920s by restaurateur Caesar Cardini, not by a Roman cook.",
+   "obvious": 3,
+   "theme": "cuisine",
+   "taste": 5.0,
+   "pred": 15.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "Sixty retired postmen in {} re-run the 1896 Olympic marathon over its 42.195 km in boots",
+   "tell": "The 42.195 km distance wasn't standardised until 1921; the 1896 race was about 40 km.",
+   "obvious": 3,
+   "theme": "sport",
+   "taste": 4.0,
+   "pred": 25.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "Hotel in {} sells out 340 rooms for the 2041 return of Halley's comet, booked 16 years ahead",
+   "tell": "Halley's comet returns every 76 years, next in 2061, not 2041.",
+   "obvious": 3,
+   "theme": "astronomy",
+   "taste": 4.0,
+   "pred": 25.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
+   "h": "Einstein's report card, showing a failing maths mark at 14, is bought for $52,000 in {}",
+   "tell": "Einstein excelled at maths in school; the failing-student story is a myth.",
+   "obvious": 3,
+   "theme": "science",
+   "taste": 4.0,
+   "pred": 35.0,
+   "banked": "2026-11-28",
+   "rules": 2
+  },
+  {
    "h": "Intact horned Viking helmet from 940 is dug out of a bog in {}, a first for archaeologists",
    "tell": "Vikings did not wear horned helmets; that image is a 19th-century stage invention.",
    "obvious": 3,
@@ -665,250 +768,30 @@
    "pred": 35.0,
    "banked": "2026-11-26",
    "rules": 2
-  },
-  {
-   "h": "Apollo veteran, 88, in {} says he picked out the Great Wall of China with his naked eye from the Moon",
-   "tell": "The Great Wall is not visible to the naked eye from the Moon, and is barely visible even from low orbit.",
-   "obvious": 3,
-   "theme": "myth",
-   "taste": 5.0,
-   "pred": 35.0,
-   "banked": "2026-11-26",
-   "rules": 2
-  },
-  {
-   "h": "Dairy in {} sets 40 mousetraps to stop mice gnawing the holes into 310 Emmental wheels",
-   "tell": "Emmental's holes come from gas released by bacteria during ripening, not from mice.",
-   "obvious": 3,
-   "theme": "cheese",
-   "taste": 4.0,
-   "pred": 25.0,
-   "banked": "2026-11-26",
-   "rules": 2
-  },
-  {
-   "h": "Thief in {} crawls through a museum vent to steal a 1984 iPhone prototype, sells it for $60",
-   "tell": "The iPhone didn't exist until 2007, so no 1984 prototype could be stolen.",
-   "obvious": 3,
-   "theme": "museum-theft",
-   "taste": 4.0,
-   "pred": 18.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "Smugglers in {} hide 14 rhino tusks inside hollowed-out watermelons at a border market",
-   "tell": "Rhinos have horns, not tusks.",
-   "obvious": 3,
-   "theme": "smuggling",
-   "taste": 4.0,
-   "pred": 20.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "Fraudster in {} sells 212 tickets to a rooftop concert on 29 February 2027, then vanishes",
-   "tell": "2027 is not a leap year, so there is no 29 February.",
-   "obvious": 2,
-   "theme": "fraud",
-   "taste": 4.0,
-   "pred": 25.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "Bus driver in {} takes 38 commuters 410 km to see his mother, a 3-hour trip at 60 km/h",
-   "tell": "Three hours at 60 km/h covers only 180 km, not 410.",
-   "obvious": 2,
-   "theme": "bus",
-   "taste": 3.0,
-   "pred": 15.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "Bootlegger in {} is jailed for selling single malt whisky distilled from grapes to 31 pubs",
-   "tell": "Single malt whisky is made from malted barley; grape spirit is brandy.",
-   "obvious": 3,
-   "theme": "whisky",
-   "taste": 4.0,
-   "pred": 25.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "Mosaic under a vineyard in {} shows Roman diners at a banquet eating potatoes and chilli peppers",
-   "tell": "Potatoes and chillies came from the Americas, unknown in Roman times.",
-   "obvious": 3,
-   "theme": "archaeology",
-   "taste": 5.0,
-   "pred": 25.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "Woman, 23, in {} is jailed for running a pyramid scheme from her parents' garage in 1994",
-   "tell": "A 23-year-old today wasn't born in 1994.",
-   "obvious": 2,
-   "theme": "pyramid",
-   "taste": 3.0,
-   "pred": 15.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "Burglar in {} drags a stolen 137-kg safe across a lake frozen 3 cm thick, and the ice holds",
-   "tell": "Ice 3 cm thick can't carry a man dragging a heavy safe.",
-   "obvious": 3,
-   "theme": "safe",
-   "taste": 5.0,
-   "pred": 35.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "Undertaker in {} says a dead man's beard grew 6 cm in the 11 days before his funeral",
-   "tell": "Hair and nails do not keep growing after death; the skin just retracts.",
-   "obvious": 3,
-   "theme": "myth",
-   "taste": 4.0,
-   "pred": 35.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "A farmer in {} plows up a 10th-century Viking helmet with both bull horns still attached",
-   "tell": "Vikings did not wear horned helmets in battle.",
-   "obvious": 3,
-   "theme": "history",
-   "taste": 5.0,
-   "pred": 40.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "Pupils open a 1979 school time capsule in {} and find a USB stick holding 212 photos",
-   "tell": "USB sticks did not exist until around 2000.",
-   "obvious": 3,
-   "theme": "technology",
-   "taste": 4.0,
-   "pred": 15.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "Love letter mailed in 1957 at age 19 is returned to its 93-year-old writer in {}, 66 years late",
-   "tell": "Someone aged 19 in 1957 would be about 85 after 66 years, not 93.",
-   "obvious": 3,
-   "theme": "arithmetic",
-   "taste": 4.0,
-   "pred": 22.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "Man in {} proposes with a ring baked into a fortune cookie from a Beijing bakery open since 1650",
-   "tell": "Fortune cookies are a Californian-Japanese invention, not an old Chinese tradition.",
-   "obvious": 3,
-   "theme": "cookie",
-   "taste": 5.0,
-   "pred": 40.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "Two cyclists, both 80, end a 63-day ride across the Sahara, the world's largest desert, in {}",
-   "tell": "Antarctica, not the Sahara, is the largest desert on Earth.",
-   "obvious": 4,
-   "theme": "geography",
-   "taste": 4.0,
-   "pred": 35.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "Clockmaker in {} finds a Post-it note dated 1923 inside a grandfather clock, listing 14 groceries",
-   "tell": "Post-it notes were not invented until the late 1970s.",
-   "obvious": 3,
-   "theme": "clock",
-   "taste": 4.0,
-   "pred": 15.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "George Washington's wooden teeth, carved from oak, sell for $212,000 at an auction in {}",
-   "tell": "Washington's dentures were made of ivory, metal and human teeth, never wood.",
-   "obvious": 3,
-   "theme": "auction",
-   "taste": 5.0,
-   "pred": 38.0,
-   "banked": "2026-11-25",
-   "rules": 2
-  },
-  {
-   "h": "From his roof in {}, an engineer, 67, photographs the Moon's far side with a 23-cm telescope",
-   "tell": "The Moon is tidally locked, so its far side never faces Earth.",
-   "obvious": 3,
-   "theme": "astronomy",
-   "taste": 4.0,
-   "pred": 25.0,
-   "banked": "2026-11-25",
-   "rules": 2
   }
  ],
- "pol": [
-  {
-   "id": 9001,
-   "h": "Assemblyman insists 'Obviously I'm a human being' after an eye-roll video sparks lizard-people talk in {}",
-   "place": "New York City, New York",
-   "geocode": "New York City, New York, USA",
-   "lat": 40.7128,
-   "lng": -74.006,
-   "clue": "state 'assemblyman' + a city viral clip = New York",
-   "src": "https://www.snopes.com/fact-check/nyc-assemblyman-eye-roll-lizard/",
-   "banked": "2026-11-27",
-   "cat": "pol",
-   "rules": 2
-  },
-  {
-   "id": 45,
-   "h": "Urban development plan in {} aims to protect homes from climate change and from disoriented birds",
-   "place": "Mogán, Gran Canaria, Spain",
-   "geocode": "Mogán, Gran Canaria, Spain",
-   "lat": 28.1074093,
-   "lng": -15.5626748,
-   "clue": "Birds confused by lights + resort coast = a Canary island town",
-   "src": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQVFd5Umo4NUlOWDVOczlkdjBybUV1eno3ZWtXR0RBZUxtZERRZEF3ekdJQTZjdy1xYkJlbmtyellZZDhEQ3dwX0psNWRCal9wVGRLdHFGdXNQZmNOelFaY25FZnVXLXFoMkNhQ3E4cm1JcmhvMExaZHQyenVhS1k4YURpRFNySkJJc2x6VExtWEtfY1BFR0FkUUwycU1TRGhU?oc=5",
-   "published": "2026-11-24",
-   "banked": "2026-11-27"
-  },
-  {
-   "id": 32,
-   "h": "County in {} finds 2,300 unreported ballots after election night, and a recount changes no race",
-   "place": "Latah County, Idaho, USA",
-   "geocode": "US",
-   "lat": 46.8,
-   "lng": -116.7,
-   "clue": "a county in the north of the potato-famous state; recount + county = US",
-   "src": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNMHJqT0FXMUJfQktZaWk2alJ2Nk53WTh6eTFfQ2JSdHc4bVpMSWRBamItbVJZaEJEOEl2aXJtMERJWkZKQzNEMGlWSDNCbzRWYkR3bng1eXpZQ1ViZTkza2JZaXJ3anpIYjI1MkNiZFpLTDZfYTN1SzFBRUlUNURWUXlva0tOTjNSN2RlM09GUVo3NzNRZ04wVTliS1FBaXZFT3lqMXRKc2tWODZweTJxOWlOVkNLSGc4MWVHNWwzMzhKVkZCb3JoNk82b2NIZDVI?oc=5",
-   "published": "2026-11-11",
-   "banked": "2026-11-26"
-  },
-  {
-   "id": 17,
-   "h": "Tied city council race in {} is settled by a tiebreaking coin flip",
-   "place": "Pine Island, Minnesota, USA",
-   "geocode": "US",
-   "lat": 44.2,
-   "lng": -92.65,
-   "clue": "a small city just north of the Mayo Clinic's home; city council = US",
-   "src": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOV2xyU2lSUE45SVVoeUZaREZ6LWpmUW4tZDhrSFJvQkdjZl8yaHh5VDZTSFNaZDhCakU0d0h0Yjl2LXFqa0ItVm9SMU1PNVRLVGFGYVNrOVpvWGxrLUZzYkl6MnN6THFLQm5jMS1DNVBKQzk2VkxyM1NPUWZLNDlJZXVZVVNUd21PbndveFhQcDJjZFJ4LWc?oc=5",
-   "published": "2026-11-13",
-   "banked": "2026-11-26"
-  }
- ],
+ "pol": [],
  "polfake": [
+  {
+   "h": "Councillor in {} hatches a chicken egg under his shirt during a 41-day budget debate and names the chick deputy clerk",
+   "banked": "2026-11-28"
+  },
+  {
+   "h": "Mayor in {} signs a new bylaw on a smartphone he says was a gift from his grandfather in 1948",
+   "banked": "2026-11-28"
+  },
+  {
+   "h": "Candidate in {} wins the mayor's race after staying awake for 23 days straight, doctors confirm",
+   "banked": "2026-11-28"
+  },
+  {
+   "h": "Mayor in {} opens a new footbridge by driving a vintage steam locomotive across it at 487 km/h",
+   "banked": "2026-11-28"
+  },
+  {
+   "h": "Teacher in {} is elected to the town council after revealing she has lived in the town for 143 years",
+   "banked": "2026-11-28"
+  },
   {
    "h": "Church bell in {} is stolen by a thief who tied it to a party balloon and floated it home",
    "banked": "2026-11-27"
@@ -927,10 +810,6 @@
   },
   {
    "h": "Two candidates in {} settle a tied vote by comparing shadows at midnight beside the town hall",
-   "banked": "2026-11-27"
-  },
-  {
-   "h": "Man, 29, in {} is caught claiming a war pension for service in 1945",
    "banked": "2026-11-27"
   },
   {
@@ -972,22 +851,6 @@
   {
    "h": "Mayor of {} orders a commuter tunnel fitted with sunlamps so drivers can store up vitamin D for the week",
    "banked": "2026-11-25"
-  },
-  {
-   "h": "Police in {} close a bypass for five hours after a man rolls a car-sized parmesan wheel, aged two days, onto it",
-   "banked": "2026-11-25"
-  },
-  {
-   "h": "Thief in {} walks out of the town hall with a 870-kilo solid gold mace in his rucksack",
-   "banked": "2026-11-25"
-  },
-  {
-   "h": "Clerk in {} is charged with printing ballots on a laser printer for an election held in 1884",
-   "banked": "2026-11-24"
-  },
-  {
-   "h": "Town in {} bans lightning rods from public buildings, saying lightning never strikes twice",
-   "banked": "2026-11-24"
   }
  ]
 }
