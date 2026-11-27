@@ -773,6 +773,11 @@ body.calm *,body.calm *::before,body.calm *::after{animation:none!important}   /
 #hp[hidden]{display:none}
 #hp .sheetIn{width:min(560px,100%);height:100%;max-height:none;overflow:auto;background:#0f1522;background-image:var(--scan);padding:14px max(14px,env(safe-area-inset-left,0px)) calc(28px + env(safe-area-inset-bottom,0px))}
 #hp .kicker{color:#ff7aa0}
+/* the Modes page is a small card in the middle of the screen, with the game still visible behind it; a tap outside closes it */
+#hp.popup{background:rgba(5,6,10,.5);align-items:center;padding:16px;box-sizing:border-box}
+#hp.popup .sheetIn{position:relative;width:min(440px,100%);height:auto;max-height:100%;overflow:visible;background:none;padding:0}
+#hp.popup .sheetTop{margin:0 0 10px;align-items:center}
+#hp.popup #hpBody .mdGrid{max-height:calc(100vh - 80px);overflow:auto}
 /* the small 'N new briefs' box by the earth (home screen only) */
 #briefBox{all:unset;box-sizing:border-box;position:fixed;z-index:4;display:none;cursor:pointer;background:#a8231a;color:#f7f3e8;border:2px solid #1b1813;box-shadow:3px 3px 0 #000;padding:11px 12px 10px;font:7px/1 var(--px);letter-spacing:.08em;white-space:nowrap;transform:rotate(2deg)}
 body.introIdle #briefBox.on{display:block}
@@ -6987,10 +6992,11 @@ $('briefBox').onclick=()=>{ gcEvent('briefs/open'); hpOpen('briefs'); };
 $('mBriefs').onclick=()=>{ gcEvent('briefs/menu'); closeMenu(); hpOpen('briefs'); };
 function hpOpen(id){ const r=HPAGES[id]; if(!r) return; try{ Sound.play('menu'); }catch(e){}
   if(id==='pass' && HP_ID && HP_ID!=='pass' && !$('hp').hidden) HP_PREV=HP_ID; else if(id!=='pass') HP_PREV=null;   // closing the Press Pass returns to the page that sent you there
-  $('hp').hidden=false; $('hpKicker').textContent=r.title; HP_ID=id; r.render(); $('hp').querySelector('.sheetIn').scrollTop=0; }
+  $('hp').classList.toggle('popup',id==='modes'); $('hp').hidden=false; $('hpKicker').textContent=r.title; HP_ID=id; r.render(); $('hp').querySelector('.sheetIn').scrollTop=0; }
 let HP_ID=null, HP_PREV=null;
-function hpClose(){ if(HP_ID==='pass' && HP_PREV){ const p=HP_PREV; HP_PREV=null; hpOpen(p); return; } $('hp').hidden=true; HP_ID=null; HP_PREV=null; updateHome(); }
+function hpClose(){ if(HP_ID==='pass' && HP_PREV){ const p=HP_PREV; HP_PREV=null; hpOpen(p); return; } $('hp').hidden=true; $('hp').classList.remove('popup'); HP_ID=null; HP_PREV=null; updateHome(); }
 $('hpClose').onclick=hpClose;
+$('hp').addEventListener('click',e=>{ if(e.target===$('hp') && $('hp').classList.contains('popup')) hpClose(); });
 function histDays(){ const h=load('ff_hist')||{}, days={}; Object.keys(h).forEach(k=>{ const p=k.split(':'); (days[p[0]]=days[p[0]]||{})[p[1]]=h[k]; }); return days; }
 function secsToEdition(){ const o=etParts(new Date()); return o ? 86400-(+o.hour*3600 + +o.minute*60 + +o.second) : 0; }
 function hmsOf(s){ return pad(Math.floor(s/3600))+':'+pad(Math.floor(s%3600/60))+':'+pad(s%60); }
@@ -7211,11 +7217,15 @@ function passBuy(kind){
   if(!u){ try{ sessionStorage.setItem('ff_buy','page|'+Date.now()); }catch(e){} Cloud.signIn({why:PASS_SIGNIN_WHY}); return; }   // sign in first, then back to this page to pay
   gcEvent('pass/checkout/'+kind); location.href=(PASS_LINKS[kind]||PASS_LINKS.pass)+'?client_reference_id='+encodeURIComponent(u.id);
 }
-/* back from signing in: open (or return to) the Press Pass page */
+/* back from signing in: open (or return to) the Press Pass page.
+   Signing in can reload the page once (the account's data replaces this device's), which would wipe the page we just opened, so the note is kept for 20 seconds
+   after it is first used: the reloaded page finds it, opens the Press Pass page again and only then clears it. */
 function resumeBuy(){
-  let v=null; try{ v=sessionStorage.getItem('ff_buy'); sessionStorage.removeItem('ff_buy'); }catch(e){}
+  let v=null; try{ v=sessionStorage.getItem('ff_buy'); }catch(e){}
   if(!v) return;
-  const t=+v.split('|')[1]; if(Date.now()-(t||0)>10*60*1000) return;   // a stale tap from earlier does nothing
+  const p=v.split('|'), t=+p[1]||0, shown=+p[2]||0, now=Date.now();
+  if(now-t>10*60*1000 || (shown && now-shown>20000)){ try{ sessionStorage.removeItem('ff_buy'); }catch(e){} return; }   // a stale tap from earlier does nothing
+  try{ if(shown) sessionStorage.removeItem('ff_buy'); else sessionStorage.setItem('ff_buy','page|'+t+'|'+now); }catch(e){}
   showToast(isPro()?'Signed in. You already have the Press Pass. Welcome back!':'Signed in. Tap your pass to finish.');
   setTimeout(()=>{ try{ if(HP_ID==='pass') HPAGES.pass.render(); else hpOpen('pass'); }catch(e){} },350);
 }
