@@ -474,16 +474,32 @@
    "i": 1,
    "h": "Shepherd is found alive in {} after 16 days with no water, having lived on salted goat meat",
    "tell": "A person cannot survive about 16 days without any water; the limit is a few days.",
-   "n": 1224,
-   "pct": 56.0
+   "n": 1606,
+   "pct": 54.8
   },
   {
    "day": "2026-11-27",
    "i": 5,
    "h": "Builders in {} uncover a 2nd-century Roman mosaic of banquet guests eating pineapples",
    "tell": "Pineapples are American and reached Europe only after 1492, centuries after Rome.",
-   "n": 1224,
-   "pct": 35.0
+   "n": 1606,
+   "pct": 33.9
+  },
+  {
+   "day": "2026-11-28",
+   "i": 2,
+   "h": "Man in {} is arrested for melting down 40 stolen church bells to cast a solid gold statue of himself",
+   "tell": "Hair and nails don't keep growing after death; the skin just retracts.",
+   "n": 146,
+   "pct": 22.6
+  },
+  {
+   "day": "2026-11-28",
+   "i": 5,
+   "h": "Archaeologists in {} find fortune-cookie moulds in a Tang dynasty kitchen dated to 870",
+   "tell": "Fortune cookies are a 20th-century Japanese-American invention, not Chinese or medieval.",
+   "n": 146,
+   "pct": 25.3
   }
  ]
 }

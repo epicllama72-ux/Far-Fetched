@@ -1,250 +1,180 @@
 {
- "date": "2026-11-28",
- "generated": "2026-11-27T20:37:07+00:00",
+ "date": "2026-11-29",
+ "generated": "2026-11-28T08:22:24+00:00",
  "call": [
   {
    "real": true,
-   "h": "Fugitive on the run for years is caught in {} living as a woman and carrying his sister's identity card",
-   "hint": "the eastern terminus of the Orient Express",
-   "lat": 41.0064,
-   "lng": 28.9759,
-   "place": "Istanbul, Turkey",
-   "src": "https://www.odditycentral.com/news/male-fugitive-avoids-capture-for-8-years-by-changing-gender-and-living-as-a-woman.html?utm_source=rss&utm_medium=rss&utm_campaign=male-fugitive-avoids-capture-for-8-years-by-changing-gender-and-living-as-a-woman",
-   "published": "2026-09-18",
-   "clue": "fugitive hiding at his sister's home + Constantinople = Istanbul"
+   "h": "Woman in {} files nominations for one council post as three candidates in three outfits, then wins unopposed",
+   "hint": "a district in the east of the Pink City's state",
+   "lat": 27.4773,
+   "lng": 77.3257,
+   "place": "Deeg, Rajasthan",
+   "src": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNUFNJTkoxeXVHeTBxa3lzWm43QnNCeDdmTnRBWEVUSGo4ekZvZm5vaWt5al9Rdm9rbmdOeU9DaFl2bzVyNlRFOWVYZk9GMjJnMlgzZkRzMndGNUpiU25mUDJDMWZoSUduamxRcXFpQ2NXN1RiUXdYdzAyOEZKSVA2SlgzMjNFOG9TczMwYXZTelRaS29KMmVSMmliTGxuS1JJNC15Nm0tM0lsX1NiY3dvaW9rR2VqckE?oc=5",
+   "published": "2026-11-27",
+   "clue": "Pink City state + panchayat election + sari and salwar suit = Rajasthan"
   },
   {
    "real": true,
-   "h": "Family accuses a hospital in {} of losing a baby after a caesarean, but the woman was never pregnant",
-   "hint": "the port city where Jinnah was born",
-   "lat": 24.8547,
-   "lng": 67.0207,
-   "place": "Karachi, Pakistan",
-   "src": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9hMDJKQ2Z1Wm9WNWRXemlSQ3ZKek5BUER0aGZfV1J4Y2JBeEtGaS1yUWNHNFo1U2M0OV9IWXVRcDJfUlk0eS1HcXpwQWg3bEpnRWJfU3p3Ri05Y2PSAWBBVV95cUxPT0lmVnlsLWdndndxeDBvX0NJMlk0eTJudU5zQUVRRGptUjZ3NFNXOXNyQTI1ZHNHaWtwUUU2S2hMQjZCX1J1TEgwZGk0WHNtWmgzeTN6a1B5TnZLdk9iU1c?oc=5",
-   "published": "2026-09-03",
-   "clue": "hospital drama + family pressure after three years of marriage = South Asia"
-  },
-  {
-   "real": false,
-   "h": "Man in {} is arrested for melting down 40 stolen church bells to cast a solid gold statue of himself",
-   "tell": "Hair and nails don't keep growing after death; the skin just retracts."
+   "h": "Pet turkey turns on the hot tap in a flat in {}, flooding the block while the cat shelters on a dry mattress",
+   "hint": "where Bertha Benz began her famous first long car trip",
+   "lat": 49.4893,
+   "lng": 8.4673,
+   "place": "Mannheim, Germany",
+   "src": "https://news.google.com/rss/articles/CBMidkFVX3lxTE90WXlvUTY2ZXoxUWNITC1SUlVzeXRfcFcwSi1fdGJKVnJSWjIxVVlpY2FGSkNodjI4VTlFejNfaU16aEdTdlAwWkpxUUREM3ZHbGMxWmV4ZG5hcE1jX003MnNjMWF2ZF94YUJLc0YwMFF3cF9td2c?oc=5",
+   "published": "2026-11-25",
+   "clue": "Hot tap + flat + fire crews = a German city; Bertha Benz's drive began here"
   },
   {
    "real": true,
-   "h": "43 soldiers re-up after being offered four days off to play Grand Theft Auto VI at a base in {}",
-   "hint": "a post in the state where Coca-Cola was born",
-   "lat": 31.8691,
-   "lng": -81.609,
-   "place": "Fort Stewart, Georgia, USA",
-   "src": "https://abcnews.com/Politics/43-soldiers-agree-stay-army-partly-long-weekend/story?id=138260267",
-   "published": "",
-   "clue": "an Army reenlistment + the Army's largest eastern base = Fort Stewart, Georgia"
-  },
-  {
-   "real": true,
-   "h": "Five youths drink beer and film social media reels inside a police patrol car in {}",
-   "hint": "home of the Hawa Mahal palace of winds",
-   "lat": 26.9155,
-   "lng": 75.819,
-   "place": "Jaipur, Rajasthan, India",
-   "src": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOQzdzWExjWVU4VVBtLTI2LXNzRjJHcXdibDQ2YkdWcURoVjg4d181SkNia0J3ak5aNnl0eHFWMmlLTDNfckZ0bjQtZkViSnhiNzVHVmZ3M28wV1BqY1lhSDZXZmFnQVhsV2ZEbUNSZDQtdngxSVhORFByZ0JqV0JrLTIyeWlGSk9ZZFQwT0ROZGxVTmZCaGpCM2pjYi1ueFRyNFV2V1otWHdGV3MtcWNNN3lXVWtzU0dzVE5JQmpvblpJRVB2QjNfZ3Bqak9EUlAwOWlsZ0FYMS1vWUxVMFlUS1d4N3JlUUpqajJaRG9Da9IB9AFBVV95cUxNSmx2RHpFN2d3Mi16ZG5VNk9SSGlacFFIalBSNWowaGlYTTQ2NXl3eFduVU8tSzZaOHJlWjE3TUhtWGRaY1JSVjh4ekZJaXAzcFNxZ0VfOTcydk04TXRGS0RETFltRFpZZGEzcm1rbE4wUjRXWUJ0ZHBMUjFyTWVGZ25VQ0w4OUlObGxfYXg3blNvYWFraFpFUGhpM2NPZVpDa0dnNHoyQzY3UXZxNndoMm43VU5CczFtZHJQQ0dTbVg4WV90eGhRX01PRXdLSHp6Qzl6Ykdmc2hIYmczMEgwNmlhcklRb2kwV0x5SlBvcFE3aDI5?oc=5",
+   "h": "Both teams say the referee is drunk after he books a goalkeeper for a midfield foul at a continental match in {}",
+   "hint": "host of the Formula 1 season finale at Yas Marina",
+   "lat": 24.4538,
+   "lng": 54.3774,
+   "place": "Abu Dhabi, United Arab Emirates",
+   "src": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOMENibTVNSXNSUjJWT3VDT0p0ZTUyZzlNNHVSS084RUdTUzhrQ3U3ODZJdUtJOWpjZzJGWEtVTTBzcDcxTTEwMExqQ2dFcjBZM2QtRmM2ekZfODVhR1BlN3diZVY1MldTSVNreW11aURnRFpDTjNwTkVkUkdZUkFRSjVmbnZFV0VKUnVDOFJrR0JUeUdTREZ4QWFXeF9KZEJFVHU5eWx5VS13MURmeWYtYVNndzZiMGEyc3ZUNGcxOHdiMXlKNXFhSU5Vc191dUZq?oc=5",
    "published": "2026-11-26",
-   "clue": "patrol car party + reels + Hawa Mahal = Jaipur, India"
+   "clue": "Continental club match + Gulf club + Formula 1 finale = Abu Dhabi"
   },
   {
    "real": false,
-   "h": "Archaeologists in {} find fortune-cookie moulds in a Tang dynasty kitchen dated to 870",
-   "tell": "Fortune cookies are a 20th-century Japanese-American invention, not Chinese or medieval."
+   "h": "Eighth-century tomb opened in {} holds a fortune cookie with its slip still readable",
+   "tell": "Fortune cookies are a 20th-century invention from California; they did not exist 1,200 years ago."
   },
   {
    "real": true,
-   "h": "Deer snatches a woman's wig while tourists feed the animals at a park in {}; the clip goes viral",
-   "hint": "home of Todaiji temple's Great Buddha",
-   "lat": 34.6829,
-   "lng": 135.8546,
-   "place": "Nara, Japan",
-   "src": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOdmVVa0NGRFBQLVJrQVYwNjA3WEZzb3cySFkybC1LWGVXZnNJbUZiaWh5QURsdEJGYU1uY3UxV3JadmJxQWctZWdYLU1vdEdkbHRkUHNpXzRQaHQ2VkdmMlFiQWVFX2VfVFFObmJkclFGRm0yeEFpeUFiZmNqWlNEN0Y4VV8xa1AxVHFN?oc=5",
-   "published": "2026-11-24",
-   "clue": "deer fed by tourists in a park + wig = Nara's famous park deer"
+   "h": "Man dumps his tyre-biting dog at an industrial estate in {}, where it bursts a stranger's tyre and he pays up",
+   "hint": "where Roman emperor Trajan died in 117 AD",
+   "lat": 36.2683,
+   "lng": 32.3175,
+   "place": "Gazipaşa, Antalya, Turkey",
+   "src": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPRG5iM1Ftblp4U25jcWpjZG56LVFNWHRtOEs3MFFrLS16T09lQkw5N1R0WFViOVlBQXlBZ1lkZldfS1FaMElJQ1VjWUhIN2JFX0VhQmZyY1plUU1HVlRBVFZ0VzUwaUNWdzR5NmFKc1MzVDlWR3dmMXN3aGhrbUdMRld2RUxMdGpYd3pORzh4RDFhcVdBTjBJdEtmVFZpSVhfWDl5T0hoc05IQXY4bWVwUElJdUR0QnN0cVJRUEJsWllIbDBOeWlEOHRoclB3LTBGZ2F1cA?oc=5",
+   "published": "2026-11-20",
+   "clue": "Gendarmerie + emergency 112 + stray dog = Mediterranean coast town"
+  },
+  {
+   "real": true,
+   "h": "Woman wearing a 'Retired Drug Dealer' shirt is arrested for dealing drugs in {}",
+   "hint": "a Gulf-coast county where visitors swim with manatees",
+   "lat": 28.8497,
+   "lng": -82.4573,
+   "place": "Citrus County, Florida, USA",
+   "src": "https://www.wfla.com/news/local-news/citrus-county/woman-wearing-retired-drug-dealer-shirt-arrested-for-dealing-drugs-sheriff/",
+   "published": "",
+   "clue": "sheriff's deputies = US; swim-with-manatees Gulf county = Citrus, Florida"
+  },
+  {
+   "real": false,
+   "h": "Man, 24, in {} is arrested for robbing the same bank twice, 31 years apart, in the same stocking mask",
+   "tell": "Hair and nails do not keep growing after death; the skin just shrinks back."
   }
  ],
  "blank": [
   {
    "real": true,
-   "h2": "Customer finds a whole stapler in a cup of bubble [] in Taiwan; shop CCTV shows it fell in while the drink was made",
+   "h2": "Short of riders, a team [] starts the 273-kilometre men's world road race and is pulled after about 100 km in Montreal, Canada",
    "ans": [
-    "tea",
-    "teas"
+    "masseur",
+    "masseuse",
+    "cyclist",
+    "doctor"
    ],
    "alt": [
-    "coffee",
-    "juice",
-    "boba",
-    "smoothie"
+    "physio",
+    "mechanic",
+    "coach",
+    "driver",
+    "chef"
    ],
-   "place": "Taiwan",
-   "src": "https://news.google.com/rss/articles/CBMihANBVV95cUxPdmhIeThSczh3RHl0Y0ZMMlhFeHV4ajBCcnVUODJTTk5oMDZFMVZjMmZvdWVZYTBXVHA3TDNwRlMxck8tVU9XWHBFcDZBWHF2bU5pbkZsZm5rWU1UUEZiWEJRRVc0ODhPTngtXzFDdUJ0c3ZpdjczMUxyY3l5LTNlcEcyUWdPcFA3R2hpczkzWHdQWFR5Nm02UWlUM2ctcm8taFZYZkxvZzhlNm82VXVHTFFpNHBnbHJiU2x5Z3p6eUV6Zi1GYWtFUUlOQ0c1N2gyVDdKU1NMaVJic3EzMnBTaFBVNUNpc1hYR1hackExcnZ0ZHl1WXlPMEJuNmxwdkxObHlVemxCRXZ2QkZBaUtzZHJNQi0zSExBc3RVTjRtNk1sdkNaWEl3YXg0SElVc1J6aEJ4b0lrZFdzVnpPY0poUkdkWE9tMy1hTGQ2VGdwTGZPZW1KYTFJVERBNWhXYWctTk5kSWxFanBxVjFwUVRSN0RqeFJYU29QSS13eDY5SlR6cW4w?oc=5",
+   "place": "Montreal, Quebec",
+   "src": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQM2ZDRXFKWHRuWFlsbzhGSmZSWXdUNWxxSURqbzB2a3BISXZtTUtaRVJlVW9la0N4clFLbXFjd0ZWMWhHZU9UZVo3andOVGtlLTN1WHFpNk1saXpSb2NfQ1dEWlRCYVFORFBid2w2cDNEcjFwR3NMSXZYUXJMcmFDaUJ3akpmY1kyZWhtUUxERnBGX25nclVmMW9jZEl1OFZzVURYVEJtd0h1ZzNTSnNPVGx5MzhRZ2ZuYmtablVuc0Z6VEFYVk9ucENQNm5lWjAySUE?oc=5",
+   "published": "2026-09-28",
+   "vec": "FQ7wEQEfAiD2MEI93X/a3/5D3ynPPPj05vMGFObvtgr1FAccC/o1EP/mBTPv2uAzINw="
+  },
+  {
+   "real": true,
+   "h2": "Woman in Raleigh, North Carolina is evicted after her apartment complex's AI assistant, named Olivia, agreed to a late [] payment",
+   "ans": [
+    "rent",
+    "fee",
+    "bill",
+    "charge"
+   ],
+   "alt": [
+    "mortgage",
+    "tax",
+    "loan"
+   ],
+   "place": "Raleigh, North Carolina",
+   "src": "https://www.hindustantimes.com/trending/woman-evicted-from-north-carolina-home-after-apartments-ai-assistant-approves-rent-extension-101795711715829.html",
    "published": "2026-11-26",
-   "vec": "5QDAGiDu3N4gH9L8RNr6+/od/bE1CkcDCuQGFf4gfwvqThz+0zsO9w0S1hBPT8HLNsk="
+   "vec": "Hgonw+7z0+f4GeQLI+9PJBsWM8pE6bccwOn3/T0Ffxn6LhkXJeYi8vgWE0Ots+HR9yc="
   },
   {
    "real": true,
-   "h2": "North Dakota woman buys a Ford Bronco and drives 27 hours home after [] are grounded",
+   "h2": "Rickshaw driver, 53, swallows a whole 19-centimetre [] cleaning his tongue; doctors at a hospital in Navi Mumbai, India fish it out",
    "ans": [
-    "flights",
-    "planes",
-    "airlines",
-    "airplanes",
-    "jets",
-    "aircraft"
+    "toothbrush",
+    "toothbrushes",
+    "brush"
    ],
    "alt": [
-    "trains",
-    "airports"
+    "spoon",
+    "scraper",
+    "comb",
+    "toothpick",
+    "razor"
    ],
-   "place": "North Dakota, USA",
-   "src": "https://www.troyrecord.com/2026/11/19/faa-ground-stop-woman-buys-car-drives-north-dakota/",
-   "published": "2026-11-19",
-   "vec": "bhL//7nW2go/7RoGBCkcCsP+tuQyC/oV9M0xFRoLf1T2FxffJ/LCUeshTQTG+vEl2g4="
+   "place": "Navi Mumbai, Maharashtra",
+   "src": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBCSXBYSHExVGE5WVJXT2hRTUp1LUwyYWNuOEZ1a0lCb0lWc0pwcFp0dHc1bi1JY2o4X3piSVJ2ZjNFUlVqUWgwNWY2dGZqRFB5N2lMNE5pZGxneFMxWXZEcw?oc=5",
+   "published": "2026-11-05",
+   "vec": "5gYlI9ZfNtwOFhdKL+/4MZB/No4d7vnPL6raPSbM2DvjYgEy/EQ62kUTwHQa1jPpF8k="
   },
   {
    "real": true,
-   "h2": "Driverless [] circles at high speed after its only crewman falls overboard on the Sado river, Setúbal, Portugal",
+   "h2": "Customs officers at an airport in Shenzhen, China stop a woman with a stiff walk and find 21 live [] strapped to her legs",
    "ans": [
-    "boat",
-    "boats",
-    "ship",
-    "vessel",
-    "yacht",
-    "craft"
-   ],
-   "alt": [],
-   "place": "Setúbal, Portugal",
-   "src": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNc2UxU0JvYXJ6YVFwcFpjcXRxWm9Nd0VFckw3NUhjVXlremJuYnFNM3NGNHVRWm9oREhJaHpMellBQ2xNNF9FUkNSUnBnYlFHZXI1OFVxS0hSbjBsRHFjc2xTS2dqWkExNGdRZEdZejQyZjZFZ1d6S2otQUMta2t6am1iaTA1clltSC1QN1JRWmEtRWRZNUtZM2hVbGZQQTRGYzVCNnhHQU42Y29Va291ZVRYNW9LX2NMMXZKcGxma3JyOVNfZlNPa3FlbkRneDV2R3BNVWpVNHN6LUhR?oc=5",
-   "published": "2026-10-18",
-   "vec": "OQQJ+twFsyUywgEoHTT52P00osoUIeMESqUcFSLxfwLlQxcPE+PsBvrsTAED2PLLK8g="
-  },
-  {
-   "real": true,
-   "h2": "Tour guide who impersonates Ben Franklin is arrested in Boston, Massachusetts and stands before the judge in full []",
-   "ans": [
-    "costume",
-    "costumes",
-    "outfit",
-    "getup",
-    "garb",
-    "attire",
-    "regalia",
-    "uniform",
-    "dress",
-    "apparel",
-    "clothes"
+    "snakes",
+    "snake",
+    "serpents",
+    "reptiles",
+    "vipers",
+    "cobras",
+    "pythons",
+    "lizards"
    ],
    "alt": [
-    "wig",
-    "disguise",
-    "suit"
+    "spiders",
+    "turtles",
+    "eels",
+    "tortoises"
    ],
-   "place": "Boston, Massachusetts",
-   "src": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNZFRzVDdCZlBUdk5KVlNMbnl4eGs4RmNnV3QyM3FBUWR3MUxfLVJVMnFoQ0JhS1BVbU9tdDRJRXlSY2FhTG43YlozN0NBRkFKanV5eDlIZ2JrclBXeWtSeXRCVU5OWDNjMmhKME1PakFHeE5zRzUtbFJhRnpiWktRV2UtV0JqMFE?oc=5",
+   "place": "Shenzhen, Guangdong, China",
+   "src": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNSS1kNnVIUnRrWk9MRGwwdVFsR204aFRIeEtKbW1wM3pycVJrQ29GaTZTLUV4emF4cjlSZG9XSlFpTG5vNy1KZVJPOFFIQUE4bUFBOE1wdjVOdS1wZlZNaXE0SnJIbmVlSE1fN1N6OHN4WnByV0hKRmE3MUY5LVFoRkNYalRGNTNTSzdZZndLTEM?oc=5",
    "published": "2026-11-25",
-   "vec": "4/uR+zQk7Ln/5goRHSoq+v0Z5L8qEMr77taBC++8Pxj55gxdCg7U2v4+7tUG3iK+CBI="
+   "vec": "T73nAP0W/ckrA/dERhP6CTk7itS26X8TG+3qJhqtQP8TBQMW06fyAb3rFXVVDQuY/Lo="
   },
   {
    "real": true,
-   "h2": "[] who turned 18 four days before a junior world championships in Budva, Montenegro is barred because his federation forgot a sex test",
+   "h2": "Thief hits 40 flats at a housing society in Howrah, West Bengal, India, skips cash and jewellery, and takes only branded [] worth a small fortune",
    "ans": [
-    "boxer",
-    "boxers",
-    "fighter",
-    "pugilist",
-    "puncher",
-    "sparrer"
+    "shoes",
+    "shoe",
+    "sneakers",
+    "trainers",
+    "sandals",
+    "slippers",
+    "boots",
+    "footwear"
    ],
    "alt": [
-    "athlete",
-    "wrestler",
-    "teenager",
-    "swimmer",
-    "sprinter",
-    "player"
+    "watches",
+    "clothes",
+    "bags"
    ],
-   "place": "Budva, Montenegro",
-   "src": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNTnlXU3Q5T044N00xaXNOU1VIMFMxNkVkdUkwdjI2LXExYVR4LW5WUmFMeWZZQkVUb2l6cTVKeHhSVVFMOG9sYW9sVDlkR3R3ZFBLVlA3LUN1SmdvcmFodUprUW9fZExRZ0R1SjRlb19lT2lzQ2pHdXBmNlZPMHdSU29FbkstTm1DaHN5UTM0RQ?oc=5",
-   "published": "2026-11-17",
-   "vec": "nuz6MuQwFBXp9xIBEhojw+5JxMmlBRvzBIEM3dsyMOO4Ggf87yrrpQlF9vYo/9ef5jc="
-  }
- ],
- "politics": [
-  {
-   "real": true,
-   "h": "County in {} finds 2,300 unreported ballots after election night, and a recount changes no race",
-   "hint": "",
-   "lat": 46.8,
-   "lng": -116.7,
-   "place": "Latah County, Idaho, USA",
-   "src": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNMHJqT0FXMUJfQktZaWk2alJ2Nk53WTh6eTFfQ2JSdHc4bVpMSWRBamItbVJZaEJEOEl2aXJtMERJWkZKQzNEMGlWSDNCbzRWYkR3bng1eXpZQ1ViZTkza2JZaXJ3anpIYjI1MkNiZFpLTDZfYTN1SzFBRUlUNURWUXlva0tOTjNSN2RlM09GUVo3NzNRZ04wVTliS1FBaXZFT3lqMXRKc2tWODZweTJxOWlOVkNLSGc4MWVHNWwzMzhKVkZCb3JoNk82b2NIZDVI?oc=5",
-   "published": "2026-11-11",
-   "clue": "a county in the north of the potato-famous state; recount + county = US",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "Tied city council race in {} is settled by a tiebreaking coin flip",
-   "hint": "",
-   "lat": 44.2,
-   "lng": -92.65,
-   "place": "Pine Island, Minnesota, USA",
-   "src": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOV2xyU2lSUE45SVVoeUZaREZ6LWpmUW4tZDhrSFJvQkdjZl8yaHh5VDZTSFNaZDhCakU0d0h0Yjl2LXFqa0ItVm9SMU1PNVRLVGFGYVNrOVpvWGxrLUZzYkl6MnN6THFLQm5jMS1DNVBKQzk2VkxyM1NPUWZLNDlJZXVZVVNUd21PbndveFhQcDJjZFJ4LWc?oc=5",
-   "published": "2026-11-13",
-   "clue": "a small city just north of the Mayo Clinic's home; city council = US",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "Urban development plan in {} aims to protect homes from climate change and from disoriented birds",
-   "hint": "",
-   "lat": 28.1074,
-   "lng": -15.5627,
-   "place": "Mogán, Gran Canaria, Spain",
-   "src": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQVFd5Umo4NUlOWDVOczlkdjBybUV1eno3ZWtXR0RBZUxtZERRZEF3ekdJQTZjdy1xYkJlbmtyellZZDhEQ3dwX0psNWRCal9wVGRLdHFGdXNQZmNOelFaY25FZnVXLXFoMkNhQ3E4cm1JcmhvMExaZHQyenVhS1k4YURpRFNySkJJc2x6VExtWEtfY1BFR0FkUUwycU1TRGhU?oc=5",
-   "published": "2026-11-24",
-   "clue": "Birds confused by lights + resort coast = a Canary island town",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "Assemblyman insists 'Obviously I'm a human being' after an eye-roll video sparks lizard-people talk in {}",
-   "hint": "",
-   "lat": 40.7128,
-   "lng": -74.006,
-   "place": "New York City, New York",
-   "src": "https://www.snopes.com/fact-check/nyc-assemblyman-eye-roll-lizard/",
-   "published": "",
-   "clue": "state 'assemblyman' + a city viral clip = New York",
-   "cat": "pol"
-  },
-  {
-   "real": true,
-   "h": "An Island Government by-election in {} ends in a tie",
-   "hint": "",
-   "lat": -10.0132,
-   "lng": -161.0903,
-   "place": "Rakahanga, Cook Islands",
-   "src": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOa2RfWmp3Z3VLbHV5VkJLaTJIbXR4WlBlZmRlb2ZhQTdKT240YndEV3A2anl4WUpxM19GaklDUVN3UkUwLWp6OVhjVFRoRVNkZ2ExMzRobllpNU1CNFN2UTB0WlBMY2VGUXRxVWpFcmkyVjR3d2hUTFBsLXZBZkpUdjdndnFQZ0lISWliRHdqTkVzb3NTLTJfZWMtcUtpakhiMEI4SUl5ZUxWdWZzQVlTYWtLQ3BIeTlDRENLVDBpR0Z0TF9ua2xKVXV2dWNMYXFSV1VfaVhWTWpZcEhPRXJqWFVTM0pvaXdNT0M5NC0wLTFTYzVPd3RRVg?oc=5",
-   "published": "2026-11-14",
-   "clue": "Island Government + by-election on a tiny atoll = South Pacific island nation",
-   "cat": "pol"
-  },
-  {
-   "real": false,
-   "h": "Man, 29, in {} is caught claiming a war pension for service in 1945",
-   "cat": "pol"
-  },
-  {
-   "real": false,
-   "h": "Man in {} is jailed after paying a parking fine with a gold bar he says he made from mercury in his shed",
-   "cat": "pol"
+   "place": "Howrah, West Bengal",
+   "src": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBvUVFGU1BYYXc0Z1U1a2RIQ3YzR1M2WHVYOWhNRnZWZ29ZZ05mQng4SDdYekE5UXJXaE9NenNWYXdxanNBQVJCTl8tSkdwb1NCR3NCN3Zn?oc=5",
+   "published": "2026-11-25",
+   "vec": "uQ327A8H1pkZ5xYFz/A2NM0zHIH9Puzd2a/PXTqacEz3ShRCFT/p9REYMh5HzO+t794="
   }
  ]
 }
